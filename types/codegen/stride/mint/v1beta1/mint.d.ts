@@ -1,5 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "../../../helpers";
 /** Minter represents the minting state. */
 export interface Minter {
     /** current epoch provisions */
@@ -69,7 +69,7 @@ export interface Params {
     /** reduction multiplier to execute on each period */
     reductionFactor: string;
     /** distribution_proportions defines the proportion of the minted denom */
-    distributionProportions: DistributionProportions;
+    distributionProportions?: DistributionProportions;
     /** start epoch to distribute minting rewards */
     mintingRewardsDistributionStartEpoch: Long;
 }
@@ -86,7 +86,7 @@ export interface ParamsSDKType {
     /** reduction multiplier to execute on each period */
     reduction_factor: string;
     /** distribution_proportions defines the proportion of the minted denom */
-    distribution_proportions: DistributionProportionsSDKType;
+    distribution_proportions?: DistributionProportionsSDKType;
     /** start epoch to distribute minting rewards */
     minting_rewards_distribution_start_epoch: Long;
 }

@@ -1,5 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long } from "@osmonauts/helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 /**
  * Wrapper message for `double`.
  *

@@ -1,6 +1,6 @@
 import { iCAAccountTypeFromJSON } from "./ica_account";
 import { AminoMsg } from "@cosmjs/amino";
-import { Long } from "@osmonauts/helpers";
+import { Long } from "../../helpers";
 import { MsgLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidator, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
 export interface AminoMsgLiquidStake extends AminoMsg {
   type: "/stride.stakeibc.MsgLiquidStake";

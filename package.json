@@ -86,5 +86,8 @@
     "@osmonauts/helpers": "^0.6.0",
     "@osmonauts/lcd": "^0.6.0",
     "protobufjs": "^6.11.2"
+  },
+  "resolutions": {
+    "long": "^5.2.0"
   }
 }

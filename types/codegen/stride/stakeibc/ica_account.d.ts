@@ -1,6 +1,6 @@
 import { Delegation, DelegationSDKType } from "./delegation";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial } from "../../helpers";
 export declare enum ICAAccountType {
     DELEGATION = 0,
     FEE = 1,

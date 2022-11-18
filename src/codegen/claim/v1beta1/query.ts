@@ -2,16 +2,16 @@ import { Action, ActionSDKType, ClaimRecord, ClaimRecordSDKType } from "./claim"
 import { Coin, CoinSDKType } from "../../cosmos/base/v1beta1/coin";
 import { Params, ParamsSDKType } from "./params";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial } from "../../helpers";
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 
 export interface QueryDistributorAccountBalanceRequest {
-  airdropIdentifier?: string;
+  airdropIdentifier: string;
 }
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 
 export interface QueryDistributorAccountBalanceRequestSDKType {
-  airdrop_identifier?: string;
+  airdrop_identifier: string;
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
 
@@ -35,35 +35,35 @@ export interface QueryParamsRequestSDKType {}
 
 export interface QueryParamsResponse {
   /** params defines the parameters of the module. */
-  params: Params;
+  params?: Params;
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
 
 export interface QueryParamsResponseSDKType {
   /** params defines the parameters of the module. */
-  params: ParamsSDKType;
+  params?: ParamsSDKType;
 }
 export interface QueryClaimRecordRequest {
-  airdropIdentifier?: string;
+  airdropIdentifier: string;
   address: string;
 }
 export interface QueryClaimRecordRequestSDKType {
-  airdrop_identifier?: string;
+  airdrop_identifier: string;
   address: string;
 }
 export interface QueryClaimRecordResponse {
-  claimRecord: ClaimRecord;
+  claimRecord?: ClaimRecord;
 }
 export interface QueryClaimRecordResponseSDKType {
-  claim_record: ClaimRecordSDKType;
+  claim_record?: ClaimRecordSDKType;
 }
 export interface QueryClaimableForActionRequest {
-  airdropIdentifier?: string;
+  airdropIdentifier: string;
   address: string;
   action: Action;
 }
 export interface QueryClaimableForActionRequestSDKType {
-  airdrop_identifier?: string;
+  airdrop_identifier: string;
   address: string;
   action: ActionSDKType;
 }
@@ -74,11 +74,11 @@ export interface QueryClaimableForActionResponseSDKType {
   coins: CoinSDKType[];
 }
 export interface QueryTotalClaimableRequest {
-  airdropIdentifier?: string;
+  airdropIdentifier: string;
   address: string;
 }
 export interface QueryTotalClaimableRequestSDKType {
-  airdrop_identifier?: string;
+  airdrop_identifier: string;
   address: string;
 }
 export interface QueryTotalClaimableResponse {

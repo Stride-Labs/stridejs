@@ -1,13 +1,13 @@
 import { BaseAccount, BaseAccountSDKType } from "../cosmos/auth/v1beta1/auth";
 import { Coin, CoinSDKType } from "../cosmos/base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "@osmonauts/helpers";
+import { Long, DeepPartial } from "../helpers";
 /**
  * BaseVestingAccount implements the VestingAccount interface. It contains all
  * the necessary fields needed for any vesting account implementation.
  */
 export interface BaseVestingAccount {
-    baseAccount: BaseAccount;
+    baseAccount?: BaseAccount;
     originalVesting: Coin[];
     delegatedFree: Coin[];
     delegatedVesting: Coin[];
@@ -18,7 +18,7 @@ export interface BaseVestingAccount {
  * the necessary fields needed for any vesting account implementation.
  */
 export interface BaseVestingAccountSDKType {
-    base_account: BaseAccountSDKType;
+    base_account?: BaseAccountSDKType;
     original_vesting: CoinSDKType[];
     delegated_free: CoinSDKType[];
     delegated_vesting: CoinSDKType[];
@@ -41,7 +41,7 @@ export interface PeriodSDKType {
  * periodically vests by unlocking coins during each specified period.
  */
 export interface StridePeriodicVestingAccount {
-    baseVestingAccount: BaseVestingAccount;
+    baseVestingAccount?: BaseVestingAccount;
     vestingPeriods: Period[];
 }
 /**
@@ -49,7 +49,7 @@ export interface StridePeriodicVestingAccount {
  * periodically vests by unlocking coins during each specified period.
  */
 export interface StridePeriodicVestingAccountSDKType {
-    base_vesting_account: BaseVestingAccountSDKType;
+    base_vesting_account?: BaseVestingAccountSDKType;
     vesting_periods: PeriodSDKType[];
 }
 export declare const BaseVestingAccount: {

@@ -1,5 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial } from "../../helpers";
 export enum Action {
   ActionFree = 0,
   ActionLiquidStake = 1,
@@ -43,8 +43,9 @@ export function actionToJSON(object: Action): string {
     case Action.ActionDelegateStake:
       return "ActionDelegateStake";
 
+    case Action.UNRECOGNIZED:
     default:
-      return "UNKNOWN";
+      return "UNRECOGNIZED";
   }
 }
 /** A Claim Records is the metadata of claim data per address */

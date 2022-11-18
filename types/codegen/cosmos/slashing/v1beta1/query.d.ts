@@ -1,7 +1,7 @@
 import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
 import { Params, ParamsSDKType, ValidatorSigningInfo, ValidatorSigningInfoSDKType } from "./slashing";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial } from "../../../helpers";
 /** QueryParamsRequest is the request type for the Query/Params RPC method */
 export interface QueryParamsRequest {
 }
@@ -10,11 +10,11 @@ export interface QueryParamsRequestSDKType {
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method */
 export interface QueryParamsResponse {
-    params: Params;
+    params?: Params;
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method */
 export interface QueryParamsResponseSDKType {
-    params: ParamsSDKType;
+    params?: ParamsSDKType;
 }
 /**
  * QuerySigningInfoRequest is the request type for the Query/SigningInfo RPC
@@ -38,7 +38,7 @@ export interface QuerySigningInfoRequestSDKType {
  */
 export interface QuerySigningInfoResponse {
     /** val_signing_info is the signing info of requested val cons address */
-    valSigningInfo: ValidatorSigningInfo;
+    valSigningInfo?: ValidatorSigningInfo;
 }
 /**
  * QuerySigningInfoResponse is the response type for the Query/SigningInfo RPC
@@ -46,7 +46,7 @@ export interface QuerySigningInfoResponse {
  */
 export interface QuerySigningInfoResponseSDKType {
     /** val_signing_info is the signing info of requested val cons address */
-    val_signing_info: ValidatorSigningInfoSDKType;
+    val_signing_info?: ValidatorSigningInfoSDKType;
 }
 /**
  * QuerySigningInfosRequest is the request type for the Query/SigningInfos RPC

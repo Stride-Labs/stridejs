@@ -1,7 +1,7 @@
 import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../cosmos/base/query/v1beta1/pagination";
 import { EpochInfo, EpochInfoSDKType } from "./genesis";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "../../helpers";
 export interface QueryEpochsInfoRequest {
   pagination?: PageRequest;
 }
@@ -17,10 +17,10 @@ export interface QueryEpochsInfoResponseSDKType {
   pagination?: PageResponseSDKType;
 }
 export interface QueryCurrentEpochRequest {
-  identifier?: string;
+  identifier: string;
 }
 export interface QueryCurrentEpochRequestSDKType {
-  identifier?: string;
+  identifier: string;
 }
 export interface QueryCurrentEpochResponse {
   currentEpoch: Long;
@@ -29,16 +29,16 @@ export interface QueryCurrentEpochResponseSDKType {
   current_epoch: Long;
 }
 export interface QueryEpochInfoRequest {
-  identifier?: string;
+  identifier: string;
 }
 export interface QueryEpochInfoRequestSDKType {
-  identifier?: string;
+  identifier: string;
 }
 export interface QueryEpochInfoResponse {
-  epoch: EpochInfo;
+  epoch?: EpochInfo;
 }
 export interface QueryEpochInfoResponseSDKType {
-  epoch: EpochInfoSDKType;
+  epoch?: EpochInfoSDKType;
 }
 
 function createBaseQueryEpochsInfoRequest(): QueryEpochsInfoRequest {
