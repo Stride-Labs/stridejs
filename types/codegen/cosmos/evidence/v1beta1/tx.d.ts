@@ -1,13 +1,13 @@
 import { Any, AnySDKType } from "../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "../../../helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 /**
  * MsgSubmitEvidence represents a message that supports submitting arbitrary
  * Evidence of misbehavior such as equivocation or counterfactual signing.
  */
 export interface MsgSubmitEvidence {
     submitter: string;
-    evidence?: Any;
+    evidence: Any;
 }
 /**
  * MsgSubmitEvidence represents a message that supports submitting arbitrary
@@ -15,7 +15,7 @@ export interface MsgSubmitEvidence {
  */
 export interface MsgSubmitEvidenceSDKType {
     submitter: string;
-    evidence?: AnySDKType;
+    evidence: AnySDKType;
 }
 /** MsgSubmitEvidenceResponse defines the Msg/SubmitEvidence response type. */
 export interface MsgSubmitEvidenceResponse {

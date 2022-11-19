@@ -129,6 +129,14 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
         };
     };
     stride: {
+        claim: {
+            distributorAccountBalance(request: import("./claim/query").QueryDistributorAccountBalanceRequest): Promise<import("./claim/query").QueryDistributorAccountBalanceResponse>;
+            params(request?: import("./claim/query").QueryParamsRequest): Promise<import("./claim/query").QueryParamsResponse>;
+            claimRecord(request: import("./claim/query").QueryClaimRecordRequest): Promise<import("./claim/query").QueryClaimRecordResponse>;
+            claimableForAction(request: import("./claim/query").QueryClaimableForActionRequest): Promise<import("./claim/query").QueryClaimableForActionResponse>;
+            totalClaimable(request: import("./claim/query").QueryTotalClaimableRequest): Promise<import("./claim/query").QueryTotalClaimableResponse>;
+            userVestings(request: import("./claim/query").QueryUserVestingsRequest): Promise<import("./claim/query").QueryUserVestingsResponse>;
+        };
         epochs: {
             epochInfos(request?: import("./epochs/query").QueryEpochsInfoRequest): Promise<import("./epochs/query").QueryEpochsInfoResponse>;
             currentEpoch(request: import("./epochs/query").QueryCurrentEpochRequest): Promise<import("./epochs/query").QueryCurrentEpochResponse>;

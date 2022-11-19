@@ -1,6 +1,6 @@
 import { Any, AnySDKType } from "../protobuf/any";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "../../helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 /**
  * Message that represents an arbitrary HTTP body. It should only be used for
  * payload formats that can't be represented as JSON, such as raw binary or

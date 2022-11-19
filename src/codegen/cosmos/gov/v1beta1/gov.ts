@@ -3,7 +3,7 @@ import { Any, AnySDKType } from "../../../google/protobuf/any";
 import { Timestamp } from "../../../google/protobuf/timestamp";
 import { Duration, DurationSDKType } from "../../../google/protobuf/duration";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long, toTimestamp, fromTimestamp } from "../../../helpers";
+import { DeepPartial, Long, toTimestamp, fromTimestamp } from "@osmonauts/helpers";
 /** VoteOption enumerates the valid vote options for a given governance proposal. */
 
 export enum VoteOption {
@@ -87,9 +87,8 @@ export function voteOptionToJSON(object: VoteOption): string {
     case VoteOption.VOTE_OPTION_NO_WITH_VETO:
       return "VOTE_OPTION_NO_WITH_VETO";
 
-    case VoteOption.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return "UNKNOWN";
   }
 }
 /** ProposalStatus enumerates the valid statuses of a proposal. */
@@ -100,31 +99,31 @@ export enum ProposalStatus {
 
   /**
    * PROPOSAL_STATUS_DEPOSIT_PERIOD - PROPOSAL_STATUS_DEPOSIT_PERIOD defines a proposal status during the deposit
-   * period.
+   *  period.
    */
   PROPOSAL_STATUS_DEPOSIT_PERIOD = 1,
 
   /**
    * PROPOSAL_STATUS_VOTING_PERIOD - PROPOSAL_STATUS_VOTING_PERIOD defines a proposal status during the voting
-   * period.
+   *  period.
    */
   PROPOSAL_STATUS_VOTING_PERIOD = 2,
 
   /**
    * PROPOSAL_STATUS_PASSED - PROPOSAL_STATUS_PASSED defines a proposal status of a proposal that has
-   * passed.
+   *  passed.
    */
   PROPOSAL_STATUS_PASSED = 3,
 
   /**
    * PROPOSAL_STATUS_REJECTED - PROPOSAL_STATUS_REJECTED defines a proposal status of a proposal that has
-   * been rejected.
+   *  been rejected.
    */
   PROPOSAL_STATUS_REJECTED = 4,
 
   /**
    * PROPOSAL_STATUS_FAILED - PROPOSAL_STATUS_FAILED defines a proposal status of a proposal that has
-   * failed.
+   *  failed.
    */
   PROPOSAL_STATUS_FAILED = 5,
   UNRECOGNIZED = -1,
@@ -137,31 +136,31 @@ export enum ProposalStatusSDKType {
 
   /**
    * PROPOSAL_STATUS_DEPOSIT_PERIOD - PROPOSAL_STATUS_DEPOSIT_PERIOD defines a proposal status during the deposit
-   * period.
+   *  period.
    */
   PROPOSAL_STATUS_DEPOSIT_PERIOD = 1,
 
   /**
    * PROPOSAL_STATUS_VOTING_PERIOD - PROPOSAL_STATUS_VOTING_PERIOD defines a proposal status during the voting
-   * period.
+   *  period.
    */
   PROPOSAL_STATUS_VOTING_PERIOD = 2,
 
   /**
    * PROPOSAL_STATUS_PASSED - PROPOSAL_STATUS_PASSED defines a proposal status of a proposal that has
-   * passed.
+   *  passed.
    */
   PROPOSAL_STATUS_PASSED = 3,
 
   /**
    * PROPOSAL_STATUS_REJECTED - PROPOSAL_STATUS_REJECTED defines a proposal status of a proposal that has
-   * been rejected.
+   *  been rejected.
    */
   PROPOSAL_STATUS_REJECTED = 4,
 
   /**
    * PROPOSAL_STATUS_FAILED - PROPOSAL_STATUS_FAILED defines a proposal status of a proposal that has
-   * failed.
+   *  failed.
    */
   PROPOSAL_STATUS_FAILED = 5,
   UNRECOGNIZED = -1,
@@ -218,9 +217,8 @@ export function proposalStatusToJSON(object: ProposalStatus): string {
     case ProposalStatus.PROPOSAL_STATUS_FAILED:
       return "PROPOSAL_STATUS_FAILED";
 
-    case ProposalStatus.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return "UNKNOWN";
   }
 }
 /** WeightedVoteOption defines a unit of vote for vote split. */
@@ -277,27 +275,27 @@ export interface DepositSDKType {
 
 export interface Proposal {
   proposalId: Long;
-  content?: Any;
+  content: Any;
   status: ProposalStatus;
-  finalTallyResult?: TallyResult;
-  submitTime?: Date;
-  depositEndTime?: Date;
+  finalTallyResult: TallyResult;
+  submitTime: Date;
+  depositEndTime: Date;
   totalDeposit: Coin[];
-  votingStartTime?: Date;
-  votingEndTime?: Date;
+  votingStartTime: Date;
+  votingEndTime: Date;
 }
 /** Proposal defines the core field members of a governance proposal. */
 
 export interface ProposalSDKType {
   proposal_id: Long;
-  content?: AnySDKType;
+  content: AnySDKType;
   status: ProposalStatusSDKType;
-  final_tally_result?: TallyResultSDKType;
-  submit_time?: Date;
-  deposit_end_time?: Date;
+  final_tally_result: TallyResultSDKType;
+  submit_time: Date;
+  deposit_end_time: Date;
   total_deposit: CoinSDKType[];
-  voting_start_time?: Date;
-  voting_end_time?: Date;
+  voting_start_time: Date;
+  voting_end_time: Date;
 }
 /** TallyResult defines a standard tally for a governance proposal. */
 
@@ -363,7 +361,7 @@ export interface DepositParams {
    *  months.
    */
 
-  maxDepositPeriod?: Duration;
+  maxDepositPeriod: Duration;
 }
 /** DepositParams defines the params for deposits on governance proposals. */
 
@@ -375,19 +373,19 @@ export interface DepositParamsSDKType {
    *  months.
    */
 
-  max_deposit_period?: DurationSDKType;
+  max_deposit_period: DurationSDKType;
 }
 /** VotingParams defines the params for voting on governance proposals. */
 
 export interface VotingParams {
   /** Length of the voting period. */
-  votingPeriod?: Duration;
+  votingPeriod: Duration;
 }
 /** VotingParams defines the params for voting on governance proposals. */
 
 export interface VotingParamsSDKType {
   /** Length of the voting period. */
-  voting_period?: DurationSDKType;
+  voting_period: DurationSDKType;
 }
 /** TallyParams defines the params for tallying votes on governance proposals. */
 
@@ -925,7 +923,7 @@ export const DepositParams = {
   fromPartial(object: DeepPartial<DepositParams>): DepositParams {
     const message = createBaseDepositParams();
     message.minDeposit = object.minDeposit?.map(e => Coin.fromPartial(e)) || [];
-    message.maxDepositPeriod = object.maxDepositPeriod !== undefined && object.maxDepositPeriod !== null ? Duration.fromPartial(object.maxDepositPeriod) : undefined;
+    message.maxDepositPeriod = object.maxDepositPeriod ?? undefined;
     return message;
   }
 
@@ -970,7 +968,7 @@ export const VotingParams = {
 
   fromPartial(object: DeepPartial<VotingParams>): VotingParams {
     const message = createBaseVotingParams();
-    message.votingPeriod = object.votingPeriod !== undefined && object.votingPeriod !== null ? Duration.fromPartial(object.votingPeriod) : undefined;
+    message.votingPeriod = object.votingPeriod ?? undefined;
     return message;
   }
 

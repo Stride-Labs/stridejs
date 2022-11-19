@@ -1,6 +1,6 @@
 import { Coin, CoinSDKType } from "../../cosmos/base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "../../helpers";
+import { Long, DeepPartial } from "@osmonauts/helpers";
 /** ---------------------- Delegation Callbacks ---------------------- // */
 
 export interface SplitDelegation {
@@ -36,13 +36,13 @@ export interface ClaimCallbackSDKType {
 /** ---------------------- Reinvest Callback ---------------------- // */
 
 export interface ReinvestCallback {
-  reinvestAmount?: Coin;
+  reinvestAmount: Coin;
   hostZoneId: string;
 }
 /** ---------------------- Reinvest Callback ---------------------- // */
 
 export interface ReinvestCallbackSDKType {
-  reinvest_amount?: CoinSDKType;
+  reinvest_amount: CoinSDKType;
   host_zone_id: string;
 }
 /** ---------------------- Undelegation Callbacks ---------------------- // */

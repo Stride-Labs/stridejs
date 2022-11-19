@@ -1,19 +1,19 @@
 import { Minter, MinterSDKType, Params, ParamsSDKType } from "./mint";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "../../../helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 /** GenesisState defines the mint module's genesis state. */
 export interface GenesisState {
     /** minter is a space for holding current inflation information. */
-    minter?: Minter;
+    minter: Minter;
     /** params defines all the paramaters of the module. */
-    params?: Params;
+    params: Params;
 }
 /** GenesisState defines the mint module's genesis state. */
 export interface GenesisStateSDKType {
     /** minter is a space for holding current inflation information. */
-    minter?: MinterSDKType;
+    minter: MinterSDKType;
     /** params defines all the paramaters of the module. */
-    params?: ParamsSDKType;
+    params: ParamsSDKType;
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: _m0.Writer): _m0.Writer;

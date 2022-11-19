@@ -1,5 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "../../../helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 /** GenesisState defines the raw genesis transaction in JSON. */
 
 export interface GenesisState {

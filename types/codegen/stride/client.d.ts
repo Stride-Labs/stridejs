@@ -197,6 +197,58 @@ export declare const strideAminoConverters: {
             from_address: string;
         }) => import("./interchainquery/v1/messages").MsgSubmitQueryResponse;
     };
+    "/stride.claim.MsgSetAirdropAllocations": {
+        aminoType: string;
+        toAmino: ({ allocator, airdropIdentifier, users, weights }: import("./claim/tx").MsgSetAirdropAllocations) => {
+            allocator: string;
+            airdrop_identifier: string;
+            users: string[];
+            weights: string[];
+        };
+        fromAmino: ({ allocator, airdrop_identifier, users, weights }: {
+            allocator: string;
+            airdrop_identifier: string;
+            users: string[];
+            weights: string[];
+        }) => import("./claim/tx").MsgSetAirdropAllocations;
+    };
+    "/stride.claim.MsgClaimFreeAmount": {
+        aminoType: string;
+        toAmino: ({ user }: import("./claim/tx").MsgClaimFreeAmount) => {
+            user: string;
+        };
+        fromAmino: ({ user }: {
+            user: string;
+        }) => import("./claim/tx").MsgClaimFreeAmount;
+    };
+    "/stride.claim.MsgCreateAirdrop": {
+        aminoType: string;
+        toAmino: ({ distributor, identifier, startTime, duration, denom }: import("./claim/tx").MsgCreateAirdrop) => {
+            distributor: string;
+            identifier: string;
+            start_time: string;
+            duration: string;
+            denom: string;
+        };
+        fromAmino: ({ distributor, identifier, start_time, duration, denom }: {
+            distributor: string;
+            identifier: string;
+            start_time: string;
+            duration: string;
+            denom: string;
+        }) => import("./claim/tx").MsgCreateAirdrop;
+    };
+    "/stride.claim.MsgDeleteAirdrop": {
+        aminoType: string;
+        toAmino: ({ distributor, identifier }: import("./claim/tx").MsgDeleteAirdrop) => {
+            distributor: string;
+            identifier: string;
+        };
+        fromAmino: ({ distributor, identifier }: {
+            distributor: string;
+            identifier: string;
+        }) => import("./claim/tx").MsgDeleteAirdrop;
+    };
 };
 export declare const strideProtoRegistry: ReadonlyArray<[string, GeneratedType]>;
 export declare const getSigningStrideClientOptions: ({ defaultTypes }?: {

@@ -1,11 +1,12 @@
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "../../helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 export interface AddValidatorProposal {
   title: string;
   description: string;
   hostZone: string;
   validatorName: string;
   validatorAddress: string;
+  deposit: string;
 }
 export interface AddValidatorProposalSDKType {
   title: string;
@@ -13,6 +14,7 @@ export interface AddValidatorProposalSDKType {
   host_zone: string;
   validator_name: string;
   validator_address: string;
+  deposit: string;
 }
 
 function createBaseAddValidatorProposal(): AddValidatorProposal {
@@ -21,7 +23,8 @@ function createBaseAddValidatorProposal(): AddValidatorProposal {
     description: "",
     hostZone: "",
     validatorName: "",
-    validatorAddress: ""
+    validatorAddress: "",
+    deposit: ""
   };
 }
 
@@ -45,6 +48,10 @@ export const AddValidatorProposal = {
 
     if (message.validatorAddress !== "") {
       writer.uint32(42).string(message.validatorAddress);
+    }
+
+    if (message.deposit !== "") {
+      writer.uint32(50).string(message.deposit);
     }
 
     return writer;
@@ -79,6 +86,10 @@ export const AddValidatorProposal = {
           message.validatorAddress = reader.string();
           break;
 
+        case 6:
+          message.deposit = reader.string();
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -95,6 +106,7 @@ export const AddValidatorProposal = {
     message.hostZone = object.hostZone ?? "";
     message.validatorName = object.validatorName ?? "";
     message.validatorAddress = object.validatorAddress ?? "";
+    message.deposit = object.deposit ?? "";
     return message;
   }
 

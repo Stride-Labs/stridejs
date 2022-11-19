@@ -1,4 +1,4 @@
-import { Rpc } from "../helpers";
+import { Rpc } from "@osmonauts/helpers";
 export declare const createRPCMsgClient: ({ rpc }: {
     rpc: Rpc;
 }) => Promise<{

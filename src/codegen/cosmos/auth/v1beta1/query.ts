@@ -2,7 +2,7 @@ import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } fr
 import { Any, AnySDKType } from "../../../google/protobuf/any";
 import { Params, ParamsSDKType } from "./auth";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "../../../helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 /** QueryAccountsRequest is the request type for the Query/Accounts RPC method. */
 
 export interface QueryAccountsRequest {
@@ -49,13 +49,13 @@ export interface QueryAccountRequestSDKType {
 
 export interface QueryAccountResponse {
   /** account defines the account of the corresponding address. */
-  account?: Any;
+  account: Any;
 }
 /** QueryAccountResponse is the response type for the Query/Account RPC method. */
 
 export interface QueryAccountResponseSDKType {
   /** account defines the account of the corresponding address. */
-  account?: AnySDKType;
+  account: AnySDKType;
 }
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 
@@ -67,13 +67,13 @@ export interface QueryParamsRequestSDKType {}
 
 export interface QueryParamsResponse {
   /** params defines the parameters of the module. */
-  params?: Params;
+  params: Params;
 }
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
 
 export interface QueryParamsResponseSDKType {
   /** params defines the parameters of the module. */
-  params?: ParamsSDKType;
+  params: ParamsSDKType;
 }
 
 function createBaseQueryAccountsRequest(): QueryAccountsRequest {

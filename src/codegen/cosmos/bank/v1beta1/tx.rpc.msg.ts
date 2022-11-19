@@ -1,14 +1,15 @@
-import { Rpc } from "../../../helpers";
+import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { MsgSend, MsgSendResponse, MsgMultiSend, MsgMultiSendResponse } from "./tx";
-/** Msg defines the bank Msg service. */
+/** Msg defines the RPC service */
 
 export interface Msg {
-  /** Send defines a method for sending coins from one account to another account. */
   send(request: MsgSend): Promise<MsgSendResponse>;
-  /** MultiSend defines a method for sending coins from some accounts to other accounts. */
+  /*Send defines a method for sending coins from one account to another account.*/
 
   multiSend(request: MsgMultiSend): Promise<MsgMultiSendResponse>;
+  /*MultiSend defines a method for sending coins from some accounts to other accounts.*/
+
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;

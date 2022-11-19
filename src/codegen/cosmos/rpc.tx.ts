@@ -1,4 +1,4 @@
-import { Rpc } from "../helpers";
+import { Rpc } from "@osmonauts/helpers";
 export const createRPCMsgClient = async ({
   rpc
 }: {

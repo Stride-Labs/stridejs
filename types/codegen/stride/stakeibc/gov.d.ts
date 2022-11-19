@@ -1,11 +1,12 @@
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "../../helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 export interface AddValidatorProposal {
     title: string;
     description: string;
     hostZone: string;
     validatorName: string;
     validatorAddress: string;
+    deposit: string;
 }
 export interface AddValidatorProposalSDKType {
     title: string;
@@ -13,6 +14,7 @@ export interface AddValidatorProposalSDKType {
     host_zone: string;
     validator_name: string;
     validator_address: string;
+    deposit: string;
 }
 export declare const AddValidatorProposal: {
     encode(message: AddValidatorProposal, writer?: _m0.Writer): _m0.Writer;

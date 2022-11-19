@@ -5,7 +5,7 @@ import { ICAAccount, ICAAccountSDKType } from "./ica_account";
 import { HostZone, HostZoneSDKType } from "./host_zone";
 import { EpochTracker, EpochTrackerSDKType } from "./epoch_tracker";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "../../helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 /**
  * QueryInterchainAccountFromAddressRequest is the request type for the
  * Query/InterchainAccountAddress RPC
@@ -50,13 +50,13 @@ export interface QueryParamsRequestSDKType {}
 
 export interface QueryParamsResponse {
   /** params holds all the parameters of this module. */
-  params?: Params;
+  params: Params;
 }
 /** QueryParamsResponse is response type for the Query/Params RPC method. */
 
 export interface QueryParamsResponseSDKType {
   /** params holds all the parameters of this module. */
-  params?: ParamsSDKType;
+  params: ParamsSDKType;
 }
 export interface QueryGetValidatorsRequest {
   chainId: string;
@@ -73,10 +73,10 @@ export interface QueryGetValidatorsResponseSDKType {
 export interface QueryGetICAAccountRequest {}
 export interface QueryGetICAAccountRequestSDKType {}
 export interface QueryGetICAAccountResponse {
-  icaAccount?: ICAAccount;
+  icaAccount: ICAAccount;
 }
 export interface QueryGetICAAccountResponseSDKType {
-  ica_account?: ICAAccountSDKType;
+  ica_account: ICAAccountSDKType;
 }
 export interface QueryGetHostZoneRequest {
   chainId: string;
@@ -85,10 +85,10 @@ export interface QueryGetHostZoneRequestSDKType {
   chain_id: string;
 }
 export interface QueryGetHostZoneResponse {
-  hostZone?: HostZone;
+  hostZone: HostZone;
 }
 export interface QueryGetHostZoneResponseSDKType {
-  host_zone?: HostZoneSDKType;
+  host_zone: HostZoneSDKType;
 }
 export interface QueryAllHostZoneRequest {
   pagination?: PageRequest;
@@ -123,10 +123,10 @@ export interface QueryGetEpochTrackerRequestSDKType {
   epoch_identifier: string;
 }
 export interface QueryGetEpochTrackerResponse {
-  epochTracker?: EpochTracker;
+  epochTracker: EpochTracker;
 }
 export interface QueryGetEpochTrackerResponseSDKType {
-  epoch_tracker?: EpochTrackerSDKType;
+  epoch_tracker: EpochTrackerSDKType;
 }
 export interface QueryAllEpochTrackerRequest {
   pagination?: PageRequest;

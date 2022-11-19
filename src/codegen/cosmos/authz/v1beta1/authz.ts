@@ -1,7 +1,7 @@
 import { Any, AnySDKType } from "../../../google/protobuf/any";
 import { Timestamp } from "../../../google/protobuf/timestamp";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, toTimestamp, fromTimestamp } from "../../../helpers";
+import { DeepPartial, toTimestamp, fromTimestamp } from "@osmonauts/helpers";
 /**
  * GenericAuthorization gives the grantee unrestricted permissions to execute
  * the provided method on behalf of the granter's account.
@@ -26,8 +26,8 @@ export interface GenericAuthorizationSDKType {
  */
 
 export interface Grant {
-  authorization?: Any;
-  expiration?: Date;
+  authorization: Any;
+  expiration: Date;
 }
 /**
  * Grant gives permissions to execute
@@ -35,8 +35,8 @@ export interface Grant {
  */
 
 export interface GrantSDKType {
-  authorization?: AnySDKType;
-  expiration?: Date;
+  authorization: AnySDKType;
+  expiration: Date;
 }
 
 function createBaseGenericAuthorization(): GenericAuthorization {

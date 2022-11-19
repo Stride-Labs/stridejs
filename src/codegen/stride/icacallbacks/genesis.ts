@@ -1,18 +1,18 @@
 import { Params, ParamsSDKType } from "./params";
 import { CallbackData, CallbackDataSDKType } from "./callback_data";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "../../helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 /** GenesisState defines the icacallbacks module's genesis state. */
 
 export interface GenesisState {
-  params?: Params;
+  params: Params;
   portId: string;
   callbackDataList: CallbackData[];
 }
 /** GenesisState defines the icacallbacks module's genesis state. */
 
 export interface GenesisStateSDKType {
-  params?: ParamsSDKType;
+  params: ParamsSDKType;
   port_id: string;
   callback_data_list: CallbackDataSDKType[];
 }

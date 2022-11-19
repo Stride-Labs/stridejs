@@ -1,32 +1,25 @@
-import { Rpc } from "../../../helpers";
+import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { MsgSetWithdrawAddress, MsgSetWithdrawAddressResponse, MsgWithdrawDelegatorReward, MsgWithdrawDelegatorRewardResponse, MsgWithdrawValidatorCommission, MsgWithdrawValidatorCommissionResponse, MsgFundCommunityPool, MsgFundCommunityPoolResponse } from "./tx";
-/** Msg defines the distribution Msg service. */
+/** Msg defines the RPC service */
 
 export interface Msg {
-  /**
-   * SetWithdrawAddress defines a method to change the withdraw address
-   * for a delegator (or validator self-delegation).
-   */
   setWithdrawAddress(request: MsgSetWithdrawAddress): Promise<MsgSetWithdrawAddressResponse>;
-  /**
-   * WithdrawDelegatorReward defines a method to withdraw rewards of delegator
-   * from a single validator.
-   */
+  /*SetWithdrawAddress defines a method to change the withdraw address
+   for a delegator (or validator self-delegation).*/
 
   withdrawDelegatorReward(request: MsgWithdrawDelegatorReward): Promise<MsgWithdrawDelegatorRewardResponse>;
-  /**
-   * WithdrawValidatorCommission defines a method to withdraw the
-   * full commission to the validator address.
-   */
+  /*WithdrawDelegatorReward defines a method to withdraw rewards of delegator
+   from a single validator.*/
 
   withdrawValidatorCommission(request: MsgWithdrawValidatorCommission): Promise<MsgWithdrawValidatorCommissionResponse>;
-  /**
-   * FundCommunityPool defines a method to allow an account to directly
-   * fund the community pool.
-   */
+  /*WithdrawValidatorCommission defines a method to withdraw the
+   full commission to the validator address.*/
 
   fundCommunityPool(request: MsgFundCommunityPool): Promise<MsgFundCommunityPoolResponse>;
+  /*FundCommunityPool defines a method to allow an account to directly
+   fund the community pool.*/
+
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;

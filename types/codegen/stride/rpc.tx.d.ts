@@ -1,4 +1,4 @@
-import { Rpc } from "../helpers";
+import { Rpc } from "@osmonauts/helpers";
 export declare const createRPCMsgClient: ({ rpc }: {
     rpc: Rpc;
 }) => Promise<{
@@ -35,6 +35,7 @@ export declare const createRPCMsgClient: ({ rpc }: {
         };
     };
     stride: {
+        claim: import("./claim/tx.rpc.msg").MsgClientImpl;
         interchainquery: {
             v1: import("./interchainquery/v1/messages.rpc.msg").MsgClientImpl;
         };

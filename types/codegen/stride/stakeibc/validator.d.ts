@@ -1,5 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "../../helpers";
+import { Long, DeepPartial } from "@osmonauts/helpers";
 export declare enum Validator_ValidatorStatus {
     ACTIVE = 0,
     INACTIVE = 1,
@@ -27,7 +27,7 @@ export interface Validator {
     commissionRate: Long;
     delegationAmt: Long;
     weight: Long;
-    internalExchangeRate?: ValidatorExchangeRate;
+    internalExchangeRate: ValidatorExchangeRate;
 }
 export interface ValidatorSDKType {
     name: string;
@@ -36,7 +36,7 @@ export interface ValidatorSDKType {
     commission_rate: Long;
     delegation_amt: Long;
     weight: Long;
-    internal_exchange_rate?: ValidatorExchangeRateSDKType;
+    internal_exchange_rate: ValidatorExchangeRateSDKType;
 }
 export declare const ValidatorExchangeRate: {
     encode(message: ValidatorExchangeRate, writer?: _m0.Writer): _m0.Writer;

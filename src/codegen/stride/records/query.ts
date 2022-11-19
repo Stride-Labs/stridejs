@@ -1,7 +1,7 @@
 import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../cosmos/base/query/v1beta1/pagination";
 import { Params, ParamsSDKType, DepositRecord, DepositRecordSDKType, UserRedemptionRecord, UserRedemptionRecordSDKType, EpochUnbondingRecord, EpochUnbondingRecordSDKType } from "./genesis";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long } from "../../helpers";
+import { DeepPartial, Long } from "@osmonauts/helpers";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 
 export interface QueryParamsRequest {}
@@ -12,13 +12,13 @@ export interface QueryParamsRequestSDKType {}
 
 export interface QueryParamsResponse {
   /** params holds all the parameters of this module. */
-  params?: Params;
+  params: Params;
 }
 /** QueryParamsResponse is response type for the Query/Params RPC method. */
 
 export interface QueryParamsResponseSDKType {
   /** params holds all the parameters of this module. */
-  params?: ParamsSDKType;
+  params: ParamsSDKType;
 }
 export interface QueryGetDepositRecordRequest {
   id: Long;
@@ -27,10 +27,10 @@ export interface QueryGetDepositRecordRequestSDKType {
   id: Long;
 }
 export interface QueryGetDepositRecordResponse {
-  depositRecord?: DepositRecord;
+  depositRecord: DepositRecord;
 }
 export interface QueryGetDepositRecordResponseSDKType {
-  deposit_record?: DepositRecordSDKType;
+  deposit_record: DepositRecordSDKType;
 }
 export interface QueryAllDepositRecordRequest {
   pagination?: PageRequest;
@@ -53,10 +53,10 @@ export interface QueryGetUserRedemptionRecordRequestSDKType {
   id: string;
 }
 export interface QueryGetUserRedemptionRecordResponse {
-  userRedemptionRecord?: UserRedemptionRecord;
+  userRedemptionRecord: UserRedemptionRecord;
 }
 export interface QueryGetUserRedemptionRecordResponseSDKType {
-  user_redemption_record?: UserRedemptionRecordSDKType;
+  user_redemption_record: UserRedemptionRecordSDKType;
 }
 export interface QueryAllUserRedemptionRecordRequest {
   pagination?: PageRequest;
@@ -105,10 +105,10 @@ export interface QueryGetEpochUnbondingRecordRequestSDKType {
   epoch_number: Long;
 }
 export interface QueryGetEpochUnbondingRecordResponse {
-  epochUnbondingRecord?: EpochUnbondingRecord;
+  epochUnbondingRecord: EpochUnbondingRecord;
 }
 export interface QueryGetEpochUnbondingRecordResponseSDKType {
-  epoch_unbonding_record?: EpochUnbondingRecordSDKType;
+  epoch_unbonding_record: EpochUnbondingRecordSDKType;
 }
 export interface QueryAllEpochUnbondingRecordRequest {
   pagination?: PageRequest;

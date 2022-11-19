@@ -2,7 +2,7 @@ import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } fr
 import { Params, ParamsSDKType } from "./params";
 import { CallbackData, CallbackDataSDKType } from "./callback_data";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "../../helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {
 }
@@ -12,12 +12,12 @@ export interface QueryParamsRequestSDKType {
 /** QueryParamsResponse is response type for the Query/Params RPC method. */
 export interface QueryParamsResponse {
     /** params holds all the parameters of this module. */
-    params?: Params;
+    params: Params;
 }
 /** QueryParamsResponse is response type for the Query/Params RPC method. */
 export interface QueryParamsResponseSDKType {
     /** params holds all the parameters of this module. */
-    params?: ParamsSDKType;
+    params: ParamsSDKType;
 }
 export interface QueryGetCallbackDataRequest {
     callbackKey: string;
@@ -26,10 +26,10 @@ export interface QueryGetCallbackDataRequestSDKType {
     callback_key: string;
 }
 export interface QueryGetCallbackDataResponse {
-    callbackData?: CallbackData;
+    callbackData: CallbackData;
 }
 export interface QueryGetCallbackDataResponseSDKType {
-    callback_data?: CallbackDataSDKType;
+    callback_data: CallbackDataSDKType;
 }
 export interface QueryAllCallbackDataRequest {
     pagination?: PageRequest;

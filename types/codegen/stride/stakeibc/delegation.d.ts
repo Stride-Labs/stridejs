@@ -1,14 +1,14 @@
 import { Validator, ValidatorSDKType } from "./validator";
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "../../helpers";
+import { Long, DeepPartial } from "@osmonauts/helpers";
 export interface Delegation {
     delegateAcctAddress: string;
-    validator?: Validator;
+    validator: Validator;
     amt: Long;
 }
 export interface DelegationSDKType {
     delegate_acct_address: string;
-    validator?: ValidatorSDKType;
+    validator: ValidatorSDKType;
     amt: Long;
 }
 export declare const Delegation: {

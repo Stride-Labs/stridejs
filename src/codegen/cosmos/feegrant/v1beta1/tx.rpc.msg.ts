@@ -1,20 +1,17 @@
-import { Rpc } from "../../../helpers";
+import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { MsgGrantAllowance, MsgGrantAllowanceResponse, MsgRevokeAllowance, MsgRevokeAllowanceResponse } from "./tx";
-/** Msg defines the feegrant msg service. */
+/** Msg defines the RPC service */
 
 export interface Msg {
-  /**
-   * GrantAllowance grants fee allowance to the grantee on the granter's
-   * account with the provided expiration time.
-   */
   grantAllowance(request: MsgGrantAllowance): Promise<MsgGrantAllowanceResponse>;
-  /**
-   * RevokeAllowance revokes any fee allowance of granter's account that
-   * has been granted to the grantee.
-   */
+  /*GrantAllowance grants fee allowance to the grantee on the granter's
+   account with the provided expiration time.*/
 
   revokeAllowance(request: MsgRevokeAllowance): Promise<MsgRevokeAllowanceResponse>;
+  /*RevokeAllowance revokes any fee allowance of granter's account that
+   has been granted to the grantee.*/
+
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;

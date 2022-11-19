@@ -4,7 +4,7 @@ import { BlockID, BlockIDSDKType } from "../../../../tendermint/types/types";
 import { Block, BlockSDKType } from "../../../../tendermint/types/block";
 import { DefaultNodeInfo, DefaultNodeInfoSDKType } from "../../../../tendermint/p2p/types";
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "../../../../helpers";
+import { Long, DeepPartial } from "@osmonauts/helpers";
 /** GetValidatorSetByHeightRequest is the request type for the Query/GetValidatorSetByHeight RPC method. */
 export interface GetValidatorSetByHeightRequest {
     height: Long;
@@ -58,14 +58,14 @@ export interface GetLatestValidatorSetResponseSDKType {
 /** Validator is the type for the validator-set. */
 export interface Validator {
     address: string;
-    pubKey?: Any;
+    pubKey: Any;
     votingPower: Long;
     proposerPriority: Long;
 }
 /** Validator is the type for the validator-set. */
 export interface ValidatorSDKType {
     address: string;
-    pub_key?: AnySDKType;
+    pub_key: AnySDKType;
     voting_power: Long;
     proposer_priority: Long;
 }
@@ -79,13 +79,13 @@ export interface GetBlockByHeightRequestSDKType {
 }
 /** GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight RPC method. */
 export interface GetBlockByHeightResponse {
-    blockId?: BlockID;
-    block?: Block;
+    blockId: BlockID;
+    block: Block;
 }
 /** GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight RPC method. */
 export interface GetBlockByHeightResponseSDKType {
-    block_id?: BlockIDSDKType;
-    block?: BlockSDKType;
+    block_id: BlockIDSDKType;
+    block: BlockSDKType;
 }
 /** GetLatestBlockRequest is the request type for the Query/GetLatestBlock RPC method. */
 export interface GetLatestBlockRequest {
@@ -95,13 +95,13 @@ export interface GetLatestBlockRequestSDKType {
 }
 /** GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC method. */
 export interface GetLatestBlockResponse {
-    blockId?: BlockID;
-    block?: Block;
+    blockId: BlockID;
+    block: Block;
 }
 /** GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC method. */
 export interface GetLatestBlockResponseSDKType {
-    block_id?: BlockIDSDKType;
-    block?: BlockSDKType;
+    block_id: BlockIDSDKType;
+    block: BlockSDKType;
 }
 /** GetSyncingRequest is the request type for the Query/GetSyncing RPC method. */
 export interface GetSyncingRequest {
@@ -125,13 +125,13 @@ export interface GetNodeInfoRequestSDKType {
 }
 /** GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC method. */
 export interface GetNodeInfoResponse {
-    defaultNodeInfo?: DefaultNodeInfo;
-    applicationVersion?: VersionInfo;
+    defaultNodeInfo: DefaultNodeInfo;
+    applicationVersion: VersionInfo;
 }
 /** GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC method. */
 export interface GetNodeInfoResponseSDKType {
-    default_node_info?: DefaultNodeInfoSDKType;
-    application_version?: VersionInfoSDKType;
+    default_node_info: DefaultNodeInfoSDKType;
+    application_version: VersionInfoSDKType;
 }
 /** VersionInfo is the type for the GetNodeInfoResponse message. */
 export interface VersionInfo {

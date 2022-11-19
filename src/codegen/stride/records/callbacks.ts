@@ -1,5 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "../../helpers";
+import { Long, DeepPartial } from "@osmonauts/helpers";
 /** ---------------------- Transfer Callback ---------------------- // */
 
 export interface TransferCallback {

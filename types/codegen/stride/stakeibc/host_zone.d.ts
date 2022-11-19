@@ -1,7 +1,7 @@
 import { Validator, ValidatorSDKType } from "./validator";
 import { ICAAccount, ICAAccountSDKType } from "./ica_account";
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "../../helpers";
+import { Long, DeepPartial } from "@osmonauts/helpers";
 /** next id: 19 */
 export interface HostZone {
     chainId: string;
@@ -10,10 +10,10 @@ export interface HostZone {
     transferChannelId: string;
     validators: Validator[];
     blacklistedValidators: Validator[];
-    withdrawalAccount?: ICAAccount;
-    feeAccount?: ICAAccount;
-    delegationAccount?: ICAAccount;
-    redemptionAccount?: ICAAccount;
+    withdrawalAccount: ICAAccount;
+    feeAccount: ICAAccount;
+    delegationAccount: ICAAccount;
+    redemptionAccount: ICAAccount;
     /** ibc denom on stride */
     ibcDenom: string;
     /** native denom on host zone */
@@ -38,10 +38,10 @@ export interface HostZoneSDKType {
     transfer_channel_id: string;
     validators: ValidatorSDKType[];
     blacklisted_validators: ValidatorSDKType[];
-    withdrawal_account?: ICAAccountSDKType;
-    fee_account?: ICAAccountSDKType;
-    delegation_account?: ICAAccountSDKType;
-    redemption_account?: ICAAccountSDKType;
+    withdrawal_account: ICAAccountSDKType;
+    fee_account: ICAAccountSDKType;
+    delegation_account: ICAAccountSDKType;
+    redemption_account: ICAAccountSDKType;
     /** ibc denom on stride */
     ibc_denom: string;
     /** native denom on host zone */

@@ -1,28 +1,28 @@
 import { CompactBitArray, CompactBitArraySDKType } from "../../../crypto/multisig/v1beta1/multisig";
 import { Any, AnySDKType } from "../../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long } from "../../../../helpers";
+import { DeepPartial, Long } from "@osmonauts/helpers";
 /** SignMode represents a signing mode with its own security guarantees. */
 export declare enum SignMode {
     /**
      * SIGN_MODE_UNSPECIFIED - SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be
-     * rejected
+     *  rejected
      */
     SIGN_MODE_UNSPECIFIED = 0,
     /**
      * SIGN_MODE_DIRECT - SIGN_MODE_DIRECT specifies a signing mode which uses SignDoc and is
-     * verified with raw bytes from Tx
+     *  verified with raw bytes from Tx
      */
     SIGN_MODE_DIRECT = 1,
     /**
      * SIGN_MODE_TEXTUAL - SIGN_MODE_TEXTUAL is a future signing mode that will verify some
-     * human-readable textual representation on top of the binary representation
-     * from SIGN_MODE_DIRECT
+     *  human-readable textual representation on top of the binary representation
+     *  from SIGN_MODE_DIRECT
      */
     SIGN_MODE_TEXTUAL = 2,
     /**
      * SIGN_MODE_LEGACY_AMINO_JSON - SIGN_MODE_LEGACY_AMINO_JSON is a backwards compatibility mode which uses
-     * Amino JSON and will be removed in the future
+     *  Amino JSON and will be removed in the future
      */
     SIGN_MODE_LEGACY_AMINO_JSON = 127,
     UNRECOGNIZED = -1
@@ -31,23 +31,23 @@ export declare enum SignMode {
 export declare enum SignModeSDKType {
     /**
      * SIGN_MODE_UNSPECIFIED - SIGN_MODE_UNSPECIFIED specifies an unknown signing mode and will be
-     * rejected
+     *  rejected
      */
     SIGN_MODE_UNSPECIFIED = 0,
     /**
      * SIGN_MODE_DIRECT - SIGN_MODE_DIRECT specifies a signing mode which uses SignDoc and is
-     * verified with raw bytes from Tx
+     *  verified with raw bytes from Tx
      */
     SIGN_MODE_DIRECT = 1,
     /**
      * SIGN_MODE_TEXTUAL - SIGN_MODE_TEXTUAL is a future signing mode that will verify some
-     * human-readable textual representation on top of the binary representation
-     * from SIGN_MODE_DIRECT
+     *  human-readable textual representation on top of the binary representation
+     *  from SIGN_MODE_DIRECT
      */
     SIGN_MODE_TEXTUAL = 2,
     /**
      * SIGN_MODE_LEGACY_AMINO_JSON - SIGN_MODE_LEGACY_AMINO_JSON is a backwards compatibility mode which uses
-     * Amino JSON and will be removed in the future
+     *  Amino JSON and will be removed in the future
      */
     SIGN_MODE_LEGACY_AMINO_JSON = 127,
     UNRECOGNIZED = -1
@@ -72,8 +72,8 @@ export interface SignatureDescriptorsSDKType {
  */
 export interface SignatureDescriptor {
     /** public_key is the public key of the signer */
-    publicKey?: Any;
-    data?: SignatureDescriptor_Data;
+    publicKey: Any;
+    data: SignatureDescriptor_Data;
     /**
      * sequence is the sequence of the account, which describes the
      * number of committed transactions signed by a given address. It is used to prevent
@@ -89,8 +89,8 @@ export interface SignatureDescriptor {
  */
 export interface SignatureDescriptorSDKType {
     /** public_key is the public key of the signer */
-    public_key?: AnySDKType;
-    data?: SignatureDescriptor_DataSDKType;
+    public_key: AnySDKType;
+    data: SignatureDescriptor_DataSDKType;
     /**
      * sequence is the sequence of the account, which describes the
      * number of committed transactions signed by a given address. It is used to prevent
@@ -129,14 +129,14 @@ export interface SignatureDescriptor_Data_SingleSDKType {
 /** Multi is the signature data for a multisig public key */
 export interface SignatureDescriptor_Data_Multi {
     /** bitarray specifies which keys within the multisig are signing */
-    bitarray?: CompactBitArray;
+    bitarray: CompactBitArray;
     /** signatures is the signatures of the multi-signature */
     signatures: SignatureDescriptor_Data[];
 }
 /** Multi is the signature data for a multisig public key */
 export interface SignatureDescriptor_Data_MultiSDKType {
     /** bitarray specifies which keys within the multisig are signing */
-    bitarray?: CompactBitArraySDKType;
+    bitarray: CompactBitArraySDKType;
     /** signatures is the signatures of the multi-signature */
     signatures: SignatureDescriptor_DataSDKType[];
 }

@@ -1,11 +1,12 @@
-import { Rpc } from "../../../helpers";
+import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { MsgVerifyInvariant, MsgVerifyInvariantResponse } from "./tx";
-/** Msg defines the bank Msg service. */
+/** Msg defines the RPC service */
 
 export interface Msg {
-  /** VerifyInvariant defines a method to verify a particular invariance. */
   verifyInvariant(request: MsgVerifyInvariant): Promise<MsgVerifyInvariantResponse>;
+  /*VerifyInvariant defines a method to verify a particular invariance.*/
+
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;

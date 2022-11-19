@@ -1,49 +1,1297 @@
-import * as _86 from "./epochs/genesis";
-import * as _87 from "./epochs/query";
-import * as _88 from "./icacallbacks/callback_data";
-import * as _89 from "./icacallbacks/genesis";
-import * as _90 from "./icacallbacks/packet";
-import * as _91 from "./icacallbacks/params";
-import * as _92 from "./icacallbacks/query";
-import * as _94 from "./interchainquery/v1/genesis";
-import * as _95 from "./interchainquery/v1/messages";
-import * as _96 from "./mint/v1beta1/genesis";
-import * as _97 from "./mint/v1beta1/mint";
-import * as _98 from "./mint/v1beta1/query";
-import * as _99 from "./records/callbacks";
-import * as _100 from "./records/genesis";
-import * as _101 from "./records/query";
-import * as _102 from "./stakeibc/callbacks";
-import * as _103 from "./stakeibc/delegation";
-import * as _104 from "./stakeibc/epoch_tracker";
-import * as _105 from "./stakeibc/genesis";
-import * as _106 from "./stakeibc/gov";
-import * as _107 from "./stakeibc/host_zone";
-import * as _108 from "./stakeibc/ica_account";
-import * as _109 from "./stakeibc/min_validator_requirements";
-import * as _110 from "./stakeibc/packet";
-import * as _111 from "./stakeibc/params";
-import * as _112 from "./stakeibc/query";
-import * as _113 from "./stakeibc/tx";
-import * as _114 from "./stakeibc/validator";
-import * as _178 from "./epochs/query.rpc.Query";
-import * as _179 from "./icacallbacks/query.rpc.Query";
-import * as _180 from "./mint/v1beta1/query.rpc.Query";
-import * as _181 from "./records/query.rpc.Query";
-import * as _182 from "./stakeibc/query.rpc.Query";
-import * as _183 from "./interchainquery/v1/messages.rpc.msg";
-import * as _184 from "./stakeibc/tx.rpc.msg";
+import * as _83 from "./claim/claim";
+import * as _84 from "./claim/genesis";
+import * as _85 from "./claim/params";
+import * as _86 from "./claim/query";
+import * as _87 from "./claim/tx";
+import * as _88 from "./epochs/genesis";
+import * as _89 from "./epochs/query";
+import * as _90 from "./icacallbacks/callback_data";
+import * as _91 from "./icacallbacks/genesis";
+import * as _92 from "./icacallbacks/packet";
+import * as _93 from "./icacallbacks/params";
+import * as _94 from "./icacallbacks/query";
+import * as _96 from "./interchainquery/v1/genesis";
+import * as _97 from "./interchainquery/v1/messages";
+import * as _98 from "./mint/v1beta1/genesis";
+import * as _99 from "./mint/v1beta1/mint";
+import * as _100 from "./mint/v1beta1/query";
+import * as _101 from "./records/callbacks";
+import * as _102 from "./records/genesis";
+import * as _103 from "./records/query";
+import * as _104 from "./stakeibc/callbacks";
+import * as _105 from "./stakeibc/delegation";
+import * as _106 from "./stakeibc/epoch_tracker";
+import * as _107 from "./stakeibc/genesis";
+import * as _108 from "./stakeibc/gov";
+import * as _109 from "./stakeibc/host_zone";
+import * as _110 from "./stakeibc/ica_account";
+import * as _111 from "./stakeibc/min_validator_requirements";
+import * as _112 from "./stakeibc/packet";
+import * as _113 from "./stakeibc/params";
+import * as _114 from "./stakeibc/query";
+import * as _115 from "./stakeibc/tx";
+import * as _116 from "./stakeibc/validator";
+import * as _118 from "./vesting/vesting";
+import * as _194 from "./claim/query.lcd";
+import * as _195 from "./epochs/query.lcd";
+import * as _196 from "./icacallbacks/query.lcd";
+import * as _197 from "./mint/v1beta1/query.lcd";
+import * as _198 from "./records/query.lcd";
+import * as _199 from "./stakeibc/query.lcd";
+import * as _200 from "./claim/query.rpc.query";
+import * as _201 from "./epochs/query.rpc.query";
+import * as _202 from "./icacallbacks/query.rpc.query";
+import * as _203 from "./mint/v1beta1/query.rpc.query";
+import * as _204 from "./records/query.rpc.query";
+import * as _205 from "./stakeibc/query.rpc.query";
+import * as _206 from "./claim/tx.rpc.msg";
+import * as _207 from "./interchainquery/v1/messages.rpc.msg";
+import * as _208 from "./stakeibc/tx.rpc.msg";
 export declare namespace stride {
-    const epochs: {
-        QueryClientImpl: typeof _178.QueryClientImpl;
+    const claim: {
+        MsgClientImpl: typeof _206.MsgClientImpl;
+        QueryClientImpl: typeof _200.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
-            epochInfos(request?: _87.QueryEpochsInfoRequest): Promise<_87.QueryEpochsInfoResponse>;
-            currentEpoch(request: _87.QueryCurrentEpochRequest): Promise<_87.QueryCurrentEpochResponse>;
-            epochInfo(request: _87.QueryEpochInfoRequest): Promise<_87.QueryEpochInfoResponse>;
+            distributorAccountBalance(request: _86.QueryDistributorAccountBalanceRequest): Promise<_86.QueryDistributorAccountBalanceResponse>;
+            params(request?: _86.QueryParamsRequest): Promise<_86.QueryParamsResponse>;
+            claimRecord(request: _86.QueryClaimRecordRequest): Promise<_86.QueryClaimRecordResponse>;
+            claimableForAction(request: _86.QueryClaimableForActionRequest): Promise<_86.QueryClaimableForActionResponse>;
+            totalClaimable(request: _86.QueryTotalClaimableRequest): Promise<_86.QueryTotalClaimableResponse>;
+            userVestings(request: _86.QueryUserVestingsRequest): Promise<_86.QueryUserVestingsResponse>;
         };
+        LCDQueryClient: typeof _194.LCDQueryClient;
+        registry: readonly [string, import("@cosmjs/proto-signing").GeneratedType][];
+        load: (protoRegistry: import("@cosmjs/proto-signing").Registry) => void;
+        MessageComposer: {
+            encoded: {
+                setAirdropAllocations(value: _87.MsgSetAirdropAllocations): {
+                    typeUrl: string;
+                    value: Uint8Array;
+                };
+                claimFreeAmount(value: _87.MsgClaimFreeAmount): {
+                    typeUrl: string;
+                    value: Uint8Array;
+                };
+                createAirdrop(value: _87.MsgCreateAirdrop): {
+                    typeUrl: string;
+                    value: Uint8Array;
+                };
+                deleteAirdrop(value: _87.MsgDeleteAirdrop): {
+                    typeUrl: string;
+                    value: Uint8Array;
+                };
+            };
+            withTypeUrl: {
+                setAirdropAllocations(value: _87.MsgSetAirdropAllocations): {
+                    typeUrl: string;
+                    value: _87.MsgSetAirdropAllocations;
+                };
+                claimFreeAmount(value: _87.MsgClaimFreeAmount): {
+                    typeUrl: string;
+                    value: _87.MsgClaimFreeAmount;
+                };
+                createAirdrop(value: _87.MsgCreateAirdrop): {
+                    typeUrl: string;
+                    value: _87.MsgCreateAirdrop;
+                };
+                deleteAirdrop(value: _87.MsgDeleteAirdrop): {
+                    typeUrl: string;
+                    value: _87.MsgDeleteAirdrop;
+                };
+            };
+            fromPartial: {
+                setAirdropAllocations(value: _87.MsgSetAirdropAllocations): {
+                    typeUrl: string;
+                    value: _87.MsgSetAirdropAllocations;
+                };
+                claimFreeAmount(value: _87.MsgClaimFreeAmount): {
+                    typeUrl: string;
+                    value: _87.MsgClaimFreeAmount;
+                };
+                createAirdrop(value: _87.MsgCreateAirdrop): {
+                    typeUrl: string;
+                    value: _87.MsgCreateAirdrop;
+                };
+                deleteAirdrop(value: _87.MsgDeleteAirdrop): {
+                    typeUrl: string;
+                    value: _87.MsgDeleteAirdrop;
+                };
+            };
+        };
+        AminoConverter: {
+            "/stride.claim.MsgSetAirdropAllocations": {
+                aminoType: string;
+                toAmino: ({ allocator, airdropIdentifier, users, weights }: _87.MsgSetAirdropAllocations) => {
+                    allocator: string;
+                    airdrop_identifier: string;
+                    users: string[];
+                    weights: string[];
+                };
+                fromAmino: ({ allocator, airdrop_identifier, users, weights }: {
+                    allocator: string;
+                    airdrop_identifier: string;
+                    users: string[];
+                    weights: string[];
+                }) => _87.MsgSetAirdropAllocations;
+            };
+            "/stride.claim.MsgClaimFreeAmount": {
+                aminoType: string;
+                toAmino: ({ user }: _87.MsgClaimFreeAmount) => {
+                    user: string;
+                };
+                fromAmino: ({ user }: {
+                    user: string;
+                }) => _87.MsgClaimFreeAmount;
+            };
+            "/stride.claim.MsgCreateAirdrop": {
+                aminoType: string;
+                toAmino: ({ distributor, identifier, startTime, duration, denom }: _87.MsgCreateAirdrop) => {
+                    distributor: string;
+                    identifier: string;
+                    start_time: string;
+                    duration: string;
+                    denom: string;
+                };
+                fromAmino: ({ distributor, identifier, start_time, duration, denom }: {
+                    distributor: string;
+                    identifier: string;
+                    start_time: string;
+                    duration: string;
+                    denom: string;
+                }) => _87.MsgCreateAirdrop;
+            };
+            "/stride.claim.MsgDeleteAirdrop": {
+                aminoType: string;
+                toAmino: ({ distributor, identifier }: _87.MsgDeleteAirdrop) => {
+                    distributor: string;
+                    identifier: string;
+                };
+                fromAmino: ({ distributor, identifier }: {
+                    distributor: string;
+                    identifier: string;
+                }) => _87.MsgDeleteAirdrop;
+            };
+        };
+        MsgSetAirdropAllocations: {
+            encode(message: _87.MsgSetAirdropAllocations, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.MsgSetAirdropAllocations;
+            fromPartial(object: {
+                allocator?: string;
+                airdropIdentifier?: string;
+                users?: string[];
+                weights?: string[];
+            }): _87.MsgSetAirdropAllocations;
+        };
+        MsgSetAirdropAllocationsResponse: {
+            encode(_: _87.MsgSetAirdropAllocationsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.MsgSetAirdropAllocationsResponse;
+            fromPartial(_: {}): _87.MsgSetAirdropAllocationsResponse;
+        };
+        MsgClaimFreeAmount: {
+            encode(message: _87.MsgClaimFreeAmount, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.MsgClaimFreeAmount;
+            fromPartial(object: {
+                user?: string;
+            }): _87.MsgClaimFreeAmount;
+        };
+        MsgClaimFreeAmountResponse: {
+            encode(message: _87.MsgClaimFreeAmountResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.MsgClaimFreeAmountResponse;
+            fromPartial(object: {
+                claimedAmount?: {
+                    denom?: string;
+                    amount?: string;
+                }[];
+            }): _87.MsgClaimFreeAmountResponse;
+        };
+        MsgCreateAirdrop: {
+            encode(message: _87.MsgCreateAirdrop, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.MsgCreateAirdrop;
+            fromPartial(object: {
+                distributor?: string;
+                identifier?: string;
+                startTime?: {
+                    high?: number;
+                    low?: number;
+                    unsigned?: boolean;
+                    add?: (addend: string | number | import("long")) => import("long");
+                    and?: (other: string | number | import("long")) => import("long");
+                    compare?: (other: string | number | import("long")) => number;
+                    comp?: (other: string | number | import("long")) => number;
+                    divide?: (divisor: string | number | import("long")) => import("long");
+                    div?: (divisor: string | number | import("long")) => import("long");
+                    equals?: (other: string | number | import("long")) => boolean;
+                    eq?: (other: string | number | import("long")) => boolean;
+                    getHighBits?: () => number;
+                    getHighBitsUnsigned?: () => number;
+                    getLowBits?: () => number;
+                    getLowBitsUnsigned?: () => number;
+                    getNumBitsAbs?: () => number;
+                    greaterThan?: (other: string | number | import("long")) => boolean;
+                    gt?: (other: string | number | import("long")) => boolean;
+                    greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                    gte?: (other: string | number | import("long")) => boolean;
+                    ge?: (other: string | number | import("long")) => boolean;
+                    isEven?: () => boolean;
+                    isNegative?: () => boolean;
+                    isOdd?: () => boolean;
+                    isPositive?: () => boolean;
+                    isZero?: () => boolean;
+                    eqz?: () => boolean;
+                    lessThan?: (other: string | number | import("long")) => boolean;
+                    lt?: (other: string | number | import("long")) => boolean;
+                    lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                    lte?: (other: string | number | import("long")) => boolean;
+                    le?: (other: string | number | import("long")) => boolean;
+                    modulo?: (other: string | number | import("long")) => import("long");
+                    mod?: (other: string | number | import("long")) => import("long");
+                    rem?: (other: string | number | import("long")) => import("long");
+                    multiply?: (multiplier: string | number | import("long")) => import("long");
+                    mul?: (multiplier: string | number | import("long")) => import("long");
+                    negate?: () => import("long");
+                    neg?: () => import("long");
+                    not?: () => import("long");
+                    countLeadingZeros?: () => number;
+                    clz?: () => number;
+                    countTrailingZeros?: () => number;
+                    ctz?: () => number;
+                    notEquals?: (other: string | number | import("long")) => boolean;
+                    neq?: (other: string | number | import("long")) => boolean;
+                    ne?: (other: string | number | import("long")) => boolean;
+                    or?: (other: string | number | import("long")) => import("long");
+                    shiftLeft?: (numBits: number | import("long")) => import("long");
+                    shl?: (numBits: number | import("long")) => import("long");
+                    shiftRight?: (numBits: number | import("long")) => import("long");
+                    shr?: (numBits: number | import("long")) => import("long");
+                    shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                    shru?: (numBits: number | import("long")) => import("long");
+                    shr_u?: (numBits: number | import("long")) => import("long");
+                    rotateLeft?: (numBits: number | import("long")) => import("long");
+                    rotl?: (numBits: number | import("long")) => import("long");
+                    rotateRight?: (numBits: number | import("long")) => import("long");
+                    rotr?: (numBits: number | import("long")) => import("long");
+                    subtract?: (subtrahend: string | number | import("long")) => import("long");
+                    sub?: (subtrahend: string | number | import("long")) => import("long");
+                    toInt?: () => number;
+                    toNumber?: () => number;
+                    toBytes?: (le?: boolean) => number[];
+                    toBytesLE?: () => number[];
+                    toBytesBE?: () => number[];
+                    toSigned?: () => import("long");
+                    toString?: (radix?: number) => string;
+                    toUnsigned?: () => import("long");
+                    xor?: (other: string | number | import("long")) => import("long");
+                };
+                duration?: {
+                    high?: number;
+                    low?: number;
+                    unsigned?: boolean;
+                    add?: (addend: string | number | import("long")) => import("long");
+                    and?: (other: string | number | import("long")) => import("long");
+                    compare?: (other: string | number | import("long")) => number;
+                    comp?: (other: string | number | import("long")) => number;
+                    divide?: (divisor: string | number | import("long")) => import("long");
+                    div?: (divisor: string | number | import("long")) => import("long");
+                    equals?: (other: string | number | import("long")) => boolean;
+                    eq?: (other: string | number | import("long")) => boolean;
+                    getHighBits?: () => number;
+                    getHighBitsUnsigned?: () => number;
+                    getLowBits?: () => number;
+                    getLowBitsUnsigned?: () => number;
+                    getNumBitsAbs?: () => number;
+                    greaterThan?: (other: string | number | import("long")) => boolean;
+                    gt?: (other: string | number | import("long")) => boolean;
+                    greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                    gte?: (other: string | number | import("long")) => boolean;
+                    ge?: (other: string | number | import("long")) => boolean;
+                    isEven?: () => boolean;
+                    isNegative?: () => boolean;
+                    isOdd?: () => boolean;
+                    isPositive?: () => boolean;
+                    isZero?: () => boolean;
+                    eqz?: () => boolean;
+                    lessThan?: (other: string | number | import("long")) => boolean;
+                    lt?: (other: string | number | import("long")) => boolean;
+                    lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                    lte?: (other: string | number | import("long")) => boolean;
+                    le?: (other: string | number | import("long")) => boolean;
+                    modulo?: (other: string | number | import("long")) => import("long");
+                    mod?: (other: string | number | import("long")) => import("long");
+                    rem?: (other: string | number | import("long")) => import("long");
+                    multiply?: (multiplier: string | number | import("long")) => import("long");
+                    mul?: (multiplier: string | number | import("long")) => import("long");
+                    negate?: () => import("long");
+                    neg?: () => import("long");
+                    not?: () => import("long");
+                    countLeadingZeros?: () => number;
+                    clz?: () => number;
+                    countTrailingZeros?: () => number;
+                    ctz?: () => number;
+                    notEquals?: (other: string | number | import("long")) => boolean;
+                    neq?: (other: string | number | import("long")) => boolean;
+                    ne?: (other: string | number | import("long")) => boolean;
+                    or?: (other: string | number | import("long")) => import("long");
+                    shiftLeft?: (numBits: number | import("long")) => import("long");
+                    shl?: (numBits: number | import("long")) => import("long");
+                    shiftRight?: (numBits: number | import("long")) => import("long");
+                    shr?: (numBits: number | import("long")) => import("long");
+                    shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                    shru?: (numBits: number | import("long")) => import("long");
+                    shr_u?: (numBits: number | import("long")) => import("long");
+                    rotateLeft?: (numBits: number | import("long")) => import("long");
+                    rotl?: (numBits: number | import("long")) => import("long");
+                    rotateRight?: (numBits: number | import("long")) => import("long");
+                    rotr?: (numBits: number | import("long")) => import("long");
+                    subtract?: (subtrahend: string | number | import("long")) => import("long");
+                    sub?: (subtrahend: string | number | import("long")) => import("long");
+                    toInt?: () => number;
+                    toNumber?: () => number;
+                    toBytes?: (le?: boolean) => number[];
+                    toBytesLE?: () => number[];
+                    toBytesBE?: () => number[];
+                    toSigned?: () => import("long");
+                    toString?: (radix?: number) => string;
+                    toUnsigned?: () => import("long");
+                    xor?: (other: string | number | import("long")) => import("long");
+                };
+                denom?: string;
+            }): _87.MsgCreateAirdrop;
+        };
+        MsgCreateAirdropResponse: {
+            encode(_: _87.MsgCreateAirdropResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.MsgCreateAirdropResponse;
+            fromPartial(_: {}): _87.MsgCreateAirdropResponse;
+        };
+        MsgDeleteAirdrop: {
+            encode(message: _87.MsgDeleteAirdrop, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.MsgDeleteAirdrop;
+            fromPartial(object: {
+                distributor?: string;
+                identifier?: string;
+            }): _87.MsgDeleteAirdrop;
+        };
+        MsgDeleteAirdropResponse: {
+            encode(_: _87.MsgDeleteAirdropResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.MsgDeleteAirdropResponse;
+            fromPartial(_: {}): _87.MsgDeleteAirdropResponse;
+        };
+        QueryDistributorAccountBalanceRequest: {
+            encode(message: _86.QueryDistributorAccountBalanceRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.QueryDistributorAccountBalanceRequest;
+            fromPartial(object: {
+                airdropIdentifier?: string;
+            }): _86.QueryDistributorAccountBalanceRequest;
+        };
+        QueryDistributorAccountBalanceResponse: {
+            encode(message: _86.QueryDistributorAccountBalanceResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.QueryDistributorAccountBalanceResponse;
+            fromPartial(object: {
+                distributorAccountBalance?: {
+                    denom?: string;
+                    amount?: string;
+                }[];
+            }): _86.QueryDistributorAccountBalanceResponse;
+        };
+        QueryParamsRequest: {
+            encode(_: _86.QueryParamsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.QueryParamsRequest;
+            fromPartial(_: {}): _86.QueryParamsRequest;
+        };
+        QueryParamsResponse: {
+            encode(message: _86.QueryParamsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.QueryParamsResponse;
+            fromPartial(object: {
+                params?: {
+                    airdrops?: {
+                        airdropIdentifier?: string;
+                        airdropStartTime?: Date;
+                        airdropDuration?: {
+                            seconds?: {
+                                high?: number;
+                                low?: number;
+                                unsigned?: boolean;
+                                add?: (addend: string | number | import("long")) => import("long");
+                                and?: (other: string | number | import("long")) => import("long");
+                                compare?: (other: string | number | import("long")) => number;
+                                comp?: (other: string | number | import("long")) => number;
+                                divide?: (divisor: string | number | import("long")) => import("long");
+                                div?: (divisor: string | number | import("long")) => import("long");
+                                equals?: (other: string | number | import("long")) => boolean;
+                                eq?: (other: string | number | import("long")) => boolean;
+                                getHighBits?: () => number;
+                                getHighBitsUnsigned?: () => number;
+                                getLowBits?: () => number;
+                                getLowBitsUnsigned?: () => number;
+                                getNumBitsAbs?: () => number;
+                                greaterThan?: (other: string | number | import("long")) => boolean;
+                                gt?: (other: string | number | import("long")) => boolean;
+                                greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                                gte?: (other: string | number | import("long")) => boolean;
+                                ge?: (other: string | number | import("long")) => boolean;
+                                isEven?: () => boolean;
+                                isNegative?: () => boolean;
+                                isOdd?: () => boolean;
+                                isPositive?: () => boolean;
+                                isZero?: () => boolean;
+                                eqz?: () => boolean;
+                                lessThan?: (other: string | number | import("long")) => boolean;
+                                lt?: (other: string | number | import("long")) => boolean;
+                                lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                                lte?: (other: string | number | import("long")) => boolean;
+                                le?: (other: string | number | import("long")) => boolean;
+                                modulo?: (other: string | number | import("long")) => import("long");
+                                mod?: (other: string | number | import("long")) => import("long");
+                                rem?: (other: string | number | import("long")) => import("long");
+                                multiply?: (multiplier: string | number | import("long")) => import("long");
+                                mul?: (multiplier: string | number | import("long")) => import("long");
+                                negate?: () => import("long");
+                                neg?: () => import("long");
+                                not?: () => import("long");
+                                countLeadingZeros?: () => number;
+                                clz?: () => number;
+                                countTrailingZeros?: () => number;
+                                ctz?: () => number;
+                                notEquals?: (other: string | number | import("long")) => boolean;
+                                neq?: (other: string | number | import("long")) => boolean;
+                                ne?: (other: string | number | import("long")) => boolean;
+                                or?: (other: string | number | import("long")) => import("long");
+                                shiftLeft?: (numBits: number | import("long")) => import("long");
+                                shl?: (numBits: number | import("long")) => import("long");
+                                shiftRight?: (numBits: number | import("long")) => import("long");
+                                shr?: (numBits: number | import("long")) => import("long");
+                                shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                                shru?: (numBits: number | import("long")) => import("long");
+                                shr_u?: (numBits: number | import("long")) => import("long");
+                                rotateLeft?: (numBits: number | import("long")) => import("long");
+                                rotl?: (numBits: number | import("long")) => import("long");
+                                rotateRight?: (numBits: number | import("long")) => import("long");
+                                rotr?: (numBits: number | import("long")) => import("long");
+                                subtract?: (subtrahend: string | number | import("long")) => import("long");
+                                sub?: (subtrahend: string | number | import("long")) => import("long");
+                                toInt?: () => number;
+                                toNumber?: () => number;
+                                toBytes?: (le?: boolean) => number[];
+                                toBytesLE?: () => number[];
+                                toBytesBE?: () => number[];
+                                toSigned?: () => import("long");
+                                toString?: (radix?: number) => string;
+                                toUnsigned?: () => import("long");
+                                xor?: (other: string | number | import("long")) => import("long");
+                            };
+                            nanos?: number;
+                        };
+                        claimDenom?: string;
+                        distributorAddress?: string;
+                        claimedSoFar?: {
+                            high?: number;
+                            low?: number;
+                            unsigned?: boolean;
+                            add?: (addend: string | number | import("long")) => import("long");
+                            and?: (other: string | number | import("long")) => import("long");
+                            compare?: (other: string | number | import("long")) => number;
+                            comp?: (other: string | number | import("long")) => number;
+                            divide?: (divisor: string | number | import("long")) => import("long");
+                            div?: (divisor: string | number | import("long")) => import("long");
+                            equals?: (other: string | number | import("long")) => boolean;
+                            eq?: (other: string | number | import("long")) => boolean;
+                            getHighBits?: () => number;
+                            getHighBitsUnsigned?: () => number;
+                            getLowBits?: () => number;
+                            getLowBitsUnsigned?: () => number;
+                            getNumBitsAbs?: () => number;
+                            greaterThan?: (other: string | number | import("long")) => boolean;
+                            gt?: (other: string | number | import("long")) => boolean;
+                            greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                            gte?: (other: string | number | import("long")) => boolean;
+                            ge?: (other: string | number | import("long")) => boolean;
+                            isEven?: () => boolean;
+                            isNegative?: () => boolean;
+                            isOdd?: () => boolean;
+                            isPositive?: () => boolean;
+                            isZero?: () => boolean;
+                            eqz?: () => boolean;
+                            lessThan?: (other: string | number | import("long")) => boolean;
+                            lt?: (other: string | number | import("long")) => boolean;
+                            lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                            lte?: (other: string | number | import("long")) => boolean;
+                            le?: (other: string | number | import("long")) => boolean;
+                            modulo?: (other: string | number | import("long")) => import("long");
+                            mod?: (other: string | number | import("long")) => import("long");
+                            rem?: (other: string | number | import("long")) => import("long");
+                            multiply?: (multiplier: string | number | import("long")) => import("long");
+                            mul?: (multiplier: string | number | import("long")) => import("long");
+                            negate?: () => import("long");
+                            neg?: () => import("long");
+                            not?: () => import("long");
+                            countLeadingZeros?: () => number;
+                            clz?: () => number;
+                            countTrailingZeros?: () => number;
+                            ctz?: () => number;
+                            notEquals?: (other: string | number | import("long")) => boolean;
+                            neq?: (other: string | number | import("long")) => boolean;
+                            ne?: (other: string | number | import("long")) => boolean;
+                            or?: (other: string | number | import("long")) => import("long");
+                            shiftLeft?: (numBits: number | import("long")) => import("long");
+                            shl?: (numBits: number | import("long")) => import("long");
+                            shiftRight?: (numBits: number | import("long")) => import("long");
+                            shr?: (numBits: number | import("long")) => import("long");
+                            shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                            shru?: (numBits: number | import("long")) => import("long");
+                            shr_u?: (numBits: number | import("long")) => import("long");
+                            rotateLeft?: (numBits: number | import("long")) => import("long");
+                            rotl?: (numBits: number | import("long")) => import("long");
+                            rotateRight?: (numBits: number | import("long")) => import("long");
+                            rotr?: (numBits: number | import("long")) => import("long");
+                            subtract?: (subtrahend: string | number | import("long")) => import("long");
+                            sub?: (subtrahend: string | number | import("long")) => import("long");
+                            toInt?: () => number;
+                            toNumber?: () => number;
+                            toBytes?: (le?: boolean) => number[];
+                            toBytesLE?: () => number[];
+                            toBytesBE?: () => number[];
+                            toSigned?: () => import("long");
+                            toString?: (radix?: number) => string;
+                            toUnsigned?: () => import("long");
+                            xor?: (other: string | number | import("long")) => import("long");
+                        };
+                    }[];
+                };
+            }): _86.QueryParamsResponse;
+        };
+        QueryClaimRecordRequest: {
+            encode(message: _86.QueryClaimRecordRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.QueryClaimRecordRequest;
+            fromPartial(object: {
+                airdropIdentifier?: string;
+                address?: string;
+            }): _86.QueryClaimRecordRequest;
+        };
+        QueryClaimRecordResponse: {
+            encode(message: _86.QueryClaimRecordResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.QueryClaimRecordResponse;
+            fromPartial(object: {
+                claimRecord?: {
+                    airdropIdentifier?: string;
+                    address?: string;
+                    weight?: string;
+                    actionCompleted?: boolean[];
+                };
+            }): _86.QueryClaimRecordResponse;
+        };
+        QueryClaimableForActionRequest: {
+            encode(message: _86.QueryClaimableForActionRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.QueryClaimableForActionRequest;
+            fromPartial(object: {
+                airdropIdentifier?: string;
+                address?: string;
+                action?: _83.Action;
+            }): _86.QueryClaimableForActionRequest;
+        };
+        QueryClaimableForActionResponse: {
+            encode(message: _86.QueryClaimableForActionResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.QueryClaimableForActionResponse;
+            fromPartial(object: {
+                coins?: {
+                    denom?: string;
+                    amount?: string;
+                }[];
+            }): _86.QueryClaimableForActionResponse;
+        };
+        QueryTotalClaimableRequest: {
+            encode(message: _86.QueryTotalClaimableRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.QueryTotalClaimableRequest;
+            fromPartial(object: {
+                airdropIdentifier?: string;
+                address?: string;
+            }): _86.QueryTotalClaimableRequest;
+        };
+        QueryTotalClaimableResponse: {
+            encode(message: _86.QueryTotalClaimableResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.QueryTotalClaimableResponse;
+            fromPartial(object: {
+                coins?: {
+                    denom?: string;
+                    amount?: string;
+                }[];
+            }): _86.QueryTotalClaimableResponse;
+        };
+        QueryUserVestingsRequest: {
+            encode(message: _86.QueryUserVestingsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.QueryUserVestingsRequest;
+            fromPartial(object: {
+                address?: string;
+            }): _86.QueryUserVestingsRequest;
+        };
+        QueryUserVestingsResponse: {
+            encode(message: _86.QueryUserVestingsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.QueryUserVestingsResponse;
+            fromPartial(object: {
+                spendableCoins?: {
+                    denom?: string;
+                    amount?: string;
+                }[];
+                periods?: {
+                    startTime?: {
+                        high?: number;
+                        low?: number;
+                        unsigned?: boolean;
+                        add?: (addend: string | number | import("long")) => import("long");
+                        and?: (other: string | number | import("long")) => import("long");
+                        compare?: (other: string | number | import("long")) => number;
+                        comp?: (other: string | number | import("long")) => number;
+                        divide?: (divisor: string | number | import("long")) => import("long");
+                        div?: (divisor: string | number | import("long")) => import("long");
+                        equals?: (other: string | number | import("long")) => boolean;
+                        eq?: (other: string | number | import("long")) => boolean;
+                        getHighBits?: () => number;
+                        getHighBitsUnsigned?: () => number;
+                        getLowBits?: () => number;
+                        getLowBitsUnsigned?: () => number;
+                        getNumBitsAbs?: () => number;
+                        greaterThan?: (other: string | number | import("long")) => boolean;
+                        gt?: (other: string | number | import("long")) => boolean;
+                        greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        gte?: (other: string | number | import("long")) => boolean;
+                        ge?: (other: string | number | import("long")) => boolean;
+                        isEven?: () => boolean;
+                        isNegative?: () => boolean;
+                        isOdd?: () => boolean;
+                        isPositive?: () => boolean;
+                        isZero?: () => boolean;
+                        eqz?: () => boolean;
+                        lessThan?: (other: string | number | import("long")) => boolean;
+                        lt?: (other: string | number | import("long")) => boolean;
+                        lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        lte?: (other: string | number | import("long")) => boolean;
+                        le?: (other: string | number | import("long")) => boolean;
+                        modulo?: (other: string | number | import("long")) => import("long");
+                        mod?: (other: string | number | import("long")) => import("long");
+                        rem?: (other: string | number | import("long")) => import("long");
+                        multiply?: (multiplier: string | number | import("long")) => import("long");
+                        mul?: (multiplier: string | number | import("long")) => import("long");
+                        negate?: () => import("long");
+                        neg?: () => import("long");
+                        not?: () => import("long");
+                        countLeadingZeros?: () => number;
+                        clz?: () => number;
+                        countTrailingZeros?: () => number;
+                        ctz?: () => number;
+                        notEquals?: (other: string | number | import("long")) => boolean;
+                        neq?: (other: string | number | import("long")) => boolean;
+                        ne?: (other: string | number | import("long")) => boolean;
+                        or?: (other: string | number | import("long")) => import("long");
+                        shiftLeft?: (numBits: number | import("long")) => import("long");
+                        shl?: (numBits: number | import("long")) => import("long");
+                        shiftRight?: (numBits: number | import("long")) => import("long");
+                        shr?: (numBits: number | import("long")) => import("long");
+                        shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                        shru?: (numBits: number | import("long")) => import("long");
+                        shr_u?: (numBits: number | import("long")) => import("long");
+                        rotateLeft?: (numBits: number | import("long")) => import("long");
+                        rotl?: (numBits: number | import("long")) => import("long");
+                        rotateRight?: (numBits: number | import("long")) => import("long");
+                        rotr?: (numBits: number | import("long")) => import("long");
+                        subtract?: (subtrahend: string | number | import("long")) => import("long");
+                        sub?: (subtrahend: string | number | import("long")) => import("long");
+                        toInt?: () => number;
+                        toNumber?: () => number;
+                        toBytes?: (le?: boolean) => number[];
+                        toBytesLE?: () => number[];
+                        toBytesBE?: () => number[];
+                        toSigned?: () => import("long");
+                        toString?: (radix?: number) => string;
+                        toUnsigned?: () => import("long");
+                        xor?: (other: string | number | import("long")) => import("long");
+                    };
+                    length?: {
+                        high?: number;
+                        low?: number;
+                        unsigned?: boolean;
+                        add?: (addend: string | number | import("long")) => import("long");
+                        and?: (other: string | number | import("long")) => import("long");
+                        compare?: (other: string | number | import("long")) => number;
+                        comp?: (other: string | number | import("long")) => number;
+                        divide?: (divisor: string | number | import("long")) => import("long");
+                        div?: (divisor: string | number | import("long")) => import("long");
+                        equals?: (other: string | number | import("long")) => boolean;
+                        eq?: (other: string | number | import("long")) => boolean;
+                        getHighBits?: () => number;
+                        getHighBitsUnsigned?: () => number;
+                        getLowBits?: () => number;
+                        getLowBitsUnsigned?: () => number;
+                        getNumBitsAbs?: () => number;
+                        greaterThan?: (other: string | number | import("long")) => boolean;
+                        gt?: (other: string | number | import("long")) => boolean;
+                        greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        gte?: (other: string | number | import("long")) => boolean;
+                        ge?: (other: string | number | import("long")) => boolean;
+                        isEven?: () => boolean;
+                        isNegative?: () => boolean;
+                        isOdd?: () => boolean;
+                        isPositive?: () => boolean;
+                        isZero?: () => boolean;
+                        eqz?: () => boolean;
+                        lessThan?: (other: string | number | import("long")) => boolean;
+                        lt?: (other: string | number | import("long")) => boolean;
+                        lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        lte?: (other: string | number | import("long")) => boolean;
+                        le?: (other: string | number | import("long")) => boolean;
+                        modulo?: (other: string | number | import("long")) => import("long");
+                        mod?: (other: string | number | import("long")) => import("long");
+                        rem?: (other: string | number | import("long")) => import("long");
+                        multiply?: (multiplier: string | number | import("long")) => import("long");
+                        mul?: (multiplier: string | number | import("long")) => import("long");
+                        negate?: () => import("long");
+                        neg?: () => import("long");
+                        not?: () => import("long");
+                        countLeadingZeros?: () => number;
+                        clz?: () => number;
+                        countTrailingZeros?: () => number;
+                        ctz?: () => number;
+                        notEquals?: (other: string | number | import("long")) => boolean;
+                        neq?: (other: string | number | import("long")) => boolean;
+                        ne?: (other: string | number | import("long")) => boolean;
+                        or?: (other: string | number | import("long")) => import("long");
+                        shiftLeft?: (numBits: number | import("long")) => import("long");
+                        shl?: (numBits: number | import("long")) => import("long");
+                        shiftRight?: (numBits: number | import("long")) => import("long");
+                        shr?: (numBits: number | import("long")) => import("long");
+                        shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                        shru?: (numBits: number | import("long")) => import("long");
+                        shr_u?: (numBits: number | import("long")) => import("long");
+                        rotateLeft?: (numBits: number | import("long")) => import("long");
+                        rotl?: (numBits: number | import("long")) => import("long");
+                        rotateRight?: (numBits: number | import("long")) => import("long");
+                        rotr?: (numBits: number | import("long")) => import("long");
+                        subtract?: (subtrahend: string | number | import("long")) => import("long");
+                        sub?: (subtrahend: string | number | import("long")) => import("long");
+                        toInt?: () => number;
+                        toNumber?: () => number;
+                        toBytes?: (le?: boolean) => number[];
+                        toBytesLE?: () => number[];
+                        toBytesBE?: () => number[];
+                        toSigned?: () => import("long");
+                        toString?: (radix?: number) => string;
+                        toUnsigned?: () => import("long");
+                        xor?: (other: string | number | import("long")) => import("long");
+                    };
+                    amount?: {
+                        denom?: string;
+                        amount?: string;
+                    }[];
+                    actionType?: number;
+                }[];
+            }): _86.QueryUserVestingsResponse;
+        };
+        Params: {
+            encode(message: _85.Params, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _85.Params;
+            fromPartial(object: {
+                airdrops?: {
+                    airdropIdentifier?: string;
+                    airdropStartTime?: Date;
+                    airdropDuration?: {
+                        seconds?: {
+                            high?: number;
+                            low?: number;
+                            unsigned?: boolean;
+                            add?: (addend: string | number | import("long")) => import("long");
+                            and?: (other: string | number | import("long")) => import("long");
+                            compare?: (other: string | number | import("long")) => number;
+                            comp?: (other: string | number | import("long")) => number;
+                            divide?: (divisor: string | number | import("long")) => import("long");
+                            div?: (divisor: string | number | import("long")) => import("long");
+                            equals?: (other: string | number | import("long")) => boolean;
+                            eq?: (other: string | number | import("long")) => boolean;
+                            getHighBits?: () => number;
+                            getHighBitsUnsigned?: () => number;
+                            getLowBits?: () => number;
+                            getLowBitsUnsigned?: () => number;
+                            getNumBitsAbs?: () => number;
+                            greaterThan?: (other: string | number | import("long")) => boolean;
+                            gt?: (other: string | number | import("long")) => boolean;
+                            greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                            gte?: (other: string | number | import("long")) => boolean;
+                            ge?: (other: string | number | import("long")) => boolean;
+                            isEven?: () => boolean;
+                            isNegative?: () => boolean;
+                            isOdd?: () => boolean;
+                            isPositive?: () => boolean;
+                            isZero?: () => boolean;
+                            eqz?: () => boolean;
+                            lessThan?: (other: string | number | import("long")) => boolean;
+                            lt?: (other: string | number | import("long")) => boolean;
+                            lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                            lte?: (other: string | number | import("long")) => boolean;
+                            le?: (other: string | number | import("long")) => boolean;
+                            modulo?: (other: string | number | import("long")) => import("long");
+                            mod?: (other: string | number | import("long")) => import("long");
+                            rem?: (other: string | number | import("long")) => import("long");
+                            multiply?: (multiplier: string | number | import("long")) => import("long");
+                            mul?: (multiplier: string | number | import("long")) => import("long");
+                            negate?: () => import("long");
+                            neg?: () => import("long");
+                            not?: () => import("long");
+                            countLeadingZeros?: () => number;
+                            clz?: () => number;
+                            countTrailingZeros?: () => number;
+                            ctz?: () => number;
+                            notEquals?: (other: string | number | import("long")) => boolean;
+                            neq?: (other: string | number | import("long")) => boolean;
+                            ne?: (other: string | number | import("long")) => boolean;
+                            or?: (other: string | number | import("long")) => import("long");
+                            shiftLeft?: (numBits: number | import("long")) => import("long");
+                            shl?: (numBits: number | import("long")) => import("long");
+                            shiftRight?: (numBits: number | import("long")) => import("long");
+                            shr?: (numBits: number | import("long")) => import("long");
+                            shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                            shru?: (numBits: number | import("long")) => import("long");
+                            shr_u?: (numBits: number | import("long")) => import("long");
+                            rotateLeft?: (numBits: number | import("long")) => import("long");
+                            rotl?: (numBits: number | import("long")) => import("long");
+                            rotateRight?: (numBits: number | import("long")) => import("long");
+                            rotr?: (numBits: number | import("long")) => import("long");
+                            subtract?: (subtrahend: string | number | import("long")) => import("long");
+                            sub?: (subtrahend: string | number | import("long")) => import("long");
+                            toInt?: () => number;
+                            toNumber?: () => number;
+                            toBytes?: (le?: boolean) => number[];
+                            toBytesLE?: () => number[];
+                            toBytesBE?: () => number[];
+                            toSigned?: () => import("long");
+                            toString?: (radix?: number) => string;
+                            toUnsigned?: () => import("long");
+                            xor?: (other: string | number | import("long")) => import("long");
+                        };
+                        nanos?: number;
+                    };
+                    claimDenom?: string;
+                    distributorAddress?: string;
+                    claimedSoFar?: {
+                        high?: number;
+                        low?: number;
+                        unsigned?: boolean;
+                        add?: (addend: string | number | import("long")) => import("long");
+                        and?: (other: string | number | import("long")) => import("long");
+                        compare?: (other: string | number | import("long")) => number;
+                        comp?: (other: string | number | import("long")) => number;
+                        divide?: (divisor: string | number | import("long")) => import("long");
+                        div?: (divisor: string | number | import("long")) => import("long");
+                        equals?: (other: string | number | import("long")) => boolean;
+                        eq?: (other: string | number | import("long")) => boolean;
+                        getHighBits?: () => number;
+                        getHighBitsUnsigned?: () => number;
+                        getLowBits?: () => number;
+                        getLowBitsUnsigned?: () => number;
+                        getNumBitsAbs?: () => number;
+                        greaterThan?: (other: string | number | import("long")) => boolean;
+                        gt?: (other: string | number | import("long")) => boolean;
+                        greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        gte?: (other: string | number | import("long")) => boolean;
+                        ge?: (other: string | number | import("long")) => boolean;
+                        isEven?: () => boolean;
+                        isNegative?: () => boolean;
+                        isOdd?: () => boolean;
+                        isPositive?: () => boolean;
+                        isZero?: () => boolean;
+                        eqz?: () => boolean;
+                        lessThan?: (other: string | number | import("long")) => boolean;
+                        lt?: (other: string | number | import("long")) => boolean;
+                        lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        lte?: (other: string | number | import("long")) => boolean;
+                        le?: (other: string | number | import("long")) => boolean;
+                        modulo?: (other: string | number | import("long")) => import("long");
+                        mod?: (other: string | number | import("long")) => import("long");
+                        rem?: (other: string | number | import("long")) => import("long");
+                        multiply?: (multiplier: string | number | import("long")) => import("long");
+                        mul?: (multiplier: string | number | import("long")) => import("long");
+                        negate?: () => import("long");
+                        neg?: () => import("long");
+                        not?: () => import("long");
+                        countLeadingZeros?: () => number;
+                        clz?: () => number;
+                        countTrailingZeros?: () => number;
+                        ctz?: () => number;
+                        notEquals?: (other: string | number | import("long")) => boolean;
+                        neq?: (other: string | number | import("long")) => boolean;
+                        ne?: (other: string | number | import("long")) => boolean;
+                        or?: (other: string | number | import("long")) => import("long");
+                        shiftLeft?: (numBits: number | import("long")) => import("long");
+                        shl?: (numBits: number | import("long")) => import("long");
+                        shiftRight?: (numBits: number | import("long")) => import("long");
+                        shr?: (numBits: number | import("long")) => import("long");
+                        shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                        shru?: (numBits: number | import("long")) => import("long");
+                        shr_u?: (numBits: number | import("long")) => import("long");
+                        rotateLeft?: (numBits: number | import("long")) => import("long");
+                        rotl?: (numBits: number | import("long")) => import("long");
+                        rotateRight?: (numBits: number | import("long")) => import("long");
+                        rotr?: (numBits: number | import("long")) => import("long");
+                        subtract?: (subtrahend: string | number | import("long")) => import("long");
+                        sub?: (subtrahend: string | number | import("long")) => import("long");
+                        toInt?: () => number;
+                        toNumber?: () => number;
+                        toBytes?: (le?: boolean) => number[];
+                        toBytesLE?: () => number[];
+                        toBytesBE?: () => number[];
+                        toSigned?: () => import("long");
+                        toString?: (radix?: number) => string;
+                        toUnsigned?: () => import("long");
+                        xor?: (other: string | number | import("long")) => import("long");
+                    };
+                }[];
+            }): _85.Params;
+        };
+        Airdrop: {
+            encode(message: _85.Airdrop, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _85.Airdrop;
+            fromPartial(object: {
+                airdropIdentifier?: string;
+                airdropStartTime?: Date;
+                airdropDuration?: {
+                    seconds?: {
+                        high?: number;
+                        low?: number;
+                        unsigned?: boolean;
+                        add?: (addend: string | number | import("long")) => import("long");
+                        and?: (other: string | number | import("long")) => import("long");
+                        compare?: (other: string | number | import("long")) => number;
+                        comp?: (other: string | number | import("long")) => number;
+                        divide?: (divisor: string | number | import("long")) => import("long");
+                        div?: (divisor: string | number | import("long")) => import("long");
+                        equals?: (other: string | number | import("long")) => boolean;
+                        eq?: (other: string | number | import("long")) => boolean;
+                        getHighBits?: () => number;
+                        getHighBitsUnsigned?: () => number;
+                        getLowBits?: () => number;
+                        getLowBitsUnsigned?: () => number;
+                        getNumBitsAbs?: () => number;
+                        greaterThan?: (other: string | number | import("long")) => boolean;
+                        gt?: (other: string | number | import("long")) => boolean;
+                        greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        gte?: (other: string | number | import("long")) => boolean;
+                        ge?: (other: string | number | import("long")) => boolean;
+                        isEven?: () => boolean;
+                        isNegative?: () => boolean;
+                        isOdd?: () => boolean;
+                        isPositive?: () => boolean;
+                        isZero?: () => boolean;
+                        eqz?: () => boolean;
+                        lessThan?: (other: string | number | import("long")) => boolean;
+                        lt?: (other: string | number | import("long")) => boolean;
+                        lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        lte?: (other: string | number | import("long")) => boolean;
+                        le?: (other: string | number | import("long")) => boolean;
+                        modulo?: (other: string | number | import("long")) => import("long");
+                        mod?: (other: string | number | import("long")) => import("long");
+                        rem?: (other: string | number | import("long")) => import("long");
+                        multiply?: (multiplier: string | number | import("long")) => import("long");
+                        mul?: (multiplier: string | number | import("long")) => import("long");
+                        negate?: () => import("long");
+                        neg?: () => import("long");
+                        not?: () => import("long");
+                        countLeadingZeros?: () => number;
+                        clz?: () => number;
+                        countTrailingZeros?: () => number;
+                        ctz?: () => number;
+                        notEquals?: (other: string | number | import("long")) => boolean;
+                        neq?: (other: string | number | import("long")) => boolean;
+                        ne?: (other: string | number | import("long")) => boolean;
+                        or?: (other: string | number | import("long")) => import("long");
+                        shiftLeft?: (numBits: number | import("long")) => import("long");
+                        shl?: (numBits: number | import("long")) => import("long");
+                        shiftRight?: (numBits: number | import("long")) => import("long");
+                        shr?: (numBits: number | import("long")) => import("long");
+                        shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                        shru?: (numBits: number | import("long")) => import("long");
+                        shr_u?: (numBits: number | import("long")) => import("long");
+                        rotateLeft?: (numBits: number | import("long")) => import("long");
+                        rotl?: (numBits: number | import("long")) => import("long");
+                        rotateRight?: (numBits: number | import("long")) => import("long");
+                        rotr?: (numBits: number | import("long")) => import("long");
+                        subtract?: (subtrahend: string | number | import("long")) => import("long");
+                        sub?: (subtrahend: string | number | import("long")) => import("long");
+                        toInt?: () => number;
+                        toNumber?: () => number;
+                        toBytes?: (le?: boolean) => number[];
+                        toBytesLE?: () => number[];
+                        toBytesBE?: () => number[];
+                        toSigned?: () => import("long");
+                        toString?: (radix?: number) => string;
+                        toUnsigned?: () => import("long");
+                        xor?: (other: string | number | import("long")) => import("long");
+                    };
+                    nanos?: number;
+                };
+                claimDenom?: string;
+                distributorAddress?: string;
+                claimedSoFar?: {
+                    high?: number;
+                    low?: number;
+                    unsigned?: boolean;
+                    add?: (addend: string | number | import("long")) => import("long");
+                    and?: (other: string | number | import("long")) => import("long");
+                    compare?: (other: string | number | import("long")) => number;
+                    comp?: (other: string | number | import("long")) => number;
+                    divide?: (divisor: string | number | import("long")) => import("long");
+                    div?: (divisor: string | number | import("long")) => import("long");
+                    equals?: (other: string | number | import("long")) => boolean;
+                    eq?: (other: string | number | import("long")) => boolean;
+                    getHighBits?: () => number;
+                    getHighBitsUnsigned?: () => number;
+                    getLowBits?: () => number;
+                    getLowBitsUnsigned?: () => number;
+                    getNumBitsAbs?: () => number;
+                    greaterThan?: (other: string | number | import("long")) => boolean;
+                    gt?: (other: string | number | import("long")) => boolean;
+                    greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                    gte?: (other: string | number | import("long")) => boolean;
+                    ge?: (other: string | number | import("long")) => boolean;
+                    isEven?: () => boolean;
+                    isNegative?: () => boolean;
+                    isOdd?: () => boolean;
+                    isPositive?: () => boolean;
+                    isZero?: () => boolean;
+                    eqz?: () => boolean;
+                    lessThan?: (other: string | number | import("long")) => boolean;
+                    lt?: (other: string | number | import("long")) => boolean;
+                    lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                    lte?: (other: string | number | import("long")) => boolean;
+                    le?: (other: string | number | import("long")) => boolean;
+                    modulo?: (other: string | number | import("long")) => import("long");
+                    mod?: (other: string | number | import("long")) => import("long");
+                    rem?: (other: string | number | import("long")) => import("long");
+                    multiply?: (multiplier: string | number | import("long")) => import("long");
+                    mul?: (multiplier: string | number | import("long")) => import("long");
+                    negate?: () => import("long");
+                    neg?: () => import("long");
+                    not?: () => import("long");
+                    countLeadingZeros?: () => number;
+                    clz?: () => number;
+                    countTrailingZeros?: () => number;
+                    ctz?: () => number;
+                    notEquals?: (other: string | number | import("long")) => boolean;
+                    neq?: (other: string | number | import("long")) => boolean;
+                    ne?: (other: string | number | import("long")) => boolean;
+                    or?: (other: string | number | import("long")) => import("long");
+                    shiftLeft?: (numBits: number | import("long")) => import("long");
+                    shl?: (numBits: number | import("long")) => import("long");
+                    shiftRight?: (numBits: number | import("long")) => import("long");
+                    shr?: (numBits: number | import("long")) => import("long");
+                    shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                    shru?: (numBits: number | import("long")) => import("long");
+                    shr_u?: (numBits: number | import("long")) => import("long");
+                    rotateLeft?: (numBits: number | import("long")) => import("long");
+                    rotl?: (numBits: number | import("long")) => import("long");
+                    rotateRight?: (numBits: number | import("long")) => import("long");
+                    rotr?: (numBits: number | import("long")) => import("long");
+                    subtract?: (subtrahend: string | number | import("long")) => import("long");
+                    sub?: (subtrahend: string | number | import("long")) => import("long");
+                    toInt?: () => number;
+                    toNumber?: () => number;
+                    toBytes?: (le?: boolean) => number[];
+                    toBytesLE?: () => number[];
+                    toBytesBE?: () => number[];
+                    toSigned?: () => import("long");
+                    toString?: (radix?: number) => string;
+                    toUnsigned?: () => import("long");
+                    xor?: (other: string | number | import("long")) => import("long");
+                };
+            }): _85.Airdrop;
+        };
+        GenesisState: {
+            encode(message: _84.GenesisState, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _84.GenesisState;
+            fromPartial(object: {
+                params?: {
+                    airdrops?: {
+                        airdropIdentifier?: string;
+                        airdropStartTime?: Date;
+                        airdropDuration?: {
+                            seconds?: {
+                                high?: number;
+                                low?: number;
+                                unsigned?: boolean;
+                                add?: (addend: string | number | import("long")) => import("long");
+                                and?: (other: string | number | import("long")) => import("long");
+                                compare?: (other: string | number | import("long")) => number;
+                                comp?: (other: string | number | import("long")) => number;
+                                divide?: (divisor: string | number | import("long")) => import("long");
+                                div?: (divisor: string | number | import("long")) => import("long");
+                                equals?: (other: string | number | import("long")) => boolean;
+                                eq?: (other: string | number | import("long")) => boolean;
+                                getHighBits?: () => number;
+                                getHighBitsUnsigned?: () => number;
+                                getLowBits?: () => number;
+                                getLowBitsUnsigned?: () => number;
+                                getNumBitsAbs?: () => number;
+                                greaterThan?: (other: string | number | import("long")) => boolean;
+                                gt?: (other: string | number | import("long")) => boolean;
+                                greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                                gte?: (other: string | number | import("long")) => boolean;
+                                ge?: (other: string | number | import("long")) => boolean;
+                                isEven?: () => boolean;
+                                isNegative?: () => boolean;
+                                isOdd?: () => boolean;
+                                isPositive?: () => boolean;
+                                isZero?: () => boolean;
+                                eqz?: () => boolean;
+                                lessThan?: (other: string | number | import("long")) => boolean;
+                                lt?: (other: string | number | import("long")) => boolean;
+                                lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                                lte?: (other: string | number | import("long")) => boolean;
+                                le?: (other: string | number | import("long")) => boolean;
+                                modulo?: (other: string | number | import("long")) => import("long");
+                                mod?: (other: string | number | import("long")) => import("long");
+                                rem?: (other: string | number | import("long")) => import("long");
+                                multiply?: (multiplier: string | number | import("long")) => import("long");
+                                mul?: (multiplier: string | number | import("long")) => import("long");
+                                negate?: () => import("long");
+                                neg?: () => import("long");
+                                not?: () => import("long");
+                                countLeadingZeros?: () => number;
+                                clz?: () => number;
+                                countTrailingZeros?: () => number;
+                                ctz?: () => number;
+                                notEquals?: (other: string | number | import("long")) => boolean;
+                                neq?: (other: string | number | import("long")) => boolean;
+                                ne?: (other: string | number | import("long")) => boolean;
+                                or?: (other: string | number | import("long")) => import("long");
+                                shiftLeft?: (numBits: number | import("long")) => import("long");
+                                shl?: (numBits: number | import("long")) => import("long");
+                                shiftRight?: (numBits: number | import("long")) => import("long");
+                                shr?: (numBits: number | import("long")) => import("long");
+                                shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                                shru?: (numBits: number | import("long")) => import("long");
+                                shr_u?: (numBits: number | import("long")) => import("long");
+                                rotateLeft?: (numBits: number | import("long")) => import("long");
+                                rotl?: (numBits: number | import("long")) => import("long");
+                                rotateRight?: (numBits: number | import("long")) => import("long");
+                                rotr?: (numBits: number | import("long")) => import("long");
+                                subtract?: (subtrahend: string | number | import("long")) => import("long");
+                                sub?: (subtrahend: string | number | import("long")) => import("long");
+                                toInt?: () => number;
+                                toNumber?: () => number;
+                                toBytes?: (le?: boolean) => number[];
+                                toBytesLE?: () => number[];
+                                toBytesBE?: () => number[];
+                                toSigned?: () => import("long");
+                                toString?: (radix?: number) => string;
+                                toUnsigned?: () => import("long");
+                                xor?: (other: string | number | import("long")) => import("long");
+                            };
+                            nanos?: number;
+                        };
+                        claimDenom?: string;
+                        distributorAddress?: string;
+                        claimedSoFar?: {
+                            high?: number;
+                            low?: number;
+                            unsigned?: boolean;
+                            add?: (addend: string | number | import("long")) => import("long");
+                            and?: (other: string | number | import("long")) => import("long");
+                            compare?: (other: string | number | import("long")) => number;
+                            comp?: (other: string | number | import("long")) => number;
+                            divide?: (divisor: string | number | import("long")) => import("long");
+                            div?: (divisor: string | number | import("long")) => import("long");
+                            equals?: (other: string | number | import("long")) => boolean;
+                            eq?: (other: string | number | import("long")) => boolean;
+                            getHighBits?: () => number;
+                            getHighBitsUnsigned?: () => number;
+                            getLowBits?: () => number;
+                            getLowBitsUnsigned?: () => number;
+                            getNumBitsAbs?: () => number;
+                            greaterThan?: (other: string | number | import("long")) => boolean;
+                            gt?: (other: string | number | import("long")) => boolean;
+                            greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                            gte?: (other: string | number | import("long")) => boolean;
+                            ge?: (other: string | number | import("long")) => boolean;
+                            isEven?: () => boolean;
+                            isNegative?: () => boolean;
+                            isOdd?: () => boolean;
+                            isPositive?: () => boolean;
+                            isZero?: () => boolean;
+                            eqz?: () => boolean;
+                            lessThan?: (other: string | number | import("long")) => boolean;
+                            lt?: (other: string | number | import("long")) => boolean;
+                            lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                            lte?: (other: string | number | import("long")) => boolean;
+                            le?: (other: string | number | import("long")) => boolean;
+                            modulo?: (other: string | number | import("long")) => import("long");
+                            mod?: (other: string | number | import("long")) => import("long");
+                            rem?: (other: string | number | import("long")) => import("long");
+                            multiply?: (multiplier: string | number | import("long")) => import("long");
+                            mul?: (multiplier: string | number | import("long")) => import("long");
+                            negate?: () => import("long");
+                            neg?: () => import("long");
+                            not?: () => import("long");
+                            countLeadingZeros?: () => number;
+                            clz?: () => number;
+                            countTrailingZeros?: () => number;
+                            ctz?: () => number;
+                            notEquals?: (other: string | number | import("long")) => boolean;
+                            neq?: (other: string | number | import("long")) => boolean;
+                            ne?: (other: string | number | import("long")) => boolean;
+                            or?: (other: string | number | import("long")) => import("long");
+                            shiftLeft?: (numBits: number | import("long")) => import("long");
+                            shl?: (numBits: number | import("long")) => import("long");
+                            shiftRight?: (numBits: number | import("long")) => import("long");
+                            shr?: (numBits: number | import("long")) => import("long");
+                            shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                            shru?: (numBits: number | import("long")) => import("long");
+                            shr_u?: (numBits: number | import("long")) => import("long");
+                            rotateLeft?: (numBits: number | import("long")) => import("long");
+                            rotl?: (numBits: number | import("long")) => import("long");
+                            rotateRight?: (numBits: number | import("long")) => import("long");
+                            rotr?: (numBits: number | import("long")) => import("long");
+                            subtract?: (subtrahend: string | number | import("long")) => import("long");
+                            sub?: (subtrahend: string | number | import("long")) => import("long");
+                            toInt?: () => number;
+                            toNumber?: () => number;
+                            toBytes?: (le?: boolean) => number[];
+                            toBytesLE?: () => number[];
+                            toBytesBE?: () => number[];
+                            toSigned?: () => import("long");
+                            toString?: (radix?: number) => string;
+                            toUnsigned?: () => import("long");
+                            xor?: (other: string | number | import("long")) => import("long");
+                        };
+                    }[];
+                };
+                claimRecords?: {
+                    airdropIdentifier?: string;
+                    address?: string;
+                    weight?: string;
+                    actionCompleted?: boolean[];
+                }[];
+            }): _84.GenesisState;
+        };
+        actionFromJSON(object: any): _83.Action;
+        actionToJSON(object: _83.Action): string;
+        Action: typeof _83.Action;
+        ActionSDKType: typeof _83.ActionSDKType;
+        ClaimRecord: {
+            encode(message: _83.ClaimRecord, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _83.ClaimRecord;
+            fromPartial(object: {
+                airdropIdentifier?: string;
+                address?: string;
+                weight?: string;
+                actionCompleted?: boolean[];
+            }): _83.ClaimRecord;
+        };
+    };
+    const epochs: {
+        QueryClientImpl: typeof _201.QueryClientImpl;
+        createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
+            epochInfos(request?: _89.QueryEpochsInfoRequest): Promise<_89.QueryEpochsInfoResponse>;
+            currentEpoch(request: _89.QueryCurrentEpochRequest): Promise<_89.QueryCurrentEpochResponse>;
+            epochInfo(request: _89.QueryEpochInfoRequest): Promise<_89.QueryEpochInfoResponse>;
+        };
+        LCDQueryClient: typeof _195.LCDQueryClient;
         QueryEpochsInfoRequest: {
-            encode(message: _87.QueryEpochsInfoRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.QueryEpochsInfoRequest;
+            encode(message: _89.QueryEpochsInfoRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _89.QueryEpochsInfoRequest;
             fromPartial(object: {
                 pagination?: {
                     key?: Uint8Array;
@@ -194,11 +1442,11 @@ export declare namespace stride {
                     countTotal?: boolean;
                     reverse?: boolean;
                 };
-            }): _87.QueryEpochsInfoRequest;
+            }): _89.QueryEpochsInfoRequest;
         };
         QueryEpochsInfoResponse: {
-            encode(message: _87.QueryEpochsInfoResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.QueryEpochsInfoResponse;
+            encode(message: _89.QueryEpochsInfoResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _89.QueryEpochsInfoResponse;
             fromPartial(object: {
                 epochs?: {
                     identifier?: string;
@@ -500,18 +1748,18 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 };
-            }): _87.QueryEpochsInfoResponse;
+            }): _89.QueryEpochsInfoResponse;
         };
         QueryCurrentEpochRequest: {
-            encode(message: _87.QueryCurrentEpochRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.QueryCurrentEpochRequest;
+            encode(message: _89.QueryCurrentEpochRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _89.QueryCurrentEpochRequest;
             fromPartial(object: {
                 identifier?: string;
-            }): _87.QueryCurrentEpochRequest;
+            }): _89.QueryCurrentEpochRequest;
         };
         QueryCurrentEpochResponse: {
-            encode(message: _87.QueryCurrentEpochResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.QueryCurrentEpochResponse;
+            encode(message: _89.QueryCurrentEpochResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _89.QueryCurrentEpochResponse;
             fromPartial(object: {
                 currentEpoch?: {
                     high?: number;
@@ -585,18 +1833,18 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _87.QueryCurrentEpochResponse;
+            }): _89.QueryCurrentEpochResponse;
         };
         QueryEpochInfoRequest: {
-            encode(message: _87.QueryEpochInfoRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.QueryEpochInfoRequest;
+            encode(message: _89.QueryEpochInfoRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _89.QueryEpochInfoRequest;
             fromPartial(object: {
                 identifier?: string;
-            }): _87.QueryEpochInfoRequest;
+            }): _89.QueryEpochInfoRequest;
         };
         QueryEpochInfoResponse: {
-            encode(message: _87.QueryEpochInfoResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _87.QueryEpochInfoResponse;
+            encode(message: _89.QueryEpochInfoResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _89.QueryEpochInfoResponse;
             fromPartial(object: {
                 epoch?: {
                     identifier?: string;
@@ -823,11 +2071,11 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 };
-            }): _87.QueryEpochInfoResponse;
+            }): _89.QueryEpochInfoResponse;
         };
         EpochInfo: {
-            encode(message: _86.EpochInfo, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.EpochInfo;
+            encode(message: _88.EpochInfo, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _88.EpochInfo;
             fromPartial(object: {
                 identifier?: string;
                 startTime?: Date;
@@ -1052,11 +2300,11 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _86.EpochInfo;
+            }): _88.EpochInfo;
         };
         GenesisState: {
-            encode(message: _86.GenesisState, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _86.GenesisState;
+            encode(message: _88.GenesisState, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _88.GenesisState;
             fromPartial(object: {
                 epochs?: {
                     identifier?: string;
@@ -1283,38 +2531,39 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 }[];
-            }): _86.GenesisState;
+            }): _88.GenesisState;
         };
     };
     const icacallbacks: {
-        QueryClientImpl: typeof _179.QueryClientImpl;
+        QueryClientImpl: typeof _202.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
-            params(request?: _92.QueryParamsRequest): Promise<_92.QueryParamsResponse>;
-            callbackData(request: _92.QueryGetCallbackDataRequest): Promise<_92.QueryGetCallbackDataResponse>;
-            callbackDataAll(request?: _92.QueryAllCallbackDataRequest): Promise<_92.QueryAllCallbackDataResponse>;
+            params(request?: _94.QueryParamsRequest): Promise<_94.QueryParamsResponse>;
+            callbackData(request: _94.QueryGetCallbackDataRequest): Promise<_94.QueryGetCallbackDataResponse>;
+            callbackDataAll(request?: _94.QueryAllCallbackDataRequest): Promise<_94.QueryAllCallbackDataResponse>;
         };
+        LCDQueryClient: typeof _196.LCDQueryClient;
         QueryParamsRequest: {
-            encode(_: _92.QueryParamsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _92.QueryParamsRequest;
-            fromPartial(_: {}): _92.QueryParamsRequest;
+            encode(_: _94.QueryParamsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _94.QueryParamsRequest;
+            fromPartial(_: {}): _94.QueryParamsRequest;
         };
         QueryParamsResponse: {
-            encode(message: _92.QueryParamsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _92.QueryParamsResponse;
+            encode(message: _94.QueryParamsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _94.QueryParamsResponse;
             fromPartial(object: {
                 params?: {};
-            }): _92.QueryParamsResponse;
+            }): _94.QueryParamsResponse;
         };
         QueryGetCallbackDataRequest: {
-            encode(message: _92.QueryGetCallbackDataRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _92.QueryGetCallbackDataRequest;
+            encode(message: _94.QueryGetCallbackDataRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _94.QueryGetCallbackDataRequest;
             fromPartial(object: {
                 callbackKey?: string;
-            }): _92.QueryGetCallbackDataRequest;
+            }): _94.QueryGetCallbackDataRequest;
         };
         QueryGetCallbackDataResponse: {
-            encode(message: _92.QueryGetCallbackDataResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _92.QueryGetCallbackDataResponse;
+            encode(message: _94.QueryGetCallbackDataResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _94.QueryGetCallbackDataResponse;
             fromPartial(object: {
                 callbackData?: {
                     callbackKey?: string;
@@ -1395,11 +2644,11 @@ export declare namespace stride {
                     callbackId?: string;
                     callbackArgs?: Uint8Array;
                 };
-            }): _92.QueryGetCallbackDataResponse;
+            }): _94.QueryGetCallbackDataResponse;
         };
         QueryAllCallbackDataRequest: {
-            encode(message: _92.QueryAllCallbackDataRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _92.QueryAllCallbackDataRequest;
+            encode(message: _94.QueryAllCallbackDataRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _94.QueryAllCallbackDataRequest;
             fromPartial(object: {
                 pagination?: {
                     key?: Uint8Array;
@@ -1550,11 +2799,11 @@ export declare namespace stride {
                     countTotal?: boolean;
                     reverse?: boolean;
                 };
-            }): _92.QueryAllCallbackDataRequest;
+            }): _94.QueryAllCallbackDataRequest;
         };
         QueryAllCallbackDataResponse: {
-            encode(message: _92.QueryAllCallbackDataResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _92.QueryAllCallbackDataResponse;
+            encode(message: _94.QueryAllCallbackDataResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _94.QueryAllCallbackDataResponse;
             fromPartial(object: {
                 callbackData?: {
                     callbackKey?: string;
@@ -1710,28 +2959,28 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 };
-            }): _92.QueryAllCallbackDataResponse;
+            }): _94.QueryAllCallbackDataResponse;
         };
         Params: {
-            encode(_: _91.Params, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _91.Params;
-            fromPartial(_: {}): _91.Params;
+            encode(_: _93.Params, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _93.Params;
+            fromPartial(_: {}): _93.Params;
         };
         IcacallbacksPacketData: {
-            encode(message: _90.IcacallbacksPacketData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _90.IcacallbacksPacketData;
+            encode(message: _92.IcacallbacksPacketData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _92.IcacallbacksPacketData;
             fromPartial(object: {
                 noData?: {};
-            }): _90.IcacallbacksPacketData;
+            }): _92.IcacallbacksPacketData;
         };
         NoData: {
-            encode(_: _90.NoData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _90.NoData;
-            fromPartial(_: {}): _90.NoData;
+            encode(_: _92.NoData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _92.NoData;
+            fromPartial(_: {}): _92.NoData;
         };
         GenesisState: {
-            encode(message: _89.GenesisState, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _89.GenesisState;
+            encode(message: _91.GenesisState, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _91.GenesisState;
             fromPartial(object: {
                 params?: {};
                 portId?: string;
@@ -1814,11 +3063,11 @@ export declare namespace stride {
                     callbackId?: string;
                     callbackArgs?: Uint8Array;
                 }[];
-            }): _89.GenesisState;
+            }): _91.GenesisState;
         };
         CallbackData: {
-            encode(message: _88.CallbackData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _88.CallbackData;
+            encode(message: _90.CallbackData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _90.CallbackData;
             fromPartial(object: {
                 callbackKey?: string;
                 portId?: string;
@@ -1897,38 +3146,38 @@ export declare namespace stride {
                 };
                 callbackId?: string;
                 callbackArgs?: Uint8Array;
-            }): _88.CallbackData;
+            }): _90.CallbackData;
         };
     };
     namespace interchainquery {
         const v1: {
-            MsgClientImpl: typeof _183.MsgClientImpl;
+            MsgClientImpl: typeof _207.MsgClientImpl;
             registry: readonly [string, import("@cosmjs/proto-signing").GeneratedType][];
             load: (protoRegistry: import("@cosmjs/proto-signing").Registry) => void;
             MessageComposer: {
                 encoded: {
-                    submitQueryResponse(value: _95.MsgSubmitQueryResponse): {
+                    submitQueryResponse(value: _97.MsgSubmitQueryResponse): {
                         typeUrl: string;
                         value: Uint8Array;
                     };
                 };
                 withTypeUrl: {
-                    submitQueryResponse(value: _95.MsgSubmitQueryResponse): {
+                    submitQueryResponse(value: _97.MsgSubmitQueryResponse): {
                         typeUrl: string;
-                        value: _95.MsgSubmitQueryResponse;
+                        value: _97.MsgSubmitQueryResponse;
                     };
                 };
                 fromPartial: {
-                    submitQueryResponse(value: _95.MsgSubmitQueryResponse): {
+                    submitQueryResponse(value: _97.MsgSubmitQueryResponse): {
                         typeUrl: string;
-                        value: _95.MsgSubmitQueryResponse;
+                        value: _97.MsgSubmitQueryResponse;
                     };
                 };
             };
             AminoConverter: {
                 "/stride.interchainquery.v1.MsgSubmitQueryResponse": {
                     aminoType: string;
-                    toAmino: ({ chainId, queryId, result, proofOps, height, fromAddress }: _95.MsgSubmitQueryResponse) => {
+                    toAmino: ({ chainId, queryId, result, proofOps, height, fromAddress }: _97.MsgSubmitQueryResponse) => {
                         chain_id: string;
                         query_id: string;
                         result: Uint8Array;
@@ -1955,12 +3204,12 @@ export declare namespace stride {
                         };
                         height: string;
                         from_address: string;
-                    }) => _95.MsgSubmitQueryResponse;
+                    }) => _97.MsgSubmitQueryResponse;
                 };
             };
             MsgSubmitQueryResponse: {
-                encode(message: _95.MsgSubmitQueryResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _95.MsgSubmitQueryResponse;
+                encode(message: _97.MsgSubmitQueryResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _97.MsgSubmitQueryResponse;
                 fromPartial(object: {
                     chainId?: string;
                     queryId?: string;
@@ -2045,16 +3294,16 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                     fromAddress?: string;
-                }): _95.MsgSubmitQueryResponse;
+                }): _97.MsgSubmitQueryResponse;
             };
             MsgSubmitQueryResponseResponse: {
-                encode(_: _95.MsgSubmitQueryResponseResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _95.MsgSubmitQueryResponseResponse;
-                fromPartial(_: {}): _95.MsgSubmitQueryResponseResponse;
+                encode(_: _97.MsgSubmitQueryResponseResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _97.MsgSubmitQueryResponseResponse;
+                fromPartial(_: {}): _97.MsgSubmitQueryResponseResponse;
             };
             Query: {
-                encode(message: _94.Query, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _94.Query;
+                encode(message: _96.Query, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _96.Query;
                 fromPartial(object: {
                     id?: string;
                     connectionId?: string;
@@ -2208,21 +3457,21 @@ export declare namespace stride {
                         toUnsigned?: () => import("long");
                         xor?: (other: string | number | import("long")) => import("long");
                     };
-                }): _94.Query;
+                }): _96.Query;
             };
             DataPoint: {
-                encode(message: _94.DataPoint, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _94.DataPoint;
+                encode(message: _96.DataPoint, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _96.DataPoint;
                 fromPartial(object: {
                     id?: string;
                     remoteHeight?: string;
                     localHeight?: string;
                     value?: Uint8Array;
-                }): _94.DataPoint;
+                }): _96.DataPoint;
             };
             GenesisState: {
-                encode(message: _94.GenesisState, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _94.GenesisState;
+                encode(message: _96.GenesisState, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _96.GenesisState;
                 fromPartial(object: {
                     queries?: {
                         id?: string;
@@ -2378,25 +3627,26 @@ export declare namespace stride {
                             xor?: (other: string | number | import("long")) => import("long");
                         };
                     }[];
-                }): _94.GenesisState;
+                }): _96.GenesisState;
             };
         };
     }
     namespace mint {
         const v1beta1: {
-            QueryClientImpl: typeof _180.QueryClientImpl;
+            QueryClientImpl: typeof _203.QueryClientImpl;
             createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
-                params(request?: _98.QueryParamsRequest): Promise<_98.QueryParamsResponse>;
-                epochProvisions(request?: _98.QueryEpochProvisionsRequest): Promise<_98.QueryEpochProvisionsResponse>;
+                params(request?: _100.QueryParamsRequest): Promise<_100.QueryParamsResponse>;
+                epochProvisions(request?: _100.QueryEpochProvisionsRequest): Promise<_100.QueryEpochProvisionsResponse>;
             };
+            LCDQueryClient: typeof _197.LCDQueryClient;
             QueryParamsRequest: {
-                encode(_: _98.QueryParamsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _98.QueryParamsRequest;
-                fromPartial(_: {}): _98.QueryParamsRequest;
+                encode(_: _100.QueryParamsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _100.QueryParamsRequest;
+                fromPartial(_: {}): _100.QueryParamsRequest;
             };
             QueryParamsResponse: {
-                encode(message: _98.QueryParamsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _98.QueryParamsResponse;
+                encode(message: _100.QueryParamsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _100.QueryParamsResponse;
                 fromPartial(object: {
                     params?: {
                         mintDenom?: string;
@@ -2554,40 +3804,40 @@ export declare namespace stride {
                             xor?: (other: string | number | import("long")) => import("long");
                         };
                     };
-                }): _98.QueryParamsResponse;
+                }): _100.QueryParamsResponse;
             };
             QueryEpochProvisionsRequest: {
-                encode(_: _98.QueryEpochProvisionsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _98.QueryEpochProvisionsRequest;
-                fromPartial(_: {}): _98.QueryEpochProvisionsRequest;
+                encode(_: _100.QueryEpochProvisionsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _100.QueryEpochProvisionsRequest;
+                fromPartial(_: {}): _100.QueryEpochProvisionsRequest;
             };
             QueryEpochProvisionsResponse: {
-                encode(message: _98.QueryEpochProvisionsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _98.QueryEpochProvisionsResponse;
+                encode(message: _100.QueryEpochProvisionsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _100.QueryEpochProvisionsResponse;
                 fromPartial(object: {
                     epochProvisions?: Uint8Array;
-                }): _98.QueryEpochProvisionsResponse;
+                }): _100.QueryEpochProvisionsResponse;
             };
             Minter: {
-                encode(message: _97.Minter, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _97.Minter;
+                encode(message: _99.Minter, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _99.Minter;
                 fromPartial(object: {
                     epochProvisions?: string;
-                }): _97.Minter;
+                }): _99.Minter;
             };
             DistributionProportions: {
-                encode(message: _97.DistributionProportions, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _97.DistributionProportions;
+                encode(message: _99.DistributionProportions, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _99.DistributionProportions;
                 fromPartial(object: {
                     staking?: string;
                     communityPoolGrowth?: string;
                     communityPoolSecurityBudget?: string;
                     strategicReserve?: string;
-                }): _97.DistributionProportions;
+                }): _99.DistributionProportions;
             };
             Params: {
-                encode(message: _97.Params, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _97.Params;
+                encode(message: _99.Params, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _99.Params;
                 fromPartial(object: {
                     mintDenom?: string;
                     genesisEpochProvisions?: string;
@@ -2743,11 +3993,11 @@ export declare namespace stride {
                         toUnsigned?: () => import("long");
                         xor?: (other: string | number | import("long")) => import("long");
                     };
-                }): _97.Params;
+                }): _99.Params;
             };
             GenesisState: {
-                encode(message: _96.GenesisState, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _96.GenesisState;
+                encode(message: _98.GenesisState, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _98.GenesisState;
                 fromPartial(object: {
                     minter?: {
                         epochProvisions?: string;
@@ -2980,37 +4230,38 @@ export declare namespace stride {
                         toUnsigned?: () => import("long");
                         xor?: (other: string | number | import("long")) => import("long");
                     };
-                }): _96.GenesisState;
+                }): _98.GenesisState;
             };
         };
     }
     const records: {
-        QueryClientImpl: typeof _181.QueryClientImpl;
+        QueryClientImpl: typeof _204.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
-            params(request?: _101.QueryParamsRequest): Promise<_101.QueryParamsResponse>;
-            userRedemptionRecord(request: _101.QueryGetUserRedemptionRecordRequest): Promise<_101.QueryGetUserRedemptionRecordResponse>;
-            userRedemptionRecordAll(request?: _101.QueryAllUserRedemptionRecordRequest): Promise<_101.QueryAllUserRedemptionRecordResponse>;
-            userRedemptionRecordForUser(request: _101.QueryAllUserRedemptionRecordForUserRequest): Promise<_101.QueryAllUserRedemptionRecordForUserResponse>;
-            epochUnbondingRecord(request: _101.QueryGetEpochUnbondingRecordRequest): Promise<_101.QueryGetEpochUnbondingRecordResponse>;
-            epochUnbondingRecordAll(request?: _101.QueryAllEpochUnbondingRecordRequest): Promise<_101.QueryAllEpochUnbondingRecordResponse>;
-            depositRecord(request: _101.QueryGetDepositRecordRequest): Promise<_101.QueryGetDepositRecordResponse>;
-            depositRecordAll(request?: _101.QueryAllDepositRecordRequest): Promise<_101.QueryAllDepositRecordResponse>;
+            params(request?: _103.QueryParamsRequest): Promise<_103.QueryParamsResponse>;
+            userRedemptionRecord(request: _103.QueryGetUserRedemptionRecordRequest): Promise<_103.QueryGetUserRedemptionRecordResponse>;
+            userRedemptionRecordAll(request?: _103.QueryAllUserRedemptionRecordRequest): Promise<_103.QueryAllUserRedemptionRecordResponse>;
+            userRedemptionRecordForUser(request: _103.QueryAllUserRedemptionRecordForUserRequest): Promise<_103.QueryAllUserRedemptionRecordForUserResponse>;
+            epochUnbondingRecord(request: _103.QueryGetEpochUnbondingRecordRequest): Promise<_103.QueryGetEpochUnbondingRecordResponse>;
+            epochUnbondingRecordAll(request?: _103.QueryAllEpochUnbondingRecordRequest): Promise<_103.QueryAllEpochUnbondingRecordResponse>;
+            depositRecord(request: _103.QueryGetDepositRecordRequest): Promise<_103.QueryGetDepositRecordResponse>;
+            depositRecordAll(request?: _103.QueryAllDepositRecordRequest): Promise<_103.QueryAllDepositRecordResponse>;
         };
+        LCDQueryClient: typeof _198.LCDQueryClient;
         QueryParamsRequest: {
-            encode(_: _101.QueryParamsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryParamsRequest;
-            fromPartial(_: {}): _101.QueryParamsRequest;
+            encode(_: _103.QueryParamsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryParamsRequest;
+            fromPartial(_: {}): _103.QueryParamsRequest;
         };
         QueryParamsResponse: {
-            encode(message: _101.QueryParamsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryParamsResponse;
+            encode(message: _103.QueryParamsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryParamsResponse;
             fromPartial(object: {
                 params?: {};
-            }): _101.QueryParamsResponse;
+            }): _103.QueryParamsResponse;
         };
         QueryGetDepositRecordRequest: {
-            encode(message: _101.QueryGetDepositRecordRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryGetDepositRecordRequest;
+            encode(message: _103.QueryGetDepositRecordRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryGetDepositRecordRequest;
             fromPartial(object: {
                 id?: {
                     high?: number;
@@ -3084,11 +4335,11 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _101.QueryGetDepositRecordRequest;
+            }): _103.QueryGetDepositRecordRequest;
         };
         QueryGetDepositRecordResponse: {
-            encode(message: _101.QueryGetDepositRecordResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryGetDepositRecordResponse;
+            encode(message: _103.QueryGetDepositRecordResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryGetDepositRecordResponse;
             fromPartial(object: {
                 depositRecord?: {
                     id?: {
@@ -3237,7 +4488,7 @@ export declare namespace stride {
                     };
                     denom?: string;
                     hostZoneId?: string;
-                    status?: _100.DepositRecord_Status;
+                    status?: _102.DepositRecord_Status;
                     depositEpochNumber?: {
                         high?: number;
                         low?: number;
@@ -3310,13 +4561,13 @@ export declare namespace stride {
                         toUnsigned?: () => import("long");
                         xor?: (other: string | number | import("long")) => import("long");
                     };
-                    source?: _100.DepositRecord_Source;
+                    source?: _102.DepositRecord_Source;
                 };
-            }): _101.QueryGetDepositRecordResponse;
+            }): _103.QueryGetDepositRecordResponse;
         };
         QueryAllDepositRecordRequest: {
-            encode(message: _101.QueryAllDepositRecordRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryAllDepositRecordRequest;
+            encode(message: _103.QueryAllDepositRecordRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryAllDepositRecordRequest;
             fromPartial(object: {
                 pagination?: {
                     key?: Uint8Array;
@@ -3467,11 +4718,11 @@ export declare namespace stride {
                     countTotal?: boolean;
                     reverse?: boolean;
                 };
-            }): _101.QueryAllDepositRecordRequest;
+            }): _103.QueryAllDepositRecordRequest;
         };
         QueryAllDepositRecordResponse: {
-            encode(message: _101.QueryAllDepositRecordResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryAllDepositRecordResponse;
+            encode(message: _103.QueryAllDepositRecordResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryAllDepositRecordResponse;
             fromPartial(object: {
                 depositRecord?: {
                     id?: {
@@ -3620,7 +4871,7 @@ export declare namespace stride {
                     };
                     denom?: string;
                     hostZoneId?: string;
-                    status?: _100.DepositRecord_Status;
+                    status?: _102.DepositRecord_Status;
                     depositEpochNumber?: {
                         high?: number;
                         low?: number;
@@ -3693,7 +4944,7 @@ export declare namespace stride {
                         toUnsigned?: () => import("long");
                         xor?: (other: string | number | import("long")) => import("long");
                     };
-                    source?: _100.DepositRecord_Source;
+                    source?: _102.DepositRecord_Source;
                 }[];
                 pagination?: {
                     nextKey?: Uint8Array;
@@ -3770,18 +5021,18 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 };
-            }): _101.QueryAllDepositRecordResponse;
+            }): _103.QueryAllDepositRecordResponse;
         };
         QueryGetUserRedemptionRecordRequest: {
-            encode(message: _101.QueryGetUserRedemptionRecordRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryGetUserRedemptionRecordRequest;
+            encode(message: _103.QueryGetUserRedemptionRecordRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryGetUserRedemptionRecordRequest;
             fromPartial(object: {
                 id?: string;
-            }): _101.QueryGetUserRedemptionRecordRequest;
+            }): _103.QueryGetUserRedemptionRecordRequest;
         };
         QueryGetUserRedemptionRecordResponse: {
-            encode(message: _101.QueryGetUserRedemptionRecordResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryGetUserRedemptionRecordResponse;
+            encode(message: _103.QueryGetUserRedemptionRecordResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryGetUserRedemptionRecordResponse;
             fromPartial(object: {
                 userRedemptionRecord?: {
                     id?: string;
@@ -3935,11 +5186,11 @@ export declare namespace stride {
                     };
                     claimIsPending?: boolean;
                 };
-            }): _101.QueryGetUserRedemptionRecordResponse;
+            }): _103.QueryGetUserRedemptionRecordResponse;
         };
         QueryAllUserRedemptionRecordRequest: {
-            encode(message: _101.QueryAllUserRedemptionRecordRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryAllUserRedemptionRecordRequest;
+            encode(message: _103.QueryAllUserRedemptionRecordRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryAllUserRedemptionRecordRequest;
             fromPartial(object: {
                 pagination?: {
                     key?: Uint8Array;
@@ -4090,11 +5341,11 @@ export declare namespace stride {
                     countTotal?: boolean;
                     reverse?: boolean;
                 };
-            }): _101.QueryAllUserRedemptionRecordRequest;
+            }): _103.QueryAllUserRedemptionRecordRequest;
         };
         QueryAllUserRedemptionRecordResponse: {
-            encode(message: _101.QueryAllUserRedemptionRecordResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryAllUserRedemptionRecordResponse;
+            encode(message: _103.QueryAllUserRedemptionRecordResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryAllUserRedemptionRecordResponse;
             fromPartial(object: {
                 userRedemptionRecord?: {
                     id?: string;
@@ -4323,11 +5574,11 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 };
-            }): _101.QueryAllUserRedemptionRecordResponse;
+            }): _103.QueryAllUserRedemptionRecordResponse;
         };
         QueryAllUserRedemptionRecordForUserRequest: {
-            encode(message: _101.QueryAllUserRedemptionRecordForUserRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryAllUserRedemptionRecordForUserRequest;
+            encode(message: _103.QueryAllUserRedemptionRecordForUserRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryAllUserRedemptionRecordForUserRequest;
             fromPartial(object: {
                 chainId?: string;
                 day?: {
@@ -4624,11 +5875,11 @@ export declare namespace stride {
                     countTotal?: boolean;
                     reverse?: boolean;
                 };
-            }): _101.QueryAllUserRedemptionRecordForUserRequest;
+            }): _103.QueryAllUserRedemptionRecordForUserRequest;
         };
         QueryAllUserRedemptionRecordForUserResponse: {
-            encode(message: _101.QueryAllUserRedemptionRecordForUserResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryAllUserRedemptionRecordForUserResponse;
+            encode(message: _103.QueryAllUserRedemptionRecordForUserResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryAllUserRedemptionRecordForUserResponse;
             fromPartial(object: {
                 userRedemptionRecord?: {
                     id?: string;
@@ -4857,11 +6108,11 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 };
-            }): _101.QueryAllUserRedemptionRecordForUserResponse;
+            }): _103.QueryAllUserRedemptionRecordForUserResponse;
         };
         QueryGetEpochUnbondingRecordRequest: {
-            encode(message: _101.QueryGetEpochUnbondingRecordRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryGetEpochUnbondingRecordRequest;
+            encode(message: _103.QueryGetEpochUnbondingRecordRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryGetEpochUnbondingRecordRequest;
             fromPartial(object: {
                 epochNumber?: {
                     high?: number;
@@ -4935,11 +6186,11 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _101.QueryGetEpochUnbondingRecordRequest;
+            }): _103.QueryGetEpochUnbondingRecordRequest;
         };
         QueryGetEpochUnbondingRecordResponse: {
-            encode(message: _101.QueryGetEpochUnbondingRecordResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryGetEpochUnbondingRecordResponse;
+            encode(message: _103.QueryGetEpochUnbondingRecordResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryGetEpochUnbondingRecordResponse;
             fromPartial(object: {
                 epochUnbondingRecord?: {
                     epochNumber?: {
@@ -5233,15 +6484,15 @@ export declare namespace stride {
                             toUnsigned?: () => import("long");
                             xor?: (other: string | number | import("long")) => import("long");
                         };
-                        status?: _100.HostZoneUnbonding_Status;
+                        status?: _102.HostZoneUnbonding_Status;
                         userRedemptionRecords?: string[];
                     }[];
                 };
-            }): _101.QueryGetEpochUnbondingRecordResponse;
+            }): _103.QueryGetEpochUnbondingRecordResponse;
         };
         QueryAllEpochUnbondingRecordRequest: {
-            encode(message: _101.QueryAllEpochUnbondingRecordRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryAllEpochUnbondingRecordRequest;
+            encode(message: _103.QueryAllEpochUnbondingRecordRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryAllEpochUnbondingRecordRequest;
             fromPartial(object: {
                 pagination?: {
                     key?: Uint8Array;
@@ -5392,11 +6643,11 @@ export declare namespace stride {
                     countTotal?: boolean;
                     reverse?: boolean;
                 };
-            }): _101.QueryAllEpochUnbondingRecordRequest;
+            }): _103.QueryAllEpochUnbondingRecordRequest;
         };
         QueryAllEpochUnbondingRecordResponse: {
-            encode(message: _101.QueryAllEpochUnbondingRecordResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.QueryAllEpochUnbondingRecordResponse;
+            encode(message: _103.QueryAllEpochUnbondingRecordResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.QueryAllEpochUnbondingRecordResponse;
             fromPartial(object: {
                 epochUnbondingRecord?: {
                     epochNumber?: {
@@ -5690,7 +6941,7 @@ export declare namespace stride {
                             toUnsigned?: () => import("long");
                             xor?: (other: string | number | import("long")) => import("long");
                         };
-                        status?: _100.HostZoneUnbonding_Status;
+                        status?: _102.HostZoneUnbonding_Status;
                         userRedemptionRecords?: string[];
                     }[];
                 }[];
@@ -5769,23 +7020,23 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 };
-            }): _101.QueryAllEpochUnbondingRecordResponse;
+            }): _103.QueryAllEpochUnbondingRecordResponse;
         };
-        depositRecord_StatusFromJSON(object: any): _100.DepositRecord_Status;
-        depositRecord_StatusToJSON(object: _100.DepositRecord_Status): string;
-        depositRecord_SourceFromJSON(object: any): _100.DepositRecord_Source;
-        depositRecord_SourceToJSON(object: _100.DepositRecord_Source): string;
-        hostZoneUnbonding_StatusFromJSON(object: any): _100.HostZoneUnbonding_Status;
-        hostZoneUnbonding_StatusToJSON(object: _100.HostZoneUnbonding_Status): string;
-        DepositRecord_Status: typeof _100.DepositRecord_Status;
-        DepositRecord_StatusSDKType: typeof _100.DepositRecord_StatusSDKType;
-        DepositRecord_Source: typeof _100.DepositRecord_Source;
-        DepositRecord_SourceSDKType: typeof _100.DepositRecord_SourceSDKType;
-        HostZoneUnbonding_Status: typeof _100.HostZoneUnbonding_Status;
-        HostZoneUnbonding_StatusSDKType: typeof _100.HostZoneUnbonding_StatusSDKType;
+        depositRecord_StatusFromJSON(object: any): _102.DepositRecord_Status;
+        depositRecord_StatusToJSON(object: _102.DepositRecord_Status): string;
+        depositRecord_SourceFromJSON(object: any): _102.DepositRecord_Source;
+        depositRecord_SourceToJSON(object: _102.DepositRecord_Source): string;
+        hostZoneUnbonding_StatusFromJSON(object: any): _102.HostZoneUnbonding_Status;
+        hostZoneUnbonding_StatusToJSON(object: _102.HostZoneUnbonding_Status): string;
+        DepositRecord_Status: typeof _102.DepositRecord_Status;
+        DepositRecord_StatusSDKType: typeof _102.DepositRecord_StatusSDKType;
+        DepositRecord_Source: typeof _102.DepositRecord_Source;
+        DepositRecord_SourceSDKType: typeof _102.DepositRecord_SourceSDKType;
+        HostZoneUnbonding_Status: typeof _102.HostZoneUnbonding_Status;
+        HostZoneUnbonding_StatusSDKType: typeof _102.HostZoneUnbonding_StatusSDKType;
         UserRedemptionRecord: {
-            encode(message: _100.UserRedemptionRecord, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _100.UserRedemptionRecord;
+            encode(message: _102.UserRedemptionRecord, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.UserRedemptionRecord;
             fromPartial(object: {
                 id?: string;
                 sender?: string;
@@ -5937,28 +7188,28 @@ export declare namespace stride {
                     xor?: (other: string | number | import("long")) => import("long");
                 };
                 claimIsPending?: boolean;
-            }): _100.UserRedemptionRecord;
+            }): _102.UserRedemptionRecord;
         };
         Params: {
-            encode(_: _100.Params, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _100.Params;
-            fromPartial(_: {}): _100.Params;
+            encode(_: _102.Params, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.Params;
+            fromPartial(_: {}): _102.Params;
         };
         RecordsPacketData: {
-            encode(message: _100.RecordsPacketData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _100.RecordsPacketData;
+            encode(message: _102.RecordsPacketData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.RecordsPacketData;
             fromPartial(object: {
                 noData?: {};
-            }): _100.RecordsPacketData;
+            }): _102.RecordsPacketData;
         };
         NoData: {
-            encode(_: _100.NoData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _100.NoData;
-            fromPartial(_: {}): _100.NoData;
+            encode(_: _102.NoData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.NoData;
+            fromPartial(_: {}): _102.NoData;
         };
         DepositRecord: {
-            encode(message: _100.DepositRecord, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _100.DepositRecord;
+            encode(message: _102.DepositRecord, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.DepositRecord;
             fromPartial(object: {
                 id?: {
                     high?: number;
@@ -6106,7 +7357,7 @@ export declare namespace stride {
                 };
                 denom?: string;
                 hostZoneId?: string;
-                status?: _100.DepositRecord_Status;
+                status?: _102.DepositRecord_Status;
                 depositEpochNumber?: {
                     high?: number;
                     low?: number;
@@ -6179,12 +7430,12 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-                source?: _100.DepositRecord_Source;
-            }): _100.DepositRecord;
+                source?: _102.DepositRecord_Source;
+            }): _102.DepositRecord;
         };
         HostZoneUnbonding: {
-            encode(message: _100.HostZoneUnbonding, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _100.HostZoneUnbonding;
+            encode(message: _102.HostZoneUnbonding, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.HostZoneUnbonding;
             fromPartial(object: {
                 stTokenAmount?: {
                     high?: number;
@@ -6404,13 +7655,13 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-                status?: _100.HostZoneUnbonding_Status;
+                status?: _102.HostZoneUnbonding_Status;
                 userRedemptionRecords?: string[];
-            }): _100.HostZoneUnbonding;
+            }): _102.HostZoneUnbonding;
         };
         EpochUnbondingRecord: {
-            encode(message: _100.EpochUnbondingRecord, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _100.EpochUnbondingRecord;
+            encode(message: _102.EpochUnbondingRecord, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.EpochUnbondingRecord;
             fromPartial(object: {
                 epochNumber?: {
                     high?: number;
@@ -6703,14 +7954,14 @@ export declare namespace stride {
                         toUnsigned?: () => import("long");
                         xor?: (other: string | number | import("long")) => import("long");
                     };
-                    status?: _100.HostZoneUnbonding_Status;
+                    status?: _102.HostZoneUnbonding_Status;
                     userRedemptionRecords?: string[];
                 }[];
-            }): _100.EpochUnbondingRecord;
+            }): _102.EpochUnbondingRecord;
         };
         GenesisState: {
-            encode(message: _100.GenesisState, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _100.GenesisState;
+            encode(message: _102.GenesisState, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.GenesisState;
             fromPartial(object: {
                 params?: {};
                 portId?: string;
@@ -7230,7 +8481,7 @@ export declare namespace stride {
                             toUnsigned?: () => import("long");
                             xor?: (other: string | number | import("long")) => import("long");
                         };
-                        status?: _100.HostZoneUnbonding_Status;
+                        status?: _102.HostZoneUnbonding_Status;
                         userRedemptionRecords?: string[];
                     }[];
                 }[];
@@ -7381,7 +8632,7 @@ export declare namespace stride {
                     };
                     denom?: string;
                     hostZoneId?: string;
-                    status?: _100.DepositRecord_Status;
+                    status?: _102.DepositRecord_Status;
                     depositEpochNumber?: {
                         high?: number;
                         low?: number;
@@ -7454,7 +8705,7 @@ export declare namespace stride {
                         toUnsigned?: () => import("long");
                         xor?: (other: string | number | import("long")) => import("long");
                     };
-                    source?: _100.DepositRecord_Source;
+                    source?: _102.DepositRecord_Source;
                 }[];
                 depositRecordCount?: {
                     high?: number;
@@ -7528,11 +8779,11 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _100.GenesisState;
+            }): _102.GenesisState;
         };
         TransferCallback: {
-            encode(message: _99.TransferCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _99.TransferCallback;
+            encode(message: _101.TransferCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _101.TransferCallback;
             fromPartial(object: {
                 depositRecordId?: {
                     high?: number;
@@ -7606,169 +8857,170 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _99.TransferCallback;
+            }): _101.TransferCallback;
         };
     };
     const stakeibc: {
-        MsgClientImpl: typeof _184.MsgClientImpl;
-        QueryClientImpl: typeof _182.QueryClientImpl;
+        MsgClientImpl: typeof _208.MsgClientImpl;
+        QueryClientImpl: typeof _205.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
-            params(request?: _112.QueryParamsRequest): Promise<_112.QueryParamsResponse>;
-            validators(request: _112.QueryGetValidatorsRequest): Promise<_112.QueryGetValidatorsResponse>;
-            iCAAccount(request?: _112.QueryGetICAAccountRequest): Promise<_112.QueryGetICAAccountResponse>;
-            hostZone(request: _112.QueryGetHostZoneRequest): Promise<_112.QueryGetHostZoneResponse>;
-            hostZoneAll(request?: _112.QueryAllHostZoneRequest): Promise<_112.QueryAllHostZoneResponse>;
-            moduleAddress(request: _112.QueryModuleAddressRequest): Promise<_112.QueryModuleAddressResponse>;
-            interchainAccountFromAddress(request: _112.QueryInterchainAccountFromAddressRequest): Promise<_112.QueryInterchainAccountFromAddressResponse>;
-            epochTracker(request: _112.QueryGetEpochTrackerRequest): Promise<_112.QueryGetEpochTrackerResponse>;
-            epochTrackerAll(request?: _112.QueryAllEpochTrackerRequest): Promise<_112.QueryAllEpochTrackerResponse>;
+            params(request?: _114.QueryParamsRequest): Promise<_114.QueryParamsResponse>;
+            validators(request: _114.QueryGetValidatorsRequest): Promise<_114.QueryGetValidatorsResponse>;
+            iCAAccount(request?: _114.QueryGetICAAccountRequest): Promise<_114.QueryGetICAAccountResponse>;
+            hostZone(request: _114.QueryGetHostZoneRequest): Promise<_114.QueryGetHostZoneResponse>;
+            hostZoneAll(request?: _114.QueryAllHostZoneRequest): Promise<_114.QueryAllHostZoneResponse>;
+            moduleAddress(request: _114.QueryModuleAddressRequest): Promise<_114.QueryModuleAddressResponse>;
+            interchainAccountFromAddress(request: _114.QueryInterchainAccountFromAddressRequest): Promise<_114.QueryInterchainAccountFromAddressResponse>;
+            epochTracker(request: _114.QueryGetEpochTrackerRequest): Promise<_114.QueryGetEpochTrackerResponse>;
+            epochTrackerAll(request?: _114.QueryAllEpochTrackerRequest): Promise<_114.QueryAllEpochTrackerResponse>;
         };
+        LCDQueryClient: typeof _199.LCDQueryClient;
         registry: readonly [string, import("@cosmjs/proto-signing").GeneratedType][];
         load: (protoRegistry: import("@cosmjs/proto-signing").Registry) => void;
         MessageComposer: {
             encoded: {
-                liquidStake(value: _113.MsgLiquidStake): {
+                liquidStake(value: _115.MsgLiquidStake): {
                     typeUrl: string;
                     value: Uint8Array;
                 };
-                redeemStake(value: _113.MsgRedeemStake): {
+                redeemStake(value: _115.MsgRedeemStake): {
                     typeUrl: string;
                     value: Uint8Array;
                 };
-                registerHostZone(value: _113.MsgRegisterHostZone): {
+                registerHostZone(value: _115.MsgRegisterHostZone): {
                     typeUrl: string;
                     value: Uint8Array;
                 };
-                claimUndelegatedTokens(value: _113.MsgClaimUndelegatedTokens): {
+                claimUndelegatedTokens(value: _115.MsgClaimUndelegatedTokens): {
                     typeUrl: string;
                     value: Uint8Array;
                 };
-                rebalanceValidators(value: _113.MsgRebalanceValidators): {
+                rebalanceValidators(value: _115.MsgRebalanceValidators): {
                     typeUrl: string;
                     value: Uint8Array;
                 };
-                addValidator(value: _113.MsgAddValidator): {
+                addValidator(value: _115.MsgAddValidator): {
                     typeUrl: string;
                     value: Uint8Array;
                 };
-                changeValidatorWeight(value: _113.MsgChangeValidatorWeight): {
+                changeValidatorWeight(value: _115.MsgChangeValidatorWeight): {
                     typeUrl: string;
                     value: Uint8Array;
                 };
-                deleteValidator(value: _113.MsgDeleteValidator): {
+                deleteValidator(value: _115.MsgDeleteValidator): {
                     typeUrl: string;
                     value: Uint8Array;
                 };
-                restoreInterchainAccount(value: _113.MsgRestoreInterchainAccount): {
+                restoreInterchainAccount(value: _115.MsgRestoreInterchainAccount): {
                     typeUrl: string;
                     value: Uint8Array;
                 };
-                updateValidatorSharesExchRate(value: _113.MsgUpdateValidatorSharesExchRate): {
+                updateValidatorSharesExchRate(value: _115.MsgUpdateValidatorSharesExchRate): {
                     typeUrl: string;
                     value: Uint8Array;
                 };
-                clearBalance(value: _113.MsgClearBalance): {
+                clearBalance(value: _115.MsgClearBalance): {
                     typeUrl: string;
                     value: Uint8Array;
                 };
             };
             withTypeUrl: {
-                liquidStake(value: _113.MsgLiquidStake): {
+                liquidStake(value: _115.MsgLiquidStake): {
                     typeUrl: string;
-                    value: _113.MsgLiquidStake;
+                    value: _115.MsgLiquidStake;
                 };
-                redeemStake(value: _113.MsgRedeemStake): {
+                redeemStake(value: _115.MsgRedeemStake): {
                     typeUrl: string;
-                    value: _113.MsgRedeemStake;
+                    value: _115.MsgRedeemStake;
                 };
-                registerHostZone(value: _113.MsgRegisterHostZone): {
+                registerHostZone(value: _115.MsgRegisterHostZone): {
                     typeUrl: string;
-                    value: _113.MsgRegisterHostZone;
+                    value: _115.MsgRegisterHostZone;
                 };
-                claimUndelegatedTokens(value: _113.MsgClaimUndelegatedTokens): {
+                claimUndelegatedTokens(value: _115.MsgClaimUndelegatedTokens): {
                     typeUrl: string;
-                    value: _113.MsgClaimUndelegatedTokens;
+                    value: _115.MsgClaimUndelegatedTokens;
                 };
-                rebalanceValidators(value: _113.MsgRebalanceValidators): {
+                rebalanceValidators(value: _115.MsgRebalanceValidators): {
                     typeUrl: string;
-                    value: _113.MsgRebalanceValidators;
+                    value: _115.MsgRebalanceValidators;
                 };
-                addValidator(value: _113.MsgAddValidator): {
+                addValidator(value: _115.MsgAddValidator): {
                     typeUrl: string;
-                    value: _113.MsgAddValidator;
+                    value: _115.MsgAddValidator;
                 };
-                changeValidatorWeight(value: _113.MsgChangeValidatorWeight): {
+                changeValidatorWeight(value: _115.MsgChangeValidatorWeight): {
                     typeUrl: string;
-                    value: _113.MsgChangeValidatorWeight;
+                    value: _115.MsgChangeValidatorWeight;
                 };
-                deleteValidator(value: _113.MsgDeleteValidator): {
+                deleteValidator(value: _115.MsgDeleteValidator): {
                     typeUrl: string;
-                    value: _113.MsgDeleteValidator;
+                    value: _115.MsgDeleteValidator;
                 };
-                restoreInterchainAccount(value: _113.MsgRestoreInterchainAccount): {
+                restoreInterchainAccount(value: _115.MsgRestoreInterchainAccount): {
                     typeUrl: string;
-                    value: _113.MsgRestoreInterchainAccount;
+                    value: _115.MsgRestoreInterchainAccount;
                 };
-                updateValidatorSharesExchRate(value: _113.MsgUpdateValidatorSharesExchRate): {
+                updateValidatorSharesExchRate(value: _115.MsgUpdateValidatorSharesExchRate): {
                     typeUrl: string;
-                    value: _113.MsgUpdateValidatorSharesExchRate;
+                    value: _115.MsgUpdateValidatorSharesExchRate;
                 };
-                clearBalance(value: _113.MsgClearBalance): {
+                clearBalance(value: _115.MsgClearBalance): {
                     typeUrl: string;
-                    value: _113.MsgClearBalance;
+                    value: _115.MsgClearBalance;
                 };
             };
             fromPartial: {
-                liquidStake(value: _113.MsgLiquidStake): {
+                liquidStake(value: _115.MsgLiquidStake): {
                     typeUrl: string;
-                    value: _113.MsgLiquidStake;
+                    value: _115.MsgLiquidStake;
                 };
-                redeemStake(value: _113.MsgRedeemStake): {
+                redeemStake(value: _115.MsgRedeemStake): {
                     typeUrl: string;
-                    value: _113.MsgRedeemStake;
+                    value: _115.MsgRedeemStake;
                 };
-                registerHostZone(value: _113.MsgRegisterHostZone): {
+                registerHostZone(value: _115.MsgRegisterHostZone): {
                     typeUrl: string;
-                    value: _113.MsgRegisterHostZone;
+                    value: _115.MsgRegisterHostZone;
                 };
-                claimUndelegatedTokens(value: _113.MsgClaimUndelegatedTokens): {
+                claimUndelegatedTokens(value: _115.MsgClaimUndelegatedTokens): {
                     typeUrl: string;
-                    value: _113.MsgClaimUndelegatedTokens;
+                    value: _115.MsgClaimUndelegatedTokens;
                 };
-                rebalanceValidators(value: _113.MsgRebalanceValidators): {
+                rebalanceValidators(value: _115.MsgRebalanceValidators): {
                     typeUrl: string;
-                    value: _113.MsgRebalanceValidators;
+                    value: _115.MsgRebalanceValidators;
                 };
-                addValidator(value: _113.MsgAddValidator): {
+                addValidator(value: _115.MsgAddValidator): {
                     typeUrl: string;
-                    value: _113.MsgAddValidator;
+                    value: _115.MsgAddValidator;
                 };
-                changeValidatorWeight(value: _113.MsgChangeValidatorWeight): {
+                changeValidatorWeight(value: _115.MsgChangeValidatorWeight): {
                     typeUrl: string;
-                    value: _113.MsgChangeValidatorWeight;
+                    value: _115.MsgChangeValidatorWeight;
                 };
-                deleteValidator(value: _113.MsgDeleteValidator): {
+                deleteValidator(value: _115.MsgDeleteValidator): {
                     typeUrl: string;
-                    value: _113.MsgDeleteValidator;
+                    value: _115.MsgDeleteValidator;
                 };
-                restoreInterchainAccount(value: _113.MsgRestoreInterchainAccount): {
+                restoreInterchainAccount(value: _115.MsgRestoreInterchainAccount): {
                     typeUrl: string;
-                    value: _113.MsgRestoreInterchainAccount;
+                    value: _115.MsgRestoreInterchainAccount;
                 };
-                updateValidatorSharesExchRate(value: _113.MsgUpdateValidatorSharesExchRate): {
+                updateValidatorSharesExchRate(value: _115.MsgUpdateValidatorSharesExchRate): {
                     typeUrl: string;
-                    value: _113.MsgUpdateValidatorSharesExchRate;
+                    value: _115.MsgUpdateValidatorSharesExchRate;
                 };
-                clearBalance(value: _113.MsgClearBalance): {
+                clearBalance(value: _115.MsgClearBalance): {
                     typeUrl: string;
-                    value: _113.MsgClearBalance;
+                    value: _115.MsgClearBalance;
                 };
             };
         };
         AminoConverter: {
             "/stride.stakeibc.MsgLiquidStake": {
                 aminoType: string;
-                toAmino: ({ creator, amount, hostDenom }: _113.MsgLiquidStake) => {
+                toAmino: ({ creator, amount, hostDenom }: _115.MsgLiquidStake) => {
                     creator: string;
                     amount: string;
                     host_denom: string;
@@ -7777,11 +9029,11 @@ export declare namespace stride {
                     creator: string;
                     amount: string;
                     host_denom: string;
-                }) => _113.MsgLiquidStake;
+                }) => _115.MsgLiquidStake;
             };
             "/stride.stakeibc.MsgRedeemStake": {
                 aminoType: string;
-                toAmino: ({ creator, amount, hostZone, receiver }: _113.MsgRedeemStake) => {
+                toAmino: ({ creator, amount, hostZone, receiver }: _115.MsgRedeemStake) => {
                     creator: string;
                     amount: string;
                     host_zone: string;
@@ -7792,11 +9044,11 @@ export declare namespace stride {
                     amount: string;
                     host_zone: string;
                     receiver: string;
-                }) => _113.MsgRedeemStake;
+                }) => _115.MsgRedeemStake;
             };
             "/stride.stakeibc.MsgRegisterHostZone": {
                 aminoType: string;
-                toAmino: ({ connectionId, bech32prefix, hostDenom, ibcDenom, creator, transferChannelId, unbondingFrequency }: _113.MsgRegisterHostZone) => {
+                toAmino: ({ connectionId, bech32prefix, hostDenom, ibcDenom, creator, transferChannelId, unbondingFrequency }: _115.MsgRegisterHostZone) => {
                     connection_id: string;
                     bech32prefix: string;
                     host_denom: string;
@@ -7813,11 +9065,11 @@ export declare namespace stride {
                     creator: string;
                     transfer_channel_id: string;
                     unbonding_frequency: string;
-                }) => _113.MsgRegisterHostZone;
+                }) => _115.MsgRegisterHostZone;
             };
             "/stride.stakeibc.MsgClaimUndelegatedTokens": {
                 aminoType: string;
-                toAmino: ({ creator, hostZoneId, epoch, sender }: _113.MsgClaimUndelegatedTokens) => {
+                toAmino: ({ creator, hostZoneId, epoch, sender }: _115.MsgClaimUndelegatedTokens) => {
                     creator: string;
                     host_zone_id: string;
                     epoch: string;
@@ -7828,11 +9080,11 @@ export declare namespace stride {
                     host_zone_id: string;
                     epoch: string;
                     sender: string;
-                }) => _113.MsgClaimUndelegatedTokens;
+                }) => _115.MsgClaimUndelegatedTokens;
             };
             "/stride.stakeibc.MsgRebalanceValidators": {
                 aminoType: string;
-                toAmino: ({ creator, hostZone, numRebalance }: _113.MsgRebalanceValidators) => {
+                toAmino: ({ creator, hostZone, numRebalance }: _115.MsgRebalanceValidators) => {
                     creator: string;
                     host_zone: string;
                     num_rebalance: string;
@@ -7841,11 +9093,11 @@ export declare namespace stride {
                     creator: string;
                     host_zone: string;
                     num_rebalance: string;
-                }) => _113.MsgRebalanceValidators;
+                }) => _115.MsgRebalanceValidators;
             };
             "/stride.stakeibc.MsgAddValidator": {
                 aminoType: string;
-                toAmino: ({ creator, hostZone, name, address, commission, weight }: _113.MsgAddValidator) => {
+                toAmino: ({ creator, hostZone, name, address, commission, weight }: _115.MsgAddValidator) => {
                     creator: string;
                     host_zone: string;
                     name: string;
@@ -7860,11 +9112,11 @@ export declare namespace stride {
                     address: string;
                     commission: string;
                     weight: string;
-                }) => _113.MsgAddValidator;
+                }) => _115.MsgAddValidator;
             };
             "/stride.stakeibc.MsgChangeValidatorWeight": {
                 aminoType: string;
-                toAmino: ({ creator, hostZone, valAddr, weight }: _113.MsgChangeValidatorWeight) => {
+                toAmino: ({ creator, hostZone, valAddr, weight }: _115.MsgChangeValidatorWeight) => {
                     creator: string;
                     host_zone: string;
                     val_addr: string;
@@ -7875,11 +9127,11 @@ export declare namespace stride {
                     host_zone: string;
                     val_addr: string;
                     weight: string;
-                }) => _113.MsgChangeValidatorWeight;
+                }) => _115.MsgChangeValidatorWeight;
             };
             "/stride.stakeibc.MsgDeleteValidator": {
                 aminoType: string;
-                toAmino: ({ creator, hostZone, valAddr }: _113.MsgDeleteValidator) => {
+                toAmino: ({ creator, hostZone, valAddr }: _115.MsgDeleteValidator) => {
                     creator: string;
                     host_zone: string;
                     val_addr: string;
@@ -7888,11 +9140,11 @@ export declare namespace stride {
                     creator: string;
                     host_zone: string;
                     val_addr: string;
-                }) => _113.MsgDeleteValidator;
+                }) => _115.MsgDeleteValidator;
             };
             "/stride.stakeibc.MsgRestoreInterchainAccount": {
                 aminoType: string;
-                toAmino: ({ creator, chainId, accountType }: _113.MsgRestoreInterchainAccount) => {
+                toAmino: ({ creator, chainId, accountType }: _115.MsgRestoreInterchainAccount) => {
                     creator: string;
                     chain_id: string;
                     account_type: number;
@@ -7901,11 +9153,11 @@ export declare namespace stride {
                     creator: string;
                     chain_id: string;
                     account_type: number;
-                }) => _113.MsgRestoreInterchainAccount;
+                }) => _115.MsgRestoreInterchainAccount;
             };
             "/stride.stakeibc.MsgUpdateValidatorSharesExchRate": {
                 aminoType: string;
-                toAmino: ({ creator, chainId, valoper }: _113.MsgUpdateValidatorSharesExchRate) => {
+                toAmino: ({ creator, chainId, valoper }: _115.MsgUpdateValidatorSharesExchRate) => {
                     creator: string;
                     chain_id: string;
                     valoper: string;
@@ -7914,11 +9166,11 @@ export declare namespace stride {
                     creator: string;
                     chain_id: string;
                     valoper: string;
-                }) => _113.MsgUpdateValidatorSharesExchRate;
+                }) => _115.MsgUpdateValidatorSharesExchRate;
             };
             "/stride.stakeibc.MsgClearBalance": {
                 aminoType: string;
-                toAmino: ({ creator, chainId, amount, channel }: _113.MsgClearBalance) => {
+                toAmino: ({ creator, chainId, amount, channel }: _115.MsgClearBalance) => {
                     creator: string;
                     chain_id: string;
                     amount: string;
@@ -7929,16 +9181,16 @@ export declare namespace stride {
                     chain_id: string;
                     amount: string;
                     channel: string;
-                }) => _113.MsgClearBalance;
+                }) => _115.MsgClearBalance;
             };
         };
-        validator_ValidatorStatusFromJSON(object: any): _114.Validator_ValidatorStatus;
-        validator_ValidatorStatusToJSON(object: _114.Validator_ValidatorStatus): string;
-        Validator_ValidatorStatus: typeof _114.Validator_ValidatorStatus;
-        Validator_ValidatorStatusSDKType: typeof _114.Validator_ValidatorStatusSDKType;
+        validator_ValidatorStatusFromJSON(object: any): _116.Validator_ValidatorStatus;
+        validator_ValidatorStatusToJSON(object: _116.Validator_ValidatorStatus): string;
+        Validator_ValidatorStatus: typeof _116.Validator_ValidatorStatus;
+        Validator_ValidatorStatusSDKType: typeof _116.Validator_ValidatorStatusSDKType;
         ValidatorExchangeRate: {
-            encode(message: _114.ValidatorExchangeRate, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.ValidatorExchangeRate;
+            encode(message: _116.ValidatorExchangeRate, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _116.ValidatorExchangeRate;
             fromPartial(object: {
                 internalTokensToSharesRate?: string;
                 epochNumber?: {
@@ -8013,15 +9265,15 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _114.ValidatorExchangeRate;
+            }): _116.ValidatorExchangeRate;
         };
         Validator: {
-            encode(message: _114.Validator, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.Validator;
+            encode(message: _116.Validator, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _116.Validator;
             fromPartial(object: {
                 name?: string;
                 address?: string;
-                status?: _114.Validator_ValidatorStatus;
+                status?: _116.Validator_ValidatorStatus;
                 commissionRate?: {
                     high?: number;
                     low?: number;
@@ -8313,11 +9565,11 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 };
-            }): _114.Validator;
+            }): _116.Validator;
         };
         MsgLiquidStake: {
-            encode(message: _113.MsgLiquidStake, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgLiquidStake;
+            encode(message: _115.MsgLiquidStake, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgLiquidStake;
             fromPartial(object: {
                 creator?: string;
                 amount?: {
@@ -8393,16 +9645,16 @@ export declare namespace stride {
                     xor?: (other: string | number | import("long")) => import("long");
                 };
                 hostDenom?: string;
-            }): _113.MsgLiquidStake;
+            }): _115.MsgLiquidStake;
         };
         MsgLiquidStakeResponse: {
-            encode(_: _113.MsgLiquidStakeResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgLiquidStakeResponse;
-            fromPartial(_: {}): _113.MsgLiquidStakeResponse;
+            encode(_: _115.MsgLiquidStakeResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgLiquidStakeResponse;
+            fromPartial(_: {}): _115.MsgLiquidStakeResponse;
         };
         MsgClearBalance: {
-            encode(message: _113.MsgClearBalance, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgClearBalance;
+            encode(message: _115.MsgClearBalance, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgClearBalance;
             fromPartial(object: {
                 creator?: string;
                 chainId?: string;
@@ -8479,16 +9731,16 @@ export declare namespace stride {
                     xor?: (other: string | number | import("long")) => import("long");
                 };
                 channel?: string;
-            }): _113.MsgClearBalance;
+            }): _115.MsgClearBalance;
         };
         MsgClearBalanceResponse: {
-            encode(_: _113.MsgClearBalanceResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgClearBalanceResponse;
-            fromPartial(_: {}): _113.MsgClearBalanceResponse;
+            encode(_: _115.MsgClearBalanceResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgClearBalanceResponse;
+            fromPartial(_: {}): _115.MsgClearBalanceResponse;
         };
         MsgRedeemStake: {
-            encode(message: _113.MsgRedeemStake, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgRedeemStake;
+            encode(message: _115.MsgRedeemStake, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgRedeemStake;
             fromPartial(object: {
                 creator?: string;
                 amount?: {
@@ -8565,16 +9817,16 @@ export declare namespace stride {
                 };
                 hostZone?: string;
                 receiver?: string;
-            }): _113.MsgRedeemStake;
+            }): _115.MsgRedeemStake;
         };
         MsgRedeemStakeResponse: {
-            encode(_: _113.MsgRedeemStakeResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgRedeemStakeResponse;
-            fromPartial(_: {}): _113.MsgRedeemStakeResponse;
+            encode(_: _115.MsgRedeemStakeResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgRedeemStakeResponse;
+            fromPartial(_: {}): _115.MsgRedeemStakeResponse;
         };
         MsgRegisterHostZone: {
-            encode(message: _113.MsgRegisterHostZone, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgRegisterHostZone;
+            encode(message: _115.MsgRegisterHostZone, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgRegisterHostZone;
             fromPartial(object: {
                 connectionId?: string;
                 bech32prefix?: string;
@@ -8654,16 +9906,16 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _113.MsgRegisterHostZone;
+            }): _115.MsgRegisterHostZone;
         };
         MsgRegisterHostZoneResponse: {
-            encode(_: _113.MsgRegisterHostZoneResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgRegisterHostZoneResponse;
-            fromPartial(_: {}): _113.MsgRegisterHostZoneResponse;
+            encode(_: _115.MsgRegisterHostZoneResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgRegisterHostZoneResponse;
+            fromPartial(_: {}): _115.MsgRegisterHostZoneResponse;
         };
         MsgClaimUndelegatedTokens: {
-            encode(message: _113.MsgClaimUndelegatedTokens, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgClaimUndelegatedTokens;
+            encode(message: _115.MsgClaimUndelegatedTokens, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgClaimUndelegatedTokens;
             fromPartial(object: {
                 creator?: string;
                 hostZoneId?: string;
@@ -8740,16 +9992,16 @@ export declare namespace stride {
                     xor?: (other: string | number | import("long")) => import("long");
                 };
                 sender?: string;
-            }): _113.MsgClaimUndelegatedTokens;
+            }): _115.MsgClaimUndelegatedTokens;
         };
         MsgClaimUndelegatedTokensResponse: {
-            encode(_: _113.MsgClaimUndelegatedTokensResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgClaimUndelegatedTokensResponse;
-            fromPartial(_: {}): _113.MsgClaimUndelegatedTokensResponse;
+            encode(_: _115.MsgClaimUndelegatedTokensResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgClaimUndelegatedTokensResponse;
+            fromPartial(_: {}): _115.MsgClaimUndelegatedTokensResponse;
         };
         MsgRebalanceValidators: {
-            encode(message: _113.MsgRebalanceValidators, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgRebalanceValidators;
+            encode(message: _115.MsgRebalanceValidators, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgRebalanceValidators;
             fromPartial(object: {
                 creator?: string;
                 hostZone?: string;
@@ -8825,16 +10077,16 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _113.MsgRebalanceValidators;
+            }): _115.MsgRebalanceValidators;
         };
         MsgRebalanceValidatorsResponse: {
-            encode(_: _113.MsgRebalanceValidatorsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgRebalanceValidatorsResponse;
-            fromPartial(_: {}): _113.MsgRebalanceValidatorsResponse;
+            encode(_: _115.MsgRebalanceValidatorsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgRebalanceValidatorsResponse;
+            fromPartial(_: {}): _115.MsgRebalanceValidatorsResponse;
         };
         MsgAddValidator: {
-            encode(message: _113.MsgAddValidator, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgAddValidator;
+            encode(message: _115.MsgAddValidator, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgAddValidator;
             fromPartial(object: {
                 creator?: string;
                 hostZone?: string;
@@ -8984,16 +10236,16 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _113.MsgAddValidator;
+            }): _115.MsgAddValidator;
         };
         MsgAddValidatorResponse: {
-            encode(_: _113.MsgAddValidatorResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgAddValidatorResponse;
-            fromPartial(_: {}): _113.MsgAddValidatorResponse;
+            encode(_: _115.MsgAddValidatorResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgAddValidatorResponse;
+            fromPartial(_: {}): _115.MsgAddValidatorResponse;
         };
         MsgChangeValidatorWeight: {
-            encode(message: _113.MsgChangeValidatorWeight, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgChangeValidatorWeight;
+            encode(message: _115.MsgChangeValidatorWeight, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgChangeValidatorWeight;
             fromPartial(object: {
                 creator?: string;
                 hostZone?: string;
@@ -9070,78 +10322,78 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _113.MsgChangeValidatorWeight;
+            }): _115.MsgChangeValidatorWeight;
         };
         MsgChangeValidatorWeightResponse: {
-            encode(_: _113.MsgChangeValidatorWeightResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgChangeValidatorWeightResponse;
-            fromPartial(_: {}): _113.MsgChangeValidatorWeightResponse;
+            encode(_: _115.MsgChangeValidatorWeightResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgChangeValidatorWeightResponse;
+            fromPartial(_: {}): _115.MsgChangeValidatorWeightResponse;
         };
         MsgDeleteValidator: {
-            encode(message: _113.MsgDeleteValidator, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgDeleteValidator;
+            encode(message: _115.MsgDeleteValidator, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgDeleteValidator;
             fromPartial(object: {
                 creator?: string;
                 hostZone?: string;
                 valAddr?: string;
-            }): _113.MsgDeleteValidator;
+            }): _115.MsgDeleteValidator;
         };
         MsgDeleteValidatorResponse: {
-            encode(_: _113.MsgDeleteValidatorResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgDeleteValidatorResponse;
-            fromPartial(_: {}): _113.MsgDeleteValidatorResponse;
+            encode(_: _115.MsgDeleteValidatorResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgDeleteValidatorResponse;
+            fromPartial(_: {}): _115.MsgDeleteValidatorResponse;
         };
         MsgRestoreInterchainAccount: {
-            encode(message: _113.MsgRestoreInterchainAccount, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgRestoreInterchainAccount;
+            encode(message: _115.MsgRestoreInterchainAccount, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgRestoreInterchainAccount;
             fromPartial(object: {
                 creator?: string;
                 chainId?: string;
-                accountType?: _108.ICAAccountType;
-            }): _113.MsgRestoreInterchainAccount;
+                accountType?: _110.ICAAccountType;
+            }): _115.MsgRestoreInterchainAccount;
         };
         MsgRestoreInterchainAccountResponse: {
-            encode(_: _113.MsgRestoreInterchainAccountResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgRestoreInterchainAccountResponse;
-            fromPartial(_: {}): _113.MsgRestoreInterchainAccountResponse;
+            encode(_: _115.MsgRestoreInterchainAccountResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgRestoreInterchainAccountResponse;
+            fromPartial(_: {}): _115.MsgRestoreInterchainAccountResponse;
         };
         MsgUpdateValidatorSharesExchRate: {
-            encode(message: _113.MsgUpdateValidatorSharesExchRate, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgUpdateValidatorSharesExchRate;
+            encode(message: _115.MsgUpdateValidatorSharesExchRate, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgUpdateValidatorSharesExchRate;
             fromPartial(object: {
                 creator?: string;
                 chainId?: string;
                 valoper?: string;
-            }): _113.MsgUpdateValidatorSharesExchRate;
+            }): _115.MsgUpdateValidatorSharesExchRate;
         };
         MsgUpdateValidatorSharesExchRateResponse: {
-            encode(_: _113.MsgUpdateValidatorSharesExchRateResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.MsgUpdateValidatorSharesExchRateResponse;
-            fromPartial(_: {}): _113.MsgUpdateValidatorSharesExchRateResponse;
+            encode(_: _115.MsgUpdateValidatorSharesExchRateResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _115.MsgUpdateValidatorSharesExchRateResponse;
+            fromPartial(_: {}): _115.MsgUpdateValidatorSharesExchRateResponse;
         };
         QueryInterchainAccountFromAddressRequest: {
-            encode(message: _112.QueryInterchainAccountFromAddressRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryInterchainAccountFromAddressRequest;
+            encode(message: _114.QueryInterchainAccountFromAddressRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryInterchainAccountFromAddressRequest;
             fromPartial(object: {
                 owner?: string;
                 connectionId?: string;
-            }): _112.QueryInterchainAccountFromAddressRequest;
+            }): _114.QueryInterchainAccountFromAddressRequest;
         };
         QueryInterchainAccountFromAddressResponse: {
-            encode(message: _112.QueryInterchainAccountFromAddressResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryInterchainAccountFromAddressResponse;
+            encode(message: _114.QueryInterchainAccountFromAddressResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryInterchainAccountFromAddressResponse;
             fromPartial(object: {
                 interchainAccountAddress?: string;
-            }): _112.QueryInterchainAccountFromAddressResponse;
+            }): _114.QueryInterchainAccountFromAddressResponse;
         };
         QueryParamsRequest: {
-            encode(_: _112.QueryParamsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryParamsRequest;
-            fromPartial(_: {}): _112.QueryParamsRequest;
+            encode(_: _114.QueryParamsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryParamsRequest;
+            fromPartial(_: {}): _114.QueryParamsRequest;
         };
         QueryParamsResponse: {
-            encode(message: _112.QueryParamsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryParamsResponse;
+            encode(message: _114.QueryParamsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryParamsResponse;
             fromPartial(object: {
                 params?: {
                     rewardsInterval?: {
@@ -10300,23 +11552,23 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 };
-            }): _112.QueryParamsResponse;
+            }): _114.QueryParamsResponse;
         };
         QueryGetValidatorsRequest: {
-            encode(message: _112.QueryGetValidatorsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryGetValidatorsRequest;
+            encode(message: _114.QueryGetValidatorsRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryGetValidatorsRequest;
             fromPartial(object: {
                 chainId?: string;
-            }): _112.QueryGetValidatorsRequest;
+            }): _114.QueryGetValidatorsRequest;
         };
         QueryGetValidatorsResponse: {
-            encode(message: _112.QueryGetValidatorsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryGetValidatorsResponse;
+            encode(message: _114.QueryGetValidatorsResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryGetValidatorsResponse;
             fromPartial(object: {
                 validators?: {
                     name?: string;
                     address?: string;
-                    status?: _114.Validator_ValidatorStatus;
+                    status?: _116.Validator_ValidatorStatus;
                     commissionRate?: {
                         high?: number;
                         low?: number;
@@ -10609,16 +11861,16 @@ export declare namespace stride {
                         };
                     };
                 }[];
-            }): _112.QueryGetValidatorsResponse;
+            }): _114.QueryGetValidatorsResponse;
         };
         QueryGetICAAccountRequest: {
-            encode(_: _112.QueryGetICAAccountRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryGetICAAccountRequest;
-            fromPartial(_: {}): _112.QueryGetICAAccountRequest;
+            encode(_: _114.QueryGetICAAccountRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryGetICAAccountRequest;
+            fromPartial(_: {}): _114.QueryGetICAAccountRequest;
         };
         QueryGetICAAccountResponse: {
-            encode(message: _112.QueryGetICAAccountResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryGetICAAccountResponse;
+            encode(message: _114.QueryGetICAAccountResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryGetICAAccountResponse;
             fromPartial(object: {
                 icaAccount?: {
                     address?: string;
@@ -10627,7 +11879,7 @@ export declare namespace stride {
                         validator?: {
                             name?: string;
                             address?: string;
-                            status?: _114.Validator_ValidatorStatus;
+                            status?: _116.Validator_ValidatorStatus;
                             commissionRate?: {
                                 high?: number;
                                 low?: number;
@@ -10993,20 +12245,20 @@ export declare namespace stride {
                             xor?: (other: string | number | import("long")) => import("long");
                         };
                     }[];
-                    target?: _108.ICAAccountType;
+                    target?: _110.ICAAccountType;
                 };
-            }): _112.QueryGetICAAccountResponse;
+            }): _114.QueryGetICAAccountResponse;
         };
         QueryGetHostZoneRequest: {
-            encode(message: _112.QueryGetHostZoneRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryGetHostZoneRequest;
+            encode(message: _114.QueryGetHostZoneRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryGetHostZoneRequest;
             fromPartial(object: {
                 chainId?: string;
-            }): _112.QueryGetHostZoneRequest;
+            }): _114.QueryGetHostZoneRequest;
         };
         QueryGetHostZoneResponse: {
-            encode(message: _112.QueryGetHostZoneResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryGetHostZoneResponse;
+            encode(message: _114.QueryGetHostZoneResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryGetHostZoneResponse;
             fromPartial(object: {
                 hostZone?: {
                     chainId?: string;
@@ -11016,7 +12268,7 @@ export declare namespace stride {
                     validators?: {
                         name?: string;
                         address?: string;
-                        status?: _114.Validator_ValidatorStatus;
+                        status?: _116.Validator_ValidatorStatus;
                         commissionRate?: {
                             high?: number;
                             low?: number;
@@ -11312,7 +12564,7 @@ export declare namespace stride {
                     blacklistedValidators?: {
                         name?: string;
                         address?: string;
-                        status?: _114.Validator_ValidatorStatus;
+                        status?: _116.Validator_ValidatorStatus;
                         commissionRate?: {
                             high?: number;
                             low?: number;
@@ -11612,7 +12864,7 @@ export declare namespace stride {
                             validator?: {
                                 name?: string;
                                 address?: string;
-                                status?: _114.Validator_ValidatorStatus;
+                                status?: _116.Validator_ValidatorStatus;
                                 commissionRate?: {
                                     high?: number;
                                     low?: number;
@@ -11978,7 +13230,7 @@ export declare namespace stride {
                                 xor?: (other: string | number | import("long")) => import("long");
                             };
                         }[];
-                        target?: _108.ICAAccountType;
+                        target?: _110.ICAAccountType;
                     };
                     feeAccount?: {
                         address?: string;
@@ -11987,7 +13239,7 @@ export declare namespace stride {
                             validator?: {
                                 name?: string;
                                 address?: string;
-                                status?: _114.Validator_ValidatorStatus;
+                                status?: _116.Validator_ValidatorStatus;
                                 commissionRate?: {
                                     high?: number;
                                     low?: number;
@@ -12353,7 +13605,7 @@ export declare namespace stride {
                                 xor?: (other: string | number | import("long")) => import("long");
                             };
                         }[];
-                        target?: _108.ICAAccountType;
+                        target?: _110.ICAAccountType;
                     };
                     delegationAccount?: {
                         address?: string;
@@ -12362,7 +13614,7 @@ export declare namespace stride {
                             validator?: {
                                 name?: string;
                                 address?: string;
-                                status?: _114.Validator_ValidatorStatus;
+                                status?: _116.Validator_ValidatorStatus;
                                 commissionRate?: {
                                     high?: number;
                                     low?: number;
@@ -12728,7 +13980,7 @@ export declare namespace stride {
                                 xor?: (other: string | number | import("long")) => import("long");
                             };
                         }[];
-                        target?: _108.ICAAccountType;
+                        target?: _110.ICAAccountType;
                     };
                     redemptionAccount?: {
                         address?: string;
@@ -12737,7 +13989,7 @@ export declare namespace stride {
                             validator?: {
                                 name?: string;
                                 address?: string;
-                                status?: _114.Validator_ValidatorStatus;
+                                status?: _116.Validator_ValidatorStatus;
                                 commissionRate?: {
                                     high?: number;
                                     low?: number;
@@ -13103,7 +14355,7 @@ export declare namespace stride {
                                 xor?: (other: string | number | import("long")) => import("long");
                             };
                         }[];
-                        target?: _108.ICAAccountType;
+                        target?: _110.ICAAccountType;
                     };
                     ibcDenom?: string;
                     hostDenom?: string;
@@ -13255,11 +14507,11 @@ export declare namespace stride {
                     };
                     address?: string;
                 };
-            }): _112.QueryGetHostZoneResponse;
+            }): _114.QueryGetHostZoneResponse;
         };
         QueryAllHostZoneRequest: {
-            encode(message: _112.QueryAllHostZoneRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryAllHostZoneRequest;
+            encode(message: _114.QueryAllHostZoneRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryAllHostZoneRequest;
             fromPartial(object: {
                 pagination?: {
                     key?: Uint8Array;
@@ -13410,11 +14662,11 @@ export declare namespace stride {
                     countTotal?: boolean;
                     reverse?: boolean;
                 };
-            }): _112.QueryAllHostZoneRequest;
+            }): _114.QueryAllHostZoneRequest;
         };
         QueryAllHostZoneResponse: {
-            encode(message: _112.QueryAllHostZoneResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryAllHostZoneResponse;
+            encode(message: _114.QueryAllHostZoneResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryAllHostZoneResponse;
             fromPartial(object: {
                 hostZone?: {
                     chainId?: string;
@@ -13424,7 +14676,7 @@ export declare namespace stride {
                     validators?: {
                         name?: string;
                         address?: string;
-                        status?: _114.Validator_ValidatorStatus;
+                        status?: _116.Validator_ValidatorStatus;
                         commissionRate?: {
                             high?: number;
                             low?: number;
@@ -13720,7 +14972,7 @@ export declare namespace stride {
                     blacklistedValidators?: {
                         name?: string;
                         address?: string;
-                        status?: _114.Validator_ValidatorStatus;
+                        status?: _116.Validator_ValidatorStatus;
                         commissionRate?: {
                             high?: number;
                             low?: number;
@@ -14020,7 +15272,7 @@ export declare namespace stride {
                             validator?: {
                                 name?: string;
                                 address?: string;
-                                status?: _114.Validator_ValidatorStatus;
+                                status?: _116.Validator_ValidatorStatus;
                                 commissionRate?: {
                                     high?: number;
                                     low?: number;
@@ -14386,7 +15638,7 @@ export declare namespace stride {
                                 xor?: (other: string | number | import("long")) => import("long");
                             };
                         }[];
-                        target?: _108.ICAAccountType;
+                        target?: _110.ICAAccountType;
                     };
                     feeAccount?: {
                         address?: string;
@@ -14395,7 +15647,7 @@ export declare namespace stride {
                             validator?: {
                                 name?: string;
                                 address?: string;
-                                status?: _114.Validator_ValidatorStatus;
+                                status?: _116.Validator_ValidatorStatus;
                                 commissionRate?: {
                                     high?: number;
                                     low?: number;
@@ -14761,7 +16013,7 @@ export declare namespace stride {
                                 xor?: (other: string | number | import("long")) => import("long");
                             };
                         }[];
-                        target?: _108.ICAAccountType;
+                        target?: _110.ICAAccountType;
                     };
                     delegationAccount?: {
                         address?: string;
@@ -14770,7 +16022,7 @@ export declare namespace stride {
                             validator?: {
                                 name?: string;
                                 address?: string;
-                                status?: _114.Validator_ValidatorStatus;
+                                status?: _116.Validator_ValidatorStatus;
                                 commissionRate?: {
                                     high?: number;
                                     low?: number;
@@ -15136,7 +16388,7 @@ export declare namespace stride {
                                 xor?: (other: string | number | import("long")) => import("long");
                             };
                         }[];
-                        target?: _108.ICAAccountType;
+                        target?: _110.ICAAccountType;
                     };
                     redemptionAccount?: {
                         address?: string;
@@ -15145,7 +16397,7 @@ export declare namespace stride {
                             validator?: {
                                 name?: string;
                                 address?: string;
-                                status?: _114.Validator_ValidatorStatus;
+                                status?: _116.Validator_ValidatorStatus;
                                 commissionRate?: {
                                     high?: number;
                                     low?: number;
@@ -15511,7 +16763,7 @@ export declare namespace stride {
                                 xor?: (other: string | number | import("long")) => import("long");
                             };
                         }[];
-                        target?: _108.ICAAccountType;
+                        target?: _110.ICAAccountType;
                     };
                     ibcDenom?: string;
                     hostDenom?: string;
@@ -15738,32 +16990,32 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 };
-            }): _112.QueryAllHostZoneResponse;
+            }): _114.QueryAllHostZoneResponse;
         };
         QueryModuleAddressRequest: {
-            encode(message: _112.QueryModuleAddressRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryModuleAddressRequest;
+            encode(message: _114.QueryModuleAddressRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryModuleAddressRequest;
             fromPartial(object: {
                 name?: string;
-            }): _112.QueryModuleAddressRequest;
+            }): _114.QueryModuleAddressRequest;
         };
         QueryModuleAddressResponse: {
-            encode(message: _112.QueryModuleAddressResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryModuleAddressResponse;
+            encode(message: _114.QueryModuleAddressResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryModuleAddressResponse;
             fromPartial(object: {
                 addr?: string;
-            }): _112.QueryModuleAddressResponse;
+            }): _114.QueryModuleAddressResponse;
         };
         QueryGetEpochTrackerRequest: {
-            encode(message: _112.QueryGetEpochTrackerRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryGetEpochTrackerRequest;
+            encode(message: _114.QueryGetEpochTrackerRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryGetEpochTrackerRequest;
             fromPartial(object: {
                 epochIdentifier?: string;
-            }): _112.QueryGetEpochTrackerRequest;
+            }): _114.QueryGetEpochTrackerRequest;
         };
         QueryGetEpochTrackerResponse: {
-            encode(message: _112.QueryGetEpochTrackerResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryGetEpochTrackerResponse;
+            encode(message: _114.QueryGetEpochTrackerResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryGetEpochTrackerResponse;
             fromPartial(object: {
                 epochTracker?: {
                     epochIdentifier?: string;
@@ -15984,11 +17236,11 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 };
-            }): _112.QueryGetEpochTrackerResponse;
+            }): _114.QueryGetEpochTrackerResponse;
         };
         QueryAllEpochTrackerRequest: {
-            encode(message: _112.QueryAllEpochTrackerRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryAllEpochTrackerRequest;
+            encode(message: _114.QueryAllEpochTrackerRequest, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryAllEpochTrackerRequest;
             fromPartial(object: {
                 pagination?: {
                     key?: Uint8Array;
@@ -16139,11 +17391,11 @@ export declare namespace stride {
                     countTotal?: boolean;
                     reverse?: boolean;
                 };
-            }): _112.QueryAllEpochTrackerRequest;
+            }): _114.QueryAllEpochTrackerRequest;
         };
         QueryAllEpochTrackerResponse: {
-            encode(message: _112.QueryAllEpochTrackerResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.QueryAllEpochTrackerResponse;
+            encode(message: _114.QueryAllEpochTrackerResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _114.QueryAllEpochTrackerResponse;
             fromPartial(object: {
                 epochTracker?: {
                     epochIdentifier?: string;
@@ -16439,19 +17691,19 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 };
-            }): _112.QueryAllEpochTrackerResponse;
+            }): _114.QueryAllEpochTrackerResponse;
         };
         Params_ZoneComAddressEntry: {
-            encode(message: _111.Params_ZoneComAddressEntry, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _111.Params_ZoneComAddressEntry;
+            encode(message: _113.Params_ZoneComAddressEntry, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.Params_ZoneComAddressEntry;
             fromPartial(object: {
                 key?: string;
                 value?: string;
-            }): _111.Params_ZoneComAddressEntry;
+            }): _113.Params_ZoneComAddressEntry;
         };
         Params: {
-            encode(message: _111.Params, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _111.Params;
+            encode(message: _113.Params, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _113.Params;
             fromPartial(object: {
                 rewardsInterval?: {
                     high?: number;
@@ -17608,35 +18860,35 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _111.Params;
+            }): _113.Params;
         };
         StakeibcPacketData: {
-            encode(message: _110.StakeibcPacketData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _110.StakeibcPacketData;
+            encode(message: _112.StakeibcPacketData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.StakeibcPacketData;
             fromPartial(object: {
                 noData?: {};
-            }): _110.StakeibcPacketData;
+            }): _112.StakeibcPacketData;
         };
         NoData: {
-            encode(_: _110.NoData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _110.NoData;
-            fromPartial(_: {}): _110.NoData;
+            encode(_: _112.NoData, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _112.NoData;
+            fromPartial(_: {}): _112.NoData;
         };
         MinValidatorRequirements: {
-            encode(message: _109.MinValidatorRequirements, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _109.MinValidatorRequirements;
+            encode(message: _111.MinValidatorRequirements, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _111.MinValidatorRequirements;
             fromPartial(object: {
                 commissionRate?: number;
                 uptime?: number;
-            }): _109.MinValidatorRequirements;
+            }): _111.MinValidatorRequirements;
         };
-        iCAAccountTypeFromJSON(object: any): _108.ICAAccountType;
-        iCAAccountTypeToJSON(object: _108.ICAAccountType): string;
-        ICAAccountType: typeof _108.ICAAccountType;
-        ICAAccountTypeSDKType: typeof _108.ICAAccountTypeSDKType;
+        iCAAccountTypeFromJSON(object: any): _110.ICAAccountType;
+        iCAAccountTypeToJSON(object: _110.ICAAccountType): string;
+        ICAAccountType: typeof _110.ICAAccountType;
+        ICAAccountTypeSDKType: typeof _110.ICAAccountTypeSDKType;
         ICAAccount: {
-            encode(message: _108.ICAAccount, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _108.ICAAccount;
+            encode(message: _110.ICAAccount, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _110.ICAAccount;
             fromPartial(object: {
                 address?: string;
                 delegations?: {
@@ -17644,7 +18896,7 @@ export declare namespace stride {
                     validator?: {
                         name?: string;
                         address?: string;
-                        status?: _114.Validator_ValidatorStatus;
+                        status?: _116.Validator_ValidatorStatus;
                         commissionRate?: {
                             high?: number;
                             low?: number;
@@ -18010,12 +19262,12 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 }[];
-                target?: _108.ICAAccountType;
-            }): _108.ICAAccount;
+                target?: _110.ICAAccountType;
+            }): _110.ICAAccount;
         };
         HostZone: {
-            encode(message: _107.HostZone, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _107.HostZone;
+            encode(message: _109.HostZone, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _109.HostZone;
             fromPartial(object: {
                 chainId?: string;
                 connectionId?: string;
@@ -18024,7 +19276,7 @@ export declare namespace stride {
                 validators?: {
                     name?: string;
                     address?: string;
-                    status?: _114.Validator_ValidatorStatus;
+                    status?: _116.Validator_ValidatorStatus;
                     commissionRate?: {
                         high?: number;
                         low?: number;
@@ -18320,7 +19572,7 @@ export declare namespace stride {
                 blacklistedValidators?: {
                     name?: string;
                     address?: string;
-                    status?: _114.Validator_ValidatorStatus;
+                    status?: _116.Validator_ValidatorStatus;
                     commissionRate?: {
                         high?: number;
                         low?: number;
@@ -18620,7 +19872,7 @@ export declare namespace stride {
                         validator?: {
                             name?: string;
                             address?: string;
-                            status?: _114.Validator_ValidatorStatus;
+                            status?: _116.Validator_ValidatorStatus;
                             commissionRate?: {
                                 high?: number;
                                 low?: number;
@@ -18986,7 +20238,7 @@ export declare namespace stride {
                             xor?: (other: string | number | import("long")) => import("long");
                         };
                     }[];
-                    target?: _108.ICAAccountType;
+                    target?: _110.ICAAccountType;
                 };
                 feeAccount?: {
                     address?: string;
@@ -18995,7 +20247,7 @@ export declare namespace stride {
                         validator?: {
                             name?: string;
                             address?: string;
-                            status?: _114.Validator_ValidatorStatus;
+                            status?: _116.Validator_ValidatorStatus;
                             commissionRate?: {
                                 high?: number;
                                 low?: number;
@@ -19361,7 +20613,7 @@ export declare namespace stride {
                             xor?: (other: string | number | import("long")) => import("long");
                         };
                     }[];
-                    target?: _108.ICAAccountType;
+                    target?: _110.ICAAccountType;
                 };
                 delegationAccount?: {
                     address?: string;
@@ -19370,7 +20622,7 @@ export declare namespace stride {
                         validator?: {
                             name?: string;
                             address?: string;
-                            status?: _114.Validator_ValidatorStatus;
+                            status?: _116.Validator_ValidatorStatus;
                             commissionRate?: {
                                 high?: number;
                                 low?: number;
@@ -19736,7 +20988,7 @@ export declare namespace stride {
                             xor?: (other: string | number | import("long")) => import("long");
                         };
                     }[];
-                    target?: _108.ICAAccountType;
+                    target?: _110.ICAAccountType;
                 };
                 redemptionAccount?: {
                     address?: string;
@@ -19745,7 +20997,7 @@ export declare namespace stride {
                         validator?: {
                             name?: string;
                             address?: string;
-                            status?: _114.Validator_ValidatorStatus;
+                            status?: _116.Validator_ValidatorStatus;
                             commissionRate?: {
                                 high?: number;
                                 low?: number;
@@ -20111,7 +21363,7 @@ export declare namespace stride {
                             xor?: (other: string | number | import("long")) => import("long");
                         };
                     }[];
-                    target?: _108.ICAAccountType;
+                    target?: _110.ICAAccountType;
                 };
                 ibcDenom?: string;
                 hostDenom?: string;
@@ -20262,30 +21514,31 @@ export declare namespace stride {
                     xor?: (other: string | number | import("long")) => import("long");
                 };
                 address?: string;
-            }): _107.HostZone;
+            }): _109.HostZone;
         };
         AddValidatorProposal: {
-            encode(message: _106.AddValidatorProposal, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _106.AddValidatorProposal;
+            encode(message: _108.AddValidatorProposal, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _108.AddValidatorProposal;
             fromPartial(object: {
                 title?: string;
                 description?: string;
                 hostZone?: string;
                 validatorName?: string;
                 validatorAddress?: string;
-            }): _106.AddValidatorProposal;
+                deposit?: string;
+            }): _108.AddValidatorProposal;
         };
         GenesisState_DenomToHostZoneEntry: {
-            encode(message: _105.GenesisState_DenomToHostZoneEntry, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _105.GenesisState_DenomToHostZoneEntry;
+            encode(message: _107.GenesisState_DenomToHostZoneEntry, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _107.GenesisState_DenomToHostZoneEntry;
             fromPartial(object: {
                 key?: string;
                 value?: string;
-            }): _105.GenesisState_DenomToHostZoneEntry;
+            }): _107.GenesisState_DenomToHostZoneEntry;
         };
         GenesisState: {
-            encode(message: _105.GenesisState, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _105.GenesisState;
+            encode(message: _107.GenesisState, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _107.GenesisState;
             fromPartial(object: {
                 params?: {
                     rewardsInterval?: {
@@ -21452,7 +22705,7 @@ export declare namespace stride {
                         validator?: {
                             name?: string;
                             address?: string;
-                            status?: _114.Validator_ValidatorStatus;
+                            status?: _116.Validator_ValidatorStatus;
                             commissionRate?: {
                                 high?: number;
                                 low?: number;
@@ -21818,7 +23071,7 @@ export declare namespace stride {
                             xor?: (other: string | number | import("long")) => import("long");
                         };
                     }[];
-                    target?: _108.ICAAccountType;
+                    target?: _110.ICAAccountType;
                 };
                 hostZoneList?: {
                     chainId?: string;
@@ -21828,7 +23081,7 @@ export declare namespace stride {
                     validators?: {
                         name?: string;
                         address?: string;
-                        status?: _114.Validator_ValidatorStatus;
+                        status?: _116.Validator_ValidatorStatus;
                         commissionRate?: {
                             high?: number;
                             low?: number;
@@ -22124,7 +23377,7 @@ export declare namespace stride {
                     blacklistedValidators?: {
                         name?: string;
                         address?: string;
-                        status?: _114.Validator_ValidatorStatus;
+                        status?: _116.Validator_ValidatorStatus;
                         commissionRate?: {
                             high?: number;
                             low?: number;
@@ -22424,7 +23677,7 @@ export declare namespace stride {
                             validator?: {
                                 name?: string;
                                 address?: string;
-                                status?: _114.Validator_ValidatorStatus;
+                                status?: _116.Validator_ValidatorStatus;
                                 commissionRate?: {
                                     high?: number;
                                     low?: number;
@@ -22790,7 +24043,7 @@ export declare namespace stride {
                                 xor?: (other: string | number | import("long")) => import("long");
                             };
                         }[];
-                        target?: _108.ICAAccountType;
+                        target?: _110.ICAAccountType;
                     };
                     feeAccount?: {
                         address?: string;
@@ -22799,7 +24052,7 @@ export declare namespace stride {
                             validator?: {
                                 name?: string;
                                 address?: string;
-                                status?: _114.Validator_ValidatorStatus;
+                                status?: _116.Validator_ValidatorStatus;
                                 commissionRate?: {
                                     high?: number;
                                     low?: number;
@@ -23165,7 +24418,7 @@ export declare namespace stride {
                                 xor?: (other: string | number | import("long")) => import("long");
                             };
                         }[];
-                        target?: _108.ICAAccountType;
+                        target?: _110.ICAAccountType;
                     };
                     delegationAccount?: {
                         address?: string;
@@ -23174,7 +24427,7 @@ export declare namespace stride {
                             validator?: {
                                 name?: string;
                                 address?: string;
-                                status?: _114.Validator_ValidatorStatus;
+                                status?: _116.Validator_ValidatorStatus;
                                 commissionRate?: {
                                     high?: number;
                                     low?: number;
@@ -23540,7 +24793,7 @@ export declare namespace stride {
                                 xor?: (other: string | number | import("long")) => import("long");
                             };
                         }[];
-                        target?: _108.ICAAccountType;
+                        target?: _110.ICAAccountType;
                     };
                     redemptionAccount?: {
                         address?: string;
@@ -23549,7 +24802,7 @@ export declare namespace stride {
                             validator?: {
                                 name?: string;
                                 address?: string;
-                                status?: _114.Validator_ValidatorStatus;
+                                status?: _116.Validator_ValidatorStatus;
                                 commissionRate?: {
                                     high?: number;
                                     low?: number;
@@ -23915,7 +25168,7 @@ export declare namespace stride {
                                 xor?: (other: string | number | import("long")) => import("long");
                             };
                         }[];
-                        target?: _108.ICAAccountType;
+                        target?: _110.ICAAccountType;
                     };
                     ibcDenom?: string;
                     hostDenom?: string;
@@ -24361,11 +25614,11 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 }[];
-            }): _105.GenesisState;
+            }): _107.GenesisState;
         };
         EpochTracker: {
-            encode(message: _104.EpochTracker, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _104.EpochTracker;
+            encode(message: _106.EpochTracker, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _106.EpochTracker;
             fromPartial(object: {
                 epochIdentifier?: string;
                 epochNumber?: {
@@ -24584,17 +25837,17 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _104.EpochTracker;
+            }): _106.EpochTracker;
         };
         Delegation: {
-            encode(message: _103.Delegation, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _103.Delegation;
+            encode(message: _105.Delegation, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _105.Delegation;
             fromPartial(object: {
                 delegateAcctAddress?: string;
                 validator?: {
                     name?: string;
                     address?: string;
-                    status?: _114.Validator_ValidatorStatus;
+                    status?: _116.Validator_ValidatorStatus;
                     commissionRate?: {
                         high?: number;
                         low?: number;
@@ -24959,11 +26212,11 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _103.Delegation;
+            }): _105.Delegation;
         };
         SplitDelegation: {
-            encode(message: _102.SplitDelegation, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.SplitDelegation;
+            encode(message: _104.SplitDelegation, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _104.SplitDelegation;
             fromPartial(object: {
                 validator?: string;
                 amount?: {
@@ -25038,11 +26291,11 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _102.SplitDelegation;
+            }): _104.SplitDelegation;
         };
         DelegateCallback: {
-            encode(message: _102.DelegateCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.DelegateCallback;
+            encode(message: _104.DelegateCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _104.DelegateCallback;
             fromPartial(object: {
                 hostZoneId?: string;
                 depositRecordId?: {
@@ -25192,11 +26445,11 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 }[];
-            }): _102.DelegateCallback;
+            }): _104.DelegateCallback;
         };
         ClaimCallback: {
-            encode(message: _102.ClaimCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.ClaimCallback;
+            encode(message: _104.ClaimCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _104.ClaimCallback;
             fromPartial(object: {
                 userRedemptionRecordId?: string;
                 chainId?: string;
@@ -25272,22 +26525,22 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _102.ClaimCallback;
+            }): _104.ClaimCallback;
         };
         ReinvestCallback: {
-            encode(message: _102.ReinvestCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.ReinvestCallback;
+            encode(message: _104.ReinvestCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _104.ReinvestCallback;
             fromPartial(object: {
                 reinvestAmount?: {
                     denom?: string;
                     amount?: string;
                 };
                 hostZoneId?: string;
-            }): _102.ReinvestCallback;
+            }): _104.ReinvestCallback;
         };
         UndelegateCallback: {
-            encode(message: _102.UndelegateCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.UndelegateCallback;
+            encode(message: _104.UndelegateCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _104.UndelegateCallback;
             fromPartial(object: {
                 hostZoneId?: string;
                 splitDelegations?: {
@@ -25437,11 +26690,11 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 }[];
-            }): _102.UndelegateCallback;
+            }): _104.UndelegateCallback;
         };
         RedemptionCallback: {
-            encode(message: _102.RedemptionCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.RedemptionCallback;
+            encode(message: _104.RedemptionCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _104.RedemptionCallback;
             fromPartial(object: {
                 hostZoneId?: string;
                 epochUnbondingRecordIds?: {
@@ -25516,11 +26769,11 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 }[];
-            }): _102.RedemptionCallback;
+            }): _104.RedemptionCallback;
         };
         Rebalancing: {
-            encode(message: _102.Rebalancing, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.Rebalancing;
+            encode(message: _104.Rebalancing, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _104.Rebalancing;
             fromPartial(object: {
                 srcValidator?: string;
                 dstValidator?: string;
@@ -25596,11 +26849,11 @@ export declare namespace stride {
                     toUnsigned?: () => import("long");
                     xor?: (other: string | number | import("long")) => import("long");
                 };
-            }): _102.Rebalancing;
+            }): _104.Rebalancing;
         };
         RebalanceCallback: {
-            encode(message: _102.RebalanceCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _102.RebalanceCallback;
+            encode(message: _104.RebalanceCallback, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _104.RebalanceCallback;
             fromPartial(object: {
                 hostZoneId?: string;
                 rebalancings?: {
@@ -25679,12 +26932,804 @@ export declare namespace stride {
                         xor?: (other: string | number | import("long")) => import("long");
                     };
                 }[];
-            }): _102.RebalanceCallback;
+            }): _104.RebalanceCallback;
+        };
+    };
+    const vesting: {
+        BaseVestingAccount: {
+            encode(message: _118.BaseVestingAccount, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _118.BaseVestingAccount;
+            fromPartial(object: {
+                baseAccount?: {
+                    address?: string;
+                    pubKey?: {
+                        typeUrl?: string;
+                        value?: Uint8Array;
+                    };
+                    accountNumber?: {
+                        high?: number;
+                        low?: number;
+                        unsigned?: boolean;
+                        add?: (addend: string | number | import("long")) => import("long");
+                        and?: (other: string | number | import("long")) => import("long");
+                        compare?: (other: string | number | import("long")) => number;
+                        comp?: (other: string | number | import("long")) => number;
+                        divide?: (divisor: string | number | import("long")) => import("long");
+                        div?: (divisor: string | number | import("long")) => import("long");
+                        equals?: (other: string | number | import("long")) => boolean;
+                        eq?: (other: string | number | import("long")) => boolean;
+                        getHighBits?: () => number;
+                        getHighBitsUnsigned?: () => number;
+                        getLowBits?: () => number;
+                        getLowBitsUnsigned?: () => number;
+                        getNumBitsAbs?: () => number;
+                        greaterThan?: (other: string | number | import("long")) => boolean;
+                        gt?: (other: string | number | import("long")) => boolean;
+                        greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        gte?: (other: string | number | import("long")) => boolean;
+                        ge?: (other: string | number | import("long")) => boolean;
+                        isEven?: () => boolean;
+                        isNegative?: () => boolean;
+                        isOdd?: () => boolean;
+                        isPositive?: () => boolean;
+                        isZero?: () => boolean;
+                        eqz?: () => boolean;
+                        lessThan?: (other: string | number | import("long")) => boolean;
+                        lt?: (other: string | number | import("long")) => boolean;
+                        lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        lte?: (other: string | number | import("long")) => boolean;
+                        le?: (other: string | number | import("long")) => boolean;
+                        modulo?: (other: string | number | import("long")) => import("long");
+                        mod?: (other: string | number | import("long")) => import("long");
+                        rem?: (other: string | number | import("long")) => import("long");
+                        multiply?: (multiplier: string | number | import("long")) => import("long");
+                        mul?: (multiplier: string | number | import("long")) => import("long");
+                        negate?: () => import("long");
+                        neg?: () => import("long");
+                        not?: () => import("long");
+                        countLeadingZeros?: () => number;
+                        clz?: () => number;
+                        countTrailingZeros?: () => number;
+                        ctz?: () => number;
+                        notEquals?: (other: string | number | import("long")) => boolean;
+                        neq?: (other: string | number | import("long")) => boolean;
+                        ne?: (other: string | number | import("long")) => boolean;
+                        or?: (other: string | number | import("long")) => import("long");
+                        shiftLeft?: (numBits: number | import("long")) => import("long");
+                        shl?: (numBits: number | import("long")) => import("long");
+                        shiftRight?: (numBits: number | import("long")) => import("long");
+                        shr?: (numBits: number | import("long")) => import("long");
+                        shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                        shru?: (numBits: number | import("long")) => import("long");
+                        shr_u?: (numBits: number | import("long")) => import("long");
+                        rotateLeft?: (numBits: number | import("long")) => import("long");
+                        rotl?: (numBits: number | import("long")) => import("long");
+                        rotateRight?: (numBits: number | import("long")) => import("long");
+                        rotr?: (numBits: number | import("long")) => import("long");
+                        subtract?: (subtrahend: string | number | import("long")) => import("long");
+                        sub?: (subtrahend: string | number | import("long")) => import("long");
+                        toInt?: () => number;
+                        toNumber?: () => number;
+                        toBytes?: (le?: boolean) => number[];
+                        toBytesLE?: () => number[];
+                        toBytesBE?: () => number[];
+                        toSigned?: () => import("long");
+                        toString?: (radix?: number) => string;
+                        toUnsigned?: () => import("long");
+                        xor?: (other: string | number | import("long")) => import("long");
+                    };
+                    sequence?: {
+                        high?: number;
+                        low?: number;
+                        unsigned?: boolean;
+                        add?: (addend: string | number | import("long")) => import("long");
+                        and?: (other: string | number | import("long")) => import("long");
+                        compare?: (other: string | number | import("long")) => number;
+                        comp?: (other: string | number | import("long")) => number;
+                        divide?: (divisor: string | number | import("long")) => import("long");
+                        div?: (divisor: string | number | import("long")) => import("long");
+                        equals?: (other: string | number | import("long")) => boolean;
+                        eq?: (other: string | number | import("long")) => boolean;
+                        getHighBits?: () => number;
+                        getHighBitsUnsigned?: () => number;
+                        getLowBits?: () => number;
+                        getLowBitsUnsigned?: () => number;
+                        getNumBitsAbs?: () => number;
+                        greaterThan?: (other: string | number | import("long")) => boolean;
+                        gt?: (other: string | number | import("long")) => boolean;
+                        greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        gte?: (other: string | number | import("long")) => boolean;
+                        ge?: (other: string | number | import("long")) => boolean;
+                        isEven?: () => boolean;
+                        isNegative?: () => boolean;
+                        isOdd?: () => boolean;
+                        isPositive?: () => boolean;
+                        isZero?: () => boolean;
+                        eqz?: () => boolean;
+                        lessThan?: (other: string | number | import("long")) => boolean;
+                        lt?: (other: string | number | import("long")) => boolean;
+                        lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        lte?: (other: string | number | import("long")) => boolean;
+                        le?: (other: string | number | import("long")) => boolean;
+                        modulo?: (other: string | number | import("long")) => import("long");
+                        mod?: (other: string | number | import("long")) => import("long");
+                        rem?: (other: string | number | import("long")) => import("long");
+                        multiply?: (multiplier: string | number | import("long")) => import("long");
+                        mul?: (multiplier: string | number | import("long")) => import("long");
+                        negate?: () => import("long");
+                        neg?: () => import("long");
+                        not?: () => import("long");
+                        countLeadingZeros?: () => number;
+                        clz?: () => number;
+                        countTrailingZeros?: () => number;
+                        ctz?: () => number;
+                        notEquals?: (other: string | number | import("long")) => boolean;
+                        neq?: (other: string | number | import("long")) => boolean;
+                        ne?: (other: string | number | import("long")) => boolean;
+                        or?: (other: string | number | import("long")) => import("long");
+                        shiftLeft?: (numBits: number | import("long")) => import("long");
+                        shl?: (numBits: number | import("long")) => import("long");
+                        shiftRight?: (numBits: number | import("long")) => import("long");
+                        shr?: (numBits: number | import("long")) => import("long");
+                        shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                        shru?: (numBits: number | import("long")) => import("long");
+                        shr_u?: (numBits: number | import("long")) => import("long");
+                        rotateLeft?: (numBits: number | import("long")) => import("long");
+                        rotl?: (numBits: number | import("long")) => import("long");
+                        rotateRight?: (numBits: number | import("long")) => import("long");
+                        rotr?: (numBits: number | import("long")) => import("long");
+                        subtract?: (subtrahend: string | number | import("long")) => import("long");
+                        sub?: (subtrahend: string | number | import("long")) => import("long");
+                        toInt?: () => number;
+                        toNumber?: () => number;
+                        toBytes?: (le?: boolean) => number[];
+                        toBytesLE?: () => number[];
+                        toBytesBE?: () => number[];
+                        toSigned?: () => import("long");
+                        toString?: (radix?: number) => string;
+                        toUnsigned?: () => import("long");
+                        xor?: (other: string | number | import("long")) => import("long");
+                    };
+                };
+                originalVesting?: {
+                    denom?: string;
+                    amount?: string;
+                }[];
+                delegatedFree?: {
+                    denom?: string;
+                    amount?: string;
+                }[];
+                delegatedVesting?: {
+                    denom?: string;
+                    amount?: string;
+                }[];
+                endTime?: {
+                    high?: number;
+                    low?: number;
+                    unsigned?: boolean;
+                    add?: (addend: string | number | import("long")) => import("long");
+                    and?: (other: string | number | import("long")) => import("long");
+                    compare?: (other: string | number | import("long")) => number;
+                    comp?: (other: string | number | import("long")) => number;
+                    divide?: (divisor: string | number | import("long")) => import("long");
+                    div?: (divisor: string | number | import("long")) => import("long");
+                    equals?: (other: string | number | import("long")) => boolean;
+                    eq?: (other: string | number | import("long")) => boolean;
+                    getHighBits?: () => number;
+                    getHighBitsUnsigned?: () => number;
+                    getLowBits?: () => number;
+                    getLowBitsUnsigned?: () => number;
+                    getNumBitsAbs?: () => number;
+                    greaterThan?: (other: string | number | import("long")) => boolean;
+                    gt?: (other: string | number | import("long")) => boolean;
+                    greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                    gte?: (other: string | number | import("long")) => boolean;
+                    ge?: (other: string | number | import("long")) => boolean;
+                    isEven?: () => boolean;
+                    isNegative?: () => boolean;
+                    isOdd?: () => boolean;
+                    isPositive?: () => boolean;
+                    isZero?: () => boolean;
+                    eqz?: () => boolean;
+                    lessThan?: (other: string | number | import("long")) => boolean;
+                    lt?: (other: string | number | import("long")) => boolean;
+                    lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                    lte?: (other: string | number | import("long")) => boolean;
+                    le?: (other: string | number | import("long")) => boolean;
+                    modulo?: (other: string | number | import("long")) => import("long");
+                    mod?: (other: string | number | import("long")) => import("long");
+                    rem?: (other: string | number | import("long")) => import("long");
+                    multiply?: (multiplier: string | number | import("long")) => import("long");
+                    mul?: (multiplier: string | number | import("long")) => import("long");
+                    negate?: () => import("long");
+                    neg?: () => import("long");
+                    not?: () => import("long");
+                    countLeadingZeros?: () => number;
+                    clz?: () => number;
+                    countTrailingZeros?: () => number;
+                    ctz?: () => number;
+                    notEquals?: (other: string | number | import("long")) => boolean;
+                    neq?: (other: string | number | import("long")) => boolean;
+                    ne?: (other: string | number | import("long")) => boolean;
+                    or?: (other: string | number | import("long")) => import("long");
+                    shiftLeft?: (numBits: number | import("long")) => import("long");
+                    shl?: (numBits: number | import("long")) => import("long");
+                    shiftRight?: (numBits: number | import("long")) => import("long");
+                    shr?: (numBits: number | import("long")) => import("long");
+                    shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                    shru?: (numBits: number | import("long")) => import("long");
+                    shr_u?: (numBits: number | import("long")) => import("long");
+                    rotateLeft?: (numBits: number | import("long")) => import("long");
+                    rotl?: (numBits: number | import("long")) => import("long");
+                    rotateRight?: (numBits: number | import("long")) => import("long");
+                    rotr?: (numBits: number | import("long")) => import("long");
+                    subtract?: (subtrahend: string | number | import("long")) => import("long");
+                    sub?: (subtrahend: string | number | import("long")) => import("long");
+                    toInt?: () => number;
+                    toNumber?: () => number;
+                    toBytes?: (le?: boolean) => number[];
+                    toBytesLE?: () => number[];
+                    toBytesBE?: () => number[];
+                    toSigned?: () => import("long");
+                    toString?: (radix?: number) => string;
+                    toUnsigned?: () => import("long");
+                    xor?: (other: string | number | import("long")) => import("long");
+                };
+            }): _118.BaseVestingAccount;
+        };
+        Period: {
+            encode(message: _118.Period, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _118.Period;
+            fromPartial(object: {
+                startTime?: {
+                    high?: number;
+                    low?: number;
+                    unsigned?: boolean;
+                    add?: (addend: string | number | import("long")) => import("long");
+                    and?: (other: string | number | import("long")) => import("long");
+                    compare?: (other: string | number | import("long")) => number;
+                    comp?: (other: string | number | import("long")) => number;
+                    divide?: (divisor: string | number | import("long")) => import("long");
+                    div?: (divisor: string | number | import("long")) => import("long");
+                    equals?: (other: string | number | import("long")) => boolean;
+                    eq?: (other: string | number | import("long")) => boolean;
+                    getHighBits?: () => number;
+                    getHighBitsUnsigned?: () => number;
+                    getLowBits?: () => number;
+                    getLowBitsUnsigned?: () => number;
+                    getNumBitsAbs?: () => number;
+                    greaterThan?: (other: string | number | import("long")) => boolean;
+                    gt?: (other: string | number | import("long")) => boolean;
+                    greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                    gte?: (other: string | number | import("long")) => boolean;
+                    ge?: (other: string | number | import("long")) => boolean;
+                    isEven?: () => boolean;
+                    isNegative?: () => boolean;
+                    isOdd?: () => boolean;
+                    isPositive?: () => boolean;
+                    isZero?: () => boolean;
+                    eqz?: () => boolean;
+                    lessThan?: (other: string | number | import("long")) => boolean;
+                    lt?: (other: string | number | import("long")) => boolean;
+                    lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                    lte?: (other: string | number | import("long")) => boolean;
+                    le?: (other: string | number | import("long")) => boolean;
+                    modulo?: (other: string | number | import("long")) => import("long");
+                    mod?: (other: string | number | import("long")) => import("long");
+                    rem?: (other: string | number | import("long")) => import("long");
+                    multiply?: (multiplier: string | number | import("long")) => import("long");
+                    mul?: (multiplier: string | number | import("long")) => import("long");
+                    negate?: () => import("long");
+                    neg?: () => import("long");
+                    not?: () => import("long");
+                    countLeadingZeros?: () => number;
+                    clz?: () => number;
+                    countTrailingZeros?: () => number;
+                    ctz?: () => number;
+                    notEquals?: (other: string | number | import("long")) => boolean;
+                    neq?: (other: string | number | import("long")) => boolean;
+                    ne?: (other: string | number | import("long")) => boolean;
+                    or?: (other: string | number | import("long")) => import("long");
+                    shiftLeft?: (numBits: number | import("long")) => import("long");
+                    shl?: (numBits: number | import("long")) => import("long");
+                    shiftRight?: (numBits: number | import("long")) => import("long");
+                    shr?: (numBits: number | import("long")) => import("long");
+                    shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                    shru?: (numBits: number | import("long")) => import("long");
+                    shr_u?: (numBits: number | import("long")) => import("long");
+                    rotateLeft?: (numBits: number | import("long")) => import("long");
+                    rotl?: (numBits: number | import("long")) => import("long");
+                    rotateRight?: (numBits: number | import("long")) => import("long");
+                    rotr?: (numBits: number | import("long")) => import("long");
+                    subtract?: (subtrahend: string | number | import("long")) => import("long");
+                    sub?: (subtrahend: string | number | import("long")) => import("long");
+                    toInt?: () => number;
+                    toNumber?: () => number;
+                    toBytes?: (le?: boolean) => number[];
+                    toBytesLE?: () => number[];
+                    toBytesBE?: () => number[];
+                    toSigned?: () => import("long");
+                    toString?: (radix?: number) => string;
+                    toUnsigned?: () => import("long");
+                    xor?: (other: string | number | import("long")) => import("long");
+                };
+                length?: {
+                    high?: number;
+                    low?: number;
+                    unsigned?: boolean;
+                    add?: (addend: string | number | import("long")) => import("long");
+                    and?: (other: string | number | import("long")) => import("long");
+                    compare?: (other: string | number | import("long")) => number;
+                    comp?: (other: string | number | import("long")) => number;
+                    divide?: (divisor: string | number | import("long")) => import("long");
+                    div?: (divisor: string | number | import("long")) => import("long");
+                    equals?: (other: string | number | import("long")) => boolean;
+                    eq?: (other: string | number | import("long")) => boolean;
+                    getHighBits?: () => number;
+                    getHighBitsUnsigned?: () => number;
+                    getLowBits?: () => number;
+                    getLowBitsUnsigned?: () => number;
+                    getNumBitsAbs?: () => number;
+                    greaterThan?: (other: string | number | import("long")) => boolean;
+                    gt?: (other: string | number | import("long")) => boolean;
+                    greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                    gte?: (other: string | number | import("long")) => boolean;
+                    ge?: (other: string | number | import("long")) => boolean;
+                    isEven?: () => boolean;
+                    isNegative?: () => boolean;
+                    isOdd?: () => boolean;
+                    isPositive?: () => boolean;
+                    isZero?: () => boolean;
+                    eqz?: () => boolean;
+                    lessThan?: (other: string | number | import("long")) => boolean;
+                    lt?: (other: string | number | import("long")) => boolean;
+                    lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                    lte?: (other: string | number | import("long")) => boolean;
+                    le?: (other: string | number | import("long")) => boolean;
+                    modulo?: (other: string | number | import("long")) => import("long");
+                    mod?: (other: string | number | import("long")) => import("long");
+                    rem?: (other: string | number | import("long")) => import("long");
+                    multiply?: (multiplier: string | number | import("long")) => import("long");
+                    mul?: (multiplier: string | number | import("long")) => import("long");
+                    negate?: () => import("long");
+                    neg?: () => import("long");
+                    not?: () => import("long");
+                    countLeadingZeros?: () => number;
+                    clz?: () => number;
+                    countTrailingZeros?: () => number;
+                    ctz?: () => number;
+                    notEquals?: (other: string | number | import("long")) => boolean;
+                    neq?: (other: string | number | import("long")) => boolean;
+                    ne?: (other: string | number | import("long")) => boolean;
+                    or?: (other: string | number | import("long")) => import("long");
+                    shiftLeft?: (numBits: number | import("long")) => import("long");
+                    shl?: (numBits: number | import("long")) => import("long");
+                    shiftRight?: (numBits: number | import("long")) => import("long");
+                    shr?: (numBits: number | import("long")) => import("long");
+                    shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                    shru?: (numBits: number | import("long")) => import("long");
+                    shr_u?: (numBits: number | import("long")) => import("long");
+                    rotateLeft?: (numBits: number | import("long")) => import("long");
+                    rotl?: (numBits: number | import("long")) => import("long");
+                    rotateRight?: (numBits: number | import("long")) => import("long");
+                    rotr?: (numBits: number | import("long")) => import("long");
+                    subtract?: (subtrahend: string | number | import("long")) => import("long");
+                    sub?: (subtrahend: string | number | import("long")) => import("long");
+                    toInt?: () => number;
+                    toNumber?: () => number;
+                    toBytes?: (le?: boolean) => number[];
+                    toBytesLE?: () => number[];
+                    toBytesBE?: () => number[];
+                    toSigned?: () => import("long");
+                    toString?: (radix?: number) => string;
+                    toUnsigned?: () => import("long");
+                    xor?: (other: string | number | import("long")) => import("long");
+                };
+                amount?: {
+                    denom?: string;
+                    amount?: string;
+                }[];
+                actionType?: number;
+            }): _118.Period;
+        };
+        StridePeriodicVestingAccount: {
+            encode(message: _118.StridePeriodicVestingAccount, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _118.StridePeriodicVestingAccount;
+            fromPartial(object: {
+                baseVestingAccount?: {
+                    baseAccount?: {
+                        address?: string;
+                        pubKey?: {
+                            typeUrl?: string;
+                            value?: Uint8Array;
+                        };
+                        accountNumber?: {
+                            high?: number;
+                            low?: number;
+                            unsigned?: boolean;
+                            add?: (addend: string | number | import("long")) => import("long");
+                            and?: (other: string | number | import("long")) => import("long");
+                            compare?: (other: string | number | import("long")) => number;
+                            comp?: (other: string | number | import("long")) => number;
+                            divide?: (divisor: string | number | import("long")) => import("long");
+                            div?: (divisor: string | number | import("long")) => import("long");
+                            equals?: (other: string | number | import("long")) => boolean;
+                            eq?: (other: string | number | import("long")) => boolean;
+                            getHighBits?: () => number;
+                            getHighBitsUnsigned?: () => number;
+                            getLowBits?: () => number;
+                            getLowBitsUnsigned?: () => number;
+                            getNumBitsAbs?: () => number;
+                            greaterThan?: (other: string | number | import("long")) => boolean;
+                            gt?: (other: string | number | import("long")) => boolean;
+                            greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                            gte?: (other: string | number | import("long")) => boolean;
+                            ge?: (other: string | number | import("long")) => boolean;
+                            isEven?: () => boolean;
+                            isNegative?: () => boolean;
+                            isOdd?: () => boolean;
+                            isPositive?: () => boolean;
+                            isZero?: () => boolean;
+                            eqz?: () => boolean;
+                            lessThan?: (other: string | number | import("long")) => boolean;
+                            lt?: (other: string | number | import("long")) => boolean;
+                            lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                            lte?: (other: string | number | import("long")) => boolean;
+                            le?: (other: string | number | import("long")) => boolean;
+                            modulo?: (other: string | number | import("long")) => import("long");
+                            mod?: (other: string | number | import("long")) => import("long");
+                            rem?: (other: string | number | import("long")) => import("long");
+                            multiply?: (multiplier: string | number | import("long")) => import("long");
+                            mul?: (multiplier: string | number | import("long")) => import("long");
+                            negate?: () => import("long");
+                            neg?: () => import("long");
+                            not?: () => import("long");
+                            countLeadingZeros?: () => number;
+                            clz?: () => number;
+                            countTrailingZeros?: () => number;
+                            ctz?: () => number;
+                            notEquals?: (other: string | number | import("long")) => boolean;
+                            neq?: (other: string | number | import("long")) => boolean;
+                            ne?: (other: string | number | import("long")) => boolean;
+                            or?: (other: string | number | import("long")) => import("long");
+                            shiftLeft?: (numBits: number | import("long")) => import("long");
+                            shl?: (numBits: number | import("long")) => import("long");
+                            shiftRight?: (numBits: number | import("long")) => import("long");
+                            shr?: (numBits: number | import("long")) => import("long");
+                            shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                            shru?: (numBits: number | import("long")) => import("long");
+                            shr_u?: (numBits: number | import("long")) => import("long");
+                            rotateLeft?: (numBits: number | import("long")) => import("long");
+                            rotl?: (numBits: number | import("long")) => import("long");
+                            rotateRight?: (numBits: number | import("long")) => import("long");
+                            rotr?: (numBits: number | import("long")) => import("long");
+                            subtract?: (subtrahend: string | number | import("long")) => import("long");
+                            sub?: (subtrahend: string | number | import("long")) => import("long");
+                            toInt?: () => number;
+                            toNumber?: () => number;
+                            toBytes?: (le?: boolean) => number[];
+                            toBytesLE?: () => number[];
+                            toBytesBE?: () => number[];
+                            toSigned?: () => import("long");
+                            toString?: (radix?: number) => string;
+                            toUnsigned?: () => import("long");
+                            xor?: (other: string | number | import("long")) => import("long");
+                        };
+                        sequence?: {
+                            high?: number;
+                            low?: number;
+                            unsigned?: boolean;
+                            add?: (addend: string | number | import("long")) => import("long");
+                            and?: (other: string | number | import("long")) => import("long");
+                            compare?: (other: string | number | import("long")) => number;
+                            comp?: (other: string | number | import("long")) => number;
+                            divide?: (divisor: string | number | import("long")) => import("long");
+                            div?: (divisor: string | number | import("long")) => import("long");
+                            equals?: (other: string | number | import("long")) => boolean;
+                            eq?: (other: string | number | import("long")) => boolean;
+                            getHighBits?: () => number;
+                            getHighBitsUnsigned?: () => number;
+                            getLowBits?: () => number;
+                            getLowBitsUnsigned?: () => number;
+                            getNumBitsAbs?: () => number;
+                            greaterThan?: (other: string | number | import("long")) => boolean;
+                            gt?: (other: string | number | import("long")) => boolean;
+                            greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                            gte?: (other: string | number | import("long")) => boolean;
+                            ge?: (other: string | number | import("long")) => boolean;
+                            isEven?: () => boolean;
+                            isNegative?: () => boolean;
+                            isOdd?: () => boolean;
+                            isPositive?: () => boolean;
+                            isZero?: () => boolean;
+                            eqz?: () => boolean;
+                            lessThan?: (other: string | number | import("long")) => boolean;
+                            lt?: (other: string | number | import("long")) => boolean;
+                            lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                            lte?: (other: string | number | import("long")) => boolean;
+                            le?: (other: string | number | import("long")) => boolean;
+                            modulo?: (other: string | number | import("long")) => import("long");
+                            mod?: (other: string | number | import("long")) => import("long");
+                            rem?: (other: string | number | import("long")) => import("long");
+                            multiply?: (multiplier: string | number | import("long")) => import("long");
+                            mul?: (multiplier: string | number | import("long")) => import("long");
+                            negate?: () => import("long");
+                            neg?: () => import("long");
+                            not?: () => import("long");
+                            countLeadingZeros?: () => number;
+                            clz?: () => number;
+                            countTrailingZeros?: () => number;
+                            ctz?: () => number;
+                            notEquals?: (other: string | number | import("long")) => boolean;
+                            neq?: (other: string | number | import("long")) => boolean;
+                            ne?: (other: string | number | import("long")) => boolean;
+                            or?: (other: string | number | import("long")) => import("long");
+                            shiftLeft?: (numBits: number | import("long")) => import("long");
+                            shl?: (numBits: number | import("long")) => import("long");
+                            shiftRight?: (numBits: number | import("long")) => import("long");
+                            shr?: (numBits: number | import("long")) => import("long");
+                            shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                            shru?: (numBits: number | import("long")) => import("long");
+                            shr_u?: (numBits: number | import("long")) => import("long");
+                            rotateLeft?: (numBits: number | import("long")) => import("long");
+                            rotl?: (numBits: number | import("long")) => import("long");
+                            rotateRight?: (numBits: number | import("long")) => import("long");
+                            rotr?: (numBits: number | import("long")) => import("long");
+                            subtract?: (subtrahend: string | number | import("long")) => import("long");
+                            sub?: (subtrahend: string | number | import("long")) => import("long");
+                            toInt?: () => number;
+                            toNumber?: () => number;
+                            toBytes?: (le?: boolean) => number[];
+                            toBytesLE?: () => number[];
+                            toBytesBE?: () => number[];
+                            toSigned?: () => import("long");
+                            toString?: (radix?: number) => string;
+                            toUnsigned?: () => import("long");
+                            xor?: (other: string | number | import("long")) => import("long");
+                        };
+                    };
+                    originalVesting?: {
+                        denom?: string;
+                        amount?: string;
+                    }[];
+                    delegatedFree?: {
+                        denom?: string;
+                        amount?: string;
+                    }[];
+                    delegatedVesting?: {
+                        denom?: string;
+                        amount?: string;
+                    }[];
+                    endTime?: {
+                        high?: number;
+                        low?: number;
+                        unsigned?: boolean;
+                        add?: (addend: string | number | import("long")) => import("long");
+                        and?: (other: string | number | import("long")) => import("long");
+                        compare?: (other: string | number | import("long")) => number;
+                        comp?: (other: string | number | import("long")) => number;
+                        divide?: (divisor: string | number | import("long")) => import("long");
+                        div?: (divisor: string | number | import("long")) => import("long");
+                        equals?: (other: string | number | import("long")) => boolean;
+                        eq?: (other: string | number | import("long")) => boolean;
+                        getHighBits?: () => number;
+                        getHighBitsUnsigned?: () => number;
+                        getLowBits?: () => number;
+                        getLowBitsUnsigned?: () => number;
+                        getNumBitsAbs?: () => number;
+                        greaterThan?: (other: string | number | import("long")) => boolean;
+                        gt?: (other: string | number | import("long")) => boolean;
+                        greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        gte?: (other: string | number | import("long")) => boolean;
+                        ge?: (other: string | number | import("long")) => boolean;
+                        isEven?: () => boolean;
+                        isNegative?: () => boolean;
+                        isOdd?: () => boolean;
+                        isPositive?: () => boolean;
+                        isZero?: () => boolean;
+                        eqz?: () => boolean;
+                        lessThan?: (other: string | number | import("long")) => boolean;
+                        lt?: (other: string | number | import("long")) => boolean;
+                        lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        lte?: (other: string | number | import("long")) => boolean;
+                        le?: (other: string | number | import("long")) => boolean;
+                        modulo?: (other: string | number | import("long")) => import("long");
+                        mod?: (other: string | number | import("long")) => import("long");
+                        rem?: (other: string | number | import("long")) => import("long");
+                        multiply?: (multiplier: string | number | import("long")) => import("long");
+                        mul?: (multiplier: string | number | import("long")) => import("long");
+                        negate?: () => import("long");
+                        neg?: () => import("long");
+                        not?: () => import("long");
+                        countLeadingZeros?: () => number;
+                        clz?: () => number;
+                        countTrailingZeros?: () => number;
+                        ctz?: () => number;
+                        notEquals?: (other: string | number | import("long")) => boolean;
+                        neq?: (other: string | number | import("long")) => boolean;
+                        ne?: (other: string | number | import("long")) => boolean;
+                        or?: (other: string | number | import("long")) => import("long");
+                        shiftLeft?: (numBits: number | import("long")) => import("long");
+                        shl?: (numBits: number | import("long")) => import("long");
+                        shiftRight?: (numBits: number | import("long")) => import("long");
+                        shr?: (numBits: number | import("long")) => import("long");
+                        shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                        shru?: (numBits: number | import("long")) => import("long");
+                        shr_u?: (numBits: number | import("long")) => import("long");
+                        rotateLeft?: (numBits: number | import("long")) => import("long");
+                        rotl?: (numBits: number | import("long")) => import("long");
+                        rotateRight?: (numBits: number | import("long")) => import("long");
+                        rotr?: (numBits: number | import("long")) => import("long");
+                        subtract?: (subtrahend: string | number | import("long")) => import("long");
+                        sub?: (subtrahend: string | number | import("long")) => import("long");
+                        toInt?: () => number;
+                        toNumber?: () => number;
+                        toBytes?: (le?: boolean) => number[];
+                        toBytesLE?: () => number[];
+                        toBytesBE?: () => number[];
+                        toSigned?: () => import("long");
+                        toString?: (radix?: number) => string;
+                        toUnsigned?: () => import("long");
+                        xor?: (other: string | number | import("long")) => import("long");
+                    };
+                };
+                vestingPeriods?: {
+                    startTime?: {
+                        high?: number;
+                        low?: number;
+                        unsigned?: boolean;
+                        add?: (addend: string | number | import("long")) => import("long");
+                        and?: (other: string | number | import("long")) => import("long");
+                        compare?: (other: string | number | import("long")) => number;
+                        comp?: (other: string | number | import("long")) => number;
+                        divide?: (divisor: string | number | import("long")) => import("long");
+                        div?: (divisor: string | number | import("long")) => import("long");
+                        equals?: (other: string | number | import("long")) => boolean;
+                        eq?: (other: string | number | import("long")) => boolean;
+                        getHighBits?: () => number;
+                        getHighBitsUnsigned?: () => number;
+                        getLowBits?: () => number;
+                        getLowBitsUnsigned?: () => number;
+                        getNumBitsAbs?: () => number;
+                        greaterThan?: (other: string | number | import("long")) => boolean;
+                        gt?: (other: string | number | import("long")) => boolean;
+                        greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        gte?: (other: string | number | import("long")) => boolean;
+                        ge?: (other: string | number | import("long")) => boolean;
+                        isEven?: () => boolean;
+                        isNegative?: () => boolean;
+                        isOdd?: () => boolean;
+                        isPositive?: () => boolean;
+                        isZero?: () => boolean;
+                        eqz?: () => boolean;
+                        lessThan?: (other: string | number | import("long")) => boolean;
+                        lt?: (other: string | number | import("long")) => boolean;
+                        lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        lte?: (other: string | number | import("long")) => boolean;
+                        le?: (other: string | number | import("long")) => boolean;
+                        modulo?: (other: string | number | import("long")) => import("long");
+                        mod?: (other: string | number | import("long")) => import("long");
+                        rem?: (other: string | number | import("long")) => import("long");
+                        multiply?: (multiplier: string | number | import("long")) => import("long");
+                        mul?: (multiplier: string | number | import("long")) => import("long");
+                        negate?: () => import("long");
+                        neg?: () => import("long");
+                        not?: () => import("long");
+                        countLeadingZeros?: () => number;
+                        clz?: () => number;
+                        countTrailingZeros?: () => number;
+                        ctz?: () => number;
+                        notEquals?: (other: string | number | import("long")) => boolean;
+                        neq?: (other: string | number | import("long")) => boolean;
+                        ne?: (other: string | number | import("long")) => boolean;
+                        or?: (other: string | number | import("long")) => import("long");
+                        shiftLeft?: (numBits: number | import("long")) => import("long");
+                        shl?: (numBits: number | import("long")) => import("long");
+                        shiftRight?: (numBits: number | import("long")) => import("long");
+                        shr?: (numBits: number | import("long")) => import("long");
+                        shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                        shru?: (numBits: number | import("long")) => import("long");
+                        shr_u?: (numBits: number | import("long")) => import("long");
+                        rotateLeft?: (numBits: number | import("long")) => import("long");
+                        rotl?: (numBits: number | import("long")) => import("long");
+                        rotateRight?: (numBits: number | import("long")) => import("long");
+                        rotr?: (numBits: number | import("long")) => import("long");
+                        subtract?: (subtrahend: string | number | import("long")) => import("long");
+                        sub?: (subtrahend: string | number | import("long")) => import("long");
+                        toInt?: () => number;
+                        toNumber?: () => number;
+                        toBytes?: (le?: boolean) => number[];
+                        toBytesLE?: () => number[];
+                        toBytesBE?: () => number[];
+                        toSigned?: () => import("long");
+                        toString?: (radix?: number) => string;
+                        toUnsigned?: () => import("long");
+                        xor?: (other: string | number | import("long")) => import("long");
+                    };
+                    length?: {
+                        high?: number;
+                        low?: number;
+                        unsigned?: boolean;
+                        add?: (addend: string | number | import("long")) => import("long");
+                        and?: (other: string | number | import("long")) => import("long");
+                        compare?: (other: string | number | import("long")) => number;
+                        comp?: (other: string | number | import("long")) => number;
+                        divide?: (divisor: string | number | import("long")) => import("long");
+                        div?: (divisor: string | number | import("long")) => import("long");
+                        equals?: (other: string | number | import("long")) => boolean;
+                        eq?: (other: string | number | import("long")) => boolean;
+                        getHighBits?: () => number;
+                        getHighBitsUnsigned?: () => number;
+                        getLowBits?: () => number;
+                        getLowBitsUnsigned?: () => number;
+                        getNumBitsAbs?: () => number;
+                        greaterThan?: (other: string | number | import("long")) => boolean;
+                        gt?: (other: string | number | import("long")) => boolean;
+                        greaterThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        gte?: (other: string | number | import("long")) => boolean;
+                        ge?: (other: string | number | import("long")) => boolean;
+                        isEven?: () => boolean;
+                        isNegative?: () => boolean;
+                        isOdd?: () => boolean;
+                        isPositive?: () => boolean;
+                        isZero?: () => boolean;
+                        eqz?: () => boolean;
+                        lessThan?: (other: string | number | import("long")) => boolean;
+                        lt?: (other: string | number | import("long")) => boolean;
+                        lessThanOrEqual?: (other: string | number | import("long")) => boolean;
+                        lte?: (other: string | number | import("long")) => boolean;
+                        le?: (other: string | number | import("long")) => boolean;
+                        modulo?: (other: string | number | import("long")) => import("long");
+                        mod?: (other: string | number | import("long")) => import("long");
+                        rem?: (other: string | number | import("long")) => import("long");
+                        multiply?: (multiplier: string | number | import("long")) => import("long");
+                        mul?: (multiplier: string | number | import("long")) => import("long");
+                        negate?: () => import("long");
+                        neg?: () => import("long");
+                        not?: () => import("long");
+                        countLeadingZeros?: () => number;
+                        clz?: () => number;
+                        countTrailingZeros?: () => number;
+                        ctz?: () => number;
+                        notEquals?: (other: string | number | import("long")) => boolean;
+                        neq?: (other: string | number | import("long")) => boolean;
+                        ne?: (other: string | number | import("long")) => boolean;
+                        or?: (other: string | number | import("long")) => import("long");
+                        shiftLeft?: (numBits: number | import("long")) => import("long");
+                        shl?: (numBits: number | import("long")) => import("long");
+                        shiftRight?: (numBits: number | import("long")) => import("long");
+                        shr?: (numBits: number | import("long")) => import("long");
+                        shiftRightUnsigned?: (numBits: number | import("long")) => import("long");
+                        shru?: (numBits: number | import("long")) => import("long");
+                        shr_u?: (numBits: number | import("long")) => import("long");
+                        rotateLeft?: (numBits: number | import("long")) => import("long");
+                        rotl?: (numBits: number | import("long")) => import("long");
+                        rotateRight?: (numBits: number | import("long")) => import("long");
+                        rotr?: (numBits: number | import("long")) => import("long");
+                        subtract?: (subtrahend: string | number | import("long")) => import("long");
+                        sub?: (subtrahend: string | number | import("long")) => import("long");
+                        toInt?: () => number;
+                        toNumber?: () => number;
+                        toBytes?: (le?: boolean) => number[];
+                        toBytesLE?: () => number[];
+                        toBytesBE?: () => number[];
+                        toSigned?: () => import("long");
+                        toString?: (radix?: number) => string;
+                        toUnsigned?: () => import("long");
+                        xor?: (other: string | number | import("long")) => import("long");
+                    };
+                    amount?: {
+                        denom?: string;
+                        amount?: string;
+                    }[];
+                    actionType?: number;
+                }[];
+            }): _118.StridePeriodicVestingAccount;
         };
     };
     const ClientFactory: {
         createRPCMsgClient: ({ rpc }: {
-            rpc: import("../helpers").Rpc;
+            rpc: import("@osmonauts/helpers").Rpc;
         }) => Promise<{
             cosmos: {
                 authz: {
@@ -25719,10 +27764,11 @@ export declare namespace stride {
                 };
             };
             stride: {
+                claim: _206.MsgClientImpl;
                 interchainquery: {
-                    v1: _183.MsgClientImpl;
+                    v1: _207.MsgClientImpl;
                 };
-                stakeibc: _184.MsgClientImpl;
+                stakeibc: _208.MsgClientImpl;
             };
         }>;
         createRPCQueryClient: ({ rpcEndpoint }: {
@@ -25856,43 +27902,111 @@ export declare namespace stride {
                 };
             };
             stride: {
+                claim: {
+                    distributorAccountBalance(request: _86.QueryDistributorAccountBalanceRequest): Promise<_86.QueryDistributorAccountBalanceResponse>;
+                    params(request?: _86.QueryParamsRequest): Promise<_86.QueryParamsResponse>;
+                    claimRecord(request: _86.QueryClaimRecordRequest): Promise<_86.QueryClaimRecordResponse>;
+                    claimableForAction(request: _86.QueryClaimableForActionRequest): Promise<_86.QueryClaimableForActionResponse>;
+                    totalClaimable(request: _86.QueryTotalClaimableRequest): Promise<_86.QueryTotalClaimableResponse>;
+                    userVestings(request: _86.QueryUserVestingsRequest): Promise<_86.QueryUserVestingsResponse>;
+                };
                 epochs: {
-                    epochInfos(request?: _87.QueryEpochsInfoRequest): Promise<_87.QueryEpochsInfoResponse>;
-                    currentEpoch(request: _87.QueryCurrentEpochRequest): Promise<_87.QueryCurrentEpochResponse>;
-                    epochInfo(request: _87.QueryEpochInfoRequest): Promise<_87.QueryEpochInfoResponse>;
+                    epochInfos(request?: _89.QueryEpochsInfoRequest): Promise<_89.QueryEpochsInfoResponse>;
+                    currentEpoch(request: _89.QueryCurrentEpochRequest): Promise<_89.QueryCurrentEpochResponse>;
+                    epochInfo(request: _89.QueryEpochInfoRequest): Promise<_89.QueryEpochInfoResponse>;
                 };
                 icacallbacks: {
-                    params(request?: _92.QueryParamsRequest): Promise<_92.QueryParamsResponse>;
-                    callbackData(request: _92.QueryGetCallbackDataRequest): Promise<_92.QueryGetCallbackDataResponse>;
-                    callbackDataAll(request?: _92.QueryAllCallbackDataRequest): Promise<_92.QueryAllCallbackDataResponse>;
+                    params(request?: _94.QueryParamsRequest): Promise<_94.QueryParamsResponse>;
+                    callbackData(request: _94.QueryGetCallbackDataRequest): Promise<_94.QueryGetCallbackDataResponse>;
+                    callbackDataAll(request?: _94.QueryAllCallbackDataRequest): Promise<_94.QueryAllCallbackDataResponse>;
                 };
                 mint: {
                     v1beta1: {
-                        params(request?: _98.QueryParamsRequest): Promise<_98.QueryParamsResponse>;
-                        epochProvisions(request?: _98.QueryEpochProvisionsRequest): Promise<_98.QueryEpochProvisionsResponse>;
+                        params(request?: _100.QueryParamsRequest): Promise<_100.QueryParamsResponse>;
+                        epochProvisions(request?: _100.QueryEpochProvisionsRequest): Promise<_100.QueryEpochProvisionsResponse>;
                     };
                 };
                 records: {
-                    params(request?: _101.QueryParamsRequest): Promise<_101.QueryParamsResponse>;
-                    userRedemptionRecord(request: _101.QueryGetUserRedemptionRecordRequest): Promise<_101.QueryGetUserRedemptionRecordResponse>;
-                    userRedemptionRecordAll(request?: _101.QueryAllUserRedemptionRecordRequest): Promise<_101.QueryAllUserRedemptionRecordResponse>;
-                    userRedemptionRecordForUser(request: _101.QueryAllUserRedemptionRecordForUserRequest): Promise<_101.QueryAllUserRedemptionRecordForUserResponse>;
-                    epochUnbondingRecord(request: _101.QueryGetEpochUnbondingRecordRequest): Promise<_101.QueryGetEpochUnbondingRecordResponse>;
-                    epochUnbondingRecordAll(request?: _101.QueryAllEpochUnbondingRecordRequest): Promise<_101.QueryAllEpochUnbondingRecordResponse>;
-                    depositRecord(request: _101.QueryGetDepositRecordRequest): Promise<_101.QueryGetDepositRecordResponse>;
-                    depositRecordAll(request?: _101.QueryAllDepositRecordRequest): Promise<_101.QueryAllDepositRecordResponse>;
+                    params(request?: _103.QueryParamsRequest): Promise<_103.QueryParamsResponse>;
+                    userRedemptionRecord(request: _103.QueryGetUserRedemptionRecordRequest): Promise<_103.QueryGetUserRedemptionRecordResponse>;
+                    userRedemptionRecordAll(request?: _103.QueryAllUserRedemptionRecordRequest): Promise<_103.QueryAllUserRedemptionRecordResponse>;
+                    userRedemptionRecordForUser(request: _103.QueryAllUserRedemptionRecordForUserRequest): Promise<_103.QueryAllUserRedemptionRecordForUserResponse>;
+                    epochUnbondingRecord(request: _103.QueryGetEpochUnbondingRecordRequest): Promise<_103.QueryGetEpochUnbondingRecordResponse>;
+                    epochUnbondingRecordAll(request?: _103.QueryAllEpochUnbondingRecordRequest): Promise<_103.QueryAllEpochUnbondingRecordResponse>;
+                    depositRecord(request: _103.QueryGetDepositRecordRequest): Promise<_103.QueryGetDepositRecordResponse>;
+                    depositRecordAll(request?: _103.QueryAllDepositRecordRequest): Promise<_103.QueryAllDepositRecordResponse>;
                 };
                 stakeibc: {
-                    params(request?: _112.QueryParamsRequest): Promise<_112.QueryParamsResponse>;
-                    validators(request: _112.QueryGetValidatorsRequest): Promise<_112.QueryGetValidatorsResponse>;
-                    iCAAccount(request?: _112.QueryGetICAAccountRequest): Promise<_112.QueryGetICAAccountResponse>;
-                    hostZone(request: _112.QueryGetHostZoneRequest): Promise<_112.QueryGetHostZoneResponse>;
-                    hostZoneAll(request?: _112.QueryAllHostZoneRequest): Promise<_112.QueryAllHostZoneResponse>;
-                    moduleAddress(request: _112.QueryModuleAddressRequest): Promise<_112.QueryModuleAddressResponse>;
-                    interchainAccountFromAddress(request: _112.QueryInterchainAccountFromAddressRequest): Promise<_112.QueryInterchainAccountFromAddressResponse>;
-                    epochTracker(request: _112.QueryGetEpochTrackerRequest): Promise<_112.QueryGetEpochTrackerResponse>;
-                    epochTrackerAll(request?: _112.QueryAllEpochTrackerRequest): Promise<_112.QueryAllEpochTrackerResponse>;
+                    params(request?: _114.QueryParamsRequest): Promise<_114.QueryParamsResponse>;
+                    validators(request: _114.QueryGetValidatorsRequest): Promise<_114.QueryGetValidatorsResponse>;
+                    iCAAccount(request?: _114.QueryGetICAAccountRequest): Promise<_114.QueryGetICAAccountResponse>;
+                    hostZone(request: _114.QueryGetHostZoneRequest): Promise<_114.QueryGetHostZoneResponse>;
+                    hostZoneAll(request?: _114.QueryAllHostZoneRequest): Promise<_114.QueryAllHostZoneResponse>;
+                    moduleAddress(request: _114.QueryModuleAddressRequest): Promise<_114.QueryModuleAddressResponse>;
+                    interchainAccountFromAddress(request: _114.QueryInterchainAccountFromAddressRequest): Promise<_114.QueryInterchainAccountFromAddressResponse>;
+                    epochTracker(request: _114.QueryGetEpochTrackerRequest): Promise<_114.QueryGetEpochTrackerResponse>;
+                    epochTrackerAll(request?: _114.QueryAllEpochTrackerRequest): Promise<_114.QueryAllEpochTrackerResponse>;
                 };
+            };
+        }>;
+        createLCDClient: ({ restEndpoint }: {
+            restEndpoint: string;
+        }) => Promise<{
+            cosmos: {
+                auth: {
+                    v1beta1: import("../cosmos/auth/v1beta1/query.lcd").LCDQueryClient;
+                };
+                authz: {
+                    v1beta1: import("../cosmos/authz/v1beta1/query.lcd").LCDQueryClient;
+                };
+                bank: {
+                    v1beta1: import("../cosmos/bank/v1beta1/query.lcd").LCDQueryClient;
+                };
+                base: {
+                    tendermint: {
+                        v1beta1: import("../cosmos/base/tendermint/v1beta1/query.lcd").LCDQueryClient;
+                    };
+                };
+                distribution: {
+                    v1beta1: import("../cosmos/distribution/v1beta1/query.lcd").LCDQueryClient;
+                };
+                evidence: {
+                    v1beta1: import("../cosmos/evidence/v1beta1/query.lcd").LCDQueryClient;
+                };
+                feegrant: {
+                    v1beta1: import("../cosmos/feegrant/v1beta1/query.lcd").LCDQueryClient;
+                };
+                gov: {
+                    v1beta1: import("../cosmos/gov/v1beta1/query.lcd").LCDQueryClient;
+                };
+                mint: {
+                    v1beta1: import("../cosmos/mint/v1beta1/query.lcd").LCDQueryClient;
+                };
+                params: {
+                    v1beta1: import("../cosmos/params/v1beta1/query.lcd").LCDQueryClient;
+                };
+                slashing: {
+                    v1beta1: import("../cosmos/slashing/v1beta1/query.lcd").LCDQueryClient;
+                };
+                staking: {
+                    v1beta1: import("../cosmos/staking/v1beta1/query.lcd").LCDQueryClient;
+                };
+                tx: {
+                    v1beta1: import("../cosmos/tx/v1beta1/service.lcd").LCDQueryClient;
+                };
+                upgrade: {
+                    v1beta1: import("../cosmos/upgrade/v1beta1/query.lcd").LCDQueryClient;
+                };
+            };
+            stride: {
+                claim: _194.LCDQueryClient;
+                epochs: _195.LCDQueryClient;
+                icacallbacks: _196.LCDQueryClient;
+                mint: {
+                    v1beta1: _197.LCDQueryClient;
+                };
+                records: _198.LCDQueryClient;
+                stakeibc: _199.LCDQueryClient;
             };
         }>;
     };

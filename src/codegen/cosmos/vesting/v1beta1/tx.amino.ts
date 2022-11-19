@@ -1,5 +1,5 @@
 import { AminoMsg } from "@cosmjs/amino";
-import { Long } from "../../../helpers";
+import { Long } from "@osmonauts/helpers";
 import { MsgCreateVestingAccount } from "./tx";
 export interface AminoMsgCreateVestingAccount extends AminoMsg {
   type: "cosmos-sdk/MsgCreateVestingAccount";

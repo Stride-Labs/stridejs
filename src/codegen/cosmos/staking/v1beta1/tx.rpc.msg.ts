@@ -1,32 +1,27 @@
-import { Rpc } from "../../../helpers";
+import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { MsgCreateValidator, MsgCreateValidatorResponse, MsgEditValidator, MsgEditValidatorResponse, MsgDelegate, MsgDelegateResponse, MsgBeginRedelegate, MsgBeginRedelegateResponse, MsgUndelegate, MsgUndelegateResponse } from "./tx";
-/** Msg defines the staking Msg service. */
+/** Msg defines the RPC service */
 
 export interface Msg {
-  /** CreateValidator defines a method for creating a new validator. */
   createValidator(request: MsgCreateValidator): Promise<MsgCreateValidatorResponse>;
-  /** EditValidator defines a method for editing an existing validator. */
+  /*CreateValidator defines a method for creating a new validator.*/
 
   editValidator(request: MsgEditValidator): Promise<MsgEditValidatorResponse>;
-  /**
-   * Delegate defines a method for performing a delegation of coins
-   * from a delegator to a validator.
-   */
+  /*EditValidator defines a method for editing an existing validator.*/
 
   delegate(request: MsgDelegate): Promise<MsgDelegateResponse>;
-  /**
-   * BeginRedelegate defines a method for performing a redelegation
-   * of coins from a delegator and source validator to a destination validator.
-   */
+  /*Delegate defines a method for performing a delegation of coins
+   from a delegator to a validator.*/
 
   beginRedelegate(request: MsgBeginRedelegate): Promise<MsgBeginRedelegateResponse>;
-  /**
-   * Undelegate defines a method for performing an undelegation from a
-   * delegate and a validator.
-   */
+  /*BeginRedelegate defines a method for performing a redelegation
+   of coins from a delegator and source validator to a destination validator.*/
 
   undelegate(request: MsgUndelegate): Promise<MsgUndelegateResponse>;
+  /*Undelegate defines a method for performing an undelegation from a
+   delegate and a validator.*/
+
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;

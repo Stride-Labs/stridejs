@@ -4,7 +4,7 @@ import { ProofOps, ProofOpsSDKType } from "../crypto/proof";
 import { EvidenceParams, EvidenceParamsSDKType, ValidatorParams, ValidatorParamsSDKType, VersionParams, VersionParamsSDKType } from "../types/params";
 import { PublicKey, PublicKeySDKType } from "../crypto/keys";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long, toTimestamp, fromTimestamp } from "../../helpers";
+import { DeepPartial, Long, toTimestamp, fromTimestamp } from "@osmonauts/helpers";
 export enum CheckTxType {
   NEW = 0,
   RECHECK = 1,
@@ -39,9 +39,8 @@ export function checkTxTypeToJSON(object: CheckTxType): string {
     case CheckTxType.RECHECK:
       return "RECHECK";
 
-    case CheckTxType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return "UNKNOWN";
   }
 }
 export enum ResponseOfferSnapshot_Result {
@@ -136,9 +135,8 @@ export function responseOfferSnapshot_ResultToJSON(object: ResponseOfferSnapshot
     case ResponseOfferSnapshot_Result.REJECT_SENDER:
       return "REJECT_SENDER";
 
-    case ResponseOfferSnapshot_Result.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return "UNKNOWN";
   }
 }
 export enum ResponseApplySnapshotChunk_Result {
@@ -233,9 +231,8 @@ export function responseApplySnapshotChunk_ResultToJSON(object: ResponseApplySna
     case ResponseApplySnapshotChunk_Result.REJECT_SNAPSHOT:
       return "REJECT_SNAPSHOT";
 
-    case ResponseApplySnapshotChunk_Result.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return "UNKNOWN";
   }
 }
 export enum EvidenceType {
@@ -281,9 +278,8 @@ export function evidenceTypeToJSON(object: EvidenceType): string {
     case EvidenceType.LIGHT_CLIENT_ATTACK:
       return "LIGHT_CLIENT_ATTACK";
 
-    case EvidenceType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return "UNKNOWN";
   }
 }
 export interface Request {
@@ -351,17 +347,17 @@ export interface RequestSetOptionSDKType {
   value: string;
 }
 export interface RequestInitChain {
-  time?: Date;
+  time: Date;
   chainId: string;
-  consensusParams?: ConsensusParams;
+  consensusParams: ConsensusParams;
   validators: ValidatorUpdate[];
   appStateBytes: Uint8Array;
   initialHeight: Long;
 }
 export interface RequestInitChainSDKType {
-  time?: Date;
+  time: Date;
   chain_id: string;
-  consensus_params?: ConsensusParamsSDKType;
+  consensus_params: ConsensusParamsSDKType;
   validators: ValidatorUpdateSDKType[];
   app_state_bytes: Uint8Array;
   initial_height: Long;
@@ -380,14 +376,14 @@ export interface RequestQuerySDKType {
 }
 export interface RequestBeginBlock {
   hash: Uint8Array;
-  header?: Header;
-  lastCommitInfo?: LastCommitInfo;
+  header: Header;
+  lastCommitInfo: LastCommitInfo;
   byzantineValidators: Evidence[];
 }
 export interface RequestBeginBlockSDKType {
   hash: Uint8Array;
-  header?: HeaderSDKType;
-  last_commit_info?: LastCommitInfoSDKType;
+  header: HeaderSDKType;
+  last_commit_info: LastCommitInfoSDKType;
   byzantine_validators: EvidenceSDKType[];
 }
 export interface RequestCheckTx {
@@ -422,7 +418,7 @@ export interface RequestListSnapshotsSDKType {}
 
 export interface RequestOfferSnapshot {
   /** snapshot offered by peers */
-  snapshot?: Snapshot;
+  snapshot: Snapshot;
   /** light client-verified app hash for snapshot height */
 
   appHash: Uint8Array;
@@ -431,7 +427,7 @@ export interface RequestOfferSnapshot {
 
 export interface RequestOfferSnapshotSDKType {
   /** snapshot offered by peers */
-  snapshot?: SnapshotSDKType;
+  snapshot: SnapshotSDKType;
   /** light client-verified app hash for snapshot height */
 
   app_hash: Uint8Array;
@@ -551,12 +547,12 @@ export interface ResponseSetOptionSDKType {
   info: string;
 }
 export interface ResponseInitChain {
-  consensusParams?: ConsensusParams;
+  consensusParams: ConsensusParams;
   validators: ValidatorUpdate[];
   appHash: Uint8Array;
 }
 export interface ResponseInitChainSDKType {
-  consensus_params?: ConsensusParamsSDKType;
+  consensus_params: ConsensusParamsSDKType;
   validators: ValidatorUpdateSDKType[];
   app_hash: Uint8Array;
 }
@@ -571,7 +567,7 @@ export interface ResponseQuery {
   index: Long;
   key: Uint8Array;
   value: Uint8Array;
-  proofOps?: ProofOps;
+  proofOps: ProofOps;
   height: Long;
   codespace: string;
 }
@@ -586,7 +582,7 @@ export interface ResponseQuerySDKType {
   index: Long;
   key: Uint8Array;
   value: Uint8Array;
-  proof_ops?: ProofOpsSDKType;
+  proof_ops: ProofOpsSDKType;
   height: Long;
   codespace: string;
 }
@@ -654,12 +650,12 @@ export interface ResponseDeliverTxSDKType {
 }
 export interface ResponseEndBlock {
   validatorUpdates: ValidatorUpdate[];
-  consensusParamUpdates?: ConsensusParams;
+  consensusParamUpdates: ConsensusParams;
   events: Event[];
 }
 export interface ResponseEndBlockSDKType {
   validator_updates: ValidatorUpdateSDKType[];
-  consensus_param_updates?: ConsensusParamsSDKType;
+  consensus_param_updates: ConsensusParamsSDKType;
   events: EventSDKType[];
 }
 export interface ResponseCommit {
@@ -714,10 +710,10 @@ export interface ResponseApplySnapshotChunkSDKType {
  */
 
 export interface ConsensusParams {
-  block?: BlockParams;
-  evidence?: EvidenceParams;
-  validator?: ValidatorParams;
-  version?: VersionParams;
+  block: BlockParams;
+  evidence: EvidenceParams;
+  validator: ValidatorParams;
+  version: VersionParams;
 }
 /**
  * ConsensusParams contains all consensus-relevant parameters
@@ -725,10 +721,10 @@ export interface ConsensusParams {
  */
 
 export interface ConsensusParamsSDKType {
-  block?: BlockParamsSDKType;
-  evidence?: EvidenceParamsSDKType;
-  validator?: ValidatorParamsSDKType;
-  version?: VersionParamsSDKType;
+  block: BlockParamsSDKType;
+  evidence: EvidenceParamsSDKType;
+  validator: ValidatorParamsSDKType;
+  version: VersionParamsSDKType;
 }
 /** BlockParams contains limits on the block size. */
 
@@ -796,7 +792,7 @@ export interface EventAttributeSDKType {
 }
 /**
  * TxResult contains results of executing the transaction.
- * 
+ *
  * One usage is indexing transaction results.
  */
 
@@ -804,11 +800,11 @@ export interface TxResult {
   height: Long;
   index: number;
   tx: Uint8Array;
-  result?: ResponseDeliverTx;
+  result: ResponseDeliverTx;
 }
 /**
  * TxResult contains results of executing the transaction.
- * 
+ *
  * One usage is indexing transaction results.
  */
 
@@ -816,7 +812,7 @@ export interface TxResultSDKType {
   height: Long;
   index: number;
   tx: Uint8Array;
-  result?: ResponseDeliverTxSDKType;
+  result: ResponseDeliverTxSDKType;
 }
 /** Validator */
 
@@ -845,38 +841,38 @@ export interface ValidatorSDKType {
 /** ValidatorUpdate */
 
 export interface ValidatorUpdate {
-  pubKey?: PublicKey;
+  pubKey: PublicKey;
   power: Long;
 }
 /** ValidatorUpdate */
 
 export interface ValidatorUpdateSDKType {
-  pub_key?: PublicKeySDKType;
+  pub_key: PublicKeySDKType;
   power: Long;
 }
 /** VoteInfo */
 
 export interface VoteInfo {
-  validator?: Validator;
+  validator: Validator;
   signedLastBlock: boolean;
 }
 /** VoteInfo */
 
 export interface VoteInfoSDKType {
-  validator?: ValidatorSDKType;
+  validator: ValidatorSDKType;
   signed_last_block: boolean;
 }
 export interface Evidence {
   type: EvidenceType;
   /** The offending validator */
 
-  validator?: Validator;
+  validator: Validator;
   /** The height when the offense occurred */
 
   height: Long;
   /** The corresponding time where the offense occurred */
 
-  time?: Date;
+  time: Date;
   /**
    * Total voting power of the validator set in case the ABCI application does
    * not store historical validators.
@@ -889,13 +885,13 @@ export interface EvidenceSDKType {
   type: EvidenceTypeSDKType;
   /** The offending validator */
 
-  validator?: ValidatorSDKType;
+  validator: ValidatorSDKType;
   /** The height when the offense occurred */
 
   height: Long;
   /** The corresponding time where the offense occurred */
 
-  time?: Date;
+  time: Date;
   /**
    * Total voting power of the validator set in case the ABCI application does
    * not store historical validators.

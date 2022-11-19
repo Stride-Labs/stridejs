@@ -1,5 +1,5 @@
 import { AminoMsg } from "@cosmjs/amino";
-import { Long } from "../../../helpers";
+import { Long } from "@osmonauts/helpers";
 import { MsgSubmitQueryResponse } from "./messages";
 export interface AminoMsgSubmitQueryResponse extends AminoMsg {
   type: "/stride.interchainquery.v1.MsgSubmitQueryResponse";

@@ -1,20 +1,21 @@
-import { Rpc } from "../../../helpers";
+import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { MsgSubmitProposal, MsgSubmitProposalResponse, MsgVote, MsgVoteResponse, MsgVoteWeighted, MsgVoteWeightedResponse, MsgDeposit, MsgDepositResponse } from "./tx";
-/** Msg defines the bank Msg service. */
+/** Msg defines the RPC service */
 
 export interface Msg {
-  /** SubmitProposal defines a method to create new proposal given a content. */
   submitProposal(request: MsgSubmitProposal): Promise<MsgSubmitProposalResponse>;
-  /** Vote defines a method to add a vote on a specific proposal. */
+  /*SubmitProposal defines a method to create new proposal given a content.*/
 
   vote(request: MsgVote): Promise<MsgVoteResponse>;
-  /** VoteWeighted defines a method to add a weighted vote on a specific proposal. */
+  /*Vote defines a method to add a vote on a specific proposal.*/
 
   voteWeighted(request: MsgVoteWeighted): Promise<MsgVoteWeightedResponse>;
-  /** Deposit defines a method to add deposit on a specific proposal. */
+  /*VoteWeighted defines a method to add a weighted vote on a specific proposal.*/
 
   deposit(request: MsgDeposit): Promise<MsgDepositResponse>;
+  /*Deposit defines a method to add deposit on a specific proposal.*/
+
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;

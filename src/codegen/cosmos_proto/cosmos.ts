@@ -1,5 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "../helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 export enum ScalarType {
   SCALAR_TYPE_UNSPECIFIED = 0,
   SCALAR_TYPE_STRING = 1,
@@ -43,9 +43,8 @@ export function scalarTypeToJSON(object: ScalarType): string {
     case ScalarType.SCALAR_TYPE_BYTES:
       return "SCALAR_TYPE_BYTES";
 
-    case ScalarType.UNRECOGNIZED:
     default:
-      return "UNRECOGNIZED";
+      return "UNKNOWN";
   }
 }
 /**

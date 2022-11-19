@@ -1,6 +1,6 @@
 import { voteOptionFromJSON } from "./gov";
 import { AminoMsg } from "@cosmjs/amino";
-import { Long } from "../../../helpers";
+import { Long } from "@osmonauts/helpers";
 import { MsgSubmitProposal, MsgVote, MsgVoteWeighted, MsgDeposit } from "./tx";
 export interface AminoMsgSubmitProposal extends AminoMsg {
   type: "cosmos-sdk/MsgSubmitProposal";

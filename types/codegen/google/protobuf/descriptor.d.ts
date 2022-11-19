@@ -1,21 +1,21 @@
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long } from "../../helpers";
+import { DeepPartial, Long } from "@osmonauts/helpers";
 export declare enum FieldDescriptorProto_Type {
     /**
      * TYPE_DOUBLE - 0 is reserved for errors.
-     * Order is weird for historical reasons.
+     *  Order is weird for historical reasons.
      */
     TYPE_DOUBLE = 1,
     TYPE_FLOAT = 2,
     /**
      * TYPE_INT64 - Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT64 if
-     * negative values are likely.
+     *  negative values are likely.
      */
     TYPE_INT64 = 3,
     TYPE_UINT64 = 4,
     /**
      * TYPE_INT32 - Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT32 if
-     * negative values are likely.
+     *  negative values are likely.
      */
     TYPE_INT32 = 5,
     TYPE_FIXED64 = 6,
@@ -24,9 +24,9 @@ export declare enum FieldDescriptorProto_Type {
     TYPE_STRING = 9,
     /**
      * TYPE_GROUP - Tag-delimited aggregate.
-     * Group type is deprecated and not supported in proto3. However, Proto3
-     * implementations should still be able to parse the group wire format and
-     * treat group fields as unknown fields.
+     *  Group type is deprecated and not supported in proto3. However, Proto3
+     *  implementations should still be able to parse the group wire format and
+     *  treat group fields as unknown fields.
      */
     TYPE_GROUP = 10,
     TYPE_MESSAGE = 11,
@@ -45,19 +45,19 @@ export declare enum FieldDescriptorProto_Type {
 export declare enum FieldDescriptorProto_TypeSDKType {
     /**
      * TYPE_DOUBLE - 0 is reserved for errors.
-     * Order is weird for historical reasons.
+     *  Order is weird for historical reasons.
      */
     TYPE_DOUBLE = 1,
     TYPE_FLOAT = 2,
     /**
      * TYPE_INT64 - Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT64 if
-     * negative values are likely.
+     *  negative values are likely.
      */
     TYPE_INT64 = 3,
     TYPE_UINT64 = 4,
     /**
      * TYPE_INT32 - Not ZigZag encoded.  Negative numbers take 10 bytes.  Use TYPE_SINT32 if
-     * negative values are likely.
+     *  negative values are likely.
      */
     TYPE_INT32 = 5,
     TYPE_FIXED64 = 6,
@@ -66,9 +66,9 @@ export declare enum FieldDescriptorProto_TypeSDKType {
     TYPE_STRING = 9,
     /**
      * TYPE_GROUP - Tag-delimited aggregate.
-     * Group type is deprecated and not supported in proto3. However, Proto3
-     * implementations should still be able to parse the group wire format and
-     * treat group fields as unknown fields.
+     *  Group type is deprecated and not supported in proto3. However, Proto3
+     *  implementations should still be able to parse the group wire format and
+     *  treat group fields as unknown fields.
      */
     TYPE_GROUP = 10,
     TYPE_MESSAGE = 11,
@@ -106,7 +106,7 @@ export declare function fieldDescriptorProto_LabelToJSON(object: FieldDescriptor
 export declare enum FileOptions_OptimizeMode {
     /**
      * SPEED - Generate complete code for parsing, serialization,
-     * etc.
+     *  etc.
      */
     SPEED = 1,
     /** CODE_SIZE - Use ReflectionOps to implement these methods. */
@@ -119,7 +119,7 @@ export declare enum FileOptions_OptimizeMode {
 export declare enum FileOptions_OptimizeModeSDKType {
     /**
      * SPEED - Generate complete code for parsing, serialization,
-     * etc.
+     *  etc.
      */
     SPEED = 1,
     /** CODE_SIZE - Use ReflectionOps to implement these methods. */
@@ -227,14 +227,14 @@ export interface FileDescriptorProto {
     enumType: EnumDescriptorProto[];
     service: ServiceDescriptorProto[];
     extension: FieldDescriptorProto[];
-    options?: FileOptions;
+    options: FileOptions;
     /**
      * This field contains optional information about the original source code.
      * You may safely remove this entire field without harming runtime
      * functionality of the descriptors -- the information is needed only by
      * development tools.
      */
-    sourceCodeInfo?: SourceCodeInfo;
+    sourceCodeInfo: SourceCodeInfo;
     /**
      * The syntax of the proto file.
      * The supported values are "proto2" and "proto3".
@@ -260,14 +260,14 @@ export interface FileDescriptorProtoSDKType {
     enum_type: EnumDescriptorProtoSDKType[];
     service: ServiceDescriptorProtoSDKType[];
     extension: FieldDescriptorProtoSDKType[];
-    options?: FileOptionsSDKType;
+    options: FileOptionsSDKType;
     /**
      * This field contains optional information about the original source code.
      * You may safely remove this entire field without harming runtime
      * functionality of the descriptors -- the information is needed only by
      * development tools.
      */
-    source_code_info?: SourceCodeInfoSDKType;
+    source_code_info: SourceCodeInfoSDKType;
     /**
      * The syntax of the proto file.
      * The supported values are "proto2" and "proto3".
@@ -283,7 +283,7 @@ export interface DescriptorProto {
     enumType: EnumDescriptorProto[];
     extensionRange: DescriptorProto_ExtensionRange[];
     oneofDecl: OneofDescriptorProto[];
-    options?: MessageOptions;
+    options: MessageOptions;
     reservedRange: DescriptorProto_ReservedRange[];
     /**
      * Reserved field names, which may not be used by fields in the same message.
@@ -300,7 +300,7 @@ export interface DescriptorProtoSDKType {
     enum_type: EnumDescriptorProtoSDKType[];
     extension_range: DescriptorProto_ExtensionRangeSDKType[];
     oneof_decl: OneofDescriptorProtoSDKType[];
-    options?: MessageOptionsSDKType;
+    options: MessageOptionsSDKType;
     reserved_range: DescriptorProto_ReservedRangeSDKType[];
     /**
      * Reserved field names, which may not be used by fields in the same message.
@@ -313,14 +313,14 @@ export interface DescriptorProto_ExtensionRange {
     start: number;
     /** Exclusive. */
     end: number;
-    options?: ExtensionRangeOptions;
+    options: ExtensionRangeOptions;
 }
 export interface DescriptorProto_ExtensionRangeSDKType {
     /** Inclusive. */
     start: number;
     /** Exclusive. */
     end: number;
-    options?: ExtensionRangeOptionsSDKType;
+    options: ExtensionRangeOptionsSDKType;
 }
 /**
  * Range of reserved tag numbers. Reserved tag numbers may not be used by
@@ -395,7 +395,7 @@ export interface FieldDescriptorProto {
      * it to camelCase.
      */
     jsonName: string;
-    options?: FieldOptions;
+    options: FieldOptions;
     /**
      * If true, this is a proto3 "optional". When a proto3 field is optional, it
      * tracks presence regardless of field type.
@@ -464,7 +464,7 @@ export interface FieldDescriptorProtoSDKType {
      * it to camelCase.
      */
     json_name: string;
-    options?: FieldOptionsSDKType;
+    options: FieldOptionsSDKType;
     /**
      * If true, this is a proto3 "optional". When a proto3 field is optional, it
      * tracks presence regardless of field type.
@@ -493,18 +493,18 @@ export interface FieldDescriptorProtoSDKType {
 /** Describes a oneof. */
 export interface OneofDescriptorProto {
     name: string;
-    options?: OneofOptions;
+    options: OneofOptions;
 }
 /** Describes a oneof. */
 export interface OneofDescriptorProtoSDKType {
     name: string;
-    options?: OneofOptionsSDKType;
+    options: OneofOptionsSDKType;
 }
 /** Describes an enum type. */
 export interface EnumDescriptorProto {
     name: string;
     value: EnumValueDescriptorProto[];
-    options?: EnumOptions;
+    options: EnumOptions;
     /**
      * Range of reserved numeric values. Reserved numeric values may not be used
      * by enum values in the same enum declaration. Reserved ranges may not
@@ -521,7 +521,7 @@ export interface EnumDescriptorProto {
 export interface EnumDescriptorProtoSDKType {
     name: string;
     value: EnumValueDescriptorProtoSDKType[];
-    options?: EnumOptionsSDKType;
+    options: EnumOptionsSDKType;
     /**
      * Range of reserved numeric values. Reserved numeric values may not be used
      * by enum values in the same enum declaration. Reserved ranges may not
@@ -566,25 +566,25 @@ export interface EnumDescriptorProto_EnumReservedRangeSDKType {
 export interface EnumValueDescriptorProto {
     name: string;
     number: number;
-    options?: EnumValueOptions;
+    options: EnumValueOptions;
 }
 /** Describes a value within an enum. */
 export interface EnumValueDescriptorProtoSDKType {
     name: string;
     number: number;
-    options?: EnumValueOptionsSDKType;
+    options: EnumValueOptionsSDKType;
 }
 /** Describes a service. */
 export interface ServiceDescriptorProto {
     name: string;
     method: MethodDescriptorProto[];
-    options?: ServiceOptions;
+    options: ServiceOptions;
 }
 /** Describes a service. */
 export interface ServiceDescriptorProtoSDKType {
     name: string;
     method: MethodDescriptorProtoSDKType[];
-    options?: ServiceOptionsSDKType;
+    options: ServiceOptionsSDKType;
 }
 /** Describes a method of a service. */
 export interface MethodDescriptorProto {
@@ -595,7 +595,7 @@ export interface MethodDescriptorProto {
      */
     inputType: string;
     outputType: string;
-    options?: MethodOptions;
+    options: MethodOptions;
     /** Identifies if client streams multiple client messages */
     clientStreaming: boolean;
     /** Identifies if server streams multiple server messages */
@@ -610,7 +610,7 @@ export interface MethodDescriptorProtoSDKType {
      */
     input_type: string;
     output_type: string;
-    options?: MethodOptionsSDKType;
+    options: MethodOptionsSDKType;
     /** Identifies if client streams multiple client messages */
     client_streaming: boolean;
     /** Identifies if server streams multiple server messages */
