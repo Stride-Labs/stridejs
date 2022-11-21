@@ -603,6 +603,7 @@ export declare namespace stride {
             fromPartial(object: {
                 airdropIdentifier?: string;
                 address?: string;
+                includeClaimed?: boolean;
             }): _86.QueryTotalClaimableRequest;
         };
         QueryTotalClaimableResponse: {

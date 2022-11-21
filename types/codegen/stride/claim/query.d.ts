@@ -71,10 +71,12 @@ export interface QueryClaimableForActionResponseSDKType {
 export interface QueryTotalClaimableRequest {
     airdropIdentifier?: string;
     address: string;
+    includeClaimed?: boolean;
 }
 export interface QueryTotalClaimableRequestSDKType {
     airdrop_identifier?: string;
     address: string;
+    include_claimed?: boolean;
 }
 export interface QueryTotalClaimableResponse {
     coins: Coin[];

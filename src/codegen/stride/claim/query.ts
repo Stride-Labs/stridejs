@@ -77,10 +77,12 @@ export interface QueryClaimableForActionResponseSDKType {
 export interface QueryTotalClaimableRequest {
   airdropIdentifier?: string;
   address: string;
+  includeClaimed?: boolean;
 }
 export interface QueryTotalClaimableRequestSDKType {
   airdrop_identifier?: string;
   address: string;
+  include_claimed?: boolean;
 }
 export interface QueryTotalClaimableResponse {
   coins: Coin[];
@@ -485,7 +487,8 @@ export const QueryClaimableForActionResponse = {
 function createBaseQueryTotalClaimableRequest(): QueryTotalClaimableRequest {
   return {
     airdropIdentifier: "",
-    address: ""
+    address: "",
+    includeClaimed: false
   };
 }
 
@@ -497,6 +500,10 @@ export const QueryTotalClaimableRequest = {
 
     if (message.address !== "") {
       writer.uint32(18).string(message.address);
+    }
+
+    if (message.includeClaimed === true) {
+      writer.uint32(24).bool(message.includeClaimed);
     }
 
     return writer;
@@ -519,6 +526,10 @@ export const QueryTotalClaimableRequest = {
           message.address = reader.string();
           break;
 
+        case 3:
+          message.includeClaimed = reader.bool();
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -532,6 +543,7 @@ export const QueryTotalClaimableRequest = {
     const message = createBaseQueryTotalClaimableRequest();
     message.airdropIdentifier = object.airdropIdentifier ?? "";
     message.address = object.address ?? "";
+    message.includeClaimed = object.includeClaimed ?? false;
     return message;
   }
 

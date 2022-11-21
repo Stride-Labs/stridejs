@@ -80,6 +80,10 @@ export class LCDQueryClient {
       options.params.airdrop_identifier = params.airdropIdentifier;
     }
 
+    if (typeof params?.includeClaimed !== "undefined") {
+      options.params.include_claimed = params.includeClaimed;
+    }
+
     const endpoint = `claim/total_claimable/${params.address}`;
     return await this.req.get<QueryTotalClaimableResponseSDKType>(endpoint, options);
   }
