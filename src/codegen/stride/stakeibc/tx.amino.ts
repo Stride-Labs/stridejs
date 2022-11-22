@@ -3,7 +3,7 @@ import { AminoMsg } from "@cosmjs/amino";
 import { Long } from "@osmonauts/helpers";
 import { MsgLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidator, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
 export interface AminoMsgLiquidStake extends AminoMsg {
-  type: "/stride.stakeibc.MsgLiquidStake";
+  type: "stakeibc/LiquidStake";
   value: {
     creator: string;
     amount: string;
@@ -11,7 +11,7 @@ export interface AminoMsgLiquidStake extends AminoMsg {
   };
 }
 export interface AminoMsgRedeemStake extends AminoMsg {
-  type: "/stride.stakeibc.MsgRedeemStake";
+  type: "stakeibc/RedeemStake";
   value: {
     creator: string;
     amount: string;
@@ -20,7 +20,7 @@ export interface AminoMsgRedeemStake extends AminoMsg {
   };
 }
 export interface AminoMsgRegisterHostZone extends AminoMsg {
-  type: "/stride.stakeibc.MsgRegisterHostZone";
+  type: "stakeibc/RegisterHostZone";
   value: {
     connection_id: string;
     bech32prefix: string;
@@ -32,7 +32,7 @@ export interface AminoMsgRegisterHostZone extends AminoMsg {
   };
 }
 export interface AminoMsgClaimUndelegatedTokens extends AminoMsg {
-  type: "/stride.stakeibc.MsgClaimUndelegatedTokens";
+  type: "stakeibc/ClaimUndelegatedTokens";
   value: {
     creator: string;
     host_zone_id: string;
@@ -41,7 +41,7 @@ export interface AminoMsgClaimUndelegatedTokens extends AminoMsg {
   };
 }
 export interface AminoMsgRebalanceValidators extends AminoMsg {
-  type: "/stride.stakeibc.MsgRebalanceValidators";
+  type: "stakeibc/RebalanceValidators";
   value: {
     creator: string;
     host_zone: string;
@@ -49,7 +49,7 @@ export interface AminoMsgRebalanceValidators extends AminoMsg {
   };
 }
 export interface AminoMsgAddValidator extends AminoMsg {
-  type: "/stride.stakeibc.MsgAddValidator";
+  type: "stakeibc/AddValidator";
   value: {
     creator: string;
     host_zone: string;
@@ -60,7 +60,7 @@ export interface AminoMsgAddValidator extends AminoMsg {
   };
 }
 export interface AminoMsgChangeValidatorWeight extends AminoMsg {
-  type: "/stride.stakeibc.MsgChangeValidatorWeight";
+  type: "stakeibc/ChangeValidatorWeight";
   value: {
     creator: string;
     host_zone: string;
@@ -69,7 +69,7 @@ export interface AminoMsgChangeValidatorWeight extends AminoMsg {
   };
 }
 export interface AminoMsgDeleteValidator extends AminoMsg {
-  type: "/stride.stakeibc.MsgDeleteValidator";
+  type: "stakeibc/DeleteValidator";
   value: {
     creator: string;
     host_zone: string;
@@ -77,7 +77,7 @@ export interface AminoMsgDeleteValidator extends AminoMsg {
   };
 }
 export interface AminoMsgRestoreInterchainAccount extends AminoMsg {
-  type: "/stride.stakeibc.MsgRestoreInterchainAccount";
+  type: "stakeibc/RestoreInterchainAccount";
   value: {
     creator: string;
     chain_id: string;
@@ -85,7 +85,7 @@ export interface AminoMsgRestoreInterchainAccount extends AminoMsg {
   };
 }
 export interface AminoMsgUpdateValidatorSharesExchRate extends AminoMsg {
-  type: "/stride.stakeibc.MsgUpdateValidatorSharesExchRate";
+  type: "stakeibc/UpdateValidatorSharesExchRate";
   value: {
     creator: string;
     chain_id: string;
@@ -93,7 +93,7 @@ export interface AminoMsgUpdateValidatorSharesExchRate extends AminoMsg {
   };
 }
 export interface AminoMsgClearBalance extends AminoMsg {
-  type: "/stride.stakeibc.MsgClearBalance";
+  type: "still-no-defined";
   value: {
     creator: string;
     chain_id: string;
@@ -103,7 +103,7 @@ export interface AminoMsgClearBalance extends AminoMsg {
 }
 export const AminoConverter = {
   "/stride.stakeibc.MsgLiquidStake": {
-    aminoType: "/stride.stakeibc.MsgLiquidStake",
+    aminoType: "stakeibc/LiquidStake",
     toAmino: ({
       creator,
       amount,
@@ -128,7 +128,7 @@ export const AminoConverter = {
     }
   },
   "/stride.stakeibc.MsgRedeemStake": {
-    aminoType: "/stride.stakeibc.MsgRedeemStake",
+    aminoType: "stakeibc/RedeemStake",
     toAmino: ({
       creator,
       amount,
@@ -157,7 +157,7 @@ export const AminoConverter = {
     }
   },
   "/stride.stakeibc.MsgRegisterHostZone": {
-    aminoType: "/stride.stakeibc.MsgRegisterHostZone",
+    aminoType: "stakeibc/RegisterHostZone",
     toAmino: ({
       connectionId,
       bech32prefix,
@@ -198,7 +198,7 @@ export const AminoConverter = {
     }
   },
   "/stride.stakeibc.MsgClaimUndelegatedTokens": {
-    aminoType: "/stride.stakeibc.MsgClaimUndelegatedTokens",
+    aminoType: "stakeibc/ClaimUndelegatedTokens",
     toAmino: ({
       creator,
       hostZoneId,
@@ -227,7 +227,7 @@ export const AminoConverter = {
     }
   },
   "/stride.stakeibc.MsgRebalanceValidators": {
-    aminoType: "/stride.stakeibc.MsgRebalanceValidators",
+    aminoType: "stakeibc/RebalanceValidators",
     toAmino: ({
       creator,
       hostZone,
@@ -252,7 +252,7 @@ export const AminoConverter = {
     }
   },
   "/stride.stakeibc.MsgAddValidator": {
-    aminoType: "/stride.stakeibc.MsgAddValidator",
+    aminoType: "stakeibc/AddValidator",
     toAmino: ({
       creator,
       hostZone,
@@ -289,7 +289,7 @@ export const AminoConverter = {
     }
   },
   "/stride.stakeibc.MsgChangeValidatorWeight": {
-    aminoType: "/stride.stakeibc.MsgChangeValidatorWeight",
+    aminoType: "stakeibc/ChangeValidatorWeight",
     toAmino: ({
       creator,
       hostZone,
@@ -318,7 +318,7 @@ export const AminoConverter = {
     }
   },
   "/stride.stakeibc.MsgDeleteValidator": {
-    aminoType: "/stride.stakeibc.MsgDeleteValidator",
+    aminoType: "stakeibc/DeleteValidator",
     toAmino: ({
       creator,
       hostZone,
@@ -343,7 +343,7 @@ export const AminoConverter = {
     }
   },
   "/stride.stakeibc.MsgRestoreInterchainAccount": {
-    aminoType: "/stride.stakeibc.MsgRestoreInterchainAccount",
+    aminoType: "stakeibc/RestoreInterchainAccount",
     toAmino: ({
       creator,
       chainId,
@@ -368,7 +368,7 @@ export const AminoConverter = {
     }
   },
   "/stride.stakeibc.MsgUpdateValidatorSharesExchRate": {
-    aminoType: "/stride.stakeibc.MsgUpdateValidatorSharesExchRate",
+    aminoType: "stakeibc/UpdateValidatorSharesExchRate",
     toAmino: ({
       creator,
       chainId,
@@ -393,7 +393,7 @@ export const AminoConverter = {
     }
   },
   "/stride.stakeibc.MsgClearBalance": {
-    aminoType: "/stride.stakeibc.MsgClearBalance",
+    aminoType: "still-no-defined",
     toAmino: ({
       creator,
       chainId,

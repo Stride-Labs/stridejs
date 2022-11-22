@@ -11,7 +11,7 @@ export interface AminoMsgSetAirdropAllocations extends AminoMsg {
   };
 }
 export interface AminoMsgClaimFreeAmount extends AminoMsg {
-  type: "/stride.claim.MsgClaimFreeAmount";
+  type: "claim/ClaimFreeAmount";
   value: {
     user: string;
   };
@@ -64,7 +64,7 @@ export const AminoConverter = {
     }
   },
   "/stride.claim.MsgClaimFreeAmount": {
-    aminoType: "/stride.claim.MsgClaimFreeAmount",
+    aminoType: "claim/ClaimFreeAmount",
     toAmino: ({
       user
     }: MsgClaimFreeAmount): AminoMsgClaimFreeAmount["value"] => {

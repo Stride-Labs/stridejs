@@ -10,7 +10,7 @@ export interface AminoMsgSetAirdropAllocations extends AminoMsg {
     };
 }
 export interface AminoMsgClaimFreeAmount extends AminoMsg {
-    type: "/stride.claim.MsgClaimFreeAmount";
+    type: "claim/ClaimFreeAmount";
     value: {
         user: string;
     };
