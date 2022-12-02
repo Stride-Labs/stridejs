@@ -7,101 +7,48 @@
 ```sh
 npm install stridejs
 ```
-## Table of contents
-
-- [stridejs](#stridejs)
-  - [Install](#install)
-  - [Table of contents](#table-of-contents)
-- [Usage](#usage)
-    - [RPC Clients](#rpc-clients)
-    - [Composing Messages](#composing-messages)
-        - Stride
-            - [interchainquery](#interchainquery-messages)
-        - Cosmos and IBC
-            - [IBC](#ibc-messages)
-            - [Cosmos](#cosmos-messages)
-- [Wallets and Signers](#connecting-with-wallets-and-signing-messages)
-    - [Stargate Client](#initializing-the-stargate-client)
-    - [Creating Signers](#creating-signers)
-    - [Broadcasting Messages](#broadcasting-messages)
-- [Advanced Usage](#advanced-usage)
-- [Developing](#developing)
-- [Credits](#credits)
 
 ## Usage
-### RPC Clients
+
+We strongly recommend that you check the generated files in `src/codegen/stride` and use it as source of truth for which functions you could use.
+
+The rest of our documentation will cover only the tip of the iceberg, examples you can take ideas from.
+
+### RPC Client
 
 ```js
-import { stride } from 'stridejs';
+import { stride } from "stridejs";
 
-const { createRPCQueryClient } = stride.ClientFactory; 
-const client = await createRPCQueryClient({ rpcEndpoint: RPC_ENDPOINT });
+const client = await stride.ClienFactory.createRPCQueryClient({
+  rpcEndpoint: RPC_ENDPOINT,
+});
 
 // now you can query the cosmos modules
-const balance = await client.cosmos.bank.v1beta1
-    .allBalances({ address: 'stride1addresshere' });
-
-// you can also query the stride modules
-const data = await client.stride.mint.v1beta1.epochProvisions();
+const balance = await client.cosmos.bank.v1beta1.allBalances({
+  address: "stride1addresshere",
+});
 ```
 
-### Composing Messages
-
-Import the `stride` object from `stridejs`. 
+### Composing Stride Messages
 
 ```js
-import { stride } from 'stridejs';
+import { stride } from "stridejs";
+
+const msgClaimFreeAmount =
+  stride.claim.MessageComposer.withTypeUrl.claimFreeAmount({
+    user: strideAccount.key.bech32Address,
+  });
 ```
 
-#### InterchainQuery Messages
+#### Composing IBC Messages
 
 ```js
-const {
-    submitQueryResponse
-} = stride.interchainquery.MessageComposer.withTypeUrl;
-```
+import { ibc } from "stridejs";
 
-#### IBC Messages
-
-```js
-import { ibc } from 'stridejs';
-
-const {
-    transfer
-} = ibc.applications.transfer.v1.MessageComposer.withTypeUrl
-```
-
-#### Cosmos Messages
-
-```js
-import { cosmos } from 'stridejs';
-
-const {
-    fundCommunityPool,
-    setWithdrawAddress,
-    withdrawDelegatorReward,
-    withdrawValidatorCommission
-} = cosmos.distribution.v1beta1.MessageComposer.fromPartial;
-
-const {
-    multiSend,
-    send
-} = cosmos.bank.v1beta1.MessageComposer.fromPartial;
-
-const {
-    beginRedelegate,
-    createValidator,
-    delegate,
-    editValidator,
-    undelegate
-} = cosmos.staking.v1beta1.MessageComposer.fromPartial;
-
-const {
-    deposit,
-    submitProposal,
-    vote,
-    voteWeighted
-} = cosmos.gov.v1beta1.MessageComposer.fromPartial;
+const { transfer } =
+  ibc.applications.transfer.v1.MessageComposer.withTypeUrl.transfer({
+    // Redacted (check types for the message parameters)
+  });
 ```
 
 ## Connecting with Wallets and Signing Messages
@@ -110,135 +57,45 @@ const {
 
 Here are the docs on [creating signers](https://github.com/cosmology-tech/cosmos-kit/tree/main/packages/react#signing-clients) in cosmos-kit that can be used with Keplr and other wallets.
 
-### Initializing the Stargate Client
-
-Use `getSigningStrideClient` to get your `SigningStargateClient`, with the proto/amino messages full-loaded. No need to manually add amino types, just require and initialize the client:
-
-```js
-import { getSigningStrideClient } from 'stridejs';
-
-const stargateClient = await getSigningStrideClient({
-  rpcEndpoint,
-  signer // OfflineSigner
-});
-```
 ### Creating Signers
 
 To broadcast messages, you can create signers with a variety of options:
 
-* [cosmos-kit](https://github.com/cosmology-tech/cosmos-kit/tree/main/packages/react#signing-clients) (recommended)
-* [keplr](https://docs.keplr.app/api/cosmjs.html)
-* [cosmjs](https://gist.github.com/webmaster128/8444d42a7eceeda2544c8a59fbd7e1d9)
-### Amino Signer
+- [cosmos-kit](https://github.com/cosmology-tech/cosmos-kit/tree/main/packages/react#signing-clients) (recommended)
+- [keplr](https://docs.keplr.app/api/cosmjs.html)
+- [cosmjs](https://gist.github.com/webmaster128/8444d42a7eceeda2544c8a59fbd7e1d9)
 
-Likely you'll want to use the Amino, so unless you need proto, you should use this one:
+### Initializing the Stargate Client
 
-```js
-import { getOfflineSignerAmino as getOfflineSigner } from 'cosmjs-utils';
-```
-### Proto Signer
+We recommend using the `getSigningStrideClientOptions` and manually making the `SigningStargateClient` instance yourself:
 
-```js
-import { getOfflineSignerProto as getOfflineSigner } from 'cosmjs-utils';
-```
+```ts
+import { getSigningStrideClientOptions } from "@stride/proto";
 
-WARNING: NOT RECOMMENDED TO USE PLAIN-TEXT MNEMONICS. Please take care of your security and use best practices such as AES encryption and/or methods from 12factor applications.
+const { registry, aminoTypes } = getSigningStrideClientOptions();
 
-```js
-import { chains } from 'chain-registry';
-
-const mnemonic =
-  'unfold client turtle either pilot stock floor glow toward bullet car science';
-  const chain = chains.find(({ chain_name }) => chain_name === 'stride');
-  const signer = await getOfflineSigner({
-    mnemonic,
-    chain
-  });
-```
-### Broadcasting Messages
-
-Now that you have your `stargateClient`, you can broadcast messages:
-
-```js
-const { send } = cosmos.bank.v1beta1.MessageComposer.withTypeUrl;
-
-const msg = send({
-    amount: [
-    {
-        denom: 'ustrd',
-        amount: '1000'
-    }
-    ],
-    toAddress: address,
-    fromAddress: address
-});
-
-const fee: StdFee = {
-    amount: [
-    {
-        denom: 'ustrd',
-        amount: '864'
-    }
-    ],
-    gas: '86364'
-};
-const response = await stargateClient.signAndBroadcast(address, [msg], fee);
-```
-
-## Advanced Usage
-
-
-If you want to manually construct a stargate client
-
-```js
-import { OfflineSigner, GeneratedType, Registry } from "@cosmjs/proto-signing";
-import { AminoTypes, SigningStargateClient } from "@cosmjs/stargate";
-
-import { 
-    cosmosAminoConverters,
-    cosmosProtoRegistry,
-    ibcProtoRegistry,
-    ibcAminoConverters,
-    strideAminoConverters,
-    strideProtoRegistry
-} from 'stridejs';
-
-const signer: OfflineSigner = /* create your signer (see above)  */
-const rpcEndpoint = 'https://rpc.cosmos.directory/stride'; // or another URL
-
-const protoRegistry: ReadonlyArray<[string, GeneratedType]> = [
-    ...cosmosProtoRegistry,
-    ...ibcProtoRegistry,
-    ...strideProtoRegistry
-];
-
-const aminoConverters = {
-    ...cosmosAminoConverters,
-    ...ibcAminoConverters,
-    ...strideAminoConverters
-};
-
-const registry = new Registry(protoRegistry);
-const aminoTypes = new AminoTypes(aminoConverters);
-
-const stargateClient = await SigningStargateClient.connectWithSigner(rpcEndpoint, signer, {
+const client = await SigningStargateClient.connectWithSigner(
+  rpc,
+  offlineSigner,
+  {
     registry,
-    aminoTypes
-});
+    aminoTypes,
+    accountParser,
+  }
+);
 ```
 
-## Developing
+## Developing & Publishing
 
 When first cloning the repo:
 
 ```
-yarn
-yarn build
+yarn && git submodules update --init
 ```
 
 ### Codegen
 
-Contract schemas live in `./contracts`, and protos in `./proto`. Look inside of `scripts/codegen.js` and configure the settings for bundling your SDK and contracts into `stridejs`:
+Update the generated ts files:
 
 ```
 yarn codegen
@@ -246,19 +103,18 @@ yarn codegen
 
 ### Publishing
 
-Build the types and then publish:
+Build the module and types:
 
 ```
-yarn build:ts
-yarn publish
+yarn buidl
 ```
+
 ## Credits
 
 🛠 Built by Cosmology — if you like our tools, please consider delegating to [our validator ⚛️](https://cosmology.tech/validator)
 
 Code built with the help of these related projects:
 
-* [@cosmwasm/ts-codegen](https://github.com/CosmWasm/ts-codegen) for generated CosmWasm contract Typescript classes
-* [@osmonauts/telescope](https://github.com/osmosis-labs/telescope) a "babel for the Cosmos", Telescope is a TypeScript Transpiler for Cosmos Protobufs.
-* [cosmos-kit](https://github.com/cosmology-tech/cosmos-kit) A wallet connector for the Cosmos ⚛️
-
+- [@cosmwasm/ts-codegen](https://github.com/CosmWasm/ts-codegen) for generated CosmWasm contract Typescript classes
+- [@osmonauts/telescope](https://github.com/osmosis-labs/telescope) a "babel for the Cosmos", Telescope is a TypeScript Transpiler for Cosmos Protobufs.
+- [cosmos-kit](https://github.com/cosmology-tech/cosmos-kit) A wallet connector for the Cosmos ⚛️

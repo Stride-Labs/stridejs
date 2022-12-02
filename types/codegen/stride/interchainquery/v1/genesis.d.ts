@@ -6,11 +6,9 @@ export interface Query {
     chainId: string;
     queryType: string;
     request: Uint8Array;
-    period: string;
-    lastHeight: string;
     callbackId: string;
     ttl: Long;
-    height: Long;
+    requestSent: boolean;
 }
 export interface QuerySDKType {
     id: string;
@@ -18,11 +16,9 @@ export interface QuerySDKType {
     chain_id: string;
     query_type: string;
     request: Uint8Array;
-    period: string;
-    last_height: string;
     callback_id: string;
     ttl: Long;
-    height: Long;
+    request_sent: boolean;
 }
 export interface DataPoint {
     id: string;
