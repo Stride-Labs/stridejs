@@ -12,18 +12,17 @@ npm install stridejs
 
 We strongly recommend that you check the generated files in `src/codegen/stride` and use it as source of truth for which functions you could use.
 
-The rest of our documentation will cover only the tip of the iceberg, examples you can take ideas from.
+The rest of our documentation will cover only the tip of the iceberg &mdash; examples you can take ideas from.
 
 ### RPC Client
 
-```js
+```ts
 import { stride } from "stridejs";
 
 const client = await stride.ClienFactory.createRPCQueryClient({
   rpcEndpoint: RPC_ENDPOINT,
 });
 
-// now you can query the cosmos modules
 const balance = await client.cosmos.bank.v1beta1.allBalances({
   address: "stride1addresshere",
 });
@@ -31,7 +30,7 @@ const balance = await client.cosmos.bank.v1beta1.allBalances({
 
 ### Composing Stride Messages
 
-```js
+```ts
 import { stride } from "stridejs";
 
 const msgClaimFreeAmount =
@@ -47,7 +46,7 @@ import { ibc } from "stridejs";
 
 const { transfer } =
   ibc.applications.transfer.v1.MessageComposer.withTypeUrl.transfer({
-    // Redacted (check types for the message parameters)
+    // Redacted (check internal types for the message parameters)
   });
 ```
 
@@ -70,7 +69,11 @@ To broadcast messages, you can create signers with a variety of options:
 We recommend using the `getSigningStrideClientOptions` and manually making the `SigningStargateClient` instance yourself:
 
 ```ts
-import { getSigningStrideClientOptions } from "@stride/proto";
+import {
+  getSigningStrideClientOptions,
+  strideAccountParser,
+} from "@stride/proto";
+import { accountFromAny } from "./parser";
 
 const { registry, aminoTypes } = getSigningStrideClientOptions();
 
@@ -80,7 +83,7 @@ const client = await SigningStargateClient.connectWithSigner(
   {
     registry,
     aminoTypes,
-    accountParser,
+    accountParser: accountFromAny,
   }
 );
 ```
@@ -89,15 +92,16 @@ const client = await SigningStargateClient.connectWithSigner(
 
 When first cloning the repo:
 
-```
-yarn && git submodules update --init
+```bash
+submodules update --init
+yarn
 ```
 
 ### Codegen
 
 Update the generated ts files:
 
-```
+```bash
 yarn codegen
 ```
 
@@ -105,7 +109,7 @@ yarn codegen
 
 Build the module and types:
 
-```
+```bash
 yarn buidl
 ```
 
