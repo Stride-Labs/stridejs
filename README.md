@@ -35,7 +35,7 @@ import { stride } from "stridejs";
 
 const msgClaimFreeAmount =
   stride.claim.MessageComposer.withTypeUrl.claimFreeAmount({
-    user: strideAccount.key.bech32Address,
+    user: "stride1addresshere",
   });
 ```
 
