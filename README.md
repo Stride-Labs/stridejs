@@ -18,7 +18,7 @@ npm install stridejs
 
 ### Initializing the Stargate Client
 
-We recommend using the `getSigningStrideClientOptions` and manually making the `SigningStargateClient` instance yourself:
+We recommend manually making the `SigningStargateClient` instance yourself by using `getSigningStrideClientOptions`:
 
 ```ts
 import {
