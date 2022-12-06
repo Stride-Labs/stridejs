@@ -8,48 +8,6 @@
 npm install stridejs
 ```
 
-## Usage
-
-We strongly recommend that you check the generated files in `src/codegen/stride` and use it as source of truth for which functions you could use.
-
-The rest of our documentation will cover only the tip of the iceberg &mdash; examples you can take ideas from.
-
-### RPC Client
-
-```ts
-import { stride } from "stridejs";
-
-const client = await stride.ClienFactory.createRPCQueryClient({
-  rpcEndpoint: RPC_ENDPOINT,
-});
-
-const balance = await client.cosmos.bank.v1beta1.allBalances({
-  address: "stride1addresshere",
-});
-```
-
-### Composing Stride Messages
-
-```ts
-import { stride } from "stridejs";
-
-const msgClaimFreeAmount =
-  stride.claim.MessageComposer.withTypeUrl.claimFreeAmount({
-    user: "stride1addresshere",
-  });
-```
-
-#### Composing IBC Messages
-
-```js
-import { ibc } from "stridejs";
-
-const { transfer } =
-  ibc.applications.transfer.v1.MessageComposer.withTypeUrl.transfer({
-    // Redacted (check internal types for the message parameters)
-  });
-```
-
 ## Connecting with Wallets and Signing Messages
 
 ⚡️ For web interfaces, we recommend using [cosmos-kit](https://github.com/cosmology-tech/cosmos-kit). Continue below to see how to manually construct signers and clients.
@@ -85,6 +43,69 @@ const client = await SigningStargateClient.connectWithSigner(
     accountParser: accountFromAny,
   }
 );
+```
+
+## Usage
+
+We strongly recommend that you check the generated files in `src/codegen/stride` and use it as source of truth for which functions you could use.
+
+The rest of our documentation will cover only the tip of the iceberg &mdash; examples you can take ideas from.
+
+### RPC Client
+
+```ts
+import { stride } from "stridejs";
+
+const client = await stride.ClienFactory.createRPCQueryClient({
+  rpcEndpoint: RPC_ENDPOINT,
+});
+
+const balance = await client.cosmos.bank.v1beta1.allBalances({
+  address: "stride1addresshere",
+});
+```
+
+### Composing & Broadcasting Stride Messages
+
+```ts
+import { stride } from "stridejs";
+
+const msgClaimFreeAmount =
+  stride.claim.MessageComposer.withTypeUrl.claimFreeAmount({
+    user: "stride1addresshere",
+  });
+
+const fee = {
+  amount: [
+    {
+      amount: "0",
+      denom: "STRD",
+    },
+  ],
+  gas: 250_000,
+};
+
+const tx = await strideAccount.client.signAndBroadcast(
+  "stride1addresshere",
+  [msgClaimFreeAmount],
+  fee,
+  ""
+);
+
+assertIsDeliverTxSuccess(tx);
+```
+
+If you're unfamiliar with Stargate, you can read their guide [here](https://gist.github.com/webmaster128/8444d42a7eceeda2544c8a59fbd7e1d9).
+
+#### Composing IBC Messages
+
+```js
+import { ibc } from "stridejs";
+
+const { transfer } =
+  ibc.applications.transfer.v1.MessageComposer.withTypeUrl.transfer({
+    // Redacted (check internal types for the message parameters)
+  });
 ```
 
 ## Developing & Publishing
