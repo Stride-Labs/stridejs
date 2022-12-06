@@ -73,7 +73,6 @@ import {
   getSigningStrideClientOptions,
   strideAccountParser,
 } from "@stride/proto";
-import { accountFromAny } from "./parser";
 
 const { registry, aminoTypes } = getSigningStrideClientOptions();
 
