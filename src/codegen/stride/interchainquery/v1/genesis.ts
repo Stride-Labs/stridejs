@@ -6,11 +6,9 @@ export interface Query {
   chainId: string;
   queryType: string;
   request: Uint8Array;
-  period: string;
-  lastHeight: string;
   callbackId: string;
   ttl: Long;
-  height: Long;
+  requestSent: boolean;
 }
 export interface QuerySDKType {
   id: string;
@@ -18,11 +16,9 @@ export interface QuerySDKType {
   chain_id: string;
   query_type: string;
   request: Uint8Array;
-  period: string;
-  last_height: string;
   callback_id: string;
   ttl: Long;
-  height: Long;
+  request_sent: boolean;
 }
 export interface DataPoint {
   id: string;
@@ -54,11 +50,9 @@ function createBaseQuery(): Query {
     chainId: "",
     queryType: "",
     request: new Uint8Array(),
-    period: "",
-    lastHeight: "",
     callbackId: "",
     ttl: Long.UZERO,
-    height: Long.ZERO
+    requestSent: false
   };
 }
 
@@ -84,14 +78,6 @@ export const Query = {
       writer.uint32(42).bytes(message.request);
     }
 
-    if (message.period !== "") {
-      writer.uint32(50).string(message.period);
-    }
-
-    if (message.lastHeight !== "") {
-      writer.uint32(58).string(message.lastHeight);
-    }
-
     if (message.callbackId !== "") {
       writer.uint32(66).string(message.callbackId);
     }
@@ -100,8 +86,8 @@ export const Query = {
       writer.uint32(72).uint64(message.ttl);
     }
 
-    if (!message.height.isZero()) {
-      writer.uint32(80).int64(message.height);
+    if (message.requestSent === true) {
+      writer.uint32(88).bool(message.requestSent);
     }
 
     return writer;
@@ -136,14 +122,6 @@ export const Query = {
           message.request = reader.bytes();
           break;
 
-        case 6:
-          message.period = reader.string();
-          break;
-
-        case 7:
-          message.lastHeight = reader.string();
-          break;
-
         case 8:
           message.callbackId = reader.string();
           break;
@@ -152,8 +130,8 @@ export const Query = {
           message.ttl = (reader.uint64() as Long);
           break;
 
-        case 10:
-          message.height = (reader.int64() as Long);
+        case 11:
+          message.requestSent = reader.bool();
           break;
 
         default:
@@ -172,11 +150,9 @@ export const Query = {
     message.chainId = object.chainId ?? "";
     message.queryType = object.queryType ?? "";
     message.request = object.request ?? new Uint8Array();
-    message.period = object.period ?? "";
-    message.lastHeight = object.lastHeight ?? "";
     message.callbackId = object.callbackId ?? "";
     message.ttl = object.ttl !== undefined && object.ttl !== null ? Long.fromValue(object.ttl) : Long.UZERO;
-    message.height = object.height !== undefined && object.height !== null ? Long.fromValue(object.height) : Long.ZERO;
+    message.requestSent = object.requestSent ?? false;
     return message;
   }
 
