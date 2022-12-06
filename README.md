@@ -10,11 +10,7 @@ npm install stridejs
 
 ## Connecting with Wallets and Signing Messages
 
-⚡️ For web interfaces, we recommend using [cosmos-kit](https://github.com/cosmology-tech/cosmos-kit). Continue below to see how to manually construct signers and clients.
-
-Here are the docs on [creating signers](https://github.com/cosmology-tech/cosmos-kit/tree/main/packages/react#signing-clients) in cosmos-kit that can be used with Keplr and other wallets.
-
-### Creating Signers
+⚡️ For web interfaces, we recommend using [cosmos-kit](https://github.com/cosmology-tech/cosmos-kit).
 
 To broadcast messages, you can create signers with a variety of options:
 
