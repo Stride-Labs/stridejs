@@ -113,7 +113,7 @@ const { transfer } =
 When first cloning the repo:
 
 ```bash
-submodules update --init
+git submodule update --init
 yarn
 ```
 
