@@ -2,7 +2,6 @@ import { Pubkey } from "@cosmjs/amino";
 import { Uint64 } from "@cosmjs/math";
 import { decodePubkey } from "@cosmjs/proto-signing";
 import { assert } from "@cosmjs/utils";
-import { stride } from "@stride/proto";
 import {
   BaseAccount,
   ModuleAccount,
@@ -15,6 +14,7 @@ import {
 } from "cosmjs-types/cosmos/vesting/v1beta1/vesting";
 import { Any } from "cosmjs-types/google/protobuf/any";
 import Long from "long";
+import { stride } from "./codegen";
 
 export interface Account {
   /** Bech32 account address */
