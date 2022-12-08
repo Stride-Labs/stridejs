@@ -3,7 +3,7 @@
   "version": "0.3.0",
   "description": "stridejs",
   "author": "Dan Lynch <pyramation@gmail.com>",
-  "homepage": "https://github.com/pyramation/stridejs#readme",
+  "homepage": "https://github.com/Stride-Labs/stridejs#readme",
   "license": "SEE LICENSE IN LICENSE",
   "main": "main/index.js",
   "module": "module/index.js",
@@ -39,11 +39,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cosmology-tech/stridejs"
+    "url": "https://github.com/Stride-Labs/stridejs"
   },
   "keywords": [],
   "bugs": {
-    "url": "https://github.com/cosmology-tech/stridejs/issues"
+    "url": "https://github.com/Stride-Labs/stridejs/issues"
   },
   "devDependencies": {
     "@babel/cli": "7.18.10",
