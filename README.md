@@ -119,12 +119,28 @@ Update the generated ts files:
 yarn codegen
 ```
 
-### Publishing
-
 Build the module and types:
 
 ```bash
 yarn buidl
+```
+
+### Publishing
+
+If you haven't logged to npm cli, run:
+
+```bash
+npm login
+```
+
+Afterwards, update package.json version.
+
+```bash
+# Example: <version> = v0.4.1
+git tag <version>
+git push origin <version>
+git push origin main
+npm publish
 ```
 
 ## Credits
