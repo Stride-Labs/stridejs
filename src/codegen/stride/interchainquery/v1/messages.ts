@@ -1,13 +1,13 @@
 import { ProofOps, ProofOpsSDKType } from "../../../tendermint/crypto/proof";
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "@osmonauts/helpers";
+import { Long, DeepPartial } from "../../../helpers";
 /** MsgSubmitQueryResponse represents a message type to fulfil a query request. */
 
 export interface MsgSubmitQueryResponse {
   chainId: string;
   queryId: string;
   result: Uint8Array;
-  proofOps: ProofOps;
+  proofOps?: ProofOps;
   height: Long;
   fromAddress: string;
 }
@@ -17,7 +17,7 @@ export interface MsgSubmitQueryResponseSDKType {
   chain_id: string;
   query_id: string;
   result: Uint8Array;
-  proof_ops: ProofOpsSDKType;
+  proof_ops?: ProofOpsSDKType;
   height: Long;
   from_address: string;
 }

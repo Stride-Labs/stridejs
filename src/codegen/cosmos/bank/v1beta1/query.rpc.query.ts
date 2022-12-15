@@ -1,31 +1,32 @@
-import { Rpc } from "@osmonauts/helpers";
+import { Rpc } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
-import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
+import { QueryClient, createProtobufRpcClient, ProtobufRpcClient } from "@cosmjs/stargate";
+import { ReactQueryParams } from "../../../react-query";
+import { useQuery } from "@tanstack/react-query";
 import { QueryBalanceRequest, QueryBalanceResponse, QueryAllBalancesRequest, QueryAllBalancesResponse, QueryTotalSupplyRequest, QueryTotalSupplyResponse, QuerySupplyOfRequest, QuerySupplyOfResponse, QueryParamsRequest, QueryParamsResponse, QueryDenomMetadataRequest, QueryDenomMetadataResponse, QueryDenomsMetadataRequest, QueryDenomsMetadataResponse } from "./query";
-/** Query defines the RPC service */
+/** Query defines the gRPC querier service. */
 
 export interface Query {
+  /** Balance queries the balance of a single coin for a single account. */
   balance(request: QueryBalanceRequest): Promise<QueryBalanceResponse>;
-  /*Balance queries the balance of a single coin for a single account.*/
+  /** AllBalances queries the balance of all coins for a single account. */
 
   allBalances(request: QueryAllBalancesRequest): Promise<QueryAllBalancesResponse>;
-  /*AllBalances queries the balance of all coins for a single account.*/
+  /** TotalSupply queries the total supply of all coins. */
 
   totalSupply(request?: QueryTotalSupplyRequest): Promise<QueryTotalSupplyResponse>;
-  /*TotalSupply queries the total supply of all coins.*/
+  /** SupplyOf queries the supply of a single coin. */
 
   supplyOf(request: QuerySupplyOfRequest): Promise<QuerySupplyOfResponse>;
-  /*SupplyOf queries the supply of a single coin.*/
+  /** Params queries the parameters of x/bank module. */
 
   params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
-  /*Params queries the parameters of x/bank module.*/
+  /** DenomsMetadata queries the client metadata of a given coin denomination. */
 
   denomMetadata(request: QueryDenomMetadataRequest): Promise<QueryDenomMetadataResponse>;
-  /*DenomsMetadata queries the client metadata of a given coin denomination.*/
+  /** DenomsMetadata queries the client metadata for all registered coin denominations. */
 
   denomsMetadata(request?: QueryDenomsMetadataRequest): Promise<QueryDenomsMetadataResponse>;
-  /*DenomsMetadata queries the client metadata for all registered coin denominations.*/
-
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -120,5 +121,139 @@ export const createRpcQueryExtension = (base: QueryClient) => {
       return queryService.denomsMetadata(request);
     }
 
+  };
+};
+export interface UseBalanceQuery<TData> extends ReactQueryParams<QueryBalanceResponse, TData> {
+  request: QueryBalanceRequest;
+}
+export interface UseAllBalancesQuery<TData> extends ReactQueryParams<QueryAllBalancesResponse, TData> {
+  request: QueryAllBalancesRequest;
+}
+export interface UseTotalSupplyQuery<TData> extends ReactQueryParams<QueryTotalSupplyResponse, TData> {
+  request?: QueryTotalSupplyRequest;
+}
+export interface UseSupplyOfQuery<TData> extends ReactQueryParams<QuerySupplyOfResponse, TData> {
+  request: QuerySupplyOfRequest;
+}
+export interface UseParamsQuery<TData> extends ReactQueryParams<QueryParamsResponse, TData> {
+  request?: QueryParamsRequest;
+}
+export interface UseDenomMetadataQuery<TData> extends ReactQueryParams<QueryDenomMetadataResponse, TData> {
+  request: QueryDenomMetadataRequest;
+}
+export interface UseDenomsMetadataQuery<TData> extends ReactQueryParams<QueryDenomsMetadataResponse, TData> {
+  request?: QueryDenomsMetadataRequest;
+}
+
+const _queryClients: WeakMap<ProtobufRpcClient, QueryClientImpl> = new WeakMap();
+
+const getQueryService = (rpc: ProtobufRpcClient | undefined): QueryClientImpl | undefined => {
+  if (!rpc) return;
+
+  if (_queryClients.has(rpc)) {
+    return _queryClients.get(rpc);
+  }
+
+  const queryService = new QueryClientImpl(rpc);
+
+  _queryClients.set(rpc, queryService);
+
+  return queryService;
+};
+
+export const createRpcQueryHooks = (rpc: ProtobufRpcClient | undefined) => {
+  const queryService = getQueryService(rpc);
+
+  const useBalance = <TData = QueryBalanceResponse,>({
+    request,
+    options
+  }: UseBalanceQuery<TData>) => {
+    return useQuery<QueryBalanceResponse, Error, TData>(["balanceQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.balance(request);
+    }, options);
+  };
+
+  const useAllBalances = <TData = QueryAllBalancesResponse,>({
+    request,
+    options
+  }: UseAllBalancesQuery<TData>) => {
+    return useQuery<QueryAllBalancesResponse, Error, TData>(["allBalancesQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.allBalances(request);
+    }, options);
+  };
+
+  const useTotalSupply = <TData = QueryTotalSupplyResponse,>({
+    request,
+    options
+  }: UseTotalSupplyQuery<TData>) => {
+    return useQuery<QueryTotalSupplyResponse, Error, TData>(["totalSupplyQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.totalSupply(request);
+    }, options);
+  };
+
+  const useSupplyOf = <TData = QuerySupplyOfResponse,>({
+    request,
+    options
+  }: UseSupplyOfQuery<TData>) => {
+    return useQuery<QuerySupplyOfResponse, Error, TData>(["supplyOfQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.supplyOf(request);
+    }, options);
+  };
+
+  const useParams = <TData = QueryParamsResponse,>({
+    request,
+    options
+  }: UseParamsQuery<TData>) => {
+    return useQuery<QueryParamsResponse, Error, TData>(["paramsQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.params(request);
+    }, options);
+  };
+
+  const useDenomMetadata = <TData = QueryDenomMetadataResponse,>({
+    request,
+    options
+  }: UseDenomMetadataQuery<TData>) => {
+    return useQuery<QueryDenomMetadataResponse, Error, TData>(["denomMetadataQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.denomMetadata(request);
+    }, options);
+  };
+
+  const useDenomsMetadata = <TData = QueryDenomsMetadataResponse,>({
+    request,
+    options
+  }: UseDenomsMetadataQuery<TData>) => {
+    return useQuery<QueryDenomsMetadataResponse, Error, TData>(["denomsMetadataQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.denomsMetadata(request);
+    }, options);
+  };
+
+  return {
+    /** Balance queries the balance of a single coin for a single account. */
+    useBalance,
+
+    /** AllBalances queries the balance of all coins for a single account. */
+    useAllBalances,
+
+    /** TotalSupply queries the total supply of all coins. */
+    useTotalSupply,
+
+    /** SupplyOf queries the supply of a single coin. */
+    useSupplyOf,
+
+    /** Params queries the parameters of x/bank module. */
+    useParams,
+
+    /** DenomsMetadata queries the client metadata of a given coin denomination. */
+    useDenomMetadata,
+
+    /** DenomsMetadata queries the client metadata for all registered coin denominations. */
+    useDenomsMetadata
   };
 };

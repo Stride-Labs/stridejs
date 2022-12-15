@@ -1,19 +1,20 @@
-import { Rpc } from "@osmonauts/helpers";
+import { Rpc } from "../../helpers";
 import * as _m0 from "protobufjs/minimal";
-import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
+import { QueryClient, createProtobufRpcClient, ProtobufRpcClient } from "@cosmjs/stargate";
+import { ReactQueryParams } from "../../react-query";
+import { useQuery } from "@tanstack/react-query";
 import { QueryParamsRequest, QueryParamsResponse, QueryGetCallbackDataRequest, QueryGetCallbackDataResponse, QueryAllCallbackDataRequest, QueryAllCallbackDataResponse } from "./query";
-/** Query defines the RPC service */
+/** Query defines the gRPC querier service. */
 
 export interface Query {
+  /** Parameters queries the parameters of the module. */
   params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
-  /*Parameters queries the parameters of the module.*/
+  /** Queries a CallbackData by index. */
 
   callbackData(request: QueryGetCallbackDataRequest): Promise<QueryGetCallbackDataResponse>;
-  /*Queries a CallbackData by index.*/
+  /** Queries a list of CallbackData items. */
 
   callbackDataAll(request?: QueryAllCallbackDataRequest): Promise<QueryAllCallbackDataResponse>;
-  /*Queries a list of CallbackData items.*/
-
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -62,5 +63,75 @@ export const createRpcQueryExtension = (base: QueryClient) => {
       return queryService.callbackDataAll(request);
     }
 
+  };
+};
+export interface UseParamsQuery<TData> extends ReactQueryParams<QueryParamsResponse, TData> {
+  request?: QueryParamsRequest;
+}
+export interface UseCallbackDataQuery<TData> extends ReactQueryParams<QueryGetCallbackDataResponse, TData> {
+  request: QueryGetCallbackDataRequest;
+}
+export interface UseCallbackDataAllQuery<TData> extends ReactQueryParams<QueryAllCallbackDataResponse, TData> {
+  request?: QueryAllCallbackDataRequest;
+}
+
+const _queryClients: WeakMap<ProtobufRpcClient, QueryClientImpl> = new WeakMap();
+
+const getQueryService = (rpc: ProtobufRpcClient | undefined): QueryClientImpl | undefined => {
+  if (!rpc) return;
+
+  if (_queryClients.has(rpc)) {
+    return _queryClients.get(rpc);
+  }
+
+  const queryService = new QueryClientImpl(rpc);
+
+  _queryClients.set(rpc, queryService);
+
+  return queryService;
+};
+
+export const createRpcQueryHooks = (rpc: ProtobufRpcClient | undefined) => {
+  const queryService = getQueryService(rpc);
+
+  const useParams = <TData = QueryParamsResponse,>({
+    request,
+    options
+  }: UseParamsQuery<TData>) => {
+    return useQuery<QueryParamsResponse, Error, TData>(["paramsQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.params(request);
+    }, options);
+  };
+
+  const useCallbackData = <TData = QueryGetCallbackDataResponse,>({
+    request,
+    options
+  }: UseCallbackDataQuery<TData>) => {
+    return useQuery<QueryGetCallbackDataResponse, Error, TData>(["callbackDataQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.callbackData(request);
+    }, options);
+  };
+
+  const useCallbackDataAll = <TData = QueryAllCallbackDataResponse,>({
+    request,
+    options
+  }: UseCallbackDataAllQuery<TData>) => {
+    return useQuery<QueryAllCallbackDataResponse, Error, TData>(["callbackDataAllQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.callbackDataAll(request);
+    }, options);
+  };
+
+  return {
+    /** Parameters queries the parameters of the module. */
+    useParams,
+
+    /** Queries a CallbackData by index. */
+    useCallbackData,
+
+    /** Queries a list of CallbackData items. */
+    useCallbackDataAll
   };
 };

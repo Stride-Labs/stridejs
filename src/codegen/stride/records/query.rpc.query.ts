@@ -1,34 +1,35 @@
-import { Rpc } from "@osmonauts/helpers";
+import { Rpc } from "../../helpers";
 import * as _m0 from "protobufjs/minimal";
-import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
+import { QueryClient, createProtobufRpcClient, ProtobufRpcClient } from "@cosmjs/stargate";
+import { ReactQueryParams } from "../../react-query";
+import { useQuery } from "@tanstack/react-query";
 import { QueryParamsRequest, QueryParamsResponse, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponse, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponse, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponse, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponse, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponse, QueryGetDepositRecordRequest, QueryGetDepositRecordResponse, QueryAllDepositRecordRequest, QueryAllDepositRecordResponse } from "./query";
-/** Query defines the RPC service */
+/** Query defines the gRPC querier service. */
 
 export interface Query {
+  /** Parameters queries the parameters of the module. */
   params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
-  /*Parameters queries the parameters of the module.*/
+  /** Queries a UserRedemptionRecord by id. */
 
   userRedemptionRecord(request: QueryGetUserRedemptionRecordRequest): Promise<QueryGetUserRedemptionRecordResponse>;
-  /*Queries a UserRedemptionRecord by id.*/
+  /** Queries a list of UserRedemptionRecord items. */
 
   userRedemptionRecordAll(request?: QueryAllUserRedemptionRecordRequest): Promise<QueryAllUserRedemptionRecordResponse>;
-  /*Queries a list of UserRedemptionRecord items.*/
+  /** Queries a list of UserRedemptionRecord items by chainId / userId pair. */
 
   userRedemptionRecordForUser(request: QueryAllUserRedemptionRecordForUserRequest): Promise<QueryAllUserRedemptionRecordForUserResponse>;
-  /*Queries a list of UserRedemptionRecord items by chainId / userId pair.*/
+  /** Queries a EpochUnbondingRecord by id. */
 
   epochUnbondingRecord(request: QueryGetEpochUnbondingRecordRequest): Promise<QueryGetEpochUnbondingRecordResponse>;
-  /*Queries a EpochUnbondingRecord by id.*/
+  /** Queries a list of EpochUnbondingRecord items. */
 
   epochUnbondingRecordAll(request?: QueryAllEpochUnbondingRecordRequest): Promise<QueryAllEpochUnbondingRecordResponse>;
-  /*Queries a list of EpochUnbondingRecord items.*/
+  /** Queries a DepositRecord by id. */
 
   depositRecord(request: QueryGetDepositRecordRequest): Promise<QueryGetDepositRecordResponse>;
-  /*Queries a DepositRecord by id.*/
+  /** Queries a list of DepositRecord items. */
 
   depositRecordAll(request?: QueryAllDepositRecordRequest): Promise<QueryAllDepositRecordResponse>;
-  /*Queries a list of DepositRecord items.*/
-
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -136,5 +137,155 @@ export const createRpcQueryExtension = (base: QueryClient) => {
       return queryService.depositRecordAll(request);
     }
 
+  };
+};
+export interface UseParamsQuery<TData> extends ReactQueryParams<QueryParamsResponse, TData> {
+  request?: QueryParamsRequest;
+}
+export interface UseUserRedemptionRecordQuery<TData> extends ReactQueryParams<QueryGetUserRedemptionRecordResponse, TData> {
+  request: QueryGetUserRedemptionRecordRequest;
+}
+export interface UseUserRedemptionRecordAllQuery<TData> extends ReactQueryParams<QueryAllUserRedemptionRecordResponse, TData> {
+  request?: QueryAllUserRedemptionRecordRequest;
+}
+export interface UseUserRedemptionRecordForUserQuery<TData> extends ReactQueryParams<QueryAllUserRedemptionRecordForUserResponse, TData> {
+  request: QueryAllUserRedemptionRecordForUserRequest;
+}
+export interface UseEpochUnbondingRecordQuery<TData> extends ReactQueryParams<QueryGetEpochUnbondingRecordResponse, TData> {
+  request: QueryGetEpochUnbondingRecordRequest;
+}
+export interface UseEpochUnbondingRecordAllQuery<TData> extends ReactQueryParams<QueryAllEpochUnbondingRecordResponse, TData> {
+  request?: QueryAllEpochUnbondingRecordRequest;
+}
+export interface UseDepositRecordQuery<TData> extends ReactQueryParams<QueryGetDepositRecordResponse, TData> {
+  request: QueryGetDepositRecordRequest;
+}
+export interface UseDepositRecordAllQuery<TData> extends ReactQueryParams<QueryAllDepositRecordResponse, TData> {
+  request?: QueryAllDepositRecordRequest;
+}
+
+const _queryClients: WeakMap<ProtobufRpcClient, QueryClientImpl> = new WeakMap();
+
+const getQueryService = (rpc: ProtobufRpcClient | undefined): QueryClientImpl | undefined => {
+  if (!rpc) return;
+
+  if (_queryClients.has(rpc)) {
+    return _queryClients.get(rpc);
+  }
+
+  const queryService = new QueryClientImpl(rpc);
+
+  _queryClients.set(rpc, queryService);
+
+  return queryService;
+};
+
+export const createRpcQueryHooks = (rpc: ProtobufRpcClient | undefined) => {
+  const queryService = getQueryService(rpc);
+
+  const useParams = <TData = QueryParamsResponse,>({
+    request,
+    options
+  }: UseParamsQuery<TData>) => {
+    return useQuery<QueryParamsResponse, Error, TData>(["paramsQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.params(request);
+    }, options);
+  };
+
+  const useUserRedemptionRecord = <TData = QueryGetUserRedemptionRecordResponse,>({
+    request,
+    options
+  }: UseUserRedemptionRecordQuery<TData>) => {
+    return useQuery<QueryGetUserRedemptionRecordResponse, Error, TData>(["userRedemptionRecordQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.userRedemptionRecord(request);
+    }, options);
+  };
+
+  const useUserRedemptionRecordAll = <TData = QueryAllUserRedemptionRecordResponse,>({
+    request,
+    options
+  }: UseUserRedemptionRecordAllQuery<TData>) => {
+    return useQuery<QueryAllUserRedemptionRecordResponse, Error, TData>(["userRedemptionRecordAllQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.userRedemptionRecordAll(request);
+    }, options);
+  };
+
+  const useUserRedemptionRecordForUser = <TData = QueryAllUserRedemptionRecordForUserResponse,>({
+    request,
+    options
+  }: UseUserRedemptionRecordForUserQuery<TData>) => {
+    return useQuery<QueryAllUserRedemptionRecordForUserResponse, Error, TData>(["userRedemptionRecordForUserQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.userRedemptionRecordForUser(request);
+    }, options);
+  };
+
+  const useEpochUnbondingRecord = <TData = QueryGetEpochUnbondingRecordResponse,>({
+    request,
+    options
+  }: UseEpochUnbondingRecordQuery<TData>) => {
+    return useQuery<QueryGetEpochUnbondingRecordResponse, Error, TData>(["epochUnbondingRecordQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.epochUnbondingRecord(request);
+    }, options);
+  };
+
+  const useEpochUnbondingRecordAll = <TData = QueryAllEpochUnbondingRecordResponse,>({
+    request,
+    options
+  }: UseEpochUnbondingRecordAllQuery<TData>) => {
+    return useQuery<QueryAllEpochUnbondingRecordResponse, Error, TData>(["epochUnbondingRecordAllQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.epochUnbondingRecordAll(request);
+    }, options);
+  };
+
+  const useDepositRecord = <TData = QueryGetDepositRecordResponse,>({
+    request,
+    options
+  }: UseDepositRecordQuery<TData>) => {
+    return useQuery<QueryGetDepositRecordResponse, Error, TData>(["depositRecordQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.depositRecord(request);
+    }, options);
+  };
+
+  const useDepositRecordAll = <TData = QueryAllDepositRecordResponse,>({
+    request,
+    options
+  }: UseDepositRecordAllQuery<TData>) => {
+    return useQuery<QueryAllDepositRecordResponse, Error, TData>(["depositRecordAllQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.depositRecordAll(request);
+    }, options);
+  };
+
+  return {
+    /** Parameters queries the parameters of the module. */
+    useParams,
+
+    /** Queries a UserRedemptionRecord by id. */
+    useUserRedemptionRecord,
+
+    /** Queries a list of UserRedemptionRecord items. */
+    useUserRedemptionRecordAll,
+
+    /** Queries a list of UserRedemptionRecord items by chainId / userId pair. */
+    useUserRedemptionRecordForUser,
+
+    /** Queries a EpochUnbondingRecord by id. */
+    useEpochUnbondingRecord,
+
+    /** Queries a list of EpochUnbondingRecord items. */
+    useEpochUnbondingRecordAll,
+
+    /** Queries a DepositRecord by id. */
+    useDepositRecord,
+
+    /** Queries a list of DepositRecord items. */
+    useDepositRecordAll
   };
 };

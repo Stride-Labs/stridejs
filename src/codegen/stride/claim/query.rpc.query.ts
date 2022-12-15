@@ -1,28 +1,18 @@
-import { Rpc } from "@osmonauts/helpers";
+import { Rpc } from "../../helpers";
 import * as _m0 from "protobufjs/minimal";
-import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
+import { QueryClient, createProtobufRpcClient, ProtobufRpcClient } from "@cosmjs/stargate";
+import { ReactQueryParams } from "../../react-query";
+import { useQuery } from "@tanstack/react-query";
 import { QueryDistributorAccountBalanceRequest, QueryDistributorAccountBalanceResponse, QueryParamsRequest, QueryParamsResponse, QueryClaimRecordRequest, QueryClaimRecordResponse, QueryClaimableForActionRequest, QueryClaimableForActionResponse, QueryTotalClaimableRequest, QueryTotalClaimableResponse, QueryUserVestingsRequest, QueryUserVestingsResponse } from "./query";
-/** Query defines the RPC service */
+/** Query defines the gRPC querier service. */
 
 export interface Query {
   distributorAccountBalance(request: QueryDistributorAccountBalanceRequest): Promise<QueryDistributorAccountBalanceResponse>;
-  /*null*/
-
   params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
-  /*null*/
-
   claimRecord(request: QueryClaimRecordRequest): Promise<QueryClaimRecordResponse>;
-  /*null*/
-
   claimableForAction(request: QueryClaimableForActionRequest): Promise<QueryClaimableForActionResponse>;
-  /*null*/
-
   totalClaimable(request: QueryTotalClaimableRequest): Promise<QueryTotalClaimableResponse>;
-  /*null*/
-
   userVestings(request: QueryUserVestingsRequest): Promise<QueryUserVestingsResponse>;
-  /*null*/
-
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -102,5 +92,112 @@ export const createRpcQueryExtension = (base: QueryClient) => {
       return queryService.userVestings(request);
     }
 
+  };
+};
+export interface UseDistributorAccountBalanceQuery<TData> extends ReactQueryParams<QueryDistributorAccountBalanceResponse, TData> {
+  request: QueryDistributorAccountBalanceRequest;
+}
+export interface UseParamsQuery<TData> extends ReactQueryParams<QueryParamsResponse, TData> {
+  request?: QueryParamsRequest;
+}
+export interface UseClaimRecordQuery<TData> extends ReactQueryParams<QueryClaimRecordResponse, TData> {
+  request: QueryClaimRecordRequest;
+}
+export interface UseClaimableForActionQuery<TData> extends ReactQueryParams<QueryClaimableForActionResponse, TData> {
+  request: QueryClaimableForActionRequest;
+}
+export interface UseTotalClaimableQuery<TData> extends ReactQueryParams<QueryTotalClaimableResponse, TData> {
+  request: QueryTotalClaimableRequest;
+}
+export interface UseUserVestingsQuery<TData> extends ReactQueryParams<QueryUserVestingsResponse, TData> {
+  request: QueryUserVestingsRequest;
+}
+
+const _queryClients: WeakMap<ProtobufRpcClient, QueryClientImpl> = new WeakMap();
+
+const getQueryService = (rpc: ProtobufRpcClient | undefined): QueryClientImpl | undefined => {
+  if (!rpc) return;
+
+  if (_queryClients.has(rpc)) {
+    return _queryClients.get(rpc);
+  }
+
+  const queryService = new QueryClientImpl(rpc);
+
+  _queryClients.set(rpc, queryService);
+
+  return queryService;
+};
+
+export const createRpcQueryHooks = (rpc: ProtobufRpcClient | undefined) => {
+  const queryService = getQueryService(rpc);
+
+  const useDistributorAccountBalance = <TData = QueryDistributorAccountBalanceResponse,>({
+    request,
+    options
+  }: UseDistributorAccountBalanceQuery<TData>) => {
+    return useQuery<QueryDistributorAccountBalanceResponse, Error, TData>(["distributorAccountBalanceQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.distributorAccountBalance(request);
+    }, options);
+  };
+
+  const useParams = <TData = QueryParamsResponse,>({
+    request,
+    options
+  }: UseParamsQuery<TData>) => {
+    return useQuery<QueryParamsResponse, Error, TData>(["paramsQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.params(request);
+    }, options);
+  };
+
+  const useClaimRecord = <TData = QueryClaimRecordResponse,>({
+    request,
+    options
+  }: UseClaimRecordQuery<TData>) => {
+    return useQuery<QueryClaimRecordResponse, Error, TData>(["claimRecordQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.claimRecord(request);
+    }, options);
+  };
+
+  const useClaimableForAction = <TData = QueryClaimableForActionResponse,>({
+    request,
+    options
+  }: UseClaimableForActionQuery<TData>) => {
+    return useQuery<QueryClaimableForActionResponse, Error, TData>(["claimableForActionQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.claimableForAction(request);
+    }, options);
+  };
+
+  const useTotalClaimable = <TData = QueryTotalClaimableResponse,>({
+    request,
+    options
+  }: UseTotalClaimableQuery<TData>) => {
+    return useQuery<QueryTotalClaimableResponse, Error, TData>(["totalClaimableQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.totalClaimable(request);
+    }, options);
+  };
+
+  const useUserVestings = <TData = QueryUserVestingsResponse,>({
+    request,
+    options
+  }: UseUserVestingsQuery<TData>) => {
+    return useQuery<QueryUserVestingsResponse, Error, TData>(["userVestingsQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.userVestings(request);
+    }, options);
+  };
+
+  return {
+    useDistributorAccountBalance,
+    useParams,
+    useClaimRecord,
+    useClaimableForAction,
+    useTotalClaimable,
+    useUserVestings
   };
 };

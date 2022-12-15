@@ -1,6 +1,6 @@
 import { Duration, DurationSDKType } from "../../google/protobuf/duration";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "../../helpers";
 /** Params defines the claim module's parameters. */
 export interface Params {
     /** Params defines the claim module's parameters. */
@@ -14,9 +14,9 @@ export interface ParamsSDKType {
 export interface Airdrop {
     airdropIdentifier: string;
     /** seconds */
-    airdropStartTime: Date;
+    airdropStartTime?: Date;
     /** seconds */
-    airdropDuration: Duration;
+    airdropDuration?: Duration;
     /** denom of claimable asset */
     claimDenom: string;
     /** airdrop distribution account */
@@ -27,9 +27,9 @@ export interface Airdrop {
 export interface AirdropSDKType {
     airdrop_identifier: string;
     /** seconds */
-    airdrop_start_time: Date;
+    airdrop_start_time?: Date;
     /** seconds */
-    airdrop_duration: DurationSDKType;
+    airdrop_duration?: DurationSDKType;
     /** denom of claimable asset */
     claim_denom: string;
     /** airdrop distribution account */

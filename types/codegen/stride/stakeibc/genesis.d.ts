@@ -3,7 +3,7 @@ import { ICAAccount, ICAAccountSDKType } from "./ica_account";
 import { HostZone, HostZoneSDKType } from "./host_zone";
 import { EpochTracker, EpochTrackerSDKType } from "./epoch_tracker";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "../../helpers";
 export interface GenesisState_DenomToHostZoneEntry {
     key: string;
     value: string;
@@ -14,10 +14,10 @@ export interface GenesisState_DenomToHostZoneEntrySDKType {
 }
 /** GenesisState defines the stakeibc module's genesis state. */
 export interface GenesisState {
-    params: Params;
+    params?: Params;
     portId: string;
     /** list of zones that are registered by the protocol */
-    icaAccount: ICAAccount;
+    icaAccount?: ICAAccount;
     hostZoneList: HostZone[];
     hostZoneCount: Long;
     /** stores a map from hostZone base denom to hostZone */
@@ -28,10 +28,10 @@ export interface GenesisState {
 }
 /** GenesisState defines the stakeibc module's genesis state. */
 export interface GenesisStateSDKType {
-    params: ParamsSDKType;
+    params?: ParamsSDKType;
     port_id: string;
     /** list of zones that are registered by the protocol */
-    ica_account: ICAAccountSDKType;
+    ica_account?: ICAAccountSDKType;
     host_zone_list: HostZoneSDKType[];
     host_zone_count: Long;
     /** stores a map from hostZone base denom to hostZone */

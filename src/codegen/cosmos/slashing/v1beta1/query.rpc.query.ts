@@ -1,19 +1,20 @@
-import { Rpc } from "@osmonauts/helpers";
+import { Rpc } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
-import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
+import { QueryClient, createProtobufRpcClient, ProtobufRpcClient } from "@cosmjs/stargate";
+import { ReactQueryParams } from "../../../react-query";
+import { useQuery } from "@tanstack/react-query";
 import { QueryParamsRequest, QueryParamsResponse, QuerySigningInfoRequest, QuerySigningInfoResponse, QuerySigningInfosRequest, QuerySigningInfosResponse } from "./query";
-/** Query defines the RPC service */
+/** Query provides defines the gRPC querier service */
 
 export interface Query {
+  /** Params queries the parameters of slashing module */
   params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
-  /*Params queries the parameters of slashing module*/
+  /** SigningInfo queries the signing info of given cons address */
 
   signingInfo(request: QuerySigningInfoRequest): Promise<QuerySigningInfoResponse>;
-  /*SigningInfo queries the signing info of given cons address*/
+  /** SigningInfos queries signing info of all validators */
 
   signingInfos(request?: QuerySigningInfosRequest): Promise<QuerySigningInfosResponse>;
-  /*SigningInfos queries signing info of all validators*/
-
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -62,5 +63,75 @@ export const createRpcQueryExtension = (base: QueryClient) => {
       return queryService.signingInfos(request);
     }
 
+  };
+};
+export interface UseParamsQuery<TData> extends ReactQueryParams<QueryParamsResponse, TData> {
+  request?: QueryParamsRequest;
+}
+export interface UseSigningInfoQuery<TData> extends ReactQueryParams<QuerySigningInfoResponse, TData> {
+  request: QuerySigningInfoRequest;
+}
+export interface UseSigningInfosQuery<TData> extends ReactQueryParams<QuerySigningInfosResponse, TData> {
+  request?: QuerySigningInfosRequest;
+}
+
+const _queryClients: WeakMap<ProtobufRpcClient, QueryClientImpl> = new WeakMap();
+
+const getQueryService = (rpc: ProtobufRpcClient | undefined): QueryClientImpl | undefined => {
+  if (!rpc) return;
+
+  if (_queryClients.has(rpc)) {
+    return _queryClients.get(rpc);
+  }
+
+  const queryService = new QueryClientImpl(rpc);
+
+  _queryClients.set(rpc, queryService);
+
+  return queryService;
+};
+
+export const createRpcQueryHooks = (rpc: ProtobufRpcClient | undefined) => {
+  const queryService = getQueryService(rpc);
+
+  const useParams = <TData = QueryParamsResponse,>({
+    request,
+    options
+  }: UseParamsQuery<TData>) => {
+    return useQuery<QueryParamsResponse, Error, TData>(["paramsQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.params(request);
+    }, options);
+  };
+
+  const useSigningInfo = <TData = QuerySigningInfoResponse,>({
+    request,
+    options
+  }: UseSigningInfoQuery<TData>) => {
+    return useQuery<QuerySigningInfoResponse, Error, TData>(["signingInfoQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.signingInfo(request);
+    }, options);
+  };
+
+  const useSigningInfos = <TData = QuerySigningInfosResponse,>({
+    request,
+    options
+  }: UseSigningInfosQuery<TData>) => {
+    return useQuery<QuerySigningInfosResponse, Error, TData>(["signingInfosQuery", request], () => {
+      if (!queryService) throw new Error("Query Service not initialized");
+      return queryService.signingInfos(request);
+    }, options);
+  };
+
+  return {
+    /** Params queries the parameters of slashing module */
+    useParams,
+
+    /** SigningInfo queries the signing info of given cons address */
+    useSigningInfo,
+
+    /** SigningInfos queries signing info of all validators */
+    useSigningInfos
   };
 };

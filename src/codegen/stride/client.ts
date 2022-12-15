@@ -1,5 +1,6 @@
-import { OfflineSigner, GeneratedType, Registry } from "@cosmjs/proto-signing";
+import { GeneratedType, Registry, OfflineSigner } from "@cosmjs/proto-signing";
 import { defaultRegistryTypes, AminoTypes, SigningStargateClient } from "@cosmjs/stargate";
+import { HttpEndpoint } from "@cosmjs/tendermint-rpc";
 import * as strideClaimTxRegistry from "./claim/tx.registry";
 import * as strideInterchainqueryV1MessagesRegistry from "./interchainquery/v1/messages.registry";
 import * as strideStakeibcTxRegistry from "./stakeibc/tx.registry";
@@ -32,7 +33,7 @@ export const getSigningStrideClient = async ({
   signer,
   defaultTypes = defaultRegistryTypes
 }: {
-  rpcEndpoint: string;
+  rpcEndpoint: string | HttpEndpoint;
   signer: OfflineSigner;
   defaultTypes?: ReadonlyArray<[string, GeneratedType]>;
 }) => {
