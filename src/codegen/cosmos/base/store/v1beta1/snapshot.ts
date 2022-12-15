@@ -1,5 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "../../../../helpers";
 /** SnapshotItem is an item contained in a rootmulti.Store snapshot. */
 
 export interface SnapshotItem {

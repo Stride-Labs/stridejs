@@ -1,43 +1,25 @@
-import { Rpc } from "@osmonauts/helpers";
+import { Rpc } from "../../helpers";
 import * as _m0 from "protobufjs/minimal";
 import { MsgLiquidStake, MsgLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidator, MsgAddValidatorResponse, MsgChangeValidatorWeight, MsgChangeValidatorWeightResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgClearBalance, MsgClearBalanceResponse } from "./tx";
-/** Msg defines the RPC service */
+/** Msg defines the Msg service. */
 
 export interface Msg {
   liquidStake(request: MsgLiquidStake): Promise<MsgLiquidStakeResponse>;
-  /*null*/
-
   redeemStake(request: MsgRedeemStake): Promise<MsgRedeemStakeResponse>;
-  /*null*/
+  /**
+   * TODO(TEST-53): Remove this pre-launch (no need for clients to create /
+   * interact with ICAs)
+   */
 
   registerHostZone(request: MsgRegisterHostZone): Promise<MsgRegisterHostZoneResponse>;
-  /*TODO(TEST-53): Remove this pre-launch (no need for clients to create /
-   interact with ICAs)*/
-
   claimUndelegatedTokens(request: MsgClaimUndelegatedTokens): Promise<MsgClaimUndelegatedTokensResponse>;
-  /*null*/
-
   rebalanceValidators(request: MsgRebalanceValidators): Promise<MsgRebalanceValidatorsResponse>;
-  /*null*/
-
   addValidator(request: MsgAddValidator): Promise<MsgAddValidatorResponse>;
-  /*null*/
-
   changeValidatorWeight(request: MsgChangeValidatorWeight): Promise<MsgChangeValidatorWeightResponse>;
-  /*null*/
-
   deleteValidator(request: MsgDeleteValidator): Promise<MsgDeleteValidatorResponse>;
-  /*null*/
-
   restoreInterchainAccount(request: MsgRestoreInterchainAccount): Promise<MsgRestoreInterchainAccountResponse>;
-  /*null*/
-
   updateValidatorSharesExchRate(request: MsgUpdateValidatorSharesExchRate): Promise<MsgUpdateValidatorSharesExchRateResponse>;
-  /*null*/
-
   clearBalance(request: MsgClearBalance): Promise<MsgClearBalanceResponse>;
-  /*null*/
-
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;

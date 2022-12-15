@@ -1,5 +1,6 @@
-import { OfflineSigner, GeneratedType, Registry } from "@cosmjs/proto-signing";
+import { GeneratedType, Registry, OfflineSigner } from "@cosmjs/proto-signing";
 import { AminoTypes, SigningStargateClient } from "@cosmjs/stargate";
+import { HttpEndpoint } from "@cosmjs/tendermint-rpc";
 export declare const strideAminoConverters: {
     "/stride.stakeibc.MsgLiquidStake": {
         aminoType: string;
@@ -258,7 +259,7 @@ export declare const getSigningStrideClientOptions: ({ defaultTypes }?: {
     aminoTypes: AminoTypes;
 };
 export declare const getSigningStrideClient: ({ rpcEndpoint, signer, defaultTypes }: {
-    rpcEndpoint: string;
+    rpcEndpoint: string | HttpEndpoint;
     signer: OfflineSigner;
     defaultTypes?: ReadonlyArray<[string, GeneratedType]>;
 }) => Promise<SigningStargateClient>;

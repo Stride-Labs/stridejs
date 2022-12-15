@@ -1,6 +1,6 @@
 import { Any, AnySDKType } from "../../../google/protobuf/any";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial } from "../../../helpers";
 /** GenesisState defines the authz module's genesis state. */
 export interface GenesisState {
     authorization: GrantAuthorization[];
@@ -13,15 +13,15 @@ export interface GenesisStateSDKType {
 export interface GrantAuthorization {
     granter: string;
     grantee: string;
-    authorization: Any;
-    expiration: Date;
+    authorization?: Any;
+    expiration?: Date;
 }
 /** GrantAuthorization defines the GenesisState/GrantAuthorization type. */
 export interface GrantAuthorizationSDKType {
     granter: string;
     grantee: string;
-    authorization: AnySDKType;
-    expiration: Date;
+    authorization?: AnySDKType;
+    expiration?: Date;
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: _m0.Writer): _m0.Writer;

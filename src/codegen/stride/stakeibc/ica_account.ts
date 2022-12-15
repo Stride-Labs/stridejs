@@ -1,6 +1,6 @@
 import { Delegation, DelegationSDKType } from "./delegation";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial } from "../../helpers";
 export enum ICAAccountType {
   DELEGATION = 0,
   FEE = 1,
@@ -53,8 +53,9 @@ export function iCAAccountTypeToJSON(object: ICAAccountType): string {
     case ICAAccountType.REDEMPTION:
       return "REDEMPTION";
 
+    case ICAAccountType.UNRECOGNIZED:
     default:
-      return "UNKNOWN";
+      return "UNRECOGNIZED";
   }
 }
 /**

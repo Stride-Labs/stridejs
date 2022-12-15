@@ -1,5 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "../../helpers";
 export interface Params_ZoneComAddressEntry {
     key: string;
     value: string;

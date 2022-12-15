@@ -1,6 +1,6 @@
-import { Rpc } from "@osmonauts/helpers";
+import { Rpc } from "../../helpers";
 import { MsgSetAirdropAllocations, MsgSetAirdropAllocationsResponse, MsgClaimFreeAmount, MsgClaimFreeAmountResponse, MsgCreateAirdrop, MsgCreateAirdropResponse, MsgDeleteAirdrop, MsgDeleteAirdropResponse } from "./tx";
-/** Msg defines the RPC service */
+/** Msg defines the Msg service. */
 export interface Msg {
     setAirdropAllocations(request: MsgSetAirdropAllocations): Promise<MsgSetAirdropAllocationsResponse>;
     claimFreeAmount(request: MsgClaimFreeAmount): Promise<MsgClaimFreeAmountResponse>;

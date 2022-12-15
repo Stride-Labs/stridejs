@@ -1,5 +1,5 @@
 import { AminoMsg } from "@cosmjs/amino";
-import { Long } from "@osmonauts/helpers";
+import { Long } from "../../helpers";
 import { MsgSetAirdropAllocations, MsgClaimFreeAmount, MsgCreateAirdrop, MsgDeleteAirdrop } from "./tx";
 export interface AminoMsgSetAirdropAllocations extends AminoMsg {
   type: "/stride.claim.MsgSetAirdropAllocations";

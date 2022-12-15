@@ -1,5 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "@osmonauts/helpers";
+import { Long, DeepPartial } from "../../helpers";
 export enum DepositRecord_Status {
   /** TRANSFER_QUEUE - in transfer queue to be sent to the delegation ICA */
   TRANSFER_QUEUE = 0,
@@ -66,8 +66,9 @@ export function depositRecord_StatusToJSON(object: DepositRecord_Status): string
     case DepositRecord_Status.DELEGATION_IN_PROGRESS:
       return "DELEGATION_IN_PROGRESS";
 
+    case DepositRecord_Status.UNRECOGNIZED:
     default:
-      return "UNKNOWN";
+      return "UNRECOGNIZED";
   }
 }
 export enum DepositRecord_Source {
@@ -104,8 +105,9 @@ export function depositRecord_SourceToJSON(object: DepositRecord_Source): string
     case DepositRecord_Source.WITHDRAWAL_ICA:
       return "WITHDRAWAL_ICA";
 
+    case DepositRecord_Source.UNRECOGNIZED:
     default:
-      return "UNKNOWN";
+      return "UNRECOGNIZED";
   }
 }
 export enum HostZoneUnbonding_Status {
@@ -179,8 +181,9 @@ export function hostZoneUnbonding_StatusToJSON(object: HostZoneUnbonding_Status)
     case HostZoneUnbonding_Status.CLAIMABLE:
       return "CLAIMABLE";
 
+    case HostZoneUnbonding_Status.UNRECOGNIZED:
     default:
-      return "UNKNOWN";
+      return "UNRECOGNIZED";
   }
 }
 export interface UserRedemptionRecord {
@@ -269,7 +272,7 @@ export interface EpochUnbondingRecordSDKType {
  */
 
 export interface GenesisState {
-  params: Params;
+  params?: Params;
   portId: string;
   userRedemptionRecordList: UserRedemptionRecord[];
   userRedemptionRecordCount: Long;
@@ -283,7 +286,7 @@ export interface GenesisState {
  */
 
 export interface GenesisStateSDKType {
-  params: ParamsSDKType;
+  params?: ParamsSDKType;
   port_id: string;
   user_redemption_record_list: UserRedemptionRecordSDKType[];
   user_redemption_record_count: Long;

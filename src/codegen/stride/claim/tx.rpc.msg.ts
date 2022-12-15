@@ -1,21 +1,13 @@
-import { Rpc } from "@osmonauts/helpers";
+import { Rpc } from "../../helpers";
 import * as _m0 from "protobufjs/minimal";
 import { MsgSetAirdropAllocations, MsgSetAirdropAllocationsResponse, MsgClaimFreeAmount, MsgClaimFreeAmountResponse, MsgCreateAirdrop, MsgCreateAirdropResponse, MsgDeleteAirdrop, MsgDeleteAirdropResponse } from "./tx";
-/** Msg defines the RPC service */
+/** Msg defines the Msg service. */
 
 export interface Msg {
   setAirdropAllocations(request: MsgSetAirdropAllocations): Promise<MsgSetAirdropAllocationsResponse>;
-  /*null*/
-
   claimFreeAmount(request: MsgClaimFreeAmount): Promise<MsgClaimFreeAmountResponse>;
-  /*null*/
-
   createAirdrop(request: MsgCreateAirdrop): Promise<MsgCreateAirdropResponse>;
-  /*null*/
-
   deleteAirdrop(request: MsgDeleteAirdrop): Promise<MsgDeleteAirdropResponse>;
-  /*null*/
-
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;

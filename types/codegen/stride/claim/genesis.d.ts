@@ -1,18 +1,18 @@
 import { Params, ParamsSDKType } from "./params";
 import { ClaimRecord, ClaimRecordSDKType } from "./claim";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial } from "../../helpers";
 /** GenesisState defines the claim module's genesis state. */
 export interface GenesisState {
     /** params defines all the parameters of the module. */
-    params: Params;
+    params?: Params;
     /** list of claim records, one for every airdrop recipient */
     claimRecords: ClaimRecord[];
 }
 /** GenesisState defines the claim module's genesis state. */
 export interface GenesisStateSDKType {
     /** params defines all the parameters of the module. */
-    params: ParamsSDKType;
+    params?: ParamsSDKType;
     /** list of claim records, one for every airdrop recipient */
     claim_records: ClaimRecordSDKType[];
 }

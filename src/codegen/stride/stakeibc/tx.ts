@@ -1,6 +1,6 @@
 import { ICAAccountType, ICAAccountTypeSDKType } from "./ica_account";
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "@osmonauts/helpers";
+import { Long, DeepPartial } from "../../helpers";
 export interface MsgLiquidStake {
   creator: string;
   amount: Long;
