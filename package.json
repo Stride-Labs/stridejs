@@ -23,7 +23,7 @@
     "build": "npm run build:module && npm run build:main",
     "build:ts": "tsc --project ./tsconfig.json",
     "buidl": "npm run build && npm run build:ts",
-    "codegen": "yarn codegen:cleanup && yarn codegen:run",
+    "codegen": "npm run codegen:cleanup && npm run codegen:run",
     "codegen:run": "cross-env NODE_ENV=development babel-node scripts/codegen.js",
     "codegen:cleanup": "cross-env rm -rf ./codegen",
     "prepare": "npm run build",

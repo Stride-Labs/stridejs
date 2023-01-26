@@ -108,7 +108,7 @@ When first cloning the repo:
 
 ```bash
 git submodule update --init
-yarn
+npm run install
 ```
 
 ### Codegen
@@ -116,13 +116,13 @@ yarn
 Update the generated ts files:
 
 ```bash
-yarn codegen
+npm run codegen
 ```
 
 Build the module and types:
 
 ```bash
-yarn buidl
+npm run buidl
 ```
 
 ### Publishing
