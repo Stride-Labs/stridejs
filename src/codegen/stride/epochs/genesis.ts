@@ -1,22 +1,22 @@
 import { Timestamp } from "../../google/protobuf/timestamp";
 import { Duration, DurationSDKType } from "../../google/protobuf/duration";
 import * as _m0 from "protobufjs/minimal";
-import { toTimestamp, fromTimestamp, Long, DeepPartial } from "@osmonauts/helpers";
+import { toTimestamp, fromTimestamp, Long, DeepPartial } from "../../helpers";
 export interface EpochInfo {
   identifier: string;
-  startTime: Date;
-  duration: Duration;
+  startTime?: Date;
+  duration?: Duration;
   currentEpoch: Long;
-  currentEpochStartTime: Date;
+  currentEpochStartTime?: Date;
   epochCountingStarted: boolean;
   currentEpochStartHeight: Long;
 }
 export interface EpochInfoSDKType {
   identifier: string;
-  start_time: Date;
-  duration: DurationSDKType;
+  start_time?: Date;
+  duration?: DurationSDKType;
   current_epoch: Long;
-  current_epoch_start_time: Date;
+  current_epoch_start_time?: Date;
   epoch_counting_started: boolean;
   current_epoch_start_height: Long;
 }
@@ -126,7 +126,7 @@ export const EpochInfo = {
     const message = createBaseEpochInfo();
     message.identifier = object.identifier ?? "";
     message.startTime = object.startTime ?? undefined;
-    message.duration = object.duration ?? undefined;
+    message.duration = object.duration !== undefined && object.duration !== null ? Duration.fromPartial(object.duration) : undefined;
     message.currentEpoch = object.currentEpoch !== undefined && object.currentEpoch !== null ? Long.fromValue(object.currentEpoch) : Long.ZERO;
     message.currentEpochStartTime = object.currentEpochStartTime ?? undefined;
     message.epochCountingStarted = object.epochCountingStarted ?? false;

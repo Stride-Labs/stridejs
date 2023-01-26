@@ -1,7 +1,7 @@
 import { Timestamp } from "../../google/protobuf/timestamp";
 import { Duration, DurationSDKType } from "../../google/protobuf/duration";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, toTimestamp, fromTimestamp, Long } from "@osmonauts/helpers";
+import { DeepPartial, toTimestamp, fromTimestamp, Long } from "../../helpers";
 /** Params defines the claim module's parameters. */
 
 export interface Params {
@@ -18,10 +18,10 @@ export interface Airdrop {
   airdropIdentifier: string;
   /** seconds */
 
-  airdropStartTime: Date;
+  airdropStartTime?: Date;
   /** seconds */
 
-  airdropDuration: Duration;
+  airdropDuration?: Duration;
   /** denom of claimable asset */
 
   claimDenom: string;
@@ -36,10 +36,10 @@ export interface AirdropSDKType {
   airdrop_identifier: string;
   /** seconds */
 
-  airdrop_start_time: Date;
+  airdrop_start_time?: Date;
   /** seconds */
 
-  airdrop_duration: DurationSDKType;
+  airdrop_duration?: DurationSDKType;
   /** denom of claimable asset */
 
   claim_denom: string;
@@ -182,7 +182,7 @@ export const Airdrop = {
     const message = createBaseAirdrop();
     message.airdropIdentifier = object.airdropIdentifier ?? "";
     message.airdropStartTime = object.airdropStartTime ?? undefined;
-    message.airdropDuration = object.airdropDuration ?? undefined;
+    message.airdropDuration = object.airdropDuration !== undefined && object.airdropDuration !== null ? Duration.fromPartial(object.airdropDuration) : undefined;
     message.claimDenom = object.claimDenom ?? "";
     message.distributorAddress = object.distributorAddress ?? "";
     message.claimedSoFar = object.claimedSoFar !== undefined && object.claimedSoFar !== null ? Long.fromValue(object.claimedSoFar) : Long.ZERO;

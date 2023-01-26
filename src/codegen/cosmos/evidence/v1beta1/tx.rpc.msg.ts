@@ -1,13 +1,14 @@
-import { Rpc } from "@osmonauts/helpers";
+import { Rpc } from "../../../helpers";
 import * as _m0 from "protobufjs/minimal";
 import { MsgSubmitEvidence, MsgSubmitEvidenceResponse } from "./tx";
-/** Msg defines the RPC service */
+/** Msg defines the evidence Msg service. */
 
 export interface Msg {
+  /**
+   * SubmitEvidence submits an arbitrary Evidence of misbehavior such as equivocation or
+   * counterfactual signing.
+   */
   submitEvidence(request: MsgSubmitEvidence): Promise<MsgSubmitEvidenceResponse>;
-  /*SubmitEvidence submits an arbitrary Evidence of misbehavior such as equivocation or
-   counterfactual signing.*/
-
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;

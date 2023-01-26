@@ -1,5 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial } from "../../helpers";
 export declare enum Action {
     ACTION_FREE = 0,
     ACTION_LIQUID_STAKE = 1,
