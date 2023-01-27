@@ -25,7 +25,7 @@ export interface Validator {
     address: string;
     status: Validator_ValidatorStatus;
     commissionRate: Long;
-    delegationAmt: Long;
+    delegationAmt: string;
     weight: Long;
     internalExchangeRate: ValidatorExchangeRate;
 }
@@ -34,7 +34,7 @@ export interface ValidatorSDKType {
     address: string;
     status: Validator_ValidatorStatusSDKType;
     commission_rate: Long;
-    delegation_amt: Long;
+    delegation_amt: string;
     weight: Long;
     internal_exchange_rate: ValidatorExchangeRateSDKType;
 }

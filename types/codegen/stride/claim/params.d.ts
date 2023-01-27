@@ -1,6 +1,6 @@
 import { Duration, DurationSDKType } from "../../google/protobuf/duration";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, Long } from "@osmonauts/helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 /** Params defines the claim module's parameters. */
 export interface Params {
     /** Params defines the claim module's parameters. */
@@ -22,7 +22,7 @@ export interface Airdrop {
     /** airdrop distribution account */
     distributorAddress: string;
     /** ustrd tokens claimed so far in the current period */
-    claimedSoFar: Long;
+    claimedSoFar: string;
 }
 export interface AirdropSDKType {
     airdrop_identifier: string;
@@ -35,7 +35,7 @@ export interface AirdropSDKType {
     /** airdrop distribution account */
     distributor_address: string;
     /** ustrd tokens claimed so far in the current period */
-    claimed_so_far: Long;
+    claimed_so_far: string;
 }
 export declare const Params: {
     encode(message: Params, writer?: _m0.Writer): _m0.Writer;

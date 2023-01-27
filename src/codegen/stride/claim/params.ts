@@ -1,7 +1,7 @@
 import { Timestamp } from "../../google/protobuf/timestamp";
 import { Duration, DurationSDKType } from "../../google/protobuf/duration";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial, toTimestamp, fromTimestamp, Long } from "@osmonauts/helpers";
+import { DeepPartial, toTimestamp, fromTimestamp } from "@osmonauts/helpers";
 /** Params defines the claim module's parameters. */
 
 export interface Params {
@@ -30,7 +30,7 @@ export interface Airdrop {
   distributorAddress: string;
   /** ustrd tokens claimed so far in the current period */
 
-  claimedSoFar: Long;
+  claimedSoFar: string;
 }
 export interface AirdropSDKType {
   airdrop_identifier: string;
@@ -48,7 +48,7 @@ export interface AirdropSDKType {
   distributor_address: string;
   /** ustrd tokens claimed so far in the current period */
 
-  claimed_so_far: Long;
+  claimed_so_far: string;
 }
 
 function createBaseParams(): Params {
@@ -103,7 +103,7 @@ function createBaseAirdrop(): Airdrop {
     airdropDuration: undefined,
     claimDenom: "",
     distributorAddress: "",
-    claimedSoFar: Long.ZERO
+    claimedSoFar: ""
   };
 }
 
@@ -129,8 +129,8 @@ export const Airdrop = {
       writer.uint32(42).string(message.distributorAddress);
     }
 
-    if (!message.claimedSoFar.isZero()) {
-      writer.uint32(48).int64(message.claimedSoFar);
+    if (message.claimedSoFar !== "") {
+      writer.uint32(50).string(message.claimedSoFar);
     }
 
     return writer;
@@ -166,7 +166,7 @@ export const Airdrop = {
           break;
 
         case 6:
-          message.claimedSoFar = (reader.int64() as Long);
+          message.claimedSoFar = reader.string();
           break;
 
         default:
@@ -185,7 +185,7 @@ export const Airdrop = {
     message.airdropDuration = object.airdropDuration ?? undefined;
     message.claimDenom = object.claimDenom ?? "";
     message.distributorAddress = object.distributorAddress ?? "";
-    message.claimedSoFar = object.claimedSoFar !== undefined && object.claimedSoFar !== null ? Long.fromValue(object.claimedSoFar) : Long.ZERO;
+    message.claimedSoFar = object.claimedSoFar ?? "";
     return message;
   }
 

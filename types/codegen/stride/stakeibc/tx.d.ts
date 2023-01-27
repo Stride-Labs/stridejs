@@ -1,15 +1,15 @@
 import { ICAAccountType, ICAAccountTypeSDKType } from "./ica_account";
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "@osmonauts/helpers";
 export interface MsgLiquidStake {
     creator: string;
-    amount: Long;
+    amount: string;
     /** TODO(TEST-86): Update Denom -> HostDenom */
     hostDenom: string;
 }
 export interface MsgLiquidStakeSDKType {
     creator: string;
-    amount: Long;
+    amount: string;
     /** TODO(TEST-86): Update Denom -> HostDenom */
     host_denom: string;
 }
@@ -20,13 +20,13 @@ export interface MsgLiquidStakeResponseSDKType {
 export interface MsgClearBalance {
     creator: string;
     chainId: string;
-    amount: Long;
+    amount: string;
     channel: string;
 }
 export interface MsgClearBalanceSDKType {
     creator: string;
     chain_id: string;
-    amount: Long;
+    amount: string;
     channel: string;
 }
 export interface MsgClearBalanceResponse {
@@ -35,13 +35,13 @@ export interface MsgClearBalanceResponseSDKType {
 }
 export interface MsgRedeemStake {
     creator: string;
-    amount: Long;
+    amount: string;
     hostZone: string;
     receiver: string;
 }
 export interface MsgRedeemStakeSDKType {
     creator: string;
-    amount: Long;
+    amount: string;
     host_zone: string;
     receiver: string;
 }

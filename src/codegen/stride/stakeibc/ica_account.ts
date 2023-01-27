@@ -1,4 +1,3 @@
-import { Delegation, DelegationSDKType } from "./delegation";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial } from "@osmonauts/helpers";
 export enum ICAAccountType {
@@ -57,31 +56,18 @@ export function iCAAccountTypeToJSON(object: ICAAccountType): string {
       return "UNKNOWN";
   }
 }
-/**
- * TODO(TEST-XX): Update these fields to be more useful (e.g. balances should be
- * coins, maybe store port name directly)
- */
-
 export interface ICAAccount {
   address: string;
-  delegations: Delegation[];
   target: ICAAccountType;
 }
-/**
- * TODO(TEST-XX): Update these fields to be more useful (e.g. balances should be
- * coins, maybe store port name directly)
- */
-
 export interface ICAAccountSDKType {
   address: string;
-  delegations: DelegationSDKType[];
   target: ICAAccountTypeSDKType;
 }
 
 function createBaseICAAccount(): ICAAccount {
   return {
     address: "",
-    delegations: [],
     target: 0
   };
 }
@@ -90,10 +76,6 @@ export const ICAAccount = {
   encode(message: ICAAccount, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.address !== "") {
       writer.uint32(10).string(message.address);
-    }
-
-    for (const v of message.delegations) {
-      Delegation.encode(v!, writer.uint32(18).fork()).ldelim();
     }
 
     if (message.target !== 0) {
@@ -116,10 +98,6 @@ export const ICAAccount = {
           message.address = reader.string();
           break;
 
-        case 2:
-          message.delegations.push(Delegation.decode(reader, reader.uint32()));
-          break;
-
         case 3:
           message.target = (reader.int32() as any);
           break;
@@ -136,7 +114,6 @@ export const ICAAccount = {
   fromPartial(object: DeepPartial<ICAAccount>): ICAAccount {
     const message = createBaseICAAccount();
     message.address = object.address ?? "";
-    message.delegations = object.delegations?.map(e => Delegation.fromPartial(e)) || [];
     message.target = object.target ?? 0;
     return message;
   }

@@ -27,7 +27,7 @@ export interface HostZone {
     /** stores how many days we should wait before issuing unbondings */
     unbondingFrequency: Long;
     /** TODO(TEST-101) int to dec */
-    stakedBal: Long;
+    stakedBal: string;
     address: string;
 }
 /** next id: 19 */
@@ -55,7 +55,7 @@ export interface HostZoneSDKType {
     /** stores how many days we should wait before issuing unbondings */
     unbonding_frequency: Long;
     /** TODO(TEST-101) int to dec */
-    staked_bal: Long;
+    staked_bal: string;
     address: string;
 }
 export declare const HostZone: {

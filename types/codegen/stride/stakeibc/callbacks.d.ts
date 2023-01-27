@@ -1,15 +1,15 @@
 import { Coin, CoinSDKType } from "../../cosmos/base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "@osmonauts/helpers";
 /** ---------------------- Delegation Callbacks ---------------------- // */
 export interface SplitDelegation {
     validator: string;
-    amount: Long;
+    amount: string;
 }
 /** ---------------------- Delegation Callbacks ---------------------- // */
 export interface SplitDelegationSDKType {
     validator: string;
-    amount: Long;
+    amount: string;
 }
 export interface DelegateCallback {
     hostZoneId: string;
@@ -66,12 +66,12 @@ export interface RedemptionCallbackSDKType {
 export interface Rebalancing {
     srcValidator: string;
     dstValidator: string;
-    amt: Long;
+    amt: string;
 }
 export interface RebalancingSDKType {
     src_validator: string;
     dst_validator: string;
-    amt: Long;
+    amt: string;
 }
 export interface RebalanceCallback {
     hostZoneId: string;

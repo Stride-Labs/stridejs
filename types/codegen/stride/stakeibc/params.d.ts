@@ -39,6 +39,7 @@ export interface Params {
     safetyMaxRedemptionRateThreshold: Long;
     ibcTransferTimeoutNanos: Long;
     safetyNumValidators: Long;
+    safetyMaxSlashPercent: Long;
 }
 /**
  * Params defines the parameters for the module.
@@ -71,6 +72,7 @@ export interface ParamsSDKType {
     safety_max_redemption_rate_threshold: Long;
     ibc_transfer_timeout_nanos: Long;
     safety_num_validators: Long;
+    safety_max_slash_percent: Long;
 }
 export declare const Params_ZoneComAddressEntry: {
     encode(message: Params_ZoneComAddressEntry, writer?: _m0.Writer): _m0.Writer;

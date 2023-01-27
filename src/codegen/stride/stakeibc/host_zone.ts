@@ -33,7 +33,7 @@ export interface HostZone {
   unbondingFrequency: Long;
   /** TODO(TEST-101) int to dec */
 
-  stakedBal: Long;
+  stakedBal: string;
   address: string;
 }
 /** next id: 19 */
@@ -67,7 +67,7 @@ export interface HostZoneSDKType {
   unbonding_frequency: Long;
   /** TODO(TEST-101) int to dec */
 
-  staked_bal: Long;
+  staked_bal: string;
   address: string;
 }
 
@@ -88,7 +88,7 @@ function createBaseHostZone(): HostZone {
     lastRedemptionRate: "",
     redemptionRate: "",
     unbondingFrequency: Long.UZERO,
-    stakedBal: Long.UZERO,
+    stakedBal: "",
     address: ""
   };
 }
@@ -155,8 +155,8 @@ export const HostZone = {
       writer.uint32(112).uint64(message.unbondingFrequency);
     }
 
-    if (!message.stakedBal.isZero()) {
-      writer.uint32(104).uint64(message.stakedBal);
+    if (message.stakedBal !== "") {
+      writer.uint32(106).string(message.stakedBal);
     }
 
     if (message.address !== "") {
@@ -236,7 +236,7 @@ export const HostZone = {
           break;
 
         case 13:
-          message.stakedBal = (reader.uint64() as Long);
+          message.stakedBal = reader.string();
           break;
 
         case 18:
@@ -269,7 +269,7 @@ export const HostZone = {
     message.lastRedemptionRate = object.lastRedemptionRate ?? "";
     message.redemptionRate = object.redemptionRate ?? "";
     message.unbondingFrequency = object.unbondingFrequency !== undefined && object.unbondingFrequency !== null ? Long.fromValue(object.unbondingFrequency) : Long.UZERO;
-    message.stakedBal = object.stakedBal !== undefined && object.stakedBal !== null ? Long.fromValue(object.stakedBal) : Long.UZERO;
+    message.stakedBal = object.stakedBal ?? "";
     message.address = object.address ?? "";
     return message;
   }

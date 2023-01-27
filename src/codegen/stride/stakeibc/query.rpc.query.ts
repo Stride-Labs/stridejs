@@ -1,7 +1,7 @@
 import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryParamsRequest, QueryParamsResponse, QueryGetValidatorsRequest, QueryGetValidatorsResponse, QueryGetICAAccountRequest, QueryGetICAAccountResponse, QueryGetHostZoneRequest, QueryGetHostZoneResponse, QueryAllHostZoneRequest, QueryAllHostZoneResponse, QueryModuleAddressRequest, QueryModuleAddressResponse, QueryInterchainAccountFromAddressRequest, QueryInterchainAccountFromAddressResponse, QueryGetEpochTrackerRequest, QueryGetEpochTrackerResponse, QueryAllEpochTrackerRequest, QueryAllEpochTrackerResponse } from "./query";
+import { QueryParamsRequest, QueryParamsResponse, QueryGetValidatorsRequest, QueryGetValidatorsResponse, QueryGetHostZoneRequest, QueryGetHostZoneResponse, QueryAllHostZoneRequest, QueryAllHostZoneResponse, QueryModuleAddressRequest, QueryModuleAddressResponse, QueryInterchainAccountFromAddressRequest, QueryInterchainAccountFromAddressResponse, QueryGetEpochTrackerRequest, QueryGetEpochTrackerResponse, QueryAllEpochTrackerRequest, QueryAllEpochTrackerResponse, QueryGetNextPacketSequenceRequest, QueryGetNextPacketSequenceResponse } from "./query";
 /** Query defines the RPC service */
 
 export interface Query {
@@ -10,9 +10,6 @@ export interface Query {
 
   validators(request: QueryGetValidatorsRequest): Promise<QueryGetValidatorsResponse>;
   /*Queries a Validator by host zone.*/
-
-  iCAAccount(request?: QueryGetICAAccountRequest): Promise<QueryGetICAAccountResponse>;
-  /*Queries a ICAAccount by index.*/
 
   hostZone(request: QueryGetHostZoneRequest): Promise<QueryGetHostZoneResponse>;
   /*Queries a HostZone by id.*/
@@ -33,6 +30,9 @@ export interface Query {
   epochTrackerAll(request?: QueryAllEpochTrackerRequest): Promise<QueryAllEpochTrackerResponse>;
   /*Queries a list of EpochTracker items.*/
 
+  nextPacketSequence(request: QueryGetNextPacketSequenceRequest): Promise<QueryGetNextPacketSequenceResponse>;
+  /*Queries the next packet sequence for one for a given channel*/
+
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -41,13 +41,13 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
     this.params = this.params.bind(this);
     this.validators = this.validators.bind(this);
-    this.iCAAccount = this.iCAAccount.bind(this);
     this.hostZone = this.hostZone.bind(this);
     this.hostZoneAll = this.hostZoneAll.bind(this);
     this.moduleAddress = this.moduleAddress.bind(this);
     this.interchainAccountFromAddress = this.interchainAccountFromAddress.bind(this);
     this.epochTracker = this.epochTracker.bind(this);
     this.epochTrackerAll = this.epochTrackerAll.bind(this);
+    this.nextPacketSequence = this.nextPacketSequence.bind(this);
   }
 
   params(request: QueryParamsRequest = {}): Promise<QueryParamsResponse> {
@@ -60,12 +60,6 @@ export class QueryClientImpl implements Query {
     const data = QueryGetValidatorsRequest.encode(request).finish();
     const promise = this.rpc.request("stride.stakeibc.Query", "Validators", data);
     return promise.then(data => QueryGetValidatorsResponse.decode(new _m0.Reader(data)));
-  }
-
-  iCAAccount(request: QueryGetICAAccountRequest = {}): Promise<QueryGetICAAccountResponse> {
-    const data = QueryGetICAAccountRequest.encode(request).finish();
-    const promise = this.rpc.request("stride.stakeibc.Query", "ICAAccount", data);
-    return promise.then(data => QueryGetICAAccountResponse.decode(new _m0.Reader(data)));
   }
 
   hostZone(request: QueryGetHostZoneRequest): Promise<QueryGetHostZoneResponse> {
@@ -100,12 +94,16 @@ export class QueryClientImpl implements Query {
     return promise.then(data => QueryGetEpochTrackerResponse.decode(new _m0.Reader(data)));
   }
 
-  epochTrackerAll(request: QueryAllEpochTrackerRequest = {
-    pagination: undefined
-  }): Promise<QueryAllEpochTrackerResponse> {
+  epochTrackerAll(request: QueryAllEpochTrackerRequest = {}): Promise<QueryAllEpochTrackerResponse> {
     const data = QueryAllEpochTrackerRequest.encode(request).finish();
     const promise = this.rpc.request("stride.stakeibc.Query", "EpochTrackerAll", data);
     return promise.then(data => QueryAllEpochTrackerResponse.decode(new _m0.Reader(data)));
+  }
+
+  nextPacketSequence(request: QueryGetNextPacketSequenceRequest): Promise<QueryGetNextPacketSequenceResponse> {
+    const data = QueryGetNextPacketSequenceRequest.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Query", "NextPacketSequence", data);
+    return promise.then(data => QueryGetNextPacketSequenceResponse.decode(new _m0.Reader(data)));
   }
 
 }
@@ -119,10 +117,6 @@ export const createRpcQueryExtension = (base: QueryClient) => {
 
     validators(request: QueryGetValidatorsRequest): Promise<QueryGetValidatorsResponse> {
       return queryService.validators(request);
-    },
-
-    iCAAccount(request?: QueryGetICAAccountRequest): Promise<QueryGetICAAccountResponse> {
-      return queryService.iCAAccount(request);
     },
 
     hostZone(request: QueryGetHostZoneRequest): Promise<QueryGetHostZoneResponse> {
@@ -147,6 +141,10 @@ export const createRpcQueryExtension = (base: QueryClient) => {
 
     epochTrackerAll(request?: QueryAllEpochTrackerRequest): Promise<QueryAllEpochTrackerResponse> {
       return queryService.epochTrackerAll(request);
+    },
+
+    nextPacketSequence(request: QueryGetNextPacketSequenceRequest): Promise<QueryGetNextPacketSequenceResponse> {
+      return queryService.nextPacketSequence(request);
     }
 
   };

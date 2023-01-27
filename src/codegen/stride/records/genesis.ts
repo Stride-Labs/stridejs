@@ -188,7 +188,7 @@ export interface UserRedemptionRecord {
   id: string;
   sender: string;
   receiver: string;
-  amount: Long;
+  amount: string;
   denom: string;
   hostZoneId: string;
   epochNumber: Long;
@@ -199,7 +199,7 @@ export interface UserRedemptionRecordSDKType {
   id: string;
   sender: string;
   receiver: string;
-  amount: Long;
+  amount: string;
   denom: string;
   host_zone_id: string;
   epoch_number: Long;
@@ -221,7 +221,7 @@ export interface NoData {}
 export interface NoDataSDKType {}
 export interface DepositRecord {
   id: Long;
-  amount: Long;
+  amount: string;
   denom: string;
   hostZoneId: string;
   status: DepositRecord_Status;
@@ -230,7 +230,7 @@ export interface DepositRecord {
 }
 export interface DepositRecordSDKType {
   id: Long;
-  amount: Long;
+  amount: string;
   denom: string;
   host_zone_id: string;
   status: DepositRecord_StatusSDKType;
@@ -238,8 +238,8 @@ export interface DepositRecordSDKType {
   source: DepositRecord_SourceSDKType;
 }
 export interface HostZoneUnbonding {
-  stTokenAmount: Long;
-  nativeTokenAmount: Long;
+  stTokenAmount: string;
+  nativeTokenAmount: string;
   denom: string;
   hostZoneId: string;
   unbondingTime: Long;
@@ -247,8 +247,8 @@ export interface HostZoneUnbonding {
   userRedemptionRecords: string[];
 }
 export interface HostZoneUnbondingSDKType {
-  st_token_amount: Long;
-  native_token_amount: Long;
+  st_token_amount: string;
+  native_token_amount: string;
   denom: string;
   host_zone_id: string;
   unbonding_time: Long;
@@ -297,7 +297,7 @@ function createBaseUserRedemptionRecord(): UserRedemptionRecord {
     id: "",
     sender: "",
     receiver: "",
-    amount: Long.UZERO,
+    amount: "",
     denom: "",
     hostZoneId: "",
     epochNumber: Long.UZERO,
@@ -319,8 +319,8 @@ export const UserRedemptionRecord = {
       writer.uint32(26).string(message.receiver);
     }
 
-    if (!message.amount.isZero()) {
-      writer.uint32(32).uint64(message.amount);
+    if (message.amount !== "") {
+      writer.uint32(34).string(message.amount);
     }
 
     if (message.denom !== "") {
@@ -364,7 +364,7 @@ export const UserRedemptionRecord = {
           break;
 
         case 4:
-          message.amount = (reader.uint64() as Long);
+          message.amount = reader.string();
           break;
 
         case 5:
@@ -397,7 +397,7 @@ export const UserRedemptionRecord = {
     message.id = object.id ?? "";
     message.sender = object.sender ?? "";
     message.receiver = object.receiver ?? "";
-    message.amount = object.amount !== undefined && object.amount !== null ? Long.fromValue(object.amount) : Long.UZERO;
+    message.amount = object.amount ?? "";
     message.denom = object.denom ?? "";
     message.hostZoneId = object.hostZoneId ?? "";
     message.epochNumber = object.epochNumber !== undefined && object.epochNumber !== null ? Long.fromValue(object.epochNumber) : Long.UZERO;
@@ -523,7 +523,7 @@ export const NoData = {
 function createBaseDepositRecord(): DepositRecord {
   return {
     id: Long.UZERO,
-    amount: Long.ZERO,
+    amount: "",
     denom: "",
     hostZoneId: "",
     status: 0,
@@ -538,8 +538,8 @@ export const DepositRecord = {
       writer.uint32(8).uint64(message.id);
     }
 
-    if (!message.amount.isZero()) {
-      writer.uint32(16).int64(message.amount);
+    if (message.amount !== "") {
+      writer.uint32(18).string(message.amount);
     }
 
     if (message.denom !== "") {
@@ -579,7 +579,7 @@ export const DepositRecord = {
           break;
 
         case 2:
-          message.amount = (reader.int64() as Long);
+          message.amount = reader.string();
           break;
 
         case 3:
@@ -614,7 +614,7 @@ export const DepositRecord = {
   fromPartial(object: DeepPartial<DepositRecord>): DepositRecord {
     const message = createBaseDepositRecord();
     message.id = object.id !== undefined && object.id !== null ? Long.fromValue(object.id) : Long.UZERO;
-    message.amount = object.amount !== undefined && object.amount !== null ? Long.fromValue(object.amount) : Long.ZERO;
+    message.amount = object.amount ?? "";
     message.denom = object.denom ?? "";
     message.hostZoneId = object.hostZoneId ?? "";
     message.status = object.status ?? 0;
@@ -627,8 +627,8 @@ export const DepositRecord = {
 
 function createBaseHostZoneUnbonding(): HostZoneUnbonding {
   return {
-    stTokenAmount: Long.UZERO,
-    nativeTokenAmount: Long.UZERO,
+    stTokenAmount: "",
+    nativeTokenAmount: "",
     denom: "",
     hostZoneId: "",
     unbondingTime: Long.UZERO,
@@ -639,12 +639,12 @@ function createBaseHostZoneUnbonding(): HostZoneUnbonding {
 
 export const HostZoneUnbonding = {
   encode(message: HostZoneUnbonding, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (!message.stTokenAmount.isZero()) {
-      writer.uint32(8).uint64(message.stTokenAmount);
+    if (message.stTokenAmount !== "") {
+      writer.uint32(10).string(message.stTokenAmount);
     }
 
-    if (!message.nativeTokenAmount.isZero()) {
-      writer.uint32(16).uint64(message.nativeTokenAmount);
+    if (message.nativeTokenAmount !== "") {
+      writer.uint32(18).string(message.nativeTokenAmount);
     }
 
     if (message.denom !== "") {
@@ -680,11 +680,11 @@ export const HostZoneUnbonding = {
 
       switch (tag >>> 3) {
         case 1:
-          message.stTokenAmount = (reader.uint64() as Long);
+          message.stTokenAmount = reader.string();
           break;
 
         case 2:
-          message.nativeTokenAmount = (reader.uint64() as Long);
+          message.nativeTokenAmount = reader.string();
           break;
 
         case 3:
@@ -718,8 +718,8 @@ export const HostZoneUnbonding = {
 
   fromPartial(object: DeepPartial<HostZoneUnbonding>): HostZoneUnbonding {
     const message = createBaseHostZoneUnbonding();
-    message.stTokenAmount = object.stTokenAmount !== undefined && object.stTokenAmount !== null ? Long.fromValue(object.stTokenAmount) : Long.UZERO;
-    message.nativeTokenAmount = object.nativeTokenAmount !== undefined && object.nativeTokenAmount !== null ? Long.fromValue(object.nativeTokenAmount) : Long.UZERO;
+    message.stTokenAmount = object.stTokenAmount ?? "";
+    message.nativeTokenAmount = object.nativeTokenAmount ?? "";
     message.denom = object.denom ?? "";
     message.hostZoneId = object.hostZoneId ?? "";
     message.unbondingTime = object.unbondingTime !== undefined && object.unbondingTime !== null ? Long.fromValue(object.unbondingTime) : Long.UZERO;

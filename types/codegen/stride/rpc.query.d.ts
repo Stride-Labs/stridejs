@@ -166,13 +166,13 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
         stakeibc: {
             params(request?: import("./stakeibc/query").QueryParamsRequest): Promise<import("./stakeibc/query").QueryParamsResponse>;
             validators(request: import("./stakeibc/query").QueryGetValidatorsRequest): Promise<import("./stakeibc/query").QueryGetValidatorsResponse>;
-            iCAAccount(request?: import("./stakeibc/query").QueryGetICAAccountRequest): Promise<import("./stakeibc/query").QueryGetICAAccountResponse>;
             hostZone(request: import("./stakeibc/query").QueryGetHostZoneRequest): Promise<import("./stakeibc/query").QueryGetHostZoneResponse>;
             hostZoneAll(request?: import("./stakeibc/query").QueryAllHostZoneRequest): Promise<import("./stakeibc/query").QueryAllHostZoneResponse>;
             moduleAddress(request: import("./stakeibc/query").QueryModuleAddressRequest): Promise<import("./stakeibc/query").QueryModuleAddressResponse>;
             interchainAccountFromAddress(request: import("./stakeibc/query").QueryInterchainAccountFromAddressRequest): Promise<import("./stakeibc/query").QueryInterchainAccountFromAddressResponse>;
             epochTracker(request: import("./stakeibc/query").QueryGetEpochTrackerRequest): Promise<import("./stakeibc/query").QueryGetEpochTrackerResponse>;
             epochTrackerAll(request?: import("./stakeibc/query").QueryAllEpochTrackerRequest): Promise<import("./stakeibc/query").QueryAllEpochTrackerResponse>;
+            nextPacketSequence(request: import("./stakeibc/query").QueryGetNextPacketSequenceRequest): Promise<import("./stakeibc/query").QueryGetNextPacketSequenceResponse>;
         };
     };
 }>;

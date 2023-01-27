@@ -1,4 +1,3 @@
-import { Delegation, DelegationSDKType } from "./delegation";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial } from "@osmonauts/helpers";
 export declare enum ICAAccountType {
@@ -17,22 +16,12 @@ export declare enum ICAAccountTypeSDKType {
 }
 export declare function iCAAccountTypeFromJSON(object: any): ICAAccountType;
 export declare function iCAAccountTypeToJSON(object: ICAAccountType): string;
-/**
- * TODO(TEST-XX): Update these fields to be more useful (e.g. balances should be
- * coins, maybe store port name directly)
- */
 export interface ICAAccount {
     address: string;
-    delegations: Delegation[];
     target: ICAAccountType;
 }
-/**
- * TODO(TEST-XX): Update these fields to be more useful (e.g. balances should be
- * coins, maybe store port name directly)
- */
 export interface ICAAccountSDKType {
     address: string;
-    delegations: DelegationSDKType[];
     target: ICAAccountTypeSDKType;
 }
 export declare const ICAAccount: {

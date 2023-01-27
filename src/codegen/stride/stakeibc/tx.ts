@@ -1,16 +1,16 @@
 import { ICAAccountType, ICAAccountTypeSDKType } from "./ica_account";
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "@osmonauts/helpers";
 export interface MsgLiquidStake {
   creator: string;
-  amount: Long;
+  amount: string;
   /** TODO(TEST-86): Update Denom -> HostDenom */
 
   hostDenom: string;
 }
 export interface MsgLiquidStakeSDKType {
   creator: string;
-  amount: Long;
+  amount: string;
   /** TODO(TEST-86): Update Denom -> HostDenom */
 
   host_denom: string;
@@ -20,26 +20,26 @@ export interface MsgLiquidStakeResponseSDKType {}
 export interface MsgClearBalance {
   creator: string;
   chainId: string;
-  amount: Long;
+  amount: string;
   channel: string;
 }
 export interface MsgClearBalanceSDKType {
   creator: string;
   chain_id: string;
-  amount: Long;
+  amount: string;
   channel: string;
 }
 export interface MsgClearBalanceResponse {}
 export interface MsgClearBalanceResponseSDKType {}
 export interface MsgRedeemStake {
   creator: string;
-  amount: Long;
+  amount: string;
   hostZone: string;
   receiver: string;
 }
 export interface MsgRedeemStakeSDKType {
   creator: string;
-  amount: Long;
+  amount: string;
   host_zone: string;
   receiver: string;
 }
@@ -181,7 +181,7 @@ export interface MsgUpdateValidatorSharesExchRateResponseSDKType {}
 function createBaseMsgLiquidStake(): MsgLiquidStake {
   return {
     creator: "",
-    amount: Long.UZERO,
+    amount: "",
     hostDenom: ""
   };
 }
@@ -192,8 +192,8 @@ export const MsgLiquidStake = {
       writer.uint32(10).string(message.creator);
     }
 
-    if (!message.amount.isZero()) {
-      writer.uint32(16).uint64(message.amount);
+    if (message.amount !== "") {
+      writer.uint32(18).string(message.amount);
     }
 
     if (message.hostDenom !== "") {
@@ -217,7 +217,7 @@ export const MsgLiquidStake = {
           break;
 
         case 2:
-          message.amount = (reader.uint64() as Long);
+          message.amount = reader.string();
           break;
 
         case 3:
@@ -236,7 +236,7 @@ export const MsgLiquidStake = {
   fromPartial(object: DeepPartial<MsgLiquidStake>): MsgLiquidStake {
     const message = createBaseMsgLiquidStake();
     message.creator = object.creator ?? "";
-    message.amount = object.amount !== undefined && object.amount !== null ? Long.fromValue(object.amount) : Long.UZERO;
+    message.amount = object.amount ?? "";
     message.hostDenom = object.hostDenom ?? "";
     return message;
   }
@@ -281,7 +281,7 @@ function createBaseMsgClearBalance(): MsgClearBalance {
   return {
     creator: "",
     chainId: "",
-    amount: Long.UZERO,
+    amount: "",
     channel: ""
   };
 }
@@ -296,8 +296,8 @@ export const MsgClearBalance = {
       writer.uint32(18).string(message.chainId);
     }
 
-    if (!message.amount.isZero()) {
-      writer.uint32(24).uint64(message.amount);
+    if (message.amount !== "") {
+      writer.uint32(26).string(message.amount);
     }
 
     if (message.channel !== "") {
@@ -325,7 +325,7 @@ export const MsgClearBalance = {
           break;
 
         case 3:
-          message.amount = (reader.uint64() as Long);
+          message.amount = reader.string();
           break;
 
         case 4:
@@ -345,7 +345,7 @@ export const MsgClearBalance = {
     const message = createBaseMsgClearBalance();
     message.creator = object.creator ?? "";
     message.chainId = object.chainId ?? "";
-    message.amount = object.amount !== undefined && object.amount !== null ? Long.fromValue(object.amount) : Long.UZERO;
+    message.amount = object.amount ?? "";
     message.channel = object.channel ?? "";
     return message;
   }
@@ -389,7 +389,7 @@ export const MsgClearBalanceResponse = {
 function createBaseMsgRedeemStake(): MsgRedeemStake {
   return {
     creator: "",
-    amount: Long.UZERO,
+    amount: "",
     hostZone: "",
     receiver: ""
   };
@@ -401,8 +401,8 @@ export const MsgRedeemStake = {
       writer.uint32(10).string(message.creator);
     }
 
-    if (!message.amount.isZero()) {
-      writer.uint32(16).uint64(message.amount);
+    if (message.amount !== "") {
+      writer.uint32(18).string(message.amount);
     }
 
     if (message.hostZone !== "") {
@@ -430,7 +430,7 @@ export const MsgRedeemStake = {
           break;
 
         case 2:
-          message.amount = (reader.uint64() as Long);
+          message.amount = reader.string();
           break;
 
         case 3:
@@ -453,7 +453,7 @@ export const MsgRedeemStake = {
   fromPartial(object: DeepPartial<MsgRedeemStake>): MsgRedeemStake {
     const message = createBaseMsgRedeemStake();
     message.creator = object.creator ?? "";
-    message.amount = object.amount !== undefined && object.amount !== null ? Long.fromValue(object.amount) : Long.UZERO;
+    message.amount = object.amount ?? "";
     message.hostZone = object.hostZone ?? "";
     message.receiver = object.receiver ?? "";
     return message;

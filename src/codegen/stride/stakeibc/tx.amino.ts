@@ -111,7 +111,7 @@ export const AminoConverter = {
     }: MsgLiquidStake): AminoMsgLiquidStake["value"] => {
       return {
         creator,
-        amount: amount.toString(),
+        amount,
         host_denom: hostDenom
       };
     },
@@ -122,7 +122,7 @@ export const AminoConverter = {
     }: AminoMsgLiquidStake["value"]): MsgLiquidStake => {
       return {
         creator,
-        amount: Long.fromString(amount),
+        amount,
         hostDenom: host_denom
       };
     }
@@ -137,7 +137,7 @@ export const AminoConverter = {
     }: MsgRedeemStake): AminoMsgRedeemStake["value"] => {
       return {
         creator,
-        amount: amount.toString(),
+        amount,
         host_zone: hostZone,
         receiver
       };
@@ -150,7 +150,7 @@ export const AminoConverter = {
     }: AminoMsgRedeemStake["value"]): MsgRedeemStake => {
       return {
         creator,
-        amount: Long.fromString(amount),
+        amount,
         hostZone: host_zone,
         receiver
       };
@@ -403,7 +403,7 @@ export const AminoConverter = {
       return {
         creator,
         chain_id: chainId,
-        amount: amount.toString(),
+        amount,
         channel
       };
     },
@@ -416,7 +416,7 @@ export const AminoConverter = {
       return {
         creator,
         chainId: chain_id,
-        amount: Long.fromString(amount),
+        amount,
         channel
       };
     }

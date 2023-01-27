@@ -1,17 +1,17 @@
 import { Coin, CoinSDKType } from "../../cosmos/base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "@osmonauts/helpers";
 /** ---------------------- Delegation Callbacks ---------------------- // */
 
 export interface SplitDelegation {
   validator: string;
-  amount: Long;
+  amount: string;
 }
 /** ---------------------- Delegation Callbacks ---------------------- // */
 
 export interface SplitDelegationSDKType {
   validator: string;
-  amount: Long;
+  amount: string;
 }
 export interface DelegateCallback {
   hostZoneId: string;
@@ -74,12 +74,12 @@ export interface RedemptionCallbackSDKType {
 export interface Rebalancing {
   srcValidator: string;
   dstValidator: string;
-  amt: Long;
+  amt: string;
 }
 export interface RebalancingSDKType {
   src_validator: string;
   dst_validator: string;
-  amt: Long;
+  amt: string;
 }
 export interface RebalanceCallback {
   hostZoneId: string;
@@ -93,7 +93,7 @@ export interface RebalanceCallbackSDKType {
 function createBaseSplitDelegation(): SplitDelegation {
   return {
     validator: "",
-    amount: Long.UZERO
+    amount: ""
   };
 }
 
@@ -103,8 +103,8 @@ export const SplitDelegation = {
       writer.uint32(10).string(message.validator);
     }
 
-    if (!message.amount.isZero()) {
-      writer.uint32(16).uint64(message.amount);
+    if (message.amount !== "") {
+      writer.uint32(18).string(message.amount);
     }
 
     return writer;
@@ -124,7 +124,7 @@ export const SplitDelegation = {
           break;
 
         case 2:
-          message.amount = (reader.uint64() as Long);
+          message.amount = reader.string();
           break;
 
         default:
@@ -139,7 +139,7 @@ export const SplitDelegation = {
   fromPartial(object: DeepPartial<SplitDelegation>): SplitDelegation {
     const message = createBaseSplitDelegation();
     message.validator = object.validator ?? "";
-    message.amount = object.amount !== undefined && object.amount !== null ? Long.fromValue(object.amount) : Long.UZERO;
+    message.amount = object.amount ?? "";
     return message;
   }
 
@@ -478,7 +478,7 @@ function createBaseRebalancing(): Rebalancing {
   return {
     srcValidator: "",
     dstValidator: "",
-    amt: Long.UZERO
+    amt: ""
   };
 }
 
@@ -492,8 +492,8 @@ export const Rebalancing = {
       writer.uint32(18).string(message.dstValidator);
     }
 
-    if (!message.amt.isZero()) {
-      writer.uint32(24).uint64(message.amt);
+    if (message.amt !== "") {
+      writer.uint32(26).string(message.amt);
     }
 
     return writer;
@@ -517,7 +517,7 @@ export const Rebalancing = {
           break;
 
         case 3:
-          message.amt = (reader.uint64() as Long);
+          message.amt = reader.string();
           break;
 
         default:
@@ -533,7 +533,7 @@ export const Rebalancing = {
     const message = createBaseRebalancing();
     message.srcValidator = object.srcValidator ?? "";
     message.dstValidator = object.dstValidator ?? "";
-    message.amt = object.amt !== undefined && object.amt !== null ? Long.fromValue(object.amt) : Long.UZERO;
+    message.amt = object.amt ?? "";
     return message;
   }
 

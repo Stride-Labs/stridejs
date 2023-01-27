@@ -51,7 +51,7 @@ export interface Validator {
   address: string;
   status: Validator_ValidatorStatus;
   commissionRate: Long;
-  delegationAmt: Long;
+  delegationAmt: string;
   weight: Long;
   internalExchangeRate: ValidatorExchangeRate;
 }
@@ -60,7 +60,7 @@ export interface ValidatorSDKType {
   address: string;
   status: Validator_ValidatorStatusSDKType;
   commission_rate: Long;
-  delegation_amt: Long;
+  delegation_amt: string;
   weight: Long;
   internal_exchange_rate: ValidatorExchangeRateSDKType;
 }
@@ -126,7 +126,7 @@ function createBaseValidator(): Validator {
     address: "",
     status: 0,
     commissionRate: Long.UZERO,
-    delegationAmt: Long.UZERO,
+    delegationAmt: "",
     weight: Long.UZERO,
     internalExchangeRate: undefined
   };
@@ -150,8 +150,8 @@ export const Validator = {
       writer.uint32(32).uint64(message.commissionRate);
     }
 
-    if (!message.delegationAmt.isZero()) {
-      writer.uint32(40).uint64(message.delegationAmt);
+    if (message.delegationAmt !== "") {
+      writer.uint32(42).string(message.delegationAmt);
     }
 
     if (!message.weight.isZero()) {
@@ -191,7 +191,7 @@ export const Validator = {
           break;
 
         case 5:
-          message.delegationAmt = (reader.uint64() as Long);
+          message.delegationAmt = reader.string();
           break;
 
         case 6:
@@ -217,7 +217,7 @@ export const Validator = {
     message.address = object.address ?? "";
     message.status = object.status ?? 0;
     message.commissionRate = object.commissionRate !== undefined && object.commissionRate !== null ? Long.fromValue(object.commissionRate) : Long.UZERO;
-    message.delegationAmt = object.delegationAmt !== undefined && object.delegationAmt !== null ? Long.fromValue(object.delegationAmt) : Long.UZERO;
+    message.delegationAmt = object.delegationAmt ?? "";
     message.weight = object.weight !== undefined && object.weight !== null ? Long.fromValue(object.weight) : Long.UZERO;
     message.internalExchangeRate = object.internalExchangeRate !== undefined && object.internalExchangeRate !== null ? ValidatorExchangeRate.fromPartial(object.internalExchangeRate) : undefined;
     return message;

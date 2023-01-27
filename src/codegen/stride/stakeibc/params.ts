@@ -41,6 +41,7 @@ export interface Params {
   safetyMaxRedemptionRateThreshold: Long;
   ibcTransferTimeoutNanos: Long;
   safetyNumValidators: Long;
+  safetyMaxSlashPercent: Long;
 }
 /**
  * Params defines the parameters for the module.
@@ -75,6 +76,7 @@ export interface ParamsSDKType {
   safety_max_redemption_rate_threshold: Long;
   ibc_transfer_timeout_nanos: Long;
   safety_num_validators: Long;
+  safety_max_slash_percent: Long;
 }
 
 function createBaseParams_ZoneComAddressEntry(): Params_ZoneComAddressEntry {
@@ -150,7 +152,8 @@ function createBaseParams(): Params {
     safetyMinRedemptionRateThreshold: Long.UZERO,
     safetyMaxRedemptionRateThreshold: Long.UZERO,
     ibcTransferTimeoutNanos: Long.UZERO,
-    safetyNumValidators: Long.UZERO
+    safetyNumValidators: Long.UZERO,
+    safetyMaxSlashPercent: Long.UZERO
   };
 }
 
@@ -225,6 +228,10 @@ export const Params = {
 
     if (!message.safetyNumValidators.isZero()) {
       writer.uint32(136).uint64(message.safetyNumValidators);
+    }
+
+    if (!message.safetyMaxSlashPercent.isZero()) {
+      writer.uint32(144).uint64(message.safetyMaxSlashPercent);
     }
 
     return writer;
@@ -312,6 +319,10 @@ export const Params = {
           message.safetyNumValidators = (reader.uint64() as Long);
           break;
 
+        case 18:
+          message.safetyMaxSlashPercent = (reader.uint64() as Long);
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -348,6 +359,7 @@ export const Params = {
     message.safetyMaxRedemptionRateThreshold = object.safetyMaxRedemptionRateThreshold !== undefined && object.safetyMaxRedemptionRateThreshold !== null ? Long.fromValue(object.safetyMaxRedemptionRateThreshold) : Long.UZERO;
     message.ibcTransferTimeoutNanos = object.ibcTransferTimeoutNanos !== undefined && object.ibcTransferTimeoutNanos !== null ? Long.fromValue(object.ibcTransferTimeoutNanos) : Long.UZERO;
     message.safetyNumValidators = object.safetyNumValidators !== undefined && object.safetyNumValidators !== null ? Long.fromValue(object.safetyNumValidators) : Long.UZERO;
+    message.safetyMaxSlashPercent = object.safetyMaxSlashPercent !== undefined && object.safetyMaxSlashPercent !== null ? Long.fromValue(object.safetyMaxSlashPercent) : Long.UZERO;
     return message;
   }
 

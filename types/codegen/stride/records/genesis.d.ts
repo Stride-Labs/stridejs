@@ -65,7 +65,7 @@ export interface UserRedemptionRecord {
     id: string;
     sender: string;
     receiver: string;
-    amount: Long;
+    amount: string;
     denom: string;
     hostZoneId: string;
     epochNumber: Long;
@@ -76,7 +76,7 @@ export interface UserRedemptionRecordSDKType {
     id: string;
     sender: string;
     receiver: string;
-    amount: Long;
+    amount: string;
     denom: string;
     host_zone_id: string;
     epoch_number: Long;
@@ -100,7 +100,7 @@ export interface NoDataSDKType {
 }
 export interface DepositRecord {
     id: Long;
-    amount: Long;
+    amount: string;
     denom: string;
     hostZoneId: string;
     status: DepositRecord_Status;
@@ -109,7 +109,7 @@ export interface DepositRecord {
 }
 export interface DepositRecordSDKType {
     id: Long;
-    amount: Long;
+    amount: string;
     denom: string;
     host_zone_id: string;
     status: DepositRecord_StatusSDKType;
@@ -117,8 +117,8 @@ export interface DepositRecordSDKType {
     source: DepositRecord_SourceSDKType;
 }
 export interface HostZoneUnbonding {
-    stTokenAmount: Long;
-    nativeTokenAmount: Long;
+    stTokenAmount: string;
+    nativeTokenAmount: string;
     denom: string;
     hostZoneId: string;
     unbondingTime: Long;
@@ -126,8 +126,8 @@ export interface HostZoneUnbonding {
     userRedemptionRecords: string[];
 }
 export interface HostZoneUnbondingSDKType {
-    st_token_amount: Long;
-    native_token_amount: Long;
+    st_token_amount: string;
+    native_token_amount: string;
     denom: string;
     host_zone_id: string;
     unbonding_time: Long;

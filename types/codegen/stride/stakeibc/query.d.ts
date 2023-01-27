@@ -1,11 +1,10 @@
 import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../cosmos/base/query/v1beta1/pagination";
 import { Params, ParamsSDKType } from "./params";
 import { Validator, ValidatorSDKType } from "./validator";
-import { ICAAccount, ICAAccountSDKType } from "./ica_account";
 import { HostZone, HostZoneSDKType } from "./host_zone";
 import { EpochTracker, EpochTrackerSDKType } from "./epoch_tracker";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "@osmonauts/helpers";
 /**
  * QueryInterchainAccountFromAddressRequest is the request type for the
  * Query/InterchainAccountAddress RPC
@@ -64,16 +63,6 @@ export interface QueryGetValidatorsResponse {
 export interface QueryGetValidatorsResponseSDKType {
     validators: ValidatorSDKType[];
 }
-export interface QueryGetICAAccountRequest {
-}
-export interface QueryGetICAAccountRequestSDKType {
-}
-export interface QueryGetICAAccountResponse {
-    icaAccount: ICAAccount;
-}
-export interface QueryGetICAAccountResponseSDKType {
-    ica_account: ICAAccountSDKType;
-}
 export interface QueryGetHostZoneRequest {
     chainId: string;
 }
@@ -125,18 +114,28 @@ export interface QueryGetEpochTrackerResponseSDKType {
     epoch_tracker: EpochTrackerSDKType;
 }
 export interface QueryAllEpochTrackerRequest {
-    pagination?: PageRequest;
 }
 export interface QueryAllEpochTrackerRequestSDKType {
-    pagination?: PageRequestSDKType;
 }
 export interface QueryAllEpochTrackerResponse {
     epochTracker: EpochTracker[];
-    pagination?: PageResponse;
 }
 export interface QueryAllEpochTrackerResponseSDKType {
     epoch_tracker: EpochTrackerSDKType[];
-    pagination?: PageResponseSDKType;
+}
+export interface QueryGetNextPacketSequenceRequest {
+    channelId: string;
+    portId: string;
+}
+export interface QueryGetNextPacketSequenceRequestSDKType {
+    channel_id: string;
+    port_id: string;
+}
+export interface QueryGetNextPacketSequenceResponse {
+    sequence: Long;
+}
+export interface QueryGetNextPacketSequenceResponseSDKType {
+    sequence: Long;
 }
 export declare const QueryInterchainAccountFromAddressRequest: {
     encode(message: QueryInterchainAccountFromAddressRequest, writer?: _m0.Writer): _m0.Writer;
@@ -167,16 +166,6 @@ export declare const QueryGetValidatorsResponse: {
     encode(message: QueryGetValidatorsResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetValidatorsResponse;
     fromPartial(object: DeepPartial<QueryGetValidatorsResponse>): QueryGetValidatorsResponse;
-};
-export declare const QueryGetICAAccountRequest: {
-    encode(_: QueryGetICAAccountRequest, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetICAAccountRequest;
-    fromPartial(_: DeepPartial<QueryGetICAAccountRequest>): QueryGetICAAccountRequest;
-};
-export declare const QueryGetICAAccountResponse: {
-    encode(message: QueryGetICAAccountResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetICAAccountResponse;
-    fromPartial(object: DeepPartial<QueryGetICAAccountResponse>): QueryGetICAAccountResponse;
 };
 export declare const QueryGetHostZoneRequest: {
     encode(message: QueryGetHostZoneRequest, writer?: _m0.Writer): _m0.Writer;
@@ -219,12 +208,22 @@ export declare const QueryGetEpochTrackerResponse: {
     fromPartial(object: DeepPartial<QueryGetEpochTrackerResponse>): QueryGetEpochTrackerResponse;
 };
 export declare const QueryAllEpochTrackerRequest: {
-    encode(message: QueryAllEpochTrackerRequest, writer?: _m0.Writer): _m0.Writer;
+    encode(_: QueryAllEpochTrackerRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllEpochTrackerRequest;
-    fromPartial(object: DeepPartial<QueryAllEpochTrackerRequest>): QueryAllEpochTrackerRequest;
+    fromPartial(_: DeepPartial<QueryAllEpochTrackerRequest>): QueryAllEpochTrackerRequest;
 };
 export declare const QueryAllEpochTrackerResponse: {
     encode(message: QueryAllEpochTrackerResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllEpochTrackerResponse;
     fromPartial(object: DeepPartial<QueryAllEpochTrackerResponse>): QueryAllEpochTrackerResponse;
+};
+export declare const QueryGetNextPacketSequenceRequest: {
+    encode(message: QueryGetNextPacketSequenceRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetNextPacketSequenceRequest;
+    fromPartial(object: DeepPartial<QueryGetNextPacketSequenceRequest>): QueryGetNextPacketSequenceRequest;
+};
+export declare const QueryGetNextPacketSequenceResponse: {
+    encode(message: QueryGetNextPacketSequenceResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetNextPacketSequenceResponse;
+    fromPartial(object: DeepPartial<QueryGetNextPacketSequenceResponse>): QueryGetNextPacketSequenceResponse;
 };
