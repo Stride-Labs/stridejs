@@ -34,7 +34,7 @@ const client = await SigningStargateClient.connectWithSigner(
   {
     registry,
     aminoTypes,
-    accountParser: accountFromAny,
+    accountParser: strideAccountParser,
   }
 );
 ```
