@@ -108,7 +108,7 @@ When first cloning the repo:
 
 ```bash
 git submodule update --init
-npm run install
+npm install
 ```
 
 ### Codegen
