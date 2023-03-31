@@ -1,5 +1,5 @@
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
-import { MsgLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidator, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
+import { MsgLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
 export declare const registry: ReadonlyArray<[string, GeneratedType]>;
 export declare const load: (protoRegistry: Registry) => void;
 export declare const MessageComposer: {
@@ -24,7 +24,7 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: Uint8Array;
         };
-        addValidator(value: MsgAddValidator): {
+        addValidators(value: MsgAddValidators): {
             typeUrl: string;
             value: Uint8Array;
         };
@@ -70,9 +70,9 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgRebalanceValidators;
         };
-        addValidator(value: MsgAddValidator): {
+        addValidators(value: MsgAddValidators): {
             typeUrl: string;
-            value: MsgAddValidator;
+            value: MsgAddValidators;
         };
         changeValidatorWeight(value: MsgChangeValidatorWeight): {
             typeUrl: string;
@@ -116,9 +116,9 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgRebalanceValidators;
         };
-        addValidator(value: MsgAddValidator): {
+        addValidators(value: MsgAddValidators): {
             typeUrl: string;
-            value: MsgAddValidator;
+            value: MsgAddValidators;
         };
         changeValidatorWeight(value: MsgChangeValidatorWeight): {
             typeUrl: string;

@@ -1,5 +1,5 @@
 import { LCDClient } from "@osmonauts/lcd";
-import { QueryDistributorAccountBalanceRequest, QueryDistributorAccountBalanceResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType, QueryClaimRecordRequest, QueryClaimRecordResponseSDKType, QueryClaimableForActionRequest, QueryClaimableForActionResponseSDKType, QueryTotalClaimableRequest, QueryTotalClaimableResponseSDKType, QueryUserVestingsRequest, QueryUserVestingsResponseSDKType } from "./query";
+import { QueryDistributorAccountBalanceRequest, QueryDistributorAccountBalanceResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType, QueryClaimRecordRequest, QueryClaimRecordResponseSDKType, QueryClaimableForActionRequest, QueryClaimableForActionResponseSDKType, QueryTotalClaimableRequest, QueryTotalClaimableResponseSDKType, QueryUserVestingsRequest, QueryUserVestingsResponseSDKType, QueryClaimStatusRequest, QueryClaimStatusResponseSDKType, QueryClaimMetadataRequest, QueryClaimMetadataResponseSDKType } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
 
@@ -15,6 +15,8 @@ export class LCDQueryClient {
     this.claimableForAction = this.claimableForAction.bind(this);
     this.totalClaimable = this.totalClaimable.bind(this);
     this.userVestings = this.userVestings.bind(this);
+    this.claimStatus = this.claimStatus.bind(this);
+    this.claimMetadata = this.claimMetadata.bind(this);
   }
   /* DistributorAccountBalance */
 
@@ -93,6 +95,20 @@ export class LCDQueryClient {
   async userVestings(params: QueryUserVestingsRequest): Promise<QueryUserVestingsResponseSDKType> {
     const endpoint = `claim/user_vestings/${params.address}`;
     return await this.req.get<QueryUserVestingsResponseSDKType>(endpoint);
+  }
+  /* ClaimStatus */
+
+
+  async claimStatus(params: QueryClaimStatusRequest): Promise<QueryClaimStatusResponseSDKType> {
+    const endpoint = `claim/claim_status/${params.address}`;
+    return await this.req.get<QueryClaimStatusResponseSDKType>(endpoint);
+  }
+  /* ClaimMetadata */
+
+
+  async claimMetadata(_params: QueryClaimMetadataRequest = {}): Promise<QueryClaimMetadataResponseSDKType> {
+    const endpoint = `claim/claim_metadata`;
+    return await this.req.get<QueryClaimMetadataResponseSDKType>(endpoint);
   }
 
 }

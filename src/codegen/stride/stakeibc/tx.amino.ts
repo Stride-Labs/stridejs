@@ -1,7 +1,7 @@
 import { iCAAccountTypeFromJSON } from "./ica_account";
 import { AminoMsg } from "@cosmjs/amino";
 import { Long } from "@osmonauts/helpers";
-import { MsgLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidator, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
+import { MsgLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
 export interface AminoMsgLiquidStake extends AminoMsg {
   type: "stakeibc/LiquidStake";
   value: {
@@ -29,6 +29,8 @@ export interface AminoMsgRegisterHostZone extends AminoMsg {
     creator: string;
     transfer_channel_id: string;
     unbonding_frequency: string;
+    min_redemption_rate: string;
+    max_redemption_rate: string;
   };
 }
 export interface AminoMsgClaimUndelegatedTokens extends AminoMsg {
@@ -48,15 +50,21 @@ export interface AminoMsgRebalanceValidators extends AminoMsg {
     num_rebalance: string;
   };
 }
-export interface AminoMsgAddValidator extends AminoMsg {
-  type: "stakeibc/AddValidator";
+export interface AminoMsgAddValidators extends AminoMsg {
+  type: "/stride.stakeibc.MsgAddValidators";
   value: {
     creator: string;
     host_zone: string;
-    name: string;
-    address: string;
-    commission: string;
-    weight: string;
+    validators: {
+      name: string;
+      address: string;
+      delegation_amt: string;
+      weight: string;
+      internal_exchange_rate: {
+        internal_tokens_to_shares_rate: string;
+        epoch_number: string;
+      };
+    }[];
   };
 }
 export interface AminoMsgChangeValidatorWeight extends AminoMsg {
@@ -165,7 +173,9 @@ export const AminoConverter = {
       ibcDenom,
       creator,
       transferChannelId,
-      unbondingFrequency
+      unbondingFrequency,
+      minRedemptionRate,
+      maxRedemptionRate
     }: MsgRegisterHostZone): AminoMsgRegisterHostZone["value"] => {
       return {
         connection_id: connectionId,
@@ -174,7 +184,9 @@ export const AminoConverter = {
         ibc_denom: ibcDenom,
         creator,
         transfer_channel_id: transferChannelId,
-        unbonding_frequency: unbondingFrequency.toString()
+        unbonding_frequency: unbondingFrequency.toString(),
+        min_redemption_rate: minRedemptionRate,
+        max_redemption_rate: maxRedemptionRate
       };
     },
     fromAmino: ({
@@ -184,7 +196,9 @@ export const AminoConverter = {
       ibc_denom,
       creator,
       transfer_channel_id,
-      unbonding_frequency
+      unbonding_frequency,
+      min_redemption_rate,
+      max_redemption_rate
     }: AminoMsgRegisterHostZone["value"]): MsgRegisterHostZone => {
       return {
         connectionId: connection_id,
@@ -193,7 +207,9 @@ export const AminoConverter = {
         ibcDenom: ibc_denom,
         creator,
         transferChannelId: transfer_channel_id,
-        unbondingFrequency: Long.fromString(unbonding_frequency)
+        unbondingFrequency: Long.fromString(unbonding_frequency),
+        minRedemptionRate: min_redemption_rate,
+        maxRedemptionRate: max_redemption_rate
       };
     }
   },
@@ -251,40 +267,46 @@ export const AminoConverter = {
       };
     }
   },
-  "/stride.stakeibc.MsgAddValidator": {
-    aminoType: "stakeibc/AddValidator",
+  "/stride.stakeibc.MsgAddValidators": {
+    aminoType: "/stride.stakeibc.MsgAddValidators",
     toAmino: ({
       creator,
       hostZone,
-      name,
-      address,
-      commission,
-      weight
-    }: MsgAddValidator): AminoMsgAddValidator["value"] => {
+      validators
+    }: MsgAddValidators): AminoMsgAddValidators["value"] => {
       return {
         creator,
         host_zone: hostZone,
-        name,
-        address,
-        commission: commission.toString(),
-        weight: weight.toString()
+        validators: validators.map(el0 => ({
+          name: el0.name,
+          address: el0.address,
+          delegation_amt: el0.delegationAmt,
+          weight: el0.weight.toString(),
+          internal_exchange_rate: {
+            internal_tokens_to_shares_rate: el0.internalExchangeRate.internalTokensToSharesRate,
+            epoch_number: el0.internalExchangeRate.epochNumber.toString()
+          }
+        }))
       };
     },
     fromAmino: ({
       creator,
       host_zone,
-      name,
-      address,
-      commission,
-      weight
-    }: AminoMsgAddValidator["value"]): MsgAddValidator => {
+      validators
+    }: AminoMsgAddValidators["value"]): MsgAddValidators => {
       return {
         creator,
         hostZone: host_zone,
-        name,
-        address,
-        commission: Long.fromString(commission),
-        weight: Long.fromString(weight)
+        validators: validators.map(el0 => ({
+          name: el0.name,
+          address: el0.address,
+          delegationAmt: el0.delegation_amt,
+          weight: Long.fromString(el0.weight),
+          internalExchangeRate: {
+            internalTokensToSharesRate: el0.internal_exchange_rate.internal_tokens_to_shares_rate,
+            epochNumber: Long.fromString(el0.internal_exchange_rate.epoch_number)
+          }
+        }))
       };
     }
   },

@@ -3,6 +3,7 @@ import { Params, ParamsSDKType } from "./params";
 import { Validator, ValidatorSDKType } from "./validator";
 import { HostZone, HostZoneSDKType } from "./host_zone";
 import { EpochTracker, EpochTrackerSDKType } from "./epoch_tracker";
+import { AddressUnbonding, AddressUnbondingSDKType } from "./address_unbonding";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
 /**
@@ -140,6 +141,18 @@ export interface QueryGetNextPacketSequenceResponse {
 }
 export interface QueryGetNextPacketSequenceResponseSDKType {
   sequence: Long;
+}
+export interface QueryAddressUnbondings {
+  address: string;
+}
+export interface QueryAddressUnbondingsSDKType {
+  address: string;
+}
+export interface QueryAddressUnbondingsResponse {
+  addressUnbondings: AddressUnbonding[];
+}
+export interface QueryAddressUnbondingsResponseSDKType {
+  address_unbondings: AddressUnbondingSDKType[];
 }
 
 function createBaseQueryInterchainAccountFromAddressRequest(): QueryInterchainAccountFromAddressRequest {
@@ -955,6 +968,96 @@ export const QueryGetNextPacketSequenceResponse = {
   fromPartial(object: DeepPartial<QueryGetNextPacketSequenceResponse>): QueryGetNextPacketSequenceResponse {
     const message = createBaseQueryGetNextPacketSequenceResponse();
     message.sequence = object.sequence !== undefined && object.sequence !== null ? Long.fromValue(object.sequence) : Long.UZERO;
+    return message;
+  }
+
+};
+
+function createBaseQueryAddressUnbondings(): QueryAddressUnbondings {
+  return {
+    address: ""
+  };
+}
+
+export const QueryAddressUnbondings = {
+  encode(message: QueryAddressUnbondings, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.address !== "") {
+      writer.uint32(10).string(message.address);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAddressUnbondings {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAddressUnbondings();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.address = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryAddressUnbondings>): QueryAddressUnbondings {
+    const message = createBaseQueryAddressUnbondings();
+    message.address = object.address ?? "";
+    return message;
+  }
+
+};
+
+function createBaseQueryAddressUnbondingsResponse(): QueryAddressUnbondingsResponse {
+  return {
+    addressUnbondings: []
+  };
+}
+
+export const QueryAddressUnbondingsResponse = {
+  encode(message: QueryAddressUnbondingsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.addressUnbondings) {
+      AddressUnbonding.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAddressUnbondingsResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAddressUnbondingsResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.addressUnbondings.push(AddressUnbonding.decode(reader, reader.uint32()));
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryAddressUnbondingsResponse>): QueryAddressUnbondingsResponse {
+    const message = createBaseQueryAddressUnbondingsResponse();
+    message.addressUnbondings = object.addressUnbondings?.map(e => AddressUnbonding.fromPartial(e)) || [];
     return message;
   }
 

@@ -3,6 +3,7 @@ import { Params, ParamsSDKType } from "./params";
 import { Validator, ValidatorSDKType } from "./validator";
 import { HostZone, HostZoneSDKType } from "./host_zone";
 import { EpochTracker, EpochTrackerSDKType } from "./epoch_tracker";
+import { AddressUnbonding, AddressUnbondingSDKType } from "./address_unbonding";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
 /**
@@ -137,6 +138,18 @@ export interface QueryGetNextPacketSequenceResponse {
 export interface QueryGetNextPacketSequenceResponseSDKType {
     sequence: Long;
 }
+export interface QueryAddressUnbondings {
+    address: string;
+}
+export interface QueryAddressUnbondingsSDKType {
+    address: string;
+}
+export interface QueryAddressUnbondingsResponse {
+    addressUnbondings: AddressUnbonding[];
+}
+export interface QueryAddressUnbondingsResponseSDKType {
+    address_unbondings: AddressUnbondingSDKType[];
+}
 export declare const QueryInterchainAccountFromAddressRequest: {
     encode(message: QueryInterchainAccountFromAddressRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryInterchainAccountFromAddressRequest;
@@ -226,4 +239,14 @@ export declare const QueryGetNextPacketSequenceResponse: {
     encode(message: QueryGetNextPacketSequenceResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetNextPacketSequenceResponse;
     fromPartial(object: DeepPartial<QueryGetNextPacketSequenceResponse>): QueryGetNextPacketSequenceResponse;
+};
+export declare const QueryAddressUnbondings: {
+    encode(message: QueryAddressUnbondings, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryAddressUnbondings;
+    fromPartial(object: DeepPartial<QueryAddressUnbondings>): QueryAddressUnbondings;
+};
+export declare const QueryAddressUnbondingsResponse: {
+    encode(message: QueryAddressUnbondingsResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryAddressUnbondingsResponse;
+    fromPartial(object: DeepPartial<QueryAddressUnbondingsResponse>): QueryAddressUnbondingsResponse;
 };

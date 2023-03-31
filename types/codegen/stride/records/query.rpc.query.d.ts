@@ -1,6 +1,6 @@
 import { Rpc } from "@osmonauts/helpers";
 import { QueryClient } from "@cosmjs/stargate";
-import { QueryParamsRequest, QueryParamsResponse, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponse, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponse, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponse, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponse, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponse, QueryGetDepositRecordRequest, QueryGetDepositRecordResponse, QueryAllDepositRecordRequest, QueryAllDepositRecordResponse } from "./query";
+import { QueryParamsRequest, QueryParamsResponse, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponse, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponse, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponse, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponse, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponse, QueryGetDepositRecordRequest, QueryGetDepositRecordResponse, QueryAllDepositRecordRequest, QueryAllDepositRecordResponse, QueryDepositRecordByHostRequest, QueryDepositRecordByHostResponse } from "./query";
 /** Query defines the RPC service */
 export interface Query {
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
@@ -11,6 +11,7 @@ export interface Query {
     epochUnbondingRecordAll(request?: QueryAllEpochUnbondingRecordRequest): Promise<QueryAllEpochUnbondingRecordResponse>;
     depositRecord(request: QueryGetDepositRecordRequest): Promise<QueryGetDepositRecordResponse>;
     depositRecordAll(request?: QueryAllDepositRecordRequest): Promise<QueryAllDepositRecordResponse>;
+    depositRecordByHost(request: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponse>;
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
@@ -23,6 +24,7 @@ export declare class QueryClientImpl implements Query {
     epochUnbondingRecordAll(request?: QueryAllEpochUnbondingRecordRequest): Promise<QueryAllEpochUnbondingRecordResponse>;
     depositRecord(request: QueryGetDepositRecordRequest): Promise<QueryGetDepositRecordResponse>;
     depositRecordAll(request?: QueryAllDepositRecordRequest): Promise<QueryAllDepositRecordResponse>;
+    depositRecordByHost(request: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponse>;
 }
 export declare const createRpcQueryExtension: (base: QueryClient) => {
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
@@ -33,4 +35,5 @@ export declare const createRpcQueryExtension: (base: QueryClient) => {
     epochUnbondingRecordAll(request?: QueryAllEpochUnbondingRecordRequest): Promise<QueryAllEpochUnbondingRecordResponse>;
     depositRecord(request: QueryGetDepositRecordRequest): Promise<QueryGetDepositRecordResponse>;
     depositRecordAll(request?: QueryAllDepositRecordRequest): Promise<QueryAllDepositRecordResponse>;
+    depositRecordByHost(request: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponse>;
 };

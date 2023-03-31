@@ -1,5 +1,5 @@
 import { LCDClient } from "@osmonauts/lcd";
-import { QueryDistributorAccountBalanceRequest, QueryDistributorAccountBalanceResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType, QueryClaimRecordRequest, QueryClaimRecordResponseSDKType, QueryClaimableForActionRequest, QueryClaimableForActionResponseSDKType, QueryTotalClaimableRequest, QueryTotalClaimableResponseSDKType, QueryUserVestingsRequest, QueryUserVestingsResponseSDKType } from "./query";
+import { QueryDistributorAccountBalanceRequest, QueryDistributorAccountBalanceResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType, QueryClaimRecordRequest, QueryClaimRecordResponseSDKType, QueryClaimableForActionRequest, QueryClaimableForActionResponseSDKType, QueryTotalClaimableRequest, QueryTotalClaimableResponseSDKType, QueryUserVestingsRequest, QueryUserVestingsResponseSDKType, QueryClaimStatusRequest, QueryClaimStatusResponseSDKType, QueryClaimMetadataRequest, QueryClaimMetadataResponseSDKType } from "./query";
 export declare class LCDQueryClient {
     req: LCDClient;
     constructor({ requestClient }: {
@@ -11,4 +11,6 @@ export declare class LCDQueryClient {
     claimableForAction(params: QueryClaimableForActionRequest): Promise<QueryClaimableForActionResponseSDKType>;
     totalClaimable(params: QueryTotalClaimableRequest): Promise<QueryTotalClaimableResponseSDKType>;
     userVestings(params: QueryUserVestingsRequest): Promise<QueryUserVestingsResponseSDKType>;
+    claimStatus(params: QueryClaimStatusRequest): Promise<QueryClaimStatusResponseSDKType>;
+    claimMetadata(_params?: QueryClaimMetadataRequest): Promise<QueryClaimMetadataResponseSDKType>;
 }

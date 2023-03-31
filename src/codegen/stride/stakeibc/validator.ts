@@ -1,43 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
-export enum Validator_ValidatorStatus {
-  ACTIVE = 0,
-  INACTIVE = 1,
-  UNRECOGNIZED = -1,
-}
-export enum Validator_ValidatorStatusSDKType {
-  ACTIVE = 0,
-  INACTIVE = 1,
-  UNRECOGNIZED = -1,
-}
-export function validator_ValidatorStatusFromJSON(object: any): Validator_ValidatorStatus {
-  switch (object) {
-    case 0:
-    case "ACTIVE":
-      return Validator_ValidatorStatus.ACTIVE;
-
-    case 1:
-    case "INACTIVE":
-      return Validator_ValidatorStatus.INACTIVE;
-
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return Validator_ValidatorStatus.UNRECOGNIZED;
-  }
-}
-export function validator_ValidatorStatusToJSON(object: Validator_ValidatorStatus): string {
-  switch (object) {
-    case Validator_ValidatorStatus.ACTIVE:
-      return "ACTIVE";
-
-    case Validator_ValidatorStatus.INACTIVE:
-      return "INACTIVE";
-
-    default:
-      return "UNKNOWN";
-  }
-}
 export interface ValidatorExchangeRate {
   internalTokensToSharesRate: string;
   epochNumber: Long;
@@ -49,8 +11,6 @@ export interface ValidatorExchangeRateSDKType {
 export interface Validator {
   name: string;
   address: string;
-  status: Validator_ValidatorStatus;
-  commissionRate: Long;
   delegationAmt: string;
   weight: Long;
   internalExchangeRate: ValidatorExchangeRate;
@@ -58,8 +18,6 @@ export interface Validator {
 export interface ValidatorSDKType {
   name: string;
   address: string;
-  status: Validator_ValidatorStatusSDKType;
-  commission_rate: Long;
   delegation_amt: string;
   weight: Long;
   internal_exchange_rate: ValidatorExchangeRateSDKType;
@@ -124,8 +82,6 @@ function createBaseValidator(): Validator {
   return {
     name: "",
     address: "",
-    status: 0,
-    commissionRate: Long.UZERO,
     delegationAmt: "",
     weight: Long.UZERO,
     internalExchangeRate: undefined
@@ -140,14 +96,6 @@ export const Validator = {
 
     if (message.address !== "") {
       writer.uint32(18).string(message.address);
-    }
-
-    if (message.status !== 0) {
-      writer.uint32(24).int32(message.status);
-    }
-
-    if (!message.commissionRate.isZero()) {
-      writer.uint32(32).uint64(message.commissionRate);
     }
 
     if (message.delegationAmt !== "") {
@@ -182,14 +130,6 @@ export const Validator = {
           message.address = reader.string();
           break;
 
-        case 3:
-          message.status = (reader.int32() as any);
-          break;
-
-        case 4:
-          message.commissionRate = (reader.uint64() as Long);
-          break;
-
         case 5:
           message.delegationAmt = reader.string();
           break;
@@ -215,8 +155,6 @@ export const Validator = {
     const message = createBaseValidator();
     message.name = object.name ?? "";
     message.address = object.address ?? "";
-    message.status = object.status ?? 0;
-    message.commissionRate = object.commissionRate !== undefined && object.commissionRate !== null ? Long.fromValue(object.commissionRate) : Long.UZERO;
     message.delegationAmt = object.delegationAmt ?? "";
     message.weight = object.weight !== undefined && object.weight !== null ? Long.fromValue(object.weight) : Long.UZERO;
     message.internalExchangeRate = object.internalExchangeRate !== undefined && object.internalExchangeRate !== null ? ValidatorExchangeRate.fromPartial(object.internalExchangeRate) : undefined;

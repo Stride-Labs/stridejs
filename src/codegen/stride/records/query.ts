@@ -46,6 +46,18 @@ export interface QueryAllDepositRecordResponseSDKType {
   deposit_record: DepositRecordSDKType[];
   pagination?: PageResponseSDKType;
 }
+export interface QueryDepositRecordByHostRequest {
+  hostZoneId: string;
+}
+export interface QueryDepositRecordByHostRequestSDKType {
+  host_zone_id: string;
+}
+export interface QueryDepositRecordByHostResponse {
+  depositRecord: DepositRecord[];
+}
+export interface QueryDepositRecordByHostResponseSDKType {
+  deposit_record: DepositRecordSDKType[];
+}
 export interface QueryGetUserRedemptionRecordRequest {
   id: string;
 }
@@ -389,6 +401,96 @@ export const QueryAllDepositRecordResponse = {
     const message = createBaseQueryAllDepositRecordResponse();
     message.depositRecord = object.depositRecord?.map(e => DepositRecord.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseQueryDepositRecordByHostRequest(): QueryDepositRecordByHostRequest {
+  return {
+    hostZoneId: ""
+  };
+}
+
+export const QueryDepositRecordByHostRequest = {
+  encode(message: QueryDepositRecordByHostRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.hostZoneId !== "") {
+      writer.uint32(10).string(message.hostZoneId);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryDepositRecordByHostRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryDepositRecordByHostRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.hostZoneId = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryDepositRecordByHostRequest>): QueryDepositRecordByHostRequest {
+    const message = createBaseQueryDepositRecordByHostRequest();
+    message.hostZoneId = object.hostZoneId ?? "";
+    return message;
+  }
+
+};
+
+function createBaseQueryDepositRecordByHostResponse(): QueryDepositRecordByHostResponse {
+  return {
+    depositRecord: []
+  };
+}
+
+export const QueryDepositRecordByHostResponse = {
+  encode(message: QueryDepositRecordByHostResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.depositRecord) {
+      DepositRecord.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryDepositRecordByHostResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryDepositRecordByHostResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.depositRecord.push(DepositRecord.decode(reader, reader.uint32()));
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryDepositRecordByHostResponse>): QueryDepositRecordByHostResponse {
+    const message = createBaseQueryDepositRecordByHostResponse();
+    message.depositRecord = object.depositRecord?.map(e => DepositRecord.fromPartial(e)) || [];
     return message;
   }
 

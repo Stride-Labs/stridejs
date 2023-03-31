@@ -1,6 +1,6 @@
 import { Rpc } from "@osmonauts/helpers";
 import { QueryClient } from "@cosmjs/stargate";
-import { QueryDistributorAccountBalanceRequest, QueryDistributorAccountBalanceResponse, QueryParamsRequest, QueryParamsResponse, QueryClaimRecordRequest, QueryClaimRecordResponse, QueryClaimableForActionRequest, QueryClaimableForActionResponse, QueryTotalClaimableRequest, QueryTotalClaimableResponse, QueryUserVestingsRequest, QueryUserVestingsResponse } from "./query";
+import { QueryDistributorAccountBalanceRequest, QueryDistributorAccountBalanceResponse, QueryParamsRequest, QueryParamsResponse, QueryClaimRecordRequest, QueryClaimRecordResponse, QueryClaimableForActionRequest, QueryClaimableForActionResponse, QueryTotalClaimableRequest, QueryTotalClaimableResponse, QueryUserVestingsRequest, QueryUserVestingsResponse, QueryClaimStatusRequest, QueryClaimStatusResponse, QueryClaimMetadataRequest, QueryClaimMetadataResponse } from "./query";
 /** Query defines the RPC service */
 export interface Query {
     distributorAccountBalance(request: QueryDistributorAccountBalanceRequest): Promise<QueryDistributorAccountBalanceResponse>;
@@ -9,6 +9,8 @@ export interface Query {
     claimableForAction(request: QueryClaimableForActionRequest): Promise<QueryClaimableForActionResponse>;
     totalClaimable(request: QueryTotalClaimableRequest): Promise<QueryTotalClaimableResponse>;
     userVestings(request: QueryUserVestingsRequest): Promise<QueryUserVestingsResponse>;
+    claimStatus(request: QueryClaimStatusRequest): Promise<QueryClaimStatusResponse>;
+    claimMetadata(request?: QueryClaimMetadataRequest): Promise<QueryClaimMetadataResponse>;
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
@@ -19,6 +21,8 @@ export declare class QueryClientImpl implements Query {
     claimableForAction(request: QueryClaimableForActionRequest): Promise<QueryClaimableForActionResponse>;
     totalClaimable(request: QueryTotalClaimableRequest): Promise<QueryTotalClaimableResponse>;
     userVestings(request: QueryUserVestingsRequest): Promise<QueryUserVestingsResponse>;
+    claimStatus(request: QueryClaimStatusRequest): Promise<QueryClaimStatusResponse>;
+    claimMetadata(request?: QueryClaimMetadataRequest): Promise<QueryClaimMetadataResponse>;
 }
 export declare const createRpcQueryExtension: (base: QueryClient) => {
     distributorAccountBalance(request: QueryDistributorAccountBalanceRequest): Promise<QueryDistributorAccountBalanceResponse>;
@@ -27,4 +31,6 @@ export declare const createRpcQueryExtension: (base: QueryClient) => {
     claimableForAction(request: QueryClaimableForActionRequest): Promise<QueryClaimableForActionResponse>;
     totalClaimable(request: QueryTotalClaimableRequest): Promise<QueryTotalClaimableResponse>;
     userVestings(request: QueryUserVestingsRequest): Promise<QueryUserVestingsResponse>;
+    claimStatus(request: QueryClaimStatusRequest): Promise<QueryClaimStatusResponse>;
+    claimMetadata(request?: QueryClaimMetadataRequest): Promise<QueryClaimMetadataResponse>;
 };

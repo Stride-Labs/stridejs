@@ -1,6 +1,6 @@
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
-import { MsgLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidator, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
-export const registry: ReadonlyArray<[string, GeneratedType]> = [["/stride.stakeibc.MsgLiquidStake", MsgLiquidStake], ["/stride.stakeibc.MsgRedeemStake", MsgRedeemStake], ["/stride.stakeibc.MsgRegisterHostZone", MsgRegisterHostZone], ["/stride.stakeibc.MsgClaimUndelegatedTokens", MsgClaimUndelegatedTokens], ["/stride.stakeibc.MsgRebalanceValidators", MsgRebalanceValidators], ["/stride.stakeibc.MsgAddValidator", MsgAddValidator], ["/stride.stakeibc.MsgChangeValidatorWeight", MsgChangeValidatorWeight], ["/stride.stakeibc.MsgDeleteValidator", MsgDeleteValidator], ["/stride.stakeibc.MsgRestoreInterchainAccount", MsgRestoreInterchainAccount], ["/stride.stakeibc.MsgUpdateValidatorSharesExchRate", MsgUpdateValidatorSharesExchRate], ["/stride.stakeibc.MsgClearBalance", MsgClearBalance]];
+import { MsgLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
+export const registry: ReadonlyArray<[string, GeneratedType]> = [["/stride.stakeibc.MsgLiquidStake", MsgLiquidStake], ["/stride.stakeibc.MsgRedeemStake", MsgRedeemStake], ["/stride.stakeibc.MsgRegisterHostZone", MsgRegisterHostZone], ["/stride.stakeibc.MsgClaimUndelegatedTokens", MsgClaimUndelegatedTokens], ["/stride.stakeibc.MsgRebalanceValidators", MsgRebalanceValidators], ["/stride.stakeibc.MsgAddValidators", MsgAddValidators], ["/stride.stakeibc.MsgChangeValidatorWeight", MsgChangeValidatorWeight], ["/stride.stakeibc.MsgDeleteValidator", MsgDeleteValidator], ["/stride.stakeibc.MsgRestoreInterchainAccount", MsgRestoreInterchainAccount], ["/stride.stakeibc.MsgUpdateValidatorSharesExchRate", MsgUpdateValidatorSharesExchRate], ["/stride.stakeibc.MsgClearBalance", MsgClearBalance]];
 export const load = (protoRegistry: Registry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -43,10 +43,10 @@ export const MessageComposer = {
       };
     },
 
-    addValidator(value: MsgAddValidator) {
+    addValidators(value: MsgAddValidators) {
       return {
-        typeUrl: "/stride.stakeibc.MsgAddValidator",
-        value: MsgAddValidator.encode(value).finish()
+        typeUrl: "/stride.stakeibc.MsgAddValidators",
+        value: MsgAddValidators.encode(value).finish()
       };
     },
 
@@ -122,9 +122,9 @@ export const MessageComposer = {
       };
     },
 
-    addValidator(value: MsgAddValidator) {
+    addValidators(value: MsgAddValidators) {
       return {
-        typeUrl: "/stride.stakeibc.MsgAddValidator",
+        typeUrl: "/stride.stakeibc.MsgAddValidators",
         value
       };
     },
@@ -201,10 +201,10 @@ export const MessageComposer = {
       };
     },
 
-    addValidator(value: MsgAddValidator) {
+    addValidators(value: MsgAddValidators) {
       return {
-        typeUrl: "/stride.stakeibc.MsgAddValidator",
-        value: MsgAddValidator.fromPartial(value)
+        typeUrl: "/stride.stakeibc.MsgAddValidators",
+        value: MsgAddValidators.fromPartial(value)
       };
     },
 

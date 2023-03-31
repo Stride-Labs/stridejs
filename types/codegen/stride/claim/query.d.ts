@@ -4,6 +4,48 @@ import { Params, ParamsSDKType } from "./params";
 import { Period, PeriodSDKType } from "../vesting/vesting";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial } from "@osmonauts/helpers";
+export interface ClaimStatus {
+    airdropIdentifier: string;
+    claimed: boolean;
+}
+export interface ClaimStatusSDKType {
+    airdrop_identifier: string;
+    claimed: boolean;
+}
+export interface QueryClaimStatusRequest {
+    address: string;
+}
+export interface QueryClaimStatusRequestSDKType {
+    address: string;
+}
+export interface QueryClaimStatusResponse {
+    claimStatus: ClaimStatus[];
+}
+export interface QueryClaimStatusResponseSDKType {
+    claim_status: ClaimStatusSDKType[];
+}
+export interface ClaimMetadata {
+    airdropIdentifier: string;
+    currentRound: string;
+    currentRoundStart: Date;
+    currentRoundEnd: Date;
+}
+export interface ClaimMetadataSDKType {
+    airdrop_identifier: string;
+    current_round: string;
+    current_round_start: Date;
+    current_round_end: Date;
+}
+export interface QueryClaimMetadataRequest {
+}
+export interface QueryClaimMetadataRequestSDKType {
+}
+export interface QueryClaimMetadataResponse {
+    claimMetadata: ClaimMetadata[];
+}
+export interface QueryClaimMetadataResponseSDKType {
+    claim_metadata: ClaimMetadataSDKType[];
+}
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 export interface QueryDistributorAccountBalanceRequest {
     airdropIdentifier?: string;
@@ -98,6 +140,36 @@ export interface QueryUserVestingsResponseSDKType {
     spendable_coins: CoinSDKType[];
     periods: PeriodSDKType[];
 }
+export declare const ClaimStatus: {
+    encode(message: ClaimStatus, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ClaimStatus;
+    fromPartial(object: DeepPartial<ClaimStatus>): ClaimStatus;
+};
+export declare const QueryClaimStatusRequest: {
+    encode(message: QueryClaimStatusRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryClaimStatusRequest;
+    fromPartial(object: DeepPartial<QueryClaimStatusRequest>): QueryClaimStatusRequest;
+};
+export declare const QueryClaimStatusResponse: {
+    encode(message: QueryClaimStatusResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryClaimStatusResponse;
+    fromPartial(object: DeepPartial<QueryClaimStatusResponse>): QueryClaimStatusResponse;
+};
+export declare const ClaimMetadata: {
+    encode(message: ClaimMetadata, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ClaimMetadata;
+    fromPartial(object: DeepPartial<ClaimMetadata>): ClaimMetadata;
+};
+export declare const QueryClaimMetadataRequest: {
+    encode(_: QueryClaimMetadataRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryClaimMetadataRequest;
+    fromPartial(_: DeepPartial<QueryClaimMetadataRequest>): QueryClaimMetadataRequest;
+};
+export declare const QueryClaimMetadataResponse: {
+    encode(message: QueryClaimMetadataResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryClaimMetadataResponse;
+    fromPartial(object: DeepPartial<QueryClaimMetadataResponse>): QueryClaimMetadataResponse;
+};
 export declare const QueryDistributorAccountBalanceRequest: {
     encode(message: QueryDistributorAccountBalanceRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryDistributorAccountBalanceRequest;

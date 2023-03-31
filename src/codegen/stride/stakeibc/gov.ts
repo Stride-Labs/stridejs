@@ -1,35 +1,33 @@
+import { Validator, ValidatorSDKType } from "./validator";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial } from "@osmonauts/helpers";
-export interface AddValidatorProposal {
+export interface AddValidatorsProposal {
   title: string;
   description: string;
   hostZone: string;
-  validatorName: string;
-  validatorAddress: string;
+  validators: Validator[];
   deposit: string;
 }
-export interface AddValidatorProposalSDKType {
+export interface AddValidatorsProposalSDKType {
   title: string;
   description: string;
   host_zone: string;
-  validator_name: string;
-  validator_address: string;
+  validators: ValidatorSDKType[];
   deposit: string;
 }
 
-function createBaseAddValidatorProposal(): AddValidatorProposal {
+function createBaseAddValidatorsProposal(): AddValidatorsProposal {
   return {
     title: "",
     description: "",
     hostZone: "",
-    validatorName: "",
-    validatorAddress: "",
+    validators: [],
     deposit: ""
   };
 }
 
-export const AddValidatorProposal = {
-  encode(message: AddValidatorProposal, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const AddValidatorsProposal = {
+  encode(message: AddValidatorsProposal, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.title !== "") {
       writer.uint32(10).string(message.title);
     }
@@ -42,12 +40,8 @@ export const AddValidatorProposal = {
       writer.uint32(26).string(message.hostZone);
     }
 
-    if (message.validatorName !== "") {
-      writer.uint32(34).string(message.validatorName);
-    }
-
-    if (message.validatorAddress !== "") {
-      writer.uint32(42).string(message.validatorAddress);
+    for (const v of message.validators) {
+      Validator.encode(v!, writer.uint32(34).fork()).ldelim();
     }
 
     if (message.deposit !== "") {
@@ -57,10 +51,10 @@ export const AddValidatorProposal = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): AddValidatorProposal {
+  decode(input: _m0.Reader | Uint8Array, length?: number): AddValidatorsProposal {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseAddValidatorProposal();
+    const message = createBaseAddValidatorsProposal();
 
     while (reader.pos < end) {
       const tag = reader.uint32();
@@ -79,11 +73,7 @@ export const AddValidatorProposal = {
           break;
 
         case 4:
-          message.validatorName = reader.string();
-          break;
-
-        case 5:
-          message.validatorAddress = reader.string();
+          message.validators.push(Validator.decode(reader, reader.uint32()));
           break;
 
         case 6:
@@ -99,13 +89,12 @@ export const AddValidatorProposal = {
     return message;
   },
 
-  fromPartial(object: DeepPartial<AddValidatorProposal>): AddValidatorProposal {
-    const message = createBaseAddValidatorProposal();
+  fromPartial(object: DeepPartial<AddValidatorsProposal>): AddValidatorsProposal {
+    const message = createBaseAddValidatorsProposal();
     message.title = object.title ?? "";
     message.description = object.description ?? "";
     message.hostZone = object.hostZone ?? "";
-    message.validatorName = object.validatorName ?? "";
-    message.validatorAddress = object.validatorAddress ?? "";
+    message.validators = object.validators?.map(e => Validator.fromPartial(e)) || [];
     message.deposit = object.deposit ?? "";
     return message;
   }

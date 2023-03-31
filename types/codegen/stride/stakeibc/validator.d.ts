@@ -1,17 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
-export declare enum Validator_ValidatorStatus {
-    ACTIVE = 0,
-    INACTIVE = 1,
-    UNRECOGNIZED = -1
-}
-export declare enum Validator_ValidatorStatusSDKType {
-    ACTIVE = 0,
-    INACTIVE = 1,
-    UNRECOGNIZED = -1
-}
-export declare function validator_ValidatorStatusFromJSON(object: any): Validator_ValidatorStatus;
-export declare function validator_ValidatorStatusToJSON(object: Validator_ValidatorStatus): string;
 export interface ValidatorExchangeRate {
     internalTokensToSharesRate: string;
     epochNumber: Long;
@@ -23,8 +11,6 @@ export interface ValidatorExchangeRateSDKType {
 export interface Validator {
     name: string;
     address: string;
-    status: Validator_ValidatorStatus;
-    commissionRate: Long;
     delegationAmt: string;
     weight: Long;
     internalExchangeRate: ValidatorExchangeRate;
@@ -32,8 +18,6 @@ export interface Validator {
 export interface ValidatorSDKType {
     name: string;
     address: string;
-    status: Validator_ValidatorStatusSDKType;
-    commission_rate: Long;
     delegation_amt: string;
     weight: Long;
     internal_exchange_rate: ValidatorExchangeRateSDKType;

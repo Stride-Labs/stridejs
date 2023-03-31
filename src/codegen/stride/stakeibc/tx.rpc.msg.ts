@@ -1,6 +1,6 @@
 import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
-import { MsgLiquidStake, MsgLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidator, MsgAddValidatorResponse, MsgChangeValidatorWeight, MsgChangeValidatorWeightResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgClearBalance, MsgClearBalanceResponse } from "./tx";
+import { MsgLiquidStake, MsgLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidators, MsgAddValidatorsResponse, MsgChangeValidatorWeight, MsgChangeValidatorWeightResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgClearBalance, MsgClearBalanceResponse } from "./tx";
 /** Msg defines the RPC service */
 
 export interface Msg {
@@ -11,8 +11,7 @@ export interface Msg {
   /*null*/
 
   registerHostZone(request: MsgRegisterHostZone): Promise<MsgRegisterHostZoneResponse>;
-  /*TODO(TEST-53): Remove this pre-launch (no need for clients to create /
-   interact with ICAs)*/
+  /*null*/
 
   claimUndelegatedTokens(request: MsgClaimUndelegatedTokens): Promise<MsgClaimUndelegatedTokensResponse>;
   /*null*/
@@ -20,7 +19,7 @@ export interface Msg {
   rebalanceValidators(request: MsgRebalanceValidators): Promise<MsgRebalanceValidatorsResponse>;
   /*null*/
 
-  addValidator(request: MsgAddValidator): Promise<MsgAddValidatorResponse>;
+  addValidators(request: MsgAddValidators): Promise<MsgAddValidatorsResponse>;
   /*null*/
 
   changeValidatorWeight(request: MsgChangeValidatorWeight): Promise<MsgChangeValidatorWeightResponse>;
@@ -49,7 +48,7 @@ export class MsgClientImpl implements Msg {
     this.registerHostZone = this.registerHostZone.bind(this);
     this.claimUndelegatedTokens = this.claimUndelegatedTokens.bind(this);
     this.rebalanceValidators = this.rebalanceValidators.bind(this);
-    this.addValidator = this.addValidator.bind(this);
+    this.addValidators = this.addValidators.bind(this);
     this.changeValidatorWeight = this.changeValidatorWeight.bind(this);
     this.deleteValidator = this.deleteValidator.bind(this);
     this.restoreInterchainAccount = this.restoreInterchainAccount.bind(this);
@@ -87,10 +86,10 @@ export class MsgClientImpl implements Msg {
     return promise.then(data => MsgRebalanceValidatorsResponse.decode(new _m0.Reader(data)));
   }
 
-  addValidator(request: MsgAddValidator): Promise<MsgAddValidatorResponse> {
-    const data = MsgAddValidator.encode(request).finish();
-    const promise = this.rpc.request("stride.stakeibc.Msg", "AddValidator", data);
-    return promise.then(data => MsgAddValidatorResponse.decode(new _m0.Reader(data)));
+  addValidators(request: MsgAddValidators): Promise<MsgAddValidatorsResponse> {
+    const data = MsgAddValidators.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "AddValidators", data);
+    return promise.then(data => MsgAddValidatorsResponse.decode(new _m0.Reader(data)));
   }
 
   changeValidatorWeight(request: MsgChangeValidatorWeight): Promise<MsgChangeValidatorWeightResponse> {

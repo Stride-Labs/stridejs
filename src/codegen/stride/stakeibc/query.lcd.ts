@@ -1,6 +1,6 @@
 import { setPaginationParams } from "@osmonauts/helpers";
 import { LCDClient } from "@osmonauts/lcd";
-import { QueryParamsRequest, QueryParamsResponseSDKType, QueryGetValidatorsRequest, QueryGetValidatorsResponseSDKType, QueryGetHostZoneRequest, QueryGetHostZoneResponseSDKType, QueryAllHostZoneRequest, QueryAllHostZoneResponseSDKType, QueryModuleAddressRequest, QueryModuleAddressResponseSDKType, QueryGetEpochTrackerRequest, QueryGetEpochTrackerResponseSDKType, QueryAllEpochTrackerRequest, QueryAllEpochTrackerResponseSDKType, QueryGetNextPacketSequenceRequest, QueryGetNextPacketSequenceResponseSDKType } from "./query";
+import { QueryParamsRequest, QueryParamsResponseSDKType, QueryGetValidatorsRequest, QueryGetValidatorsResponseSDKType, QueryGetHostZoneRequest, QueryGetHostZoneResponseSDKType, QueryAllHostZoneRequest, QueryAllHostZoneResponseSDKType, QueryModuleAddressRequest, QueryModuleAddressResponseSDKType, QueryGetEpochTrackerRequest, QueryGetEpochTrackerResponseSDKType, QueryAllEpochTrackerRequest, QueryAllEpochTrackerResponseSDKType, QueryGetNextPacketSequenceRequest, QueryGetNextPacketSequenceResponseSDKType, QueryAddressUnbondings, QueryAddressUnbondingsResponseSDKType } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
 
@@ -18,6 +18,7 @@ export class LCDQueryClient {
     this.epochTracker = this.epochTracker.bind(this);
     this.epochTrackerAll = this.epochTrackerAll.bind(this);
     this.nextPacketSequence = this.nextPacketSequence.bind(this);
+    this.addressUnbondings = this.addressUnbondings.bind(this);
   }
   /* Parameters queries the parameters of the module. */
 
@@ -84,6 +85,13 @@ export class LCDQueryClient {
   async nextPacketSequence(params: QueryGetNextPacketSequenceRequest): Promise<QueryGetNextPacketSequenceResponseSDKType> {
     const endpoint = `Stride-Labs/stride/stakeibc/next_packet_sequence/${params.channelId}/${params.portId}`;
     return await this.req.get<QueryGetNextPacketSequenceResponseSDKType>(endpoint);
+  }
+  /* Queries an address's unbondings */
+
+
+  async addressUnbondings(params: QueryAddressUnbondings): Promise<QueryAddressUnbondingsResponseSDKType> {
+    const endpoint = `Stride-Labs/stride/stakeibc/unbondings/${params.address}`;
+    return await this.req.get<QueryAddressUnbondingsResponseSDKType>(endpoint);
   }
 
 }

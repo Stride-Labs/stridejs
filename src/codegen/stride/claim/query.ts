@@ -1,9 +1,50 @@
 import { Action, ActionSDKType, ClaimRecord, ClaimRecordSDKType } from "./claim";
+import { Timestamp } from "../../google/protobuf/timestamp";
 import { Coin, CoinSDKType } from "../../cosmos/base/v1beta1/coin";
 import { Params, ParamsSDKType } from "./params";
 import { Period, PeriodSDKType } from "../vesting/vesting";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial, toTimestamp, fromTimestamp } from "@osmonauts/helpers";
+export interface ClaimStatus {
+  airdropIdentifier: string;
+  claimed: boolean;
+}
+export interface ClaimStatusSDKType {
+  airdrop_identifier: string;
+  claimed: boolean;
+}
+export interface QueryClaimStatusRequest {
+  address: string;
+}
+export interface QueryClaimStatusRequestSDKType {
+  address: string;
+}
+export interface QueryClaimStatusResponse {
+  claimStatus: ClaimStatus[];
+}
+export interface QueryClaimStatusResponseSDKType {
+  claim_status: ClaimStatusSDKType[];
+}
+export interface ClaimMetadata {
+  airdropIdentifier: string;
+  currentRound: string;
+  currentRoundStart: Date;
+  currentRoundEnd: Date;
+}
+export interface ClaimMetadataSDKType {
+  airdrop_identifier: string;
+  current_round: string;
+  current_round_start: Date;
+  current_round_end: Date;
+}
+export interface QueryClaimMetadataRequest {}
+export interface QueryClaimMetadataRequestSDKType {}
+export interface QueryClaimMetadataResponse {
+  claimMetadata: ClaimMetadata[];
+}
+export interface QueryClaimMetadataResponseSDKType {
+  claim_metadata: ClaimMetadataSDKType[];
+}
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
 
 export interface QueryDistributorAccountBalanceRequest {
@@ -104,6 +145,305 @@ export interface QueryUserVestingsResponseSDKType {
   spendable_coins: CoinSDKType[];
   periods: PeriodSDKType[];
 }
+
+function createBaseClaimStatus(): ClaimStatus {
+  return {
+    airdropIdentifier: "",
+    claimed: false
+  };
+}
+
+export const ClaimStatus = {
+  encode(message: ClaimStatus, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.airdropIdentifier !== "") {
+      writer.uint32(10).string(message.airdropIdentifier);
+    }
+
+    if (message.claimed === true) {
+      writer.uint32(16).bool(message.claimed);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ClaimStatus {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseClaimStatus();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.airdropIdentifier = reader.string();
+          break;
+
+        case 2:
+          message.claimed = reader.bool();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<ClaimStatus>): ClaimStatus {
+    const message = createBaseClaimStatus();
+    message.airdropIdentifier = object.airdropIdentifier ?? "";
+    message.claimed = object.claimed ?? false;
+    return message;
+  }
+
+};
+
+function createBaseQueryClaimStatusRequest(): QueryClaimStatusRequest {
+  return {
+    address: ""
+  };
+}
+
+export const QueryClaimStatusRequest = {
+  encode(message: QueryClaimStatusRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.address !== "") {
+      writer.uint32(10).string(message.address);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryClaimStatusRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryClaimStatusRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.address = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryClaimStatusRequest>): QueryClaimStatusRequest {
+    const message = createBaseQueryClaimStatusRequest();
+    message.address = object.address ?? "";
+    return message;
+  }
+
+};
+
+function createBaseQueryClaimStatusResponse(): QueryClaimStatusResponse {
+  return {
+    claimStatus: []
+  };
+}
+
+export const QueryClaimStatusResponse = {
+  encode(message: QueryClaimStatusResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.claimStatus) {
+      ClaimStatus.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryClaimStatusResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryClaimStatusResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.claimStatus.push(ClaimStatus.decode(reader, reader.uint32()));
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryClaimStatusResponse>): QueryClaimStatusResponse {
+    const message = createBaseQueryClaimStatusResponse();
+    message.claimStatus = object.claimStatus?.map(e => ClaimStatus.fromPartial(e)) || [];
+    return message;
+  }
+
+};
+
+function createBaseClaimMetadata(): ClaimMetadata {
+  return {
+    airdropIdentifier: "",
+    currentRound: "",
+    currentRoundStart: undefined,
+    currentRoundEnd: undefined
+  };
+}
+
+export const ClaimMetadata = {
+  encode(message: ClaimMetadata, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.airdropIdentifier !== "") {
+      writer.uint32(10).string(message.airdropIdentifier);
+    }
+
+    if (message.currentRound !== "") {
+      writer.uint32(18).string(message.currentRound);
+    }
+
+    if (message.currentRoundStart !== undefined) {
+      Timestamp.encode(toTimestamp(message.currentRoundStart), writer.uint32(26).fork()).ldelim();
+    }
+
+    if (message.currentRoundEnd !== undefined) {
+      Timestamp.encode(toTimestamp(message.currentRoundEnd), writer.uint32(34).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ClaimMetadata {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseClaimMetadata();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.airdropIdentifier = reader.string();
+          break;
+
+        case 2:
+          message.currentRound = reader.string();
+          break;
+
+        case 3:
+          message.currentRoundStart = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+
+        case 4:
+          message.currentRoundEnd = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<ClaimMetadata>): ClaimMetadata {
+    const message = createBaseClaimMetadata();
+    message.airdropIdentifier = object.airdropIdentifier ?? "";
+    message.currentRound = object.currentRound ?? "";
+    message.currentRoundStart = object.currentRoundStart ?? undefined;
+    message.currentRoundEnd = object.currentRoundEnd ?? undefined;
+    return message;
+  }
+
+};
+
+function createBaseQueryClaimMetadataRequest(): QueryClaimMetadataRequest {
+  return {};
+}
+
+export const QueryClaimMetadataRequest = {
+  encode(_: QueryClaimMetadataRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryClaimMetadataRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryClaimMetadataRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(_: DeepPartial<QueryClaimMetadataRequest>): QueryClaimMetadataRequest {
+    const message = createBaseQueryClaimMetadataRequest();
+    return message;
+  }
+
+};
+
+function createBaseQueryClaimMetadataResponse(): QueryClaimMetadataResponse {
+  return {
+    claimMetadata: []
+  };
+}
+
+export const QueryClaimMetadataResponse = {
+  encode(message: QueryClaimMetadataResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.claimMetadata) {
+      ClaimMetadata.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryClaimMetadataResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryClaimMetadataResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.claimMetadata.push(ClaimMetadata.decode(reader, reader.uint32()));
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryClaimMetadataResponse>): QueryClaimMetadataResponse {
+    const message = createBaseQueryClaimMetadataResponse();
+    message.claimMetadata = object.claimMetadata?.map(e => ClaimMetadata.fromPartial(e)) || [];
+    return message;
+  }
+
+};
 
 function createBaseQueryDistributorAccountBalanceRequest(): QueryDistributorAccountBalanceRequest {
   return {

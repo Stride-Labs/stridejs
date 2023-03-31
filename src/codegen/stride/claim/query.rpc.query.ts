@@ -1,7 +1,7 @@
 import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryDistributorAccountBalanceRequest, QueryDistributorAccountBalanceResponse, QueryParamsRequest, QueryParamsResponse, QueryClaimRecordRequest, QueryClaimRecordResponse, QueryClaimableForActionRequest, QueryClaimableForActionResponse, QueryTotalClaimableRequest, QueryTotalClaimableResponse, QueryUserVestingsRequest, QueryUserVestingsResponse } from "./query";
+import { QueryDistributorAccountBalanceRequest, QueryDistributorAccountBalanceResponse, QueryParamsRequest, QueryParamsResponse, QueryClaimRecordRequest, QueryClaimRecordResponse, QueryClaimableForActionRequest, QueryClaimableForActionResponse, QueryTotalClaimableRequest, QueryTotalClaimableResponse, QueryUserVestingsRequest, QueryUserVestingsResponse, QueryClaimStatusRequest, QueryClaimStatusResponse, QueryClaimMetadataRequest, QueryClaimMetadataResponse } from "./query";
 /** Query defines the RPC service */
 
 export interface Query {
@@ -23,6 +23,12 @@ export interface Query {
   userVestings(request: QueryUserVestingsRequest): Promise<QueryUserVestingsResponse>;
   /*null*/
 
+  claimStatus(request: QueryClaimStatusRequest): Promise<QueryClaimStatusResponse>;
+  /*null*/
+
+  claimMetadata(request?: QueryClaimMetadataRequest): Promise<QueryClaimMetadataResponse>;
+  /*null*/
+
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -35,6 +41,8 @@ export class QueryClientImpl implements Query {
     this.claimableForAction = this.claimableForAction.bind(this);
     this.totalClaimable = this.totalClaimable.bind(this);
     this.userVestings = this.userVestings.bind(this);
+    this.claimStatus = this.claimStatus.bind(this);
+    this.claimMetadata = this.claimMetadata.bind(this);
   }
 
   distributorAccountBalance(request: QueryDistributorAccountBalanceRequest): Promise<QueryDistributorAccountBalanceResponse> {
@@ -73,6 +81,18 @@ export class QueryClientImpl implements Query {
     return promise.then(data => QueryUserVestingsResponse.decode(new _m0.Reader(data)));
   }
 
+  claimStatus(request: QueryClaimStatusRequest): Promise<QueryClaimStatusResponse> {
+    const data = QueryClaimStatusRequest.encode(request).finish();
+    const promise = this.rpc.request("stride.claim.Query", "ClaimStatus", data);
+    return promise.then(data => QueryClaimStatusResponse.decode(new _m0.Reader(data)));
+  }
+
+  claimMetadata(request: QueryClaimMetadataRequest = {}): Promise<QueryClaimMetadataResponse> {
+    const data = QueryClaimMetadataRequest.encode(request).finish();
+    const promise = this.rpc.request("stride.claim.Query", "ClaimMetadata", data);
+    return promise.then(data => QueryClaimMetadataResponse.decode(new _m0.Reader(data)));
+  }
+
 }
 export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
@@ -100,6 +120,14 @@ export const createRpcQueryExtension = (base: QueryClient) => {
 
     userVestings(request: QueryUserVestingsRequest): Promise<QueryUserVestingsResponse> {
       return queryService.userVestings(request);
+    },
+
+    claimStatus(request: QueryClaimStatusRequest): Promise<QueryClaimStatusResponse> {
+      return queryService.claimStatus(request);
+    },
+
+    claimMetadata(request?: QueryClaimMetadataRequest): Promise<QueryClaimMetadataResponse> {
+      return queryService.claimMetadata(request);
     }
 
   };

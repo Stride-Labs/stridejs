@@ -1,6 +1,6 @@
 import { Rpc } from "@osmonauts/helpers";
 import { QueryClient } from "@cosmjs/stargate";
-import { QueryParamsRequest, QueryParamsResponse, QueryGetValidatorsRequest, QueryGetValidatorsResponse, QueryGetHostZoneRequest, QueryGetHostZoneResponse, QueryAllHostZoneRequest, QueryAllHostZoneResponse, QueryModuleAddressRequest, QueryModuleAddressResponse, QueryInterchainAccountFromAddressRequest, QueryInterchainAccountFromAddressResponse, QueryGetEpochTrackerRequest, QueryGetEpochTrackerResponse, QueryAllEpochTrackerRequest, QueryAllEpochTrackerResponse, QueryGetNextPacketSequenceRequest, QueryGetNextPacketSequenceResponse } from "./query";
+import { QueryParamsRequest, QueryParamsResponse, QueryGetValidatorsRequest, QueryGetValidatorsResponse, QueryGetHostZoneRequest, QueryGetHostZoneResponse, QueryAllHostZoneRequest, QueryAllHostZoneResponse, QueryModuleAddressRequest, QueryModuleAddressResponse, QueryInterchainAccountFromAddressRequest, QueryInterchainAccountFromAddressResponse, QueryGetEpochTrackerRequest, QueryGetEpochTrackerResponse, QueryAllEpochTrackerRequest, QueryAllEpochTrackerResponse, QueryGetNextPacketSequenceRequest, QueryGetNextPacketSequenceResponse, QueryAddressUnbondings, QueryAddressUnbondingsResponse } from "./query";
 /** Query defines the RPC service */
 export interface Query {
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
@@ -12,6 +12,7 @@ export interface Query {
     epochTracker(request: QueryGetEpochTrackerRequest): Promise<QueryGetEpochTrackerResponse>;
     epochTrackerAll(request?: QueryAllEpochTrackerRequest): Promise<QueryAllEpochTrackerResponse>;
     nextPacketSequence(request: QueryGetNextPacketSequenceRequest): Promise<QueryGetNextPacketSequenceResponse>;
+    addressUnbondings(request: QueryAddressUnbondings): Promise<QueryAddressUnbondingsResponse>;
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
@@ -25,6 +26,7 @@ export declare class QueryClientImpl implements Query {
     epochTracker(request: QueryGetEpochTrackerRequest): Promise<QueryGetEpochTrackerResponse>;
     epochTrackerAll(request?: QueryAllEpochTrackerRequest): Promise<QueryAllEpochTrackerResponse>;
     nextPacketSequence(request: QueryGetNextPacketSequenceRequest): Promise<QueryGetNextPacketSequenceResponse>;
+    addressUnbondings(request: QueryAddressUnbondings): Promise<QueryAddressUnbondingsResponse>;
 }
 export declare const createRpcQueryExtension: (base: QueryClient) => {
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
@@ -36,4 +38,5 @@ export declare const createRpcQueryExtension: (base: QueryClient) => {
     epochTracker(request: QueryGetEpochTrackerRequest): Promise<QueryGetEpochTrackerResponse>;
     epochTrackerAll(request?: QueryAllEpochTrackerRequest): Promise<QueryAllEpochTrackerResponse>;
     nextPacketSequence(request: QueryGetNextPacketSequenceRequest): Promise<QueryGetNextPacketSequenceResponse>;
+    addressUnbondings(request: QueryAddressUnbondings): Promise<QueryAddressUnbondingsResponse>;
 };

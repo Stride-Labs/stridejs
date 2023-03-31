@@ -2,7 +2,7 @@ import { Validator, ValidatorSDKType } from "./validator";
 import { ICAAccount, ICAAccountSDKType } from "./ica_account";
 import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
-/** next id: 19 */
+/** next id: 22 */
 export interface HostZone {
     chainId: string;
     connectionId: string;
@@ -29,8 +29,11 @@ export interface HostZone {
     /** TODO(TEST-101) int to dec */
     stakedBal: string;
     address: string;
+    halted: boolean;
+    minRedemptionRate: string;
+    maxRedemptionRate: string;
 }
-/** next id: 19 */
+/** next id: 22 */
 export interface HostZoneSDKType {
     chain_id: string;
     connection_id: string;
@@ -57,6 +60,9 @@ export interface HostZoneSDKType {
     /** TODO(TEST-101) int to dec */
     staked_bal: string;
     address: string;
+    halted: boolean;
+    min_redemption_rate: string;
+    max_redemption_rate: string;
 }
 export declare const HostZone: {
     encode(message: HostZone, writer?: _m0.Writer): _m0.Writer;

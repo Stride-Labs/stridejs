@@ -1,18 +1,15 @@
+import { Validator, ValidatorSDKType } from "./validator";
 import { ICAAccountType, ICAAccountTypeSDKType } from "./ica_account";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
 export interface MsgLiquidStake {
   creator: string;
   amount: string;
-  /** TODO(TEST-86): Update Denom -> HostDenom */
-
   hostDenom: string;
 }
 export interface MsgLiquidStakeSDKType {
   creator: string;
   amount: string;
-  /** TODO(TEST-86): Update Denom -> HostDenom */
-
   host_denom: string;
 }
 export interface MsgLiquidStakeResponse {}
@@ -45,7 +42,7 @@ export interface MsgRedeemStakeSDKType {
 }
 export interface MsgRedeemStakeResponse {}
 export interface MsgRedeemStakeResponseSDKType {}
-/** next: 13 */
+/** next: 15 */
 
 export interface MsgRegisterHostZone {
   connectionId: string;
@@ -55,8 +52,10 @@ export interface MsgRegisterHostZone {
   creator: string;
   transferChannelId: string;
   unbondingFrequency: Long;
+  minRedemptionRate: string;
+  maxRedemptionRate: string;
 }
-/** next: 13 */
+/** next: 15 */
 
 export interface MsgRegisterHostZoneSDKType {
   connection_id: string;
@@ -66,18 +65,10 @@ export interface MsgRegisterHostZoneSDKType {
   creator: string;
   transfer_channel_id: string;
   unbonding_frequency: Long;
+  min_redemption_rate: string;
+  max_redemption_rate: string;
 }
-/**
- * TODO(TEST-53): Remove this pre-launch (no need for clients to create /
- * interact with ICAs)
- */
-
 export interface MsgRegisterHostZoneResponse {}
-/**
- * TODO(TEST-53): Remove this pre-launch (no need for clients to create /
- * interact with ICAs)
- */
-
 export interface MsgRegisterHostZoneResponseSDKType {}
 export interface MsgClaimUndelegatedTokens {
   creator: string;
@@ -109,24 +100,18 @@ export interface MsgRebalanceValidatorsSDKType {
 }
 export interface MsgRebalanceValidatorsResponse {}
 export interface MsgRebalanceValidatorsResponseSDKType {}
-export interface MsgAddValidator {
+export interface MsgAddValidators {
   creator: string;
   hostZone: string;
-  name: string;
-  address: string;
-  commission: Long;
-  weight: Long;
+  validators: Validator[];
 }
-export interface MsgAddValidatorSDKType {
+export interface MsgAddValidatorsSDKType {
   creator: string;
   host_zone: string;
-  name: string;
-  address: string;
-  commission: Long;
-  weight: Long;
+  validators: ValidatorSDKType[];
 }
-export interface MsgAddValidatorResponse {}
-export interface MsgAddValidatorResponseSDKType {}
+export interface MsgAddValidatorsResponse {}
+export interface MsgAddValidatorsResponseSDKType {}
 export interface MsgChangeValidatorWeight {
   creator: string;
   hostZone: string;
@@ -503,7 +488,9 @@ function createBaseMsgRegisterHostZone(): MsgRegisterHostZone {
     ibcDenom: "",
     creator: "",
     transferChannelId: "",
-    unbondingFrequency: Long.UZERO
+    unbondingFrequency: Long.UZERO,
+    minRedemptionRate: "",
+    maxRedemptionRate: ""
   };
 }
 
@@ -535,6 +522,14 @@ export const MsgRegisterHostZone = {
 
     if (!message.unbondingFrequency.isZero()) {
       writer.uint32(88).uint64(message.unbondingFrequency);
+    }
+
+    if (message.minRedemptionRate !== "") {
+      writer.uint32(106).string(message.minRedemptionRate);
+    }
+
+    if (message.maxRedemptionRate !== "") {
+      writer.uint32(114).string(message.maxRedemptionRate);
     }
 
     return writer;
@@ -577,6 +572,14 @@ export const MsgRegisterHostZone = {
           message.unbondingFrequency = (reader.uint64() as Long);
           break;
 
+        case 13:
+          message.minRedemptionRate = reader.string();
+          break;
+
+        case 14:
+          message.maxRedemptionRate = reader.string();
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -595,6 +598,8 @@ export const MsgRegisterHostZone = {
     message.creator = object.creator ?? "";
     message.transferChannelId = object.transferChannelId ?? "";
     message.unbondingFrequency = object.unbondingFrequency !== undefined && object.unbondingFrequency !== null ? Long.fromValue(object.unbondingFrequency) : Long.UZERO;
+    message.minRedemptionRate = object.minRedemptionRate ?? "";
+    message.maxRedemptionRate = object.maxRedemptionRate ?? "";
     return message;
   }
 
@@ -842,19 +847,16 @@ export const MsgRebalanceValidatorsResponse = {
 
 };
 
-function createBaseMsgAddValidator(): MsgAddValidator {
+function createBaseMsgAddValidators(): MsgAddValidators {
   return {
     creator: "",
     hostZone: "",
-    name: "",
-    address: "",
-    commission: Long.UZERO,
-    weight: Long.UZERO
+    validators: []
   };
 }
 
-export const MsgAddValidator = {
-  encode(message: MsgAddValidator, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const MsgAddValidators = {
+  encode(message: MsgAddValidators, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.creator !== "") {
       writer.uint32(10).string(message.creator);
     }
@@ -863,29 +865,17 @@ export const MsgAddValidator = {
       writer.uint32(18).string(message.hostZone);
     }
 
-    if (message.name !== "") {
-      writer.uint32(26).string(message.name);
-    }
-
-    if (message.address !== "") {
-      writer.uint32(34).string(message.address);
-    }
-
-    if (!message.commission.isZero()) {
-      writer.uint32(40).uint64(message.commission);
-    }
-
-    if (!message.weight.isZero()) {
-      writer.uint32(48).uint64(message.weight);
+    for (const v of message.validators) {
+      Validator.encode(v!, writer.uint32(26).fork()).ldelim();
     }
 
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgAddValidator {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgAddValidators {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgAddValidator();
+    const message = createBaseMsgAddValidators();
 
     while (reader.pos < end) {
       const tag = reader.uint32();
@@ -900,19 +890,7 @@ export const MsgAddValidator = {
           break;
 
         case 3:
-          message.name = reader.string();
-          break;
-
-        case 4:
-          message.address = reader.string();
-          break;
-
-        case 5:
-          message.commission = (reader.uint64() as Long);
-          break;
-
-        case 6:
-          message.weight = (reader.uint64() as Long);
+          message.validators.push(Validator.decode(reader, reader.uint32()));
           break;
 
         default:
@@ -924,32 +902,29 @@ export const MsgAddValidator = {
     return message;
   },
 
-  fromPartial(object: DeepPartial<MsgAddValidator>): MsgAddValidator {
-    const message = createBaseMsgAddValidator();
+  fromPartial(object: DeepPartial<MsgAddValidators>): MsgAddValidators {
+    const message = createBaseMsgAddValidators();
     message.creator = object.creator ?? "";
     message.hostZone = object.hostZone ?? "";
-    message.name = object.name ?? "";
-    message.address = object.address ?? "";
-    message.commission = object.commission !== undefined && object.commission !== null ? Long.fromValue(object.commission) : Long.UZERO;
-    message.weight = object.weight !== undefined && object.weight !== null ? Long.fromValue(object.weight) : Long.UZERO;
+    message.validators = object.validators?.map(e => Validator.fromPartial(e)) || [];
     return message;
   }
 
 };
 
-function createBaseMsgAddValidatorResponse(): MsgAddValidatorResponse {
+function createBaseMsgAddValidatorsResponse(): MsgAddValidatorsResponse {
   return {};
 }
 
-export const MsgAddValidatorResponse = {
-  encode(_: MsgAddValidatorResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const MsgAddValidatorsResponse = {
+  encode(_: MsgAddValidatorsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): MsgAddValidatorResponse {
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgAddValidatorsResponse {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseMsgAddValidatorResponse();
+    const message = createBaseMsgAddValidatorsResponse();
 
     while (reader.pos < end) {
       const tag = reader.uint32();
@@ -964,8 +939,8 @@ export const MsgAddValidatorResponse = {
     return message;
   },
 
-  fromPartial(_: DeepPartial<MsgAddValidatorResponse>): MsgAddValidatorResponse {
-    const message = createBaseMsgAddValidatorResponse();
+  fromPartial(_: DeepPartial<MsgAddValidatorsResponse>): MsgAddValidatorsResponse {
+    const message = createBaseMsgAddValidatorsResponse();
     return message;
   }
 

@@ -1,7 +1,7 @@
 import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryParamsRequest, QueryParamsResponse, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponse, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponse, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponse, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponse, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponse, QueryGetDepositRecordRequest, QueryGetDepositRecordResponse, QueryAllDepositRecordRequest, QueryAllDepositRecordResponse } from "./query";
+import { QueryParamsRequest, QueryParamsResponse, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponse, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponse, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponse, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponse, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponse, QueryGetDepositRecordRequest, QueryGetDepositRecordResponse, QueryAllDepositRecordRequest, QueryAllDepositRecordResponse, QueryDepositRecordByHostRequest, QueryDepositRecordByHostResponse } from "./query";
 /** Query defines the RPC service */
 
 export interface Query {
@@ -29,6 +29,9 @@ export interface Query {
   depositRecordAll(request?: QueryAllDepositRecordRequest): Promise<QueryAllDepositRecordResponse>;
   /*Queries a list of DepositRecord items.*/
 
+  depositRecordByHost(request: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponse>;
+  /*Queries a list of DepositRecord items for a given host zone*/
+
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -43,6 +46,7 @@ export class QueryClientImpl implements Query {
     this.epochUnbondingRecordAll = this.epochUnbondingRecordAll.bind(this);
     this.depositRecord = this.depositRecord.bind(this);
     this.depositRecordAll = this.depositRecordAll.bind(this);
+    this.depositRecordByHost = this.depositRecordByHost.bind(this);
   }
 
   params(request: QueryParamsRequest = {}): Promise<QueryParamsResponse> {
@@ -99,6 +103,12 @@ export class QueryClientImpl implements Query {
     return promise.then(data => QueryAllDepositRecordResponse.decode(new _m0.Reader(data)));
   }
 
+  depositRecordByHost(request: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponse> {
+    const data = QueryDepositRecordByHostRequest.encode(request).finish();
+    const promise = this.rpc.request("stride.records.Query", "DepositRecordByHost", data);
+    return promise.then(data => QueryDepositRecordByHostResponse.decode(new _m0.Reader(data)));
+  }
+
 }
 export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
@@ -134,6 +144,10 @@ export const createRpcQueryExtension = (base: QueryClient) => {
 
     depositRecordAll(request?: QueryAllDepositRecordRequest): Promise<QueryAllDepositRecordResponse> {
       return queryService.depositRecordAll(request);
+    },
+
+    depositRecordByHost(request: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponse> {
+      return queryService.depositRecordByHost(request);
     }
 
   };

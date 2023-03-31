@@ -1,7 +1,7 @@
 import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryParamsRequest, QueryParamsResponse, QueryGetValidatorsRequest, QueryGetValidatorsResponse, QueryGetHostZoneRequest, QueryGetHostZoneResponse, QueryAllHostZoneRequest, QueryAllHostZoneResponse, QueryModuleAddressRequest, QueryModuleAddressResponse, QueryInterchainAccountFromAddressRequest, QueryInterchainAccountFromAddressResponse, QueryGetEpochTrackerRequest, QueryGetEpochTrackerResponse, QueryAllEpochTrackerRequest, QueryAllEpochTrackerResponse, QueryGetNextPacketSequenceRequest, QueryGetNextPacketSequenceResponse } from "./query";
+import { QueryParamsRequest, QueryParamsResponse, QueryGetValidatorsRequest, QueryGetValidatorsResponse, QueryGetHostZoneRequest, QueryGetHostZoneResponse, QueryAllHostZoneRequest, QueryAllHostZoneResponse, QueryModuleAddressRequest, QueryModuleAddressResponse, QueryInterchainAccountFromAddressRequest, QueryInterchainAccountFromAddressResponse, QueryGetEpochTrackerRequest, QueryGetEpochTrackerResponse, QueryAllEpochTrackerRequest, QueryAllEpochTrackerResponse, QueryGetNextPacketSequenceRequest, QueryGetNextPacketSequenceResponse, QueryAddressUnbondings, QueryAddressUnbondingsResponse } from "./query";
 /** Query defines the RPC service */
 
 export interface Query {
@@ -33,6 +33,9 @@ export interface Query {
   nextPacketSequence(request: QueryGetNextPacketSequenceRequest): Promise<QueryGetNextPacketSequenceResponse>;
   /*Queries the next packet sequence for one for a given channel*/
 
+  addressUnbondings(request: QueryAddressUnbondings): Promise<QueryAddressUnbondingsResponse>;
+  /*Queries an address's unbondings*/
+
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -48,6 +51,7 @@ export class QueryClientImpl implements Query {
     this.epochTracker = this.epochTracker.bind(this);
     this.epochTrackerAll = this.epochTrackerAll.bind(this);
     this.nextPacketSequence = this.nextPacketSequence.bind(this);
+    this.addressUnbondings = this.addressUnbondings.bind(this);
   }
 
   params(request: QueryParamsRequest = {}): Promise<QueryParamsResponse> {
@@ -106,6 +110,12 @@ export class QueryClientImpl implements Query {
     return promise.then(data => QueryGetNextPacketSequenceResponse.decode(new _m0.Reader(data)));
   }
 
+  addressUnbondings(request: QueryAddressUnbondings): Promise<QueryAddressUnbondingsResponse> {
+    const data = QueryAddressUnbondings.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Query", "AddressUnbondings", data);
+    return promise.then(data => QueryAddressUnbondingsResponse.decode(new _m0.Reader(data)));
+  }
+
 }
 export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
@@ -145,6 +155,10 @@ export const createRpcQueryExtension = (base: QueryClient) => {
 
     nextPacketSequence(request: QueryGetNextPacketSequenceRequest): Promise<QueryGetNextPacketSequenceResponse> {
       return queryService.nextPacketSequence(request);
+    },
+
+    addressUnbondings(request: QueryAddressUnbondings): Promise<QueryAddressUnbondingsResponse> {
+      return queryService.addressUnbondings(request);
     }
 
   };

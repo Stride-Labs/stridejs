@@ -2,7 +2,7 @@ import { Validator, ValidatorSDKType } from "./validator";
 import { ICAAccount, ICAAccountSDKType } from "./ica_account";
 import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
-/** next id: 19 */
+/** next id: 22 */
 
 export interface HostZone {
   chainId: string;
@@ -35,8 +35,11 @@ export interface HostZone {
 
   stakedBal: string;
   address: string;
+  halted: boolean;
+  minRedemptionRate: string;
+  maxRedemptionRate: string;
 }
-/** next id: 19 */
+/** next id: 22 */
 
 export interface HostZoneSDKType {
   chain_id: string;
@@ -69,6 +72,9 @@ export interface HostZoneSDKType {
 
   staked_bal: string;
   address: string;
+  halted: boolean;
+  min_redemption_rate: string;
+  max_redemption_rate: string;
 }
 
 function createBaseHostZone(): HostZone {
@@ -89,7 +95,10 @@ function createBaseHostZone(): HostZone {
     redemptionRate: "",
     unbondingFrequency: Long.UZERO,
     stakedBal: "",
-    address: ""
+    address: "",
+    halted: false,
+    minRedemptionRate: "",
+    maxRedemptionRate: ""
   };
 }
 
@@ -161,6 +170,18 @@ export const HostZone = {
 
     if (message.address !== "") {
       writer.uint32(146).string(message.address);
+    }
+
+    if (message.halted === true) {
+      writer.uint32(152).bool(message.halted);
+    }
+
+    if (message.minRedemptionRate !== "") {
+      writer.uint32(162).string(message.minRedemptionRate);
+    }
+
+    if (message.maxRedemptionRate !== "") {
+      writer.uint32(170).string(message.maxRedemptionRate);
     }
 
     return writer;
@@ -243,6 +264,18 @@ export const HostZone = {
           message.address = reader.string();
           break;
 
+        case 19:
+          message.halted = reader.bool();
+          break;
+
+        case 20:
+          message.minRedemptionRate = reader.string();
+          break;
+
+        case 21:
+          message.maxRedemptionRate = reader.string();
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -271,6 +304,9 @@ export const HostZone = {
     message.unbondingFrequency = object.unbondingFrequency !== undefined && object.unbondingFrequency !== null ? Long.fromValue(object.unbondingFrequency) : Long.UZERO;
     message.stakedBal = object.stakedBal ?? "";
     message.address = object.address ?? "";
+    message.halted = object.halted ?? false;
+    message.minRedemptionRate = object.minRedemptionRate ?? "";
+    message.maxRedemptionRate = object.maxRedemptionRate ?? "";
     return message;
   }
 

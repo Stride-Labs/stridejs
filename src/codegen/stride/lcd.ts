@@ -83,6 +83,9 @@ export const createLCDClient = async ({
       }
     },
     stride: {
+      autopilot: new (await import("./autopilot/query.lcd")).LCDQueryClient({
+        requestClient
+      }),
       claim: new (await import("./claim/query.lcd")).LCDQueryClient({
         requestClient
       }),
@@ -97,6 +100,9 @@ export const createLCDClient = async ({
           requestClient
         })
       },
+      ratelimit: new (await import("./ratelimit/query.lcd")).LCDQueryClient({
+        requestClient
+      }),
       records: new (await import("./records/query.lcd")).LCDQueryClient({
         requestClient
       }),

@@ -44,6 +44,18 @@ export interface QueryAllDepositRecordResponseSDKType {
     deposit_record: DepositRecordSDKType[];
     pagination?: PageResponseSDKType;
 }
+export interface QueryDepositRecordByHostRequest {
+    hostZoneId: string;
+}
+export interface QueryDepositRecordByHostRequestSDKType {
+    host_zone_id: string;
+}
+export interface QueryDepositRecordByHostResponse {
+    depositRecord: DepositRecord[];
+}
+export interface QueryDepositRecordByHostResponseSDKType {
+    deposit_record: DepositRecordSDKType[];
+}
 export interface QueryGetUserRedemptionRecordRequest {
     id: string;
 }
@@ -149,6 +161,16 @@ export declare const QueryAllDepositRecordResponse: {
     encode(message: QueryAllDepositRecordResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllDepositRecordResponse;
     fromPartial(object: DeepPartial<QueryAllDepositRecordResponse>): QueryAllDepositRecordResponse;
+};
+export declare const QueryDepositRecordByHostRequest: {
+    encode(message: QueryDepositRecordByHostRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryDepositRecordByHostRequest;
+    fromPartial(object: DeepPartial<QueryDepositRecordByHostRequest>): QueryDepositRecordByHostRequest;
+};
+export declare const QueryDepositRecordByHostResponse: {
+    encode(message: QueryDepositRecordByHostResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryDepositRecordByHostResponse;
+    fromPartial(object: DeepPartial<QueryDepositRecordByHostResponse>): QueryDepositRecordByHostResponse;
 };
 export declare const QueryGetUserRedemptionRecordRequest: {
     encode(message: QueryGetUserRedemptionRecordRequest, writer?: _m0.Writer): _m0.Writer;

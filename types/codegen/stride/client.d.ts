@@ -31,7 +31,7 @@ export declare const strideAminoConverters: {
     };
     "/stride.stakeibc.MsgRegisterHostZone": {
         aminoType: string;
-        toAmino: ({ connectionId, bech32prefix, hostDenom, ibcDenom, creator, transferChannelId, unbondingFrequency }: import("./stakeibc/tx").MsgRegisterHostZone) => {
+        toAmino: ({ connectionId, bech32prefix, hostDenom, ibcDenom, creator, transferChannelId, unbondingFrequency, minRedemptionRate, maxRedemptionRate }: import("./stakeibc/tx").MsgRegisterHostZone) => {
             connection_id: string;
             bech32prefix: string;
             host_denom: string;
@@ -39,8 +39,10 @@ export declare const strideAminoConverters: {
             creator: string;
             transfer_channel_id: string;
             unbonding_frequency: string;
+            min_redemption_rate: string;
+            max_redemption_rate: string;
         };
-        fromAmino: ({ connection_id, bech32prefix, host_denom, ibc_denom, creator, transfer_channel_id, unbonding_frequency }: {
+        fromAmino: ({ connection_id, bech32prefix, host_denom, ibc_denom, creator, transfer_channel_id, unbonding_frequency, min_redemption_rate, max_redemption_rate }: {
             connection_id: string;
             bech32prefix: string;
             host_denom: string;
@@ -48,6 +50,8 @@ export declare const strideAminoConverters: {
             creator: string;
             transfer_channel_id: string;
             unbonding_frequency: string;
+            min_redemption_rate: string;
+            max_redemption_rate: string;
         }) => import("./stakeibc/tx").MsgRegisterHostZone;
     };
     "/stride.stakeibc.MsgClaimUndelegatedTokens": {
@@ -78,24 +82,36 @@ export declare const strideAminoConverters: {
             num_rebalance: string;
         }) => import("./stakeibc/tx").MsgRebalanceValidators;
     };
-    "/stride.stakeibc.MsgAddValidator": {
+    "/stride.stakeibc.MsgAddValidators": {
         aminoType: string;
-        toAmino: ({ creator, hostZone, name, address, commission, weight }: import("./stakeibc/tx").MsgAddValidator) => {
+        toAmino: ({ creator, hostZone, validators }: import("./stakeibc/tx").MsgAddValidators) => {
             creator: string;
             host_zone: string;
-            name: string;
-            address: string;
-            commission: string;
-            weight: string;
+            validators: {
+                name: string;
+                address: string;
+                delegation_amt: string;
+                weight: string;
+                internal_exchange_rate: {
+                    internal_tokens_to_shares_rate: string;
+                    epoch_number: string;
+                };
+            }[];
         };
-        fromAmino: ({ creator, host_zone, name, address, commission, weight }: {
+        fromAmino: ({ creator, host_zone, validators }: {
             creator: string;
             host_zone: string;
-            name: string;
-            address: string;
-            commission: string;
-            weight: string;
-        }) => import("./stakeibc/tx").MsgAddValidator;
+            validators: {
+                name: string;
+                address: string;
+                delegation_amt: string;
+                weight: string;
+                internal_exchange_rate: {
+                    internal_tokens_to_shares_rate: string;
+                    epoch_number: string;
+                };
+            }[];
+        }) => import("./stakeibc/tx").MsgAddValidators;
     };
     "/stride.stakeibc.MsgChangeValidatorWeight": {
         aminoType: string;

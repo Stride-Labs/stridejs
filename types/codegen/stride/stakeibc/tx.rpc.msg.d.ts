@@ -1,5 +1,5 @@
 import { Rpc } from "@osmonauts/helpers";
-import { MsgLiquidStake, MsgLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidator, MsgAddValidatorResponse, MsgChangeValidatorWeight, MsgChangeValidatorWeightResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgClearBalance, MsgClearBalanceResponse } from "./tx";
+import { MsgLiquidStake, MsgLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidators, MsgAddValidatorsResponse, MsgChangeValidatorWeight, MsgChangeValidatorWeightResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgClearBalance, MsgClearBalanceResponse } from "./tx";
 /** Msg defines the RPC service */
 export interface Msg {
     liquidStake(request: MsgLiquidStake): Promise<MsgLiquidStakeResponse>;
@@ -7,7 +7,7 @@ export interface Msg {
     registerHostZone(request: MsgRegisterHostZone): Promise<MsgRegisterHostZoneResponse>;
     claimUndelegatedTokens(request: MsgClaimUndelegatedTokens): Promise<MsgClaimUndelegatedTokensResponse>;
     rebalanceValidators(request: MsgRebalanceValidators): Promise<MsgRebalanceValidatorsResponse>;
-    addValidator(request: MsgAddValidator): Promise<MsgAddValidatorResponse>;
+    addValidators(request: MsgAddValidators): Promise<MsgAddValidatorsResponse>;
     changeValidatorWeight(request: MsgChangeValidatorWeight): Promise<MsgChangeValidatorWeightResponse>;
     deleteValidator(request: MsgDeleteValidator): Promise<MsgDeleteValidatorResponse>;
     restoreInterchainAccount(request: MsgRestoreInterchainAccount): Promise<MsgRestoreInterchainAccountResponse>;
@@ -22,7 +22,7 @@ export declare class MsgClientImpl implements Msg {
     registerHostZone(request: MsgRegisterHostZone): Promise<MsgRegisterHostZoneResponse>;
     claimUndelegatedTokens(request: MsgClaimUndelegatedTokens): Promise<MsgClaimUndelegatedTokensResponse>;
     rebalanceValidators(request: MsgRebalanceValidators): Promise<MsgRebalanceValidatorsResponse>;
-    addValidator(request: MsgAddValidator): Promise<MsgAddValidatorResponse>;
+    addValidators(request: MsgAddValidators): Promise<MsgAddValidatorsResponse>;
     changeValidatorWeight(request: MsgChangeValidatorWeight): Promise<MsgChangeValidatorWeightResponse>;
     deleteValidator(request: MsgDeleteValidator): Promise<MsgDeleteValidatorResponse>;
     restoreInterchainAccount(request: MsgRestoreInterchainAccount): Promise<MsgRestoreInterchainAccountResponse>;

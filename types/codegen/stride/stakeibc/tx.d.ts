@@ -1,16 +1,15 @@
+import { Validator, ValidatorSDKType } from "./validator";
 import { ICAAccountType, ICAAccountTypeSDKType } from "./ica_account";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
 export interface MsgLiquidStake {
     creator: string;
     amount: string;
-    /** TODO(TEST-86): Update Denom -> HostDenom */
     hostDenom: string;
 }
 export interface MsgLiquidStakeSDKType {
     creator: string;
     amount: string;
-    /** TODO(TEST-86): Update Denom -> HostDenom */
     host_denom: string;
 }
 export interface MsgLiquidStakeResponse {
@@ -49,7 +48,7 @@ export interface MsgRedeemStakeResponse {
 }
 export interface MsgRedeemStakeResponseSDKType {
 }
-/** next: 13 */
+/** next: 15 */
 export interface MsgRegisterHostZone {
     connectionId: string;
     bech32prefix: string;
@@ -58,8 +57,10 @@ export interface MsgRegisterHostZone {
     creator: string;
     transferChannelId: string;
     unbondingFrequency: Long;
+    minRedemptionRate: string;
+    maxRedemptionRate: string;
 }
-/** next: 13 */
+/** next: 15 */
 export interface MsgRegisterHostZoneSDKType {
     connection_id: string;
     bech32prefix: string;
@@ -68,17 +69,11 @@ export interface MsgRegisterHostZoneSDKType {
     creator: string;
     transfer_channel_id: string;
     unbonding_frequency: Long;
+    min_redemption_rate: string;
+    max_redemption_rate: string;
 }
-/**
- * TODO(TEST-53): Remove this pre-launch (no need for clients to create /
- * interact with ICAs)
- */
 export interface MsgRegisterHostZoneResponse {
 }
-/**
- * TODO(TEST-53): Remove this pre-launch (no need for clients to create /
- * interact with ICAs)
- */
 export interface MsgRegisterHostZoneResponseSDKType {
 }
 export interface MsgClaimUndelegatedTokens {
@@ -113,25 +108,19 @@ export interface MsgRebalanceValidatorsResponse {
 }
 export interface MsgRebalanceValidatorsResponseSDKType {
 }
-export interface MsgAddValidator {
+export interface MsgAddValidators {
     creator: string;
     hostZone: string;
-    name: string;
-    address: string;
-    commission: Long;
-    weight: Long;
+    validators: Validator[];
 }
-export interface MsgAddValidatorSDKType {
+export interface MsgAddValidatorsSDKType {
     creator: string;
     host_zone: string;
-    name: string;
-    address: string;
-    commission: Long;
-    weight: Long;
+    validators: ValidatorSDKType[];
 }
-export interface MsgAddValidatorResponse {
+export interface MsgAddValidatorsResponse {
 }
-export interface MsgAddValidatorResponseSDKType {
+export interface MsgAddValidatorsResponseSDKType {
 }
 export interface MsgChangeValidatorWeight {
     creator: string;
@@ -251,15 +240,15 @@ export declare const MsgRebalanceValidatorsResponse: {
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgRebalanceValidatorsResponse;
     fromPartial(_: DeepPartial<MsgRebalanceValidatorsResponse>): MsgRebalanceValidatorsResponse;
 };
-export declare const MsgAddValidator: {
-    encode(message: MsgAddValidator, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgAddValidator;
-    fromPartial(object: DeepPartial<MsgAddValidator>): MsgAddValidator;
+export declare const MsgAddValidators: {
+    encode(message: MsgAddValidators, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgAddValidators;
+    fromPartial(object: DeepPartial<MsgAddValidators>): MsgAddValidators;
 };
-export declare const MsgAddValidatorResponse: {
-    encode(_: MsgAddValidatorResponse, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): MsgAddValidatorResponse;
-    fromPartial(_: DeepPartial<MsgAddValidatorResponse>): MsgAddValidatorResponse;
+export declare const MsgAddValidatorsResponse: {
+    encode(_: MsgAddValidatorsResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgAddValidatorsResponse;
+    fromPartial(_: DeepPartial<MsgAddValidatorsResponse>): MsgAddValidatorsResponse;
 };
 export declare const MsgChangeValidatorWeight: {
     encode(message: MsgChangeValidatorWeight, writer?: _m0.Writer): _m0.Writer;

@@ -1,6 +1,6 @@
 import { setPaginationParams } from "@osmonauts/helpers";
 import { LCDClient } from "@osmonauts/lcd";
-import { QueryParamsRequest, QueryParamsResponseSDKType, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponseSDKType, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponseSDKType, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponseSDKType, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponseSDKType, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponseSDKType, QueryGetDepositRecordRequest, QueryGetDepositRecordResponseSDKType, QueryAllDepositRecordRequest, QueryAllDepositRecordResponseSDKType } from "./query";
+import { QueryParamsRequest, QueryParamsResponseSDKType, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponseSDKType, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponseSDKType, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponseSDKType, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponseSDKType, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponseSDKType, QueryGetDepositRecordRequest, QueryGetDepositRecordResponseSDKType, QueryAllDepositRecordRequest, QueryAllDepositRecordResponseSDKType, QueryDepositRecordByHostRequest, QueryDepositRecordByHostResponseSDKType } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
 
@@ -18,6 +18,7 @@ export class LCDQueryClient {
     this.epochUnbondingRecordAll = this.epochUnbondingRecordAll.bind(this);
     this.depositRecord = this.depositRecord.bind(this);
     this.depositRecordAll = this.depositRecordAll.bind(this);
+    this.depositRecordByHost = this.depositRecordByHost.bind(this);
   }
   /* Parameters queries the parameters of the module. */
 
@@ -112,6 +113,13 @@ export class LCDQueryClient {
 
     const endpoint = `Stride-Labs/stride/records/deposit_record`;
     return await this.req.get<QueryAllDepositRecordResponseSDKType>(endpoint, options);
+  }
+  /* Queries a list of DepositRecord items for a given host zone */
+
+
+  async depositRecordByHost(params: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponseSDKType> {
+    const endpoint = `Stride-Labs/stride/records/deposit_record_by_host_zone/${params.hostZoneId}`;
+    return await this.req.get<QueryDepositRecordByHostResponseSDKType>(endpoint);
   }
 
 }
