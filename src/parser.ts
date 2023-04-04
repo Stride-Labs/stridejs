@@ -28,9 +28,9 @@ function uint64FromProto(input: number | Long): Uint64 {
   return Uint64.fromString(input.toString());
 }
 
-export function accountFromBaseAccount(input: BaseAccount): Account {
+function accountFromBaseAccount(input: BaseAccount): Account {
   const { address, pubKey, accountNumber, sequence } = input;
-  const pubkey = decodePubkey(pubKey);
+  const pubkey = pubKey ? decodePubkey(pubKey) : null;
   return {
     address: address,
     pubkey: pubkey,
