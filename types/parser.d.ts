@@ -1,4 +1,5 @@
 import { Pubkey } from "@cosmjs/amino";
+import { BaseAccount } from "cosmjs-types/cosmos/auth/v1beta1/auth";
 import { Any } from "cosmjs-types/google/protobuf/any";
 export interface Account {
     /** Bech32 account address */
@@ -7,6 +8,7 @@ export interface Account {
     readonly accountNumber: number;
     readonly sequence: number;
 }
+export declare function accountFromBaseAccount(input: BaseAccount): Account;
 /**
  * Represents a generic function that takes an `Any` encoded account from the chain
  * and extracts some common `Account` information from it.
