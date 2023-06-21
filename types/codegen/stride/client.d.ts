@@ -239,19 +239,23 @@ export declare const strideAminoConverters: {
     };
     "/stride.claim.MsgCreateAirdrop": {
         aminoType: string;
-        toAmino: ({ distributor, identifier, startTime, duration, denom }: import("./claim/tx").MsgCreateAirdrop) => {
+        toAmino: ({ distributor, identifier, chainId, denom, startTime, duration, autopilotEnabled }: import("./claim/tx").MsgCreateAirdrop) => {
             distributor: string;
             identifier: string;
+            chain_id: string;
+            denom: string;
             start_time: string;
             duration: string;
-            denom: string;
+            autopilot_enabled: boolean;
         };
-        fromAmino: ({ distributor, identifier, start_time, duration, denom }: {
+        fromAmino: ({ distributor, identifier, chain_id, denom, start_time, duration, autopilot_enabled }: {
             distributor: string;
             identifier: string;
+            chain_id: string;
+            denom: string;
             start_time: string;
             duration: string;
-            denom: string;
+            autopilot_enabled: boolean;
         }) => import("./claim/tx").MsgCreateAirdrop;
     };
     "/stride.claim.MsgDeleteAirdrop": {

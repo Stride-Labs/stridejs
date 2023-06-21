@@ -2,8 +2,9 @@ import { join } from 'path';
 import telescope from '@osmonauts/telescope';
 import { sync as rimraf } from 'rimraf';
 
-const protoDirs = [join(__dirname, '../stride/third_party/proto'), join(__dirname, '../stride/proto')];
+const protoDirs = [join(__dirname, '../stride/build')];
 const outPath = join(__dirname, '../src/codegen');
+
 rimraf(outPath);
 
 telescope({

@@ -76,6 +76,14 @@ export interface RateLimitSDKType {
   quota: QuotaSDKType;
   flow: FlowSDKType;
 }
+export interface WhitelistedAddressPair {
+  sender: string;
+  receiver: string;
+}
+export interface WhitelistedAddressPairSDKType {
+  sender: string;
+  receiver: string;
+}
 
 function createBasePath(): Path {
   return {
@@ -322,6 +330,61 @@ export const RateLimit = {
     message.path = object.path !== undefined && object.path !== null ? Path.fromPartial(object.path) : undefined;
     message.quota = object.quota !== undefined && object.quota !== null ? Quota.fromPartial(object.quota) : undefined;
     message.flow = object.flow !== undefined && object.flow !== null ? Flow.fromPartial(object.flow) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseWhitelistedAddressPair(): WhitelistedAddressPair {
+  return {
+    sender: "",
+    receiver: ""
+  };
+}
+
+export const WhitelistedAddressPair = {
+  encode(message: WhitelistedAddressPair, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.sender !== "") {
+      writer.uint32(10).string(message.sender);
+    }
+
+    if (message.receiver !== "") {
+      writer.uint32(18).string(message.receiver);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): WhitelistedAddressPair {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseWhitelistedAddressPair();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.sender = reader.string();
+          break;
+
+        case 2:
+          message.receiver = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<WhitelistedAddressPair>): WhitelistedAddressPair {
+    const message = createBaseWhitelistedAddressPair();
+    message.sender = object.sender ?? "";
+    message.receiver = object.receiver ?? "";
     return message;
   }
 

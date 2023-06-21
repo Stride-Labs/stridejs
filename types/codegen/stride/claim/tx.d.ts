@@ -32,16 +32,20 @@ export interface MsgClaimFreeAmountResponseSDKType {
 export interface MsgCreateAirdrop {
     distributor: string;
     identifier: string;
+    chainId: string;
+    denom: string;
     startTime: Long;
     duration: Long;
-    denom: string;
+    autopilotEnabled: boolean;
 }
 export interface MsgCreateAirdropSDKType {
     distributor: string;
     identifier: string;
+    chain_id: string;
+    denom: string;
     start_time: Long;
     duration: Long;
-    denom: string;
+    autopilot_enabled: boolean;
 }
 export interface MsgCreateAirdropResponse {
 }

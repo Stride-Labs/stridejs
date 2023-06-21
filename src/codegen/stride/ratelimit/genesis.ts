@@ -1,30 +1,33 @@
 import { Params, ParamsSDKType } from "./params";
-import { RateLimit, RateLimitSDKType } from "./ratelimit";
+import { RateLimit, RateLimitSDKType, WhitelistedAddressPair, WhitelistedAddressPairSDKType } from "./ratelimit";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial } from "@osmonauts/helpers";
 /** GenesisState defines the ratelimit module's genesis state. */
 
 export interface GenesisState {
-  /** params defines all the parameters of the module. */
   params: Params;
-  /** list of rate limits */
-
   rateLimits: RateLimit[];
+  whitelistedAddressPairs: WhitelistedAddressPair[];
+  blacklistedDenoms: string[];
+  pendingSendPacketSequenceNumbers: string[];
 }
 /** GenesisState defines the ratelimit module's genesis state. */
 
 export interface GenesisStateSDKType {
-  /** params defines all the parameters of the module. */
   params: ParamsSDKType;
-  /** list of rate limits */
-
   rate_limits: RateLimitSDKType[];
+  whitelisted_address_pairs: WhitelistedAddressPairSDKType[];
+  blacklisted_denoms: string[];
+  pending_send_packet_sequence_numbers: string[];
 }
 
 function createBaseGenesisState(): GenesisState {
   return {
     params: undefined,
-    rateLimits: []
+    rateLimits: [],
+    whitelistedAddressPairs: [],
+    blacklistedDenoms: [],
+    pendingSendPacketSequenceNumbers: []
   };
 }
 
@@ -36,6 +39,18 @@ export const GenesisState = {
 
     for (const v of message.rateLimits) {
       RateLimit.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+
+    for (const v of message.whitelistedAddressPairs) {
+      WhitelistedAddressPair.encode(v!, writer.uint32(26).fork()).ldelim();
+    }
+
+    for (const v of message.blacklistedDenoms) {
+      writer.uint32(34).string(v!);
+    }
+
+    for (const v of message.pendingSendPacketSequenceNumbers) {
+      writer.uint32(42).string(v!);
     }
 
     return writer;
@@ -58,6 +73,18 @@ export const GenesisState = {
           message.rateLimits.push(RateLimit.decode(reader, reader.uint32()));
           break;
 
+        case 3:
+          message.whitelistedAddressPairs.push(WhitelistedAddressPair.decode(reader, reader.uint32()));
+          break;
+
+        case 4:
+          message.blacklistedDenoms.push(reader.string());
+          break;
+
+        case 5:
+          message.pendingSendPacketSequenceNumbers.push(reader.string());
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -71,6 +98,9 @@ export const GenesisState = {
     const message = createBaseGenesisState();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     message.rateLimits = object.rateLimits?.map(e => RateLimit.fromPartial(e)) || [];
+    message.whitelistedAddressPairs = object.whitelistedAddressPairs?.map(e => WhitelistedAddressPair.fromPartial(e)) || [];
+    message.blacklistedDenoms = object.blacklistedDenoms?.map(e => e) || [];
+    message.pendingSendPacketSequenceNumbers = object.pendingSendPacketSequenceNumbers?.map(e => e) || [];
     return message;
   }
 

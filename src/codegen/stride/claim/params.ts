@@ -16,6 +16,7 @@ export interface ParamsSDKType {
 }
 export interface Airdrop {
   airdropIdentifier: string;
+  chainId: string;
   /** seconds */
 
   airdropStartTime: Date;
@@ -31,9 +32,13 @@ export interface Airdrop {
   /** ustrd tokens claimed so far in the current period */
 
   claimedSoFar: string;
+  /** indicates the airdrop should be claimed via autopilot */
+
+  autopilotEnabled: boolean;
 }
 export interface AirdropSDKType {
   airdrop_identifier: string;
+  chain_id: string;
   /** seconds */
 
   airdrop_start_time: Date;
@@ -49,6 +54,9 @@ export interface AirdropSDKType {
   /** ustrd tokens claimed so far in the current period */
 
   claimed_so_far: string;
+  /** indicates the airdrop should be claimed via autopilot */
+
+  autopilot_enabled: boolean;
 }
 
 function createBaseParams(): Params {
@@ -99,11 +107,13 @@ export const Params = {
 function createBaseAirdrop(): Airdrop {
   return {
     airdropIdentifier: "",
+    chainId: "",
     airdropStartTime: undefined,
     airdropDuration: undefined,
     claimDenom: "",
     distributorAddress: "",
-    claimedSoFar: ""
+    claimedSoFar: "",
+    autopilotEnabled: false
   };
 }
 
@@ -111,6 +121,10 @@ export const Airdrop = {
   encode(message: Airdrop, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.airdropIdentifier !== "") {
       writer.uint32(10).string(message.airdropIdentifier);
+    }
+
+    if (message.chainId !== "") {
+      writer.uint32(58).string(message.chainId);
     }
 
     if (message.airdropStartTime !== undefined) {
@@ -133,6 +147,10 @@ export const Airdrop = {
       writer.uint32(50).string(message.claimedSoFar);
     }
 
+    if (message.autopilotEnabled === true) {
+      writer.uint32(64).bool(message.autopilotEnabled);
+    }
+
     return writer;
   },
 
@@ -147,6 +165,10 @@ export const Airdrop = {
       switch (tag >>> 3) {
         case 1:
           message.airdropIdentifier = reader.string();
+          break;
+
+        case 7:
+          message.chainId = reader.string();
           break;
 
         case 2:
@@ -169,6 +191,10 @@ export const Airdrop = {
           message.claimedSoFar = reader.string();
           break;
 
+        case 8:
+          message.autopilotEnabled = reader.bool();
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -181,11 +207,13 @@ export const Airdrop = {
   fromPartial(object: DeepPartial<Airdrop>): Airdrop {
     const message = createBaseAirdrop();
     message.airdropIdentifier = object.airdropIdentifier ?? "";
+    message.chainId = object.chainId ?? "";
     message.airdropStartTime = object.airdropStartTime ?? undefined;
     message.airdropDuration = object.airdropDuration ?? undefined;
     message.claimDenom = object.claimDenom ?? "";
     message.distributorAddress = object.distributorAddress ?? "";
     message.claimedSoFar = object.claimedSoFar ?? "";
+    message.autopilotEnabled = object.autopilotEnabled ?? false;
     return message;
   }
 

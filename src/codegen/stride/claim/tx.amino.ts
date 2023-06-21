@@ -21,9 +21,11 @@ export interface AminoMsgCreateAirdrop extends AminoMsg {
   value: {
     distributor: string;
     identifier: string;
+    chain_id: string;
+    denom: string;
     start_time: string;
     duration: string;
-    denom: string;
+    autopilot_enabled: boolean;
   };
 }
 export interface AminoMsgDeleteAirdrop extends AminoMsg {
@@ -85,31 +87,39 @@ export const AminoConverter = {
     toAmino: ({
       distributor,
       identifier,
+      chainId,
+      denom,
       startTime,
       duration,
-      denom
+      autopilotEnabled
     }: MsgCreateAirdrop): AminoMsgCreateAirdrop["value"] => {
       return {
         distributor,
         identifier,
+        chain_id: chainId,
+        denom,
         start_time: startTime.toString(),
         duration: duration.toString(),
-        denom
+        autopilot_enabled: autopilotEnabled
       };
     },
     fromAmino: ({
       distributor,
       identifier,
+      chain_id,
+      denom,
       start_time,
       duration,
-      denom
+      autopilot_enabled
     }: AminoMsgCreateAirdrop["value"]): MsgCreateAirdrop => {
       return {
         distributor,
         identifier,
+        chainId: chain_id,
+        denom,
         startTime: Long.fromString(start_time),
         duration: Long.fromString(duration),
-        denom
+        autopilotEnabled: autopilot_enabled
       };
     }
   },

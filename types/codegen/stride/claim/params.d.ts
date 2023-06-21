@@ -13,6 +13,7 @@ export interface ParamsSDKType {
 }
 export interface Airdrop {
     airdropIdentifier: string;
+    chainId: string;
     /** seconds */
     airdropStartTime: Date;
     /** seconds */
@@ -23,9 +24,12 @@ export interface Airdrop {
     distributorAddress: string;
     /** ustrd tokens claimed so far in the current period */
     claimedSoFar: string;
+    /** indicates the airdrop should be claimed via autopilot */
+    autopilotEnabled: boolean;
 }
 export interface AirdropSDKType {
     airdrop_identifier: string;
+    chain_id: string;
     /** seconds */
     airdrop_start_time: Date;
     /** seconds */
@@ -36,6 +40,8 @@ export interface AirdropSDKType {
     distributor_address: string;
     /** ustrd tokens claimed so far in the current period */
     claimed_so_far: string;
+    /** indicates the airdrop should be claimed via autopilot */
+    autopilot_enabled: boolean;
 }
 export declare const Params: {
     encode(message: Params, writer?: _m0.Writer): _m0.Writer;

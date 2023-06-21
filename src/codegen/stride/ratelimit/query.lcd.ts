@@ -1,5 +1,5 @@
 import { LCDClient } from "@osmonauts/lcd";
-import { QueryAllRateLimitsRequest, QueryAllRateLimitsResponseSDKType, QueryRateLimitRequest, QueryRateLimitResponseSDKType, QueryRateLimitsByChainIdRequest, QueryRateLimitsByChainIdResponseSDKType, QueryRateLimitsByChannelIdRequest, QueryRateLimitsByChannelIdResponseSDKType } from "./query";
+import { QueryAllRateLimitsRequest, QueryAllRateLimitsResponseSDKType, QueryRateLimitRequest, QueryRateLimitResponseSDKType, QueryRateLimitsByChainIdRequest, QueryRateLimitsByChainIdResponseSDKType, QueryRateLimitsByChannelIdRequest, QueryRateLimitsByChannelIdResponseSDKType, QueryAllBlacklistedDenomsRequest, QueryAllBlacklistedDenomsResponseSDKType, QueryAllWhitelistedAddressesRequest, QueryAllWhitelistedAddressesResponseSDKType } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
 
@@ -13,6 +13,8 @@ export class LCDQueryClient {
     this.rateLimit = this.rateLimit.bind(this);
     this.rateLimitsByChainId = this.rateLimitsByChainId.bind(this);
     this.rateLimitsByChannelId = this.rateLimitsByChannelId.bind(this);
+    this.allBlacklistedDenoms = this.allBlacklistedDenoms.bind(this);
+    this.allWhitelistedAddresses = this.allWhitelistedAddresses.bind(this);
   }
   /* AllRateLimits */
 
@@ -49,6 +51,20 @@ export class LCDQueryClient {
   async rateLimitsByChannelId(params: QueryRateLimitsByChannelIdRequest): Promise<QueryRateLimitsByChannelIdResponseSDKType> {
     const endpoint = `Stride-Labs/stride/ratelimit/ratelimits/${params.channelId}`;
     return await this.req.get<QueryRateLimitsByChannelIdResponseSDKType>(endpoint);
+  }
+  /* AllBlacklistedDenoms */
+
+
+  async allBlacklistedDenoms(_params: QueryAllBlacklistedDenomsRequest = {}): Promise<QueryAllBlacklistedDenomsResponseSDKType> {
+    const endpoint = `Stride-Labs/stride/ratelimit/blacklisted_denoms`;
+    return await this.req.get<QueryAllBlacklistedDenomsResponseSDKType>(endpoint);
+  }
+  /* AllWhitelistedAddresses */
+
+
+  async allWhitelistedAddresses(_params: QueryAllWhitelistedAddressesRequest = {}): Promise<QueryAllWhitelistedAddressesResponseSDKType> {
+    const endpoint = `Stride-Labs/stride/ratelimit/whitelisted_addresses`;
+    return await this.req.get<QueryAllWhitelistedAddressesResponseSDKType>(endpoint);
   }
 
 }

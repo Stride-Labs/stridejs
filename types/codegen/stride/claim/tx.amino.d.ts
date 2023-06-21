@@ -20,9 +20,11 @@ export interface AminoMsgCreateAirdrop extends AminoMsg {
     value: {
         distributor: string;
         identifier: string;
+        chain_id: string;
+        denom: string;
         start_time: string;
         duration: string;
-        denom: string;
+        autopilot_enabled: boolean;
     };
 }
 export interface AminoMsgDeleteAirdrop extends AminoMsg {
@@ -45,8 +47,8 @@ export declare const AminoConverter: {
     };
     "/stride.claim.MsgCreateAirdrop": {
         aminoType: string;
-        toAmino: ({ distributor, identifier, startTime, duration, denom }: MsgCreateAirdrop) => AminoMsgCreateAirdrop["value"];
-        fromAmino: ({ distributor, identifier, start_time, duration, denom }: AminoMsgCreateAirdrop["value"]) => MsgCreateAirdrop;
+        toAmino: ({ distributor, identifier, chainId, denom, startTime, duration, autopilotEnabled }: MsgCreateAirdrop) => AminoMsgCreateAirdrop["value"];
+        fromAmino: ({ distributor, identifier, chain_id, denom, start_time, duration, autopilot_enabled }: AminoMsgCreateAirdrop["value"]) => MsgCreateAirdrop;
     };
     "/stride.claim.MsgDeleteAirdrop": {
         aminoType: string;

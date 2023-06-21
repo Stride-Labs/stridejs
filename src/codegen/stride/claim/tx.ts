@@ -30,16 +30,20 @@ export interface MsgClaimFreeAmountResponseSDKType {
 export interface MsgCreateAirdrop {
   distributor: string;
   identifier: string;
+  chainId: string;
+  denom: string;
   startTime: Long;
   duration: Long;
-  denom: string;
+  autopilotEnabled: boolean;
 }
 export interface MsgCreateAirdropSDKType {
   distributor: string;
   identifier: string;
+  chain_id: string;
+  denom: string;
   start_time: Long;
   duration: Long;
-  denom: string;
+  autopilot_enabled: boolean;
 }
 export interface MsgCreateAirdropResponse {}
 export interface MsgCreateAirdropResponseSDKType {}
@@ -257,9 +261,11 @@ function createBaseMsgCreateAirdrop(): MsgCreateAirdrop {
   return {
     distributor: "",
     identifier: "",
+    chainId: "",
+    denom: "",
     startTime: Long.UZERO,
     duration: Long.UZERO,
-    denom: ""
+    autopilotEnabled: false
   };
 }
 
@@ -273,6 +279,14 @@ export const MsgCreateAirdrop = {
       writer.uint32(18).string(message.identifier);
     }
 
+    if (message.chainId !== "") {
+      writer.uint32(50).string(message.chainId);
+    }
+
+    if (message.denom !== "") {
+      writer.uint32(42).string(message.denom);
+    }
+
     if (!message.startTime.isZero()) {
       writer.uint32(24).uint64(message.startTime);
     }
@@ -281,8 +295,8 @@ export const MsgCreateAirdrop = {
       writer.uint32(32).uint64(message.duration);
     }
 
-    if (message.denom !== "") {
-      writer.uint32(42).string(message.denom);
+    if (message.autopilotEnabled === true) {
+      writer.uint32(56).bool(message.autopilotEnabled);
     }
 
     return writer;
@@ -305,6 +319,14 @@ export const MsgCreateAirdrop = {
           message.identifier = reader.string();
           break;
 
+        case 6:
+          message.chainId = reader.string();
+          break;
+
+        case 5:
+          message.denom = reader.string();
+          break;
+
         case 3:
           message.startTime = (reader.uint64() as Long);
           break;
@@ -313,8 +335,8 @@ export const MsgCreateAirdrop = {
           message.duration = (reader.uint64() as Long);
           break;
 
-        case 5:
-          message.denom = reader.string();
+        case 7:
+          message.autopilotEnabled = reader.bool();
           break;
 
         default:
@@ -330,9 +352,11 @@ export const MsgCreateAirdrop = {
     const message = createBaseMsgCreateAirdrop();
     message.distributor = object.distributor ?? "";
     message.identifier = object.identifier ?? "";
+    message.chainId = object.chainId ?? "";
+    message.denom = object.denom ?? "";
     message.startTime = object.startTime !== undefined && object.startTime !== null ? Long.fromValue(object.startTime) : Long.UZERO;
     message.duration = object.duration !== undefined && object.duration !== null ? Long.fromValue(object.duration) : Long.UZERO;
-    message.denom = object.denom ?? "";
+    message.autopilotEnabled = object.autopilotEnabled ?? false;
     return message;
   }
 

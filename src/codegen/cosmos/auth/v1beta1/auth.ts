@@ -39,6 +39,38 @@ export interface ModuleAccountSDKType {
   name: string;
   permissions: string[];
 }
+/**
+ * ModuleCredential represents a unclaimable pubkey for base accounts controlled by modules.
+ *
+ * Since: cosmos-sdk 0.47
+ */
+
+export interface ModuleCredential {
+  /** module_name is the name of the module used for address derivation (passed into address.Module). */
+  moduleName: string;
+  /**
+   * derivation_keys is for deriving a module account address (passed into address.Module)
+   * adding more keys creates sub-account addresses (passed into address.Derive)
+   */
+
+  derivationKeys: Uint8Array[];
+}
+/**
+ * ModuleCredential represents a unclaimable pubkey for base accounts controlled by modules.
+ *
+ * Since: cosmos-sdk 0.47
+ */
+
+export interface ModuleCredentialSDKType {
+  /** module_name is the name of the module used for address derivation (passed into address.Module). */
+  module_name: string;
+  /**
+   * derivation_keys is for deriving a module account address (passed into address.Module)
+   * adding more keys creates sub-account addresses (passed into address.Derive)
+   */
+
+  derivation_keys: Uint8Array[];
+}
 /** Params defines the parameters for the auth module. */
 
 export interface Params {
@@ -193,6 +225,61 @@ export const ModuleAccount = {
     message.baseAccount = object.baseAccount !== undefined && object.baseAccount !== null ? BaseAccount.fromPartial(object.baseAccount) : undefined;
     message.name = object.name ?? "";
     message.permissions = object.permissions?.map(e => e) || [];
+    return message;
+  }
+
+};
+
+function createBaseModuleCredential(): ModuleCredential {
+  return {
+    moduleName: "",
+    derivationKeys: []
+  };
+}
+
+export const ModuleCredential = {
+  encode(message: ModuleCredential, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.moduleName !== "") {
+      writer.uint32(10).string(message.moduleName);
+    }
+
+    for (const v of message.derivationKeys) {
+      writer.uint32(18).bytes(v!);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ModuleCredential {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseModuleCredential();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.moduleName = reader.string();
+          break;
+
+        case 2:
+          message.derivationKeys.push(reader.bytes());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<ModuleCredential>): ModuleCredential {
+    const message = createBaseModuleCredential();
+    message.moduleName = object.moduleName ?? "";
+    message.derivationKeys = object.derivationKeys?.map(e => e) || [];
     return message;
   }
 
