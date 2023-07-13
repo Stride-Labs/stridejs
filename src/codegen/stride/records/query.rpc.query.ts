@@ -1,7 +1,7 @@
 import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryParamsRequest, QueryParamsResponse, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponse, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponse, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponse, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponse, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponse, QueryGetDepositRecordRequest, QueryGetDepositRecordResponse, QueryAllDepositRecordRequest, QueryAllDepositRecordResponse, QueryDepositRecordByHostRequest, QueryDepositRecordByHostResponse } from "./query";
+import { QueryParamsRequest, QueryParamsResponse, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponse, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponse, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponse, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponse, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponse, QueryGetDepositRecordRequest, QueryGetDepositRecordResponse, QueryAllDepositRecordRequest, QueryAllDepositRecordResponse, QueryDepositRecordByHostRequest, QueryDepositRecordByHostResponse, QueryLSMDepositRequest, QueryLSMDepositResponse, QueryLSMDepositsRequest, QueryLSMDepositsResponse } from "./query";
 /** Query defines the RPC service */
 
 export interface Query {
@@ -32,6 +32,14 @@ export interface Query {
   depositRecordByHost(request: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponse>;
   /*Queries a list of DepositRecord items for a given host zone*/
 
+  lSMDeposit(request: QueryLSMDepositRequest): Promise<QueryLSMDepositResponse>;
+  /*Queries the existing LSMTokenDeposits for one specific deposit*/
+
+  lSMDeposits(request: QueryLSMDepositsRequest): Promise<QueryLSMDepositsResponse>;
+  /*Queries the existing LSMTokenDeposits for all which match filters
+     intended use:
+     ...stakeibc/lsm_deposits?chain_id=X&validator_address=Y&status=Z*/
+
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -47,6 +55,8 @@ export class QueryClientImpl implements Query {
     this.depositRecord = this.depositRecord.bind(this);
     this.depositRecordAll = this.depositRecordAll.bind(this);
     this.depositRecordByHost = this.depositRecordByHost.bind(this);
+    this.lSMDeposit = this.lSMDeposit.bind(this);
+    this.lSMDeposits = this.lSMDeposits.bind(this);
   }
 
   params(request: QueryParamsRequest = {}): Promise<QueryParamsResponse> {
@@ -109,6 +119,18 @@ export class QueryClientImpl implements Query {
     return promise.then(data => QueryDepositRecordByHostResponse.decode(new _m0.Reader(data)));
   }
 
+  lSMDeposit(request: QueryLSMDepositRequest): Promise<QueryLSMDepositResponse> {
+    const data = QueryLSMDepositRequest.encode(request).finish();
+    const promise = this.rpc.request("stride.records.Query", "LSMDeposit", data);
+    return promise.then(data => QueryLSMDepositResponse.decode(new _m0.Reader(data)));
+  }
+
+  lSMDeposits(request: QueryLSMDepositsRequest): Promise<QueryLSMDepositsResponse> {
+    const data = QueryLSMDepositsRequest.encode(request).finish();
+    const promise = this.rpc.request("stride.records.Query", "LSMDeposits", data);
+    return promise.then(data => QueryLSMDepositsResponse.decode(new _m0.Reader(data)));
+  }
+
 }
 export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
@@ -148,6 +170,14 @@ export const createRpcQueryExtension = (base: QueryClient) => {
 
     depositRecordByHost(request: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponse> {
       return queryService.depositRecordByHost(request);
+    },
+
+    lSMDeposit(request: QueryLSMDepositRequest): Promise<QueryLSMDepositResponse> {
+      return queryService.lSMDeposit(request);
+    },
+
+    lSMDeposits(request: QueryLSMDepositsRequest): Promise<QueryLSMDepositsResponse> {
+      return queryService.lSMDeposits(request);
     }
 
   };

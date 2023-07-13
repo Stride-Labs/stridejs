@@ -1,104 +1,81 @@
 import { Validator, ValidatorSDKType } from "./validator";
-import { ICAAccount, ICAAccountSDKType } from "./ica_account";
 import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
-/** next id: 22 */
-
 export interface HostZone {
   chainId: string;
-  connectionId: string;
   bech32prefix: string;
+  connectionId: string;
   transferChannelId: string;
-  validators: Validator[];
-  blacklistedValidators: Validator[];
-  withdrawalAccount: ICAAccount;
-  feeAccount: ICAAccount;
-  delegationAccount: ICAAccount;
-  redemptionAccount: ICAAccount;
   /** ibc denom on stride */
 
   ibcDenom: string;
   /** native denom on host zone */
 
   hostDenom: string;
-  /**
-   * TODO(TEST-68): Should we make this an array and store the last n redemption
-   * rates then calculate a TWARR?
-   */
-
+  unbondingPeriod: Long;
+  validators: Validator[];
+  depositAddress: string;
+  withdrawalIcaAddress: string;
+  feeIcaAddress: string;
+  delegationIcaAddress: string;
+  redemptionIcaAddress: string;
+  totalDelegations: string;
   lastRedemptionRate: string;
   redemptionRate: string;
-  /** stores how many days we should wait before issuing unbondings */
-
-  unbondingFrequency: Long;
-  /** TODO(TEST-101) int to dec */
-
-  stakedBal: string;
-  address: string;
-  halted: boolean;
   minRedemptionRate: string;
   maxRedemptionRate: string;
+  lsmLiquidStakeEnabled: boolean;
+  halted: boolean;
 }
-/** next id: 22 */
-
 export interface HostZoneSDKType {
   chain_id: string;
-  connection_id: string;
   bech32prefix: string;
+  connection_id: string;
   transfer_channel_id: string;
-  validators: ValidatorSDKType[];
-  blacklisted_validators: ValidatorSDKType[];
-  withdrawal_account: ICAAccountSDKType;
-  fee_account: ICAAccountSDKType;
-  delegation_account: ICAAccountSDKType;
-  redemption_account: ICAAccountSDKType;
   /** ibc denom on stride */
 
   ibc_denom: string;
   /** native denom on host zone */
 
   host_denom: string;
-  /**
-   * TODO(TEST-68): Should we make this an array and store the last n redemption
-   * rates then calculate a TWARR?
-   */
-
+  unbonding_period: Long;
+  validators: ValidatorSDKType[];
+  deposit_address: string;
+  withdrawal_ica_address: string;
+  fee_ica_address: string;
+  delegation_ica_address: string;
+  redemption_ica_address: string;
+  total_delegations: string;
   last_redemption_rate: string;
   redemption_rate: string;
-  /** stores how many days we should wait before issuing unbondings */
-
-  unbonding_frequency: Long;
-  /** TODO(TEST-101) int to dec */
-
-  staked_bal: string;
-  address: string;
-  halted: boolean;
   min_redemption_rate: string;
   max_redemption_rate: string;
+  lsm_liquid_stake_enabled: boolean;
+  halted: boolean;
 }
 
 function createBaseHostZone(): HostZone {
   return {
     chainId: "",
-    connectionId: "",
     bech32prefix: "",
+    connectionId: "",
     transferChannelId: "",
-    validators: [],
-    blacklistedValidators: [],
-    withdrawalAccount: undefined,
-    feeAccount: undefined,
-    delegationAccount: undefined,
-    redemptionAccount: undefined,
     ibcDenom: "",
     hostDenom: "",
+    unbondingPeriod: Long.UZERO,
+    validators: [],
+    depositAddress: "",
+    withdrawalIcaAddress: "",
+    feeIcaAddress: "",
+    delegationIcaAddress: "",
+    redemptionIcaAddress: "",
+    totalDelegations: "",
     lastRedemptionRate: "",
     redemptionRate: "",
-    unbondingFrequency: Long.UZERO,
-    stakedBal: "",
-    address: "",
-    halted: false,
     minRedemptionRate: "",
-    maxRedemptionRate: ""
+    maxRedemptionRate: "",
+    lsmLiquidStakeEnabled: false,
+    halted: false
   };
 }
 
@@ -108,40 +85,16 @@ export const HostZone = {
       writer.uint32(10).string(message.chainId);
     }
 
-    if (message.connectionId !== "") {
-      writer.uint32(18).string(message.connectionId);
-    }
-
     if (message.bech32prefix !== "") {
       writer.uint32(138).string(message.bech32prefix);
     }
 
+    if (message.connectionId !== "") {
+      writer.uint32(18).string(message.connectionId);
+    }
+
     if (message.transferChannelId !== "") {
       writer.uint32(98).string(message.transferChannelId);
-    }
-
-    for (const v of message.validators) {
-      Validator.encode(v!, writer.uint32(26).fork()).ldelim();
-    }
-
-    for (const v of message.blacklistedValidators) {
-      Validator.encode(v!, writer.uint32(34).fork()).ldelim();
-    }
-
-    if (message.withdrawalAccount !== undefined) {
-      ICAAccount.encode(message.withdrawalAccount, writer.uint32(42).fork()).ldelim();
-    }
-
-    if (message.feeAccount !== undefined) {
-      ICAAccount.encode(message.feeAccount, writer.uint32(50).fork()).ldelim();
-    }
-
-    if (message.delegationAccount !== undefined) {
-      ICAAccount.encode(message.delegationAccount, writer.uint32(58).fork()).ldelim();
-    }
-
-    if (message.redemptionAccount !== undefined) {
-      ICAAccount.encode(message.redemptionAccount, writer.uint32(130).fork()).ldelim();
     }
 
     if (message.ibcDenom !== "") {
@@ -152,6 +105,38 @@ export const HostZone = {
       writer.uint32(74).string(message.hostDenom);
     }
 
+    if (!message.unbondingPeriod.isZero()) {
+      writer.uint32(208).uint64(message.unbondingPeriod);
+    }
+
+    for (const v of message.validators) {
+      Validator.encode(v!, writer.uint32(26).fork()).ldelim();
+    }
+
+    if (message.depositAddress !== "") {
+      writer.uint32(146).string(message.depositAddress);
+    }
+
+    if (message.withdrawalIcaAddress !== "") {
+      writer.uint32(178).string(message.withdrawalIcaAddress);
+    }
+
+    if (message.feeIcaAddress !== "") {
+      writer.uint32(186).string(message.feeIcaAddress);
+    }
+
+    if (message.delegationIcaAddress !== "") {
+      writer.uint32(194).string(message.delegationIcaAddress);
+    }
+
+    if (message.redemptionIcaAddress !== "") {
+      writer.uint32(202).string(message.redemptionIcaAddress);
+    }
+
+    if (message.totalDelegations !== "") {
+      writer.uint32(106).string(message.totalDelegations);
+    }
+
     if (message.lastRedemptionRate !== "") {
       writer.uint32(82).string(message.lastRedemptionRate);
     }
@@ -160,28 +145,20 @@ export const HostZone = {
       writer.uint32(90).string(message.redemptionRate);
     }
 
-    if (!message.unbondingFrequency.isZero()) {
-      writer.uint32(112).uint64(message.unbondingFrequency);
-    }
-
-    if (message.stakedBal !== "") {
-      writer.uint32(106).string(message.stakedBal);
-    }
-
-    if (message.address !== "") {
-      writer.uint32(146).string(message.address);
-    }
-
-    if (message.halted === true) {
-      writer.uint32(152).bool(message.halted);
-    }
-
     if (message.minRedemptionRate !== "") {
       writer.uint32(162).string(message.minRedemptionRate);
     }
 
     if (message.maxRedemptionRate !== "") {
       writer.uint32(170).string(message.maxRedemptionRate);
+    }
+
+    if (message.lsmLiquidStakeEnabled === true) {
+      writer.uint32(216).bool(message.lsmLiquidStakeEnabled);
+    }
+
+    if (message.halted === true) {
+      writer.uint32(152).bool(message.halted);
     }
 
     return writer;
@@ -200,40 +177,16 @@ export const HostZone = {
           message.chainId = reader.string();
           break;
 
-        case 2:
-          message.connectionId = reader.string();
-          break;
-
         case 17:
           message.bech32prefix = reader.string();
           break;
 
+        case 2:
+          message.connectionId = reader.string();
+          break;
+
         case 12:
           message.transferChannelId = reader.string();
-          break;
-
-        case 3:
-          message.validators.push(Validator.decode(reader, reader.uint32()));
-          break;
-
-        case 4:
-          message.blacklistedValidators.push(Validator.decode(reader, reader.uint32()));
-          break;
-
-        case 5:
-          message.withdrawalAccount = ICAAccount.decode(reader, reader.uint32());
-          break;
-
-        case 6:
-          message.feeAccount = ICAAccount.decode(reader, reader.uint32());
-          break;
-
-        case 7:
-          message.delegationAccount = ICAAccount.decode(reader, reader.uint32());
-          break;
-
-        case 16:
-          message.redemptionAccount = ICAAccount.decode(reader, reader.uint32());
           break;
 
         case 8:
@@ -244,6 +197,38 @@ export const HostZone = {
           message.hostDenom = reader.string();
           break;
 
+        case 26:
+          message.unbondingPeriod = (reader.uint64() as Long);
+          break;
+
+        case 3:
+          message.validators.push(Validator.decode(reader, reader.uint32()));
+          break;
+
+        case 18:
+          message.depositAddress = reader.string();
+          break;
+
+        case 22:
+          message.withdrawalIcaAddress = reader.string();
+          break;
+
+        case 23:
+          message.feeIcaAddress = reader.string();
+          break;
+
+        case 24:
+          message.delegationIcaAddress = reader.string();
+          break;
+
+        case 25:
+          message.redemptionIcaAddress = reader.string();
+          break;
+
+        case 13:
+          message.totalDelegations = reader.string();
+          break;
+
         case 10:
           message.lastRedemptionRate = reader.string();
           break;
@@ -252,28 +237,20 @@ export const HostZone = {
           message.redemptionRate = reader.string();
           break;
 
-        case 14:
-          message.unbondingFrequency = (reader.uint64() as Long);
-          break;
-
-        case 13:
-          message.stakedBal = reader.string();
-          break;
-
-        case 18:
-          message.address = reader.string();
-          break;
-
-        case 19:
-          message.halted = reader.bool();
-          break;
-
         case 20:
           message.minRedemptionRate = reader.string();
           break;
 
         case 21:
           message.maxRedemptionRate = reader.string();
+          break;
+
+        case 27:
+          message.lsmLiquidStakeEnabled = reader.bool();
+          break;
+
+        case 19:
+          message.halted = reader.bool();
           break;
 
         default:
@@ -288,25 +265,25 @@ export const HostZone = {
   fromPartial(object: DeepPartial<HostZone>): HostZone {
     const message = createBaseHostZone();
     message.chainId = object.chainId ?? "";
-    message.connectionId = object.connectionId ?? "";
     message.bech32prefix = object.bech32prefix ?? "";
+    message.connectionId = object.connectionId ?? "";
     message.transferChannelId = object.transferChannelId ?? "";
-    message.validators = object.validators?.map(e => Validator.fromPartial(e)) || [];
-    message.blacklistedValidators = object.blacklistedValidators?.map(e => Validator.fromPartial(e)) || [];
-    message.withdrawalAccount = object.withdrawalAccount !== undefined && object.withdrawalAccount !== null ? ICAAccount.fromPartial(object.withdrawalAccount) : undefined;
-    message.feeAccount = object.feeAccount !== undefined && object.feeAccount !== null ? ICAAccount.fromPartial(object.feeAccount) : undefined;
-    message.delegationAccount = object.delegationAccount !== undefined && object.delegationAccount !== null ? ICAAccount.fromPartial(object.delegationAccount) : undefined;
-    message.redemptionAccount = object.redemptionAccount !== undefined && object.redemptionAccount !== null ? ICAAccount.fromPartial(object.redemptionAccount) : undefined;
     message.ibcDenom = object.ibcDenom ?? "";
     message.hostDenom = object.hostDenom ?? "";
+    message.unbondingPeriod = object.unbondingPeriod !== undefined && object.unbondingPeriod !== null ? Long.fromValue(object.unbondingPeriod) : Long.UZERO;
+    message.validators = object.validators?.map(e => Validator.fromPartial(e)) || [];
+    message.depositAddress = object.depositAddress ?? "";
+    message.withdrawalIcaAddress = object.withdrawalIcaAddress ?? "";
+    message.feeIcaAddress = object.feeIcaAddress ?? "";
+    message.delegationIcaAddress = object.delegationIcaAddress ?? "";
+    message.redemptionIcaAddress = object.redemptionIcaAddress ?? "";
+    message.totalDelegations = object.totalDelegations ?? "";
     message.lastRedemptionRate = object.lastRedemptionRate ?? "";
     message.redemptionRate = object.redemptionRate ?? "";
-    message.unbondingFrequency = object.unbondingFrequency !== undefined && object.unbondingFrequency !== null ? Long.fromValue(object.unbondingFrequency) : Long.UZERO;
-    message.stakedBal = object.stakedBal ?? "";
-    message.address = object.address ?? "";
-    message.halted = object.halted ?? false;
     message.minRedemptionRate = object.minRedemptionRate ?? "";
     message.maxRedemptionRate = object.maxRedemptionRate ?? "";
+    message.lsmLiquidStakeEnabled = object.lsmLiquidStakeEnabled ?? false;
+    message.halted = object.halted ?? false;
     return message;
   }
 

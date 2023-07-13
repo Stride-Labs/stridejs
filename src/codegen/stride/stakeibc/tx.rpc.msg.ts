@@ -1,10 +1,13 @@
 import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
-import { MsgLiquidStake, MsgLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidators, MsgAddValidatorsResponse, MsgChangeValidatorWeight, MsgChangeValidatorWeightResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgClearBalance, MsgClearBalanceResponse } from "./tx";
+import { MsgLiquidStake, MsgLiquidStakeResponse, MsgLSMLiquidStake, MsgLSMLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidators, MsgAddValidatorsResponse, MsgChangeValidatorWeight, MsgChangeValidatorWeightResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgClearBalance, MsgClearBalanceResponse } from "./tx";
 /** Msg defines the RPC service */
 
 export interface Msg {
   liquidStake(request: MsgLiquidStake): Promise<MsgLiquidStakeResponse>;
+  /*null*/
+
+  lSMLiquidStake(request: MsgLSMLiquidStake): Promise<MsgLSMLiquidStakeResponse>;
   /*null*/
 
   redeemStake(request: MsgRedeemStake): Promise<MsgRedeemStakeResponse>;
@@ -44,6 +47,7 @@ export class MsgClientImpl implements Msg {
   constructor(rpc: Rpc) {
     this.rpc = rpc;
     this.liquidStake = this.liquidStake.bind(this);
+    this.lSMLiquidStake = this.lSMLiquidStake.bind(this);
     this.redeemStake = this.redeemStake.bind(this);
     this.registerHostZone = this.registerHostZone.bind(this);
     this.claimUndelegatedTokens = this.claimUndelegatedTokens.bind(this);
@@ -60,6 +64,12 @@ export class MsgClientImpl implements Msg {
     const data = MsgLiquidStake.encode(request).finish();
     const promise = this.rpc.request("stride.stakeibc.Msg", "LiquidStake", data);
     return promise.then(data => MsgLiquidStakeResponse.decode(new _m0.Reader(data)));
+  }
+
+  lSMLiquidStake(request: MsgLSMLiquidStake): Promise<MsgLSMLiquidStakeResponse> {
+    const data = MsgLSMLiquidStake.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "LSMLiquidStake", data);
+    return promise.then(data => MsgLSMLiquidStakeResponse.decode(new _m0.Reader(data)));
   }
 
   redeemStake(request: MsgRedeemStake): Promise<MsgRedeemStakeResponse> {

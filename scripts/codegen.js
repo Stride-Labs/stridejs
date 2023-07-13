@@ -29,6 +29,9 @@ telescope({
         '/stride.stakeibc.MsgLiquidStake': {
           aminoType: 'stakeibc/LiquidStake'
         },
+        '/stride.stakeibc.MsgLSMLiquidStake': {
+          aminoType: 'stakeibc/LSMLiquidStake'
+        },
         '/stride.stakeibc.MsgRedeemStake': {
           aminoType: 'stakeibc/RedeemStake'
         },

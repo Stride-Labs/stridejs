@@ -14,6 +14,22 @@ export interface MsgLiquidStakeSDKType {
 }
 export interface MsgLiquidStakeResponse {}
 export interface MsgLiquidStakeResponseSDKType {}
+export interface MsgLSMLiquidStake {
+  creator: string;
+  amount: string;
+  lsmTokenIbcDenom: string;
+}
+export interface MsgLSMLiquidStakeSDKType {
+  creator: string;
+  amount: string;
+  lsm_token_ibc_denom: string;
+}
+export interface MsgLSMLiquidStakeResponse {
+  transactionComplete: boolean;
+}
+export interface MsgLSMLiquidStakeResponseSDKType {
+  transaction_complete: boolean;
+}
 export interface MsgClearBalance {
   creator: string;
   chainId: string;
@@ -51,9 +67,10 @@ export interface MsgRegisterHostZone {
   ibcDenom: string;
   creator: string;
   transferChannelId: string;
-  unbondingFrequency: Long;
+  unbondingPeriod: Long;
   minRedemptionRate: string;
   maxRedemptionRate: string;
+  lsmLiquidStakeEnabled: boolean;
 }
 /** next: 15 */
 
@@ -64,9 +81,10 @@ export interface MsgRegisterHostZoneSDKType {
   ibc_denom: string;
   creator: string;
   transfer_channel_id: string;
-  unbonding_frequency: Long;
+  unbonding_period: Long;
   min_redemption_rate: string;
   max_redemption_rate: string;
+  lsm_liquid_stake_enabled: boolean;
 }
 export interface MsgRegisterHostZoneResponse {}
 export interface MsgRegisterHostZoneResponseSDKType {}
@@ -257,6 +275,116 @@ export const MsgLiquidStakeResponse = {
 
   fromPartial(_: DeepPartial<MsgLiquidStakeResponse>): MsgLiquidStakeResponse {
     const message = createBaseMsgLiquidStakeResponse();
+    return message;
+  }
+
+};
+
+function createBaseMsgLSMLiquidStake(): MsgLSMLiquidStake {
+  return {
+    creator: "",
+    amount: "",
+    lsmTokenIbcDenom: ""
+  };
+}
+
+export const MsgLSMLiquidStake = {
+  encode(message: MsgLSMLiquidStake, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+
+    if (message.amount !== "") {
+      writer.uint32(18).string(message.amount);
+    }
+
+    if (message.lsmTokenIbcDenom !== "") {
+      writer.uint32(26).string(message.lsmTokenIbcDenom);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgLSMLiquidStake {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgLSMLiquidStake();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+
+        case 2:
+          message.amount = reader.string();
+          break;
+
+        case 3:
+          message.lsmTokenIbcDenom = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<MsgLSMLiquidStake>): MsgLSMLiquidStake {
+    const message = createBaseMsgLSMLiquidStake();
+    message.creator = object.creator ?? "";
+    message.amount = object.amount ?? "";
+    message.lsmTokenIbcDenom = object.lsmTokenIbcDenom ?? "";
+    return message;
+  }
+
+};
+
+function createBaseMsgLSMLiquidStakeResponse(): MsgLSMLiquidStakeResponse {
+  return {
+    transactionComplete: false
+  };
+}
+
+export const MsgLSMLiquidStakeResponse = {
+  encode(message: MsgLSMLiquidStakeResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.transactionComplete === true) {
+      writer.uint32(8).bool(message.transactionComplete);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgLSMLiquidStakeResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgLSMLiquidStakeResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.transactionComplete = reader.bool();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<MsgLSMLiquidStakeResponse>): MsgLSMLiquidStakeResponse {
+    const message = createBaseMsgLSMLiquidStakeResponse();
+    message.transactionComplete = object.transactionComplete ?? false;
     return message;
   }
 
@@ -488,9 +616,10 @@ function createBaseMsgRegisterHostZone(): MsgRegisterHostZone {
     ibcDenom: "",
     creator: "",
     transferChannelId: "",
-    unbondingFrequency: Long.UZERO,
+    unbondingPeriod: Long.UZERO,
     minRedemptionRate: "",
-    maxRedemptionRate: ""
+    maxRedemptionRate: "",
+    lsmLiquidStakeEnabled: false
   };
 }
 
@@ -520,8 +649,8 @@ export const MsgRegisterHostZone = {
       writer.uint32(82).string(message.transferChannelId);
     }
 
-    if (!message.unbondingFrequency.isZero()) {
-      writer.uint32(88).uint64(message.unbondingFrequency);
+    if (!message.unbondingPeriod.isZero()) {
+      writer.uint32(88).uint64(message.unbondingPeriod);
     }
 
     if (message.minRedemptionRate !== "") {
@@ -530,6 +659,10 @@ export const MsgRegisterHostZone = {
 
     if (message.maxRedemptionRate !== "") {
       writer.uint32(114).string(message.maxRedemptionRate);
+    }
+
+    if (message.lsmLiquidStakeEnabled === true) {
+      writer.uint32(120).bool(message.lsmLiquidStakeEnabled);
     }
 
     return writer;
@@ -569,7 +702,7 @@ export const MsgRegisterHostZone = {
           break;
 
         case 11:
-          message.unbondingFrequency = (reader.uint64() as Long);
+          message.unbondingPeriod = (reader.uint64() as Long);
           break;
 
         case 13:
@@ -578,6 +711,10 @@ export const MsgRegisterHostZone = {
 
         case 14:
           message.maxRedemptionRate = reader.string();
+          break;
+
+        case 15:
+          message.lsmLiquidStakeEnabled = reader.bool();
           break;
 
         default:
@@ -597,9 +734,10 @@ export const MsgRegisterHostZone = {
     message.ibcDenom = object.ibcDenom ?? "";
     message.creator = object.creator ?? "";
     message.transferChannelId = object.transferChannelId ?? "";
-    message.unbondingFrequency = object.unbondingFrequency !== undefined && object.unbondingFrequency !== null ? Long.fromValue(object.unbondingFrequency) : Long.UZERO;
+    message.unbondingPeriod = object.unbondingPeriod !== undefined && object.unbondingPeriod !== null ? Long.fromValue(object.unbondingPeriod) : Long.UZERO;
     message.minRedemptionRate = object.minRedemptionRate ?? "";
     message.maxRedemptionRate = object.maxRedemptionRate ?? "";
+    message.lsmLiquidStakeEnabled = object.lsmLiquidStakeEnabled ?? false;
     return message;
   }
 

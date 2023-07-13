@@ -1,5 +1,5 @@
 import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial } from "@osmonauts/helpers";
 export interface AddressUnbonding {
   address: string;
   receiver: string;
@@ -7,7 +7,6 @@ export interface AddressUnbonding {
   amount: string;
   denom: string;
   claimIsPending: boolean;
-  epochNumber: Long;
 }
 export interface AddressUnbondingSDKType {
   address: string;
@@ -16,7 +15,6 @@ export interface AddressUnbondingSDKType {
   amount: string;
   denom: string;
   claim_is_pending: boolean;
-  epoch_number: Long;
 }
 
 function createBaseAddressUnbonding(): AddressUnbonding {
@@ -26,8 +24,7 @@ function createBaseAddressUnbonding(): AddressUnbonding {
     unbondingEstimatedTime: "",
     amount: "",
     denom: "",
-    claimIsPending: false,
-    epochNumber: Long.UZERO
+    claimIsPending: false
   };
 }
 
@@ -55,10 +52,6 @@ export const AddressUnbonding = {
 
     if (message.claimIsPending === true) {
       writer.uint32(64).bool(message.claimIsPending);
-    }
-
-    if (!message.epochNumber.isZero()) {
-      writer.uint32(72).uint64(message.epochNumber);
     }
 
     return writer;
@@ -97,10 +90,6 @@ export const AddressUnbonding = {
           message.claimIsPending = reader.bool();
           break;
 
-        case 9:
-          message.epochNumber = (reader.uint64() as Long);
-          break;
-
         default:
           reader.skipType(tag & 7);
           break;
@@ -118,7 +107,6 @@ export const AddressUnbonding = {
     message.amount = object.amount ?? "";
     message.denom = object.denom ?? "";
     message.claimIsPending = object.claimIsPending ?? false;
-    message.epochNumber = object.epochNumber !== undefined && object.epochNumber !== null ? Long.fromValue(object.epochNumber) : Long.UZERO;
     return message;
   }
 
