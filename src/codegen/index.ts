@@ -7,6 +7,7 @@
 export * from "./amino/bundle";
 export * from "./cosmos_proto/bundle";
 export * from "./cosmos/bundle";
+export * from "./cosmos/client";
 export * from "./gogoproto/bundle";
 export * from "./google/bundle";
 export * from "./stride/bundle";
