@@ -14,6 +14,19 @@ export declare const strideAminoConverters: {
             host_denom: string;
         }) => import("./stakeibc/tx").MsgLiquidStake;
     };
+    "/stride.stakeibc.MsgLSMLiquidStake": {
+        aminoType: string;
+        toAmino: ({ creator, amount, lsmTokenIbcDenom }: import("./stakeibc/tx").MsgLSMLiquidStake) => {
+            creator: string;
+            amount: string;
+            lsm_token_ibc_denom: string;
+        };
+        fromAmino: ({ creator, amount, lsm_token_ibc_denom }: {
+            creator: string;
+            amount: string;
+            lsm_token_ibc_denom: string;
+        }) => import("./stakeibc/tx").MsgLSMLiquidStake;
+    };
     "/stride.stakeibc.MsgRedeemStake": {
         aminoType: string;
         toAmino: ({ creator, amount, hostZone, receiver }: import("./stakeibc/tx").MsgRedeemStake) => {
@@ -31,27 +44,29 @@ export declare const strideAminoConverters: {
     };
     "/stride.stakeibc.MsgRegisterHostZone": {
         aminoType: string;
-        toAmino: ({ connectionId, bech32prefix, hostDenom, ibcDenom, creator, transferChannelId, unbondingFrequency, minRedemptionRate, maxRedemptionRate }: import("./stakeibc/tx").MsgRegisterHostZone) => {
+        toAmino: ({ connectionId, bech32prefix, hostDenom, ibcDenom, creator, transferChannelId, unbondingPeriod, minRedemptionRate, maxRedemptionRate, lsmLiquidStakeEnabled }: import("./stakeibc/tx").MsgRegisterHostZone) => {
             connection_id: string;
             bech32prefix: string;
             host_denom: string;
             ibc_denom: string;
             creator: string;
             transfer_channel_id: string;
-            unbonding_frequency: string;
+            unbonding_period: string;
             min_redemption_rate: string;
             max_redemption_rate: string;
+            lsm_liquid_stake_enabled: boolean;
         };
-        fromAmino: ({ connection_id, bech32prefix, host_denom, ibc_denom, creator, transfer_channel_id, unbonding_frequency, min_redemption_rate, max_redemption_rate }: {
+        fromAmino: ({ connection_id, bech32prefix, host_denom, ibc_denom, creator, transfer_channel_id, unbonding_period, min_redemption_rate, max_redemption_rate, lsm_liquid_stake_enabled }: {
             connection_id: string;
             bech32prefix: string;
             host_denom: string;
             ibc_denom: string;
             creator: string;
             transfer_channel_id: string;
-            unbonding_frequency: string;
+            unbonding_period: string;
             min_redemption_rate: string;
             max_redemption_rate: string;
+            lsm_liquid_stake_enabled: boolean;
         }) => import("./stakeibc/tx").MsgRegisterHostZone;
     };
     "/stride.stakeibc.MsgClaimUndelegatedTokens": {
@@ -90,12 +105,13 @@ export declare const strideAminoConverters: {
             validators: {
                 name: string;
                 address: string;
-                delegation_amt: string;
                 weight: string;
-                internal_exchange_rate: {
-                    internal_tokens_to_shares_rate: string;
-                    epoch_number: string;
-                };
+                delegation: string;
+                slash_query_progress_tracker: string;
+                slash_query_checkpoint: string;
+                internal_shares_to_tokens_rate: string;
+                delegation_changes_in_progress: string;
+                slash_query_in_progress: boolean;
             }[];
         };
         fromAmino: ({ creator, host_zone, validators }: {
@@ -104,12 +120,13 @@ export declare const strideAminoConverters: {
             validators: {
                 name: string;
                 address: string;
-                delegation_amt: string;
                 weight: string;
-                internal_exchange_rate: {
-                    internal_tokens_to_shares_rate: string;
-                    epoch_number: string;
-                };
+                delegation: string;
+                slash_query_progress_tracker: string;
+                slash_query_checkpoint: string;
+                internal_shares_to_tokens_rate: string;
+                delegation_changes_in_progress: string;
+                slash_query_in_progress: boolean;
             }[];
         }) => import("./stakeibc/tx").MsgAddValidators;
     };

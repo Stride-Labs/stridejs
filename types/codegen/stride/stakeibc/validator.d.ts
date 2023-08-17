@@ -1,32 +1,27 @@
 import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
-export interface ValidatorExchangeRate {
-    internalTokensToSharesRate: string;
-    epochNumber: Long;
-}
-export interface ValidatorExchangeRateSDKType {
-    internal_tokens_to_shares_rate: string;
-    epoch_number: Long;
-}
 export interface Validator {
     name: string;
     address: string;
-    delegationAmt: string;
     weight: Long;
-    internalExchangeRate: ValidatorExchangeRate;
+    delegation: string;
+    slashQueryProgressTracker: string;
+    slashQueryCheckpoint: string;
+    internalSharesToTokensRate: string;
+    delegationChangesInProgress: Long;
+    slashQueryInProgress: boolean;
 }
 export interface ValidatorSDKType {
     name: string;
     address: string;
-    delegation_amt: string;
     weight: Long;
-    internal_exchange_rate: ValidatorExchangeRateSDKType;
+    delegation: string;
+    slash_query_progress_tracker: string;
+    slash_query_checkpoint: string;
+    internal_shares_to_tokens_rate: string;
+    delegation_changes_in_progress: Long;
+    slash_query_in_progress: boolean;
 }
-export declare const ValidatorExchangeRate: {
-    encode(message: ValidatorExchangeRate, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorExchangeRate;
-    fromPartial(object: DeepPartial<ValidatorExchangeRate>): ValidatorExchangeRate;
-};
 export declare const Validator: {
     encode(message: Validator, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): Validator;

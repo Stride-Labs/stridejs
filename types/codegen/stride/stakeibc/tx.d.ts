@@ -16,6 +16,22 @@ export interface MsgLiquidStakeResponse {
 }
 export interface MsgLiquidStakeResponseSDKType {
 }
+export interface MsgLSMLiquidStake {
+    creator: string;
+    amount: string;
+    lsmTokenIbcDenom: string;
+}
+export interface MsgLSMLiquidStakeSDKType {
+    creator: string;
+    amount: string;
+    lsm_token_ibc_denom: string;
+}
+export interface MsgLSMLiquidStakeResponse {
+    transactionComplete: boolean;
+}
+export interface MsgLSMLiquidStakeResponseSDKType {
+    transaction_complete: boolean;
+}
 export interface MsgClearBalance {
     creator: string;
     chainId: string;
@@ -56,9 +72,10 @@ export interface MsgRegisterHostZone {
     ibcDenom: string;
     creator: string;
     transferChannelId: string;
-    unbondingFrequency: Long;
+    unbondingPeriod: Long;
     minRedemptionRate: string;
     maxRedemptionRate: string;
+    lsmLiquidStakeEnabled: boolean;
 }
 /** next: 15 */
 export interface MsgRegisterHostZoneSDKType {
@@ -68,9 +85,10 @@ export interface MsgRegisterHostZoneSDKType {
     ibc_denom: string;
     creator: string;
     transfer_channel_id: string;
-    unbonding_frequency: Long;
+    unbonding_period: Long;
     min_redemption_rate: string;
     max_redemption_rate: string;
+    lsm_liquid_stake_enabled: boolean;
 }
 export interface MsgRegisterHostZoneResponse {
 }
@@ -189,6 +207,16 @@ export declare const MsgLiquidStakeResponse: {
     encode(_: MsgLiquidStakeResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgLiquidStakeResponse;
     fromPartial(_: DeepPartial<MsgLiquidStakeResponse>): MsgLiquidStakeResponse;
+};
+export declare const MsgLSMLiquidStake: {
+    encode(message: MsgLSMLiquidStake, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgLSMLiquidStake;
+    fromPartial(object: DeepPartial<MsgLSMLiquidStake>): MsgLSMLiquidStake;
+};
+export declare const MsgLSMLiquidStakeResponse: {
+    encode(message: MsgLSMLiquidStakeResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgLSMLiquidStakeResponse;
+    fromPartial(object: DeepPartial<MsgLSMLiquidStakeResponse>): MsgLSMLiquidStakeResponse;
 };
 export declare const MsgClearBalance: {
     encode(message: MsgClearBalance, writer?: _m0.Writer): _m0.Writer;

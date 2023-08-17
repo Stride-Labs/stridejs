@@ -36,8 +36,6 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
             rateLimit(request: import("./ratelimit/query").QueryRateLimitRequest): Promise<import("./ratelimit/query").QueryRateLimitResponse>;
             rateLimitsByChainId(request: import("./ratelimit/query").QueryRateLimitsByChainIdRequest): Promise<import("./ratelimit/query").QueryRateLimitsByChainIdResponse>;
             rateLimitsByChannelId(request: import("./ratelimit/query").QueryRateLimitsByChannelIdRequest): Promise<import("./ratelimit/query").QueryRateLimitsByChannelIdResponse>;
-            allBlacklistedDenoms(request?: import("./ratelimit/query").QueryAllBlacklistedDenomsRequest): Promise<import("./ratelimit/query").QueryAllBlacklistedDenomsResponse>;
-            allWhitelistedAddresses(request?: import("./ratelimit/query").QueryAllWhitelistedAddressesRequest): Promise<import("./ratelimit/query").QueryAllWhitelistedAddressesResponse>;
         };
         records: {
             params(request?: import("./records/query").QueryParamsRequest): Promise<import("./records/query").QueryParamsResponse>;
@@ -49,6 +47,8 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
             depositRecord(request: import("./records/query").QueryGetDepositRecordRequest): Promise<import("./records/query").QueryGetDepositRecordResponse>;
             depositRecordAll(request?: import("./records/query").QueryAllDepositRecordRequest): Promise<import("./records/query").QueryAllDepositRecordResponse>;
             depositRecordByHost(request: import("./records/query").QueryDepositRecordByHostRequest): Promise<import("./records/query").QueryDepositRecordByHostResponse>;
+            lSMDeposit(request: import("./records/query").QueryLSMDepositRequest): Promise<import("./records/query").QueryLSMDepositResponse>;
+            lSMDeposits(request: import("./records/query").QueryLSMDepositsRequest): Promise<import("./records/query").QueryLSMDepositsResponse>;
         };
         stakeibc: {
             params(request?: import("./stakeibc/query").QueryParamsRequest): Promise<import("./stakeibc/query").QueryParamsResponse>;

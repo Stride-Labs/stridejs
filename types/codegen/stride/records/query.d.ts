@@ -1,5 +1,6 @@
 import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../cosmos/base/query/v1beta1/pagination";
-import { Params, ParamsSDKType, DepositRecord, DepositRecordSDKType, UserRedemptionRecord, UserRedemptionRecordSDKType, EpochUnbondingRecord, EpochUnbondingRecordSDKType } from "./genesis";
+import { Params, ParamsSDKType } from "./params";
+import { DepositRecord, DepositRecordSDKType, UserRedemptionRecord, UserRedemptionRecordSDKType, EpochUnbondingRecord, EpochUnbondingRecordSDKType, LSMTokenDeposit, LSMTokenDepositSDKType } from "./records";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
@@ -132,6 +133,36 @@ export interface QueryAllEpochUnbondingRecordResponseSDKType {
     epoch_unbonding_record: EpochUnbondingRecordSDKType[];
     pagination?: PageResponseSDKType;
 }
+export interface QueryLSMDepositRequest {
+    chainId: string;
+    denom: string;
+}
+export interface QueryLSMDepositRequestSDKType {
+    chain_id: string;
+    denom: string;
+}
+export interface QueryLSMDepositResponse {
+    deposit: LSMTokenDeposit;
+}
+export interface QueryLSMDepositResponseSDKType {
+    deposit: LSMTokenDepositSDKType;
+}
+export interface QueryLSMDepositsRequest {
+    chainId?: string;
+    validatorAddress?: string;
+    status?: string;
+}
+export interface QueryLSMDepositsRequestSDKType {
+    chain_id?: string;
+    validator_address?: string;
+    status?: string;
+}
+export interface QueryLSMDepositsResponse {
+    deposits: LSMTokenDeposit[];
+}
+export interface QueryLSMDepositsResponseSDKType {
+    deposits: LSMTokenDepositSDKType[];
+}
 export declare const QueryParamsRequest: {
     encode(_: QueryParamsRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsRequest;
@@ -221,4 +252,24 @@ export declare const QueryAllEpochUnbondingRecordResponse: {
     encode(message: QueryAllEpochUnbondingRecordResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllEpochUnbondingRecordResponse;
     fromPartial(object: DeepPartial<QueryAllEpochUnbondingRecordResponse>): QueryAllEpochUnbondingRecordResponse;
+};
+export declare const QueryLSMDepositRequest: {
+    encode(message: QueryLSMDepositRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryLSMDepositRequest;
+    fromPartial(object: DeepPartial<QueryLSMDepositRequest>): QueryLSMDepositRequest;
+};
+export declare const QueryLSMDepositResponse: {
+    encode(message: QueryLSMDepositResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryLSMDepositResponse;
+    fromPartial(object: DeepPartial<QueryLSMDepositResponse>): QueryLSMDepositResponse;
+};
+export declare const QueryLSMDepositsRequest: {
+    encode(message: QueryLSMDepositsRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryLSMDepositsRequest;
+    fromPartial(object: DeepPartial<QueryLSMDepositsRequest>): QueryLSMDepositsRequest;
+};
+export declare const QueryLSMDepositsResponse: {
+    encode(message: QueryLSMDepositsResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryLSMDepositsResponse;
+    fromPartial(object: DeepPartial<QueryLSMDepositsResponse>): QueryLSMDepositsResponse;
 };

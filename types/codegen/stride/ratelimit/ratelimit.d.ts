@@ -50,14 +50,6 @@ export interface RateLimitSDKType {
     quota: QuotaSDKType;
     flow: FlowSDKType;
 }
-export interface WhitelistedAddressPair {
-    sender: string;
-    receiver: string;
-}
-export interface WhitelistedAddressPairSDKType {
-    sender: string;
-    receiver: string;
-}
 export declare const Path: {
     encode(message: Path, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): Path;
@@ -77,9 +69,4 @@ export declare const RateLimit: {
     encode(message: RateLimit, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): RateLimit;
     fromPartial(object: DeepPartial<RateLimit>): RateLimit;
-};
-export declare const WhitelistedAddressPair: {
-    encode(message: WhitelistedAddressPair, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): WhitelistedAddressPair;
-    fromPartial(object: DeepPartial<WhitelistedAddressPair>): WhitelistedAddressPair;
 };

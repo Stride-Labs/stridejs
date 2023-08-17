@@ -1,9 +1,9 @@
-import * as _59 from "./crypto/proof";
+import * as _62 from "./crypto/proof";
 export declare namespace tendermint {
     const crypto: {
         Proof: {
-            encode(message: _59.Proof, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _59.Proof;
+            encode(message: _62.Proof, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _62.Proof;
             fromPartial(object: {
                 total?: {
                     high?: number;
@@ -151,11 +151,11 @@ export declare namespace tendermint {
                 };
                 leafHash?: Uint8Array;
                 aunts?: Uint8Array[];
-            }): _59.Proof;
+            }): _62.Proof;
         };
         ValueOp: {
-            encode(message: _59.ValueOp, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _59.ValueOp;
+            encode(message: _62.ValueOp, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _62.ValueOp;
             fromPartial(object: {
                 key?: Uint8Array;
                 proof?: {
@@ -306,36 +306,36 @@ export declare namespace tendermint {
                     leafHash?: Uint8Array;
                     aunts?: Uint8Array[];
                 };
-            }): _59.ValueOp;
+            }): _62.ValueOp;
         };
         DominoOp: {
-            encode(message: _59.DominoOp, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _59.DominoOp;
+            encode(message: _62.DominoOp, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _62.DominoOp;
             fromPartial(object: {
                 key?: string;
                 input?: string;
                 output?: string;
-            }): _59.DominoOp;
+            }): _62.DominoOp;
         };
         ProofOp: {
-            encode(message: _59.ProofOp, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _59.ProofOp;
+            encode(message: _62.ProofOp, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _62.ProofOp;
             fromPartial(object: {
                 type?: string;
                 key?: Uint8Array;
                 data?: Uint8Array;
-            }): _59.ProofOp;
+            }): _62.ProofOp;
         };
         ProofOps: {
-            encode(message: _59.ProofOps, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _59.ProofOps;
+            encode(message: _62.ProofOps, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+            decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _62.ProofOps;
             fromPartial(object: {
                 ops?: {
                     type?: string;
                     key?: Uint8Array;
                     data?: Uint8Array;
                 }[];
-            }): _59.ProofOps;
+            }): _62.ProofOps;
         };
     };
 }

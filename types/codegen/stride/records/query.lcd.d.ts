@@ -1,5 +1,5 @@
 import { LCDClient } from "@osmonauts/lcd";
-import { QueryParamsRequest, QueryParamsResponseSDKType, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponseSDKType, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponseSDKType, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponseSDKType, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponseSDKType, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponseSDKType, QueryGetDepositRecordRequest, QueryGetDepositRecordResponseSDKType, QueryAllDepositRecordRequest, QueryAllDepositRecordResponseSDKType, QueryDepositRecordByHostRequest, QueryDepositRecordByHostResponseSDKType } from "./query";
+import { QueryParamsRequest, QueryParamsResponseSDKType, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponseSDKType, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponseSDKType, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponseSDKType, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponseSDKType, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponseSDKType, QueryGetDepositRecordRequest, QueryGetDepositRecordResponseSDKType, QueryAllDepositRecordRequest, QueryAllDepositRecordResponseSDKType, QueryDepositRecordByHostRequest, QueryDepositRecordByHostResponseSDKType, QueryLSMDepositRequest, QueryLSMDepositResponseSDKType, QueryLSMDepositsRequest, QueryLSMDepositsResponseSDKType } from "./query";
 export declare class LCDQueryClient {
     req: LCDClient;
     constructor({ requestClient }: {
@@ -14,4 +14,6 @@ export declare class LCDQueryClient {
     depositRecord(params: QueryGetDepositRecordRequest): Promise<QueryGetDepositRecordResponseSDKType>;
     depositRecordAll(params?: QueryAllDepositRecordRequest): Promise<QueryAllDepositRecordResponseSDKType>;
     depositRecordByHost(params: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponseSDKType>;
+    lSMDeposit(params: QueryLSMDepositRequest): Promise<QueryLSMDepositResponseSDKType>;
+    lSMDeposits(params: QueryLSMDepositsRequest): Promise<QueryLSMDepositsResponseSDKType>;
 }

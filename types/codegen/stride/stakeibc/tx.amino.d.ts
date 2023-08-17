@@ -1,11 +1,19 @@
 import { AminoMsg } from "@cosmjs/amino";
-import { MsgLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
+import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
 export interface AminoMsgLiquidStake extends AminoMsg {
     type: "stakeibc/LiquidStake";
     value: {
         creator: string;
         amount: string;
         host_denom: string;
+    };
+}
+export interface AminoMsgLSMLiquidStake extends AminoMsg {
+    type: "stakeibc/LSMLiquidStake";
+    value: {
+        creator: string;
+        amount: string;
+        lsm_token_ibc_denom: string;
     };
 }
 export interface AminoMsgRedeemStake extends AminoMsg {
@@ -26,9 +34,10 @@ export interface AminoMsgRegisterHostZone extends AminoMsg {
         ibc_denom: string;
         creator: string;
         transfer_channel_id: string;
-        unbonding_frequency: string;
+        unbonding_period: string;
         min_redemption_rate: string;
         max_redemption_rate: string;
+        lsm_liquid_stake_enabled: boolean;
     };
 }
 export interface AminoMsgClaimUndelegatedTokens extends AminoMsg {
@@ -56,12 +65,13 @@ export interface AminoMsgAddValidators extends AminoMsg {
         validators: {
             name: string;
             address: string;
-            delegation_amt: string;
             weight: string;
-            internal_exchange_rate: {
-                internal_tokens_to_shares_rate: string;
-                epoch_number: string;
-            };
+            delegation: string;
+            slash_query_progress_tracker: string;
+            slash_query_checkpoint: string;
+            internal_shares_to_tokens_rate: string;
+            delegation_changes_in_progress: string;
+            slash_query_in_progress: boolean;
         }[];
     };
 }
@@ -113,6 +123,11 @@ export declare const AminoConverter: {
         toAmino: ({ creator, amount, hostDenom }: MsgLiquidStake) => AminoMsgLiquidStake["value"];
         fromAmino: ({ creator, amount, host_denom }: AminoMsgLiquidStake["value"]) => MsgLiquidStake;
     };
+    "/stride.stakeibc.MsgLSMLiquidStake": {
+        aminoType: string;
+        toAmino: ({ creator, amount, lsmTokenIbcDenom }: MsgLSMLiquidStake) => AminoMsgLSMLiquidStake["value"];
+        fromAmino: ({ creator, amount, lsm_token_ibc_denom }: AminoMsgLSMLiquidStake["value"]) => MsgLSMLiquidStake;
+    };
     "/stride.stakeibc.MsgRedeemStake": {
         aminoType: string;
         toAmino: ({ creator, amount, hostZone, receiver }: MsgRedeemStake) => AminoMsgRedeemStake["value"];
@@ -120,8 +135,8 @@ export declare const AminoConverter: {
     };
     "/stride.stakeibc.MsgRegisterHostZone": {
         aminoType: string;
-        toAmino: ({ connectionId, bech32prefix, hostDenom, ibcDenom, creator, transferChannelId, unbondingFrequency, minRedemptionRate, maxRedemptionRate }: MsgRegisterHostZone) => AminoMsgRegisterHostZone["value"];
-        fromAmino: ({ connection_id, bech32prefix, host_denom, ibc_denom, creator, transfer_channel_id, unbonding_frequency, min_redemption_rate, max_redemption_rate }: AminoMsgRegisterHostZone["value"]) => MsgRegisterHostZone;
+        toAmino: ({ connectionId, bech32prefix, hostDenom, ibcDenom, creator, transferChannelId, unbondingPeriod, minRedemptionRate, maxRedemptionRate, lsmLiquidStakeEnabled }: MsgRegisterHostZone) => AminoMsgRegisterHostZone["value"];
+        fromAmino: ({ connection_id, bech32prefix, host_denom, ibc_denom, creator, transfer_channel_id, unbonding_period, min_redemption_rate, max_redemption_rate, lsm_liquid_stake_enabled }: AminoMsgRegisterHostZone["value"]) => MsgRegisterHostZone;
     };
     "/stride.stakeibc.MsgClaimUndelegatedTokens": {
         aminoType: string;

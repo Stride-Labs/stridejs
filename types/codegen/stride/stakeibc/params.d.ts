@@ -2,7 +2,7 @@ import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
 /**
  * Params defines the parameters for the module.
- * next id: 18
+ * next id: 20
  */
 export interface Params {
     /** define epoch lengths, in stride_epochs */
@@ -20,12 +20,12 @@ export interface Params {
     defaultMinRedemptionRateThreshold: Long;
     defaultMaxRedemptionRateThreshold: Long;
     ibcTransferTimeoutNanos: Long;
-    safetyNumValidators: Long;
     safetyMaxSlashPercent: Long;
+    validatorSlashQueryThreshold: Long;
 }
 /**
  * Params defines the parameters for the module.
- * next id: 18
+ * next id: 20
  */
 export interface ParamsSDKType {
     /** define epoch lengths, in stride_epochs */
@@ -43,8 +43,8 @@ export interface ParamsSDKType {
     default_min_redemption_rate_threshold: Long;
     default_max_redemption_rate_threshold: Long;
     ibc_transfer_timeout_nanos: Long;
-    safety_num_validators: Long;
     safety_max_slash_percent: Long;
+    validator_slash_query_threshold: Long;
 }
 export declare const Params: {
     encode(message: Params, writer?: _m0.Writer): _m0.Writer;

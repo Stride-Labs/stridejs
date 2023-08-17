@@ -1,6 +1,7 @@
 import * as _2 from "./auth/v1beta1/auth";
 import * as _3 from "./base/query/v1beta1/pagination";
 import * as _4 from "./base/v1beta1/coin";
+import * as _5 from "./staking/v1beta1/lsm_tx";
 export declare namespace cosmos {
     namespace auth {
         const v1beta1: {
@@ -317,14 +318,6 @@ export declare namespace cosmos {
                     name?: string;
                     permissions?: string[];
                 }): _2.ModuleAccount;
-            };
-            ModuleCredential: {
-                encode(message: _2.ModuleCredential, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
-                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _2.ModuleCredential;
-                fromPartial(object: {
-                    moduleName?: string;
-                    derivationKeys?: Uint8Array[];
-                }): _2.ModuleCredential;
             };
             Params: {
                 encode(message: _2.Params, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
@@ -961,6 +954,31 @@ export declare namespace cosmos {
                 fromPartial(object: {
                     dec?: string;
                 }): _4.DecProto;
+            };
+        };
+    }
+    namespace staking {
+        const v1beta1: {
+            MsgRedeemTokensForShares: {
+                encode(message: _5.MsgRedeemTokensForShares, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _5.MsgRedeemTokensForShares;
+                fromPartial(object: {
+                    delegatorAddress?: string;
+                    amount?: {
+                        denom?: string;
+                        amount?: string;
+                    };
+                }): _5.MsgRedeemTokensForShares;
+            };
+            MsgRedeemTokensForSharesResponse: {
+                encode(message: _5.MsgRedeemTokensForSharesResponse, writer?: import("protobufjs").Writer): import("protobufjs").Writer;
+                decode(input: Uint8Array | import("protobufjs").Reader, length?: number): _5.MsgRedeemTokensForSharesResponse;
+                fromPartial(object: {
+                    amount?: {
+                        denom?: string;
+                        amount?: string;
+                    };
+                }): _5.MsgRedeemTokensForSharesResponse;
             };
         };
     }
