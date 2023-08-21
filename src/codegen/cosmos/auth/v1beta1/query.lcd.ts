@@ -1,6 +1,6 @@
 import { setPaginationParams } from "@osmonauts/helpers";
 import { LCDClient } from "@osmonauts/lcd";
-import { QueryAccountsRequest, QueryAccountsResponseSDKType, QueryAccountRequest, QueryAccountResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType } from "./query";
+import { QueryAccountsRequest, QueryAccountsResponseSDKType, QueryAccountRequest, QueryAccountResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType, QueryModuleAccountByNameRequest, QueryModuleAccountByNameResponseSDKType } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
 
@@ -13,8 +13,11 @@ export class LCDQueryClient {
     this.accounts = this.accounts.bind(this);
     this.account = this.account.bind(this);
     this.params = this.params.bind(this);
+    this.moduleAccountByName = this.moduleAccountByName.bind(this);
   }
-  /* Accounts returns all the existing accounts */
+  /* Accounts returns all the existing accounts
+  
+   Since: cosmos-sdk 0.43 */
 
 
   async accounts(params: QueryAccountsRequest = {
@@ -44,6 +47,13 @@ export class LCDQueryClient {
   async params(_params: QueryParamsRequest = {}): Promise<QueryParamsResponseSDKType> {
     const endpoint = `cosmos/auth/v1beta1/params`;
     return await this.req.get<QueryParamsResponseSDKType>(endpoint);
+  }
+  /* ModuleAccountByName returns the module account info by module name */
+
+
+  async moduleAccountByName(params: QueryModuleAccountByNameRequest): Promise<QueryModuleAccountByNameResponseSDKType> {
+    const endpoint = `cosmos/auth/v1beta1/module_accounts/${params.name}`;
+    return await this.req.get<QueryModuleAccountByNameResponseSDKType>(endpoint);
   }
 
 }

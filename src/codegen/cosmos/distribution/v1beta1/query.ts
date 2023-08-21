@@ -1,5 +1,5 @@
 import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
-import { Params, ParamsSDKType, ValidatorOutstandingRewards, ValidatorOutstandingRewardsSDKType, ValidatorAccumulatedCommission, ValidatorAccumulatedCommissionSDKType, ValidatorSlashEvent, ValidatorSlashEventSDKType, DelegationDelegatorReward, DelegationDelegatorRewardSDKType } from "./distribution";
+import { Params, ParamsSDKType, ValidatorOutstandingRewards, ValidatorOutstandingRewardsSDKType, ValidatorAccumulatedCommission, ValidatorAccumulatedCommissionSDKType, ValidatorSlashEvent, ValidatorSlashEventSDKType, DelegationDelegatorReward, DelegationDelegatorRewardSDKType, TokenizeShareRecordReward, TokenizeShareRecordRewardSDKType } from "./distribution";
 import { DecCoin, DecCoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
@@ -336,6 +336,46 @@ export interface QueryCommunityPoolResponse {
 export interface QueryCommunityPoolResponseSDKType {
   /** pool defines community pool's coins. */
   pool: DecCoinSDKType[];
+}
+/**
+ * QueryTokenizeShareRecordRewardRequest is the request type for the Query/TokenizeShareRecordReward RPC
+ * method.
+ */
+
+export interface QueryTokenizeShareRecordRewardRequest {
+  ownerAddress: string;
+}
+/**
+ * QueryTokenizeShareRecordRewardRequest is the request type for the Query/TokenizeShareRecordReward RPC
+ * method.
+ */
+
+export interface QueryTokenizeShareRecordRewardRequestSDKType {
+  owner_address: string;
+}
+/**
+ * QueryTokenizeShareRecordRewardResponse is the response type for the Query/TokenizeShareRecordReward
+ * RPC method.
+ */
+
+export interface QueryTokenizeShareRecordRewardResponse {
+  /** rewards defines all the rewards accrued by a delegator. */
+  rewards: TokenizeShareRecordReward[];
+  /** total defines the sum of all the rewards. */
+
+  total: DecCoin[];
+}
+/**
+ * QueryTokenizeShareRecordRewardResponse is the response type for the Query/TokenizeShareRecordReward
+ * RPC method.
+ */
+
+export interface QueryTokenizeShareRecordRewardResponseSDKType {
+  /** rewards defines all the rewards accrued by a delegator. */
+  rewards: TokenizeShareRecordRewardSDKType[];
+  /** total defines the sum of all the rewards. */
+
+  total: DecCoinSDKType[];
 }
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -1181,6 +1221,106 @@ export const QueryCommunityPoolResponse = {
   fromPartial(object: DeepPartial<QueryCommunityPoolResponse>): QueryCommunityPoolResponse {
     const message = createBaseQueryCommunityPoolResponse();
     message.pool = object.pool?.map(e => DecCoin.fromPartial(e)) || [];
+    return message;
+  }
+
+};
+
+function createBaseQueryTokenizeShareRecordRewardRequest(): QueryTokenizeShareRecordRewardRequest {
+  return {
+    ownerAddress: ""
+  };
+}
+
+export const QueryTokenizeShareRecordRewardRequest = {
+  encode(message: QueryTokenizeShareRecordRewardRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ownerAddress !== "") {
+      writer.uint32(10).string(message.ownerAddress);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTokenizeShareRecordRewardRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordRewardRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.ownerAddress = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryTokenizeShareRecordRewardRequest>): QueryTokenizeShareRecordRewardRequest {
+    const message = createBaseQueryTokenizeShareRecordRewardRequest();
+    message.ownerAddress = object.ownerAddress ?? "";
+    return message;
+  }
+
+};
+
+function createBaseQueryTokenizeShareRecordRewardResponse(): QueryTokenizeShareRecordRewardResponse {
+  return {
+    rewards: [],
+    total: []
+  };
+}
+
+export const QueryTokenizeShareRecordRewardResponse = {
+  encode(message: QueryTokenizeShareRecordRewardResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.rewards) {
+      TokenizeShareRecordReward.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+
+    for (const v of message.total) {
+      DecCoin.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTokenizeShareRecordRewardResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordRewardResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.rewards.push(TokenizeShareRecordReward.decode(reader, reader.uint32()));
+          break;
+
+        case 2:
+          message.total.push(DecCoin.decode(reader, reader.uint32()));
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryTokenizeShareRecordRewardResponse>): QueryTokenizeShareRecordRewardResponse {
+    const message = createBaseQueryTokenizeShareRecordRewardResponse();
+    message.rewards = object.rewards?.map(e => TokenizeShareRecordReward.fromPartial(e)) || [];
+    message.total = object.total?.map(e => DecCoin.fromPartial(e)) || [];
     return message;
   }
 

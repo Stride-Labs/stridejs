@@ -1,8 +1,10 @@
 import { Tx, TxSDKType } from "./tx";
 import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
 import { TxResponse, TxResponseSDKType, GasInfo, GasInfoSDKType, Result, ResultSDKType } from "../../base/abci/v1beta1/abci";
+import { BlockID, BlockIDSDKType } from "../../../tendermint/types/types";
+import { Block, BlockSDKType } from "../../../tendermint/types/block";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "@osmonauts/helpers";
 /** OrderBy defines the sorting order */
 export declare enum OrderBy {
     /** ORDER_BY_UNSPECIFIED - ORDER_BY_UNSPECIFIED specifies an unknown sorting order. OrderBy defaults to ASC in this case. */
@@ -76,7 +78,7 @@ export declare function broadcastModeToJSON(object: BroadcastMode): string;
 export interface GetTxsEventRequest {
     /** events is the list of transaction event type. */
     events?: string[];
-    /** pagination defines an pagination for the request. */
+    /** pagination defines a pagination for the request. */
     pagination?: PageRequest;
     orderBy?: OrderBy;
 }
@@ -87,7 +89,7 @@ export interface GetTxsEventRequest {
 export interface GetTxsEventRequestSDKType {
     /** events is the list of transaction event type. */
     events?: string[];
-    /** pagination defines an pagination for the request. */
+    /** pagination defines a pagination for the request. */
     pagination?: PageRequestSDKType;
     order_by?: OrderBySDKType;
 }
@@ -100,7 +102,7 @@ export interface GetTxsEventResponse {
     txs: Tx[];
     /** tx_responses is the list of queried TxResponses. */
     txResponses: TxResponse[];
-    /** pagination defines an pagination for the response. */
+    /** pagination defines a pagination for the response. */
     pagination?: PageResponse;
 }
 /**
@@ -112,7 +114,7 @@ export interface GetTxsEventResponseSDKType {
     txs: TxSDKType[];
     /** tx_responses is the list of queried TxResponses. */
     tx_responses: TxResponseSDKType[];
-    /** pagination defines an pagination for the response. */
+    /** pagination defines a pagination for the response. */
     pagination?: PageResponseSDKType;
 }
 /**
@@ -160,7 +162,11 @@ export interface SimulateRequest {
      */
     /** @deprecated */
     tx: Tx;
-    /** tx_bytes is the raw transaction. */
+    /**
+     * tx_bytes is the raw transaction.
+     *
+     * Since: cosmos-sdk 0.43
+     */
     txBytes: Uint8Array;
 }
 /**
@@ -174,7 +180,11 @@ export interface SimulateRequestSDKType {
      */
     /** @deprecated */
     tx: TxSDKType;
-    /** tx_bytes is the raw transaction. */
+    /**
+     * tx_bytes is the raw transaction.
+     *
+     * Since: cosmos-sdk 0.43
+     */
     tx_bytes: Uint8Array;
 }
 /**
@@ -227,6 +237,56 @@ export interface GetTxResponseSDKType {
     /** tx_response is the queried TxResponses. */
     tx_response: TxResponseSDKType;
 }
+/**
+ * GetBlockWithTxsRequest is the request type for the Service.GetBlockWithTxs
+ * RPC method.
+ *
+ * Since: cosmos-sdk 0.45.2
+ */
+export interface GetBlockWithTxsRequest {
+    /** height is the height of the block to query. */
+    height: Long;
+    /** pagination defines a pagination for the request. */
+    pagination?: PageRequest;
+}
+/**
+ * GetBlockWithTxsRequest is the request type for the Service.GetBlockWithTxs
+ * RPC method.
+ *
+ * Since: cosmos-sdk 0.45.2
+ */
+export interface GetBlockWithTxsRequestSDKType {
+    /** height is the height of the block to query. */
+    height: Long;
+    /** pagination defines a pagination for the request. */
+    pagination?: PageRequestSDKType;
+}
+/**
+ * GetBlockWithTxsResponse is the response type for the Service.GetBlockWithTxs method.
+ *
+ * Since: cosmos-sdk 0.45.2
+ */
+export interface GetBlockWithTxsResponse {
+    /** txs are the transactions in the block. */
+    txs: Tx[];
+    blockId: BlockID;
+    block: Block;
+    /** pagination defines a pagination for the response. */
+    pagination?: PageResponse;
+}
+/**
+ * GetBlockWithTxsResponse is the response type for the Service.GetBlockWithTxs method.
+ *
+ * Since: cosmos-sdk 0.45.2
+ */
+export interface GetBlockWithTxsResponseSDKType {
+    /** txs are the transactions in the block. */
+    txs: TxSDKType[];
+    block_id: BlockIDSDKType;
+    block: BlockSDKType;
+    /** pagination defines a pagination for the response. */
+    pagination?: PageResponseSDKType;
+}
 export declare const GetTxsEventRequest: {
     encode(message: GetTxsEventRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): GetTxsEventRequest;
@@ -266,4 +326,14 @@ export declare const GetTxResponse: {
     encode(message: GetTxResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): GetTxResponse;
     fromPartial(object: DeepPartial<GetTxResponse>): GetTxResponse;
+};
+export declare const GetBlockWithTxsRequest: {
+    encode(message: GetBlockWithTxsRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): GetBlockWithTxsRequest;
+    fromPartial(object: DeepPartial<GetBlockWithTxsRequest>): GetBlockWithTxsRequest;
+};
+export declare const GetBlockWithTxsResponse: {
+    encode(message: GetBlockWithTxsResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): GetBlockWithTxsResponse;
+    fromPartial(object: DeepPartial<GetBlockWithTxsResponse>): GetBlockWithTxsResponse;
 };

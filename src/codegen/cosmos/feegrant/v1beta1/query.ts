@@ -66,6 +66,40 @@ export interface QueryAllowancesResponseSDKType {
 
   pagination?: PageResponseSDKType;
 }
+/** QueryAllowancesByGranterRequest is the request type for the Query/AllowancesByGranter RPC method. */
+
+export interface QueryAllowancesByGranterRequest {
+  granter: string;
+  /** pagination defines an pagination for the request. */
+
+  pagination?: PageRequest;
+}
+/** QueryAllowancesByGranterRequest is the request type for the Query/AllowancesByGranter RPC method. */
+
+export interface QueryAllowancesByGranterRequestSDKType {
+  granter: string;
+  /** pagination defines an pagination for the request. */
+
+  pagination?: PageRequestSDKType;
+}
+/** QueryAllowancesByGranterResponse is the response type for the Query/AllowancesByGranter RPC method. */
+
+export interface QueryAllowancesByGranterResponse {
+  /** allowances that have been issued by the granter. */
+  allowances: Grant[];
+  /** pagination defines an pagination for the response. */
+
+  pagination?: PageResponse;
+}
+/** QueryAllowancesByGranterResponse is the response type for the Query/AllowancesByGranter RPC method. */
+
+export interface QueryAllowancesByGranterResponseSDKType {
+  /** allowances that have been issued by the granter. */
+  allowances: GrantSDKType[];
+  /** pagination defines an pagination for the response. */
+
+  pagination?: PageResponseSDKType;
+}
 
 function createBaseQueryAllowanceRequest(): QueryAllowanceRequest {
   return {
@@ -270,6 +304,116 @@ export const QueryAllowancesResponse = {
 
   fromPartial(object: DeepPartial<QueryAllowancesResponse>): QueryAllowancesResponse {
     const message = createBaseQueryAllowancesResponse();
+    message.allowances = object.allowances?.map(e => Grant.fromPartial(e)) || [];
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseQueryAllowancesByGranterRequest(): QueryAllowancesByGranterRequest {
+  return {
+    granter: "",
+    pagination: undefined
+  };
+}
+
+export const QueryAllowancesByGranterRequest = {
+  encode(message: QueryAllowancesByGranterRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.granter !== "") {
+      writer.uint32(10).string(message.granter);
+    }
+
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllowancesByGranterRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllowancesByGranterRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.granter = reader.string();
+          break;
+
+        case 2:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllowancesByGranterRequest>): QueryAllowancesByGranterRequest {
+    const message = createBaseQueryAllowancesByGranterRequest();
+    message.granter = object.granter ?? "";
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseQueryAllowancesByGranterResponse(): QueryAllowancesByGranterResponse {
+  return {
+    allowances: [],
+    pagination: undefined
+  };
+}
+
+export const QueryAllowancesByGranterResponse = {
+  encode(message: QueryAllowancesByGranterResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.allowances) {
+      Grant.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllowancesByGranterResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllowancesByGranterResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.allowances.push(Grant.decode(reader, reader.uint32()));
+          break;
+
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllowancesByGranterResponse>): QueryAllowancesByGranterResponse {
+    const message = createBaseQueryAllowancesByGranterResponse();
     message.allowances = object.allowances?.map(e => Grant.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;

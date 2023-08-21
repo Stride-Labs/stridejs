@@ -3,19 +3,31 @@ import { Any, AnySDKType } from "../../../google/protobuf/any";
 import { Params, ParamsSDKType } from "./auth";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial } from "@osmonauts/helpers";
-/** QueryAccountsRequest is the request type for the Query/Accounts RPC method. */
+/**
+ * QueryAccountsRequest is the request type for the Query/Accounts RPC method.
+ *
+ * Since: cosmos-sdk 0.43
+ */
 
 export interface QueryAccountsRequest {
   /** pagination defines an optional pagination for the request. */
   pagination?: PageRequest;
 }
-/** QueryAccountsRequest is the request type for the Query/Accounts RPC method. */
+/**
+ * QueryAccountsRequest is the request type for the Query/Accounts RPC method.
+ *
+ * Since: cosmos-sdk 0.43
+ */
 
 export interface QueryAccountsRequestSDKType {
   /** pagination defines an optional pagination for the request. */
   pagination?: PageRequestSDKType;
 }
-/** QueryAccountsResponse is the response type for the Query/Accounts RPC method. */
+/**
+ * QueryAccountsResponse is the response type for the Query/Accounts RPC method.
+ *
+ * Since: cosmos-sdk 0.43
+ */
 
 export interface QueryAccountsResponse {
   /** accounts are the existing accounts */
@@ -24,7 +36,11 @@ export interface QueryAccountsResponse {
 
   pagination?: PageResponse;
 }
-/** QueryAccountsResponse is the response type for the Query/Accounts RPC method. */
+/**
+ * QueryAccountsResponse is the response type for the Query/Accounts RPC method.
+ *
+ * Since: cosmos-sdk 0.43
+ */
 
 export interface QueryAccountsResponseSDKType {
   /** accounts are the existing accounts */
@@ -74,6 +90,26 @@ export interface QueryParamsResponse {
 export interface QueryParamsResponseSDKType {
   /** params defines the parameters of the module. */
   params: ParamsSDKType;
+}
+/** QueryModuleAccountByNameRequest is the request type for the Query/ModuleAccountByName RPC method. */
+
+export interface QueryModuleAccountByNameRequest {
+  name: string;
+}
+/** QueryModuleAccountByNameRequest is the request type for the Query/ModuleAccountByName RPC method. */
+
+export interface QueryModuleAccountByNameRequestSDKType {
+  name: string;
+}
+/** QueryModuleAccountByNameResponse is the response type for the Query/ModuleAccountByName RPC method. */
+
+export interface QueryModuleAccountByNameResponse {
+  account: Any;
+}
+/** QueryModuleAccountByNameResponse is the response type for the Query/ModuleAccountByName RPC method. */
+
+export interface QueryModuleAccountByNameResponseSDKType {
+  account: AnySDKType;
 }
 
 function createBaseQueryAccountsRequest(): QueryAccountsRequest {
@@ -340,6 +376,96 @@ export const QueryParamsResponse = {
   fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseQueryModuleAccountByNameRequest(): QueryModuleAccountByNameRequest {
+  return {
+    name: ""
+  };
+}
+
+export const QueryModuleAccountByNameRequest = {
+  encode(message: QueryModuleAccountByNameRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.name !== "") {
+      writer.uint32(10).string(message.name);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryModuleAccountByNameRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryModuleAccountByNameRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.name = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryModuleAccountByNameRequest>): QueryModuleAccountByNameRequest {
+    const message = createBaseQueryModuleAccountByNameRequest();
+    message.name = object.name ?? "";
+    return message;
+  }
+
+};
+
+function createBaseQueryModuleAccountByNameResponse(): QueryModuleAccountByNameResponse {
+  return {
+    account: undefined
+  };
+}
+
+export const QueryModuleAccountByNameResponse = {
+  encode(message: QueryModuleAccountByNameResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.account !== undefined) {
+      Any.encode(message.account, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryModuleAccountByNameResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryModuleAccountByNameResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.account = Any.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryModuleAccountByNameResponse>): QueryModuleAccountByNameResponse {
+    const message = createBaseQueryModuleAccountByNameResponse();
+    message.account = object.account !== undefined && object.account !== null ? Any.fromPartial(object.account) : undefined;
     return message;
   }
 

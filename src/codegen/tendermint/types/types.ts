@@ -166,7 +166,7 @@ export interface BlockIDSDKType {
   hash: Uint8Array;
   part_set_header: PartSetHeaderSDKType;
 }
-/** Header defines the structure of a Tendermint block header. */
+/** Header defines the structure of a block header. */
 
 export interface Header {
   /** basic block info */
@@ -201,7 +201,7 @@ export interface Header {
 
   proposerAddress: Uint8Array;
 }
-/** Header defines the structure of a Tendermint block header. */
+/** Header defines the structure of a block header. */
 
 export interface HeaderSDKType {
   /** basic block info */

@@ -197,6 +197,16 @@ export interface DelegationDelegatorRewardSDKType {
     validator_address: string;
     reward: DecCoinSDKType[];
 }
+/** TokenizeShareRecordReward represents the properties of tokenize share */
+export interface TokenizeShareRecordReward {
+    recordId: Long;
+    reward: DecCoin[];
+}
+/** TokenizeShareRecordReward represents the properties of tokenize share */
+export interface TokenizeShareRecordRewardSDKType {
+    record_id: Long;
+    reward: DecCoinSDKType[];
+}
 /**
  * CommunityPoolSpendProposalWithDeposit defines a CommunityPoolSpendProposal
  * with a deposit
@@ -273,6 +283,11 @@ export declare const DelegationDelegatorReward: {
     encode(message: DelegationDelegatorReward, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): DelegationDelegatorReward;
     fromPartial(object: DeepPartial<DelegationDelegatorReward>): DelegationDelegatorReward;
+};
+export declare const TokenizeShareRecordReward: {
+    encode(message: TokenizeShareRecordReward, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): TokenizeShareRecordReward;
+    fromPartial(object: DeepPartial<TokenizeShareRecordReward>): TokenizeShareRecordReward;
 };
 export declare const CommunityPoolSpendProposalWithDeposit: {
     encode(message: CommunityPoolSpendProposalWithDeposit, writer?: _m0.Writer): _m0.Writer;

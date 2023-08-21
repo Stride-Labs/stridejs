@@ -1,5 +1,6 @@
 import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
-import { Validator, ValidatorSDKType, DelegationResponse, DelegationResponseSDKType, UnbondingDelegation, UnbondingDelegationSDKType, RedelegationResponse, RedelegationResponseSDKType, HistoricalInfo, HistoricalInfoSDKType, Pool, PoolSDKType, Params, ParamsSDKType } from "./staking";
+import { Validator, ValidatorSDKType, DelegationResponse, DelegationResponseSDKType, UnbondingDelegation, UnbondingDelegationSDKType, RedelegationResponse, RedelegationResponseSDKType, HistoricalInfo, HistoricalInfoSDKType, Pool, PoolSDKType, Params, ParamsSDKType, TokenizeShareRecord, TokenizeShareRecordSDKType } from "./staking";
+import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
 /** QueryValidatorsRequest is request type for Query/Validators RPC method. */
@@ -53,13 +54,13 @@ export interface QueryValidatorRequestSDKType {
 /** QueryValidatorResponse is response type for the Query/Validator RPC method */
 
 export interface QueryValidatorResponse {
-  /** validator defines the the validator info. */
+  /** validator defines the validator info. */
   validator: Validator;
 }
 /** QueryValidatorResponse is response type for the Query/Validator RPC method */
 
 export interface QueryValidatorResponseSDKType {
-  /** validator defines the the validator info. */
+  /** validator defines the validator info. */
   validator: ValidatorSDKType;
 }
 /**
@@ -408,7 +409,7 @@ export interface QueryDelegatorValidatorsRequestSDKType {
  */
 
 export interface QueryDelegatorValidatorsResponse {
-  /** validators defines the the validators' info of a delegator. */
+  /** validators defines the validators' info of a delegator. */
   validators: Validator[];
   /** pagination defines the pagination in the response. */
 
@@ -420,7 +421,7 @@ export interface QueryDelegatorValidatorsResponse {
  */
 
 export interface QueryDelegatorValidatorsResponseSDKType {
-  /** validators defines the the validators' info of a delegator. */
+  /** validators defines the validators' info of a delegator. */
   validators: ValidatorSDKType[];
   /** pagination defines the pagination in the response. */
 
@@ -456,7 +457,7 @@ export interface QueryDelegatorValidatorRequestSDKType {
  */
 
 export interface QueryDelegatorValidatorResponse {
-  /** validator defines the the validator info. */
+  /** validator defines the validator info. */
   validator: Validator;
 }
 /**
@@ -465,7 +466,7 @@ export interface QueryDelegatorValidatorResponse {
  */
 
 export interface QueryDelegatorValidatorResponseSDKType {
-  /** validator defines the the validator info. */
+  /** validator defines the validator info. */
   validator: ValidatorSDKType;
 }
 /**
@@ -539,6 +540,260 @@ export interface QueryParamsResponse {
 export interface QueryParamsResponseSDKType {
   /** params holds all the parameters of this module. */
   params: ParamsSDKType;
+}
+/**
+ * QueryTokenizeShareRecordByIdRequest is request type for the
+ * Query/QueryTokenizeShareRecordById RPC method.
+ */
+
+export interface QueryTokenizeShareRecordByIdRequest {
+  id: Long;
+}
+/**
+ * QueryTokenizeShareRecordByIdRequest is request type for the
+ * Query/QueryTokenizeShareRecordById RPC method.
+ */
+
+export interface QueryTokenizeShareRecordByIdRequestSDKType {
+  id: Long;
+}
+/**
+ * QueryTokenizeShareRecordByIdRequest is response type for the
+ * Query/QueryTokenizeShareRecordById RPC method.
+ */
+
+export interface QueryTokenizeShareRecordByIdResponse {
+  record: TokenizeShareRecord;
+}
+/**
+ * QueryTokenizeShareRecordByIdRequest is response type for the
+ * Query/QueryTokenizeShareRecordById RPC method.
+ */
+
+export interface QueryTokenizeShareRecordByIdResponseSDKType {
+  record: TokenizeShareRecordSDKType;
+}
+/**
+ * QueryTokenizeShareRecordByDenomRequest is request type for the
+ * Query/QueryTokenizeShareRecordByDenom RPC method.
+ */
+
+export interface QueryTokenizeShareRecordByDenomRequest {
+  denom: string;
+}
+/**
+ * QueryTokenizeShareRecordByDenomRequest is request type for the
+ * Query/QueryTokenizeShareRecordByDenom RPC method.
+ */
+
+export interface QueryTokenizeShareRecordByDenomRequestSDKType {
+  denom: string;
+}
+/**
+ * QueryTokenizeShareRecordByDenomResponse is response type for the
+ * Query/QueryTokenizeShareRecordByDenom RPC method.
+ */
+
+export interface QueryTokenizeShareRecordByDenomResponse {
+  record: TokenizeShareRecord;
+}
+/**
+ * QueryTokenizeShareRecordByDenomResponse is response type for the
+ * Query/QueryTokenizeShareRecordByDenom RPC method.
+ */
+
+export interface QueryTokenizeShareRecordByDenomResponseSDKType {
+  record: TokenizeShareRecordSDKType;
+}
+/**
+ * QueryTokenizeShareRecordsOwnedRequest is request type for the
+ * Query/QueryTokenizeShareRecordsOwned RPC method.
+ */
+
+export interface QueryTokenizeShareRecordsOwnedRequest {
+  owner: string;
+}
+/**
+ * QueryTokenizeShareRecordsOwnedRequest is request type for the
+ * Query/QueryTokenizeShareRecordsOwned RPC method.
+ */
+
+export interface QueryTokenizeShareRecordsOwnedRequestSDKType {
+  owner: string;
+}
+/**
+ * QueryTokenizeShareRecordsOwnedResponse is response type for the
+ * Query/QueryTokenizeShareRecordsOwned RPC method.
+ */
+
+export interface QueryTokenizeShareRecordsOwnedResponse {
+  records: TokenizeShareRecord[];
+}
+/**
+ * QueryTokenizeShareRecordsOwnedResponse is response type for the
+ * Query/QueryTokenizeShareRecordsOwned RPC method.
+ */
+
+export interface QueryTokenizeShareRecordsOwnedResponseSDKType {
+  records: TokenizeShareRecordSDKType[];
+}
+/**
+ * QueryAllTokenizeShareRecordsRequest is request type for the
+ * Query/QueryAllTokenizeShareRecords RPC method.
+ */
+
+export interface QueryAllTokenizeShareRecordsRequest {
+  /** pagination defines an optional pagination for the request. */
+  pagination?: PageRequest;
+}
+/**
+ * QueryAllTokenizeShareRecordsRequest is request type for the
+ * Query/QueryAllTokenizeShareRecords RPC method.
+ */
+
+export interface QueryAllTokenizeShareRecordsRequestSDKType {
+  /** pagination defines an optional pagination for the request. */
+  pagination?: PageRequestSDKType;
+}
+/**
+ * QueryAllTokenizeShareRecordsResponse is response type for the
+ * Query/QueryAllTokenizeShareRecords RPC method.
+ */
+
+export interface QueryAllTokenizeShareRecordsResponse {
+  records: TokenizeShareRecord[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponse;
+}
+/**
+ * QueryAllTokenizeShareRecordsResponse is response type for the
+ * Query/QueryAllTokenizeShareRecords RPC method.
+ */
+
+export interface QueryAllTokenizeShareRecordsResponseSDKType {
+  records: TokenizeShareRecordSDKType[];
+  /** pagination defines the pagination in the response. */
+
+  pagination?: PageResponseSDKType;
+}
+/**
+ * QueryLastTokenizeShareRecordIdRequest is request type for the
+ * Query/QueryLastTokenizeShareRecordId RPC method.
+ */
+
+export interface QueryLastTokenizeShareRecordIdRequest {}
+/**
+ * QueryLastTokenizeShareRecordIdRequest is request type for the
+ * Query/QueryLastTokenizeShareRecordId RPC method.
+ */
+
+export interface QueryLastTokenizeShareRecordIdRequestSDKType {}
+/**
+ * QueryLastTokenizeShareRecordIdResponse is response type for the
+ * Query/QueryLastTokenizeShareRecordId RPC method.
+ */
+
+export interface QueryLastTokenizeShareRecordIdResponse {
+  id: Long;
+}
+/**
+ * QueryLastTokenizeShareRecordIdResponse is response type for the
+ * Query/QueryLastTokenizeShareRecordId RPC method.
+ */
+
+export interface QueryLastTokenizeShareRecordIdResponseSDKType {
+  id: Long;
+}
+/**
+ * QueryTotalTokenizeSharedAssetsRequest is request type for the
+ * Query/QueryTotalTokenizeSharedAssets RPC method.
+ */
+
+export interface QueryTotalTokenizeSharedAssetsRequest {}
+/**
+ * QueryTotalTokenizeSharedAssetsRequest is request type for the
+ * Query/QueryTotalTokenizeSharedAssets RPC method.
+ */
+
+export interface QueryTotalTokenizeSharedAssetsRequestSDKType {}
+/**
+ * QueryTotalTokenizeSharedAssetsResponse is response type for the
+ * Query/QueryTotalTokenizeSharedAssets RPC method.
+ */
+
+export interface QueryTotalTokenizeSharedAssetsResponse {
+  value: Coin;
+}
+/**
+ * QueryTotalTokenizeSharedAssetsResponse is response type for the
+ * Query/QueryTotalTokenizeSharedAssets RPC method.
+ */
+
+export interface QueryTotalTokenizeSharedAssetsResponseSDKType {
+  value: CoinSDKType;
+}
+/**
+ * QueryTotalLiquidStakedRequest is request type for the
+ * Query/QueryQueryTotalLiquidStaked RPC method.
+ */
+
+export interface QueryTotalLiquidStaked {}
+/**
+ * QueryTotalLiquidStakedRequest is request type for the
+ * Query/QueryQueryTotalLiquidStaked RPC method.
+ */
+
+export interface QueryTotalLiquidStakedSDKType {}
+/**
+ * QueryTotalLiquidStakedResponse is response type for the
+ * Query/QueryQueryTotalLiquidStaked RPC method.
+ */
+
+export interface QueryTotalLiquidStakedResponse {
+  tokens: string;
+}
+/**
+ * QueryTotalLiquidStakedResponse is response type for the
+ * Query/QueryQueryTotalLiquidStaked RPC method.
+ */
+
+export interface QueryTotalLiquidStakedResponseSDKType {
+  tokens: string;
+}
+/**
+ * QueryTokenizeShareLockInfo queries the tokenize share lock information
+ * associated with given account
+ */
+
+export interface QueryTokenizeShareLockInfo {
+  address: string;
+}
+/**
+ * QueryTokenizeShareLockInfo queries the tokenize share lock information
+ * associated with given account
+ */
+
+export interface QueryTokenizeShareLockInfoSDKType {
+  address: string;
+}
+/**
+ * QueryTokenizeShareLockInfoResponse is the response from the
+ * QueryTokenizeShareLockInfo query
+ */
+
+export interface QueryTokenizeShareLockInfoResponse {
+  status: string;
+  expirationTime: string;
+}
+/**
+ * QueryTokenizeShareLockInfoResponse is the response from the
+ * QueryTokenizeShareLockInfo query
+ */
+
+export interface QueryTokenizeShareLockInfoResponseSDKType {
+  status: string;
+  expiration_time: string;
 }
 
 function createBaseQueryValidatorsRequest(): QueryValidatorsRequest {
@@ -1964,6 +2219,713 @@ export const QueryParamsResponse = {
   fromPartial(object: DeepPartial<QueryParamsResponse>): QueryParamsResponse {
     const message = createBaseQueryParamsResponse();
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseQueryTokenizeShareRecordByIdRequest(): QueryTokenizeShareRecordByIdRequest {
+  return {
+    id: Long.UZERO
+  };
+}
+
+export const QueryTokenizeShareRecordByIdRequest = {
+  encode(message: QueryTokenizeShareRecordByIdRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (!message.id.isZero()) {
+      writer.uint32(8).uint64(message.id);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTokenizeShareRecordByIdRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordByIdRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.id = (reader.uint64() as Long);
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryTokenizeShareRecordByIdRequest>): QueryTokenizeShareRecordByIdRequest {
+    const message = createBaseQueryTokenizeShareRecordByIdRequest();
+    message.id = object.id !== undefined && object.id !== null ? Long.fromValue(object.id) : Long.UZERO;
+    return message;
+  }
+
+};
+
+function createBaseQueryTokenizeShareRecordByIdResponse(): QueryTokenizeShareRecordByIdResponse {
+  return {
+    record: undefined
+  };
+}
+
+export const QueryTokenizeShareRecordByIdResponse = {
+  encode(message: QueryTokenizeShareRecordByIdResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.record !== undefined) {
+      TokenizeShareRecord.encode(message.record, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTokenizeShareRecordByIdResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordByIdResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.record = TokenizeShareRecord.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryTokenizeShareRecordByIdResponse>): QueryTokenizeShareRecordByIdResponse {
+    const message = createBaseQueryTokenizeShareRecordByIdResponse();
+    message.record = object.record !== undefined && object.record !== null ? TokenizeShareRecord.fromPartial(object.record) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseQueryTokenizeShareRecordByDenomRequest(): QueryTokenizeShareRecordByDenomRequest {
+  return {
+    denom: ""
+  };
+}
+
+export const QueryTokenizeShareRecordByDenomRequest = {
+  encode(message: QueryTokenizeShareRecordByDenomRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.denom !== "") {
+      writer.uint32(10).string(message.denom);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTokenizeShareRecordByDenomRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordByDenomRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.denom = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryTokenizeShareRecordByDenomRequest>): QueryTokenizeShareRecordByDenomRequest {
+    const message = createBaseQueryTokenizeShareRecordByDenomRequest();
+    message.denom = object.denom ?? "";
+    return message;
+  }
+
+};
+
+function createBaseQueryTokenizeShareRecordByDenomResponse(): QueryTokenizeShareRecordByDenomResponse {
+  return {
+    record: undefined
+  };
+}
+
+export const QueryTokenizeShareRecordByDenomResponse = {
+  encode(message: QueryTokenizeShareRecordByDenomResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.record !== undefined) {
+      TokenizeShareRecord.encode(message.record, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTokenizeShareRecordByDenomResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordByDenomResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.record = TokenizeShareRecord.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryTokenizeShareRecordByDenomResponse>): QueryTokenizeShareRecordByDenomResponse {
+    const message = createBaseQueryTokenizeShareRecordByDenomResponse();
+    message.record = object.record !== undefined && object.record !== null ? TokenizeShareRecord.fromPartial(object.record) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseQueryTokenizeShareRecordsOwnedRequest(): QueryTokenizeShareRecordsOwnedRequest {
+  return {
+    owner: ""
+  };
+}
+
+export const QueryTokenizeShareRecordsOwnedRequest = {
+  encode(message: QueryTokenizeShareRecordsOwnedRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.owner !== "") {
+      writer.uint32(10).string(message.owner);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTokenizeShareRecordsOwnedRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordsOwnedRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.owner = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryTokenizeShareRecordsOwnedRequest>): QueryTokenizeShareRecordsOwnedRequest {
+    const message = createBaseQueryTokenizeShareRecordsOwnedRequest();
+    message.owner = object.owner ?? "";
+    return message;
+  }
+
+};
+
+function createBaseQueryTokenizeShareRecordsOwnedResponse(): QueryTokenizeShareRecordsOwnedResponse {
+  return {
+    records: []
+  };
+}
+
+export const QueryTokenizeShareRecordsOwnedResponse = {
+  encode(message: QueryTokenizeShareRecordsOwnedResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.records) {
+      TokenizeShareRecord.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTokenizeShareRecordsOwnedResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordsOwnedResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.records.push(TokenizeShareRecord.decode(reader, reader.uint32()));
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryTokenizeShareRecordsOwnedResponse>): QueryTokenizeShareRecordsOwnedResponse {
+    const message = createBaseQueryTokenizeShareRecordsOwnedResponse();
+    message.records = object.records?.map(e => TokenizeShareRecord.fromPartial(e)) || [];
+    return message;
+  }
+
+};
+
+function createBaseQueryAllTokenizeShareRecordsRequest(): QueryAllTokenizeShareRecordsRequest {
+  return {
+    pagination: undefined
+  };
+}
+
+export const QueryAllTokenizeShareRecordsRequest = {
+  encode(message: QueryAllTokenizeShareRecordsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllTokenizeShareRecordsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllTokenizeShareRecordsRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllTokenizeShareRecordsRequest>): QueryAllTokenizeShareRecordsRequest {
+    const message = createBaseQueryAllTokenizeShareRecordsRequest();
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseQueryAllTokenizeShareRecordsResponse(): QueryAllTokenizeShareRecordsResponse {
+  return {
+    records: [],
+    pagination: undefined
+  };
+}
+
+export const QueryAllTokenizeShareRecordsResponse = {
+  encode(message: QueryAllTokenizeShareRecordsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.records) {
+      TokenizeShareRecord.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllTokenizeShareRecordsResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllTokenizeShareRecordsResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.records.push(TokenizeShareRecord.decode(reader, reader.uint32()));
+          break;
+
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllTokenizeShareRecordsResponse>): QueryAllTokenizeShareRecordsResponse {
+    const message = createBaseQueryAllTokenizeShareRecordsResponse();
+    message.records = object.records?.map(e => TokenizeShareRecord.fromPartial(e)) || [];
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseQueryLastTokenizeShareRecordIdRequest(): QueryLastTokenizeShareRecordIdRequest {
+  return {};
+}
+
+export const QueryLastTokenizeShareRecordIdRequest = {
+  encode(_: QueryLastTokenizeShareRecordIdRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryLastTokenizeShareRecordIdRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryLastTokenizeShareRecordIdRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(_: DeepPartial<QueryLastTokenizeShareRecordIdRequest>): QueryLastTokenizeShareRecordIdRequest {
+    const message = createBaseQueryLastTokenizeShareRecordIdRequest();
+    return message;
+  }
+
+};
+
+function createBaseQueryLastTokenizeShareRecordIdResponse(): QueryLastTokenizeShareRecordIdResponse {
+  return {
+    id: Long.UZERO
+  };
+}
+
+export const QueryLastTokenizeShareRecordIdResponse = {
+  encode(message: QueryLastTokenizeShareRecordIdResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (!message.id.isZero()) {
+      writer.uint32(8).uint64(message.id);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryLastTokenizeShareRecordIdResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryLastTokenizeShareRecordIdResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.id = (reader.uint64() as Long);
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryLastTokenizeShareRecordIdResponse>): QueryLastTokenizeShareRecordIdResponse {
+    const message = createBaseQueryLastTokenizeShareRecordIdResponse();
+    message.id = object.id !== undefined && object.id !== null ? Long.fromValue(object.id) : Long.UZERO;
+    return message;
+  }
+
+};
+
+function createBaseQueryTotalTokenizeSharedAssetsRequest(): QueryTotalTokenizeSharedAssetsRequest {
+  return {};
+}
+
+export const QueryTotalTokenizeSharedAssetsRequest = {
+  encode(_: QueryTotalTokenizeSharedAssetsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTotalTokenizeSharedAssetsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTotalTokenizeSharedAssetsRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(_: DeepPartial<QueryTotalTokenizeSharedAssetsRequest>): QueryTotalTokenizeSharedAssetsRequest {
+    const message = createBaseQueryTotalTokenizeSharedAssetsRequest();
+    return message;
+  }
+
+};
+
+function createBaseQueryTotalTokenizeSharedAssetsResponse(): QueryTotalTokenizeSharedAssetsResponse {
+  return {
+    value: undefined
+  };
+}
+
+export const QueryTotalTokenizeSharedAssetsResponse = {
+  encode(message: QueryTotalTokenizeSharedAssetsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.value !== undefined) {
+      Coin.encode(message.value, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTotalTokenizeSharedAssetsResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTotalTokenizeSharedAssetsResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.value = Coin.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryTotalTokenizeSharedAssetsResponse>): QueryTotalTokenizeSharedAssetsResponse {
+    const message = createBaseQueryTotalTokenizeSharedAssetsResponse();
+    message.value = object.value !== undefined && object.value !== null ? Coin.fromPartial(object.value) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseQueryTotalLiquidStaked(): QueryTotalLiquidStaked {
+  return {};
+}
+
+export const QueryTotalLiquidStaked = {
+  encode(_: QueryTotalLiquidStaked, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTotalLiquidStaked {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTotalLiquidStaked();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(_: DeepPartial<QueryTotalLiquidStaked>): QueryTotalLiquidStaked {
+    const message = createBaseQueryTotalLiquidStaked();
+    return message;
+  }
+
+};
+
+function createBaseQueryTotalLiquidStakedResponse(): QueryTotalLiquidStakedResponse {
+  return {
+    tokens: ""
+  };
+}
+
+export const QueryTotalLiquidStakedResponse = {
+  encode(message: QueryTotalLiquidStakedResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.tokens !== "") {
+      writer.uint32(10).string(message.tokens);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTotalLiquidStakedResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTotalLiquidStakedResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.tokens = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryTotalLiquidStakedResponse>): QueryTotalLiquidStakedResponse {
+    const message = createBaseQueryTotalLiquidStakedResponse();
+    message.tokens = object.tokens ?? "";
+    return message;
+  }
+
+};
+
+function createBaseQueryTokenizeShareLockInfo(): QueryTokenizeShareLockInfo {
+  return {
+    address: ""
+  };
+}
+
+export const QueryTokenizeShareLockInfo = {
+  encode(message: QueryTokenizeShareLockInfo, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.address !== "") {
+      writer.uint32(10).string(message.address);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTokenizeShareLockInfo {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareLockInfo();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.address = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryTokenizeShareLockInfo>): QueryTokenizeShareLockInfo {
+    const message = createBaseQueryTokenizeShareLockInfo();
+    message.address = object.address ?? "";
+    return message;
+  }
+
+};
+
+function createBaseQueryTokenizeShareLockInfoResponse(): QueryTokenizeShareLockInfoResponse {
+  return {
+    status: "",
+    expirationTime: ""
+  };
+}
+
+export const QueryTokenizeShareLockInfoResponse = {
+  encode(message: QueryTokenizeShareLockInfoResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.status !== "") {
+      writer.uint32(10).string(message.status);
+    }
+
+    if (message.expirationTime !== "") {
+      writer.uint32(18).string(message.expirationTime);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryTokenizeShareLockInfoResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareLockInfoResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.status = reader.string();
+          break;
+
+        case 2:
+          message.expirationTime = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryTokenizeShareLockInfoResponse>): QueryTokenizeShareLockInfoResponse {
+    const message = createBaseQueryTokenizeShareLockInfoResponse();
+    message.status = object.status ?? "";
+    message.expirationTime = object.expirationTime ?? "";
     return message;
   }
 

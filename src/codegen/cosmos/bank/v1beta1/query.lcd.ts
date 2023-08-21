@@ -1,6 +1,6 @@
 import { setPaginationParams } from "@osmonauts/helpers";
 import { LCDClient } from "@osmonauts/lcd";
-import { QueryBalanceRequest, QueryBalanceResponseSDKType, QueryAllBalancesRequest, QueryAllBalancesResponseSDKType, QueryTotalSupplyRequest, QueryTotalSupplyResponseSDKType, QuerySupplyOfRequest, QuerySupplyOfResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType, QueryDenomMetadataRequest, QueryDenomMetadataResponseSDKType, QueryDenomsMetadataRequest, QueryDenomsMetadataResponseSDKType } from "./query";
+import { QueryBalanceRequest, QueryBalanceResponseSDKType, QueryAllBalancesRequest, QueryAllBalancesResponseSDKType, QuerySpendableBalancesRequest, QuerySpendableBalancesResponseSDKType, QueryTotalSupplyRequest, QueryTotalSupplyResponseSDKType, QuerySupplyOfRequest, QuerySupplyOfResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType, QueryDenomMetadataRequest, QueryDenomMetadataResponseSDKType, QueryDenomsMetadataRequest, QueryDenomsMetadataResponseSDKType } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
 
@@ -12,6 +12,7 @@ export class LCDQueryClient {
     this.req = requestClient;
     this.balance = this.balance.bind(this);
     this.allBalances = this.allBalances.bind(this);
+    this.spendableBalances = this.spendableBalances.bind(this);
     this.totalSupply = this.totalSupply.bind(this);
     this.supplyOf = this.supplyOf.bind(this);
     this.params = this.params.bind(this);
@@ -22,8 +23,16 @@ export class LCDQueryClient {
 
 
   async balance(params: QueryBalanceRequest): Promise<QueryBalanceResponseSDKType> {
-    const endpoint = `cosmos/bank/v1beta1/balances/${params.address}/${params.denom}`;
-    return await this.req.get<QueryBalanceResponseSDKType>(endpoint);
+    const options: any = {
+      params: {}
+    };
+
+    if (typeof params?.denom !== "undefined") {
+      options.params.denom = params.denom;
+    }
+
+    const endpoint = `cosmos/bank/v1beta1/balances/${params.address}/by_denom`;
+    return await this.req.get<QueryBalanceResponseSDKType>(endpoint, options);
   }
   /* AllBalances queries the balance of all coins for a single account. */
 
@@ -39,6 +48,22 @@ export class LCDQueryClient {
 
     const endpoint = `cosmos/bank/v1beta1/balances/${params.address}`;
     return await this.req.get<QueryAllBalancesResponseSDKType>(endpoint, options);
+  }
+  /* SpendableBalances queries the spenable balance of all coins for a single
+   account. */
+
+
+  async spendableBalances(params: QuerySpendableBalancesRequest): Promise<QuerySpendableBalancesResponseSDKType> {
+    const options: any = {
+      params: {}
+    };
+
+    if (typeof params?.pagination !== "undefined") {
+      setPaginationParams(options, params.pagination);
+    }
+
+    const endpoint = `cosmos/bank/v1beta1/spendable_balances/${params.address}`;
+    return await this.req.get<QuerySpendableBalancesResponseSDKType>(endpoint, options);
   }
   /* TotalSupply queries the total supply of all coins. */
 

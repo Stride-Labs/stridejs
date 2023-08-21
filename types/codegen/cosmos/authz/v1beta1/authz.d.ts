@@ -33,6 +33,30 @@ export interface GrantSDKType {
     authorization: AnySDKType;
     expiration: Date;
 }
+/**
+ * GrantAuthorization extends a grant with both the addresses of the grantee and granter.
+ * It is used in genesis.proto and query.proto
+ *
+ * Since: cosmos-sdk 0.45.2
+ */
+export interface GrantAuthorization {
+    granter: string;
+    grantee: string;
+    authorization: Any;
+    expiration: Date;
+}
+/**
+ * GrantAuthorization extends a grant with both the addresses of the grantee and granter.
+ * It is used in genesis.proto and query.proto
+ *
+ * Since: cosmos-sdk 0.45.2
+ */
+export interface GrantAuthorizationSDKType {
+    granter: string;
+    grantee: string;
+    authorization: AnySDKType;
+    expiration: Date;
+}
 export declare const GenericAuthorization: {
     encode(message: GenericAuthorization, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): GenericAuthorization;
@@ -42,4 +66,9 @@ export declare const Grant: {
     encode(message: Grant, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): Grant;
     fromPartial(object: DeepPartial<Grant>): Grant;
+};
+export declare const GrantAuthorization: {
+    encode(message: GrantAuthorization, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): GrantAuthorization;
+    fromPartial(object: DeepPartial<GrantAuthorization>): GrantAuthorization;
 };

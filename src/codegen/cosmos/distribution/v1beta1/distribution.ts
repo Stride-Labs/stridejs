@@ -219,6 +219,18 @@ export interface DelegationDelegatorRewardSDKType {
   validator_address: string;
   reward: DecCoinSDKType[];
 }
+/** TokenizeShareRecordReward represents the properties of tokenize share */
+
+export interface TokenizeShareRecordReward {
+  recordId: Long;
+  reward: DecCoin[];
+}
+/** TokenizeShareRecordReward represents the properties of tokenize share */
+
+export interface TokenizeShareRecordRewardSDKType {
+  record_id: Long;
+  reward: DecCoinSDKType[];
+}
 /**
  * CommunityPoolSpendProposalWithDeposit defines a CommunityPoolSpendProposal
  * with a deposit
@@ -853,6 +865,61 @@ export const DelegationDelegatorReward = {
   fromPartial(object: DeepPartial<DelegationDelegatorReward>): DelegationDelegatorReward {
     const message = createBaseDelegationDelegatorReward();
     message.validatorAddress = object.validatorAddress ?? "";
+    message.reward = object.reward?.map(e => DecCoin.fromPartial(e)) || [];
+    return message;
+  }
+
+};
+
+function createBaseTokenizeShareRecordReward(): TokenizeShareRecordReward {
+  return {
+    recordId: Long.UZERO,
+    reward: []
+  };
+}
+
+export const TokenizeShareRecordReward = {
+  encode(message: TokenizeShareRecordReward, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (!message.recordId.isZero()) {
+      writer.uint32(8).uint64(message.recordId);
+    }
+
+    for (const v of message.reward) {
+      DecCoin.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): TokenizeShareRecordReward {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseTokenizeShareRecordReward();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.recordId = (reader.uint64() as Long);
+          break;
+
+        case 2:
+          message.reward.push(DecCoin.decode(reader, reader.uint32()));
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<TokenizeShareRecordReward>): TokenizeShareRecordReward {
+    const message = createBaseTokenizeShareRecordReward();
+    message.recordId = object.recordId !== undefined && object.recordId !== null ? Long.fromValue(object.recordId) : Long.UZERO;
     message.reward = object.reward?.map(e => DecCoin.fromPartial(e)) || [];
     return message;
   }

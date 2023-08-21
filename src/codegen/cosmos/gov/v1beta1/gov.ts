@@ -221,13 +221,21 @@ export function proposalStatusToJSON(object: ProposalStatus): string {
       return "UNKNOWN";
   }
 }
-/** WeightedVoteOption defines a unit of vote for vote split. */
+/**
+ * WeightedVoteOption defines a unit of vote for vote split.
+ *
+ * Since: cosmos-sdk 0.43
+ */
 
 export interface WeightedVoteOption {
   option: VoteOption;
   weight: string;
 }
-/** WeightedVoteOption defines a unit of vote for vote split. */
+/**
+ * WeightedVoteOption defines a unit of vote for vote split.
+ *
+ * Since: cosmos-sdk 0.43
+ */
 
 export interface WeightedVoteOptionSDKType {
   option: VoteOptionSDKType;
@@ -330,6 +338,8 @@ export interface Vote {
   /** @deprecated */
 
   option: VoteOption;
+  /** Since: cosmos-sdk 0.43 */
+
   options: WeightedVoteOption[];
 }
 /**
@@ -349,6 +359,8 @@ export interface VoteSDKType {
   /** @deprecated */
 
   option: VoteOptionSDKType;
+  /** Since: cosmos-sdk 0.43 */
+
   options: WeightedVoteOptionSDKType[];
 }
 /** DepositParams defines the params for deposits on governance proposals. */

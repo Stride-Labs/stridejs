@@ -1,6 +1,6 @@
 import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "@osmonauts/helpers";
 /**
  * MsgSetWithdrawAddress sets the withdraw address for
  * a delegator (or validator self-delegation).
@@ -65,6 +65,42 @@ export interface MsgWithdrawValidatorCommissionResponse {
 /** MsgWithdrawValidatorCommissionResponse defines the Msg/WithdrawValidatorCommission response type. */
 export interface MsgWithdrawValidatorCommissionResponseSDKType {
 }
+/** MsgWithdrawTokenizeShareRecordReward withdraws tokenize share rewards for a specific record */
+export interface MsgWithdrawTokenizeShareRecordReward {
+    ownerAddress: string;
+    recordId: Long;
+}
+/** MsgWithdrawTokenizeShareRecordReward withdraws tokenize share rewards for a specific record */
+export interface MsgWithdrawTokenizeShareRecordRewardSDKType {
+    owner_address: string;
+    record_id: Long;
+}
+/** MsgWithdrawTokenizeShareRecordReward defines the Msg/WithdrawTokenizeShareRecordReward response type. */
+export interface MsgWithdrawTokenizeShareRecordRewardResponse {
+}
+/** MsgWithdrawTokenizeShareRecordReward defines the Msg/WithdrawTokenizeShareRecordReward response type. */
+export interface MsgWithdrawTokenizeShareRecordRewardResponseSDKType {
+}
+/**
+ * MsgWithdrawAllTokenizeShareRecordReward withdraws tokenize share rewards or all
+ * records owned by the designated owner
+ */
+export interface MsgWithdrawAllTokenizeShareRecordReward {
+    ownerAddress: string;
+}
+/**
+ * MsgWithdrawAllTokenizeShareRecordReward withdraws tokenize share rewards or all
+ * records owned by the designated owner
+ */
+export interface MsgWithdrawAllTokenizeShareRecordRewardSDKType {
+    owner_address: string;
+}
+/** MsgWithdrawAllTokenizeShareRecordRewardResponse defines the Msg/WithdrawTokenizeShareRecordReward response type. */
+export interface MsgWithdrawAllTokenizeShareRecordRewardResponse {
+}
+/** MsgWithdrawAllTokenizeShareRecordRewardResponse defines the Msg/WithdrawTokenizeShareRecordReward response type. */
+export interface MsgWithdrawAllTokenizeShareRecordRewardResponseSDKType {
+}
 /**
  * MsgFundCommunityPool allows an account to directly
  * fund the community pool.
@@ -116,6 +152,26 @@ export declare const MsgWithdrawValidatorCommissionResponse: {
     encode(_: MsgWithdrawValidatorCommissionResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgWithdrawValidatorCommissionResponse;
     fromPartial(_: DeepPartial<MsgWithdrawValidatorCommissionResponse>): MsgWithdrawValidatorCommissionResponse;
+};
+export declare const MsgWithdrawTokenizeShareRecordReward: {
+    encode(message: MsgWithdrawTokenizeShareRecordReward, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgWithdrawTokenizeShareRecordReward;
+    fromPartial(object: DeepPartial<MsgWithdrawTokenizeShareRecordReward>): MsgWithdrawTokenizeShareRecordReward;
+};
+export declare const MsgWithdrawTokenizeShareRecordRewardResponse: {
+    encode(_: MsgWithdrawTokenizeShareRecordRewardResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgWithdrawTokenizeShareRecordRewardResponse;
+    fromPartial(_: DeepPartial<MsgWithdrawTokenizeShareRecordRewardResponse>): MsgWithdrawTokenizeShareRecordRewardResponse;
+};
+export declare const MsgWithdrawAllTokenizeShareRecordReward: {
+    encode(message: MsgWithdrawAllTokenizeShareRecordReward, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgWithdrawAllTokenizeShareRecordReward;
+    fromPartial(object: DeepPartial<MsgWithdrawAllTokenizeShareRecordReward>): MsgWithdrawAllTokenizeShareRecordReward;
+};
+export declare const MsgWithdrawAllTokenizeShareRecordRewardResponse: {
+    encode(_: MsgWithdrawAllTokenizeShareRecordRewardResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgWithdrawAllTokenizeShareRecordRewardResponse;
+    fromPartial(_: DeepPartial<MsgWithdrawAllTokenizeShareRecordRewardResponse>): MsgWithdrawAllTokenizeShareRecordRewardResponse;
 };
 export declare const MsgFundCommunityPool: {
     encode(message: MsgFundCommunityPool, writer?: _m0.Writer): _m0.Writer;

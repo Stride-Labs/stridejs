@@ -72,6 +72,8 @@ export interface QueryAppliedPlanResponseSDKType {
  * RPC method.
  */
 
+/** @deprecated */
+
 export interface QueryUpgradedConsensusStateRequest {
   /**
    * last height of the current chain must be sent in request
@@ -83,6 +85,8 @@ export interface QueryUpgradedConsensusStateRequest {
  * QueryUpgradedConsensusStateRequest is the request type for the Query/UpgradedConsensusState
  * RPC method.
  */
+
+/** @deprecated */
 
 export interface QueryUpgradedConsensusStateRequestSDKType {
   /**
@@ -96,7 +100,10 @@ export interface QueryUpgradedConsensusStateRequestSDKType {
  * RPC method.
  */
 
+/** @deprecated */
+
 export interface QueryUpgradedConsensusStateResponse {
+  /** Since: cosmos-sdk 0.43 */
   upgradedConsensusState: Uint8Array;
 }
 /**
@@ -104,12 +111,17 @@ export interface QueryUpgradedConsensusStateResponse {
  * RPC method.
  */
 
+/** @deprecated */
+
 export interface QueryUpgradedConsensusStateResponseSDKType {
+  /** Since: cosmos-sdk 0.43 */
   upgraded_consensus_state: Uint8Array;
 }
 /**
  * QueryModuleVersionsRequest is the request type for the Query/ModuleVersions
  * RPC method.
+ *
+ * Since: cosmos-sdk 0.43
  */
 
 export interface QueryModuleVersionsRequest {
@@ -123,6 +135,8 @@ export interface QueryModuleVersionsRequest {
 /**
  * QueryModuleVersionsRequest is the request type for the Query/ModuleVersions
  * RPC method.
+ *
+ * Since: cosmos-sdk 0.43
  */
 
 export interface QueryModuleVersionsRequestSDKType {
@@ -136,6 +150,8 @@ export interface QueryModuleVersionsRequestSDKType {
 /**
  * QueryModuleVersionsResponse is the response type for the Query/ModuleVersions
  * RPC method.
+ *
+ * Since: cosmos-sdk 0.43
  */
 
 export interface QueryModuleVersionsResponse {
@@ -145,6 +161,8 @@ export interface QueryModuleVersionsResponse {
 /**
  * QueryModuleVersionsResponse is the response type for the Query/ModuleVersions
  * RPC method.
+ *
+ * Since: cosmos-sdk 0.43
  */
 
 export interface QueryModuleVersionsResponseSDKType {

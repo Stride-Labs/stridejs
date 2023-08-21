@@ -1,5 +1,5 @@
 import { AminoMsg } from "@cosmjs/amino";
-import { MsgSetWithdrawAddress, MsgWithdrawDelegatorReward, MsgWithdrawValidatorCommission, MsgFundCommunityPool } from "./tx";
+import { MsgSetWithdrawAddress, MsgWithdrawDelegatorReward, MsgWithdrawValidatorCommission, MsgWithdrawTokenizeShareRecordReward, MsgWithdrawAllTokenizeShareRecordReward, MsgFundCommunityPool } from "./tx";
 export interface AminoMsgSetWithdrawAddress extends AminoMsg {
     type: "cosmos-sdk/MsgModifyWithdrawAddress";
     value: {
@@ -18,6 +18,19 @@ export interface AminoMsgWithdrawValidatorCommission extends AminoMsg {
     type: "cosmos-sdk/MsgWithdrawValidatorCommission";
     value: {
         validator_address: string;
+    };
+}
+export interface AminoMsgWithdrawTokenizeShareRecordReward extends AminoMsg {
+    type: "cosmos-sdk/MsgWithdrawTokenizeShareRecordReward";
+    value: {
+        owner_address: string;
+        record_id: string;
+    };
+}
+export interface AminoMsgWithdrawAllTokenizeShareRecordReward extends AminoMsg {
+    type: "cosmos-sdk/MsgWithdrawAllTokenizeShareRecordReward";
+    value: {
+        owner_address: string;
     };
 }
 export interface AminoMsgFundCommunityPool extends AminoMsg {
@@ -45,6 +58,16 @@ export declare const AminoConverter: {
         aminoType: string;
         toAmino: ({ validatorAddress }: MsgWithdrawValidatorCommission) => AminoMsgWithdrawValidatorCommission["value"];
         fromAmino: ({ validator_address }: AminoMsgWithdrawValidatorCommission["value"]) => MsgWithdrawValidatorCommission;
+    };
+    "/cosmos.distribution.v1beta1.MsgWithdrawTokenizeShareRecordReward": {
+        aminoType: string;
+        toAmino: ({ ownerAddress, recordId }: MsgWithdrawTokenizeShareRecordReward) => AminoMsgWithdrawTokenizeShareRecordReward["value"];
+        fromAmino: ({ owner_address, record_id }: AminoMsgWithdrawTokenizeShareRecordReward["value"]) => MsgWithdrawTokenizeShareRecordReward;
+    };
+    "/cosmos.distribution.v1beta1.MsgWithdrawAllTokenizeShareRecordReward": {
+        aminoType: string;
+        toAmino: ({ ownerAddress }: MsgWithdrawAllTokenizeShareRecordReward) => AminoMsgWithdrawAllTokenizeShareRecordReward["value"];
+        fromAmino: ({ owner_address }: AminoMsgWithdrawAllTokenizeShareRecordReward["value"]) => MsgWithdrawAllTokenizeShareRecordReward;
     };
     "/cosmos.distribution.v1beta1.MsgFundCommunityPool": {
         aminoType: string;

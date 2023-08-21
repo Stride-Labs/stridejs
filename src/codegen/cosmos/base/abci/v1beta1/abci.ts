@@ -50,6 +50,16 @@ export interface TxResponse {
    */
 
   timestamp: string;
+  /**
+   * Events defines all the events emitted by processing a transaction. Note,
+   * these events include those emitted by processing all the messages and those
+   * emitted from the ante handler. Whereas Logs contains the events, with
+   * additional metadata, emitted only by processing the messages.
+   *
+   * Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
+   */
+
+  events: Event[];
 }
 /**
  * TxResponse defines a structure containing relevant tx data and metadata. The
@@ -99,6 +109,16 @@ export interface TxResponseSDKType {
    */
 
   timestamp: string;
+  /**
+   * Events defines all the events emitted by processing a transaction. Note,
+   * these events include those emitted by processing all the messages and those
+   * emitted from the ante handler. Whereas Logs contains the events, with
+   * additional metadata, emitted only by processing the messages.
+   *
+   * Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
+   */
+
+  events: EventSDKType[];
 }
 /** ABCIMessageLog defines a structure containing an indexed tx ABCI message log. */
 
@@ -322,7 +342,8 @@ function createBaseTxResponse(): TxResponse {
     gasWanted: Long.ZERO,
     gasUsed: Long.ZERO,
     tx: undefined,
-    timestamp: ""
+    timestamp: "",
+    events: []
   };
 }
 
@@ -374,6 +395,10 @@ export const TxResponse = {
 
     if (message.timestamp !== "") {
       writer.uint32(98).string(message.timestamp);
+    }
+
+    for (const v of message.events) {
+      Event.encode(v!, writer.uint32(106).fork()).ldelim();
     }
 
     return writer;
@@ -436,6 +461,10 @@ export const TxResponse = {
           message.timestamp = reader.string();
           break;
 
+        case 13:
+          message.events.push(Event.decode(reader, reader.uint32()));
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -459,6 +488,7 @@ export const TxResponse = {
     message.gasUsed = object.gasUsed !== undefined && object.gasUsed !== null ? Long.fromValue(object.gasUsed) : Long.ZERO;
     message.tx = object.tx !== undefined && object.tx !== null ? Any.fromPartial(object.tx) : undefined;
     message.timestamp = object.timestamp ?? "";
+    message.events = object.events?.map(e => Event.fromPartial(e)) || [];
     return message;
   }
 

@@ -13,3 +13,4 @@ export * from "./google/bundle";
 export * from "./stride/bundle";
 export * from "./stride/client";
 export * from "./tendermint/bundle";
+export * from "./ics23/bundle";

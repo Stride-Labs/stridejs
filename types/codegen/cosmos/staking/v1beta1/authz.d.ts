@@ -1,7 +1,11 @@
 import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial } from "@osmonauts/helpers";
-/** AuthorizationType defines the type of staking module authorization type */
+/**
+ * AuthorizationType defines the type of staking module authorization type
+ *
+ * Since: cosmos-sdk 0.43
+ */
 export declare enum AuthorizationType {
     /** AUTHORIZATION_TYPE_UNSPECIFIED - AUTHORIZATION_TYPE_UNSPECIFIED specifies an unknown authorization type */
     AUTHORIZATION_TYPE_UNSPECIFIED = 0,
@@ -13,7 +17,11 @@ export declare enum AuthorizationType {
     AUTHORIZATION_TYPE_REDELEGATE = 3,
     UNRECOGNIZED = -1
 }
-/** AuthorizationType defines the type of staking module authorization type */
+/**
+ * AuthorizationType defines the type of staking module authorization type
+ *
+ * Since: cosmos-sdk 0.43
+ */
 export declare enum AuthorizationTypeSDKType {
     /** AUTHORIZATION_TYPE_UNSPECIFIED - AUTHORIZATION_TYPE_UNSPECIFIED specifies an unknown authorization type */
     AUTHORIZATION_TYPE_UNSPECIFIED = 0,
@@ -27,7 +35,11 @@ export declare enum AuthorizationTypeSDKType {
 }
 export declare function authorizationTypeFromJSON(object: any): AuthorizationType;
 export declare function authorizationTypeToJSON(object: AuthorizationType): string;
-/** StakeAuthorization defines authorization for delegate/undelegate/redelegate. */
+/**
+ * StakeAuthorization defines authorization for delegate/undelegate/redelegate.
+ *
+ * Since: cosmos-sdk 0.43
+ */
 export interface StakeAuthorization {
     /**
      * max_tokens specifies the maximum amount of tokens can be delegate to a validator. If it is
@@ -44,7 +56,11 @@ export interface StakeAuthorization {
     /** authorization_type defines one of AuthorizationType. */
     authorizationType: AuthorizationType;
 }
-/** StakeAuthorization defines authorization for delegate/undelegate/redelegate. */
+/**
+ * StakeAuthorization defines authorization for delegate/undelegate/redelegate.
+ *
+ * Since: cosmos-sdk 0.43
+ */
 export interface StakeAuthorizationSDKType {
     /**
      * max_tokens specifies the maximum amount of tokens can be delegate to a validator. If it is

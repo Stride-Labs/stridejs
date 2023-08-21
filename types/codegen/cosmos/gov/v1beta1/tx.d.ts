@@ -47,22 +47,38 @@ export interface MsgVoteResponse {
 /** MsgVoteResponse defines the Msg/Vote response type. */
 export interface MsgVoteResponseSDKType {
 }
-/** MsgVoteWeighted defines a message to cast a vote. */
+/**
+ * MsgVoteWeighted defines a message to cast a vote.
+ *
+ * Since: cosmos-sdk 0.43
+ */
 export interface MsgVoteWeighted {
     proposalId: Long;
     voter: string;
     options: WeightedVoteOption[];
 }
-/** MsgVoteWeighted defines a message to cast a vote. */
+/**
+ * MsgVoteWeighted defines a message to cast a vote.
+ *
+ * Since: cosmos-sdk 0.43
+ */
 export interface MsgVoteWeightedSDKType {
     proposal_id: Long;
     voter: string;
     options: WeightedVoteOptionSDKType[];
 }
-/** MsgVoteWeightedResponse defines the Msg/VoteWeighted response type. */
+/**
+ * MsgVoteWeightedResponse defines the Msg/VoteWeighted response type.
+ *
+ * Since: cosmos-sdk 0.43
+ */
 export interface MsgVoteWeightedResponse {
 }
-/** MsgVoteWeightedResponse defines the Msg/VoteWeighted response type. */
+/**
+ * MsgVoteWeightedResponse defines the Msg/VoteWeighted response type.
+ *
+ * Since: cosmos-sdk 0.43
+ */
 export interface MsgVoteWeightedResponseSDKType {
 }
 /** MsgDeposit defines a message to submit a deposit to an existing proposal. */

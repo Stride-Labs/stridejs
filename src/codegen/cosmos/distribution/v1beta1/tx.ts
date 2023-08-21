@@ -1,6 +1,6 @@
 import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "@osmonauts/helpers";
 /**
  * MsgSetWithdrawAddress sets the withdraw address for
  * a delegator (or validator self-delegation).
@@ -71,6 +71,46 @@ export interface MsgWithdrawValidatorCommissionResponse {}
 /** MsgWithdrawValidatorCommissionResponse defines the Msg/WithdrawValidatorCommission response type. */
 
 export interface MsgWithdrawValidatorCommissionResponseSDKType {}
+/** MsgWithdrawTokenizeShareRecordReward withdraws tokenize share rewards for a specific record */
+
+export interface MsgWithdrawTokenizeShareRecordReward {
+  ownerAddress: string;
+  recordId: Long;
+}
+/** MsgWithdrawTokenizeShareRecordReward withdraws tokenize share rewards for a specific record */
+
+export interface MsgWithdrawTokenizeShareRecordRewardSDKType {
+  owner_address: string;
+  record_id: Long;
+}
+/** MsgWithdrawTokenizeShareRecordReward defines the Msg/WithdrawTokenizeShareRecordReward response type. */
+
+export interface MsgWithdrawTokenizeShareRecordRewardResponse {}
+/** MsgWithdrawTokenizeShareRecordReward defines the Msg/WithdrawTokenizeShareRecordReward response type. */
+
+export interface MsgWithdrawTokenizeShareRecordRewardResponseSDKType {}
+/**
+ * MsgWithdrawAllTokenizeShareRecordReward withdraws tokenize share rewards or all
+ * records owned by the designated owner
+ */
+
+export interface MsgWithdrawAllTokenizeShareRecordReward {
+  ownerAddress: string;
+}
+/**
+ * MsgWithdrawAllTokenizeShareRecordReward withdraws tokenize share rewards or all
+ * records owned by the designated owner
+ */
+
+export interface MsgWithdrawAllTokenizeShareRecordRewardSDKType {
+  owner_address: string;
+}
+/** MsgWithdrawAllTokenizeShareRecordRewardResponse defines the Msg/WithdrawTokenizeShareRecordReward response type. */
+
+export interface MsgWithdrawAllTokenizeShareRecordRewardResponse {}
+/** MsgWithdrawAllTokenizeShareRecordRewardResponse defines the Msg/WithdrawTokenizeShareRecordReward response type. */
+
+export interface MsgWithdrawAllTokenizeShareRecordRewardResponseSDKType {}
 /**
  * MsgFundCommunityPool allows an account to directly
  * fund the community pool.
@@ -348,6 +388,174 @@ export const MsgWithdrawValidatorCommissionResponse = {
 
   fromPartial(_: DeepPartial<MsgWithdrawValidatorCommissionResponse>): MsgWithdrawValidatorCommissionResponse {
     const message = createBaseMsgWithdrawValidatorCommissionResponse();
+    return message;
+  }
+
+};
+
+function createBaseMsgWithdrawTokenizeShareRecordReward(): MsgWithdrawTokenizeShareRecordReward {
+  return {
+    ownerAddress: "",
+    recordId: Long.UZERO
+  };
+}
+
+export const MsgWithdrawTokenizeShareRecordReward = {
+  encode(message: MsgWithdrawTokenizeShareRecordReward, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ownerAddress !== "") {
+      writer.uint32(10).string(message.ownerAddress);
+    }
+
+    if (!message.recordId.isZero()) {
+      writer.uint32(16).uint64(message.recordId);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgWithdrawTokenizeShareRecordReward {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgWithdrawTokenizeShareRecordReward();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.ownerAddress = reader.string();
+          break;
+
+        case 2:
+          message.recordId = (reader.uint64() as Long);
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<MsgWithdrawTokenizeShareRecordReward>): MsgWithdrawTokenizeShareRecordReward {
+    const message = createBaseMsgWithdrawTokenizeShareRecordReward();
+    message.ownerAddress = object.ownerAddress ?? "";
+    message.recordId = object.recordId !== undefined && object.recordId !== null ? Long.fromValue(object.recordId) : Long.UZERO;
+    return message;
+  }
+
+};
+
+function createBaseMsgWithdrawTokenizeShareRecordRewardResponse(): MsgWithdrawTokenizeShareRecordRewardResponse {
+  return {};
+}
+
+export const MsgWithdrawTokenizeShareRecordRewardResponse = {
+  encode(_: MsgWithdrawTokenizeShareRecordRewardResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgWithdrawTokenizeShareRecordRewardResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgWithdrawTokenizeShareRecordRewardResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(_: DeepPartial<MsgWithdrawTokenizeShareRecordRewardResponse>): MsgWithdrawTokenizeShareRecordRewardResponse {
+    const message = createBaseMsgWithdrawTokenizeShareRecordRewardResponse();
+    return message;
+  }
+
+};
+
+function createBaseMsgWithdrawAllTokenizeShareRecordReward(): MsgWithdrawAllTokenizeShareRecordReward {
+  return {
+    ownerAddress: ""
+  };
+}
+
+export const MsgWithdrawAllTokenizeShareRecordReward = {
+  encode(message: MsgWithdrawAllTokenizeShareRecordReward, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.ownerAddress !== "") {
+      writer.uint32(10).string(message.ownerAddress);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgWithdrawAllTokenizeShareRecordReward {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgWithdrawAllTokenizeShareRecordReward();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.ownerAddress = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<MsgWithdrawAllTokenizeShareRecordReward>): MsgWithdrawAllTokenizeShareRecordReward {
+    const message = createBaseMsgWithdrawAllTokenizeShareRecordReward();
+    message.ownerAddress = object.ownerAddress ?? "";
+    return message;
+  }
+
+};
+
+function createBaseMsgWithdrawAllTokenizeShareRecordRewardResponse(): MsgWithdrawAllTokenizeShareRecordRewardResponse {
+  return {};
+}
+
+export const MsgWithdrawAllTokenizeShareRecordRewardResponse = {
+  encode(_: MsgWithdrawAllTokenizeShareRecordRewardResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgWithdrawAllTokenizeShareRecordRewardResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgWithdrawAllTokenizeShareRecordRewardResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(_: DeepPartial<MsgWithdrawAllTokenizeShareRecordRewardResponse>): MsgWithdrawAllTokenizeShareRecordRewardResponse {
+    const message = createBaseMsgWithdrawAllTokenizeShareRecordRewardResponse();
     return message;
   }
 

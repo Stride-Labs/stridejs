@@ -1,8 +1,10 @@
 import { Tx, TxSDKType } from "./tx";
 import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
 import { TxResponse, TxResponseSDKType, GasInfo, GasInfoSDKType, Result, ResultSDKType } from "../../base/abci/v1beta1/abci";
+import { BlockID, BlockIDSDKType } from "../../../tendermint/types/types";
+import { Block, BlockSDKType } from "../../../tendermint/types/block";
 import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { DeepPartial, Long } from "@osmonauts/helpers";
 /** OrderBy defines the sorting order */
 
 export enum OrderBy {
@@ -164,7 +166,7 @@ export function broadcastModeToJSON(object: BroadcastMode): string {
 export interface GetTxsEventRequest {
   /** events is the list of transaction event type. */
   events?: string[];
-  /** pagination defines an pagination for the request. */
+  /** pagination defines a pagination for the request. */
 
   pagination?: PageRequest;
   orderBy?: OrderBy;
@@ -177,7 +179,7 @@ export interface GetTxsEventRequest {
 export interface GetTxsEventRequestSDKType {
   /** events is the list of transaction event type. */
   events?: string[];
-  /** pagination defines an pagination for the request. */
+  /** pagination defines a pagination for the request. */
 
   pagination?: PageRequestSDKType;
   order_by?: OrderBySDKType;
@@ -193,7 +195,7 @@ export interface GetTxsEventResponse {
   /** tx_responses is the list of queried TxResponses. */
 
   txResponses: TxResponse[];
-  /** pagination defines an pagination for the response. */
+  /** pagination defines a pagination for the response. */
 
   pagination?: PageResponse;
 }
@@ -208,7 +210,7 @@ export interface GetTxsEventResponseSDKType {
   /** tx_responses is the list of queried TxResponses. */
 
   tx_responses: TxResponseSDKType[];
-  /** pagination defines an pagination for the response. */
+  /** pagination defines a pagination for the response. */
 
   pagination?: PageResponseSDKType;
 }
@@ -263,7 +265,11 @@ export interface SimulateRequest {
 
   /** @deprecated */
   tx: Tx;
-  /** tx_bytes is the raw transaction. */
+  /**
+   * tx_bytes is the raw transaction.
+   *
+   * Since: cosmos-sdk 0.43
+   */
 
   txBytes: Uint8Array;
 }
@@ -280,7 +286,11 @@ export interface SimulateRequestSDKType {
 
   /** @deprecated */
   tx: TxSDKType;
-  /** tx_bytes is the raw transaction. */
+  /**
+   * tx_bytes is the raw transaction.
+   *
+   * Since: cosmos-sdk 0.43
+   */
 
   tx_bytes: Uint8Array;
 }
@@ -343,6 +353,64 @@ export interface GetTxResponseSDKType {
   /** tx_response is the queried TxResponses. */
 
   tx_response: TxResponseSDKType;
+}
+/**
+ * GetBlockWithTxsRequest is the request type for the Service.GetBlockWithTxs
+ * RPC method.
+ *
+ * Since: cosmos-sdk 0.45.2
+ */
+
+export interface GetBlockWithTxsRequest {
+  /** height is the height of the block to query. */
+  height: Long;
+  /** pagination defines a pagination for the request. */
+
+  pagination?: PageRequest;
+}
+/**
+ * GetBlockWithTxsRequest is the request type for the Service.GetBlockWithTxs
+ * RPC method.
+ *
+ * Since: cosmos-sdk 0.45.2
+ */
+
+export interface GetBlockWithTxsRequestSDKType {
+  /** height is the height of the block to query. */
+  height: Long;
+  /** pagination defines a pagination for the request. */
+
+  pagination?: PageRequestSDKType;
+}
+/**
+ * GetBlockWithTxsResponse is the response type for the Service.GetBlockWithTxs method.
+ *
+ * Since: cosmos-sdk 0.45.2
+ */
+
+export interface GetBlockWithTxsResponse {
+  /** txs are the transactions in the block. */
+  txs: Tx[];
+  blockId: BlockID;
+  block: Block;
+  /** pagination defines a pagination for the response. */
+
+  pagination?: PageResponse;
+}
+/**
+ * GetBlockWithTxsResponse is the response type for the Service.GetBlockWithTxs method.
+ *
+ * Since: cosmos-sdk 0.45.2
+ */
+
+export interface GetBlockWithTxsResponseSDKType {
+  /** txs are the transactions in the block. */
+  txs: TxSDKType[];
+  block_id: BlockIDSDKType;
+  block: BlockSDKType;
+  /** pagination defines a pagination for the response. */
+
+  pagination?: PageResponseSDKType;
 }
 
 function createBaseGetTxsEventRequest(): GetTxsEventRequest {
@@ -780,6 +848,136 @@ export const GetTxResponse = {
     const message = createBaseGetTxResponse();
     message.tx = object.tx !== undefined && object.tx !== null ? Tx.fromPartial(object.tx) : undefined;
     message.txResponse = object.txResponse !== undefined && object.txResponse !== null ? TxResponse.fromPartial(object.txResponse) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseGetBlockWithTxsRequest(): GetBlockWithTxsRequest {
+  return {
+    height: Long.ZERO,
+    pagination: undefined
+  };
+}
+
+export const GetBlockWithTxsRequest = {
+  encode(message: GetBlockWithTxsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (!message.height.isZero()) {
+      writer.uint32(8).int64(message.height);
+    }
+
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetBlockWithTxsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetBlockWithTxsRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.height = (reader.int64() as Long);
+          break;
+
+        case 2:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<GetBlockWithTxsRequest>): GetBlockWithTxsRequest {
+    const message = createBaseGetBlockWithTxsRequest();
+    message.height = object.height !== undefined && object.height !== null ? Long.fromValue(object.height) : Long.ZERO;
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageRequest.fromPartial(object.pagination) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseGetBlockWithTxsResponse(): GetBlockWithTxsResponse {
+  return {
+    txs: [],
+    blockId: undefined,
+    block: undefined,
+    pagination: undefined
+  };
+}
+
+export const GetBlockWithTxsResponse = {
+  encode(message: GetBlockWithTxsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.txs) {
+      Tx.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+
+    if (message.blockId !== undefined) {
+      BlockID.encode(message.blockId, writer.uint32(18).fork()).ldelim();
+    }
+
+    if (message.block !== undefined) {
+      Block.encode(message.block, writer.uint32(26).fork()).ldelim();
+    }
+
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(34).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): GetBlockWithTxsResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseGetBlockWithTxsResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.txs.push(Tx.decode(reader, reader.uint32()));
+          break;
+
+        case 2:
+          message.blockId = BlockID.decode(reader, reader.uint32());
+          break;
+
+        case 3:
+          message.block = Block.decode(reader, reader.uint32());
+          break;
+
+        case 4:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<GetBlockWithTxsResponse>): GetBlockWithTxsResponse {
+    const message = createBaseGetBlockWithTxsResponse();
+    message.txs = object.txs?.map(e => Tx.fromPartial(e)) || [];
+    message.blockId = object.blockId !== undefined && object.blockId !== null ? BlockID.fromPartial(object.blockId) : undefined;
+    message.block = object.block !== undefined && object.block !== null ? Block.fromPartial(object.block) : undefined;
+    message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
     return message;
   }
 

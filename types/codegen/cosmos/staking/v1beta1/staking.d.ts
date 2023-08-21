@@ -2,6 +2,7 @@ import { Header, HeaderSDKType } from "../../../tendermint/types/types";
 import { Any, AnySDKType } from "../../../google/protobuf/any";
 import { Duration, DurationSDKType } from "../../../google/protobuf/duration";
 import { Coin, CoinSDKType } from "../../base/v1beta1/coin";
+import { ValidatorUpdate, ValidatorUpdateSDKType } from "../../../tendermint/abci/types";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
 /** BondStatus is the status of a validator. */
@@ -30,6 +31,60 @@ export declare enum BondStatusSDKType {
 }
 export declare function bondStatusFromJSON(object: any): BondStatus;
 export declare function bondStatusToJSON(object: BondStatus): string;
+/** InfractionType indicates the infraction type a validator commited. */
+export declare enum InfractionType {
+    /** INFRACTION_TYPE_UNSPECIFIED - UNSPECIFIED defines an empty infraction type. */
+    INFRACTION_TYPE_UNSPECIFIED = 0,
+    /** INFRACTION_TYPE_DOUBLE_SIGN - DOUBLE_SIGN defines a validator that double-signs a block. */
+    INFRACTION_TYPE_DOUBLE_SIGN = 1,
+    /** INFRACTION_TYPE_DOWNTIME - DOWNTIME defines a validator that missed signing too many blocks. */
+    INFRACTION_TYPE_DOWNTIME = 2,
+    UNRECOGNIZED = -1
+}
+/** InfractionType indicates the infraction type a validator commited. */
+export declare enum InfractionTypeSDKType {
+    /** INFRACTION_TYPE_UNSPECIFIED - UNSPECIFIED defines an empty infraction type. */
+    INFRACTION_TYPE_UNSPECIFIED = 0,
+    /** INFRACTION_TYPE_DOUBLE_SIGN - DOUBLE_SIGN defines a validator that double-signs a block. */
+    INFRACTION_TYPE_DOUBLE_SIGN = 1,
+    /** INFRACTION_TYPE_DOWNTIME - DOWNTIME defines a validator that missed signing too many blocks. */
+    INFRACTION_TYPE_DOWNTIME = 2,
+    UNRECOGNIZED = -1
+}
+export declare function infractionTypeFromJSON(object: any): InfractionType;
+export declare function infractionTypeToJSON(object: InfractionType): string;
+/** TokenizeShareLockStatus indicates whether the address is able to tokenize shares */
+export declare enum TokenizeShareLockStatus {
+    /** TOKENIZE_SHARE_LOCK_STATUS_UNSPECIFIED - UNSPECIFIED defines an empty tokenize share lock status */
+    TOKENIZE_SHARE_LOCK_STATUS_UNSPECIFIED = 0,
+    /** TOKENIZE_SHARE_LOCK_STATUS_LOCKED - LOCKED indicates the account is locked and cannot tokenize shares */
+    TOKENIZE_SHARE_LOCK_STATUS_LOCKED = 1,
+    /** TOKENIZE_SHARE_LOCK_STATUS_UNLOCKED - UNLOCKED indicates the account is unlocked and can tokenize shares */
+    TOKENIZE_SHARE_LOCK_STATUS_UNLOCKED = 2,
+    /**
+     * TOKENIZE_SHARE_LOCK_STATUS_LOCK_EXPIRING - LOCK_EXPIRING indicates the account is unable to tokenize shares, but
+     *  will be able to tokenize shortly (after 1 unbonding period)
+     */
+    TOKENIZE_SHARE_LOCK_STATUS_LOCK_EXPIRING = 3,
+    UNRECOGNIZED = -1
+}
+/** TokenizeShareLockStatus indicates whether the address is able to tokenize shares */
+export declare enum TokenizeShareLockStatusSDKType {
+    /** TOKENIZE_SHARE_LOCK_STATUS_UNSPECIFIED - UNSPECIFIED defines an empty tokenize share lock status */
+    TOKENIZE_SHARE_LOCK_STATUS_UNSPECIFIED = 0,
+    /** TOKENIZE_SHARE_LOCK_STATUS_LOCKED - LOCKED indicates the account is locked and cannot tokenize shares */
+    TOKENIZE_SHARE_LOCK_STATUS_LOCKED = 1,
+    /** TOKENIZE_SHARE_LOCK_STATUS_UNLOCKED - UNLOCKED indicates the account is unlocked and can tokenize shares */
+    TOKENIZE_SHARE_LOCK_STATUS_UNLOCKED = 2,
+    /**
+     * TOKENIZE_SHARE_LOCK_STATUS_LOCK_EXPIRING - LOCK_EXPIRING indicates the account is unable to tokenize shares, but
+     *  will be able to tokenize shortly (after 1 unbonding period)
+     */
+    TOKENIZE_SHARE_LOCK_STATUS_LOCK_EXPIRING = 3,
+    UNRECOGNIZED = -1
+}
+export declare function tokenizeShareLockStatusFromJSON(object: any): TokenizeShareLockStatus;
+export declare function tokenizeShareLockStatusToJSON(object: TokenizeShareLockStatus): string;
 /**
  * HistoricalInfo contains header and validator information for a given block.
  * It is stored as part of staking module's state, which persists the `n` most
@@ -145,8 +200,17 @@ export interface Validator {
     unbondingTime: Date;
     /** commission defines the commission parameters. */
     commission: Commission;
-    /** min_self_delegation is the validator's self declared minimum self delegation. */
+    /** Deprecated: This field has been deprecated with LSM in favor of the validator bond */
+    /** @deprecated */
     minSelfDelegation: string;
+    /** strictly positive if this validator's unbonding has been stopped by external modules */
+    unbondingOnHoldRefCount: Long;
+    /** list of unbonding ids, each uniquely identifing an unbonding of this validator */
+    unbondingIds: Long[];
+    /** Number of shares self bonded from the validator */
+    validatorBondShares: string;
+    /** Number of shares either tokenized or owned by a liquid staking provider */
+    liquidShares: string;
 }
 /**
  * Validator defines a validator, together with the total amount of the
@@ -179,8 +243,17 @@ export interface ValidatorSDKType {
     unbonding_time: Date;
     /** commission defines the commission parameters. */
     commission: CommissionSDKType;
-    /** min_self_delegation is the validator's self declared minimum self delegation. */
+    /** Deprecated: This field has been deprecated with LSM in favor of the validator bond */
+    /** @deprecated */
     min_self_delegation: string;
+    /** strictly positive if this validator's unbonding has been stopped by external modules */
+    unbonding_on_hold_ref_count: Long;
+    /** list of unbonding ids, each uniquely identifing an unbonding of this validator */
+    unbonding_ids: Long[];
+    /** Number of shares self bonded from the validator */
+    validator_bond_shares: string;
+    /** Number of shares either tokenized or owned by a liquid staking provider */
+    liquid_shares: string;
 }
 /** ValAddresses defines a repeated set of validator addresses. */
 export interface ValAddresses {
@@ -258,6 +331,8 @@ export interface Delegation {
     validatorAddress: string;
     /** shares define the delegation shares received. */
     shares: string;
+    /** has this delegation been marked as a validator self bond. */
+    validatorBond: boolean;
 }
 /**
  * Delegation represents the bond with tokens held by an account. It is
@@ -271,6 +346,8 @@ export interface DelegationSDKType {
     validator_address: string;
     /** shares define the delegation shares received. */
     shares: string;
+    /** has this delegation been marked as a validator self bond. */
+    validator_bond: boolean;
 }
 /**
  * UnbondingDelegation stores all of a single delegator's unbonding bonds
@@ -306,6 +383,10 @@ export interface UnbondingDelegationEntry {
     initialBalance: string;
     /** balance defines the tokens to receive at completion. */
     balance: string;
+    /** Incrementing id that uniquely identifies this entry */
+    unbondingId: Long;
+    /** Strictly positive if this entry's unbonding has been stopped by external modules */
+    unbondingOnHoldRefCount: Long;
 }
 /** UnbondingDelegationEntry defines an unbonding object with relevant metadata. */
 export interface UnbondingDelegationEntrySDKType {
@@ -317,6 +398,10 @@ export interface UnbondingDelegationEntrySDKType {
     initial_balance: string;
     /** balance defines the tokens to receive at completion. */
     balance: string;
+    /** Incrementing id that uniquely identifies this entry */
+    unbonding_id: Long;
+    /** Strictly positive if this entry's unbonding has been stopped by external modules */
+    unbonding_on_hold_ref_count: Long;
 }
 /** RedelegationEntry defines a redelegation object with relevant metadata. */
 export interface RedelegationEntry {
@@ -328,6 +413,10 @@ export interface RedelegationEntry {
     initialBalance: string;
     /** shares_dst is the amount of destination-validator shares created by redelegation. */
     sharesDst: string;
+    /** Incrementing id that uniquely identifies this entry */
+    unbondingId: Long;
+    /** Strictly positive if this entry's unbonding has been stopped by external modules */
+    unbondingOnHoldRefCount: Long;
 }
 /** RedelegationEntry defines a redelegation object with relevant metadata. */
 export interface RedelegationEntrySDKType {
@@ -339,6 +428,10 @@ export interface RedelegationEntrySDKType {
     initial_balance: string;
     /** shares_dst is the amount of destination-validator shares created by redelegation. */
     shares_dst: string;
+    /** Incrementing id that uniquely identifies this entry */
+    unbonding_id: Long;
+    /** Strictly positive if this entry's unbonding has been stopped by external modules */
+    unbonding_on_hold_ref_count: Long;
 }
 /**
  * Redelegation contains the list of a particular delegator's redelegating bonds
@@ -380,6 +473,21 @@ export interface Params {
     historicalEntries: number;
     /** bond_denom defines the bondable coin denomination. */
     bondDenom: string;
+    /**
+     * validator_bond_factor is required as a safety check for tokenizing shares and
+     * delegations from liquid staking providers
+     */
+    validatorBondFactor: string;
+    /**
+     * global_liquid_staking_cap represents a cap on the portion of stake that
+     * comes from liquid staking providers
+     */
+    globalLiquidStakingCap: string;
+    /**
+     * validator_liquid_staking_cap represents a cap on the portion of stake that
+     * comes from liquid staking providers for a specific validator
+     */
+    validatorLiquidStakingCap: string;
 }
 /** Params defines the parameters for the staking module. */
 export interface ParamsSDKType {
@@ -393,6 +501,21 @@ export interface ParamsSDKType {
     historical_entries: number;
     /** bond_denom defines the bondable coin denomination. */
     bond_denom: string;
+    /**
+     * validator_bond_factor is required as a safety check for tokenizing shares and
+     * delegations from liquid staking providers
+     */
+    validator_bond_factor: string;
+    /**
+     * global_liquid_staking_cap represents a cap on the portion of stake that
+     * comes from liquid staking providers
+     */
+    global_liquid_staking_cap: string;
+    /**
+     * validator_liquid_staking_cap represents a cap on the portion of stake that
+     * comes from liquid staking providers for a specific validator
+     */
+    validator_liquid_staking_cap: string;
 }
 /**
  * DelegationResponse is equivalent to Delegation except that it contains a
@@ -461,6 +584,46 @@ export interface Pool {
 export interface PoolSDKType {
     not_bonded_tokens: string;
     bonded_tokens: string;
+}
+/** ValidatorUpdates defines an array of abci.ValidatorUpdate objects. */
+export interface ValidatorUpdates {
+    updates: ValidatorUpdate[];
+}
+/** ValidatorUpdates defines an array of abci.ValidatorUpdate objects. */
+export interface ValidatorUpdatesSDKType {
+    updates: ValidatorUpdateSDKType[];
+}
+/** TokenizeShareRecord represents a tokenized delegation */
+export interface TokenizeShareRecord {
+    id: Long;
+    owner: string;
+    /** module account take the role of delegator */
+    moduleAccount: string;
+    /** validator delegated to for tokenize share record creation */
+    validator: string;
+}
+/** TokenizeShareRecord represents a tokenized delegation */
+export interface TokenizeShareRecordSDKType {
+    id: Long;
+    owner: string;
+    /** module account take the role of delegator */
+    module_account: string;
+    /** validator delegated to for tokenize share record creation */
+    validator: string;
+}
+/**
+ * PendingTokenizeShareAuthorizations stores a list of addresses that have their
+ * tokenize share enablement in progress
+ */
+export interface PendingTokenizeShareAuthorizations {
+    addresses: string[];
+}
+/**
+ * PendingTokenizeShareAuthorizations stores a list of addresses that have their
+ * tokenize share enablement in progress
+ */
+export interface PendingTokenizeShareAuthorizationsSDKType {
+    addresses: string[];
 }
 export declare const HistoricalInfo: {
     encode(message: HistoricalInfo, writer?: _m0.Writer): _m0.Writer;
@@ -561,4 +724,19 @@ export declare const Pool: {
     encode(message: Pool, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): Pool;
     fromPartial(object: DeepPartial<Pool>): Pool;
+};
+export declare const ValidatorUpdates: {
+    encode(message: ValidatorUpdates, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorUpdates;
+    fromPartial(object: DeepPartial<ValidatorUpdates>): ValidatorUpdates;
+};
+export declare const TokenizeShareRecord: {
+    encode(message: TokenizeShareRecord, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): TokenizeShareRecord;
+    fromPartial(object: DeepPartial<TokenizeShareRecord>): TokenizeShareRecord;
+};
+export declare const PendingTokenizeShareAuthorizations: {
+    encode(message: PendingTokenizeShareAuthorizations, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): PendingTokenizeShareAuthorizations;
+    fromPartial(object: DeepPartial<PendingTokenizeShareAuthorizations>): PendingTokenizeShareAuthorizations;
 };

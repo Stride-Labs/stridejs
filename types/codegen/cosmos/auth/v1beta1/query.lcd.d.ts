@@ -1,5 +1,5 @@
 import { LCDClient } from "@osmonauts/lcd";
-import { QueryAccountsRequest, QueryAccountsResponseSDKType, QueryAccountRequest, QueryAccountResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType } from "./query";
+import { QueryAccountsRequest, QueryAccountsResponseSDKType, QueryAccountRequest, QueryAccountResponseSDKType, QueryParamsRequest, QueryParamsResponseSDKType, QueryModuleAccountByNameRequest, QueryModuleAccountByNameResponseSDKType } from "./query";
 export declare class LCDQueryClient {
     req: LCDClient;
     constructor({ requestClient }: {
@@ -8,4 +8,5 @@ export declare class LCDQueryClient {
     accounts(params?: QueryAccountsRequest): Promise<QueryAccountsResponseSDKType>;
     account(params: QueryAccountRequest): Promise<QueryAccountResponseSDKType>;
     params(_params?: QueryParamsRequest): Promise<QueryParamsResponseSDKType>;
+    moduleAccountByName(params: QueryModuleAccountByNameRequest): Promise<QueryModuleAccountByNameResponseSDKType>;
 }

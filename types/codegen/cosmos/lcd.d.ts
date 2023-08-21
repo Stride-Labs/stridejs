@@ -12,6 +12,9 @@ export declare const createLCDClient: ({ restEndpoint }: {
             v1beta1: import("./bank/v1beta1/query.lcd").LCDQueryClient;
         };
         base: {
+            node: {
+                v1beta1: import("./base/node/v1beta1/query.lcd").LCDQueryClient;
+            };
             tendermint: {
                 v1beta1: import("./base/tendermint/v1beta1/query.lcd").LCDQueryClient;
             };

@@ -1,7 +1,7 @@
 import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryAllowanceRequest, QueryAllowanceResponse, QueryAllowancesRequest, QueryAllowancesResponse } from "./query";
+import { QueryAllowanceRequest, QueryAllowanceResponse, QueryAllowancesRequest, QueryAllowancesResponse, QueryAllowancesByGranterRequest, QueryAllowancesByGranterResponse } from "./query";
 /** Query defines the RPC service */
 
 export interface Query {
@@ -11,6 +11,10 @@ export interface Query {
   allowances(request: QueryAllowancesRequest): Promise<QueryAllowancesResponse>;
   /*Allowances returns all the grants for address.*/
 
+  allowancesByGranter(request: QueryAllowancesByGranterRequest): Promise<QueryAllowancesByGranterResponse>;
+  /*AllowancesByGranter returns all the grants given by an address
+   Since v0.46*/
+
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -19,6 +23,7 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
     this.allowance = this.allowance.bind(this);
     this.allowances = this.allowances.bind(this);
+    this.allowancesByGranter = this.allowancesByGranter.bind(this);
   }
 
   allowance(request: QueryAllowanceRequest): Promise<QueryAllowanceResponse> {
@@ -33,6 +38,12 @@ export class QueryClientImpl implements Query {
     return promise.then(data => QueryAllowancesResponse.decode(new _m0.Reader(data)));
   }
 
+  allowancesByGranter(request: QueryAllowancesByGranterRequest): Promise<QueryAllowancesByGranterResponse> {
+    const data = QueryAllowancesByGranterRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.feegrant.v1beta1.Query", "AllowancesByGranter", data);
+    return promise.then(data => QueryAllowancesByGranterResponse.decode(new _m0.Reader(data)));
+  }
+
 }
 export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
@@ -44,6 +55,10 @@ export const createRpcQueryExtension = (base: QueryClient) => {
 
     allowances(request: QueryAllowancesRequest): Promise<QueryAllowancesResponse> {
       return queryService.allowances(request);
+    },
+
+    allowancesByGranter(request: QueryAllowancesByGranterRequest): Promise<QueryAllowancesByGranterResponse> {
+      return queryService.allowancesByGranter(request);
     }
 
   };

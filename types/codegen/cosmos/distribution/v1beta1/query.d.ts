@@ -1,5 +1,5 @@
 import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
-import { Params, ParamsSDKType, ValidatorOutstandingRewards, ValidatorOutstandingRewardsSDKType, ValidatorAccumulatedCommission, ValidatorAccumulatedCommissionSDKType, ValidatorSlashEvent, ValidatorSlashEventSDKType, DelegationDelegatorReward, DelegationDelegatorRewardSDKType } from "./distribution";
+import { Params, ParamsSDKType, ValidatorOutstandingRewards, ValidatorOutstandingRewardsSDKType, ValidatorAccumulatedCommission, ValidatorAccumulatedCommissionSDKType, ValidatorSlashEvent, ValidatorSlashEventSDKType, DelegationDelegatorReward, DelegationDelegatorRewardSDKType, TokenizeShareRecordReward, TokenizeShareRecordRewardSDKType } from "./distribution";
 import { DecCoin, DecCoinSDKType } from "../../base/v1beta1/coin";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
@@ -293,6 +293,40 @@ export interface QueryCommunityPoolResponseSDKType {
     /** pool defines community pool's coins. */
     pool: DecCoinSDKType[];
 }
+/**
+ * QueryTokenizeShareRecordRewardRequest is the request type for the Query/TokenizeShareRecordReward RPC
+ * method.
+ */
+export interface QueryTokenizeShareRecordRewardRequest {
+    ownerAddress: string;
+}
+/**
+ * QueryTokenizeShareRecordRewardRequest is the request type for the Query/TokenizeShareRecordReward RPC
+ * method.
+ */
+export interface QueryTokenizeShareRecordRewardRequestSDKType {
+    owner_address: string;
+}
+/**
+ * QueryTokenizeShareRecordRewardResponse is the response type for the Query/TokenizeShareRecordReward
+ * RPC method.
+ */
+export interface QueryTokenizeShareRecordRewardResponse {
+    /** rewards defines all the rewards accrued by a delegator. */
+    rewards: TokenizeShareRecordReward[];
+    /** total defines the sum of all the rewards. */
+    total: DecCoin[];
+}
+/**
+ * QueryTokenizeShareRecordRewardResponse is the response type for the Query/TokenizeShareRecordReward
+ * RPC method.
+ */
+export interface QueryTokenizeShareRecordRewardResponseSDKType {
+    /** rewards defines all the rewards accrued by a delegator. */
+    rewards: TokenizeShareRecordRewardSDKType[];
+    /** total defines the sum of all the rewards. */
+    total: DecCoinSDKType[];
+}
 export declare const QueryParamsRequest: {
     encode(_: QueryParamsRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryParamsRequest;
@@ -382,4 +416,14 @@ export declare const QueryCommunityPoolResponse: {
     encode(message: QueryCommunityPoolResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryCommunityPoolResponse;
     fromPartial(object: DeepPartial<QueryCommunityPoolResponse>): QueryCommunityPoolResponse;
+};
+export declare const QueryTokenizeShareRecordRewardRequest: {
+    encode(message: QueryTokenizeShareRecordRewardRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryTokenizeShareRecordRewardRequest;
+    fromPartial(object: DeepPartial<QueryTokenizeShareRecordRewardRequest>): QueryTokenizeShareRecordRewardRequest;
+};
+export declare const QueryTokenizeShareRecordRewardResponse: {
+    encode(message: QueryTokenizeShareRecordRewardResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryTokenizeShareRecordRewardResponse;
+    fromPartial(object: DeepPartial<QueryTokenizeShareRecordRewardResponse>): QueryTokenizeShareRecordRewardResponse;
 };

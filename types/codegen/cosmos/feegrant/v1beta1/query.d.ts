@@ -52,6 +52,32 @@ export interface QueryAllowancesResponseSDKType {
     /** pagination defines an pagination for the response. */
     pagination?: PageResponseSDKType;
 }
+/** QueryAllowancesByGranterRequest is the request type for the Query/AllowancesByGranter RPC method. */
+export interface QueryAllowancesByGranterRequest {
+    granter: string;
+    /** pagination defines an pagination for the request. */
+    pagination?: PageRequest;
+}
+/** QueryAllowancesByGranterRequest is the request type for the Query/AllowancesByGranter RPC method. */
+export interface QueryAllowancesByGranterRequestSDKType {
+    granter: string;
+    /** pagination defines an pagination for the request. */
+    pagination?: PageRequestSDKType;
+}
+/** QueryAllowancesByGranterResponse is the response type for the Query/AllowancesByGranter RPC method. */
+export interface QueryAllowancesByGranterResponse {
+    /** allowances that have been issued by the granter. */
+    allowances: Grant[];
+    /** pagination defines an pagination for the response. */
+    pagination?: PageResponse;
+}
+/** QueryAllowancesByGranterResponse is the response type for the Query/AllowancesByGranter RPC method. */
+export interface QueryAllowancesByGranterResponseSDKType {
+    /** allowances that have been issued by the granter. */
+    allowances: GrantSDKType[];
+    /** pagination defines an pagination for the response. */
+    pagination?: PageResponseSDKType;
+}
 export declare const QueryAllowanceRequest: {
     encode(message: QueryAllowanceRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllowanceRequest;
@@ -71,4 +97,14 @@ export declare const QueryAllowancesResponse: {
     encode(message: QueryAllowancesResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllowancesResponse;
     fromPartial(object: DeepPartial<QueryAllowancesResponse>): QueryAllowancesResponse;
+};
+export declare const QueryAllowancesByGranterRequest: {
+    encode(message: QueryAllowancesByGranterRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllowancesByGranterRequest;
+    fromPartial(object: DeepPartial<QueryAllowancesByGranterRequest>): QueryAllowancesByGranterRequest;
+};
+export declare const QueryAllowancesByGranterResponse: {
+    encode(message: QueryAllowancesByGranterResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllowancesByGranterResponse;
+    fromPartial(object: DeepPartial<QueryAllowancesByGranterResponse>): QueryAllowancesByGranterResponse;
 };

@@ -1,7 +1,7 @@
 import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryBalanceRequest, QueryBalanceResponse, QueryAllBalancesRequest, QueryAllBalancesResponse, QueryTotalSupplyRequest, QueryTotalSupplyResponse, QuerySupplyOfRequest, QuerySupplyOfResponse, QueryParamsRequest, QueryParamsResponse, QueryDenomMetadataRequest, QueryDenomMetadataResponse, QueryDenomsMetadataRequest, QueryDenomsMetadataResponse } from "./query";
+import { QueryBalanceRequest, QueryBalanceResponse, QueryAllBalancesRequest, QueryAllBalancesResponse, QuerySpendableBalancesRequest, QuerySpendableBalancesResponse, QueryTotalSupplyRequest, QueryTotalSupplyResponse, QuerySupplyOfRequest, QuerySupplyOfResponse, QueryParamsRequest, QueryParamsResponse, QueryDenomMetadataRequest, QueryDenomMetadataResponse, QueryDenomsMetadataRequest, QueryDenomsMetadataResponse } from "./query";
 /** Query defines the RPC service */
 
 export interface Query {
@@ -10,6 +10,10 @@ export interface Query {
 
   allBalances(request: QueryAllBalancesRequest): Promise<QueryAllBalancesResponse>;
   /*AllBalances queries the balance of all coins for a single account.*/
+
+  spendableBalances(request: QuerySpendableBalancesRequest): Promise<QuerySpendableBalancesResponse>;
+  /*SpendableBalances queries the spenable balance of all coins for a single
+   account.*/
 
   totalSupply(request?: QueryTotalSupplyRequest): Promise<QueryTotalSupplyResponse>;
   /*TotalSupply queries the total supply of all coins.*/
@@ -34,6 +38,7 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
     this.balance = this.balance.bind(this);
     this.allBalances = this.allBalances.bind(this);
+    this.spendableBalances = this.spendableBalances.bind(this);
     this.totalSupply = this.totalSupply.bind(this);
     this.supplyOf = this.supplyOf.bind(this);
     this.params = this.params.bind(this);
@@ -51,6 +56,12 @@ export class QueryClientImpl implements Query {
     const data = QueryAllBalancesRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "AllBalances", data);
     return promise.then(data => QueryAllBalancesResponse.decode(new _m0.Reader(data)));
+  }
+
+  spendableBalances(request: QuerySpendableBalancesRequest): Promise<QuerySpendableBalancesResponse> {
+    const data = QuerySpendableBalancesRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "SpendableBalances", data);
+    return promise.then(data => QuerySpendableBalancesResponse.decode(new _m0.Reader(data)));
   }
 
   totalSupply(request: QueryTotalSupplyRequest = {
@@ -98,6 +109,10 @@ export const createRpcQueryExtension = (base: QueryClient) => {
 
     allBalances(request: QueryAllBalancesRequest): Promise<QueryAllBalancesResponse> {
       return queryService.allBalances(request);
+    },
+
+    spendableBalances(request: QuerySpendableBalancesRequest): Promise<QuerySpendableBalancesResponse> {
+      return queryService.spendableBalances(request);
     },
 
     totalSupply(request?: QueryTotalSupplyRequest): Promise<QueryTotalSupplyResponse> {

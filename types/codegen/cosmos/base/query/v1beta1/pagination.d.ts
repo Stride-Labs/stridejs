@@ -94,8 +94,7 @@ export interface PageRequestSDKType {
 export interface PageResponse {
     /**
      * next_key is the key to be passed to PageRequest.key to
-     * query the next page most efficiently. It will be empty if
-     * there are no more results.
+     * query the next page most efficiently
      */
     nextKey?: Uint8Array;
     /**
@@ -116,8 +115,7 @@ export interface PageResponse {
 export interface PageResponseSDKType {
     /**
      * next_key is the key to be passed to PageRequest.key to
-     * query the next page most efficiently. It will be empty if
-     * there are no more results.
+     * query the next page most efficiently
      */
     next_key?: Uint8Array;
     /**

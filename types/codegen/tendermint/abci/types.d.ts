@@ -401,6 +401,13 @@ export interface ResponseCheckTx {
     gasUsed: Long;
     events: Event[];
     codespace: string;
+    sender: string;
+    priority: Long;
+    /**
+     * mempool_error is set by CometBFT.
+     * ABCI applictions creating a ResponseCheckTX should not set mempool_error.
+     */
+    mempoolError: string;
 }
 export interface ResponseCheckTxSDKType {
     code: number;
@@ -413,6 +420,13 @@ export interface ResponseCheckTxSDKType {
     gas_used: Long;
     events: EventSDKType[];
     codespace: string;
+    sender: string;
+    priority: Long;
+    /**
+     * mempool_error is set by CometBFT.
+     * ABCI applictions creating a ResponseCheckTX should not set mempool_error.
+     */
+    mempool_error: string;
 }
 export interface ResponseDeliverTx {
     code: number;

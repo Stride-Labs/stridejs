@@ -1,5 +1,5 @@
 import { LCDClient } from "@osmonauts/lcd";
-import { QueryAllowanceRequest, QueryAllowanceResponseSDKType, QueryAllowancesRequest, QueryAllowancesResponseSDKType } from "./query";
+import { QueryAllowanceRequest, QueryAllowanceResponseSDKType, QueryAllowancesRequest, QueryAllowancesResponseSDKType, QueryAllowancesByGranterRequest, QueryAllowancesByGranterResponseSDKType } from "./query";
 export declare class LCDQueryClient {
     req: LCDClient;
     constructor({ requestClient }: {
@@ -7,4 +7,5 @@ export declare class LCDQueryClient {
     });
     allowance(params: QueryAllowanceRequest): Promise<QueryAllowanceResponseSDKType>;
     allowances(params: QueryAllowancesRequest): Promise<QueryAllowancesResponseSDKType>;
+    allowancesByGranter(params: QueryAllowancesByGranterRequest): Promise<QueryAllowancesByGranterResponseSDKType>;
 }

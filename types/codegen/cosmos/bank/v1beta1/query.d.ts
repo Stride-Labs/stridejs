@@ -8,14 +8,14 @@ export interface QueryBalanceRequest {
     /** address is the address to query balances for. */
     address: string;
     /** denom is the coin denom to query balances for. */
-    denom: string;
+    denom?: string;
 }
 /** QueryBalanceRequest is the request type for the Query/Balance RPC method. */
 export interface QueryBalanceRequestSDKType {
     /** address is the address to query balances for. */
     address: string;
     /** denom is the coin denom to query balances for. */
-    denom: string;
+    denom?: string;
 }
 /** QueryBalanceResponse is the response type for the Query/Balance RPC method. */
 export interface QueryBalanceResponse {
@@ -62,11 +62,55 @@ export interface QueryAllBalancesResponseSDKType {
     pagination?: PageResponseSDKType;
 }
 /**
+ * QuerySpendableBalancesRequest defines the gRPC request structure for querying
+ * an account's spendable balances.
+ */
+export interface QuerySpendableBalancesRequest {
+    /** address is the address to query spendable balances for. */
+    address: string;
+    /** pagination defines an optional pagination for the request. */
+    pagination?: PageRequest;
+}
+/**
+ * QuerySpendableBalancesRequest defines the gRPC request structure for querying
+ * an account's spendable balances.
+ */
+export interface QuerySpendableBalancesRequestSDKType {
+    /** address is the address to query spendable balances for. */
+    address: string;
+    /** pagination defines an optional pagination for the request. */
+    pagination?: PageRequestSDKType;
+}
+/**
+ * QuerySpendableBalancesResponse defines the gRPC response structure for querying
+ * an account's spendable balances.
+ */
+export interface QuerySpendableBalancesResponse {
+    /** balances is the spendable balances of all the coins. */
+    balances: Coin[];
+    /** pagination defines the pagination in the response. */
+    pagination?: PageResponse;
+}
+/**
+ * QuerySpendableBalancesResponse defines the gRPC response structure for querying
+ * an account's spendable balances.
+ */
+export interface QuerySpendableBalancesResponseSDKType {
+    /** balances is the spendable balances of all the coins. */
+    balances: CoinSDKType[];
+    /** pagination defines the pagination in the response. */
+    pagination?: PageResponseSDKType;
+}
+/**
  * QueryTotalSupplyRequest is the request type for the Query/TotalSupply RPC
  * method.
  */
 export interface QueryTotalSupplyRequest {
-    /** pagination defines an optional pagination for the request. */
+    /**
+     * pagination defines an optional pagination for the request.
+     *
+     * Since: cosmos-sdk 0.43
+     */
     pagination?: PageRequest;
 }
 /**
@@ -74,7 +118,11 @@ export interface QueryTotalSupplyRequest {
  * method.
  */
 export interface QueryTotalSupplyRequestSDKType {
-    /** pagination defines an optional pagination for the request. */
+    /**
+     * pagination defines an optional pagination for the request.
+     *
+     * Since: cosmos-sdk 0.43
+     */
     pagination?: PageRequestSDKType;
 }
 /**
@@ -84,7 +132,11 @@ export interface QueryTotalSupplyRequestSDKType {
 export interface QueryTotalSupplyResponse {
     /** supply is the supply of the coins */
     supply: Coin[];
-    /** pagination defines the pagination in the response. */
+    /**
+     * pagination defines the pagination in the response.
+     *
+     * Since: cosmos-sdk 0.43
+     */
     pagination?: PageResponse;
 }
 /**
@@ -94,7 +146,11 @@ export interface QueryTotalSupplyResponse {
 export interface QueryTotalSupplyResponseSDKType {
     /** supply is the supply of the coins */
     supply: CoinSDKType[];
-    /** pagination defines the pagination in the response. */
+    /**
+     * pagination defines the pagination in the response.
+     *
+     * Since: cosmos-sdk 0.43
+     */
     pagination?: PageResponseSDKType;
 }
 /** QuerySupplyOfRequest is the request type for the Query/SupplyOf RPC method. */
@@ -206,6 +262,16 @@ export declare const QueryAllBalancesResponse: {
     encode(message: QueryAllBalancesResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllBalancesResponse;
     fromPartial(object: DeepPartial<QueryAllBalancesResponse>): QueryAllBalancesResponse;
+};
+export declare const QuerySpendableBalancesRequest: {
+    encode(message: QuerySpendableBalancesRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QuerySpendableBalancesRequest;
+    fromPartial(object: DeepPartial<QuerySpendableBalancesRequest>): QuerySpendableBalancesRequest;
+};
+export declare const QuerySpendableBalancesResponse: {
+    encode(message: QuerySpendableBalancesResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QuerySpendableBalancesResponse;
+    fromPartial(object: DeepPartial<QuerySpendableBalancesResponse>): QuerySpendableBalancesResponse;
 };
 export declare const QueryTotalSupplyRequest: {
     encode(message: QueryTotalSupplyRequest, writer?: _m0.Writer): _m0.Writer;

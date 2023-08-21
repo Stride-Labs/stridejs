@@ -7,17 +7,21 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
                 accounts(request?: import("./auth/v1beta1/query").QueryAccountsRequest): Promise<import("./auth/v1beta1/query").QueryAccountsResponse>;
                 account(request: import("./auth/v1beta1/query").QueryAccountRequest): Promise<import("./auth/v1beta1/query").QueryAccountResponse>;
                 params(request?: import("./auth/v1beta1/query").QueryParamsRequest): Promise<import("./auth/v1beta1/query").QueryParamsResponse>;
+                moduleAccountByName(request: import("./auth/v1beta1/query").QueryModuleAccountByNameRequest): Promise<import("./auth/v1beta1/query").QueryModuleAccountByNameResponse>;
             };
         };
         authz: {
             v1beta1: {
                 grants(request: import("./authz/v1beta1/query").QueryGrantsRequest): Promise<import("./authz/v1beta1/query").QueryGrantsResponse>;
+                granterGrants(request: import("./authz/v1beta1/query").QueryGranterGrantsRequest): Promise<import("./authz/v1beta1/query").QueryGranterGrantsResponse>;
+                granteeGrants(request: import("./authz/v1beta1/query").QueryGranteeGrantsRequest): Promise<import("./authz/v1beta1/query").QueryGranteeGrantsResponse>;
             };
         };
         bank: {
             v1beta1: {
                 balance(request: import("./bank/v1beta1/query").QueryBalanceRequest): Promise<import("./bank/v1beta1/query").QueryBalanceResponse>;
                 allBalances(request: import("./bank/v1beta1/query").QueryAllBalancesRequest): Promise<import("./bank/v1beta1/query").QueryAllBalancesResponse>;
+                spendableBalances(request: import("./bank/v1beta1/query").QuerySpendableBalancesRequest): Promise<import("./bank/v1beta1/query").QuerySpendableBalancesResponse>;
                 totalSupply(request?: import("./bank/v1beta1/query").QueryTotalSupplyRequest): Promise<import("./bank/v1beta1/query").QueryTotalSupplyResponse>;
                 supplyOf(request: import("./bank/v1beta1/query").QuerySupplyOfRequest): Promise<import("./bank/v1beta1/query").QuerySupplyOfResponse>;
                 params(request?: import("./bank/v1beta1/query").QueryParamsRequest): Promise<import("./bank/v1beta1/query").QueryParamsResponse>;
@@ -26,6 +30,11 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
             };
         };
         base: {
+            node: {
+                v1beta1: {
+                    config(request?: import("./base/node/v1beta1/query").ConfigRequest): Promise<import("./base/node/v1beta1/query").ConfigResponse>;
+                };
+            };
             tendermint: {
                 v1beta1: {
                     getNodeInfo(request?: import("./base/tendermint/v1beta1/query").GetNodeInfoRequest): Promise<import("./base/tendermint/v1beta1/query").GetNodeInfoResponse>;
@@ -48,6 +57,7 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
                 delegatorValidators(request: import("./distribution/v1beta1/query").QueryDelegatorValidatorsRequest): Promise<import("./distribution/v1beta1/query").QueryDelegatorValidatorsResponse>;
                 delegatorWithdrawAddress(request: import("./distribution/v1beta1/query").QueryDelegatorWithdrawAddressRequest): Promise<import("./distribution/v1beta1/query").QueryDelegatorWithdrawAddressResponse>;
                 communityPool(request?: import("./distribution/v1beta1/query").QueryCommunityPoolRequest): Promise<import("./distribution/v1beta1/query").QueryCommunityPoolResponse>;
+                tokenizeShareRecordReward(request: import("./distribution/v1beta1/query").QueryTokenizeShareRecordRewardRequest): Promise<import("./distribution/v1beta1/query").QueryTokenizeShareRecordRewardResponse>;
             };
         };
         evidence: {
@@ -60,6 +70,7 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
             v1beta1: {
                 allowance(request: import("./feegrant/v1beta1/query").QueryAllowanceRequest): Promise<import("./feegrant/v1beta1/query").QueryAllowanceResponse>;
                 allowances(request: import("./feegrant/v1beta1/query").QueryAllowancesRequest): Promise<import("./feegrant/v1beta1/query").QueryAllowancesResponse>;
+                allowancesByGranter(request: import("./feegrant/v1beta1/query").QueryAllowancesByGranterRequest): Promise<import("./feegrant/v1beta1/query").QueryAllowancesByGranterResponse>;
             };
         };
         gov: {
@@ -109,6 +120,14 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
                 historicalInfo(request: import("./staking/v1beta1/query").QueryHistoricalInfoRequest): Promise<import("./staking/v1beta1/query").QueryHistoricalInfoResponse>;
                 pool(request?: import("./staking/v1beta1/query").QueryPoolRequest): Promise<import("./staking/v1beta1/query").QueryPoolResponse>;
                 params(request?: import("./staking/v1beta1/query").QueryParamsRequest): Promise<import("./staking/v1beta1/query").QueryParamsResponse>;
+                tokenizeShareRecordById(request: import("./staking/v1beta1/query").QueryTokenizeShareRecordByIdRequest): Promise<import("./staking/v1beta1/query").QueryTokenizeShareRecordByIdResponse>;
+                tokenizeShareRecordByDenom(request: import("./staking/v1beta1/query").QueryTokenizeShareRecordByDenomRequest): Promise<import("./staking/v1beta1/query").QueryTokenizeShareRecordByDenomResponse>;
+                tokenizeShareRecordsOwned(request: import("./staking/v1beta1/query").QueryTokenizeShareRecordsOwnedRequest): Promise<import("./staking/v1beta1/query").QueryTokenizeShareRecordsOwnedResponse>;
+                allTokenizeShareRecords(request?: import("./staking/v1beta1/query").QueryAllTokenizeShareRecordsRequest): Promise<import("./staking/v1beta1/query").QueryAllTokenizeShareRecordsResponse>;
+                lastTokenizeShareRecordId(request?: import("./staking/v1beta1/query").QueryLastTokenizeShareRecordIdRequest): Promise<import("./staking/v1beta1/query").QueryLastTokenizeShareRecordIdResponse>;
+                totalTokenizeSharedAssets(request?: import("./staking/v1beta1/query").QueryTotalTokenizeSharedAssetsRequest): Promise<import("./staking/v1beta1/query").QueryTotalTokenizeSharedAssetsResponse>;
+                totalLiquidStaked(request?: import("./staking/v1beta1/query").QueryTotalLiquidStaked): Promise<import("./staking/v1beta1/query").QueryTotalLiquidStakedResponse>;
+                tokenizeShareLockInfo(request: import("./staking/v1beta1/query").QueryTokenizeShareLockInfo): Promise<import("./staking/v1beta1/query").QueryTokenizeShareLockInfoResponse>;
             };
         };
         tx: {
@@ -117,6 +136,7 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
                 getTx(request: import("./tx/v1beta1/service").GetTxRequest): Promise<import("./tx/v1beta1/service").GetTxResponse>;
                 broadcastTx(request: import("./tx/v1beta1/service").BroadcastTxRequest): Promise<import("./tx/v1beta1/service").BroadcastTxResponse>;
                 getTxsEvent(request: import("./tx/v1beta1/service").GetTxsEventRequest): Promise<import("./tx/v1beta1/service").GetTxsEventResponse>;
+                getBlockWithTxs(request: import("./tx/v1beta1/service").GetBlockWithTxsRequest): Promise<import("./tx/v1beta1/service").GetBlockWithTxsResponse>;
             };
         };
         upgrade: {

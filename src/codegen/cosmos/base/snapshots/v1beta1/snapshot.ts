@@ -30,6 +30,78 @@ export interface MetadataSDKType {
   /** SHA-256 chunk hashes */
   chunk_hashes: Uint8Array[];
 }
+/** SnapshotItem is an item contained in a rootmulti.Store snapshot. */
+
+export interface SnapshotItem {
+  store?: SnapshotStoreItem;
+  iavl?: SnapshotIAVLItem;
+  extension?: SnapshotExtensionMeta;
+  extensionPayload?: SnapshotExtensionPayload;
+}
+/** SnapshotItem is an item contained in a rootmulti.Store snapshot. */
+
+export interface SnapshotItemSDKType {
+  store?: SnapshotStoreItemSDKType;
+  iavl?: SnapshotIAVLItemSDKType;
+  extension?: SnapshotExtensionMetaSDKType;
+  extension_payload?: SnapshotExtensionPayloadSDKType;
+}
+/** SnapshotStoreItem contains metadata about a snapshotted store. */
+
+export interface SnapshotStoreItem {
+  name: string;
+}
+/** SnapshotStoreItem contains metadata about a snapshotted store. */
+
+export interface SnapshotStoreItemSDKType {
+  name: string;
+}
+/** SnapshotIAVLItem is an exported IAVL node. */
+
+export interface SnapshotIAVLItem {
+  key: Uint8Array;
+  value: Uint8Array;
+  /** version is block height */
+
+  version: Long;
+  /** height is depth of the tree. */
+
+  height: number;
+}
+/** SnapshotIAVLItem is an exported IAVL node. */
+
+export interface SnapshotIAVLItemSDKType {
+  key: Uint8Array;
+  value: Uint8Array;
+  /** version is block height */
+
+  version: Long;
+  /** height is depth of the tree. */
+
+  height: number;
+}
+/** SnapshotExtensionMeta contains metadata about an external snapshotter. */
+
+export interface SnapshotExtensionMeta {
+  name: string;
+  format: number;
+}
+/** SnapshotExtensionMeta contains metadata about an external snapshotter. */
+
+export interface SnapshotExtensionMetaSDKType {
+  name: string;
+  format: number;
+}
+/** SnapshotExtensionPayload contains payloads of an external snapshotter. */
+
+export interface SnapshotExtensionPayload {
+  payload: Uint8Array;
+}
+/** SnapshotExtensionPayload contains payloads of an external snapshotter. */
+
+export interface SnapshotExtensionPayloadSDKType {
+  payload: Uint8Array;
+}
 
 function createBaseSnapshot(): Snapshot {
   return {
@@ -156,6 +228,301 @@ export const Metadata = {
   fromPartial(object: DeepPartial<Metadata>): Metadata {
     const message = createBaseMetadata();
     message.chunkHashes = object.chunkHashes?.map(e => e) || [];
+    return message;
+  }
+
+};
+
+function createBaseSnapshotItem(): SnapshotItem {
+  return {
+    store: undefined,
+    iavl: undefined,
+    extension: undefined,
+    extensionPayload: undefined
+  };
+}
+
+export const SnapshotItem = {
+  encode(message: SnapshotItem, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.store !== undefined) {
+      SnapshotStoreItem.encode(message.store, writer.uint32(10).fork()).ldelim();
+    }
+
+    if (message.iavl !== undefined) {
+      SnapshotIAVLItem.encode(message.iavl, writer.uint32(18).fork()).ldelim();
+    }
+
+    if (message.extension !== undefined) {
+      SnapshotExtensionMeta.encode(message.extension, writer.uint32(26).fork()).ldelim();
+    }
+
+    if (message.extensionPayload !== undefined) {
+      SnapshotExtensionPayload.encode(message.extensionPayload, writer.uint32(34).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SnapshotItem {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSnapshotItem();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.store = SnapshotStoreItem.decode(reader, reader.uint32());
+          break;
+
+        case 2:
+          message.iavl = SnapshotIAVLItem.decode(reader, reader.uint32());
+          break;
+
+        case 3:
+          message.extension = SnapshotExtensionMeta.decode(reader, reader.uint32());
+          break;
+
+        case 4:
+          message.extensionPayload = SnapshotExtensionPayload.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<SnapshotItem>): SnapshotItem {
+    const message = createBaseSnapshotItem();
+    message.store = object.store !== undefined && object.store !== null ? SnapshotStoreItem.fromPartial(object.store) : undefined;
+    message.iavl = object.iavl !== undefined && object.iavl !== null ? SnapshotIAVLItem.fromPartial(object.iavl) : undefined;
+    message.extension = object.extension !== undefined && object.extension !== null ? SnapshotExtensionMeta.fromPartial(object.extension) : undefined;
+    message.extensionPayload = object.extensionPayload !== undefined && object.extensionPayload !== null ? SnapshotExtensionPayload.fromPartial(object.extensionPayload) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseSnapshotStoreItem(): SnapshotStoreItem {
+  return {
+    name: ""
+  };
+}
+
+export const SnapshotStoreItem = {
+  encode(message: SnapshotStoreItem, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.name !== "") {
+      writer.uint32(10).string(message.name);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SnapshotStoreItem {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSnapshotStoreItem();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.name = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<SnapshotStoreItem>): SnapshotStoreItem {
+    const message = createBaseSnapshotStoreItem();
+    message.name = object.name ?? "";
+    return message;
+  }
+
+};
+
+function createBaseSnapshotIAVLItem(): SnapshotIAVLItem {
+  return {
+    key: new Uint8Array(),
+    value: new Uint8Array(),
+    version: Long.ZERO,
+    height: 0
+  };
+}
+
+export const SnapshotIAVLItem = {
+  encode(message: SnapshotIAVLItem, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.key.length !== 0) {
+      writer.uint32(10).bytes(message.key);
+    }
+
+    if (message.value.length !== 0) {
+      writer.uint32(18).bytes(message.value);
+    }
+
+    if (!message.version.isZero()) {
+      writer.uint32(24).int64(message.version);
+    }
+
+    if (message.height !== 0) {
+      writer.uint32(32).int32(message.height);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SnapshotIAVLItem {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSnapshotIAVLItem();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.key = reader.bytes();
+          break;
+
+        case 2:
+          message.value = reader.bytes();
+          break;
+
+        case 3:
+          message.version = (reader.int64() as Long);
+          break;
+
+        case 4:
+          message.height = reader.int32();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<SnapshotIAVLItem>): SnapshotIAVLItem {
+    const message = createBaseSnapshotIAVLItem();
+    message.key = object.key ?? new Uint8Array();
+    message.value = object.value ?? new Uint8Array();
+    message.version = object.version !== undefined && object.version !== null ? Long.fromValue(object.version) : Long.ZERO;
+    message.height = object.height ?? 0;
+    return message;
+  }
+
+};
+
+function createBaseSnapshotExtensionMeta(): SnapshotExtensionMeta {
+  return {
+    name: "",
+    format: 0
+  };
+}
+
+export const SnapshotExtensionMeta = {
+  encode(message: SnapshotExtensionMeta, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.name !== "") {
+      writer.uint32(10).string(message.name);
+    }
+
+    if (message.format !== 0) {
+      writer.uint32(16).uint32(message.format);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SnapshotExtensionMeta {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSnapshotExtensionMeta();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.name = reader.string();
+          break;
+
+        case 2:
+          message.format = reader.uint32();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<SnapshotExtensionMeta>): SnapshotExtensionMeta {
+    const message = createBaseSnapshotExtensionMeta();
+    message.name = object.name ?? "";
+    message.format = object.format ?? 0;
+    return message;
+  }
+
+};
+
+function createBaseSnapshotExtensionPayload(): SnapshotExtensionPayload {
+  return {
+    payload: new Uint8Array()
+  };
+}
+
+export const SnapshotExtensionPayload = {
+  encode(message: SnapshotExtensionPayload, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.payload.length !== 0) {
+      writer.uint32(10).bytes(message.payload);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): SnapshotExtensionPayload {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSnapshotExtensionPayload();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.payload = reader.bytes();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<SnapshotExtensionPayload>): SnapshotExtensionPayload {
+    const message = createBaseSnapshotExtensionPayload();
+    message.payload = object.payload ?? new Uint8Array();
     return message;
   }
 

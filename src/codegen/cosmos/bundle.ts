@@ -8,12 +8,12 @@ import * as _9 from "./base/v1beta1/coin";
 import * as _10 from "./base/v1beta1/coin";
 import * as _11 from "./base/abci/v1beta1/abci";
 import * as _12 from "./base/kv/v1beta1/kv";
-import * as _13 from "./base/reflection/v1beta1/reflection";
-import * as _14 from "./base/reflection/v2alpha1/reflection";
-import * as _15 from "./base/snapshots/v1beta1/snapshot";
-import * as _16 from "./base/store/v1beta1/commit_info";
-import * as _17 from "./base/store/v1beta1/listening";
-import * as _18 from "./base/store/v1beta1/snapshot";
+import * as _13 from "./base/node/v1beta1/query";
+import * as _14 from "./base/reflection/v1beta1/reflection";
+import * as _15 from "./base/reflection/v2alpha1/reflection";
+import * as _16 from "./base/snapshots/v1beta1/snapshot";
+import * as _17 from "./base/store/v1beta1/commit_info";
+import * as _18 from "./base/store/v1beta1/listening";
 import * as _19 from "./base/tendermint/v1beta1/query";
 import * as _20 from "./staking/v1beta1/lsm_tx";
 import * as _21 from "./staking/v1beta1/authz";
@@ -95,44 +95,46 @@ import * as _169 from "./vesting/v1beta1/tx.registry";
 import * as _170 from "./auth/v1beta1/query.lcd";
 import * as _171 from "./authz/v1beta1/query.lcd";
 import * as _172 from "./bank/v1beta1/query.lcd";
-import * as _173 from "./base/tendermint/v1beta1/query.lcd";
-import * as _174 from "./distribution/v1beta1/query.lcd";
-import * as _175 from "./evidence/v1beta1/query.lcd";
-import * as _176 from "./feegrant/v1beta1/query.lcd";
-import * as _177 from "./gov/v1beta1/query.lcd";
-import * as _178 from "./mint/v1beta1/query.lcd";
-import * as _179 from "./params/v1beta1/query.lcd";
-import * as _180 from "./slashing/v1beta1/query.lcd";
-import * as _181 from "./staking/v1beta1/query.lcd";
-import * as _182 from "./tx/v1beta1/service.lcd";
-import * as _183 from "./upgrade/v1beta1/query.lcd";
-import * as _184 from "./auth/v1beta1/query.rpc.query";
-import * as _185 from "./authz/v1beta1/query.rpc.query";
-import * as _186 from "./bank/v1beta1/query.rpc.query";
-import * as _187 from "./base/tendermint/v1beta1/query.rpc.svc";
-import * as _188 from "./distribution/v1beta1/query.rpc.query";
-import * as _189 from "./evidence/v1beta1/query.rpc.query";
-import * as _190 from "./feegrant/v1beta1/query.rpc.query";
-import * as _191 from "./gov/v1beta1/query.rpc.query";
-import * as _192 from "./mint/v1beta1/query.rpc.query";
-import * as _193 from "./params/v1beta1/query.rpc.query";
-import * as _194 from "./slashing/v1beta1/query.rpc.query";
-import * as _195 from "./staking/v1beta1/query.rpc.query";
-import * as _196 from "./tx/v1beta1/service.rpc.svc";
-import * as _197 from "./upgrade/v1beta1/query.rpc.query";
-import * as _198 from "./authz/v1beta1/tx.rpc.msg";
-import * as _199 from "./bank/v1beta1/tx.rpc.msg";
-import * as _200 from "./crisis/v1beta1/tx.rpc.msg";
-import * as _201 from "./distribution/v1beta1/tx.rpc.msg";
-import * as _202 from "./evidence/v1beta1/tx.rpc.msg";
-import * as _203 from "./feegrant/v1beta1/tx.rpc.msg";
-import * as _204 from "./gov/v1beta1/tx.rpc.msg";
-import * as _205 from "./slashing/v1beta1/tx.rpc.msg";
-import * as _206 from "./staking/v1beta1/tx.rpc.msg";
-import * as _207 from "./vesting/v1beta1/tx.rpc.msg";
-import * as _233 from "./lcd";
-import * as _234 from "./rpc.query";
-import * as _235 from "./rpc.tx";
+import * as _173 from "./base/node/v1beta1/query.lcd";
+import * as _174 from "./base/tendermint/v1beta1/query.lcd";
+import * as _175 from "./distribution/v1beta1/query.lcd";
+import * as _176 from "./evidence/v1beta1/query.lcd";
+import * as _177 from "./feegrant/v1beta1/query.lcd";
+import * as _178 from "./gov/v1beta1/query.lcd";
+import * as _179 from "./mint/v1beta1/query.lcd";
+import * as _180 from "./params/v1beta1/query.lcd";
+import * as _181 from "./slashing/v1beta1/query.lcd";
+import * as _182 from "./staking/v1beta1/query.lcd";
+import * as _183 from "./tx/v1beta1/service.lcd";
+import * as _184 from "./upgrade/v1beta1/query.lcd";
+import * as _185 from "./auth/v1beta1/query.rpc.query";
+import * as _186 from "./authz/v1beta1/query.rpc.query";
+import * as _187 from "./bank/v1beta1/query.rpc.query";
+import * as _188 from "./base/node/v1beta1/query.rpc.svc";
+import * as _189 from "./base/tendermint/v1beta1/query.rpc.svc";
+import * as _190 from "./distribution/v1beta1/query.rpc.query";
+import * as _191 from "./evidence/v1beta1/query.rpc.query";
+import * as _192 from "./feegrant/v1beta1/query.rpc.query";
+import * as _193 from "./gov/v1beta1/query.rpc.query";
+import * as _194 from "./mint/v1beta1/query.rpc.query";
+import * as _195 from "./params/v1beta1/query.rpc.query";
+import * as _196 from "./slashing/v1beta1/query.rpc.query";
+import * as _197 from "./staking/v1beta1/query.rpc.query";
+import * as _198 from "./tx/v1beta1/service.rpc.svc";
+import * as _199 from "./upgrade/v1beta1/query.rpc.query";
+import * as _200 from "./authz/v1beta1/tx.rpc.msg";
+import * as _201 from "./bank/v1beta1/tx.rpc.msg";
+import * as _202 from "./crisis/v1beta1/tx.rpc.msg";
+import * as _203 from "./distribution/v1beta1/tx.rpc.msg";
+import * as _204 from "./evidence/v1beta1/tx.rpc.msg";
+import * as _205 from "./feegrant/v1beta1/tx.rpc.msg";
+import * as _206 from "./gov/v1beta1/tx.rpc.msg";
+import * as _207 from "./slashing/v1beta1/tx.rpc.msg";
+import * as _208 from "./staking/v1beta1/tx.rpc.msg";
+import * as _209 from "./vesting/v1beta1/tx.rpc.msg";
+import * as _235 from "./lcd";
+import * as _236 from "./rpc.query";
+import * as _237 from "./rpc.tx";
 export namespace cosmos {
   export namespace auth {
     export const v1beta1 = { ..._3,
@@ -140,7 +142,7 @@ export namespace cosmos {
       ..._5,
       ..._6,
       ..._170,
-      ..._184
+      ..._185
     };
   }
   export namespace base {
@@ -160,26 +162,31 @@ export namespace cosmos {
       export const v1beta1 = { ..._12
       };
     }
-    export namespace reflection {
-      export const v1beta1 = { ..._13
+    export namespace node {
+      export const v1beta1 = { ..._13,
+        ..._173,
+        ..._188
       };
-      export const v2alpha1 = { ..._14
+    }
+    export namespace reflection {
+      export const v1beta1 = { ..._14
+      };
+      export const v2alpha1 = { ..._15
       };
     }
     export namespace snapshots {
-      export const v1beta1 = { ..._15
+      export const v1beta1 = { ..._16
       };
     }
     export namespace store {
-      export const v1beta1 = { ..._16,
-        ..._17,
+      export const v1beta1 = { ..._17,
         ..._18
       };
     }
     export namespace tendermint {
       export const v1beta1 = { ..._19,
-        ..._173,
-        ..._187
+        ..._174,
+        ..._189
       };
     }
   }
@@ -192,9 +199,9 @@ export namespace cosmos {
       ..._25,
       ..._158,
       ..._168,
-      ..._181,
-      ..._195,
-      ..._206
+      ..._182,
+      ..._197,
+      ..._208
     };
   }
   export namespace authz {
@@ -206,8 +213,8 @@ export namespace cosmos {
       ..._150,
       ..._160,
       ..._171,
-      ..._185,
-      ..._198
+      ..._186,
+      ..._200
     };
   }
   export namespace bank {
@@ -219,8 +226,8 @@ export namespace cosmos {
       ..._151,
       ..._161,
       ..._172,
-      ..._186,
-      ..._199
+      ..._187,
+      ..._201
     };
   }
   export namespace capability {
@@ -233,7 +240,7 @@ export namespace cosmos {
       ..._39,
       ..._152,
       ..._162,
-      ..._200
+      ..._202
     };
   }
   export namespace crypto {
@@ -253,9 +260,9 @@ export namespace cosmos {
       ..._47,
       ..._153,
       ..._163,
-      ..._174,
-      ..._188,
-      ..._201
+      ..._175,
+      ..._190,
+      ..._203
     };
   }
   export namespace evidence {
@@ -265,9 +272,9 @@ export namespace cosmos {
       ..._51,
       ..._154,
       ..._164,
-      ..._175,
-      ..._189,
-      ..._202
+      ..._176,
+      ..._191,
+      ..._204
     };
   }
   export namespace feegrant {
@@ -277,9 +284,9 @@ export namespace cosmos {
       ..._55,
       ..._155,
       ..._165,
-      ..._176,
-      ..._190,
-      ..._203
+      ..._177,
+      ..._192,
+      ..._205
     };
   }
   export namespace genutil {
@@ -293,24 +300,24 @@ export namespace cosmos {
       ..._60,
       ..._156,
       ..._166,
-      ..._177,
-      ..._191,
-      ..._204
+      ..._178,
+      ..._193,
+      ..._206
     };
   }
   export namespace mint {
     export const v1beta1 = { ..._61,
       ..._62,
       ..._63,
-      ..._178,
-      ..._192
+      ..._179,
+      ..._194
     };
   }
   export namespace params {
     export const v1beta1 = { ..._64,
       ..._65,
-      ..._179,
-      ..._193
+      ..._180,
+      ..._195
     };
   }
   export namespace slashing {
@@ -320,9 +327,9 @@ export namespace cosmos {
       ..._69,
       ..._157,
       ..._167,
-      ..._180,
-      ..._194,
-      ..._205
+      ..._181,
+      ..._196,
+      ..._207
     };
   }
   export namespace tx {
@@ -332,15 +339,15 @@ export namespace cosmos {
     }
     export const v1beta1 = { ..._71,
       ..._72,
-      ..._182,
-      ..._196
+      ..._183,
+      ..._198
     };
   }
   export namespace upgrade {
     export const v1beta1 = { ..._73,
       ..._74,
-      ..._183,
-      ..._197
+      ..._184,
+      ..._199
     };
   }
   export namespace vesting {
@@ -348,11 +355,11 @@ export namespace cosmos {
       ..._76,
       ..._159,
       ..._169,
-      ..._207
+      ..._209
     };
   }
-  export const ClientFactory = { ..._233,
-    ..._234,
-    ..._235
+  export const ClientFactory = { ..._235,
+    ..._236,
+    ..._237
   };
 }

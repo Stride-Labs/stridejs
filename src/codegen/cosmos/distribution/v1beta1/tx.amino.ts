@@ -1,5 +1,6 @@
 import { AminoMsg } from "@cosmjs/amino";
-import { MsgSetWithdrawAddress, MsgWithdrawDelegatorReward, MsgWithdrawValidatorCommission, MsgFundCommunityPool } from "./tx";
+import { Long } from "@osmonauts/helpers";
+import { MsgSetWithdrawAddress, MsgWithdrawDelegatorReward, MsgWithdrawValidatorCommission, MsgWithdrawTokenizeShareRecordReward, MsgWithdrawAllTokenizeShareRecordReward, MsgFundCommunityPool } from "./tx";
 export interface AminoMsgSetWithdrawAddress extends AminoMsg {
   type: "cosmos-sdk/MsgModifyWithdrawAddress";
   value: {
@@ -18,6 +19,19 @@ export interface AminoMsgWithdrawValidatorCommission extends AminoMsg {
   type: "cosmos-sdk/MsgWithdrawValidatorCommission";
   value: {
     validator_address: string;
+  };
+}
+export interface AminoMsgWithdrawTokenizeShareRecordReward extends AminoMsg {
+  type: "cosmos-sdk/MsgWithdrawTokenizeShareRecordReward";
+  value: {
+    owner_address: string;
+    record_id: string;
+  };
+}
+export interface AminoMsgWithdrawAllTokenizeShareRecordReward extends AminoMsg {
+  type: "cosmos-sdk/MsgWithdrawAllTokenizeShareRecordReward";
+  value: {
+    owner_address: string;
   };
 }
 export interface AminoMsgFundCommunityPool extends AminoMsg {
@@ -87,6 +101,44 @@ export const AminoConverter = {
     }: AminoMsgWithdrawValidatorCommission["value"]): MsgWithdrawValidatorCommission => {
       return {
         validatorAddress: validator_address
+      };
+    }
+  },
+  "/cosmos.distribution.v1beta1.MsgWithdrawTokenizeShareRecordReward": {
+    aminoType: "cosmos-sdk/MsgWithdrawTokenizeShareRecordReward",
+    toAmino: ({
+      ownerAddress,
+      recordId
+    }: MsgWithdrawTokenizeShareRecordReward): AminoMsgWithdrawTokenizeShareRecordReward["value"] => {
+      return {
+        owner_address: ownerAddress,
+        record_id: recordId.toString()
+      };
+    },
+    fromAmino: ({
+      owner_address,
+      record_id
+    }: AminoMsgWithdrawTokenizeShareRecordReward["value"]): MsgWithdrawTokenizeShareRecordReward => {
+      return {
+        ownerAddress: owner_address,
+        recordId: Long.fromString(record_id)
+      };
+    }
+  },
+  "/cosmos.distribution.v1beta1.MsgWithdrawAllTokenizeShareRecordReward": {
+    aminoType: "cosmos-sdk/MsgWithdrawAllTokenizeShareRecordReward",
+    toAmino: ({
+      ownerAddress
+    }: MsgWithdrawAllTokenizeShareRecordReward): AminoMsgWithdrawAllTokenizeShareRecordReward["value"] => {
+      return {
+        owner_address: ownerAddress
+      };
+    },
+    fromAmino: ({
+      owner_address
+    }: AminoMsgWithdrawAllTokenizeShareRecordReward["value"]): MsgWithdrawAllTokenizeShareRecordReward => {
+      return {
+        ownerAddress: owner_address
       };
     }
   },

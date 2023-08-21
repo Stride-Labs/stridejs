@@ -1,7 +1,7 @@
 import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryParamsRequest, QueryParamsResponse, QueryValidatorOutstandingRewardsRequest, QueryValidatorOutstandingRewardsResponse, QueryValidatorCommissionRequest, QueryValidatorCommissionResponse, QueryValidatorSlashesRequest, QueryValidatorSlashesResponse, QueryDelegationRewardsRequest, QueryDelegationRewardsResponse, QueryDelegationTotalRewardsRequest, QueryDelegationTotalRewardsResponse, QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponse, QueryDelegatorWithdrawAddressRequest, QueryDelegatorWithdrawAddressResponse, QueryCommunityPoolRequest, QueryCommunityPoolResponse } from "./query";
+import { QueryParamsRequest, QueryParamsResponse, QueryValidatorOutstandingRewardsRequest, QueryValidatorOutstandingRewardsResponse, QueryValidatorCommissionRequest, QueryValidatorCommissionResponse, QueryValidatorSlashesRequest, QueryValidatorSlashesResponse, QueryDelegationRewardsRequest, QueryDelegationRewardsResponse, QueryDelegationTotalRewardsRequest, QueryDelegationTotalRewardsResponse, QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponse, QueryDelegatorWithdrawAddressRequest, QueryDelegatorWithdrawAddressResponse, QueryCommunityPoolRequest, QueryCommunityPoolResponse, QueryTokenizeShareRecordRewardRequest, QueryTokenizeShareRecordRewardResponse } from "./query";
 /** Query defines the RPC service */
 
 export interface Query {
@@ -33,6 +33,9 @@ export interface Query {
   communityPool(request?: QueryCommunityPoolRequest): Promise<QueryCommunityPoolResponse>;
   /*CommunityPool queries the community pool coins.*/
 
+  tokenizeShareRecordReward(request: QueryTokenizeShareRecordRewardRequest): Promise<QueryTokenizeShareRecordRewardResponse>;
+  /*TokenizeShareRecordReward queries the tokenize share record rewards*/
+
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -48,6 +51,7 @@ export class QueryClientImpl implements Query {
     this.delegatorValidators = this.delegatorValidators.bind(this);
     this.delegatorWithdrawAddress = this.delegatorWithdrawAddress.bind(this);
     this.communityPool = this.communityPool.bind(this);
+    this.tokenizeShareRecordReward = this.tokenizeShareRecordReward.bind(this);
   }
 
   params(request: QueryParamsRequest = {}): Promise<QueryParamsResponse> {
@@ -104,6 +108,12 @@ export class QueryClientImpl implements Query {
     return promise.then(data => QueryCommunityPoolResponse.decode(new _m0.Reader(data)));
   }
 
+  tokenizeShareRecordReward(request: QueryTokenizeShareRecordRewardRequest): Promise<QueryTokenizeShareRecordRewardResponse> {
+    const data = QueryTokenizeShareRecordRewardRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Query", "TokenizeShareRecordReward", data);
+    return promise.then(data => QueryTokenizeShareRecordRewardResponse.decode(new _m0.Reader(data)));
+  }
+
 }
 export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
@@ -143,6 +153,10 @@ export const createRpcQueryExtension = (base: QueryClient) => {
 
     communityPool(request?: QueryCommunityPoolRequest): Promise<QueryCommunityPoolResponse> {
       return queryService.communityPool(request);
+    },
+
+    tokenizeShareRecordReward(request: QueryTokenizeShareRecordRewardRequest): Promise<QueryTokenizeShareRecordRewardResponse> {
+      return queryService.tokenizeShareRecordReward(request);
     }
 
   };
