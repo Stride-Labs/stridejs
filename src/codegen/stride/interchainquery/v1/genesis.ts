@@ -1,3 +1,4 @@
+import { Duration, DurationSDKType } from "../../../google/protobuf/duration";
 import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
 export interface Query {
@@ -5,9 +6,12 @@ export interface Query {
   connectionId: string;
   chainId: string;
   queryType: string;
-  request: Uint8Array;
+  requestData: Uint8Array;
+  callbackModule: string;
   callbackId: string;
-  ttl: Long;
+  callbackData: Uint8Array;
+  timeoutDuration: Duration;
+  timeoutTimestamp: Long;
   requestSent: boolean;
 }
 export interface QuerySDKType {
@@ -15,9 +19,12 @@ export interface QuerySDKType {
   connection_id: string;
   chain_id: string;
   query_type: string;
-  request: Uint8Array;
+  request_data: Uint8Array;
+  callback_module: string;
   callback_id: string;
-  ttl: Long;
+  callback_data: Uint8Array;
+  timeout_duration: DurationSDKType;
+  timeout_timestamp: Long;
   request_sent: boolean;
 }
 export interface DataPoint {
@@ -49,9 +56,12 @@ function createBaseQuery(): Query {
     connectionId: "",
     chainId: "",
     queryType: "",
-    request: new Uint8Array(),
+    requestData: new Uint8Array(),
+    callbackModule: "",
     callbackId: "",
-    ttl: Long.UZERO,
+    callbackData: new Uint8Array(),
+    timeoutDuration: undefined,
+    timeoutTimestamp: Long.UZERO,
     requestSent: false
   };
 }
@@ -74,16 +84,28 @@ export const Query = {
       writer.uint32(34).string(message.queryType);
     }
 
-    if (message.request.length !== 0) {
-      writer.uint32(42).bytes(message.request);
+    if (message.requestData.length !== 0) {
+      writer.uint32(42).bytes(message.requestData);
+    }
+
+    if (message.callbackModule !== "") {
+      writer.uint32(106).string(message.callbackModule);
     }
 
     if (message.callbackId !== "") {
       writer.uint32(66).string(message.callbackId);
     }
 
-    if (!message.ttl.isZero()) {
-      writer.uint32(72).uint64(message.ttl);
+    if (message.callbackData.length !== 0) {
+      writer.uint32(98).bytes(message.callbackData);
+    }
+
+    if (message.timeoutDuration !== undefined) {
+      Duration.encode(message.timeoutDuration, writer.uint32(114).fork()).ldelim();
+    }
+
+    if (!message.timeoutTimestamp.isZero()) {
+      writer.uint32(72).uint64(message.timeoutTimestamp);
     }
 
     if (message.requestSent === true) {
@@ -119,15 +141,27 @@ export const Query = {
           break;
 
         case 5:
-          message.request = reader.bytes();
+          message.requestData = reader.bytes();
+          break;
+
+        case 13:
+          message.callbackModule = reader.string();
           break;
 
         case 8:
           message.callbackId = reader.string();
           break;
 
+        case 12:
+          message.callbackData = reader.bytes();
+          break;
+
+        case 14:
+          message.timeoutDuration = Duration.decode(reader, reader.uint32());
+          break;
+
         case 9:
-          message.ttl = (reader.uint64() as Long);
+          message.timeoutTimestamp = (reader.uint64() as Long);
           break;
 
         case 11:
@@ -149,9 +183,12 @@ export const Query = {
     message.connectionId = object.connectionId ?? "";
     message.chainId = object.chainId ?? "";
     message.queryType = object.queryType ?? "";
-    message.request = object.request ?? new Uint8Array();
+    message.requestData = object.requestData ?? new Uint8Array();
+    message.callbackModule = object.callbackModule ?? "";
     message.callbackId = object.callbackId ?? "";
-    message.ttl = object.ttl !== undefined && object.ttl !== null ? Long.fromValue(object.ttl) : Long.UZERO;
+    message.callbackData = object.callbackData ?? new Uint8Array();
+    message.timeoutDuration = object.timeoutDuration ?? undefined;
+    message.timeoutTimestamp = object.timeoutTimestamp !== undefined && object.timeoutTimestamp !== null ? Long.fromValue(object.timeoutTimestamp) : Long.UZERO;
     message.requestSent = object.requestSent ?? false;
     return message;
   }

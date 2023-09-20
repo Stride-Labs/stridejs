@@ -1,3 +1,4 @@
+import { Duration, DurationSDKType } from "../../../google/protobuf/duration";
 import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
 export interface Query {
@@ -5,9 +6,12 @@ export interface Query {
     connectionId: string;
     chainId: string;
     queryType: string;
-    request: Uint8Array;
+    requestData: Uint8Array;
+    callbackModule: string;
     callbackId: string;
-    ttl: Long;
+    callbackData: Uint8Array;
+    timeoutDuration: Duration;
+    timeoutTimestamp: Long;
     requestSent: boolean;
 }
 export interface QuerySDKType {
@@ -15,9 +19,12 @@ export interface QuerySDKType {
     connection_id: string;
     chain_id: string;
     query_type: string;
-    request: Uint8Array;
+    request_data: Uint8Array;
+    callback_module: string;
     callback_id: string;
-    ttl: Long;
+    callback_data: Uint8Array;
+    timeout_duration: DurationSDKType;
+    timeout_timestamp: Long;
     request_sent: boolean;
 }
 export interface DataPoint {

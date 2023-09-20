@@ -1,10 +1,14 @@
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
-import { MsgLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
+import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
 export declare const registry: ReadonlyArray<[string, GeneratedType]>;
 export declare const load: (protoRegistry: Registry) => void;
 export declare const MessageComposer: {
     encoded: {
         liquidStake(value: MsgLiquidStake): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        lSMLiquidStake(value: MsgLSMLiquidStake): {
             typeUrl: string;
             value: Uint8Array;
         };
@@ -54,6 +58,10 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgLiquidStake;
         };
+        lSMLiquidStake(value: MsgLSMLiquidStake): {
+            typeUrl: string;
+            value: MsgLSMLiquidStake;
+        };
         redeemStake(value: MsgRedeemStake): {
             typeUrl: string;
             value: MsgRedeemStake;
@@ -99,6 +107,10 @@ export declare const MessageComposer: {
         liquidStake(value: MsgLiquidStake): {
             typeUrl: string;
             value: MsgLiquidStake;
+        };
+        lSMLiquidStake(value: MsgLSMLiquidStake): {
+            typeUrl: string;
+            value: MsgLSMLiquidStake;
         };
         redeemStake(value: MsgRedeemStake): {
             typeUrl: string;

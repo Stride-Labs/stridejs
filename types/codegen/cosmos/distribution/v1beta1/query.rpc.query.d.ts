@@ -1,6 +1,6 @@
 import { Rpc } from "@osmonauts/helpers";
 import { QueryClient } from "@cosmjs/stargate";
-import { QueryParamsRequest, QueryParamsResponse, QueryValidatorOutstandingRewardsRequest, QueryValidatorOutstandingRewardsResponse, QueryValidatorCommissionRequest, QueryValidatorCommissionResponse, QueryValidatorSlashesRequest, QueryValidatorSlashesResponse, QueryDelegationRewardsRequest, QueryDelegationRewardsResponse, QueryDelegationTotalRewardsRequest, QueryDelegationTotalRewardsResponse, QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponse, QueryDelegatorWithdrawAddressRequest, QueryDelegatorWithdrawAddressResponse, QueryCommunityPoolRequest, QueryCommunityPoolResponse } from "./query";
+import { QueryParamsRequest, QueryParamsResponse, QueryValidatorOutstandingRewardsRequest, QueryValidatorOutstandingRewardsResponse, QueryValidatorCommissionRequest, QueryValidatorCommissionResponse, QueryValidatorSlashesRequest, QueryValidatorSlashesResponse, QueryDelegationRewardsRequest, QueryDelegationRewardsResponse, QueryDelegationTotalRewardsRequest, QueryDelegationTotalRewardsResponse, QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponse, QueryDelegatorWithdrawAddressRequest, QueryDelegatorWithdrawAddressResponse, QueryCommunityPoolRequest, QueryCommunityPoolResponse, QueryTokenizeShareRecordRewardRequest, QueryTokenizeShareRecordRewardResponse } from "./query";
 /** Query defines the RPC service */
 export interface Query {
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
@@ -12,6 +12,7 @@ export interface Query {
     delegatorValidators(request: QueryDelegatorValidatorsRequest): Promise<QueryDelegatorValidatorsResponse>;
     delegatorWithdrawAddress(request: QueryDelegatorWithdrawAddressRequest): Promise<QueryDelegatorWithdrawAddressResponse>;
     communityPool(request?: QueryCommunityPoolRequest): Promise<QueryCommunityPoolResponse>;
+    tokenizeShareRecordReward(request: QueryTokenizeShareRecordRewardRequest): Promise<QueryTokenizeShareRecordRewardResponse>;
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
@@ -25,6 +26,7 @@ export declare class QueryClientImpl implements Query {
     delegatorValidators(request: QueryDelegatorValidatorsRequest): Promise<QueryDelegatorValidatorsResponse>;
     delegatorWithdrawAddress(request: QueryDelegatorWithdrawAddressRequest): Promise<QueryDelegatorWithdrawAddressResponse>;
     communityPool(request?: QueryCommunityPoolRequest): Promise<QueryCommunityPoolResponse>;
+    tokenizeShareRecordReward(request: QueryTokenizeShareRecordRewardRequest): Promise<QueryTokenizeShareRecordRewardResponse>;
 }
 export declare const createRpcQueryExtension: (base: QueryClient) => {
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
@@ -36,4 +38,5 @@ export declare const createRpcQueryExtension: (base: QueryClient) => {
     delegatorValidators(request: QueryDelegatorValidatorsRequest): Promise<QueryDelegatorValidatorsResponse>;
     delegatorWithdrawAddress(request: QueryDelegatorWithdrawAddressRequest): Promise<QueryDelegatorWithdrawAddressResponse>;
     communityPool(request?: QueryCommunityPoolRequest): Promise<QueryCommunityPoolResponse>;
+    tokenizeShareRecordReward(request: QueryTokenizeShareRecordRewardRequest): Promise<QueryTokenizeShareRecordRewardResponse>;
 };

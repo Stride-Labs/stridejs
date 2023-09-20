@@ -142,6 +142,7 @@ export interface VersionInfo {
     buildTags: string;
     goVersion: string;
     buildDeps: Module[];
+    /** Since: cosmos-sdk 0.43 */
     cosmosSdkVersion: string;
 }
 /** VersionInfo is the type for the GetNodeInfoResponse message. */
@@ -153,6 +154,7 @@ export interface VersionInfoSDKType {
     build_tags: string;
     go_version: string;
     build_deps: ModuleSDKType[];
+    /** Since: cosmos-sdk 0.43 */
     cosmos_sdk_version: string;
 }
 /** Module is the type for VersionInfo */

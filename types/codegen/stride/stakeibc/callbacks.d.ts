@@ -1,12 +1,13 @@
 import { Coin, CoinSDKType } from "../../cosmos/base/v1beta1/coin";
+import { LSMTokenDeposit, LSMTokenDepositSDKType } from "../records/records";
+import { HostZone, HostZoneSDKType } from "./host_zone";
+import { Validator, ValidatorSDKType } from "./validator";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
-/** ---------------------- Delegation Callbacks ---------------------- // */
 export interface SplitDelegation {
     validator: string;
     amount: string;
 }
-/** ---------------------- Delegation Callbacks ---------------------- // */
 export interface SplitDelegationSDKType {
     validator: string;
     amount: string;
@@ -31,34 +32,28 @@ export interface ClaimCallbackSDKType {
     chain_id: string;
     epoch_number: Long;
 }
-/** ---------------------- Reinvest Callback ---------------------- // */
 export interface ReinvestCallback {
     reinvestAmount: Coin;
     hostZoneId: string;
 }
-/** ---------------------- Reinvest Callback ---------------------- // */
 export interface ReinvestCallbackSDKType {
     reinvest_amount: CoinSDKType;
     host_zone_id: string;
 }
-/** ---------------------- Undelegation Callbacks ---------------------- // */
 export interface UndelegateCallback {
     hostZoneId: string;
     splitDelegations: SplitDelegation[];
     epochUnbondingRecordIds: Long[];
 }
-/** ---------------------- Undelegation Callbacks ---------------------- // */
 export interface UndelegateCallbackSDKType {
     host_zone_id: string;
     split_delegations: SplitDelegationSDKType[];
     epoch_unbonding_record_ids: Long[];
 }
-/** ---------------------- Redemption Callbacks ---------------------- // */
 export interface RedemptionCallback {
     hostZoneId: string;
     epochUnbondingRecordIds: Long[];
 }
-/** ---------------------- Redemption Callbacks ---------------------- // */
 export interface RedemptionCallbackSDKType {
     host_zone_id: string;
     epoch_unbonding_record_ids: Long[];
@@ -80,6 +75,36 @@ export interface RebalanceCallback {
 export interface RebalanceCallbackSDKType {
     host_zone_id: string;
     rebalancings: RebalancingSDKType[];
+}
+export interface DetokenizeSharesCallback {
+    deposit: LSMTokenDeposit;
+}
+export interface DetokenizeSharesCallbackSDKType {
+    deposit: LSMTokenDepositSDKType;
+}
+export interface LSMLiquidStake {
+    deposit: LSMTokenDeposit;
+    hostZone: HostZone;
+    validator: Validator;
+}
+export interface LSMLiquidStakeSDKType {
+    deposit: LSMTokenDepositSDKType;
+    host_zone: HostZoneSDKType;
+    validator: ValidatorSDKType;
+}
+export interface ValidatorExchangeRateQueryCallback {
+    lsmLiquidStake: LSMLiquidStake;
+}
+export interface ValidatorExchangeRateQueryCallbackSDKType {
+    lsm_liquid_stake: LSMLiquidStakeSDKType;
+}
+export interface DelegatorSharesQueryCallback {
+    /** Validator delegation at the time the query is submitted */
+    initialValidatorDelegation: string;
+}
+export interface DelegatorSharesQueryCallbackSDKType {
+    /** Validator delegation at the time the query is submitted */
+    initial_validator_delegation: string;
 }
 export declare const SplitDelegation: {
     encode(message: SplitDelegation, writer?: _m0.Writer): _m0.Writer;
@@ -120,4 +145,24 @@ export declare const RebalanceCallback: {
     encode(message: RebalanceCallback, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): RebalanceCallback;
     fromPartial(object: DeepPartial<RebalanceCallback>): RebalanceCallback;
+};
+export declare const DetokenizeSharesCallback: {
+    encode(message: DetokenizeSharesCallback, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DetokenizeSharesCallback;
+    fromPartial(object: DeepPartial<DetokenizeSharesCallback>): DetokenizeSharesCallback;
+};
+export declare const LSMLiquidStake: {
+    encode(message: LSMLiquidStake, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): LSMLiquidStake;
+    fromPartial(object: DeepPartial<LSMLiquidStake>): LSMLiquidStake;
+};
+export declare const ValidatorExchangeRateQueryCallback: {
+    encode(message: ValidatorExchangeRateQueryCallback, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorExchangeRateQueryCallback;
+    fromPartial(object: DeepPartial<ValidatorExchangeRateQueryCallback>): ValidatorExchangeRateQueryCallback;
+};
+export declare const DelegatorSharesQueryCallback: {
+    encode(message: DelegatorSharesQueryCallback, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): DelegatorSharesQueryCallback;
+    fromPartial(object: DeepPartial<DelegatorSharesQueryCallback>): DelegatorSharesQueryCallback;
 };

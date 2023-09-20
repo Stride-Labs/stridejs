@@ -1,7 +1,7 @@
 import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryAllRateLimitsRequest, QueryAllRateLimitsResponse, QueryRateLimitRequest, QueryRateLimitResponse, QueryRateLimitsByChainIdRequest, QueryRateLimitsByChainIdResponse, QueryRateLimitsByChannelIdRequest, QueryRateLimitsByChannelIdResponse, QueryAllBlacklistedDenomsRequest, QueryAllBlacklistedDenomsResponse, QueryAllWhitelistedAddressesRequest, QueryAllWhitelistedAddressesResponse } from "./query";
+import { QueryAllRateLimitsRequest, QueryAllRateLimitsResponse, QueryRateLimitRequest, QueryRateLimitResponse, QueryRateLimitsByChainIdRequest, QueryRateLimitsByChainIdResponse, QueryRateLimitsByChannelIdRequest, QueryRateLimitsByChannelIdResponse } from "./query";
 /** Query defines the RPC service */
 
 export interface Query {
@@ -17,12 +17,6 @@ export interface Query {
   rateLimitsByChannelId(request: QueryRateLimitsByChannelIdRequest): Promise<QueryRateLimitsByChannelIdResponse>;
   /*null*/
 
-  allBlacklistedDenoms(request?: QueryAllBlacklistedDenomsRequest): Promise<QueryAllBlacklistedDenomsResponse>;
-  /*null*/
-
-  allWhitelistedAddresses(request?: QueryAllWhitelistedAddressesRequest): Promise<QueryAllWhitelistedAddressesResponse>;
-  /*null*/
-
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
@@ -33,8 +27,6 @@ export class QueryClientImpl implements Query {
     this.rateLimit = this.rateLimit.bind(this);
     this.rateLimitsByChainId = this.rateLimitsByChainId.bind(this);
     this.rateLimitsByChannelId = this.rateLimitsByChannelId.bind(this);
-    this.allBlacklistedDenoms = this.allBlacklistedDenoms.bind(this);
-    this.allWhitelistedAddresses = this.allWhitelistedAddresses.bind(this);
   }
 
   allRateLimits(request: QueryAllRateLimitsRequest = {}): Promise<QueryAllRateLimitsResponse> {
@@ -61,18 +53,6 @@ export class QueryClientImpl implements Query {
     return promise.then(data => QueryRateLimitsByChannelIdResponse.decode(new _m0.Reader(data)));
   }
 
-  allBlacklistedDenoms(request: QueryAllBlacklistedDenomsRequest = {}): Promise<QueryAllBlacklistedDenomsResponse> {
-    const data = QueryAllBlacklistedDenomsRequest.encode(request).finish();
-    const promise = this.rpc.request("stride.ratelimit.Query", "AllBlacklistedDenoms", data);
-    return promise.then(data => QueryAllBlacklistedDenomsResponse.decode(new _m0.Reader(data)));
-  }
-
-  allWhitelistedAddresses(request: QueryAllWhitelistedAddressesRequest = {}): Promise<QueryAllWhitelistedAddressesResponse> {
-    const data = QueryAllWhitelistedAddressesRequest.encode(request).finish();
-    const promise = this.rpc.request("stride.ratelimit.Query", "AllWhitelistedAddresses", data);
-    return promise.then(data => QueryAllWhitelistedAddressesResponse.decode(new _m0.Reader(data)));
-  }
-
 }
 export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
@@ -92,14 +72,6 @@ export const createRpcQueryExtension = (base: QueryClient) => {
 
     rateLimitsByChannelId(request: QueryRateLimitsByChannelIdRequest): Promise<QueryRateLimitsByChannelIdResponse> {
       return queryService.rateLimitsByChannelId(request);
-    },
-
-    allBlacklistedDenoms(request?: QueryAllBlacklistedDenomsRequest): Promise<QueryAllBlacklistedDenomsResponse> {
-      return queryService.allBlacklistedDenoms(request);
-    },
-
-    allWhitelistedAddresses(request?: QueryAllWhitelistedAddressesRequest): Promise<QueryAllWhitelistedAddressesResponse> {
-      return queryService.allWhitelistedAddresses(request);
     }
 
   };

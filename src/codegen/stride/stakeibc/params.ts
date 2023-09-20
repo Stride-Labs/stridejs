@@ -2,7 +2,7 @@ import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
 /**
  * Params defines the parameters for the module.
- * next id: 18
+ * next id: 20
  */
 
 export interface Params {
@@ -21,12 +21,12 @@ export interface Params {
   defaultMinRedemptionRateThreshold: Long;
   defaultMaxRedemptionRateThreshold: Long;
   ibcTransferTimeoutNanos: Long;
-  safetyNumValidators: Long;
   safetyMaxSlashPercent: Long;
+  validatorSlashQueryThreshold: Long;
 }
 /**
  * Params defines the parameters for the module.
- * next id: 18
+ * next id: 20
  */
 
 export interface ParamsSDKType {
@@ -45,8 +45,8 @@ export interface ParamsSDKType {
   default_min_redemption_rate_threshold: Long;
   default_max_redemption_rate_threshold: Long;
   ibc_transfer_timeout_nanos: Long;
-  safety_num_validators: Long;
   safety_max_slash_percent: Long;
+  validator_slash_query_threshold: Long;
 }
 
 function createBaseParams(): Params {
@@ -65,8 +65,8 @@ function createBaseParams(): Params {
     defaultMinRedemptionRateThreshold: Long.UZERO,
     defaultMaxRedemptionRateThreshold: Long.UZERO,
     ibcTransferTimeoutNanos: Long.UZERO,
-    safetyNumValidators: Long.UZERO,
-    safetyMaxSlashPercent: Long.UZERO
+    safetyMaxSlashPercent: Long.UZERO,
+    validatorSlashQueryThreshold: Long.UZERO
   };
 }
 
@@ -128,12 +128,12 @@ export const Params = {
       writer.uint32(128).uint64(message.ibcTransferTimeoutNanos);
     }
 
-    if (!message.safetyNumValidators.isZero()) {
-      writer.uint32(136).uint64(message.safetyNumValidators);
-    }
-
     if (!message.safetyMaxSlashPercent.isZero()) {
       writer.uint32(144).uint64(message.safetyMaxSlashPercent);
+    }
+
+    if (!message.validatorSlashQueryThreshold.isZero()) {
+      writer.uint32(152).uint64(message.validatorSlashQueryThreshold);
     }
 
     return writer;
@@ -204,12 +204,12 @@ export const Params = {
           message.ibcTransferTimeoutNanos = (reader.uint64() as Long);
           break;
 
-        case 17:
-          message.safetyNumValidators = (reader.uint64() as Long);
-          break;
-
         case 18:
           message.safetyMaxSlashPercent = (reader.uint64() as Long);
+          break;
+
+        case 19:
+          message.validatorSlashQueryThreshold = (reader.uint64() as Long);
           break;
 
         default:
@@ -237,8 +237,8 @@ export const Params = {
     message.defaultMinRedemptionRateThreshold = object.defaultMinRedemptionRateThreshold !== undefined && object.defaultMinRedemptionRateThreshold !== null ? Long.fromValue(object.defaultMinRedemptionRateThreshold) : Long.UZERO;
     message.defaultMaxRedemptionRateThreshold = object.defaultMaxRedemptionRateThreshold !== undefined && object.defaultMaxRedemptionRateThreshold !== null ? Long.fromValue(object.defaultMaxRedemptionRateThreshold) : Long.UZERO;
     message.ibcTransferTimeoutNanos = object.ibcTransferTimeoutNanos !== undefined && object.ibcTransferTimeoutNanos !== null ? Long.fromValue(object.ibcTransferTimeoutNanos) : Long.UZERO;
-    message.safetyNumValidators = object.safetyNumValidators !== undefined && object.safetyNumValidators !== null ? Long.fromValue(object.safetyNumValidators) : Long.UZERO;
     message.safetyMaxSlashPercent = object.safetyMaxSlashPercent !== undefined && object.safetyMaxSlashPercent !== null ? Long.fromValue(object.safetyMaxSlashPercent) : Long.UZERO;
+    message.validatorSlashQueryThreshold = object.validatorSlashQueryThreshold !== undefined && object.validatorSlashQueryThreshold !== null ? Long.fromValue(object.validatorSlashQueryThreshold) : Long.UZERO;
     return message;
   }
 

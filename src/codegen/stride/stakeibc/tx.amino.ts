@@ -1,13 +1,21 @@
 import { iCAAccountTypeFromJSON } from "./ica_account";
 import { AminoMsg } from "@cosmjs/amino";
 import { Long } from "@osmonauts/helpers";
-import { MsgLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
+import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
 export interface AminoMsgLiquidStake extends AminoMsg {
   type: "stakeibc/LiquidStake";
   value: {
     creator: string;
     amount: string;
     host_denom: string;
+  };
+}
+export interface AminoMsgLSMLiquidStake extends AminoMsg {
+  type: "stakeibc/LSMLiquidStake";
+  value: {
+    creator: string;
+    amount: string;
+    lsm_token_ibc_denom: string;
   };
 }
 export interface AminoMsgRedeemStake extends AminoMsg {
@@ -28,9 +36,10 @@ export interface AminoMsgRegisterHostZone extends AminoMsg {
     ibc_denom: string;
     creator: string;
     transfer_channel_id: string;
-    unbonding_frequency: string;
+    unbonding_period: string;
     min_redemption_rate: string;
     max_redemption_rate: string;
+    lsm_liquid_stake_enabled: boolean;
   };
 }
 export interface AminoMsgClaimUndelegatedTokens extends AminoMsg {
@@ -58,12 +67,13 @@ export interface AminoMsgAddValidators extends AminoMsg {
     validators: {
       name: string;
       address: string;
-      delegation_amt: string;
       weight: string;
-      internal_exchange_rate: {
-        internal_tokens_to_shares_rate: string;
-        epoch_number: string;
-      };
+      delegation: string;
+      slash_query_progress_tracker: string;
+      slash_query_checkpoint: string;
+      internal_shares_to_tokens_rate: string;
+      delegation_changes_in_progress: string;
+      slash_query_in_progress: boolean;
     }[];
   };
 }
@@ -135,6 +145,31 @@ export const AminoConverter = {
       };
     }
   },
+  "/stride.stakeibc.MsgLSMLiquidStake": {
+    aminoType: "stakeibc/LSMLiquidStake",
+    toAmino: ({
+      creator,
+      amount,
+      lsmTokenIbcDenom
+    }: MsgLSMLiquidStake): AminoMsgLSMLiquidStake["value"] => {
+      return {
+        creator,
+        amount,
+        lsm_token_ibc_denom: lsmTokenIbcDenom
+      };
+    },
+    fromAmino: ({
+      creator,
+      amount,
+      lsm_token_ibc_denom
+    }: AminoMsgLSMLiquidStake["value"]): MsgLSMLiquidStake => {
+      return {
+        creator,
+        amount,
+        lsmTokenIbcDenom: lsm_token_ibc_denom
+      };
+    }
+  },
   "/stride.stakeibc.MsgRedeemStake": {
     aminoType: "stakeibc/RedeemStake",
     toAmino: ({
@@ -173,9 +208,10 @@ export const AminoConverter = {
       ibcDenom,
       creator,
       transferChannelId,
-      unbondingFrequency,
+      unbondingPeriod,
       minRedemptionRate,
-      maxRedemptionRate
+      maxRedemptionRate,
+      lsmLiquidStakeEnabled
     }: MsgRegisterHostZone): AminoMsgRegisterHostZone["value"] => {
       return {
         connection_id: connectionId,
@@ -184,9 +220,10 @@ export const AminoConverter = {
         ibc_denom: ibcDenom,
         creator,
         transfer_channel_id: transferChannelId,
-        unbonding_frequency: unbondingFrequency.toString(),
+        unbonding_period: unbondingPeriod.toString(),
         min_redemption_rate: minRedemptionRate,
-        max_redemption_rate: maxRedemptionRate
+        max_redemption_rate: maxRedemptionRate,
+        lsm_liquid_stake_enabled: lsmLiquidStakeEnabled
       };
     },
     fromAmino: ({
@@ -196,9 +233,10 @@ export const AminoConverter = {
       ibc_denom,
       creator,
       transfer_channel_id,
-      unbonding_frequency,
+      unbonding_period,
       min_redemption_rate,
-      max_redemption_rate
+      max_redemption_rate,
+      lsm_liquid_stake_enabled
     }: AminoMsgRegisterHostZone["value"]): MsgRegisterHostZone => {
       return {
         connectionId: connection_id,
@@ -207,9 +245,10 @@ export const AminoConverter = {
         ibcDenom: ibc_denom,
         creator,
         transferChannelId: transfer_channel_id,
-        unbondingFrequency: Long.fromString(unbonding_frequency),
+        unbondingPeriod: Long.fromString(unbonding_period),
         minRedemptionRate: min_redemption_rate,
-        maxRedemptionRate: max_redemption_rate
+        maxRedemptionRate: max_redemption_rate,
+        lsmLiquidStakeEnabled: lsm_liquid_stake_enabled
       };
     }
   },
@@ -280,12 +319,13 @@ export const AminoConverter = {
         validators: validators.map(el0 => ({
           name: el0.name,
           address: el0.address,
-          delegation_amt: el0.delegationAmt,
           weight: el0.weight.toString(),
-          internal_exchange_rate: {
-            internal_tokens_to_shares_rate: el0.internalExchangeRate.internalTokensToSharesRate,
-            epoch_number: el0.internalExchangeRate.epochNumber.toString()
-          }
+          delegation: el0.delegation,
+          slash_query_progress_tracker: el0.slashQueryProgressTracker,
+          slash_query_checkpoint: el0.slashQueryCheckpoint,
+          internal_shares_to_tokens_rate: el0.internalSharesToTokensRate,
+          delegation_changes_in_progress: el0.delegationChangesInProgress.toString(),
+          slash_query_in_progress: el0.slashQueryInProgress
         }))
       };
     },
@@ -300,12 +340,13 @@ export const AminoConverter = {
         validators: validators.map(el0 => ({
           name: el0.name,
           address: el0.address,
-          delegationAmt: el0.delegation_amt,
           weight: Long.fromString(el0.weight),
-          internalExchangeRate: {
-            internalTokensToSharesRate: el0.internal_exchange_rate.internal_tokens_to_shares_rate,
-            epochNumber: Long.fromString(el0.internal_exchange_rate.epoch_number)
-          }
+          delegation: el0.delegation,
+          slashQueryProgressTracker: el0.slash_query_progress_tracker,
+          slashQueryCheckpoint: el0.slash_query_checkpoint,
+          internalSharesToTokensRate: el0.internal_shares_to_tokens_rate,
+          delegationChangesInProgress: Long.fromString(el0.delegation_changes_in_progress),
+          slashQueryInProgress: el0.slash_query_in_progress
         }))
       };
     }

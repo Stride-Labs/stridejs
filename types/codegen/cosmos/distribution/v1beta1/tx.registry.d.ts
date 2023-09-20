@@ -1,5 +1,5 @@
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
-import { MsgSetWithdrawAddress, MsgWithdrawDelegatorReward, MsgWithdrawValidatorCommission, MsgFundCommunityPool } from "./tx";
+import { MsgSetWithdrawAddress, MsgWithdrawDelegatorReward, MsgWithdrawValidatorCommission, MsgWithdrawTokenizeShareRecordReward, MsgWithdrawAllTokenizeShareRecordReward, MsgFundCommunityPool } from "./tx";
 export declare const registry: ReadonlyArray<[string, GeneratedType]>;
 export declare const load: (protoRegistry: Registry) => void;
 export declare const MessageComposer: {
@@ -13,6 +13,14 @@ export declare const MessageComposer: {
             value: Uint8Array;
         };
         withdrawValidatorCommission(value: MsgWithdrawValidatorCommission): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        withdrawTokenizeShareRecordReward(value: MsgWithdrawTokenizeShareRecordReward): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        withdrawAllTokenizeShareRecordReward(value: MsgWithdrawAllTokenizeShareRecordReward): {
             typeUrl: string;
             value: Uint8Array;
         };
@@ -34,6 +42,14 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgWithdrawValidatorCommission;
         };
+        withdrawTokenizeShareRecordReward(value: MsgWithdrawTokenizeShareRecordReward): {
+            typeUrl: string;
+            value: MsgWithdrawTokenizeShareRecordReward;
+        };
+        withdrawAllTokenizeShareRecordReward(value: MsgWithdrawAllTokenizeShareRecordReward): {
+            typeUrl: string;
+            value: MsgWithdrawAllTokenizeShareRecordReward;
+        };
         fundCommunityPool(value: MsgFundCommunityPool): {
             typeUrl: string;
             value: MsgFundCommunityPool;
@@ -51,6 +67,14 @@ export declare const MessageComposer: {
         withdrawValidatorCommission(value: MsgWithdrawValidatorCommission): {
             typeUrl: string;
             value: MsgWithdrawValidatorCommission;
+        };
+        withdrawTokenizeShareRecordReward(value: MsgWithdrawTokenizeShareRecordReward): {
+            typeUrl: string;
+            value: MsgWithdrawTokenizeShareRecordReward;
+        };
+        withdrawAllTokenizeShareRecordReward(value: MsgWithdrawAllTokenizeShareRecordReward): {
+            typeUrl: string;
+            value: MsgWithdrawAllTokenizeShareRecordReward;
         };
         fundCommunityPool(value: MsgFundCommunityPool): {
             typeUrl: string;

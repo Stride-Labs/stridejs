@@ -2,7 +2,8 @@ import { join } from 'path';
 import telescope from '@osmonauts/telescope';
 import { sync as rimraf } from 'rimraf';
 
-const protoDirs = [join(__dirname, '../stride/build')];
+// const protoDirs = [join(__dirname, '../stride/build')];
+const protoDirs = [join(__dirname, '../stride-build'), join(__dirname, '../cosmos/proto'), join(__dirname, '../cosmos/third_party/proto')];
 const outPath = join(__dirname, '../src/codegen');
 
 rimraf(outPath);
@@ -27,6 +28,9 @@ telescope({
       exceptions: {
         '/stride.stakeibc.MsgLiquidStake': {
           aminoType: 'stakeibc/LiquidStake'
+        },
+        '/stride.stakeibc.MsgLSMLiquidStake': {
+          aminoType: 'stakeibc/LSMLiquidStake'
         },
         '/stride.stakeibc.MsgRedeemStake': {
           aminoType: 'stakeibc/RedeemStake'

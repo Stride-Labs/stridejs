@@ -1,14 +1,13 @@
 import { Coin, CoinSDKType } from "../../cosmos/base/v1beta1/coin";
+import { LSMTokenDeposit, LSMTokenDepositSDKType } from "../records/records";
+import { HostZone, HostZoneSDKType } from "./host_zone";
+import { Validator, ValidatorSDKType } from "./validator";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
-/** ---------------------- Delegation Callbacks ---------------------- // */
-
 export interface SplitDelegation {
   validator: string;
   amount: string;
 }
-/** ---------------------- Delegation Callbacks ---------------------- // */
-
 export interface SplitDelegationSDKType {
   validator: string;
   amount: string;
@@ -33,40 +32,28 @@ export interface ClaimCallbackSDKType {
   chain_id: string;
   epoch_number: Long;
 }
-/** ---------------------- Reinvest Callback ---------------------- // */
-
 export interface ReinvestCallback {
   reinvestAmount: Coin;
   hostZoneId: string;
 }
-/** ---------------------- Reinvest Callback ---------------------- // */
-
 export interface ReinvestCallbackSDKType {
   reinvest_amount: CoinSDKType;
   host_zone_id: string;
 }
-/** ---------------------- Undelegation Callbacks ---------------------- // */
-
 export interface UndelegateCallback {
   hostZoneId: string;
   splitDelegations: SplitDelegation[];
   epochUnbondingRecordIds: Long[];
 }
-/** ---------------------- Undelegation Callbacks ---------------------- // */
-
 export interface UndelegateCallbackSDKType {
   host_zone_id: string;
   split_delegations: SplitDelegationSDKType[];
   epoch_unbonding_record_ids: Long[];
 }
-/** ---------------------- Redemption Callbacks ---------------------- // */
-
 export interface RedemptionCallback {
   hostZoneId: string;
   epochUnbondingRecordIds: Long[];
 }
-/** ---------------------- Redemption Callbacks ---------------------- // */
-
 export interface RedemptionCallbackSDKType {
   host_zone_id: string;
   epoch_unbonding_record_ids: Long[];
@@ -88,6 +75,36 @@ export interface RebalanceCallback {
 export interface RebalanceCallbackSDKType {
   host_zone_id: string;
   rebalancings: RebalancingSDKType[];
+}
+export interface DetokenizeSharesCallback {
+  deposit: LSMTokenDeposit;
+}
+export interface DetokenizeSharesCallbackSDKType {
+  deposit: LSMTokenDepositSDKType;
+}
+export interface LSMLiquidStake {
+  deposit: LSMTokenDeposit;
+  hostZone: HostZone;
+  validator: Validator;
+}
+export interface LSMLiquidStakeSDKType {
+  deposit: LSMTokenDepositSDKType;
+  host_zone: HostZoneSDKType;
+  validator: ValidatorSDKType;
+}
+export interface ValidatorExchangeRateQueryCallback {
+  lsmLiquidStake: LSMLiquidStake;
+}
+export interface ValidatorExchangeRateQueryCallbackSDKType {
+  lsm_liquid_stake: LSMLiquidStakeSDKType;
+}
+export interface DelegatorSharesQueryCallback {
+  /** Validator delegation at the time the query is submitted */
+  initialValidatorDelegation: string;
+}
+export interface DelegatorSharesQueryCallbackSDKType {
+  /** Validator delegation at the time the query is submitted */
+  initial_validator_delegation: string;
 }
 
 function createBaseSplitDelegation(): SplitDelegation {
@@ -589,6 +606,206 @@ export const RebalanceCallback = {
     const message = createBaseRebalanceCallback();
     message.hostZoneId = object.hostZoneId ?? "";
     message.rebalancings = object.rebalancings?.map(e => Rebalancing.fromPartial(e)) || [];
+    return message;
+  }
+
+};
+
+function createBaseDetokenizeSharesCallback(): DetokenizeSharesCallback {
+  return {
+    deposit: undefined
+  };
+}
+
+export const DetokenizeSharesCallback = {
+  encode(message: DetokenizeSharesCallback, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.deposit !== undefined) {
+      LSMTokenDeposit.encode(message.deposit, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DetokenizeSharesCallback {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDetokenizeSharesCallback();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.deposit = LSMTokenDeposit.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<DetokenizeSharesCallback>): DetokenizeSharesCallback {
+    const message = createBaseDetokenizeSharesCallback();
+    message.deposit = object.deposit !== undefined && object.deposit !== null ? LSMTokenDeposit.fromPartial(object.deposit) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseLSMLiquidStake(): LSMLiquidStake {
+  return {
+    deposit: undefined,
+    hostZone: undefined,
+    validator: undefined
+  };
+}
+
+export const LSMLiquidStake = {
+  encode(message: LSMLiquidStake, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.deposit !== undefined) {
+      LSMTokenDeposit.encode(message.deposit, writer.uint32(10).fork()).ldelim();
+    }
+
+    if (message.hostZone !== undefined) {
+      HostZone.encode(message.hostZone, writer.uint32(18).fork()).ldelim();
+    }
+
+    if (message.validator !== undefined) {
+      Validator.encode(message.validator, writer.uint32(26).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): LSMLiquidStake {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseLSMLiquidStake();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.deposit = LSMTokenDeposit.decode(reader, reader.uint32());
+          break;
+
+        case 2:
+          message.hostZone = HostZone.decode(reader, reader.uint32());
+          break;
+
+        case 3:
+          message.validator = Validator.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<LSMLiquidStake>): LSMLiquidStake {
+    const message = createBaseLSMLiquidStake();
+    message.deposit = object.deposit !== undefined && object.deposit !== null ? LSMTokenDeposit.fromPartial(object.deposit) : undefined;
+    message.hostZone = object.hostZone !== undefined && object.hostZone !== null ? HostZone.fromPartial(object.hostZone) : undefined;
+    message.validator = object.validator !== undefined && object.validator !== null ? Validator.fromPartial(object.validator) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseValidatorExchangeRateQueryCallback(): ValidatorExchangeRateQueryCallback {
+  return {
+    lsmLiquidStake: undefined
+  };
+}
+
+export const ValidatorExchangeRateQueryCallback = {
+  encode(message: ValidatorExchangeRateQueryCallback, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.lsmLiquidStake !== undefined) {
+      LSMLiquidStake.encode(message.lsmLiquidStake, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorExchangeRateQueryCallback {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseValidatorExchangeRateQueryCallback();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.lsmLiquidStake = LSMLiquidStake.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<ValidatorExchangeRateQueryCallback>): ValidatorExchangeRateQueryCallback {
+    const message = createBaseValidatorExchangeRateQueryCallback();
+    message.lsmLiquidStake = object.lsmLiquidStake !== undefined && object.lsmLiquidStake !== null ? LSMLiquidStake.fromPartial(object.lsmLiquidStake) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseDelegatorSharesQueryCallback(): DelegatorSharesQueryCallback {
+  return {
+    initialValidatorDelegation: ""
+  };
+}
+
+export const DelegatorSharesQueryCallback = {
+  encode(message: DelegatorSharesQueryCallback, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.initialValidatorDelegation !== "") {
+      writer.uint32(10).string(message.initialValidatorDelegation);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): DelegatorSharesQueryCallback {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseDelegatorSharesQueryCallback();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.initialValidatorDelegation = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<DelegatorSharesQueryCallback>): DelegatorSharesQueryCallback {
+    const message = createBaseDelegatorSharesQueryCallback();
+    message.initialValidatorDelegation = object.initialValidatorDelegation ?? "";
     return message;
   }
 

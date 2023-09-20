@@ -1,5 +1,6 @@
 import { PageRequest, PageRequestSDKType, PageResponse, PageResponseSDKType } from "../../cosmos/base/query/v1beta1/pagination";
-import { Params, ParamsSDKType, DepositRecord, DepositRecordSDKType, UserRedemptionRecord, UserRedemptionRecordSDKType, EpochUnbondingRecord, EpochUnbondingRecordSDKType } from "./genesis";
+import { Params, ParamsSDKType } from "./params";
+import { DepositRecord, DepositRecordSDKType, UserRedemptionRecord, UserRedemptionRecordSDKType, EpochUnbondingRecord, EpochUnbondingRecordSDKType, LSMTokenDeposit, LSMTokenDepositSDKType } from "./records";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
@@ -135,6 +136,36 @@ export interface QueryAllEpochUnbondingRecordResponse {
 export interface QueryAllEpochUnbondingRecordResponseSDKType {
   epoch_unbonding_record: EpochUnbondingRecordSDKType[];
   pagination?: PageResponseSDKType;
+}
+export interface QueryLSMDepositRequest {
+  chainId: string;
+  denom: string;
+}
+export interface QueryLSMDepositRequestSDKType {
+  chain_id: string;
+  denom: string;
+}
+export interface QueryLSMDepositResponse {
+  deposit: LSMTokenDeposit;
+}
+export interface QueryLSMDepositResponseSDKType {
+  deposit: LSMTokenDepositSDKType;
+}
+export interface QueryLSMDepositsRequest {
+  chainId?: string;
+  validatorAddress?: string;
+  status?: string;
+}
+export interface QueryLSMDepositsRequestSDKType {
+  chain_id?: string;
+  validator_address?: string;
+  status?: string;
+}
+export interface QueryLSMDepositsResponse {
+  deposits: LSMTokenDeposit[];
+}
+export interface QueryLSMDepositsResponseSDKType {
+  deposits: LSMTokenDepositSDKType[];
 }
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -1011,6 +1042,216 @@ export const QueryAllEpochUnbondingRecordResponse = {
     const message = createBaseQueryAllEpochUnbondingRecordResponse();
     message.epochUnbondingRecord = object.epochUnbondingRecord?.map(e => EpochUnbondingRecord.fromPartial(e)) || [];
     message.pagination = object.pagination !== undefined && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseQueryLSMDepositRequest(): QueryLSMDepositRequest {
+  return {
+    chainId: "",
+    denom: ""
+  };
+}
+
+export const QueryLSMDepositRequest = {
+  encode(message: QueryLSMDepositRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.chainId !== "") {
+      writer.uint32(10).string(message.chainId);
+    }
+
+    if (message.denom !== "") {
+      writer.uint32(18).string(message.denom);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryLSMDepositRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryLSMDepositRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.chainId = reader.string();
+          break;
+
+        case 2:
+          message.denom = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryLSMDepositRequest>): QueryLSMDepositRequest {
+    const message = createBaseQueryLSMDepositRequest();
+    message.chainId = object.chainId ?? "";
+    message.denom = object.denom ?? "";
+    return message;
+  }
+
+};
+
+function createBaseQueryLSMDepositResponse(): QueryLSMDepositResponse {
+  return {
+    deposit: undefined
+  };
+}
+
+export const QueryLSMDepositResponse = {
+  encode(message: QueryLSMDepositResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.deposit !== undefined) {
+      LSMTokenDeposit.encode(message.deposit, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryLSMDepositResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryLSMDepositResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.deposit = LSMTokenDeposit.decode(reader, reader.uint32());
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryLSMDepositResponse>): QueryLSMDepositResponse {
+    const message = createBaseQueryLSMDepositResponse();
+    message.deposit = object.deposit !== undefined && object.deposit !== null ? LSMTokenDeposit.fromPartial(object.deposit) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseQueryLSMDepositsRequest(): QueryLSMDepositsRequest {
+  return {
+    chainId: "",
+    validatorAddress: "",
+    status: ""
+  };
+}
+
+export const QueryLSMDepositsRequest = {
+  encode(message: QueryLSMDepositsRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.chainId !== "") {
+      writer.uint32(10).string(message.chainId);
+    }
+
+    if (message.validatorAddress !== "") {
+      writer.uint32(18).string(message.validatorAddress);
+    }
+
+    if (message.status !== "") {
+      writer.uint32(26).string(message.status);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryLSMDepositsRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryLSMDepositsRequest();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.chainId = reader.string();
+          break;
+
+        case 2:
+          message.validatorAddress = reader.string();
+          break;
+
+        case 3:
+          message.status = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryLSMDepositsRequest>): QueryLSMDepositsRequest {
+    const message = createBaseQueryLSMDepositsRequest();
+    message.chainId = object.chainId ?? "";
+    message.validatorAddress = object.validatorAddress ?? "";
+    message.status = object.status ?? "";
+    return message;
+  }
+
+};
+
+function createBaseQueryLSMDepositsResponse(): QueryLSMDepositsResponse {
+  return {
+    deposits: []
+  };
+}
+
+export const QueryLSMDepositsResponse = {
+  encode(message: QueryLSMDepositsResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.deposits) {
+      LSMTokenDeposit.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryLSMDepositsResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryLSMDepositsResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.deposits.push(LSMTokenDeposit.decode(reader, reader.uint32()));
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryLSMDepositsResponse>): QueryLSMDepositsResponse {
+    const message = createBaseQueryLSMDepositsResponse();
+    message.deposits = object.deposits?.map(e => LSMTokenDeposit.fromPartial(e)) || [];
     return message;
   }
 

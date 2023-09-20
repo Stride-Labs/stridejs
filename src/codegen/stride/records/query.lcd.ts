@@ -1,6 +1,6 @@
 import { setPaginationParams } from "@osmonauts/helpers";
 import { LCDClient } from "@osmonauts/lcd";
-import { QueryParamsRequest, QueryParamsResponseSDKType, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponseSDKType, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponseSDKType, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponseSDKType, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponseSDKType, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponseSDKType, QueryGetDepositRecordRequest, QueryGetDepositRecordResponseSDKType, QueryAllDepositRecordRequest, QueryAllDepositRecordResponseSDKType, QueryDepositRecordByHostRequest, QueryDepositRecordByHostResponseSDKType } from "./query";
+import { QueryParamsRequest, QueryParamsResponseSDKType, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponseSDKType, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponseSDKType, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponseSDKType, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponseSDKType, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponseSDKType, QueryGetDepositRecordRequest, QueryGetDepositRecordResponseSDKType, QueryAllDepositRecordRequest, QueryAllDepositRecordResponseSDKType, QueryDepositRecordByHostRequest, QueryDepositRecordByHostResponseSDKType, QueryLSMDepositRequest, QueryLSMDepositResponseSDKType, QueryLSMDepositsRequest, QueryLSMDepositsResponseSDKType } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
 
@@ -19,6 +19,8 @@ export class LCDQueryClient {
     this.depositRecord = this.depositRecord.bind(this);
     this.depositRecordAll = this.depositRecordAll.bind(this);
     this.depositRecordByHost = this.depositRecordByHost.bind(this);
+    this.lSMDeposit = this.lSMDeposit.bind(this);
+    this.lSMDeposits = this.lSMDeposits.bind(this);
   }
   /* Parameters queries the parameters of the module. */
 
@@ -120,6 +122,38 @@ export class LCDQueryClient {
   async depositRecordByHost(params: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponseSDKType> {
     const endpoint = `Stride-Labs/stride/records/deposit_record_by_host_zone/${params.hostZoneId}`;
     return await this.req.get<QueryDepositRecordByHostResponseSDKType>(endpoint);
+  }
+  /* Queries the existing LSMTokenDeposits for one specific deposit */
+
+
+  async lSMDeposit(params: QueryLSMDepositRequest): Promise<QueryLSMDepositResponseSDKType> {
+    const endpoint = `Stride-Labs/stride/stakeibc/lsm_deposit/${params.chainId}/${params.denom}`;
+    return await this.req.get<QueryLSMDepositResponseSDKType>(endpoint);
+  }
+  /* Queries the existing LSMTokenDeposits for all which match filters
+     intended use:
+     ...stakeibc/lsm_deposits?chain_id=X&validator_address=Y&status=Z */
+
+
+  async lSMDeposits(params: QueryLSMDepositsRequest): Promise<QueryLSMDepositsResponseSDKType> {
+    const options: any = {
+      params: {}
+    };
+
+    if (typeof params?.chainId !== "undefined") {
+      options.params.chain_id = params.chainId;
+    }
+
+    if (typeof params?.validatorAddress !== "undefined") {
+      options.params.validator_address = params.validatorAddress;
+    }
+
+    if (typeof params?.status !== "undefined") {
+      options.params.status = params.status;
+    }
+
+    const endpoint = `Stride-Labs/stride/stakeibc/lsm_deposits`;
+    return await this.req.get<QueryLSMDepositsResponseSDKType>(endpoint, options);
   }
 
 }

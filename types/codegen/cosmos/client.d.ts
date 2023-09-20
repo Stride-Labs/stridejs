@@ -163,6 +163,116 @@ export declare const cosmosAminoConverters: {
             };
         }) => import("./staking/v1beta1/tx").MsgUndelegate;
     };
+    "/cosmos.staking.v1beta1.MsgUnbondValidator": {
+        aminoType: string;
+        toAmino: ({ validatorAddress }: import("./staking/v1beta1/tx").MsgUnbondValidator) => {
+            validator_address: string;
+        };
+        fromAmino: ({ validator_address }: {
+            validator_address: string;
+        }) => import("./staking/v1beta1/tx").MsgUnbondValidator;
+    };
+    "/cosmos.staking.v1beta1.MsgCancelUnbondingDelegation": {
+        aminoType: string;
+        toAmino: ({ delegatorAddress, validatorAddress, amount, creationHeight }: import("./staking/v1beta1/tx").MsgCancelUnbondingDelegation) => {
+            delegator_address: string;
+            validator_address: string;
+            amount: {
+                denom: string;
+                amount: string;
+            };
+            creation_height: string;
+        };
+        fromAmino: ({ delegator_address, validator_address, amount, creation_height }: {
+            delegator_address: string;
+            validator_address: string;
+            amount: {
+                denom: string;
+                amount: string;
+            };
+            creation_height: string;
+        }) => import("./staking/v1beta1/tx").MsgCancelUnbondingDelegation;
+    };
+    "/cosmos.staking.v1beta1.MsgTokenizeShares": {
+        aminoType: string;
+        toAmino: ({ delegatorAddress, validatorAddress, amount, tokenizedShareOwner }: import("./staking/v1beta1/tx").MsgTokenizeShares) => {
+            delegator_address: string;
+            validator_address: string;
+            amount: {
+                denom: string;
+                amount: string;
+            };
+            tokenized_share_owner: string;
+        };
+        fromAmino: ({ delegator_address, validator_address, amount, tokenized_share_owner }: {
+            delegator_address: string;
+            validator_address: string;
+            amount: {
+                denom: string;
+                amount: string;
+            };
+            tokenized_share_owner: string;
+        }) => import("./staking/v1beta1/tx").MsgTokenizeShares;
+    };
+    "/cosmos.staking.v1beta1.MsgRedeemTokensForShares": {
+        aminoType: string;
+        toAmino: ({ delegatorAddress, amount }: import("./staking/v1beta1/tx").MsgRedeemTokensForShares) => {
+            delegator_address: string;
+            amount: {
+                denom: string;
+                amount: string;
+            };
+        };
+        fromAmino: ({ delegator_address, amount }: {
+            delegator_address: string;
+            amount: {
+                denom: string;
+                amount: string;
+            };
+        }) => import("./staking/v1beta1/tx").MsgRedeemTokensForShares;
+    };
+    "/cosmos.staking.v1beta1.MsgTransferTokenizeShareRecord": {
+        aminoType: string;
+        toAmino: ({ tokenizeShareRecordId, sender, newOwner }: import("./staking/v1beta1/tx").MsgTransferTokenizeShareRecord) => {
+            tokenize_share_record_id: string;
+            sender: string;
+            new_owner: string;
+        };
+        fromAmino: ({ tokenize_share_record_id, sender, new_owner }: {
+            tokenize_share_record_id: string;
+            sender: string;
+            new_owner: string;
+        }) => import("./staking/v1beta1/tx").MsgTransferTokenizeShareRecord;
+    };
+    "/cosmos.staking.v1beta1.MsgDisableTokenizeShares": {
+        aminoType: string;
+        toAmino: ({ delegatorAddress }: import("./staking/v1beta1/tx").MsgDisableTokenizeShares) => {
+            delegator_address: string;
+        };
+        fromAmino: ({ delegator_address }: {
+            delegator_address: string;
+        }) => import("./staking/v1beta1/tx").MsgDisableTokenizeShares;
+    };
+    "/cosmos.staking.v1beta1.MsgEnableTokenizeShares": {
+        aminoType: string;
+        toAmino: ({ delegatorAddress }: import("./staking/v1beta1/tx").MsgEnableTokenizeShares) => {
+            delegator_address: string;
+        };
+        fromAmino: ({ delegator_address }: {
+            delegator_address: string;
+        }) => import("./staking/v1beta1/tx").MsgEnableTokenizeShares;
+    };
+    "/cosmos.staking.v1beta1.MsgValidatorBond": {
+        aminoType: string;
+        toAmino: ({ delegatorAddress, validatorAddress }: import("./staking/v1beta1/tx").MsgValidatorBond) => {
+            delegator_address: string;
+            validator_address: string;
+        };
+        fromAmino: ({ delegator_address, validator_address }: {
+            delegator_address: string;
+            validator_address: string;
+        }) => import("./staking/v1beta1/tx").MsgValidatorBond;
+    };
     "/cosmos.slashing.v1beta1.MsgUnjail": {
         aminoType: string;
         toAmino: ({ validatorAddr }: import("./slashing/v1beta1/tx").MsgUnjail) => {
@@ -325,6 +435,26 @@ export declare const cosmosAminoConverters: {
         fromAmino: ({ validator_address }: {
             validator_address: string;
         }) => import("./distribution/v1beta1/tx").MsgWithdrawValidatorCommission;
+    };
+    "/cosmos.distribution.v1beta1.MsgWithdrawTokenizeShareRecordReward": {
+        aminoType: string;
+        toAmino: ({ ownerAddress, recordId }: import("./distribution/v1beta1/tx").MsgWithdrawTokenizeShareRecordReward) => {
+            owner_address: string;
+            record_id: string;
+        };
+        fromAmino: ({ owner_address, record_id }: {
+            owner_address: string;
+            record_id: string;
+        }) => import("./distribution/v1beta1/tx").MsgWithdrawTokenizeShareRecordReward;
+    };
+    "/cosmos.distribution.v1beta1.MsgWithdrawAllTokenizeShareRecordReward": {
+        aminoType: string;
+        toAmino: ({ ownerAddress }: import("./distribution/v1beta1/tx").MsgWithdrawAllTokenizeShareRecordReward) => {
+            owner_address: string;
+        };
+        fromAmino: ({ owner_address }: {
+            owner_address: string;
+        }) => import("./distribution/v1beta1/tx").MsgWithdrawAllTokenizeShareRecordReward;
     };
     "/cosmos.distribution.v1beta1.MsgFundCommunityPool": {
         aminoType: string;
