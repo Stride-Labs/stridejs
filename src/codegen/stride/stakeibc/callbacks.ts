@@ -2,6 +2,7 @@ import { Coin, CoinSDKType } from "../../cosmos/base/v1beta1/coin";
 import { LSMTokenDeposit, LSMTokenDepositSDKType } from "../records/records";
 import { HostZone, HostZoneSDKType } from "./host_zone";
 import { Validator, ValidatorSDKType } from "./validator";
+import { ICAAccountType, ICAAccountTypeSDKType } from "./ica_account";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
 export interface SplitDelegation {
@@ -92,10 +93,10 @@ export interface LSMLiquidStakeSDKType {
   host_zone: HostZoneSDKType;
   validator: ValidatorSDKType;
 }
-export interface ValidatorExchangeRateQueryCallback {
+export interface ValidatorSharesToTokensQueryCallback {
   lsmLiquidStake: LSMLiquidStake;
 }
-export interface ValidatorExchangeRateQueryCallbackSDKType {
+export interface ValidatorSharesToTokensQueryCallbackSDKType {
   lsm_liquid_stake: LSMLiquidStakeSDKType;
 }
 export interface DelegatorSharesQueryCallback {
@@ -105,6 +106,22 @@ export interface DelegatorSharesQueryCallback {
 export interface DelegatorSharesQueryCallbackSDKType {
   /** Validator delegation at the time the query is submitted */
   initial_validator_delegation: string;
+}
+export interface CommunityPoolBalanceQueryCallback {
+  icaType: ICAAccountType;
+  denom: string;
+}
+export interface CommunityPoolBalanceQueryCallbackSDKType {
+  ica_type: ICAAccountTypeSDKType;
+  denom: string;
+}
+export interface TradeRouteCallback {
+  rewardDenom: string;
+  hostDenom: string;
+}
+export interface TradeRouteCallbackSDKType {
+  reward_denom: string;
+  host_denom: string;
 }
 
 function createBaseSplitDelegation(): SplitDelegation {
@@ -721,14 +738,14 @@ export const LSMLiquidStake = {
 
 };
 
-function createBaseValidatorExchangeRateQueryCallback(): ValidatorExchangeRateQueryCallback {
+function createBaseValidatorSharesToTokensQueryCallback(): ValidatorSharesToTokensQueryCallback {
   return {
     lsmLiquidStake: undefined
   };
 }
 
-export const ValidatorExchangeRateQueryCallback = {
-  encode(message: ValidatorExchangeRateQueryCallback, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+export const ValidatorSharesToTokensQueryCallback = {
+  encode(message: ValidatorSharesToTokensQueryCallback, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
     if (message.lsmLiquidStake !== undefined) {
       LSMLiquidStake.encode(message.lsmLiquidStake, writer.uint32(10).fork()).ldelim();
     }
@@ -736,10 +753,10 @@ export const ValidatorExchangeRateQueryCallback = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorExchangeRateQueryCallback {
+  decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorSharesToTokensQueryCallback {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
-    const message = createBaseValidatorExchangeRateQueryCallback();
+    const message = createBaseValidatorSharesToTokensQueryCallback();
 
     while (reader.pos < end) {
       const tag = reader.uint32();
@@ -758,8 +775,8 @@ export const ValidatorExchangeRateQueryCallback = {
     return message;
   },
 
-  fromPartial(object: DeepPartial<ValidatorExchangeRateQueryCallback>): ValidatorExchangeRateQueryCallback {
-    const message = createBaseValidatorExchangeRateQueryCallback();
+  fromPartial(object: DeepPartial<ValidatorSharesToTokensQueryCallback>): ValidatorSharesToTokensQueryCallback {
+    const message = createBaseValidatorSharesToTokensQueryCallback();
     message.lsmLiquidStake = object.lsmLiquidStake !== undefined && object.lsmLiquidStake !== null ? LSMLiquidStake.fromPartial(object.lsmLiquidStake) : undefined;
     return message;
   }
@@ -806,6 +823,116 @@ export const DelegatorSharesQueryCallback = {
   fromPartial(object: DeepPartial<DelegatorSharesQueryCallback>): DelegatorSharesQueryCallback {
     const message = createBaseDelegatorSharesQueryCallback();
     message.initialValidatorDelegation = object.initialValidatorDelegation ?? "";
+    return message;
+  }
+
+};
+
+function createBaseCommunityPoolBalanceQueryCallback(): CommunityPoolBalanceQueryCallback {
+  return {
+    icaType: 0,
+    denom: ""
+  };
+}
+
+export const CommunityPoolBalanceQueryCallback = {
+  encode(message: CommunityPoolBalanceQueryCallback, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.icaType !== 0) {
+      writer.uint32(8).int32(message.icaType);
+    }
+
+    if (message.denom !== "") {
+      writer.uint32(18).string(message.denom);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): CommunityPoolBalanceQueryCallback {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseCommunityPoolBalanceQueryCallback();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.icaType = (reader.int32() as any);
+          break;
+
+        case 2:
+          message.denom = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<CommunityPoolBalanceQueryCallback>): CommunityPoolBalanceQueryCallback {
+    const message = createBaseCommunityPoolBalanceQueryCallback();
+    message.icaType = object.icaType ?? 0;
+    message.denom = object.denom ?? "";
+    return message;
+  }
+
+};
+
+function createBaseTradeRouteCallback(): TradeRouteCallback {
+  return {
+    rewardDenom: "",
+    hostDenom: ""
+  };
+}
+
+export const TradeRouteCallback = {
+  encode(message: TradeRouteCallback, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.rewardDenom !== "") {
+      writer.uint32(10).string(message.rewardDenom);
+    }
+
+    if (message.hostDenom !== "") {
+      writer.uint32(18).string(message.hostDenom);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): TradeRouteCallback {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseTradeRouteCallback();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.rewardDenom = reader.string();
+          break;
+
+        case 2:
+          message.hostDenom = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<TradeRouteCallback>): TradeRouteCallback {
+    const message = createBaseTradeRouteCallback();
+    message.rewardDenom = object.rewardDenom ?? "";
+    message.hostDenom = object.hostDenom ?? "";
     return message;
   }
 

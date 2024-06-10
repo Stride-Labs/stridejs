@@ -20,8 +20,8 @@ export interface Params {
     defaultMinRedemptionRateThreshold: Long;
     defaultMaxRedemptionRateThreshold: Long;
     ibcTransferTimeoutNanos: Long;
-    safetyMaxSlashPercent: Long;
     validatorSlashQueryThreshold: Long;
+    validatorWeightCap: Long;
 }
 /**
  * Params defines the parameters for the module.
@@ -43,8 +43,8 @@ export interface ParamsSDKType {
     default_min_redemption_rate_threshold: Long;
     default_max_redemption_rate_threshold: Long;
     ibc_transfer_timeout_nanos: Long;
-    safety_max_slash_percent: Long;
     validator_slash_query_threshold: Long;
+    validator_weight_cap: Long;
 }
 export declare const Params: {
     encode(message: Params, writer?: _m0.Writer): _m0.Writer;

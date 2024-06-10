@@ -268,26 +268,26 @@ export function lSMTokenDeposit_StatusToJSON(object: LSMTokenDeposit_Status): st
   }
 }
 export interface UserRedemptionRecord {
-  /** {chain_id}.{epoch}.{sender} */
+  /** {chain_id}.{epoch}.{receiver} */
   id: string;
-  sender: string;
   receiver: string;
-  amount: string;
+  nativeTokenAmount: string;
   denom: string;
   hostZoneId: string;
   epochNumber: Long;
   claimIsPending: boolean;
+  stTokenAmount: string;
 }
 export interface UserRedemptionRecordSDKType {
-  /** {chain_id}.{epoch}.{sender} */
+  /** {chain_id}.{epoch}.{receiver} */
   id: string;
-  sender: string;
   receiver: string;
-  amount: string;
+  native_token_amount: string;
   denom: string;
   host_zone_id: string;
   epoch_number: Long;
   claim_is_pending: boolean;
+  st_token_amount: string;
 }
 export interface DepositRecord {
   id: Long;
@@ -334,6 +334,7 @@ export interface EpochUnbondingRecordSDKType {
   host_zone_unbondings: HostZoneUnbondingSDKType[];
 }
 export interface LSMTokenDeposit {
+  depositId: string;
   chainId: string;
   denom: string;
   ibcDenom: string;
@@ -344,6 +345,7 @@ export interface LSMTokenDeposit {
   status: LSMTokenDeposit_Status;
 }
 export interface LSMTokenDepositSDKType {
+  deposit_id: string;
   chain_id: string;
   denom: string;
   ibc_denom: string;
@@ -357,13 +359,13 @@ export interface LSMTokenDepositSDKType {
 function createBaseUserRedemptionRecord(): UserRedemptionRecord {
   return {
     id: "",
-    sender: "",
     receiver: "",
-    amount: "",
+    nativeTokenAmount: "",
     denom: "",
     hostZoneId: "",
     epochNumber: Long.UZERO,
-    claimIsPending: false
+    claimIsPending: false,
+    stTokenAmount: ""
   };
 }
 
@@ -373,16 +375,12 @@ export const UserRedemptionRecord = {
       writer.uint32(10).string(message.id);
     }
 
-    if (message.sender !== "") {
-      writer.uint32(18).string(message.sender);
-    }
-
     if (message.receiver !== "") {
       writer.uint32(26).string(message.receiver);
     }
 
-    if (message.amount !== "") {
-      writer.uint32(34).string(message.amount);
+    if (message.nativeTokenAmount !== "") {
+      writer.uint32(34).string(message.nativeTokenAmount);
     }
 
     if (message.denom !== "") {
@@ -401,6 +399,10 @@ export const UserRedemptionRecord = {
       writer.uint32(64).bool(message.claimIsPending);
     }
 
+    if (message.stTokenAmount !== "") {
+      writer.uint32(74).string(message.stTokenAmount);
+    }
+
     return writer;
   },
 
@@ -417,16 +419,12 @@ export const UserRedemptionRecord = {
           message.id = reader.string();
           break;
 
-        case 2:
-          message.sender = reader.string();
-          break;
-
         case 3:
           message.receiver = reader.string();
           break;
 
         case 4:
-          message.amount = reader.string();
+          message.nativeTokenAmount = reader.string();
           break;
 
         case 5:
@@ -445,6 +443,10 @@ export const UserRedemptionRecord = {
           message.claimIsPending = reader.bool();
           break;
 
+        case 9:
+          message.stTokenAmount = reader.string();
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -457,13 +459,13 @@ export const UserRedemptionRecord = {
   fromPartial(object: DeepPartial<UserRedemptionRecord>): UserRedemptionRecord {
     const message = createBaseUserRedemptionRecord();
     message.id = object.id ?? "";
-    message.sender = object.sender ?? "";
     message.receiver = object.receiver ?? "";
-    message.amount = object.amount ?? "";
+    message.nativeTokenAmount = object.nativeTokenAmount ?? "";
     message.denom = object.denom ?? "";
     message.hostZoneId = object.hostZoneId ?? "";
     message.epochNumber = object.epochNumber !== undefined && object.epochNumber !== null ? Long.fromValue(object.epochNumber) : Long.UZERO;
     message.claimIsPending = object.claimIsPending ?? false;
+    message.stTokenAmount = object.stTokenAmount ?? "";
     return message;
   }
 
@@ -736,6 +738,7 @@ export const EpochUnbondingRecord = {
 
 function createBaseLSMTokenDeposit(): LSMTokenDeposit {
   return {
+    depositId: "",
     chainId: "",
     denom: "",
     ibcDenom: "",
@@ -749,36 +752,40 @@ function createBaseLSMTokenDeposit(): LSMTokenDeposit {
 
 export const LSMTokenDeposit = {
   encode(message: LSMTokenDeposit, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.depositId !== "") {
+      writer.uint32(10).string(message.depositId);
+    }
+
     if (message.chainId !== "") {
-      writer.uint32(10).string(message.chainId);
+      writer.uint32(18).string(message.chainId);
     }
 
     if (message.denom !== "") {
-      writer.uint32(18).string(message.denom);
+      writer.uint32(26).string(message.denom);
     }
 
     if (message.ibcDenom !== "") {
-      writer.uint32(26).string(message.ibcDenom);
+      writer.uint32(34).string(message.ibcDenom);
     }
 
     if (message.stakerAddress !== "") {
-      writer.uint32(34).string(message.stakerAddress);
+      writer.uint32(42).string(message.stakerAddress);
     }
 
     if (message.validatorAddress !== "") {
-      writer.uint32(42).string(message.validatorAddress);
+      writer.uint32(50).string(message.validatorAddress);
     }
 
     if (message.amount !== "") {
-      writer.uint32(50).string(message.amount);
+      writer.uint32(58).string(message.amount);
     }
 
     if (message.stToken !== undefined) {
-      Coin.encode(message.stToken, writer.uint32(58).fork()).ldelim();
+      Coin.encode(message.stToken, writer.uint32(66).fork()).ldelim();
     }
 
     if (message.status !== 0) {
-      writer.uint32(64).int32(message.status);
+      writer.uint32(72).int32(message.status);
     }
 
     return writer;
@@ -794,34 +801,38 @@ export const LSMTokenDeposit = {
 
       switch (tag >>> 3) {
         case 1:
-          message.chainId = reader.string();
+          message.depositId = reader.string();
           break;
 
         case 2:
-          message.denom = reader.string();
+          message.chainId = reader.string();
           break;
 
         case 3:
-          message.ibcDenom = reader.string();
+          message.denom = reader.string();
           break;
 
         case 4:
-          message.stakerAddress = reader.string();
+          message.ibcDenom = reader.string();
           break;
 
         case 5:
-          message.validatorAddress = reader.string();
+          message.stakerAddress = reader.string();
           break;
 
         case 6:
-          message.amount = reader.string();
+          message.validatorAddress = reader.string();
           break;
 
         case 7:
-          message.stToken = Coin.decode(reader, reader.uint32());
+          message.amount = reader.string();
           break;
 
         case 8:
+          message.stToken = Coin.decode(reader, reader.uint32());
+          break;
+
+        case 9:
           message.status = (reader.int32() as any);
           break;
 
@@ -836,6 +847,7 @@ export const LSMTokenDeposit = {
 
   fromPartial(object: DeepPartial<LSMTokenDeposit>): LSMTokenDeposit {
     const message = createBaseLSMTokenDeposit();
+    message.depositId = object.depositId ?? "";
     message.chainId = object.chainId ?? "";
     message.denom = object.denom ?? "";
     message.ibcDenom = object.ibcDenom ?? "";

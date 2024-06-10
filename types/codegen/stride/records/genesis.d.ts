@@ -1,5 +1,5 @@
 import { Params, ParamsSDKType } from "./params";
-import { UserRedemptionRecord, UserRedemptionRecordSDKType, EpochUnbondingRecord, EpochUnbondingRecordSDKType, DepositRecord, DepositRecordSDKType } from "./records";
+import { UserRedemptionRecord, UserRedemptionRecordSDKType, EpochUnbondingRecord, EpochUnbondingRecordSDKType, DepositRecord, DepositRecordSDKType, LSMTokenDeposit, LSMTokenDepositSDKType } from "./records";
 import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
 /** GenesisState defines the records module's genesis state. */
@@ -11,6 +11,7 @@ export interface GenesisState {
     epochUnbondingRecordList: EpochUnbondingRecord[];
     depositRecordList: DepositRecord[];
     depositRecordCount: Long;
+    lsmTokenDepositList: LSMTokenDeposit[];
 }
 /** GenesisState defines the records module's genesis state. */
 export interface GenesisStateSDKType {
@@ -21,6 +22,7 @@ export interface GenesisStateSDKType {
     epoch_unbonding_record_list: EpochUnbondingRecordSDKType[];
     deposit_record_list: DepositRecordSDKType[];
     deposit_record_count: Long;
+    lsm_token_deposit_list: LSMTokenDepositSDKType[];
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: _m0.Writer): _m0.Writer;

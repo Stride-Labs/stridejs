@@ -30,3 +30,8 @@ jest.config.js
 package.json
 src
 test
+
+# stride/
+# cosmos/
+./**/package.json
+!./package.json

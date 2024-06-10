@@ -1,6 +1,20 @@
 import { Duration, DurationSDKType } from "../../../google/protobuf/duration";
 import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
+export declare enum TimeoutPolicy {
+    REJECT_QUERY_RESPONSE = 0,
+    RETRY_QUERY_REQUEST = 1,
+    EXECUTE_QUERY_CALLBACK = 2,
+    UNRECOGNIZED = -1
+}
+export declare enum TimeoutPolicySDKType {
+    REJECT_QUERY_RESPONSE = 0,
+    RETRY_QUERY_REQUEST = 1,
+    EXECUTE_QUERY_CALLBACK = 2,
+    UNRECOGNIZED = -1
+}
+export declare function timeoutPolicyFromJSON(object: any): TimeoutPolicy;
+export declare function timeoutPolicyToJSON(object: TimeoutPolicy): string;
 export interface Query {
     id: string;
     connectionId: string;
@@ -10,9 +24,11 @@ export interface Query {
     callbackModule: string;
     callbackId: string;
     callbackData: Uint8Array;
+    timeoutPolicy: TimeoutPolicy;
     timeoutDuration: Duration;
     timeoutTimestamp: Long;
     requestSent: boolean;
+    submissionHeight: Long;
 }
 export interface QuerySDKType {
     id: string;
@@ -23,9 +39,11 @@ export interface QuerySDKType {
     callback_module: string;
     callback_id: string;
     callback_data: Uint8Array;
+    timeout_policy: TimeoutPolicySDKType;
     timeout_duration: DurationSDKType;
     timeout_timestamp: Long;
     request_sent: boolean;
+    submission_height: Long;
 }
 export interface DataPoint {
     id: string;

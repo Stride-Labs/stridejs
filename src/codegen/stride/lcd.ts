@@ -100,18 +100,24 @@ export const createLCDClient = async ({
       icacallbacks: new (await import("./icacallbacks/query.lcd")).LCDQueryClient({
         requestClient
       }),
+      icaoracle: new (await import("./icaoracle/query.lcd")).LCDQueryClient({
+        requestClient
+      }),
       mint: {
         v1beta1: new (await import("./mint/v1beta1/query.lcd")).LCDQueryClient({
           requestClient
         })
       },
-      ratelimit: new (await import("./ratelimit/query.lcd")).LCDQueryClient({
-        requestClient
-      }),
       records: new (await import("./records/query.lcd")).LCDQueryClient({
         requestClient
       }),
+      stakedym: new (await import("./stakedym/query.lcd")).LCDQueryClient({
+        requestClient
+      }),
       stakeibc: new (await import("./stakeibc/query.lcd")).LCDQueryClient({
+        requestClient
+      }),
+      staketia: new (await import("./staketia/query.lcd")).LCDQueryClient({
         requestClient
       })
     }

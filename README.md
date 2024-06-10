@@ -107,8 +107,27 @@ const { transfer } =
 When first cloning the repo:
 
 ```bash
-git submodule update --init
+git submodule sync --recursive
+git submodule update --init --recursive
 npm install
+```
+
+### Checkout Relevant Branches
+
+We sometimes use different branches depending on our need, you can use our `.gitmodules` as reference.
+
+And also sometimes, git submodules for some reason gets stuck on some branches despite being sync/updated (see above).
+
+```
+cd stride
+git checkout <branch>
+git pull origin <branch>
+
+cd ../
+
+cd cosmos
+git checkout <branch>
+git pull origin <branch>
 ```
 
 ### Codegen

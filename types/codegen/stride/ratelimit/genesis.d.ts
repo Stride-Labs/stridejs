@@ -1,20 +1,22 @@
 import { Params, ParamsSDKType } from "./params";
-import { RateLimit, RateLimitSDKType } from "./ratelimit";
+import { RateLimit, RateLimitSDKType, WhitelistedAddressPair, WhitelistedAddressPairSDKType } from "./ratelimit";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial } from "@osmonauts/helpers";
 /** GenesisState defines the ratelimit module's genesis state. */
 export interface GenesisState {
-    /** params defines all the parameters of the module. */
     params: Params;
-    /** list of rate limits */
     rateLimits: RateLimit[];
+    whitelistedAddressPairs: WhitelistedAddressPair[];
+    blacklistedDenoms: string[];
+    pendingSendPacketSequenceNumbers: string[];
 }
 /** GenesisState defines the ratelimit module's genesis state. */
 export interface GenesisStateSDKType {
-    /** params defines all the parameters of the module. */
     params: ParamsSDKType;
-    /** list of rate limits */
     rate_limits: RateLimitSDKType[];
+    whitelisted_address_pairs: WhitelistedAddressPairSDKType[];
+    blacklisted_denoms: string[];
+    pending_send_packet_sequence_numbers: string[];
 }
 export declare const GenesisState: {
     encode(message: GenesisState, writer?: _m0.Writer): _m0.Writer;

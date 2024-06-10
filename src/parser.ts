@@ -1,34 +1,17 @@
-import { Pubkey } from "@cosmjs/amino";
 import { Uint64 } from "@cosmjs/math";
 import { decodePubkey } from "@cosmjs/proto-signing";
 import { assert } from "@cosmjs/utils";
-import {
-  BaseAccount,
-  ModuleAccount,
-} from "cosmjs-types/cosmos/auth/v1beta1/auth";
-import {
-  BaseVestingAccount,
-  ContinuousVestingAccount,
-  DelayedVestingAccount,
-  PeriodicVestingAccount,
-} from "cosmjs-types/cosmos/vesting/v1beta1/vesting";
+import { accountFromAny, Account } from "@cosmjs/stargate";
+import { BaseAccount } from "cosmjs-types/cosmos/auth/v1beta1/auth";
 import { Any } from "cosmjs-types/google/protobuf/any";
 import Long from "long";
 import { stride } from "./codegen";
-
-export interface Account {
-  /** Bech32 account address */
-  readonly address: string;
-  readonly pubkey: Pubkey | null;
-  readonly accountNumber: number;
-  readonly sequence: number;
-}
 
 function uint64FromProto(input: number | Long): Uint64 {
   return Uint64.fromString(input.toString());
 }
 
-export function accountFromBaseAccount(input: BaseAccount): Account {
+function accountFromBaseAccount(input: BaseAccount): Account {
   const { address, pubKey, accountNumber, sequence } = input;
   const pubkey = pubKey ? decodePubkey(pubKey) : null;
   return {
@@ -40,24 +23,12 @@ export function accountFromBaseAccount(input: BaseAccount): Account {
 }
 
 /**
- * Represents a generic function that takes an `Any` encoded account from the chain
- * and extracts some common `Account` information from it.
- */
-export type AccountParser = (any: Any) => Account;
-
-/**
- * Basic implementation of AccountParser. This is supposed to support the most relevant
- * common Cosmos SDK account types. If you need support for exotic account types,
- * you'll need to write your own account decoder.
+ * A wrapper for Stargate's default accountParser that adds support for `StridePeriodicVestingAccount`.
  */
 export function strideAccountParser(input: Any): Account {
   const { typeUrl, value } = input;
 
   switch (typeUrl) {
-    // auth
-
-    case "/cosmos.auth.v1beta1.BaseAccount":
-      return accountFromBaseAccount(BaseAccount.decode(value));
     case "/stride.vesting.StridePeriodicVestingAccount": {
       const baseAccount =
         stride.vesting.StridePeriodicVestingAccount.decode(value)
@@ -65,39 +36,9 @@ export function strideAccountParser(input: Any): Account {
       assert(baseAccount);
       return accountFromBaseAccount(baseAccount);
     }
-    case "/cosmos.auth.v1beta1.ModuleAccount": {
-      const baseAccount = ModuleAccount.decode(value).baseAccount;
-      assert(baseAccount);
-      return accountFromBaseAccount(baseAccount);
-    }
 
-    // vesting
-
-    case "/cosmos.vesting.v1beta1.BaseVestingAccount": {
-      const baseAccount = BaseVestingAccount.decode(value)?.baseAccount;
-      assert(baseAccount);
-      return accountFromBaseAccount(baseAccount);
+    default: {
+      return accountFromAny(input);
     }
-    case "/cosmos.vesting.v1beta1.ContinuousVestingAccount": {
-      const baseAccount =
-        ContinuousVestingAccount.decode(value)?.baseVestingAccount?.baseAccount;
-      assert(baseAccount);
-      return accountFromBaseAccount(baseAccount);
-    }
-    case "/cosmos.vesting.v1beta1.DelayedVestingAccount": {
-      const baseAccount =
-        DelayedVestingAccount.decode(value)?.baseVestingAccount?.baseAccount;
-      assert(baseAccount);
-      return accountFromBaseAccount(baseAccount);
-    }
-    case "/cosmos.vesting.v1beta1.PeriodicVestingAccount": {
-      const baseAccount =
-        PeriodicVestingAccount.decode(value)?.baseVestingAccount?.baseAccount;
-      assert(baseAccount);
-      return accountFromBaseAccount(baseAccount);
-    }
-
-    default:
-      throw new Error(`Unsupported type: '${typeUrl}'`);
   }
 }

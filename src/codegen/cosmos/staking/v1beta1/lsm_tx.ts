@@ -35,6 +35,16 @@ export interface MsgRedeemTokensForSharesResponse {
 export interface MsgRedeemTokensForSharesResponseSDKType {
   amount: CoinSDKType;
 }
+/** MsgDisableTokenizeShares prevents LSM tokenization of shares for address */
+
+export interface MsgDisableTokenizeShares {
+  delegatorAddress: string;
+}
+/** MsgDisableTokenizeShares prevents LSM tokenization of shares for address */
+
+export interface MsgDisableTokenizeSharesSDKType {
+  delegator_address: string;
+}
 
 function createBaseMsgRedeemTokensForShares(): MsgRedeemTokensForShares {
   return {
@@ -131,6 +141,51 @@ export const MsgRedeemTokensForSharesResponse = {
   fromPartial(object: DeepPartial<MsgRedeemTokensForSharesResponse>): MsgRedeemTokensForSharesResponse {
     const message = createBaseMsgRedeemTokensForSharesResponse();
     message.amount = object.amount !== undefined && object.amount !== null ? Coin.fromPartial(object.amount) : undefined;
+    return message;
+  }
+
+};
+
+function createBaseMsgDisableTokenizeShares(): MsgDisableTokenizeShares {
+  return {
+    delegatorAddress: ""
+  };
+}
+
+export const MsgDisableTokenizeShares = {
+  encode(message: MsgDisableTokenizeShares, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.delegatorAddress !== "") {
+      writer.uint32(10).string(message.delegatorAddress);
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgDisableTokenizeShares {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgDisableTokenizeShares();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.delegatorAddress = reader.string();
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<MsgDisableTokenizeShares>): MsgDisableTokenizeShares {
+    const message = createBaseMsgDisableTokenizeShares();
+    message.delegatorAddress = object.delegatorAddress ?? "";
     return message;
   }
 

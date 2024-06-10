@@ -62,12 +62,14 @@ export const createRPCQueryClient = async ({
       claim: (await import("./claim/query.rpc.query")).createRpcQueryExtension(client),
       epochs: (await import("./epochs/query.rpc.query")).createRpcQueryExtension(client),
       icacallbacks: (await import("./icacallbacks/query.rpc.query")).createRpcQueryExtension(client),
+      icaoracle: (await import("./icaoracle/query.rpc.query")).createRpcQueryExtension(client),
       mint: {
         v1beta1: (await import("./mint/v1beta1/query.rpc.query")).createRpcQueryExtension(client)
       },
-      ratelimit: (await import("./ratelimit/query.rpc.query")).createRpcQueryExtension(client),
       records: (await import("./records/query.rpc.query")).createRpcQueryExtension(client),
-      stakeibc: (await import("./stakeibc/query.rpc.query")).createRpcQueryExtension(client)
+      stakedym: (await import("./stakedym/query.rpc.query")).createRpcQueryExtension(client),
+      stakeibc: (await import("./stakeibc/query.rpc.query")).createRpcQueryExtension(client),
+      staketia: (await import("./staketia/query.rpc.query")).createRpcQueryExtension(client)
     }
   };
 };

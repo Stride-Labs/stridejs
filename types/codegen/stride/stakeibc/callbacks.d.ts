@@ -2,6 +2,7 @@ import { Coin, CoinSDKType } from "../../cosmos/base/v1beta1/coin";
 import { LSMTokenDeposit, LSMTokenDepositSDKType } from "../records/records";
 import { HostZone, HostZoneSDKType } from "./host_zone";
 import { Validator, ValidatorSDKType } from "./validator";
+import { ICAAccountType, ICAAccountTypeSDKType } from "./ica_account";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
 export interface SplitDelegation {
@@ -92,10 +93,10 @@ export interface LSMLiquidStakeSDKType {
     host_zone: HostZoneSDKType;
     validator: ValidatorSDKType;
 }
-export interface ValidatorExchangeRateQueryCallback {
+export interface ValidatorSharesToTokensQueryCallback {
     lsmLiquidStake: LSMLiquidStake;
 }
-export interface ValidatorExchangeRateQueryCallbackSDKType {
+export interface ValidatorSharesToTokensQueryCallbackSDKType {
     lsm_liquid_stake: LSMLiquidStakeSDKType;
 }
 export interface DelegatorSharesQueryCallback {
@@ -105,6 +106,22 @@ export interface DelegatorSharesQueryCallback {
 export interface DelegatorSharesQueryCallbackSDKType {
     /** Validator delegation at the time the query is submitted */
     initial_validator_delegation: string;
+}
+export interface CommunityPoolBalanceQueryCallback {
+    icaType: ICAAccountType;
+    denom: string;
+}
+export interface CommunityPoolBalanceQueryCallbackSDKType {
+    ica_type: ICAAccountTypeSDKType;
+    denom: string;
+}
+export interface TradeRouteCallback {
+    rewardDenom: string;
+    hostDenom: string;
+}
+export interface TradeRouteCallbackSDKType {
+    reward_denom: string;
+    host_denom: string;
 }
 export declare const SplitDelegation: {
     encode(message: SplitDelegation, writer?: _m0.Writer): _m0.Writer;
@@ -156,13 +173,23 @@ export declare const LSMLiquidStake: {
     decode(input: _m0.Reader | Uint8Array, length?: number): LSMLiquidStake;
     fromPartial(object: DeepPartial<LSMLiquidStake>): LSMLiquidStake;
 };
-export declare const ValidatorExchangeRateQueryCallback: {
-    encode(message: ValidatorExchangeRateQueryCallback, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorExchangeRateQueryCallback;
-    fromPartial(object: DeepPartial<ValidatorExchangeRateQueryCallback>): ValidatorExchangeRateQueryCallback;
+export declare const ValidatorSharesToTokensQueryCallback: {
+    encode(message: ValidatorSharesToTokensQueryCallback, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): ValidatorSharesToTokensQueryCallback;
+    fromPartial(object: DeepPartial<ValidatorSharesToTokensQueryCallback>): ValidatorSharesToTokensQueryCallback;
 };
 export declare const DelegatorSharesQueryCallback: {
     encode(message: DelegatorSharesQueryCallback, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): DelegatorSharesQueryCallback;
     fromPartial(object: DeepPartial<DelegatorSharesQueryCallback>): DelegatorSharesQueryCallback;
+};
+export declare const CommunityPoolBalanceQueryCallback: {
+    encode(message: CommunityPoolBalanceQueryCallback, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): CommunityPoolBalanceQueryCallback;
+    fromPartial(object: DeepPartial<CommunityPoolBalanceQueryCallback>): CommunityPoolBalanceQueryCallback;
+};
+export declare const TradeRouteCallback: {
+    encode(message: TradeRouteCallback, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): TradeRouteCallback;
+    fromPartial(object: DeepPartial<TradeRouteCallback>): TradeRouteCallback;
 };

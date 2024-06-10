@@ -1,7 +1,7 @@
 [submodule "stride"]
 	path = stride
 	url = git@github.com:Stride-Labs/stride.git
-	branch = lsm
+	branch = main
 
 [submodule "cosmos"]
 	path = cosmos

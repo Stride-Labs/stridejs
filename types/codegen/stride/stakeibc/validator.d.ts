@@ -7,7 +7,7 @@ export interface Validator {
     delegation: string;
     slashQueryProgressTracker: string;
     slashQueryCheckpoint: string;
-    internalSharesToTokensRate: string;
+    sharesToTokensRate: string;
     delegationChangesInProgress: Long;
     slashQueryInProgress: boolean;
 }
@@ -18,7 +18,7 @@ export interface ValidatorSDKType {
     delegation: string;
     slash_query_progress_tracker: string;
     slash_query_checkpoint: string;
-    internal_shares_to_tokens_rate: string;
+    shares_to_tokens_rate: string;
     delegation_changes_in_progress: Long;
     slash_query_in_progress: boolean;
 }

@@ -84,26 +84,26 @@ export declare enum LSMTokenDeposit_StatusSDKType {
 export declare function lSMTokenDeposit_StatusFromJSON(object: any): LSMTokenDeposit_Status;
 export declare function lSMTokenDeposit_StatusToJSON(object: LSMTokenDeposit_Status): string;
 export interface UserRedemptionRecord {
-    /** {chain_id}.{epoch}.{sender} */
+    /** {chain_id}.{epoch}.{receiver} */
     id: string;
-    sender: string;
     receiver: string;
-    amount: string;
+    nativeTokenAmount: string;
     denom: string;
     hostZoneId: string;
     epochNumber: Long;
     claimIsPending: boolean;
+    stTokenAmount: string;
 }
 export interface UserRedemptionRecordSDKType {
-    /** {chain_id}.{epoch}.{sender} */
+    /** {chain_id}.{epoch}.{receiver} */
     id: string;
-    sender: string;
     receiver: string;
-    amount: string;
+    native_token_amount: string;
     denom: string;
     host_zone_id: string;
     epoch_number: Long;
     claim_is_pending: boolean;
+    st_token_amount: string;
 }
 export interface DepositRecord {
     id: Long;
@@ -150,6 +150,7 @@ export interface EpochUnbondingRecordSDKType {
     host_zone_unbondings: HostZoneUnbondingSDKType[];
 }
 export interface LSMTokenDeposit {
+    depositId: string;
     chainId: string;
     denom: string;
     ibcDenom: string;
@@ -160,6 +161,7 @@ export interface LSMTokenDeposit {
     status: LSMTokenDeposit_Status;
 }
 export interface LSMTokenDepositSDKType {
+    deposit_id: string;
     chain_id: string;
     denom: string;
     ibc_denom: string;

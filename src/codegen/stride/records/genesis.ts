@@ -1,5 +1,5 @@
 import { Params, ParamsSDKType } from "./params";
-import { UserRedemptionRecord, UserRedemptionRecordSDKType, EpochUnbondingRecord, EpochUnbondingRecordSDKType, DepositRecord, DepositRecordSDKType } from "./records";
+import { UserRedemptionRecord, UserRedemptionRecordSDKType, EpochUnbondingRecord, EpochUnbondingRecordSDKType, DepositRecord, DepositRecordSDKType, LSMTokenDeposit, LSMTokenDepositSDKType } from "./records";
 import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
 /** GenesisState defines the records module's genesis state. */
@@ -12,6 +12,7 @@ export interface GenesisState {
   epochUnbondingRecordList: EpochUnbondingRecord[];
   depositRecordList: DepositRecord[];
   depositRecordCount: Long;
+  lsmTokenDepositList: LSMTokenDeposit[];
 }
 /** GenesisState defines the records module's genesis state. */
 
@@ -23,6 +24,7 @@ export interface GenesisStateSDKType {
   epoch_unbonding_record_list: EpochUnbondingRecordSDKType[];
   deposit_record_list: DepositRecordSDKType[];
   deposit_record_count: Long;
+  lsm_token_deposit_list: LSMTokenDepositSDKType[];
 }
 
 function createBaseGenesisState(): GenesisState {
@@ -33,7 +35,8 @@ function createBaseGenesisState(): GenesisState {
     userRedemptionRecordCount: Long.UZERO,
     epochUnbondingRecordList: [],
     depositRecordList: [],
-    depositRecordCount: Long.UZERO
+    depositRecordCount: Long.UZERO,
+    lsmTokenDepositList: []
   };
 }
 
@@ -65,6 +68,10 @@ export const GenesisState = {
 
     if (!message.depositRecordCount.isZero()) {
       writer.uint32(64).uint64(message.depositRecordCount);
+    }
+
+    for (const v of message.lsmTokenDepositList) {
+      LSMTokenDeposit.encode(v!, writer.uint32(74).fork()).ldelim();
     }
 
     return writer;
@@ -107,6 +114,10 @@ export const GenesisState = {
           message.depositRecordCount = (reader.uint64() as Long);
           break;
 
+        case 9:
+          message.lsmTokenDepositList.push(LSMTokenDeposit.decode(reader, reader.uint32()));
+          break;
+
         default:
           reader.skipType(tag & 7);
           break;
@@ -125,6 +136,7 @@ export const GenesisState = {
     message.epochUnbondingRecordList = object.epochUnbondingRecordList?.map(e => EpochUnbondingRecord.fromPartial(e)) || [];
     message.depositRecordList = object.depositRecordList?.map(e => DepositRecord.fromPartial(e)) || [];
     message.depositRecordCount = object.depositRecordCount !== undefined && object.depositRecordCount !== null ? Long.fromValue(object.depositRecordCount) : Long.UZERO;
+    message.lsmTokenDepositList = object.lsmTokenDepositList?.map(e => LSMTokenDeposit.fromPartial(e)) || [];
     return message;
   }
 

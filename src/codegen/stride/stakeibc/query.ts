@@ -4,6 +4,7 @@ import { Validator, ValidatorSDKType } from "./validator";
 import { HostZone, HostZoneSDKType } from "./host_zone";
 import { EpochTracker, EpochTrackerSDKType } from "./epoch_tracker";
 import { AddressUnbonding, AddressUnbondingSDKType } from "./address_unbonding";
+import { TradeRoute, TradeRouteSDKType } from "./trade_route";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
 /**
@@ -153,6 +154,14 @@ export interface QueryAddressUnbondingsResponse {
 }
 export interface QueryAddressUnbondingsResponseSDKType {
   address_unbondings: AddressUnbondingSDKType[];
+}
+export interface QueryAllTradeRoutes {}
+export interface QueryAllTradeRoutesSDKType {}
+export interface QueryAllTradeRoutesResponse {
+  tradeRoutes: TradeRoute[];
+}
+export interface QueryAllTradeRoutesResponseSDKType {
+  trade_routes: TradeRouteSDKType[];
 }
 
 function createBaseQueryInterchainAccountFromAddressRequest(): QueryInterchainAccountFromAddressRequest {
@@ -1058,6 +1067,85 @@ export const QueryAddressUnbondingsResponse = {
   fromPartial(object: DeepPartial<QueryAddressUnbondingsResponse>): QueryAddressUnbondingsResponse {
     const message = createBaseQueryAddressUnbondingsResponse();
     message.addressUnbondings = object.addressUnbondings?.map(e => AddressUnbonding.fromPartial(e)) || [];
+    return message;
+  }
+
+};
+
+function createBaseQueryAllTradeRoutes(): QueryAllTradeRoutes {
+  return {};
+}
+
+export const QueryAllTradeRoutes = {
+  encode(_: QueryAllTradeRoutes, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllTradeRoutes {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllTradeRoutes();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(_: DeepPartial<QueryAllTradeRoutes>): QueryAllTradeRoutes {
+    const message = createBaseQueryAllTradeRoutes();
+    return message;
+  }
+
+};
+
+function createBaseQueryAllTradeRoutesResponse(): QueryAllTradeRoutesResponse {
+  return {
+    tradeRoutes: []
+  };
+}
+
+export const QueryAllTradeRoutesResponse = {
+  encode(message: QueryAllTradeRoutesResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.tradeRoutes) {
+      TradeRoute.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllTradeRoutesResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllTradeRoutesResponse();
+
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+
+      switch (tag >>> 3) {
+        case 1:
+          message.tradeRoutes.push(TradeRoute.decode(reader, reader.uint32()));
+          break;
+
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+
+    return message;
+  },
+
+  fromPartial(object: DeepPartial<QueryAllTradeRoutesResponse>): QueryAllTradeRoutesResponse {
+    const message = createBaseQueryAllTradeRoutesResponse();
+    message.tradeRoutes = object.tradeRoutes?.map(e => TradeRoute.fromPartial(e)) || [];
     return message;
   }
 

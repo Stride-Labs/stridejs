@@ -1,6 +1,53 @@
 import { Duration, DurationSDKType } from "../../../google/protobuf/duration";
 import * as _m0 from "protobufjs/minimal";
 import { Long, DeepPartial } from "@osmonauts/helpers";
+export enum TimeoutPolicy {
+  REJECT_QUERY_RESPONSE = 0,
+  RETRY_QUERY_REQUEST = 1,
+  EXECUTE_QUERY_CALLBACK = 2,
+  UNRECOGNIZED = -1,
+}
+export enum TimeoutPolicySDKType {
+  REJECT_QUERY_RESPONSE = 0,
+  RETRY_QUERY_REQUEST = 1,
+  EXECUTE_QUERY_CALLBACK = 2,
+  UNRECOGNIZED = -1,
+}
+export function timeoutPolicyFromJSON(object: any): TimeoutPolicy {
+  switch (object) {
+    case 0:
+    case "REJECT_QUERY_RESPONSE":
+      return TimeoutPolicy.REJECT_QUERY_RESPONSE;
+
+    case 1:
+    case "RETRY_QUERY_REQUEST":
+      return TimeoutPolicy.RETRY_QUERY_REQUEST;
+
+    case 2:
+    case "EXECUTE_QUERY_CALLBACK":
+      return TimeoutPolicy.EXECUTE_QUERY_CALLBACK;
+
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return TimeoutPolicy.UNRECOGNIZED;
+  }
+}
+export function timeoutPolicyToJSON(object: TimeoutPolicy): string {
+  switch (object) {
+    case TimeoutPolicy.REJECT_QUERY_RESPONSE:
+      return "REJECT_QUERY_RESPONSE";
+
+    case TimeoutPolicy.RETRY_QUERY_REQUEST:
+      return "RETRY_QUERY_REQUEST";
+
+    case TimeoutPolicy.EXECUTE_QUERY_CALLBACK:
+      return "EXECUTE_QUERY_CALLBACK";
+
+    default:
+      return "UNKNOWN";
+  }
+}
 export interface Query {
   id: string;
   connectionId: string;
@@ -10,9 +57,11 @@ export interface Query {
   callbackModule: string;
   callbackId: string;
   callbackData: Uint8Array;
+  timeoutPolicy: TimeoutPolicy;
   timeoutDuration: Duration;
   timeoutTimestamp: Long;
   requestSent: boolean;
+  submissionHeight: Long;
 }
 export interface QuerySDKType {
   id: string;
@@ -23,9 +72,11 @@ export interface QuerySDKType {
   callback_module: string;
   callback_id: string;
   callback_data: Uint8Array;
+  timeout_policy: TimeoutPolicySDKType;
   timeout_duration: DurationSDKType;
   timeout_timestamp: Long;
   request_sent: boolean;
+  submission_height: Long;
 }
 export interface DataPoint {
   id: string;
@@ -60,9 +111,11 @@ function createBaseQuery(): Query {
     callbackModule: "",
     callbackId: "",
     callbackData: new Uint8Array(),
+    timeoutPolicy: 0,
     timeoutDuration: undefined,
     timeoutTimestamp: Long.UZERO,
-    requestSent: false
+    requestSent: false,
+    submissionHeight: Long.UZERO
   };
 }
 
@@ -100,6 +153,10 @@ export const Query = {
       writer.uint32(98).bytes(message.callbackData);
     }
 
+    if (message.timeoutPolicy !== 0) {
+      writer.uint32(120).int32(message.timeoutPolicy);
+    }
+
     if (message.timeoutDuration !== undefined) {
       Duration.encode(message.timeoutDuration, writer.uint32(114).fork()).ldelim();
     }
@@ -110,6 +167,10 @@ export const Query = {
 
     if (message.requestSent === true) {
       writer.uint32(88).bool(message.requestSent);
+    }
+
+    if (!message.submissionHeight.isZero()) {
+      writer.uint32(128).uint64(message.submissionHeight);
     }
 
     return writer;
@@ -156,6 +217,10 @@ export const Query = {
           message.callbackData = reader.bytes();
           break;
 
+        case 15:
+          message.timeoutPolicy = (reader.int32() as any);
+          break;
+
         case 14:
           message.timeoutDuration = Duration.decode(reader, reader.uint32());
           break;
@@ -166,6 +231,10 @@ export const Query = {
 
         case 11:
           message.requestSent = reader.bool();
+          break;
+
+        case 16:
+          message.submissionHeight = (reader.uint64() as Long);
           break;
 
         default:
@@ -187,9 +256,11 @@ export const Query = {
     message.callbackModule = object.callbackModule ?? "";
     message.callbackId = object.callbackId ?? "";
     message.callbackData = object.callbackData ?? new Uint8Array();
+    message.timeoutPolicy = object.timeoutPolicy ?? 0;
     message.timeoutDuration = object.timeoutDuration ?? undefined;
     message.timeoutTimestamp = object.timeoutTimestamp !== undefined && object.timeoutTimestamp !== null ? Long.fromValue(object.timeoutTimestamp) : Long.UZERO;
     message.requestSent = object.requestSent ?? false;
+    message.submissionHeight = object.submissionHeight !== undefined && object.submissionHeight !== null ? Long.fromValue(object.submissionHeight) : Long.UZERO;
     return message;
   }
 

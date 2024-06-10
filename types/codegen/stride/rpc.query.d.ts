@@ -172,17 +172,17 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
             callbackData(request: import("./icacallbacks/query").QueryGetCallbackDataRequest): Promise<import("./icacallbacks/query").QueryGetCallbackDataResponse>;
             callbackDataAll(request?: import("./icacallbacks/query").QueryAllCallbackDataRequest): Promise<import("./icacallbacks/query").QueryAllCallbackDataResponse>;
         };
+        icaoracle: {
+            oracle(request: import("./icaoracle/query").QueryOracleRequest): Promise<import("./icaoracle/query").QueryOracleResponse>;
+            allOracles(request?: import("./icaoracle/query").QueryAllOraclesRequest): Promise<import("./icaoracle/query").QueryAllOraclesResponse>;
+            activeOracles(request: import("./icaoracle/query").QueryActiveOraclesRequest): Promise<import("./icaoracle/query").QueryActiveOraclesResponse>;
+            metrics(request: import("./icaoracle/query").QueryMetricsRequest): Promise<import("./icaoracle/query").QueryMetricsResponse>;
+        };
         mint: {
             v1beta1: {
                 params(request?: import("./mint/v1beta1/query").QueryParamsRequest): Promise<import("./mint/v1beta1/query").QueryParamsResponse>;
                 epochProvisions(request?: import("./mint/v1beta1/query").QueryEpochProvisionsRequest): Promise<import("./mint/v1beta1/query").QueryEpochProvisionsResponse>;
             };
-        };
-        ratelimit: {
-            allRateLimits(request?: import("./ratelimit/query").QueryAllRateLimitsRequest): Promise<import("./ratelimit/query").QueryAllRateLimitsResponse>;
-            rateLimit(request: import("./ratelimit/query").QueryRateLimitRequest): Promise<import("./ratelimit/query").QueryRateLimitResponse>;
-            rateLimitsByChainId(request: import("./ratelimit/query").QueryRateLimitsByChainIdRequest): Promise<import("./ratelimit/query").QueryRateLimitsByChainIdResponse>;
-            rateLimitsByChannelId(request: import("./ratelimit/query").QueryRateLimitsByChannelIdRequest): Promise<import("./ratelimit/query").QueryRateLimitsByChannelIdResponse>;
         };
         records: {
             params(request?: import("./records/query").QueryParamsRequest): Promise<import("./records/query").QueryParamsResponse>;
@@ -197,6 +197,14 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
             lSMDeposit(request: import("./records/query").QueryLSMDepositRequest): Promise<import("./records/query").QueryLSMDepositResponse>;
             lSMDeposits(request: import("./records/query").QueryLSMDepositsRequest): Promise<import("./records/query").QueryLSMDepositsResponse>;
         };
+        stakedym: {
+            hostZone(request?: import("./stakedym/query").QueryHostZoneRequest): Promise<import("./stakedym/query").QueryHostZoneResponse>;
+            delegationRecords(request: import("./stakedym/query").QueryDelegationRecordsRequest): Promise<import("./stakedym/query").QueryDelegationRecordsResponse>;
+            unbondingRecords(request: import("./stakedym/query").QueryUnbondingRecordsRequest): Promise<import("./stakedym/query").QueryUnbondingRecordsResponse>;
+            redemptionRecord(request: import("./stakedym/query").QueryRedemptionRecordRequest): Promise<import("./stakedym/query").QueryRedemptionRecordResponse>;
+            redemptionRecords(request: import("./stakedym/query").QueryRedemptionRecordsRequest): Promise<import("./stakedym/query").QueryRedemptionRecordsResponse>;
+            slashRecords(request?: import("./stakedym/query").QuerySlashRecordsRequest): Promise<import("./stakedym/query").QuerySlashRecordsResponse>;
+        };
         stakeibc: {
             params(request?: import("./stakeibc/query").QueryParamsRequest): Promise<import("./stakeibc/query").QueryParamsResponse>;
             validators(request: import("./stakeibc/query").QueryGetValidatorsRequest): Promise<import("./stakeibc/query").QueryGetValidatorsResponse>;
@@ -208,6 +216,15 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
             epochTrackerAll(request?: import("./stakeibc/query").QueryAllEpochTrackerRequest): Promise<import("./stakeibc/query").QueryAllEpochTrackerResponse>;
             nextPacketSequence(request: import("./stakeibc/query").QueryGetNextPacketSequenceRequest): Promise<import("./stakeibc/query").QueryGetNextPacketSequenceResponse>;
             addressUnbondings(request: import("./stakeibc/query").QueryAddressUnbondings): Promise<import("./stakeibc/query").QueryAddressUnbondingsResponse>;
+            allTradeRoutes(request?: import("./stakeibc/query").QueryAllTradeRoutes): Promise<import("./stakeibc/query").QueryAllTradeRoutesResponse>;
+        };
+        staketia: {
+            hostZone(request?: import("./staketia/query").QueryHostZoneRequest): Promise<import("./staketia/query").QueryHostZoneResponse>;
+            delegationRecords(request: import("./staketia/query").QueryDelegationRecordsRequest): Promise<import("./staketia/query").QueryDelegationRecordsResponse>;
+            unbondingRecords(request: import("./staketia/query").QueryUnbondingRecordsRequest): Promise<import("./staketia/query").QueryUnbondingRecordsResponse>;
+            redemptionRecord(request: import("./staketia/query").QueryRedemptionRecordRequest): Promise<import("./staketia/query").QueryRedemptionRecordResponse>;
+            redemptionRecords(request: import("./staketia/query").QueryRedemptionRecordsRequest): Promise<import("./staketia/query").QueryRedemptionRecordsResponse>;
+            slashRecords(request?: import("./staketia/query").QuerySlashRecordsRequest): Promise<import("./staketia/query").QuerySlashRecordsResponse>;
         };
     };
 }>;

@@ -1,16 +1,25 @@
 import { OfflineSigner, GeneratedType, Registry } from "@cosmjs/proto-signing";
 import { defaultRegistryTypes, AminoTypes, SigningStargateClient } from "@cosmjs/stargate";
 import * as strideClaimTxRegistry from "./claim/tx.registry";
+import * as strideIcaoracleTxRegistry from "./icaoracle/tx.registry";
 import * as strideInterchainqueryV1MessagesRegistry from "./interchainquery/v1/messages.registry";
+import * as strideStakedymTxRegistry from "./stakedym/tx.registry";
 import * as strideStakeibcTxRegistry from "./stakeibc/tx.registry";
+import * as strideStaketiaTxRegistry from "./staketia/tx.registry";
 import * as strideClaimTxAmino from "./claim/tx.amino";
+import * as strideIcaoracleTxAmino from "./icaoracle/tx.amino";
 import * as strideInterchainqueryV1MessagesAmino from "./interchainquery/v1/messages.amino";
+import * as strideStakedymTxAmino from "./stakedym/tx.amino";
 import * as strideStakeibcTxAmino from "./stakeibc/tx.amino";
+import * as strideStaketiaTxAmino from "./staketia/tx.amino";
 export const strideAminoConverters = { ...strideClaimTxAmino.AminoConverter,
+  ...strideIcaoracleTxAmino.AminoConverter,
   ...strideInterchainqueryV1MessagesAmino.AminoConverter,
-  ...strideStakeibcTxAmino.AminoConverter
+  ...strideStakedymTxAmino.AminoConverter,
+  ...strideStakeibcTxAmino.AminoConverter,
+  ...strideStaketiaTxAmino.AminoConverter
 };
-export const strideProtoRegistry: ReadonlyArray<[string, GeneratedType]> = [...strideClaimTxRegistry.registry, ...strideInterchainqueryV1MessagesRegistry.registry, ...strideStakeibcTxRegistry.registry];
+export const strideProtoRegistry: ReadonlyArray<[string, GeneratedType]> = [...strideClaimTxRegistry.registry, ...strideIcaoracleTxRegistry.registry, ...strideInterchainqueryV1MessagesRegistry.registry, ...strideStakedymTxRegistry.registry, ...strideStakeibcTxRegistry.registry, ...strideStaketiaTxRegistry.registry];
 export const getSigningStrideClientOptions = ({
   defaultTypes = defaultRegistryTypes
 }: {

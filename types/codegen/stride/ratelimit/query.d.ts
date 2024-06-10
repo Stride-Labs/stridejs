@@ -1,4 +1,4 @@
-import { RateLimit, RateLimitSDKType } from "./ratelimit";
+import { RateLimit, RateLimitSDKType, WhitelistedAddressPair, WhitelistedAddressPairSDKType } from "./ratelimit";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial } from "@osmonauts/helpers";
 export interface QueryAllRateLimitsRequest {
@@ -49,6 +49,26 @@ export interface QueryRateLimitsByChannelIdResponse {
 export interface QueryRateLimitsByChannelIdResponseSDKType {
     rate_limits: RateLimitSDKType[];
 }
+export interface QueryAllBlacklistedDenomsRequest {
+}
+export interface QueryAllBlacklistedDenomsRequestSDKType {
+}
+export interface QueryAllBlacklistedDenomsResponse {
+    denoms: string[];
+}
+export interface QueryAllBlacklistedDenomsResponseSDKType {
+    denoms: string[];
+}
+export interface QueryAllWhitelistedAddressesRequest {
+}
+export interface QueryAllWhitelistedAddressesRequestSDKType {
+}
+export interface QueryAllWhitelistedAddressesResponse {
+    addressPairs: WhitelistedAddressPair[];
+}
+export interface QueryAllWhitelistedAddressesResponseSDKType {
+    address_pairs: WhitelistedAddressPairSDKType[];
+}
 export declare const QueryAllRateLimitsRequest: {
     encode(_: QueryAllRateLimitsRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllRateLimitsRequest;
@@ -88,4 +108,24 @@ export declare const QueryRateLimitsByChannelIdResponse: {
     encode(message: QueryRateLimitsByChannelIdResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryRateLimitsByChannelIdResponse;
     fromPartial(object: DeepPartial<QueryRateLimitsByChannelIdResponse>): QueryRateLimitsByChannelIdResponse;
+};
+export declare const QueryAllBlacklistedDenomsRequest: {
+    encode(_: QueryAllBlacklistedDenomsRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllBlacklistedDenomsRequest;
+    fromPartial(_: DeepPartial<QueryAllBlacklistedDenomsRequest>): QueryAllBlacklistedDenomsRequest;
+};
+export declare const QueryAllBlacklistedDenomsResponse: {
+    encode(message: QueryAllBlacklistedDenomsResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllBlacklistedDenomsResponse;
+    fromPartial(object: DeepPartial<QueryAllBlacklistedDenomsResponse>): QueryAllBlacklistedDenomsResponse;
+};
+export declare const QueryAllWhitelistedAddressesRequest: {
+    encode(_: QueryAllWhitelistedAddressesRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllWhitelistedAddressesRequest;
+    fromPartial(_: DeepPartial<QueryAllWhitelistedAddressesRequest>): QueryAllWhitelistedAddressesRequest;
+};
+export declare const QueryAllWhitelistedAddressesResponse: {
+    encode(message: QueryAllWhitelistedAddressesResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllWhitelistedAddressesResponse;
+    fromPartial(object: DeepPartial<QueryAllWhitelistedAddressesResponse>): QueryAllWhitelistedAddressesResponse;
 };

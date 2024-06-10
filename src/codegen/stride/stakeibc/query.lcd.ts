@@ -1,6 +1,6 @@
 import { setPaginationParams } from "@osmonauts/helpers";
 import { LCDClient } from "@osmonauts/lcd";
-import { QueryParamsRequest, QueryParamsResponseSDKType, QueryGetValidatorsRequest, QueryGetValidatorsResponseSDKType, QueryGetHostZoneRequest, QueryGetHostZoneResponseSDKType, QueryAllHostZoneRequest, QueryAllHostZoneResponseSDKType, QueryModuleAddressRequest, QueryModuleAddressResponseSDKType, QueryGetEpochTrackerRequest, QueryGetEpochTrackerResponseSDKType, QueryAllEpochTrackerRequest, QueryAllEpochTrackerResponseSDKType, QueryGetNextPacketSequenceRequest, QueryGetNextPacketSequenceResponseSDKType, QueryAddressUnbondings, QueryAddressUnbondingsResponseSDKType } from "./query";
+import { QueryParamsRequest, QueryParamsResponseSDKType, QueryGetValidatorsRequest, QueryGetValidatorsResponseSDKType, QueryGetHostZoneRequest, QueryGetHostZoneResponseSDKType, QueryAllHostZoneRequest, QueryAllHostZoneResponseSDKType, QueryModuleAddressRequest, QueryModuleAddressResponseSDKType, QueryGetEpochTrackerRequest, QueryGetEpochTrackerResponseSDKType, QueryAllEpochTrackerRequest, QueryAllEpochTrackerResponseSDKType, QueryGetNextPacketSequenceRequest, QueryGetNextPacketSequenceResponseSDKType, QueryAddressUnbondings, QueryAddressUnbondingsResponseSDKType, QueryAllTradeRoutes, QueryAllTradeRoutesResponseSDKType } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
 
@@ -19,6 +19,7 @@ export class LCDQueryClient {
     this.epochTrackerAll = this.epochTrackerAll.bind(this);
     this.nextPacketSequence = this.nextPacketSequence.bind(this);
     this.addressUnbondings = this.addressUnbondings.bind(this);
+    this.allTradeRoutes = this.allTradeRoutes.bind(this);
   }
   /* Parameters queries the parameters of the module. */
 
@@ -92,6 +93,13 @@ export class LCDQueryClient {
   async addressUnbondings(params: QueryAddressUnbondings): Promise<QueryAddressUnbondingsResponseSDKType> {
     const endpoint = `Stride-Labs/stride/stakeibc/unbondings/${params.address}`;
     return await this.req.get<QueryAddressUnbondingsResponseSDKType>(endpoint);
+  }
+  /* Queries all trade routes */
+
+
+  async allTradeRoutes(_params: QueryAllTradeRoutes = {}): Promise<QueryAllTradeRoutesResponseSDKType> {
+    const endpoint = `Stride-Labs/stride/stakeibc/trade_routes`;
+    return await this.req.get<QueryAllTradeRoutesResponseSDKType>(endpoint);
   }
 
 }

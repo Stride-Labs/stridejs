@@ -1,6 +1,6 @@
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
-import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
-export const registry: ReadonlyArray<[string, GeneratedType]> = [["/stride.stakeibc.MsgLiquidStake", MsgLiquidStake], ["/stride.stakeibc.MsgLSMLiquidStake", MsgLSMLiquidStake], ["/stride.stakeibc.MsgRedeemStake", MsgRedeemStake], ["/stride.stakeibc.MsgRegisterHostZone", MsgRegisterHostZone], ["/stride.stakeibc.MsgClaimUndelegatedTokens", MsgClaimUndelegatedTokens], ["/stride.stakeibc.MsgRebalanceValidators", MsgRebalanceValidators], ["/stride.stakeibc.MsgAddValidators", MsgAddValidators], ["/stride.stakeibc.MsgChangeValidatorWeight", MsgChangeValidatorWeight], ["/stride.stakeibc.MsgDeleteValidator", MsgDeleteValidator], ["/stride.stakeibc.MsgRestoreInterchainAccount", MsgRestoreInterchainAccount], ["/stride.stakeibc.MsgUpdateValidatorSharesExchRate", MsgUpdateValidatorSharesExchRate], ["/stride.stakeibc.MsgClearBalance", MsgClearBalance]];
+import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeights, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgCalibrateDelegation, MsgClearBalance, MsgUpdateInnerRedemptionRateBounds, MsgResumeHostZone, MsgCreateTradeRoute, MsgDeleteTradeRoute, MsgUpdateTradeRoute, MsgSetCommunityPoolRebate, MsgToggleTradeController, MsgUpdateHostZoneParams } from "./tx";
+export const registry: ReadonlyArray<[string, GeneratedType]> = [["/stride.stakeibc.MsgLiquidStake", MsgLiquidStake], ["/stride.stakeibc.MsgLSMLiquidStake", MsgLSMLiquidStake], ["/stride.stakeibc.MsgRedeemStake", MsgRedeemStake], ["/stride.stakeibc.MsgRegisterHostZone", MsgRegisterHostZone], ["/stride.stakeibc.MsgClaimUndelegatedTokens", MsgClaimUndelegatedTokens], ["/stride.stakeibc.MsgRebalanceValidators", MsgRebalanceValidators], ["/stride.stakeibc.MsgAddValidators", MsgAddValidators], ["/stride.stakeibc.MsgChangeValidatorWeights", MsgChangeValidatorWeights], ["/stride.stakeibc.MsgDeleteValidator", MsgDeleteValidator], ["/stride.stakeibc.MsgRestoreInterchainAccount", MsgRestoreInterchainAccount], ["/stride.stakeibc.MsgUpdateValidatorSharesExchRate", MsgUpdateValidatorSharesExchRate], ["/stride.stakeibc.MsgCalibrateDelegation", MsgCalibrateDelegation], ["/stride.stakeibc.MsgClearBalance", MsgClearBalance], ["/stride.stakeibc.MsgUpdateInnerRedemptionRateBounds", MsgUpdateInnerRedemptionRateBounds], ["/stride.stakeibc.MsgResumeHostZone", MsgResumeHostZone], ["/stride.stakeibc.MsgCreateTradeRoute", MsgCreateTradeRoute], ["/stride.stakeibc.MsgDeleteTradeRoute", MsgDeleteTradeRoute], ["/stride.stakeibc.MsgUpdateTradeRoute", MsgUpdateTradeRoute], ["/stride.stakeibc.MsgSetCommunityPoolRebate", MsgSetCommunityPoolRebate], ["/stride.stakeibc.MsgToggleTradeController", MsgToggleTradeController], ["/stride.stakeibc.MsgUpdateHostZoneParams", MsgUpdateHostZoneParams]];
 export const load = (protoRegistry: Registry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -57,10 +57,10 @@ export const MessageComposer = {
       };
     },
 
-    changeValidatorWeight(value: MsgChangeValidatorWeight) {
+    changeValidatorWeight(value: MsgChangeValidatorWeights) {
       return {
-        typeUrl: "/stride.stakeibc.MsgChangeValidatorWeight",
-        value: MsgChangeValidatorWeight.encode(value).finish()
+        typeUrl: "/stride.stakeibc.MsgChangeValidatorWeights",
+        value: MsgChangeValidatorWeights.encode(value).finish()
       };
     },
 
@@ -85,10 +85,73 @@ export const MessageComposer = {
       };
     },
 
+    calibrateDelegation(value: MsgCalibrateDelegation) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgCalibrateDelegation",
+        value: MsgCalibrateDelegation.encode(value).finish()
+      };
+    },
+
     clearBalance(value: MsgClearBalance) {
       return {
         typeUrl: "/stride.stakeibc.MsgClearBalance",
         value: MsgClearBalance.encode(value).finish()
+      };
+    },
+
+    updateInnerRedemptionRateBounds(value: MsgUpdateInnerRedemptionRateBounds) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgUpdateInnerRedemptionRateBounds",
+        value: MsgUpdateInnerRedemptionRateBounds.encode(value).finish()
+      };
+    },
+
+    resumeHostZone(value: MsgResumeHostZone) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgResumeHostZone",
+        value: MsgResumeHostZone.encode(value).finish()
+      };
+    },
+
+    createTradeRoute(value: MsgCreateTradeRoute) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgCreateTradeRoute",
+        value: MsgCreateTradeRoute.encode(value).finish()
+      };
+    },
+
+    deleteTradeRoute(value: MsgDeleteTradeRoute) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgDeleteTradeRoute",
+        value: MsgDeleteTradeRoute.encode(value).finish()
+      };
+    },
+
+    updateTradeRoute(value: MsgUpdateTradeRoute) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgUpdateTradeRoute",
+        value: MsgUpdateTradeRoute.encode(value).finish()
+      };
+    },
+
+    setCommunityPoolRebate(value: MsgSetCommunityPoolRebate) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgSetCommunityPoolRebate",
+        value: MsgSetCommunityPoolRebate.encode(value).finish()
+      };
+    },
+
+    toggleTradeController(value: MsgToggleTradeController) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgToggleTradeController",
+        value: MsgToggleTradeController.encode(value).finish()
+      };
+    },
+
+    updateHostZoneParams(value: MsgUpdateHostZoneParams) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgUpdateHostZoneParams",
+        value: MsgUpdateHostZoneParams.encode(value).finish()
       };
     }
 
@@ -143,9 +206,9 @@ export const MessageComposer = {
       };
     },
 
-    changeValidatorWeight(value: MsgChangeValidatorWeight) {
+    changeValidatorWeight(value: MsgChangeValidatorWeights) {
       return {
-        typeUrl: "/stride.stakeibc.MsgChangeValidatorWeight",
+        typeUrl: "/stride.stakeibc.MsgChangeValidatorWeights",
         value
       };
     },
@@ -171,9 +234,72 @@ export const MessageComposer = {
       };
     },
 
+    calibrateDelegation(value: MsgCalibrateDelegation) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgCalibrateDelegation",
+        value
+      };
+    },
+
     clearBalance(value: MsgClearBalance) {
       return {
         typeUrl: "/stride.stakeibc.MsgClearBalance",
+        value
+      };
+    },
+
+    updateInnerRedemptionRateBounds(value: MsgUpdateInnerRedemptionRateBounds) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgUpdateInnerRedemptionRateBounds",
+        value
+      };
+    },
+
+    resumeHostZone(value: MsgResumeHostZone) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgResumeHostZone",
+        value
+      };
+    },
+
+    createTradeRoute(value: MsgCreateTradeRoute) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgCreateTradeRoute",
+        value
+      };
+    },
+
+    deleteTradeRoute(value: MsgDeleteTradeRoute) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgDeleteTradeRoute",
+        value
+      };
+    },
+
+    updateTradeRoute(value: MsgUpdateTradeRoute) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgUpdateTradeRoute",
+        value
+      };
+    },
+
+    setCommunityPoolRebate(value: MsgSetCommunityPoolRebate) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgSetCommunityPoolRebate",
+        value
+      };
+    },
+
+    toggleTradeController(value: MsgToggleTradeController) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgToggleTradeController",
+        value
+      };
+    },
+
+    updateHostZoneParams(value: MsgUpdateHostZoneParams) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgUpdateHostZoneParams",
         value
       };
     }
@@ -229,10 +355,10 @@ export const MessageComposer = {
       };
     },
 
-    changeValidatorWeight(value: MsgChangeValidatorWeight) {
+    changeValidatorWeight(value: MsgChangeValidatorWeights) {
       return {
-        typeUrl: "/stride.stakeibc.MsgChangeValidatorWeight",
-        value: MsgChangeValidatorWeight.fromPartial(value)
+        typeUrl: "/stride.stakeibc.MsgChangeValidatorWeights",
+        value: MsgChangeValidatorWeights.fromPartial(value)
       };
     },
 
@@ -257,10 +383,73 @@ export const MessageComposer = {
       };
     },
 
+    calibrateDelegation(value: MsgCalibrateDelegation) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgCalibrateDelegation",
+        value: MsgCalibrateDelegation.fromPartial(value)
+      };
+    },
+
     clearBalance(value: MsgClearBalance) {
       return {
         typeUrl: "/stride.stakeibc.MsgClearBalance",
         value: MsgClearBalance.fromPartial(value)
+      };
+    },
+
+    updateInnerRedemptionRateBounds(value: MsgUpdateInnerRedemptionRateBounds) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgUpdateInnerRedemptionRateBounds",
+        value: MsgUpdateInnerRedemptionRateBounds.fromPartial(value)
+      };
+    },
+
+    resumeHostZone(value: MsgResumeHostZone) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgResumeHostZone",
+        value: MsgResumeHostZone.fromPartial(value)
+      };
+    },
+
+    createTradeRoute(value: MsgCreateTradeRoute) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgCreateTradeRoute",
+        value: MsgCreateTradeRoute.fromPartial(value)
+      };
+    },
+
+    deleteTradeRoute(value: MsgDeleteTradeRoute) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgDeleteTradeRoute",
+        value: MsgDeleteTradeRoute.fromPartial(value)
+      };
+    },
+
+    updateTradeRoute(value: MsgUpdateTradeRoute) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgUpdateTradeRoute",
+        value: MsgUpdateTradeRoute.fromPartial(value)
+      };
+    },
+
+    setCommunityPoolRebate(value: MsgSetCommunityPoolRebate) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgSetCommunityPoolRebate",
+        value: MsgSetCommunityPoolRebate.fromPartial(value)
+      };
+    },
+
+    toggleTradeController(value: MsgToggleTradeController) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgToggleTradeController",
+        value: MsgToggleTradeController.fromPartial(value)
+      };
+    },
+
+    updateHostZoneParams(value: MsgUpdateHostZoneParams) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgUpdateHostZoneParams",
+        value: MsgUpdateHostZoneParams.fromPartial(value)
       };
     }
 

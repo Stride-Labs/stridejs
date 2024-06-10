@@ -31,6 +31,14 @@ export interface MsgRedeemTokensForSharesResponse {
 export interface MsgRedeemTokensForSharesResponseSDKType {
     amount: CoinSDKType;
 }
+/** MsgDisableTokenizeShares prevents LSM tokenization of shares for address */
+export interface MsgDisableTokenizeShares {
+    delegatorAddress: string;
+}
+/** MsgDisableTokenizeShares prevents LSM tokenization of shares for address */
+export interface MsgDisableTokenizeSharesSDKType {
+    delegator_address: string;
+}
 export declare const MsgRedeemTokensForShares: {
     encode(message: MsgRedeemTokensForShares, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgRedeemTokensForShares;
@@ -40,4 +48,9 @@ export declare const MsgRedeemTokensForSharesResponse: {
     encode(message: MsgRedeemTokensForSharesResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): MsgRedeemTokensForSharesResponse;
     fromPartial(object: DeepPartial<MsgRedeemTokensForSharesResponse>): MsgRedeemTokensForSharesResponse;
+};
+export declare const MsgDisableTokenizeShares: {
+    encode(message: MsgDisableTokenizeShares, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): MsgDisableTokenizeShares;
+    fromPartial(object: DeepPartial<MsgDisableTokenizeShares>): MsgDisableTokenizeShares;
 };

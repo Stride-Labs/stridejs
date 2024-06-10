@@ -1,5 +1,5 @@
 import { GeneratedType, Registry } from "@cosmjs/proto-signing";
-import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeight, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgClearBalance } from "./tx";
+import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeights, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgCalibrateDelegation, MsgClearBalance, MsgUpdateInnerRedemptionRateBounds, MsgResumeHostZone, MsgCreateTradeRoute, MsgDeleteTradeRoute, MsgUpdateTradeRoute, MsgSetCommunityPoolRebate, MsgToggleTradeController, MsgUpdateHostZoneParams } from "./tx";
 export declare const registry: ReadonlyArray<[string, GeneratedType]>;
 export declare const load: (protoRegistry: Registry) => void;
 export declare const MessageComposer: {
@@ -32,7 +32,7 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: Uint8Array;
         };
-        changeValidatorWeight(value: MsgChangeValidatorWeight): {
+        changeValidatorWeight(value: MsgChangeValidatorWeights): {
             typeUrl: string;
             value: Uint8Array;
         };
@@ -48,7 +48,43 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: Uint8Array;
         };
+        calibrateDelegation(value: MsgCalibrateDelegation): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
         clearBalance(value: MsgClearBalance): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        updateInnerRedemptionRateBounds(value: MsgUpdateInnerRedemptionRateBounds): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        resumeHostZone(value: MsgResumeHostZone): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        createTradeRoute(value: MsgCreateTradeRoute): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        deleteTradeRoute(value: MsgDeleteTradeRoute): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        updateTradeRoute(value: MsgUpdateTradeRoute): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        setCommunityPoolRebate(value: MsgSetCommunityPoolRebate): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        toggleTradeController(value: MsgToggleTradeController): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        updateHostZoneParams(value: MsgUpdateHostZoneParams): {
             typeUrl: string;
             value: Uint8Array;
         };
@@ -82,9 +118,9 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgAddValidators;
         };
-        changeValidatorWeight(value: MsgChangeValidatorWeight): {
+        changeValidatorWeight(value: MsgChangeValidatorWeights): {
             typeUrl: string;
-            value: MsgChangeValidatorWeight;
+            value: MsgChangeValidatorWeights;
         };
         deleteValidator(value: MsgDeleteValidator): {
             typeUrl: string;
@@ -98,9 +134,45 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgUpdateValidatorSharesExchRate;
         };
+        calibrateDelegation(value: MsgCalibrateDelegation): {
+            typeUrl: string;
+            value: MsgCalibrateDelegation;
+        };
         clearBalance(value: MsgClearBalance): {
             typeUrl: string;
             value: MsgClearBalance;
+        };
+        updateInnerRedemptionRateBounds(value: MsgUpdateInnerRedemptionRateBounds): {
+            typeUrl: string;
+            value: MsgUpdateInnerRedemptionRateBounds;
+        };
+        resumeHostZone(value: MsgResumeHostZone): {
+            typeUrl: string;
+            value: MsgResumeHostZone;
+        };
+        createTradeRoute(value: MsgCreateTradeRoute): {
+            typeUrl: string;
+            value: MsgCreateTradeRoute;
+        };
+        deleteTradeRoute(value: MsgDeleteTradeRoute): {
+            typeUrl: string;
+            value: MsgDeleteTradeRoute;
+        };
+        updateTradeRoute(value: MsgUpdateTradeRoute): {
+            typeUrl: string;
+            value: MsgUpdateTradeRoute;
+        };
+        setCommunityPoolRebate(value: MsgSetCommunityPoolRebate): {
+            typeUrl: string;
+            value: MsgSetCommunityPoolRebate;
+        };
+        toggleTradeController(value: MsgToggleTradeController): {
+            typeUrl: string;
+            value: MsgToggleTradeController;
+        };
+        updateHostZoneParams(value: MsgUpdateHostZoneParams): {
+            typeUrl: string;
+            value: MsgUpdateHostZoneParams;
         };
     };
     fromPartial: {
@@ -132,9 +204,9 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgAddValidators;
         };
-        changeValidatorWeight(value: MsgChangeValidatorWeight): {
+        changeValidatorWeight(value: MsgChangeValidatorWeights): {
             typeUrl: string;
-            value: MsgChangeValidatorWeight;
+            value: MsgChangeValidatorWeights;
         };
         deleteValidator(value: MsgDeleteValidator): {
             typeUrl: string;
@@ -148,9 +220,45 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgUpdateValidatorSharesExchRate;
         };
+        calibrateDelegation(value: MsgCalibrateDelegation): {
+            typeUrl: string;
+            value: MsgCalibrateDelegation;
+        };
         clearBalance(value: MsgClearBalance): {
             typeUrl: string;
             value: MsgClearBalance;
+        };
+        updateInnerRedemptionRateBounds(value: MsgUpdateInnerRedemptionRateBounds): {
+            typeUrl: string;
+            value: MsgUpdateInnerRedemptionRateBounds;
+        };
+        resumeHostZone(value: MsgResumeHostZone): {
+            typeUrl: string;
+            value: MsgResumeHostZone;
+        };
+        createTradeRoute(value: MsgCreateTradeRoute): {
+            typeUrl: string;
+            value: MsgCreateTradeRoute;
+        };
+        deleteTradeRoute(value: MsgDeleteTradeRoute): {
+            typeUrl: string;
+            value: MsgDeleteTradeRoute;
+        };
+        updateTradeRoute(value: MsgUpdateTradeRoute): {
+            typeUrl: string;
+            value: MsgUpdateTradeRoute;
+        };
+        setCommunityPoolRebate(value: MsgSetCommunityPoolRebate): {
+            typeUrl: string;
+            value: MsgSetCommunityPoolRebate;
+        };
+        toggleTradeController(value: MsgToggleTradeController): {
+            typeUrl: string;
+            value: MsgToggleTradeController;
+        };
+        updateHostZoneParams(value: MsgUpdateHostZoneParams): {
+            typeUrl: string;
+            value: MsgUpdateHostZoneParams;
         };
     };
 };

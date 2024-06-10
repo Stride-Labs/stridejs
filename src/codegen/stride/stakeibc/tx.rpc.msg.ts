@@ -1,6 +1,6 @@
 import { Rpc } from "@osmonauts/helpers";
 import * as _m0 from "protobufjs/minimal";
-import { MsgLiquidStake, MsgLiquidStakeResponse, MsgLSMLiquidStake, MsgLSMLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidators, MsgAddValidatorsResponse, MsgChangeValidatorWeight, MsgChangeValidatorWeightResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgClearBalance, MsgClearBalanceResponse } from "./tx";
+import { MsgLiquidStake, MsgLiquidStakeResponse, MsgLSMLiquidStake, MsgLSMLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidators, MsgAddValidatorsResponse, MsgChangeValidatorWeights, MsgChangeValidatorWeightsResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgCalibrateDelegation, MsgCalibrateDelegationResponse, MsgClearBalance, MsgClearBalanceResponse, MsgUpdateInnerRedemptionRateBounds, MsgUpdateInnerRedemptionRateBoundsResponse, MsgResumeHostZone, MsgResumeHostZoneResponse, MsgCreateTradeRoute, MsgCreateTradeRouteResponse, MsgDeleteTradeRoute, MsgDeleteTradeRouteResponse, MsgUpdateTradeRoute, MsgUpdateTradeRouteResponse, MsgSetCommunityPoolRebate, MsgSetCommunityPoolRebateResponse, MsgToggleTradeController, MsgToggleTradeControllerResponse, MsgUpdateHostZoneParams, MsgUpdateHostZoneParamsResponse } from "./tx";
 /** Msg defines the RPC service */
 
 export interface Msg {
@@ -25,7 +25,7 @@ export interface Msg {
   addValidators(request: MsgAddValidators): Promise<MsgAddValidatorsResponse>;
   /*null*/
 
-  changeValidatorWeight(request: MsgChangeValidatorWeight): Promise<MsgChangeValidatorWeightResponse>;
+  changeValidatorWeight(request: MsgChangeValidatorWeights): Promise<MsgChangeValidatorWeightsResponse>;
   /*null*/
 
   deleteValidator(request: MsgDeleteValidator): Promise<MsgDeleteValidatorResponse>;
@@ -37,7 +37,34 @@ export interface Msg {
   updateValidatorSharesExchRate(request: MsgUpdateValidatorSharesExchRate): Promise<MsgUpdateValidatorSharesExchRateResponse>;
   /*null*/
 
+  calibrateDelegation(request: MsgCalibrateDelegation): Promise<MsgCalibrateDelegationResponse>;
+  /*null*/
+
   clearBalance(request: MsgClearBalance): Promise<MsgClearBalanceResponse>;
+  /*null*/
+
+  updateInnerRedemptionRateBounds(request: MsgUpdateInnerRedemptionRateBounds): Promise<MsgUpdateInnerRedemptionRateBoundsResponse>;
+  /*null*/
+
+  resumeHostZone(request: MsgResumeHostZone): Promise<MsgResumeHostZoneResponse>;
+  /*null*/
+
+  createTradeRoute(request: MsgCreateTradeRoute): Promise<MsgCreateTradeRouteResponse>;
+  /*null*/
+
+  deleteTradeRoute(request: MsgDeleteTradeRoute): Promise<MsgDeleteTradeRouteResponse>;
+  /*null*/
+
+  updateTradeRoute(request: MsgUpdateTradeRoute): Promise<MsgUpdateTradeRouteResponse>;
+  /*null*/
+
+  setCommunityPoolRebate(request: MsgSetCommunityPoolRebate): Promise<MsgSetCommunityPoolRebateResponse>;
+  /*null*/
+
+  toggleTradeController(request: MsgToggleTradeController): Promise<MsgToggleTradeControllerResponse>;
+  /*null*/
+
+  updateHostZoneParams(request: MsgUpdateHostZoneParams): Promise<MsgUpdateHostZoneParamsResponse>;
   /*null*/
 
 }
@@ -57,7 +84,16 @@ export class MsgClientImpl implements Msg {
     this.deleteValidator = this.deleteValidator.bind(this);
     this.restoreInterchainAccount = this.restoreInterchainAccount.bind(this);
     this.updateValidatorSharesExchRate = this.updateValidatorSharesExchRate.bind(this);
+    this.calibrateDelegation = this.calibrateDelegation.bind(this);
     this.clearBalance = this.clearBalance.bind(this);
+    this.updateInnerRedemptionRateBounds = this.updateInnerRedemptionRateBounds.bind(this);
+    this.resumeHostZone = this.resumeHostZone.bind(this);
+    this.createTradeRoute = this.createTradeRoute.bind(this);
+    this.deleteTradeRoute = this.deleteTradeRoute.bind(this);
+    this.updateTradeRoute = this.updateTradeRoute.bind(this);
+    this.setCommunityPoolRebate = this.setCommunityPoolRebate.bind(this);
+    this.toggleTradeController = this.toggleTradeController.bind(this);
+    this.updateHostZoneParams = this.updateHostZoneParams.bind(this);
   }
 
   liquidStake(request: MsgLiquidStake): Promise<MsgLiquidStakeResponse> {
@@ -102,10 +138,10 @@ export class MsgClientImpl implements Msg {
     return promise.then(data => MsgAddValidatorsResponse.decode(new _m0.Reader(data)));
   }
 
-  changeValidatorWeight(request: MsgChangeValidatorWeight): Promise<MsgChangeValidatorWeightResponse> {
-    const data = MsgChangeValidatorWeight.encode(request).finish();
+  changeValidatorWeight(request: MsgChangeValidatorWeights): Promise<MsgChangeValidatorWeightsResponse> {
+    const data = MsgChangeValidatorWeights.encode(request).finish();
     const promise = this.rpc.request("stride.stakeibc.Msg", "ChangeValidatorWeight", data);
-    return promise.then(data => MsgChangeValidatorWeightResponse.decode(new _m0.Reader(data)));
+    return promise.then(data => MsgChangeValidatorWeightsResponse.decode(new _m0.Reader(data)));
   }
 
   deleteValidator(request: MsgDeleteValidator): Promise<MsgDeleteValidatorResponse> {
@@ -126,10 +162,64 @@ export class MsgClientImpl implements Msg {
     return promise.then(data => MsgUpdateValidatorSharesExchRateResponse.decode(new _m0.Reader(data)));
   }
 
+  calibrateDelegation(request: MsgCalibrateDelegation): Promise<MsgCalibrateDelegationResponse> {
+    const data = MsgCalibrateDelegation.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "CalibrateDelegation", data);
+    return promise.then(data => MsgCalibrateDelegationResponse.decode(new _m0.Reader(data)));
+  }
+
   clearBalance(request: MsgClearBalance): Promise<MsgClearBalanceResponse> {
     const data = MsgClearBalance.encode(request).finish();
     const promise = this.rpc.request("stride.stakeibc.Msg", "ClearBalance", data);
     return promise.then(data => MsgClearBalanceResponse.decode(new _m0.Reader(data)));
+  }
+
+  updateInnerRedemptionRateBounds(request: MsgUpdateInnerRedemptionRateBounds): Promise<MsgUpdateInnerRedemptionRateBoundsResponse> {
+    const data = MsgUpdateInnerRedemptionRateBounds.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "UpdateInnerRedemptionRateBounds", data);
+    return promise.then(data => MsgUpdateInnerRedemptionRateBoundsResponse.decode(new _m0.Reader(data)));
+  }
+
+  resumeHostZone(request: MsgResumeHostZone): Promise<MsgResumeHostZoneResponse> {
+    const data = MsgResumeHostZone.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "ResumeHostZone", data);
+    return promise.then(data => MsgResumeHostZoneResponse.decode(new _m0.Reader(data)));
+  }
+
+  createTradeRoute(request: MsgCreateTradeRoute): Promise<MsgCreateTradeRouteResponse> {
+    const data = MsgCreateTradeRoute.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "CreateTradeRoute", data);
+    return promise.then(data => MsgCreateTradeRouteResponse.decode(new _m0.Reader(data)));
+  }
+
+  deleteTradeRoute(request: MsgDeleteTradeRoute): Promise<MsgDeleteTradeRouteResponse> {
+    const data = MsgDeleteTradeRoute.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "DeleteTradeRoute", data);
+    return promise.then(data => MsgDeleteTradeRouteResponse.decode(new _m0.Reader(data)));
+  }
+
+  updateTradeRoute(request: MsgUpdateTradeRoute): Promise<MsgUpdateTradeRouteResponse> {
+    const data = MsgUpdateTradeRoute.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "UpdateTradeRoute", data);
+    return promise.then(data => MsgUpdateTradeRouteResponse.decode(new _m0.Reader(data)));
+  }
+
+  setCommunityPoolRebate(request: MsgSetCommunityPoolRebate): Promise<MsgSetCommunityPoolRebateResponse> {
+    const data = MsgSetCommunityPoolRebate.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "SetCommunityPoolRebate", data);
+    return promise.then(data => MsgSetCommunityPoolRebateResponse.decode(new _m0.Reader(data)));
+  }
+
+  toggleTradeController(request: MsgToggleTradeController): Promise<MsgToggleTradeControllerResponse> {
+    const data = MsgToggleTradeController.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "ToggleTradeController", data);
+    return promise.then(data => MsgToggleTradeControllerResponse.decode(new _m0.Reader(data)));
+  }
+
+  updateHostZoneParams(request: MsgUpdateHostZoneParams): Promise<MsgUpdateHostZoneParamsResponse> {
+    const data = MsgUpdateHostZoneParams.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "UpdateHostZoneParams", data);
+    return promise.then(data => MsgUpdateHostZoneParamsResponse.decode(new _m0.Reader(data)));
   }
 
 }

@@ -7,7 +7,7 @@ export interface Validator {
   delegation: string;
   slashQueryProgressTracker: string;
   slashQueryCheckpoint: string;
-  internalSharesToTokensRate: string;
+  sharesToTokensRate: string;
   delegationChangesInProgress: Long;
   slashQueryInProgress: boolean;
 }
@@ -18,7 +18,7 @@ export interface ValidatorSDKType {
   delegation: string;
   slash_query_progress_tracker: string;
   slash_query_checkpoint: string;
-  internal_shares_to_tokens_rate: string;
+  shares_to_tokens_rate: string;
   delegation_changes_in_progress: Long;
   slash_query_in_progress: boolean;
 }
@@ -31,7 +31,7 @@ function createBaseValidator(): Validator {
     delegation: "",
     slashQueryProgressTracker: "",
     slashQueryCheckpoint: "",
-    internalSharesToTokensRate: "",
+    sharesToTokensRate: "",
     delegationChangesInProgress: Long.ZERO,
     slashQueryInProgress: false
   };
@@ -63,8 +63,8 @@ export const Validator = {
       writer.uint32(98).string(message.slashQueryCheckpoint);
     }
 
-    if (message.internalSharesToTokensRate !== "") {
-      writer.uint32(82).string(message.internalSharesToTokensRate);
+    if (message.sharesToTokensRate !== "") {
+      writer.uint32(82).string(message.sharesToTokensRate);
     }
 
     if (!message.delegationChangesInProgress.isZero()) {
@@ -112,7 +112,7 @@ export const Validator = {
           break;
 
         case 10:
-          message.internalSharesToTokensRate = reader.string();
+          message.sharesToTokensRate = reader.string();
           break;
 
         case 11:
@@ -140,7 +140,7 @@ export const Validator = {
     message.delegation = object.delegation ?? "";
     message.slashQueryProgressTracker = object.slashQueryProgressTracker ?? "";
     message.slashQueryCheckpoint = object.slashQueryCheckpoint ?? "";
-    message.internalSharesToTokensRate = object.internalSharesToTokensRate ?? "";
+    message.sharesToTokensRate = object.sharesToTokensRate ?? "";
     message.delegationChangesInProgress = object.delegationChangesInProgress !== undefined && object.delegationChangesInProgress !== null ? Long.fromValue(object.delegationChangesInProgress) : Long.ZERO;
     message.slashQueryInProgress = object.slashQueryInProgress ?? false;
     return message;

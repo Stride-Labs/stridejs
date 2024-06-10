@@ -21,8 +21,8 @@ export interface Params {
   defaultMinRedemptionRateThreshold: Long;
   defaultMaxRedemptionRateThreshold: Long;
   ibcTransferTimeoutNanos: Long;
-  safetyMaxSlashPercent: Long;
   validatorSlashQueryThreshold: Long;
+  validatorWeightCap: Long;
 }
 /**
  * Params defines the parameters for the module.
@@ -45,8 +45,8 @@ export interface ParamsSDKType {
   default_min_redemption_rate_threshold: Long;
   default_max_redemption_rate_threshold: Long;
   ibc_transfer_timeout_nanos: Long;
-  safety_max_slash_percent: Long;
   validator_slash_query_threshold: Long;
+  validator_weight_cap: Long;
 }
 
 function createBaseParams(): Params {
@@ -65,8 +65,8 @@ function createBaseParams(): Params {
     defaultMinRedemptionRateThreshold: Long.UZERO,
     defaultMaxRedemptionRateThreshold: Long.UZERO,
     ibcTransferTimeoutNanos: Long.UZERO,
-    safetyMaxSlashPercent: Long.UZERO,
-    validatorSlashQueryThreshold: Long.UZERO
+    validatorSlashQueryThreshold: Long.UZERO,
+    validatorWeightCap: Long.UZERO
   };
 }
 
@@ -128,12 +128,12 @@ export const Params = {
       writer.uint32(128).uint64(message.ibcTransferTimeoutNanos);
     }
 
-    if (!message.safetyMaxSlashPercent.isZero()) {
-      writer.uint32(144).uint64(message.safetyMaxSlashPercent);
-    }
-
     if (!message.validatorSlashQueryThreshold.isZero()) {
       writer.uint32(152).uint64(message.validatorSlashQueryThreshold);
+    }
+
+    if (!message.validatorWeightCap.isZero()) {
+      writer.uint32(160).uint64(message.validatorWeightCap);
     }
 
     return writer;
@@ -204,12 +204,12 @@ export const Params = {
           message.ibcTransferTimeoutNanos = (reader.uint64() as Long);
           break;
 
-        case 18:
-          message.safetyMaxSlashPercent = (reader.uint64() as Long);
-          break;
-
         case 19:
           message.validatorSlashQueryThreshold = (reader.uint64() as Long);
+          break;
+
+        case 20:
+          message.validatorWeightCap = (reader.uint64() as Long);
           break;
 
         default:
@@ -237,8 +237,8 @@ export const Params = {
     message.defaultMinRedemptionRateThreshold = object.defaultMinRedemptionRateThreshold !== undefined && object.defaultMinRedemptionRateThreshold !== null ? Long.fromValue(object.defaultMinRedemptionRateThreshold) : Long.UZERO;
     message.defaultMaxRedemptionRateThreshold = object.defaultMaxRedemptionRateThreshold !== undefined && object.defaultMaxRedemptionRateThreshold !== null ? Long.fromValue(object.defaultMaxRedemptionRateThreshold) : Long.UZERO;
     message.ibcTransferTimeoutNanos = object.ibcTransferTimeoutNanos !== undefined && object.ibcTransferTimeoutNanos !== null ? Long.fromValue(object.ibcTransferTimeoutNanos) : Long.UZERO;
-    message.safetyMaxSlashPercent = object.safetyMaxSlashPercent !== undefined && object.safetyMaxSlashPercent !== null ? Long.fromValue(object.safetyMaxSlashPercent) : Long.UZERO;
     message.validatorSlashQueryThreshold = object.validatorSlashQueryThreshold !== undefined && object.validatorSlashQueryThreshold !== null ? Long.fromValue(object.validatorSlashQueryThreshold) : Long.UZERO;
+    message.validatorWeightCap = object.validatorWeightCap !== undefined && object.validatorWeightCap !== null ? Long.fromValue(object.validatorWeightCap) : Long.UZERO;
     return message;
   }
 

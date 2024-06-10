@@ -1,7 +1,7 @@
 {
   "name": "stridejs",
-  "version": "0.8.0-alpha.5",
-  "description": "stridejs",
+  "version": "0.9.0",
+  "description": "Codegenerated typescript files from Stride SDK proto files",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/Stride-Labs/stridejs#readme",
   "license": "SEE LICENSE IN LICENSE",
@@ -23,7 +23,7 @@
     "build": "npm run build:module && npm run build:main",
     "build:ts": "tsc --project ./tsconfig.json",
     "buidl": "npm run build && npm run build:ts",
-    "codegen:build": "buf export ./stride --output=./stride/build",
+    "codegen:build": "buf export ./stride --output=./stride-build",
     "codegen": "npm run codegen:cleanup && npm run codegen:build && npm run codegen:run",
     "codegen:run": "cross-env NODE_ENV=development babel-node scripts/codegen.js",
     "codegen:cleanup": "cross-env rm -rf ./codegen",
@@ -83,10 +83,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.18.9",
-    "@cosmjs/amino": "^0.30.1",
-    "@cosmjs/proto-signing": "^0.30.1",
-    "@cosmjs/stargate": "^0.30.1",
-    "@cosmjs/tendermint-rpc": "^0.30.1",
+    "@cosmjs/amino": "0.31.3",
+    "@cosmjs/proto-signing": "0.31.3",
+    "@cosmjs/stargate": "0.31.3",
+    "@cosmjs/tendermint-rpc": "0.31.3",
     "@osmonauts/helpers": "^0.6.0",
     "@osmonauts/lcd": "^0.6.0",
     "protobufjs": "^6.11.2"

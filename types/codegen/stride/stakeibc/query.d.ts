@@ -4,6 +4,7 @@ import { Validator, ValidatorSDKType } from "./validator";
 import { HostZone, HostZoneSDKType } from "./host_zone";
 import { EpochTracker, EpochTrackerSDKType } from "./epoch_tracker";
 import { AddressUnbonding, AddressUnbondingSDKType } from "./address_unbonding";
+import { TradeRoute, TradeRouteSDKType } from "./trade_route";
 import * as _m0 from "protobufjs/minimal";
 import { DeepPartial, Long } from "@osmonauts/helpers";
 /**
@@ -150,6 +151,16 @@ export interface QueryAddressUnbondingsResponse {
 export interface QueryAddressUnbondingsResponseSDKType {
     address_unbondings: AddressUnbondingSDKType[];
 }
+export interface QueryAllTradeRoutes {
+}
+export interface QueryAllTradeRoutesSDKType {
+}
+export interface QueryAllTradeRoutesResponse {
+    tradeRoutes: TradeRoute[];
+}
+export interface QueryAllTradeRoutesResponseSDKType {
+    trade_routes: TradeRouteSDKType[];
+}
 export declare const QueryInterchainAccountFromAddressRequest: {
     encode(message: QueryInterchainAccountFromAddressRequest, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryInterchainAccountFromAddressRequest;
@@ -249,4 +260,14 @@ export declare const QueryAddressUnbondingsResponse: {
     encode(message: QueryAddressUnbondingsResponse, writer?: _m0.Writer): _m0.Writer;
     decode(input: _m0.Reader | Uint8Array, length?: number): QueryAddressUnbondingsResponse;
     fromPartial(object: DeepPartial<QueryAddressUnbondingsResponse>): QueryAddressUnbondingsResponse;
+};
+export declare const QueryAllTradeRoutes: {
+    encode(_: QueryAllTradeRoutes, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllTradeRoutes;
+    fromPartial(_: DeepPartial<QueryAllTradeRoutes>): QueryAllTradeRoutes;
+};
+export declare const QueryAllTradeRoutesResponse: {
+    encode(message: QueryAllTradeRoutesResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllTradeRoutesResponse;
+    fromPartial(object: DeepPartial<QueryAllTradeRoutesResponse>): QueryAllTradeRoutesResponse;
 };
