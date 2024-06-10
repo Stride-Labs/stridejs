@@ -2,6 +2,8 @@
 
 <img src="https://user-images.githubusercontent.com/545047/190012774-f9886f76-246a-4f45-b21a-f2798f74f9f8.png" width="400">
 
+> ⚠️ stridejs currently bundles in a specific version of cosmos-sdk (`v0.45.16-ics-lsm-rc0`) due to LSM. Carefully import the modules you need.
+
 ## install
 
 ```sh
@@ -37,6 +39,30 @@ const client = await SigningStargateClient.connectWithSigner(
     accountParser: strideAccountParser,
   }
 );
+```
+
+### Custom Account Parser
+
+You are free to wrap stride account's parser depending on your use-case, take this as an example:
+
+```
+import { accountFromAny, Account } from "@cosmjs/stargate";
+
+function accountParser(input: Any): Account {
+  switch (input.typeUrl) {
+    case '/injective.types.v1beta1.EthAccount': {
+      return injectiveAccountParser(input)
+    }
+
+    case '/stride.vesting.StridePeriodicVestingAccount': {
+      return strideAccountParser(input)
+    }
+
+    default: {
+      return accountFromAny(input);
+    }
+  }
+}
 ```
 
 ## Usage
@@ -114,9 +140,9 @@ npm install
 
 ### Checkout Relevant Branches
 
-We sometimes use different branches depending on our need, you can use our `.gitmodules` as reference.
+We currently bundle in a specific version of cosmos-sdk because of LSM. And sometimes we do the same for Stride too.
 
-And also sometimes, git submodules for some reason gets stuck on some branches despite being sync/updated (see above).
+And sometimes things get stuck, so we have to manually check out and update branches despite the previous step covering those.
 
 ```
 cd stride
