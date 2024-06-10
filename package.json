@@ -1,6 +1,6 @@
 {
   "name": "stridejs",
-  "version": "0.9.0",
+  "version": "0.9.0-alpha",
   "description": "Codegenerated typescript files from Stride SDK proto files",
   "author": "Dan Lynch <pyramation@gmail.com>",
   "homepage": "https://github.com/Stride-Labs/stridejs#readme",
