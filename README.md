@@ -142,21 +142,63 @@ npm install
 
 We currently bundle in a specific version of cosmos-sdk because of LSM. And sometimes we do the same for Stride too.
 
-And sometimes things get stuck, so we have to manually check out and update branches despite the previous step covering those.
+Open up `.gitmodules` to update the specified branches, then sync:
 
+```bash
+git submodule sync --recursive
+git submodule update --init --recursive
 ```
+
+Check if the submodules were updated:
+
+```bash
+# Check if the specified branch for Stride is correct
+cd stride
+git branch
+
+cd ../
+
+# Check if the specified branch for Cosmos is correct
+cd cosmos
+git branch
+```
+
+If the branches were not updated, that's ok. Sometimes things get stuck, so we have to manually check out and update branches despite the previous step covering those.
+
+```bash
 cd stride
 git checkout <branch>
 git pull origin <branch>
+git log # Confirm if the latest commit is the same on the repository
 
 cd ../
 
 cd cosmos
 git checkout <branch>
 git pull origin <branch>
+git log # Confirm if the latest commit is the same on the repository
 ```
 
 ### Codegen
+
+If there are new public-facing transaction types on the Stride side, make sure to manually adjust its `aminoType` by opening `scripts/codegen.js`. Under `options.aminoEncoding.exceptions`, you'll find stuff like:
+
+```json
+"/stride.stakeibc.MsgLiquidStake": {
+  aminoType: "stakeibc/LiquidStake",
+},
+"/stride.stakeibc.MsgLSMLiquidStake": {
+  aminoType: "stakeibc/LSMLiquidStake",
+},
+```
+
+Make sure to add the new transaction types with the same pattern:
+
+```json
+"/stride.module.MsgModuleName": {
+  aminoType: "module/MsgModuleName",
+},
+```
 
 Update the generated ts files:
 
