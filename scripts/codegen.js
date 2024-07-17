@@ -81,6 +81,12 @@ telescope({
         "/stride.stakedym.MsgRedeemStake": {
           aminoType: "stakedym/MsgRedeemStake",
         },
+        "/stride.airdrop.MsgClaimDaily": {
+          aminoType: "airdrop/MsgClaimDaily",
+        },
+        "/stride.airdrop.MsgClaimEarly": {
+          aminoType: "airdrop/MsgClaimEarly",
+        },
       },
     },
     lcdClients: {

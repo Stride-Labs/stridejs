@@ -1,14 +1,14 @@
 import { AminoMsg } from "@cosmjs/amino";
 import { MsgClaimDaily, MsgClaimEarly, MsgCreateAirdrop, MsgUpdateAirdrop, MsgAddAllocations, MsgUpdateUserAllocation, MsgLinkAddresses } from "./tx";
 export interface AminoMsgClaimDaily extends AminoMsg {
-  type: "/stride.airdrop.MsgClaimDaily";
+  type: "airdrop/MsgClaimDaily";
   value: {
     claimer: string;
     airdrop_id: string;
   };
 }
 export interface AminoMsgClaimEarly extends AminoMsg {
-  type: "/stride.airdrop.MsgClaimEarly";
+  type: "airdrop/MsgClaimEarly";
   value: {
     claimer: string;
     airdrop_id: string;
@@ -97,7 +97,7 @@ export interface AminoMsgLinkAddresses extends AminoMsg {
 }
 export const AminoConverter = {
   "/stride.airdrop.MsgClaimDaily": {
-    aminoType: "/stride.airdrop.MsgClaimDaily",
+    aminoType: "airdrop/MsgClaimDaily",
     toAmino: ({
       claimer,
       airdropId
@@ -118,7 +118,7 @@ export const AminoConverter = {
     }
   },
   "/stride.airdrop.MsgClaimEarly": {
-    aminoType: "/stride.airdrop.MsgClaimEarly",
+    aminoType: "airdrop/MsgClaimEarly",
     toAmino: ({
       claimer,
       airdropId
