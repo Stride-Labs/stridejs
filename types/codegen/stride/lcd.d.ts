@@ -51,6 +51,7 @@ export declare const createLCDClient: ({ restEndpoint }: {
         };
     };
     stride: {
+        airdrop: import("./airdrop/query.lcd").LCDQueryClient;
         autopilot: import("./autopilot/query.lcd").LCDQueryClient;
         claim: import("./claim/query.lcd").LCDQueryClient;
         epochs: import("./epochs/query.lcd").LCDQueryClient;

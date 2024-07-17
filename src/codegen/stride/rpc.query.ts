@@ -58,6 +58,7 @@ export const createRPCQueryClient = async ({
       }
     },
     stride: {
+      airdrop: (await import("./airdrop/query.rpc.query")).createRpcQueryExtension(client),
       autopilot: (await import("./autopilot/query.rpc.query")).createRpcQueryExtension(client),
       claim: (await import("./claim/query.rpc.query")).createRpcQueryExtension(client),
       epochs: (await import("./epochs/query.rpc.query")).createRpcQueryExtension(client),

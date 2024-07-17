@@ -886,6 +886,175 @@ export declare const strideAminoConverters: {
             identifier: string;
         }) => import("./claim/tx").MsgDeleteAirdrop;
     };
+    "/stride.airdrop.MsgClaimDaily": {
+        aminoType: string;
+        toAmino: ({ claimer, airdropId }: import("./airdrop/tx").MsgClaimDaily) => {
+            claimer: string;
+            airdrop_id: string;
+        };
+        fromAmino: ({ claimer, airdrop_id }: {
+            claimer: string;
+            airdrop_id: string;
+        }) => import("./airdrop/tx").MsgClaimDaily;
+    };
+    "/stride.airdrop.MsgClaimEarly": {
+        aminoType: string;
+        toAmino: ({ claimer, airdropId }: import("./airdrop/tx").MsgClaimEarly) => {
+            claimer: string;
+            airdrop_id: string;
+        };
+        fromAmino: ({ claimer, airdrop_id }: {
+            claimer: string;
+            airdrop_id: string;
+        }) => import("./airdrop/tx").MsgClaimEarly;
+    };
+    "/stride.airdrop.MsgCreateAirdrop": {
+        aminoType: string;
+        toAmino: ({ admin, airdropId, rewardDenom, distributionStartDate, distributionEndDate, clawbackDate, claimTypeDeadlineDate, earlyClaimPenalty, distributionAddress }: import("./airdrop/tx").MsgCreateAirdrop) => {
+            admin: string;
+            airdrop_id: string;
+            reward_denom: string;
+            distribution_start_date: {
+                seconds: string;
+                nanos: number;
+            };
+            distribution_end_date: {
+                seconds: string;
+                nanos: number;
+            };
+            clawback_date: {
+                seconds: string;
+                nanos: number;
+            };
+            claim_type_deadline_date: {
+                seconds: string;
+                nanos: number;
+            };
+            early_claim_penalty: string;
+            distribution_address: string;
+        };
+        fromAmino: ({ admin, airdrop_id, reward_denom, distribution_start_date, distribution_end_date, clawback_date, claim_type_deadline_date, early_claim_penalty, distribution_address }: {
+            admin: string;
+            airdrop_id: string;
+            reward_denom: string;
+            distribution_start_date: {
+                seconds: string;
+                nanos: number;
+            };
+            distribution_end_date: {
+                seconds: string;
+                nanos: number;
+            };
+            clawback_date: {
+                seconds: string;
+                nanos: number;
+            };
+            claim_type_deadline_date: {
+                seconds: string;
+                nanos: number;
+            };
+            early_claim_penalty: string;
+            distribution_address: string;
+        }) => import("./airdrop/tx").MsgCreateAirdrop;
+    };
+    "/stride.airdrop.MsgUpdateAirdrop": {
+        aminoType: string;
+        toAmino: ({ admin, airdropId, rewardDenom, distributionStartDate, distributionEndDate, clawbackDate, claimTypeDeadlineDate, earlyClaimPenalty, distributionAddress }: import("./airdrop/tx").MsgUpdateAirdrop) => {
+            admin: string;
+            airdrop_id: string;
+            reward_denom: string;
+            distribution_start_date: {
+                seconds: string;
+                nanos: number;
+            };
+            distribution_end_date: {
+                seconds: string;
+                nanos: number;
+            };
+            clawback_date: {
+                seconds: string;
+                nanos: number;
+            };
+            claim_type_deadline_date: {
+                seconds: string;
+                nanos: number;
+            };
+            early_claim_penalty: string;
+            distribution_address: string;
+        };
+        fromAmino: ({ admin, airdrop_id, reward_denom, distribution_start_date, distribution_end_date, clawback_date, claim_type_deadline_date, early_claim_penalty, distribution_address }: {
+            admin: string;
+            airdrop_id: string;
+            reward_denom: string;
+            distribution_start_date: {
+                seconds: string;
+                nanos: number;
+            };
+            distribution_end_date: {
+                seconds: string;
+                nanos: number;
+            };
+            clawback_date: {
+                seconds: string;
+                nanos: number;
+            };
+            claim_type_deadline_date: {
+                seconds: string;
+                nanos: number;
+            };
+            early_claim_penalty: string;
+            distribution_address: string;
+        }) => import("./airdrop/tx").MsgUpdateAirdrop;
+    };
+    "/stride.airdrop.MsgAddAllocations": {
+        aminoType: string;
+        toAmino: ({ admin, airdropId, allocations }: import("./airdrop/tx").MsgAddAllocations) => {
+            admin: string;
+            airdrop_id: string;
+            allocations: {
+                user_address: string;
+                allocations: string[];
+            }[];
+        };
+        fromAmino: ({ admin, airdrop_id, allocations }: {
+            admin: string;
+            airdrop_id: string;
+            allocations: {
+                user_address: string;
+                allocations: string[];
+            }[];
+        }) => import("./airdrop/tx").MsgAddAllocations;
+    };
+    "/stride.airdrop.MsgUpdateUserAllocation": {
+        aminoType: string;
+        toAmino: ({ admin, airdropId, userAddress, allocations }: import("./airdrop/tx").MsgUpdateUserAllocation) => {
+            admin: string;
+            airdrop_id: string;
+            user_address: string;
+            allocations: string[];
+        };
+        fromAmino: ({ admin, airdrop_id, user_address, allocations }: {
+            admin: string;
+            airdrop_id: string;
+            user_address: string;
+            allocations: string[];
+        }) => import("./airdrop/tx").MsgUpdateUserAllocation;
+    };
+    "/stride.airdrop.MsgLinkAddresses": {
+        aminoType: string;
+        toAmino: ({ admin, airdropId, strideAddress, hostAddress }: import("./airdrop/tx").MsgLinkAddresses) => {
+            admin: string;
+            airdrop_id: string;
+            stride_address: string;
+            host_address: string;
+        };
+        fromAmino: ({ admin, airdrop_id, stride_address, host_address }: {
+            admin: string;
+            airdrop_id: string;
+            stride_address: string;
+            host_address: string;
+        }) => import("./airdrop/tx").MsgLinkAddresses;
+    };
 };
 export declare const strideProtoRegistry: ReadonlyArray<[string, GeneratedType]>;
 export declare const getSigningStrideClientOptions: ({ defaultTypes }?: {

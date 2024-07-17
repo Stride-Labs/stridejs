@@ -149,6 +149,14 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
         };
     };
     stride: {
+        airdrop: {
+            airdrop(request: import("./airdrop/query").QueryAirdropRequest): Promise<import("./airdrop/query").QueryAirdropResponse>;
+            allAirdrops(request?: import("./airdrop/query").QueryAllAirdropsRequest): Promise<import("./airdrop/query").QueryAllAirdropsResponse>;
+            userAllocation(request: import("./airdrop/query").QueryUserAllocationRequest): Promise<import("./airdrop/query").QueryUserAllocationResponse>;
+            userAllocations(request: import("./airdrop/query").QueryUserAllocationsRequest): Promise<import("./airdrop/query").QueryUserAllocationsResponse>;
+            allAllocations(request: import("./airdrop/query").QueryAllAllocationsRequest): Promise<import("./airdrop/query").QueryAllAllocationsResponse>;
+            userSummary(request: import("./airdrop/query").QueryUserSummaryRequest): Promise<import("./airdrop/query").QueryUserSummaryResponse>;
+        };
         autopilot: {
             params(request?: import("./autopilot/query").QueryParamsRequest): Promise<import("./autopilot/query").QueryParamsResponse>;
         };

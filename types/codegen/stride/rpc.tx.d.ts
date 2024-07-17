@@ -35,6 +35,7 @@ export declare const createRPCMsgClient: ({ rpc }: {
         };
     };
     stride: {
+        airdrop: import("./airdrop/tx.rpc.msg").MsgClientImpl;
         claim: import("./claim/tx.rpc.msg").MsgClientImpl;
         icaoracle: import("./icaoracle/tx.rpc.msg").MsgClientImpl;
         interchainquery: {

@@ -37,6 +37,7 @@ export const createRPCMsgClient = async ({
     }
   },
   stride: {
+    airdrop: new (await import("./airdrop/tx.rpc.msg")).MsgClientImpl(rpc),
     claim: new (await import("./claim/tx.rpc.msg")).MsgClientImpl(rpc),
     icaoracle: new (await import("./icaoracle/tx.rpc.msg")).MsgClientImpl(rpc),
     interchainquery: {

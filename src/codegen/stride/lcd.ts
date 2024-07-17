@@ -88,6 +88,9 @@ export const createLCDClient = async ({
       }
     },
     stride: {
+      airdrop: new (await import("./airdrop/query.lcd")).LCDQueryClient({
+        requestClient
+      }),
       autopilot: new (await import("./autopilot/query.lcd")).LCDQueryClient({
         requestClient
       }),
