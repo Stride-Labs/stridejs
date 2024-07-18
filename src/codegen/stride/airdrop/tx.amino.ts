@@ -37,7 +37,9 @@ export interface AminoMsgCreateAirdrop extends AminoMsg {
       nanos: number;
     };
     early_claim_penalty: string;
-    distribution_address: string;
+    distributor_address: string;
+    allocator_address: string;
+    linker_address: string;
   };
 }
 export interface AminoMsgUpdateAirdrop extends AminoMsg {
@@ -63,7 +65,9 @@ export interface AminoMsgUpdateAirdrop extends AminoMsg {
       nanos: number;
     };
     early_claim_penalty: string;
-    distribution_address: string;
+    distributor_address: string;
+    allocator_address: string;
+    linker_address: string;
   };
 }
 export interface AminoMsgAddAllocations extends AminoMsg {
@@ -149,7 +153,9 @@ export const AminoConverter = {
       clawbackDate,
       claimTypeDeadlineDate,
       earlyClaimPenalty,
-      distributionAddress
+      distributorAddress,
+      allocatorAddress,
+      linkerAddress
     }: MsgCreateAirdrop): AminoMsgCreateAirdrop["value"] => {
       return {
         admin,
@@ -160,7 +166,9 @@ export const AminoConverter = {
         clawback_date: clawbackDate,
         claim_type_deadline_date: claimTypeDeadlineDate,
         early_claim_penalty: earlyClaimPenalty,
-        distribution_address: distributionAddress
+        distributor_address: distributorAddress,
+        allocator_address: allocatorAddress,
+        linker_address: linkerAddress
       };
     },
     fromAmino: ({
@@ -172,7 +180,9 @@ export const AminoConverter = {
       clawback_date,
       claim_type_deadline_date,
       early_claim_penalty,
-      distribution_address
+      distributor_address,
+      allocator_address,
+      linker_address
     }: AminoMsgCreateAirdrop["value"]): MsgCreateAirdrop => {
       return {
         admin,
@@ -183,7 +193,9 @@ export const AminoConverter = {
         clawbackDate: clawback_date,
         claimTypeDeadlineDate: claim_type_deadline_date,
         earlyClaimPenalty: early_claim_penalty,
-        distributionAddress: distribution_address
+        distributorAddress: distributor_address,
+        allocatorAddress: allocator_address,
+        linkerAddress: linker_address
       };
     }
   },
@@ -198,7 +210,9 @@ export const AminoConverter = {
       clawbackDate,
       claimTypeDeadlineDate,
       earlyClaimPenalty,
-      distributionAddress
+      distributorAddress,
+      allocatorAddress,
+      linkerAddress
     }: MsgUpdateAirdrop): AminoMsgUpdateAirdrop["value"] => {
       return {
         admin,
@@ -209,7 +223,9 @@ export const AminoConverter = {
         clawback_date: clawbackDate,
         claim_type_deadline_date: claimTypeDeadlineDate,
         early_claim_penalty: earlyClaimPenalty,
-        distribution_address: distributionAddress
+        distributor_address: distributorAddress,
+        allocator_address: allocatorAddress,
+        linker_address: linkerAddress
       };
     },
     fromAmino: ({
@@ -221,7 +237,9 @@ export const AminoConverter = {
       clawback_date,
       claim_type_deadline_date,
       early_claim_penalty,
-      distribution_address
+      distributor_address,
+      allocator_address,
+      linker_address
     }: AminoMsgUpdateAirdrop["value"]): MsgUpdateAirdrop => {
       return {
         admin,
@@ -232,7 +250,9 @@ export const AminoConverter = {
         clawbackDate: clawback_date,
         claimTypeDeadlineDate: claim_type_deadline_date,
         earlyClaimPenalty: early_claim_penalty,
-        distributionAddress: distribution_address
+        distributorAddress: distributor_address,
+        allocatorAddress: allocator_address,
+        linkerAddress: linker_address
       };
     }
   },

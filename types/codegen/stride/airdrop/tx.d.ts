@@ -64,8 +64,12 @@ export interface MsgCreateAirdrop {
      * result in losing 50% of rewards
      */
     earlyClaimPenalty: string;
-    /** Address that holds the total reward balance and distributes to users */
-    distributionAddress: string;
+    /** Account that holds the total reward balance and distributes to users */
+    distributorAddress: string;
+    /** Admin account with permissions to add or update allocations */
+    allocatorAddress: string;
+    /** Admin account with permissions to link addresseses */
+    linkerAddress: string;
 }
 /** CreateAirdrop */
 export interface MsgCreateAirdropSDKType {
@@ -95,8 +99,12 @@ export interface MsgCreateAirdropSDKType {
      * result in losing 50% of rewards
      */
     early_claim_penalty: string;
-    /** Address that holds the total reward balance and distributes to users */
-    distribution_address: string;
+    /** Account that holds the total reward balance and distributes to users */
+    distributor_address: string;
+    /** Admin account with permissions to add or update allocations */
+    allocator_address: string;
+    /** Admin account with permissions to link addresseses */
+    linker_address: string;
 }
 export interface MsgCreateAirdropResponse {
 }
@@ -130,8 +138,12 @@ export interface MsgUpdateAirdrop {
      * result in losing 50% of rewards
      */
     earlyClaimPenalty: string;
-    /** Address that holds the total reward balance and distributes to users */
-    distributionAddress: string;
+    /** Account that holds the total reward balance and distributes to users */
+    distributorAddress: string;
+    /** Admin account with permissions to add or update allocations */
+    allocatorAddress: string;
+    /** Admin account with permissions to link addresseses */
+    linkerAddress: string;
 }
 /** UpdateAirdrop */
 export interface MsgUpdateAirdropSDKType {
@@ -161,8 +173,12 @@ export interface MsgUpdateAirdropSDKType {
      * result in losing 50% of rewards
      */
     early_claim_penalty: string;
-    /** Address that holds the total reward balance and distributes to users */
-    distribution_address: string;
+    /** Account that holds the total reward balance and distributes to users */
+    distributor_address: string;
+    /** Admin account with permissions to add or update allocations */
+    allocator_address: string;
+    /** Admin account with permissions to link addresseses */
+    linker_address: string;
 }
 export interface MsgUpdateAirdropResponse {
 }

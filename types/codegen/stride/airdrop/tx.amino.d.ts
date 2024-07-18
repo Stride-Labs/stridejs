@@ -37,7 +37,9 @@ export interface AminoMsgCreateAirdrop extends AminoMsg {
             nanos: number;
         };
         early_claim_penalty: string;
-        distribution_address: string;
+        distributor_address: string;
+        allocator_address: string;
+        linker_address: string;
     };
 }
 export interface AminoMsgUpdateAirdrop extends AminoMsg {
@@ -63,7 +65,9 @@ export interface AminoMsgUpdateAirdrop extends AminoMsg {
             nanos: number;
         };
         early_claim_penalty: string;
-        distribution_address: string;
+        distributor_address: string;
+        allocator_address: string;
+        linker_address: string;
     };
 }
 export interface AminoMsgAddAllocations extends AminoMsg {
@@ -108,13 +112,13 @@ export declare const AminoConverter: {
     };
     "/stride.airdrop.MsgCreateAirdrop": {
         aminoType: string;
-        toAmino: ({ admin, airdropId, rewardDenom, distributionStartDate, distributionEndDate, clawbackDate, claimTypeDeadlineDate, earlyClaimPenalty, distributionAddress }: MsgCreateAirdrop) => AminoMsgCreateAirdrop["value"];
-        fromAmino: ({ admin, airdrop_id, reward_denom, distribution_start_date, distribution_end_date, clawback_date, claim_type_deadline_date, early_claim_penalty, distribution_address }: AminoMsgCreateAirdrop["value"]) => MsgCreateAirdrop;
+        toAmino: ({ admin, airdropId, rewardDenom, distributionStartDate, distributionEndDate, clawbackDate, claimTypeDeadlineDate, earlyClaimPenalty, distributorAddress, allocatorAddress, linkerAddress }: MsgCreateAirdrop) => AminoMsgCreateAirdrop["value"];
+        fromAmino: ({ admin, airdrop_id, reward_denom, distribution_start_date, distribution_end_date, clawback_date, claim_type_deadline_date, early_claim_penalty, distributor_address, allocator_address, linker_address }: AminoMsgCreateAirdrop["value"]) => MsgCreateAirdrop;
     };
     "/stride.airdrop.MsgUpdateAirdrop": {
         aminoType: string;
-        toAmino: ({ admin, airdropId, rewardDenom, distributionStartDate, distributionEndDate, clawbackDate, claimTypeDeadlineDate, earlyClaimPenalty, distributionAddress }: MsgUpdateAirdrop) => AminoMsgUpdateAirdrop["value"];
-        fromAmino: ({ admin, airdrop_id, reward_denom, distribution_start_date, distribution_end_date, clawback_date, claim_type_deadline_date, early_claim_penalty, distribution_address }: AminoMsgUpdateAirdrop["value"]) => MsgUpdateAirdrop;
+        toAmino: ({ admin, airdropId, rewardDenom, distributionStartDate, distributionEndDate, clawbackDate, claimTypeDeadlineDate, earlyClaimPenalty, distributorAddress, allocatorAddress, linkerAddress }: MsgUpdateAirdrop) => AminoMsgUpdateAirdrop["value"];
+        fromAmino: ({ admin, airdrop_id, reward_denom, distribution_start_date, distribution_end_date, clawback_date, claim_type_deadline_date, early_claim_penalty, distributor_address, allocator_address, linker_address }: AminoMsgUpdateAirdrop["value"]) => MsgUpdateAirdrop;
     };
     "/stride.airdrop.MsgAddAllocations": {
         aminoType: string;

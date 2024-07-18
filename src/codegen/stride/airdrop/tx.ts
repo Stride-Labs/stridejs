@@ -77,9 +77,15 @@ export interface MsgCreateAirdrop {
    */
 
   earlyClaimPenalty: string;
-  /** Address that holds the total reward balance and distributes to users */
+  /** Account that holds the total reward balance and distributes to users */
 
-  distributionAddress: string;
+  distributorAddress: string;
+  /** Admin account with permissions to add or update allocations */
+
+  allocatorAddress: string;
+  /** Admin account with permissions to link addresseses */
+
+  linkerAddress: string;
 }
 /** CreateAirdrop */
 
@@ -117,9 +123,15 @@ export interface MsgCreateAirdropSDKType {
    */
 
   early_claim_penalty: string;
-  /** Address that holds the total reward balance and distributes to users */
+  /** Account that holds the total reward balance and distributes to users */
 
-  distribution_address: string;
+  distributor_address: string;
+  /** Admin account with permissions to add or update allocations */
+
+  allocator_address: string;
+  /** Admin account with permissions to link addresseses */
+
+  linker_address: string;
 }
 export interface MsgCreateAirdropResponse {}
 export interface MsgCreateAirdropResponseSDKType {}
@@ -159,9 +171,15 @@ export interface MsgUpdateAirdrop {
    */
 
   earlyClaimPenalty: string;
-  /** Address that holds the total reward balance and distributes to users */
+  /** Account that holds the total reward balance and distributes to users */
 
-  distributionAddress: string;
+  distributorAddress: string;
+  /** Admin account with permissions to add or update allocations */
+
+  allocatorAddress: string;
+  /** Admin account with permissions to link addresseses */
+
+  linkerAddress: string;
 }
 /** UpdateAirdrop */
 
@@ -199,9 +217,15 @@ export interface MsgUpdateAirdropSDKType {
    */
 
   early_claim_penalty: string;
-  /** Address that holds the total reward balance and distributes to users */
+  /** Account that holds the total reward balance and distributes to users */
 
-  distribution_address: string;
+  distributor_address: string;
+  /** Admin account with permissions to add or update allocations */
+
+  allocator_address: string;
+  /** Admin account with permissions to link addresseses */
+
+  linker_address: string;
 }
 export interface MsgUpdateAirdropResponse {}
 export interface MsgUpdateAirdropResponseSDKType {}
@@ -502,7 +526,9 @@ function createBaseMsgCreateAirdrop(): MsgCreateAirdrop {
     clawbackDate: undefined,
     claimTypeDeadlineDate: undefined,
     earlyClaimPenalty: "",
-    distributionAddress: ""
+    distributorAddress: "",
+    allocatorAddress: "",
+    linkerAddress: ""
   };
 }
 
@@ -540,8 +566,16 @@ export const MsgCreateAirdrop = {
       writer.uint32(66).string(message.earlyClaimPenalty);
     }
 
-    if (message.distributionAddress !== "") {
-      writer.uint32(74).string(message.distributionAddress);
+    if (message.distributorAddress !== "") {
+      writer.uint32(74).string(message.distributorAddress);
+    }
+
+    if (message.allocatorAddress !== "") {
+      writer.uint32(82).string(message.allocatorAddress);
+    }
+
+    if (message.linkerAddress !== "") {
+      writer.uint32(90).string(message.linkerAddress);
     }
 
     return writer;
@@ -589,7 +623,15 @@ export const MsgCreateAirdrop = {
           break;
 
         case 9:
-          message.distributionAddress = reader.string();
+          message.distributorAddress = reader.string();
+          break;
+
+        case 10:
+          message.allocatorAddress = reader.string();
+          break;
+
+        case 11:
+          message.linkerAddress = reader.string();
           break;
 
         default:
@@ -611,7 +653,9 @@ export const MsgCreateAirdrop = {
     message.clawbackDate = object.clawbackDate ?? undefined;
     message.claimTypeDeadlineDate = object.claimTypeDeadlineDate ?? undefined;
     message.earlyClaimPenalty = object.earlyClaimPenalty ?? "";
-    message.distributionAddress = object.distributionAddress ?? "";
+    message.distributorAddress = object.distributorAddress ?? "";
+    message.allocatorAddress = object.allocatorAddress ?? "";
+    message.linkerAddress = object.linkerAddress ?? "";
     return message;
   }
 
@@ -661,7 +705,9 @@ function createBaseMsgUpdateAirdrop(): MsgUpdateAirdrop {
     clawbackDate: undefined,
     claimTypeDeadlineDate: undefined,
     earlyClaimPenalty: "",
-    distributionAddress: ""
+    distributorAddress: "",
+    allocatorAddress: "",
+    linkerAddress: ""
   };
 }
 
@@ -699,8 +745,16 @@ export const MsgUpdateAirdrop = {
       writer.uint32(66).string(message.earlyClaimPenalty);
     }
 
-    if (message.distributionAddress !== "") {
-      writer.uint32(74).string(message.distributionAddress);
+    if (message.distributorAddress !== "") {
+      writer.uint32(74).string(message.distributorAddress);
+    }
+
+    if (message.allocatorAddress !== "") {
+      writer.uint32(82).string(message.allocatorAddress);
+    }
+
+    if (message.linkerAddress !== "") {
+      writer.uint32(90).string(message.linkerAddress);
     }
 
     return writer;
@@ -748,7 +802,15 @@ export const MsgUpdateAirdrop = {
           break;
 
         case 9:
-          message.distributionAddress = reader.string();
+          message.distributorAddress = reader.string();
+          break;
+
+        case 10:
+          message.allocatorAddress = reader.string();
+          break;
+
+        case 11:
+          message.linkerAddress = reader.string();
           break;
 
         default:
@@ -770,7 +832,9 @@ export const MsgUpdateAirdrop = {
     message.clawbackDate = object.clawbackDate ?? undefined;
     message.claimTypeDeadlineDate = object.claimTypeDeadlineDate ?? undefined;
     message.earlyClaimPenalty = object.earlyClaimPenalty ?? "";
-    message.distributionAddress = object.distributionAddress ?? "";
+    message.distributorAddress = object.distributorAddress ?? "";
+    message.allocatorAddress = object.allocatorAddress ?? "";
+    message.linkerAddress = object.linkerAddress ?? "";
     return message;
   }
 

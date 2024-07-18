@@ -910,7 +910,7 @@ export declare const strideAminoConverters: {
     };
     "/stride.airdrop.MsgCreateAirdrop": {
         aminoType: string;
-        toAmino: ({ admin, airdropId, rewardDenom, distributionStartDate, distributionEndDate, clawbackDate, claimTypeDeadlineDate, earlyClaimPenalty, distributionAddress }: import("./airdrop/tx").MsgCreateAirdrop) => {
+        toAmino: ({ admin, airdropId, rewardDenom, distributionStartDate, distributionEndDate, clawbackDate, claimTypeDeadlineDate, earlyClaimPenalty, distributorAddress, allocatorAddress, linkerAddress }: import("./airdrop/tx").MsgCreateAirdrop) => {
             admin: string;
             airdrop_id: string;
             reward_denom: string;
@@ -931,9 +931,11 @@ export declare const strideAminoConverters: {
                 nanos: number;
             };
             early_claim_penalty: string;
-            distribution_address: string;
+            distributor_address: string;
+            allocator_address: string;
+            linker_address: string;
         };
-        fromAmino: ({ admin, airdrop_id, reward_denom, distribution_start_date, distribution_end_date, clawback_date, claim_type_deadline_date, early_claim_penalty, distribution_address }: {
+        fromAmino: ({ admin, airdrop_id, reward_denom, distribution_start_date, distribution_end_date, clawback_date, claim_type_deadline_date, early_claim_penalty, distributor_address, allocator_address, linker_address }: {
             admin: string;
             airdrop_id: string;
             reward_denom: string;
@@ -954,12 +956,14 @@ export declare const strideAminoConverters: {
                 nanos: number;
             };
             early_claim_penalty: string;
-            distribution_address: string;
+            distributor_address: string;
+            allocator_address: string;
+            linker_address: string;
         }) => import("./airdrop/tx").MsgCreateAirdrop;
     };
     "/stride.airdrop.MsgUpdateAirdrop": {
         aminoType: string;
-        toAmino: ({ admin, airdropId, rewardDenom, distributionStartDate, distributionEndDate, clawbackDate, claimTypeDeadlineDate, earlyClaimPenalty, distributionAddress }: import("./airdrop/tx").MsgUpdateAirdrop) => {
+        toAmino: ({ admin, airdropId, rewardDenom, distributionStartDate, distributionEndDate, clawbackDate, claimTypeDeadlineDate, earlyClaimPenalty, distributorAddress, allocatorAddress, linkerAddress }: import("./airdrop/tx").MsgUpdateAirdrop) => {
             admin: string;
             airdrop_id: string;
             reward_denom: string;
@@ -980,9 +984,11 @@ export declare const strideAminoConverters: {
                 nanos: number;
             };
             early_claim_penalty: string;
-            distribution_address: string;
+            distributor_address: string;
+            allocator_address: string;
+            linker_address: string;
         };
-        fromAmino: ({ admin, airdrop_id, reward_denom, distribution_start_date, distribution_end_date, clawback_date, claim_type_deadline_date, early_claim_penalty, distribution_address }: {
+        fromAmino: ({ admin, airdrop_id, reward_denom, distribution_start_date, distribution_end_date, clawback_date, claim_type_deadline_date, early_claim_penalty, distributor_address, allocator_address, linker_address }: {
             admin: string;
             airdrop_id: string;
             reward_denom: string;
@@ -1003,7 +1009,9 @@ export declare const strideAminoConverters: {
                 nanos: number;
             };
             early_claim_penalty: string;
-            distribution_address: string;
+            distributor_address: string;
+            allocator_address: string;
+            linker_address: string;
         }) => import("./airdrop/tx").MsgUpdateAirdrop;
     };
     "/stride.airdrop.MsgAddAllocations": {

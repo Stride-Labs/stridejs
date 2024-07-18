@@ -80,7 +80,7 @@ export interface Params {
    * The number of seconds between each element in the allocations array
    * In practice this is always 24 hours, but it's customizable for testing
    */
-  allocationWindowSeconds: Long;
+  periodLengthSeconds: Long;
 }
 /** Airdrop module parameters */
 
@@ -89,7 +89,7 @@ export interface ParamsSDKType {
    * The number of seconds between each element in the allocations array
    * In practice this is always 24 hours, but it's customizable for testing
    */
-  allocation_window_seconds: Long;
+  period_length_seconds: Long;
 }
 /**
  * UserAllocation tracks the status of an allocation for a user on a specific
@@ -119,27 +119,19 @@ export interface UserAllocation {
    * The current state of allocations for this airdrop
    *
    * Ex 1:
-   *   Day 0: {claimed:0, allocations:[10,10,10], claim_type:DAILY}
+   *   Day 0: {claimed:0, allocations:[10,10,10]}
    *   *MsgClaim*
-   *   Day 1: {claimed:10, allocations:[0,10,10], claim_type:DAILY}
+   *   Day 1: {claimed:10, allocations:[0,10,10]}
    *   *MsgClaim*
-   *   Day 2: {claimed:20, allocations:[0,0,10], claim_type:DAILY}
+   *   Day 2: {claimed:20, allocations:[0,0,10]}
    *
    * Ex 2:
-   *   Day 0: {claimed:0, allocations:[10,10,10], claim_type:DAILY}
-   *   *MsgClaimAndStake*
-   *   Day 1: {claimed:30, allocations:[0,0,0], claim_type:CLAIM_AND_STAKE}
-   *
-   * Ex 3:
-   *   Day 0: {claimed:0, allocations:[10,10,10], claim_type:DAILY}
+   *   Day 0: {claimed:0, allocations:[10,10,10]}
    *   *MsgClaimEarly*
-   *   Day 1: {claimed:15, allocations:[0,0,0], claim_type:CLAIM_EARLY}
+   *   Day 1: {claimed:15, forfeited:15, allocations:[0,0,0]}
    */
 
   allocations: string[];
-  /** The claim type (claim daily or claim early) */
-
-  claimType: ClaimType;
 }
 /**
  * UserAllocation tracks the status of an allocation for a user on a specific
@@ -169,27 +161,19 @@ export interface UserAllocationSDKType {
    * The current state of allocations for this airdrop
    *
    * Ex 1:
-   *   Day 0: {claimed:0, allocations:[10,10,10], claim_type:DAILY}
+   *   Day 0: {claimed:0, allocations:[10,10,10]}
    *   *MsgClaim*
-   *   Day 1: {claimed:10, allocations:[0,10,10], claim_type:DAILY}
+   *   Day 1: {claimed:10, allocations:[0,10,10]}
    *   *MsgClaim*
-   *   Day 2: {claimed:20, allocations:[0,0,10], claim_type:DAILY}
+   *   Day 2: {claimed:20, allocations:[0,0,10]}
    *
    * Ex 2:
-   *   Day 0: {claimed:0, allocations:[10,10,10], claim_type:DAILY}
-   *   *MsgClaimAndStake*
-   *   Day 1: {claimed:30, allocations:[0,0,0], claim_type:CLAIM_AND_STAKE}
-   *
-   * Ex 3:
-   *   Day 0: {claimed:0, allocations:[10,10,10], claim_type:DAILY}
+   *   Day 0: {claimed:0, allocations:[10,10,10]}
    *   *MsgClaimEarly*
-   *   Day 1: {claimed:15, allocations:[0,0,0], claim_type:CLAIM_EARLY}
+   *   Day 1: {claimed:15, forfeited:15, allocations:[0,0,0]}
    */
 
   allocations: string[];
-  /** The claim type (claim daily or claim early) */
-
-  claim_type: ClaimTypeSDKType;
 }
 /** Airdrop track the aggregate unbondings across an epoch */
 
@@ -226,7 +210,13 @@ export interface Airdrop {
   earlyClaimPenalty: string;
   /** Account that holds the total reward balance and distributes to users */
 
-  distributionAddress: string;
+  distributorAddress: string;
+  /** Admin account with permissions to add or update allocations */
+
+  allocatorAddress: string;
+  /** Admin account with permissions to link addresseses */
+
+  linkerAddress: string;
 }
 /** Airdrop track the aggregate unbondings across an epoch */
 
@@ -263,19 +253,25 @@ export interface AirdropSDKType {
   early_claim_penalty: string;
   /** Account that holds the total reward balance and distributes to users */
 
-  distribution_address: string;
+  distributor_address: string;
+  /** Admin account with permissions to add or update allocations */
+
+  allocator_address: string;
+  /** Admin account with permissions to link addresseses */
+
+  linker_address: string;
 }
 
 function createBaseParams(): Params {
   return {
-    allocationWindowSeconds: Long.ZERO
+    periodLengthSeconds: Long.ZERO
   };
 }
 
 export const Params = {
   encode(message: Params, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (!message.allocationWindowSeconds.isZero()) {
-      writer.uint32(8).int64(message.allocationWindowSeconds);
+    if (!message.periodLengthSeconds.isZero()) {
+      writer.uint32(8).int64(message.periodLengthSeconds);
     }
 
     return writer;
@@ -291,7 +287,7 @@ export const Params = {
 
       switch (tag >>> 3) {
         case 1:
-          message.allocationWindowSeconds = (reader.int64() as Long);
+          message.periodLengthSeconds = (reader.int64() as Long);
           break;
 
         default:
@@ -305,7 +301,7 @@ export const Params = {
 
   fromPartial(object: DeepPartial<Params>): Params {
     const message = createBaseParams();
-    message.allocationWindowSeconds = object.allocationWindowSeconds !== undefined && object.allocationWindowSeconds !== null ? Long.fromValue(object.allocationWindowSeconds) : Long.ZERO;
+    message.periodLengthSeconds = object.periodLengthSeconds !== undefined && object.periodLengthSeconds !== null ? Long.fromValue(object.periodLengthSeconds) : Long.ZERO;
     return message;
   }
 
@@ -317,8 +313,7 @@ function createBaseUserAllocation(): UserAllocation {
     address: "",
     claimed: "",
     forfeited: "",
-    allocations: [],
-    claimType: 0
+    allocations: []
   };
 }
 
@@ -342,10 +337,6 @@ export const UserAllocation = {
 
     for (const v of message.allocations) {
       writer.uint32(42).string(v!);
-    }
-
-    if (message.claimType !== 0) {
-      writer.uint32(48).int32(message.claimType);
     }
 
     return writer;
@@ -380,10 +371,6 @@ export const UserAllocation = {
           message.allocations.push(reader.string());
           break;
 
-        case 6:
-          message.claimType = (reader.int32() as any);
-          break;
-
         default:
           reader.skipType(tag & 7);
           break;
@@ -400,7 +387,6 @@ export const UserAllocation = {
     message.claimed = object.claimed ?? "";
     message.forfeited = object.forfeited ?? "";
     message.allocations = object.allocations?.map(e => e) || [];
-    message.claimType = object.claimType ?? 0;
     return message;
   }
 
@@ -415,7 +401,9 @@ function createBaseAirdrop(): Airdrop {
     clawbackDate: undefined,
     claimTypeDeadlineDate: undefined,
     earlyClaimPenalty: "",
-    distributionAddress: ""
+    distributorAddress: "",
+    allocatorAddress: "",
+    linkerAddress: ""
   };
 }
 
@@ -449,8 +437,16 @@ export const Airdrop = {
       writer.uint32(58).string(message.earlyClaimPenalty);
     }
 
-    if (message.distributionAddress !== "") {
-      writer.uint32(66).string(message.distributionAddress);
+    if (message.distributorAddress !== "") {
+      writer.uint32(66).string(message.distributorAddress);
+    }
+
+    if (message.allocatorAddress !== "") {
+      writer.uint32(74).string(message.allocatorAddress);
+    }
+
+    if (message.linkerAddress !== "") {
+      writer.uint32(82).string(message.linkerAddress);
     }
 
     return writer;
@@ -494,7 +490,15 @@ export const Airdrop = {
           break;
 
         case 8:
-          message.distributionAddress = reader.string();
+          message.distributorAddress = reader.string();
+          break;
+
+        case 9:
+          message.allocatorAddress = reader.string();
+          break;
+
+        case 10:
+          message.linkerAddress = reader.string();
           break;
 
         default:
@@ -515,7 +519,9 @@ export const Airdrop = {
     message.clawbackDate = object.clawbackDate ?? undefined;
     message.claimTypeDeadlineDate = object.claimTypeDeadlineDate ?? undefined;
     message.earlyClaimPenalty = object.earlyClaimPenalty ?? "";
-    message.distributionAddress = object.distributionAddress ?? "";
+    message.distributorAddress = object.distributorAddress ?? "";
+    message.allocatorAddress = object.allocatorAddress ?? "";
+    message.linkerAddress = object.linkerAddress ?? "";
     return message;
   }
 

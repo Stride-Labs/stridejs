@@ -48,7 +48,7 @@ export interface Params {
      * The number of seconds between each element in the allocations array
      * In practice this is always 24 hours, but it's customizable for testing
      */
-    allocationWindowSeconds: Long;
+    periodLengthSeconds: Long;
 }
 /** Airdrop module parameters */
 export interface ParamsSDKType {
@@ -56,7 +56,7 @@ export interface ParamsSDKType {
      * The number of seconds between each element in the allocations array
      * In practice this is always 24 hours, but it's customizable for testing
      */
-    allocation_window_seconds: Long;
+    period_length_seconds: Long;
 }
 /**
  * UserAllocation tracks the status of an allocation for a user on a specific
@@ -82,25 +82,18 @@ export interface UserAllocation {
      * The current state of allocations for this airdrop
      *
      * Ex 1:
-     *   Day 0: {claimed:0, allocations:[10,10,10], claim_type:DAILY}
+     *   Day 0: {claimed:0, allocations:[10,10,10]}
      *   *MsgClaim*
-     *   Day 1: {claimed:10, allocations:[0,10,10], claim_type:DAILY}
+     *   Day 1: {claimed:10, allocations:[0,10,10]}
      *   *MsgClaim*
-     *   Day 2: {claimed:20, allocations:[0,0,10], claim_type:DAILY}
+     *   Day 2: {claimed:20, allocations:[0,0,10]}
      *
      * Ex 2:
-     *   Day 0: {claimed:0, allocations:[10,10,10], claim_type:DAILY}
-     *   *MsgClaimAndStake*
-     *   Day 1: {claimed:30, allocations:[0,0,0], claim_type:CLAIM_AND_STAKE}
-     *
-     * Ex 3:
-     *   Day 0: {claimed:0, allocations:[10,10,10], claim_type:DAILY}
+     *   Day 0: {claimed:0, allocations:[10,10,10]}
      *   *MsgClaimEarly*
-     *   Day 1: {claimed:15, allocations:[0,0,0], claim_type:CLAIM_EARLY}
+     *   Day 1: {claimed:15, forfeited:15, allocations:[0,0,0]}
      */
     allocations: string[];
-    /** The claim type (claim daily or claim early) */
-    claimType: ClaimType;
 }
 /**
  * UserAllocation tracks the status of an allocation for a user on a specific
@@ -126,25 +119,18 @@ export interface UserAllocationSDKType {
      * The current state of allocations for this airdrop
      *
      * Ex 1:
-     *   Day 0: {claimed:0, allocations:[10,10,10], claim_type:DAILY}
+     *   Day 0: {claimed:0, allocations:[10,10,10]}
      *   *MsgClaim*
-     *   Day 1: {claimed:10, allocations:[0,10,10], claim_type:DAILY}
+     *   Day 1: {claimed:10, allocations:[0,10,10]}
      *   *MsgClaim*
-     *   Day 2: {claimed:20, allocations:[0,0,10], claim_type:DAILY}
+     *   Day 2: {claimed:20, allocations:[0,0,10]}
      *
      * Ex 2:
-     *   Day 0: {claimed:0, allocations:[10,10,10], claim_type:DAILY}
-     *   *MsgClaimAndStake*
-     *   Day 1: {claimed:30, allocations:[0,0,0], claim_type:CLAIM_AND_STAKE}
-     *
-     * Ex 3:
-     *   Day 0: {claimed:0, allocations:[10,10,10], claim_type:DAILY}
+     *   Day 0: {claimed:0, allocations:[10,10,10]}
      *   *MsgClaimEarly*
-     *   Day 1: {claimed:15, allocations:[0,0,0], claim_type:CLAIM_EARLY}
+     *   Day 1: {claimed:15, forfeited:15, allocations:[0,0,0]}
      */
     allocations: string[];
-    /** The claim type (claim daily or claim early) */
-    claim_type: ClaimTypeSDKType;
 }
 /** Airdrop track the aggregate unbondings across an epoch */
 export interface Airdrop {
@@ -173,7 +159,11 @@ export interface Airdrop {
      */
     earlyClaimPenalty: string;
     /** Account that holds the total reward balance and distributes to users */
-    distributionAddress: string;
+    distributorAddress: string;
+    /** Admin account with permissions to add or update allocations */
+    allocatorAddress: string;
+    /** Admin account with permissions to link addresseses */
+    linkerAddress: string;
 }
 /** Airdrop track the aggregate unbondings across an epoch */
 export interface AirdropSDKType {
@@ -202,7 +192,11 @@ export interface AirdropSDKType {
      */
     early_claim_penalty: string;
     /** Account that holds the total reward balance and distributes to users */
-    distribution_address: string;
+    distributor_address: string;
+    /** Admin account with permissions to add or update allocations */
+    allocator_address: string;
+    /** Admin account with permissions to link addresseses */
+    linker_address: string;
 }
 export declare const Params: {
     encode(message: Params, writer?: _m0.Writer): _m0.Writer;
