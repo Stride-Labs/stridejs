@@ -1,19 +1,12 @@
-import { join } from "path";
 import telescope from "@cosmology/telescope";
-import { sync as rimraf } from "rimraf";
-
-const protoDirs = [
-  join(__dirname, "../stride-build"),
-  join(__dirname, "../cosmos/proto"),
-  join(__dirname, "../cosmos/third_party/proto"),
-];
+import { execSync } from "child_process";
+import { join } from "path";
+import { repos } from "./clone_repos";
 
 const outPath = join(__dirname, "../src/codegen");
 
-rimraf(outPath);
-
 telescope({
-  protoDirs,
+  protoDirs: [join(__dirname, "proto")],
   outPath,
   options: {
     prototypes: {
