@@ -1,6 +1,6 @@
 import { setPaginationParams } from "../../../helpers";
 import { LCDClient } from "@cosmology/lcd";
-import { QueryParamsRequest, QueryParamsResponseSDKType, QueryValidatorOutstandingRewardsRequest, QueryValidatorOutstandingRewardsResponseSDKType, QueryValidatorCommissionRequest, QueryValidatorCommissionResponseSDKType, QueryValidatorSlashesRequest, QueryValidatorSlashesResponseSDKType, QueryDelegationRewardsRequest, QueryDelegationRewardsResponseSDKType, QueryDelegationTotalRewardsRequest, QueryDelegationTotalRewardsResponseSDKType, QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponseSDKType, QueryDelegatorWithdrawAddressRequest, QueryDelegatorWithdrawAddressResponseSDKType, QueryCommunityPoolRequest, QueryCommunityPoolResponseSDKType, QueryTokenizeShareRecordRewardRequest, QueryTokenizeShareRecordRewardResponseSDKType } from "./query";
+import { QueryParamsRequest, QueryParamsResponseSDKType, QueryValidatorDistributionInfoRequest, QueryValidatorDistributionInfoResponseSDKType, QueryValidatorOutstandingRewardsRequest, QueryValidatorOutstandingRewardsResponseSDKType, QueryValidatorCommissionRequest, QueryValidatorCommissionResponseSDKType, QueryValidatorSlashesRequest, QueryValidatorSlashesResponseSDKType, QueryDelegationRewardsRequest, QueryDelegationRewardsResponseSDKType, QueryDelegationTotalRewardsRequest, QueryDelegationTotalRewardsResponseSDKType, QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponseSDKType, QueryDelegatorWithdrawAddressRequest, QueryDelegatorWithdrawAddressResponseSDKType, QueryCommunityPoolRequest, QueryCommunityPoolResponseSDKType } from "./query";
 export class LCDQueryClient {
   req: LCDClient;
   constructor({
@@ -10,6 +10,7 @@ export class LCDQueryClient {
   }) {
     this.req = requestClient;
     this.params = this.params.bind(this);
+    this.validatorDistributionInfo = this.validatorDistributionInfo.bind(this);
     this.validatorOutstandingRewards = this.validatorOutstandingRewards.bind(this);
     this.validatorCommission = this.validatorCommission.bind(this);
     this.validatorSlashes = this.validatorSlashes.bind(this);
@@ -18,12 +19,16 @@ export class LCDQueryClient {
     this.delegatorValidators = this.delegatorValidators.bind(this);
     this.delegatorWithdrawAddress = this.delegatorWithdrawAddress.bind(this);
     this.communityPool = this.communityPool.bind(this);
-    this.tokenizeShareRecordReward = this.tokenizeShareRecordReward.bind(this);
   }
   /* Params queries params of the distribution module. */
   async params(_params: QueryParamsRequest = {}): Promise<QueryParamsResponseSDKType> {
     const endpoint = `cosmos/distribution/v1beta1/params`;
     return await this.req.get<QueryParamsResponseSDKType>(endpoint);
+  }
+  /* ValidatorDistributionInfo queries validator commission and self-delegation rewards for validator */
+  async validatorDistributionInfo(params: QueryValidatorDistributionInfoRequest): Promise<QueryValidatorDistributionInfoResponseSDKType> {
+    const endpoint = `cosmos/distribution/v1beta1/validators/${params.validatorAddress}`;
+    return await this.req.get<QueryValidatorDistributionInfoResponseSDKType>(endpoint);
   }
   /* ValidatorOutstandingRewards queries rewards of a validator address. */
   async validatorOutstandingRewards(params: QueryValidatorOutstandingRewardsRequest): Promise<QueryValidatorOutstandingRewardsResponseSDKType> {
@@ -77,10 +82,5 @@ export class LCDQueryClient {
   async communityPool(_params: QueryCommunityPoolRequest = {}): Promise<QueryCommunityPoolResponseSDKType> {
     const endpoint = `cosmos/distribution/v1beta1/community_pool`;
     return await this.req.get<QueryCommunityPoolResponseSDKType>(endpoint);
-  }
-  /* TokenizeShareRecordReward queries the tokenize share record rewards */
-  async tokenizeShareRecordReward(params: QueryTokenizeShareRecordRewardRequest): Promise<QueryTokenizeShareRecordRewardResponseSDKType> {
-    const endpoint = `cosmos/distribution/v1beta1/${params.ownerAddress}/tokenize_share_record_rewards`;
-    return await this.req.get<QueryTokenizeShareRecordRewardResponseSDKType>(endpoint);
   }
 }

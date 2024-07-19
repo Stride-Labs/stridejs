@@ -14,8 +14,14 @@ export class LCDQueryClient {
   }
   /* Evidence queries evidence based on evidence hash. */
   async evidence(params: QueryEvidenceRequest): Promise<QueryEvidenceResponseSDKType> {
-    const endpoint = `cosmos/evidence/v1beta1/evidence/${params.evidenceHash}`;
-    return await this.req.get<QueryEvidenceResponseSDKType>(endpoint);
+    const options: any = {
+      params: {}
+    };
+    if (typeof params?.evidenceHash !== "undefined") {
+      options.params.evidence_hash = params.evidenceHash;
+    }
+    const endpoint = `cosmos/evidence/v1beta1/evidence/${params.hash}`;
+    return await this.req.get<QueryEvidenceResponseSDKType>(endpoint, options);
   }
   /* AllEvidence queries all evidence. */
   async allEvidence(params: QueryAllEvidenceRequest = {

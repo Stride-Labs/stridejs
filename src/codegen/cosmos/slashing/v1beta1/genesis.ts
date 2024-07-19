@@ -2,7 +2,7 @@ import { Params, ParamsAmino, ParamsSDKType, ValidatorSigningInfo, ValidatorSign
 import { BinaryReader, BinaryWriter } from "../../../binary";
 /** GenesisState defines the slashing module's genesis state. */
 export interface GenesisState {
-  /** params defines all the paramaters of related to deposit. */
+  /** params defines all the parameters of the module. */
   params: Params;
   /**
    * signing_infos represents a map between validator addresses and their
@@ -21,18 +21,18 @@ export interface GenesisStateProtoMsg {
 }
 /** GenesisState defines the slashing module's genesis state. */
 export interface GenesisStateAmino {
-  /** params defines all the paramaters of related to deposit. */
-  params?: ParamsAmino;
+  /** params defines all the parameters of the module. */
+  params: ParamsAmino;
   /**
    * signing_infos represents a map between validator addresses and their
    * signing infos.
    */
-  signing_infos?: SigningInfoAmino[];
+  signing_infos: SigningInfoAmino[];
   /**
    * missed_blocks represents a map between validator addresses and their
    * missed blocks.
    */
-  missed_blocks?: ValidatorMissedBlocksAmino[];
+  missed_blocks: ValidatorMissedBlocksAmino[];
 }
 export interface GenesisStateAminoMsg {
   type: "cosmos-sdk/GenesisState";
@@ -60,7 +60,7 @@ export interface SigningInfoAmino {
   /** address is the validator address. */
   address?: string;
   /** validator_signing_info represents the signing info of this validator. */
-  validator_signing_info?: ValidatorSigningInfoAmino;
+  validator_signing_info: ValidatorSigningInfoAmino;
 }
 export interface SigningInfoAminoMsg {
   type: "cosmos-sdk/SigningInfo";
@@ -93,7 +93,7 @@ export interface ValidatorMissedBlocksAmino {
   /** address is the validator address. */
   address?: string;
   /** missed_blocks is an array of missed blocks by the validator. */
-  missed_blocks?: MissedBlockAmino[];
+  missed_blocks: MissedBlockAmino[];
 }
 export interface ValidatorMissedBlocksAminoMsg {
   type: "cosmos-sdk/ValidatorMissedBlocks";
@@ -196,7 +196,7 @@ export const GenesisState = {
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
-    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
     if (message.signingInfos) {
       obj.signing_infos = message.signingInfos.map(e => e ? SigningInfo.toAmino(e) : undefined);
     } else {
@@ -287,7 +287,7 @@ export const SigningInfo = {
   toAmino(message: SigningInfo): SigningInfoAmino {
     const obj: any = {};
     obj.address = message.address === "" ? undefined : message.address;
-    obj.validator_signing_info = message.validatorSigningInfo ? ValidatorSigningInfo.toAmino(message.validatorSigningInfo) : undefined;
+    obj.validator_signing_info = message.validatorSigningInfo ? ValidatorSigningInfo.toAmino(message.validatorSigningInfo) : ValidatorSigningInfo.toAmino(ValidatorSigningInfo.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object: SigningInfoAminoMsg): SigningInfo {

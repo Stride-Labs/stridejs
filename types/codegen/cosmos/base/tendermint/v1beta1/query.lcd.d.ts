@@ -1,5 +1,5 @@
-import { LCDClient } from "@osmonauts/lcd";
-import { GetNodeInfoRequest, GetNodeInfoResponseSDKType, GetSyncingRequest, GetSyncingResponseSDKType, GetLatestBlockRequest, GetLatestBlockResponseSDKType, GetBlockByHeightRequest, GetBlockByHeightResponseSDKType, GetLatestValidatorSetRequest, GetLatestValidatorSetResponseSDKType, GetValidatorSetByHeightRequest, GetValidatorSetByHeightResponseSDKType } from "./query";
+import { LCDClient } from "@cosmology/lcd";
+import { GetNodeInfoRequest, GetNodeInfoResponseSDKType, GetSyncingRequest, GetSyncingResponseSDKType, GetLatestBlockRequest, GetLatestBlockResponseSDKType, GetBlockByHeightRequest, GetBlockByHeightResponseSDKType, GetLatestValidatorSetRequest, GetLatestValidatorSetResponseSDKType, GetValidatorSetByHeightRequest, GetValidatorSetByHeightResponseSDKType, ABCIQueryRequest, ABCIQueryResponseSDKType } from "./query";
 export declare class LCDQueryClient {
     req: LCDClient;
     constructor({ requestClient }: {
@@ -11,4 +11,5 @@ export declare class LCDQueryClient {
     getBlockByHeight(params: GetBlockByHeightRequest): Promise<GetBlockByHeightResponseSDKType>;
     getLatestValidatorSet(params?: GetLatestValidatorSetRequest): Promise<GetLatestValidatorSetResponseSDKType>;
     getValidatorSetByHeight(params: GetValidatorSetByHeightRequest): Promise<GetValidatorSetByHeightResponseSDKType>;
+    aBCIQuery(params: ABCIQueryRequest): Promise<ABCIQueryResponseSDKType>;
 }

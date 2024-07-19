@@ -1,22 +1,18 @@
-import { AminoMsg } from "@cosmjs/amino";
-import { MsgCreateVestingAccount } from "./tx";
-export interface AminoMsgCreateVestingAccount extends AminoMsg {
-    type: "cosmos-sdk/MsgCreateVestingAccount";
-    value: {
-        from_address: string;
-        to_address: string;
-        amount: {
-            denom: string;
-            amount: string;
-        }[];
-        end_time: string;
-        delayed: boolean;
-    };
-}
+import { MsgCreateVestingAccount, MsgCreatePermanentLockedAccount, MsgCreatePeriodicVestingAccount } from "./tx";
 export declare const AminoConverter: {
     "/cosmos.vesting.v1beta1.MsgCreateVestingAccount": {
         aminoType: string;
-        toAmino: ({ fromAddress, toAddress, amount, endTime, delayed }: MsgCreateVestingAccount) => AminoMsgCreateVestingAccount["value"];
-        fromAmino: ({ from_address, to_address, amount, end_time, delayed }: AminoMsgCreateVestingAccount["value"]) => MsgCreateVestingAccount;
+        toAmino: (message: MsgCreateVestingAccount) => import("./tx").MsgCreateVestingAccountAmino;
+        fromAmino: (object: import("./tx").MsgCreateVestingAccountAmino) => MsgCreateVestingAccount;
+    };
+    "/cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccount": {
+        aminoType: string;
+        toAmino: (message: MsgCreatePermanentLockedAccount) => import("./tx").MsgCreatePermanentLockedAccountAmino;
+        fromAmino: (object: import("./tx").MsgCreatePermanentLockedAccountAmino) => MsgCreatePermanentLockedAccount;
+    };
+    "/cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccount": {
+        aminoType: string;
+        toAmino: (message: MsgCreatePeriodicVestingAccount) => import("./tx").MsgCreatePeriodicVestingAccountAmino;
+        fromAmino: (object: import("./tx").MsgCreatePeriodicVestingAccountAmino) => MsgCreatePeriodicVestingAccount;
     };
 };

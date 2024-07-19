@@ -30,7 +30,8 @@ export class LCDQueryClient {
     return await this.req.get<QueryAllowancesResponseSDKType>(endpoint, options);
   }
   /* AllowancesByGranter returns all the grants given by an address
-   Since v0.46 */
+  
+   Since: cosmos-sdk 0.46 */
   async allowancesByGranter(params: QueryAllowancesByGranterRequest): Promise<QueryAllowancesByGranterResponseSDKType> {
     const options: any = {
       params: {}
