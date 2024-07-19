@@ -21,6 +21,7 @@ telescope({
         customTypes: {
           useCosmosSDKDec: true,
         },
+        num64: "bigint", // change to "long" if getting compilationg issues (usually with react-native)
       },
     },
     aminoEncoding: {
