@@ -1,7 +1,0 @@
-syntax = "proto3";
-package stride.records;
-
-option go_package = "github.com/Stride-Labs/stride/v22/x/records/types";
-
-// Params defines the parameters for the module.
-message Params {}
