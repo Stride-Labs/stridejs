@@ -5,7 +5,7 @@ import { existsSync, mkdirSync } from "fs";
 export const reposDir = join(__dirname, "repos");
 
 // config
-export const repos = [
+export const config = [
   {
     repo: "https://github.com/Stride-Labs/stride",
     rev: "assaf-test", // x/airdrop protos
@@ -33,7 +33,7 @@ try {
 }
 
 // clone repos into /scripts/proto
-for (const repoConfig of repos) {
+for (const repoConfig of config) {
   const { repo, rev } = repoConfig;
 
   try {
