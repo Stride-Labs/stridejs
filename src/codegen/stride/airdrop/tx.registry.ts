@@ -14,49 +14,42 @@ export const MessageComposer = {
         value: MsgClaimDaily.encode(value).finish()
       };
     },
-
     claimEarly(value: MsgClaimEarly) {
       return {
         typeUrl: "/stride.airdrop.MsgClaimEarly",
         value: MsgClaimEarly.encode(value).finish()
       };
     },
-
     createAirdrop(value: MsgCreateAirdrop) {
       return {
         typeUrl: "/stride.airdrop.MsgCreateAirdrop",
         value: MsgCreateAirdrop.encode(value).finish()
       };
     },
-
     updateAirdrop(value: MsgUpdateAirdrop) {
       return {
         typeUrl: "/stride.airdrop.MsgUpdateAirdrop",
         value: MsgUpdateAirdrop.encode(value).finish()
       };
     },
-
     addAllocations(value: MsgAddAllocations) {
       return {
         typeUrl: "/stride.airdrop.MsgAddAllocations",
         value: MsgAddAllocations.encode(value).finish()
       };
     },
-
     updateUserAllocation(value: MsgUpdateUserAllocation) {
       return {
         typeUrl: "/stride.airdrop.MsgUpdateUserAllocation",
         value: MsgUpdateUserAllocation.encode(value).finish()
       };
     },
-
     linkAddresses(value: MsgLinkAddresses) {
       return {
         typeUrl: "/stride.airdrop.MsgLinkAddresses",
         value: MsgLinkAddresses.encode(value).finish()
       };
     }
-
   },
   withTypeUrl: {
     claimDaily(value: MsgClaimDaily) {
@@ -65,49 +58,42 @@ export const MessageComposer = {
         value
       };
     },
-
     claimEarly(value: MsgClaimEarly) {
       return {
         typeUrl: "/stride.airdrop.MsgClaimEarly",
         value
       };
     },
-
     createAirdrop(value: MsgCreateAirdrop) {
       return {
         typeUrl: "/stride.airdrop.MsgCreateAirdrop",
         value
       };
     },
-
     updateAirdrop(value: MsgUpdateAirdrop) {
       return {
         typeUrl: "/stride.airdrop.MsgUpdateAirdrop",
         value
       };
     },
-
     addAllocations(value: MsgAddAllocations) {
       return {
         typeUrl: "/stride.airdrop.MsgAddAllocations",
         value
       };
     },
-
     updateUserAllocation(value: MsgUpdateUserAllocation) {
       return {
         typeUrl: "/stride.airdrop.MsgUpdateUserAllocation",
         value
       };
     },
-
     linkAddresses(value: MsgLinkAddresses) {
       return {
         typeUrl: "/stride.airdrop.MsgLinkAddresses",
         value
       };
     }
-
   },
   fromPartial: {
     claimDaily(value: MsgClaimDaily) {
@@ -116,48 +102,41 @@ export const MessageComposer = {
         value: MsgClaimDaily.fromPartial(value)
       };
     },
-
     claimEarly(value: MsgClaimEarly) {
       return {
         typeUrl: "/stride.airdrop.MsgClaimEarly",
         value: MsgClaimEarly.fromPartial(value)
       };
     },
-
     createAirdrop(value: MsgCreateAirdrop) {
       return {
         typeUrl: "/stride.airdrop.MsgCreateAirdrop",
         value: MsgCreateAirdrop.fromPartial(value)
       };
     },
-
     updateAirdrop(value: MsgUpdateAirdrop) {
       return {
         typeUrl: "/stride.airdrop.MsgUpdateAirdrop",
         value: MsgUpdateAirdrop.fromPartial(value)
       };
     },
-
     addAllocations(value: MsgAddAllocations) {
       return {
         typeUrl: "/stride.airdrop.MsgAddAllocations",
         value: MsgAddAllocations.fromPartial(value)
       };
     },
-
     updateUserAllocation(value: MsgUpdateUserAllocation) {
       return {
         typeUrl: "/stride.airdrop.MsgUpdateUserAllocation",
         value: MsgUpdateUserAllocation.fromPartial(value)
       };
     },
-
     linkAddresses(value: MsgLinkAddresses) {
       return {
         typeUrl: "/stride.airdrop.MsgLinkAddresses",
         value: MsgLinkAddresses.fromPartial(value)
       };
     }
-
   }
 };

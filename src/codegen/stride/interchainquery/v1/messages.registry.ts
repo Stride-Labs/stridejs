@@ -14,7 +14,6 @@ export const MessageComposer = {
         value: MsgSubmitQueryResponse.encode(value).finish()
       };
     }
-
   },
   withTypeUrl: {
     submitQueryResponse(value: MsgSubmitQueryResponse) {
@@ -23,7 +22,6 @@ export const MessageComposer = {
         value
       };
     }
-
   },
   fromPartial: {
     submitQueryResponse(value: MsgSubmitQueryResponse) {
@@ -32,6 +30,5 @@ export const MessageComposer = {
         value: MsgSubmitQueryResponse.fromPartial(value)
       };
     }
-
   }
 };

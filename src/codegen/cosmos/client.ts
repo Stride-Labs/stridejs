@@ -1,5 +1,6 @@
-import { OfflineSigner, GeneratedType, Registry } from "@cosmjs/proto-signing";
+import { GeneratedType, Registry, OfflineSigner } from "@cosmjs/proto-signing";
 import { AminoTypes, SigningStargateClient } from "@cosmjs/stargate";
+import { HttpEndpoint } from "@cosmjs/tendermint-rpc";
 import * as cosmosAuthzV1beta1TxRegistry from "./authz/v1beta1/tx.registry";
 import * as cosmosBankV1beta1TxRegistry from "./bank/v1beta1/tx.registry";
 import * as cosmosCrisisV1beta1TxRegistry from "./crisis/v1beta1/tx.registry";
@@ -20,7 +21,8 @@ import * as cosmosGovV1beta1TxAmino from "./gov/v1beta1/tx.amino";
 import * as cosmosSlashingV1beta1TxAmino from "./slashing/v1beta1/tx.amino";
 import * as cosmosStakingV1beta1TxAmino from "./staking/v1beta1/tx.amino";
 import * as cosmosVestingV1beta1TxAmino from "./vesting/v1beta1/tx.amino";
-export const cosmosAminoConverters = { ...cosmosAuthzV1beta1TxAmino.AminoConverter,
+export const cosmosAminoConverters = {
+  ...cosmosAuthzV1beta1TxAmino.AminoConverter,
   ...cosmosBankV1beta1TxAmino.AminoConverter,
   ...cosmosCrisisV1beta1TxAmino.AminoConverter,
   ...cosmosDistributionV1beta1TxAmino.AminoConverter,
@@ -37,7 +39,8 @@ export const getSigningCosmosClientOptions = (): {
   aminoTypes: AminoTypes;
 } => {
   const registry = new Registry([...cosmosProtoRegistry]);
-  const aminoTypes = new AminoTypes({ ...cosmosAminoConverters
+  const aminoTypes = new AminoTypes({
+    ...cosmosAminoConverters
   });
   return {
     registry,
@@ -48,7 +51,7 @@ export const getSigningCosmosClient = async ({
   rpcEndpoint,
   signer
 }: {
-  rpcEndpoint: string;
+  rpcEndpoint: string | HttpEndpoint;
   signer: OfflineSigner;
 }) => {
   const {
@@ -56,7 +59,7 @@ export const getSigningCosmosClient = async ({
     aminoTypes
   } = getSigningCosmosClientOptions();
   const client = await SigningStargateClient.connectWithSigner(rpcEndpoint, signer, {
-    registry,
+    registry: registry as any,
     aminoTypes
   });
   return client;

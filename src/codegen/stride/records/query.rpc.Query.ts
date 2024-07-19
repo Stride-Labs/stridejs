@@ -1,49 +1,38 @@
-import { Rpc } from "@osmonauts/helpers";
-import * as _m0 from "protobufjs/minimal";
+import { Rpc } from "../../helpers";
+import { BinaryReader } from "../../binary";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
 import { QueryParamsRequest, QueryParamsResponse, QueryGetUserRedemptionRecordRequest, QueryGetUserRedemptionRecordResponse, QueryAllUserRedemptionRecordRequest, QueryAllUserRedemptionRecordResponse, QueryAllUserRedemptionRecordForUserRequest, QueryAllUserRedemptionRecordForUserResponse, QueryGetEpochUnbondingRecordRequest, QueryGetEpochUnbondingRecordResponse, QueryAllEpochUnbondingRecordRequest, QueryAllEpochUnbondingRecordResponse, QueryGetDepositRecordRequest, QueryGetDepositRecordResponse, QueryAllDepositRecordRequest, QueryAllDepositRecordResponse, QueryDepositRecordByHostRequest, QueryDepositRecordByHostResponse, QueryLSMDepositRequest, QueryLSMDepositResponse, QueryLSMDepositsRequest, QueryLSMDepositsResponse } from "./query";
-/** Query defines the RPC service */
-
+/** Query defines the gRPC querier service. */
 export interface Query {
+  /** Parameters queries the parameters of the module. */
   params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
-  /*Parameters queries the parameters of the module.*/
-
+  /** Queries a UserRedemptionRecord by id. */
   userRedemptionRecord(request: QueryGetUserRedemptionRecordRequest): Promise<QueryGetUserRedemptionRecordResponse>;
-  /*Queries a UserRedemptionRecord by id.*/
-
+  /** Queries a list of UserRedemptionRecord items. */
   userRedemptionRecordAll(request?: QueryAllUserRedemptionRecordRequest): Promise<QueryAllUserRedemptionRecordResponse>;
-  /*Queries a list of UserRedemptionRecord items.*/
-
+  /** Queries a list of UserRedemptionRecord items by chainId / userId pair. */
   userRedemptionRecordForUser(request: QueryAllUserRedemptionRecordForUserRequest): Promise<QueryAllUserRedemptionRecordForUserResponse>;
-  /*Queries a list of UserRedemptionRecord items by chainId / userId pair.*/
-
+  /** Queries a EpochUnbondingRecord by id. */
   epochUnbondingRecord(request: QueryGetEpochUnbondingRecordRequest): Promise<QueryGetEpochUnbondingRecordResponse>;
-  /*Queries a EpochUnbondingRecord by id.*/
-
+  /** Queries a list of EpochUnbondingRecord items. */
   epochUnbondingRecordAll(request?: QueryAllEpochUnbondingRecordRequest): Promise<QueryAllEpochUnbondingRecordResponse>;
-  /*Queries a list of EpochUnbondingRecord items.*/
-
+  /** Queries a DepositRecord by id. */
   depositRecord(request: QueryGetDepositRecordRequest): Promise<QueryGetDepositRecordResponse>;
-  /*Queries a DepositRecord by id.*/
-
+  /** Queries a list of DepositRecord items. */
   depositRecordAll(request?: QueryAllDepositRecordRequest): Promise<QueryAllDepositRecordResponse>;
-  /*Queries a list of DepositRecord items.*/
-
+  /** Queries a list of DepositRecord items for a given host zone */
   depositRecordByHost(request: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponse>;
-  /*Queries a list of DepositRecord items for a given host zone*/
-
+  /** Queries the existing LSMTokenDeposits for one specific deposit */
   lSMDeposit(request: QueryLSMDepositRequest): Promise<QueryLSMDepositResponse>;
-  /*Queries the existing LSMTokenDeposits for one specific deposit*/
-
+  /**
+   * Queries the existing LSMTokenDeposits for all which match filters
+   *   intended use:
+   *   ...stakeibc/lsm_deposits?chain_id=X&validator_address=Y&status=Z
+   */
   lSMDeposits(request: QueryLSMDepositsRequest): Promise<QueryLSMDepositsResponse>;
-  /*Queries the existing LSMTokenDeposits for all which match filters
-     intended use:
-     ...stakeibc/lsm_deposits?chain_id=X&validator_address=Y&status=Z*/
-
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
-
   constructor(rpc: Rpc) {
     this.rpc = rpc;
     this.params = this.params.bind(this);
@@ -58,79 +47,67 @@ export class QueryClientImpl implements Query {
     this.lSMDeposit = this.lSMDeposit.bind(this);
     this.lSMDeposits = this.lSMDeposits.bind(this);
   }
-
   params(request: QueryParamsRequest = {}): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request("stride.records.Query", "Params", data);
-    return promise.then(data => QueryParamsResponse.decode(new _m0.Reader(data)));
+    return promise.then(data => QueryParamsResponse.decode(new BinaryReader(data)));
   }
-
   userRedemptionRecord(request: QueryGetUserRedemptionRecordRequest): Promise<QueryGetUserRedemptionRecordResponse> {
     const data = QueryGetUserRedemptionRecordRequest.encode(request).finish();
     const promise = this.rpc.request("stride.records.Query", "UserRedemptionRecord", data);
-    return promise.then(data => QueryGetUserRedemptionRecordResponse.decode(new _m0.Reader(data)));
+    return promise.then(data => QueryGetUserRedemptionRecordResponse.decode(new BinaryReader(data)));
   }
-
   userRedemptionRecordAll(request: QueryAllUserRedemptionRecordRequest = {
     pagination: undefined
   }): Promise<QueryAllUserRedemptionRecordResponse> {
     const data = QueryAllUserRedemptionRecordRequest.encode(request).finish();
     const promise = this.rpc.request("stride.records.Query", "UserRedemptionRecordAll", data);
-    return promise.then(data => QueryAllUserRedemptionRecordResponse.decode(new _m0.Reader(data)));
+    return promise.then(data => QueryAllUserRedemptionRecordResponse.decode(new BinaryReader(data)));
   }
-
   userRedemptionRecordForUser(request: QueryAllUserRedemptionRecordForUserRequest): Promise<QueryAllUserRedemptionRecordForUserResponse> {
     const data = QueryAllUserRedemptionRecordForUserRequest.encode(request).finish();
     const promise = this.rpc.request("stride.records.Query", "UserRedemptionRecordForUser", data);
-    return promise.then(data => QueryAllUserRedemptionRecordForUserResponse.decode(new _m0.Reader(data)));
+    return promise.then(data => QueryAllUserRedemptionRecordForUserResponse.decode(new BinaryReader(data)));
   }
-
   epochUnbondingRecord(request: QueryGetEpochUnbondingRecordRequest): Promise<QueryGetEpochUnbondingRecordResponse> {
     const data = QueryGetEpochUnbondingRecordRequest.encode(request).finish();
     const promise = this.rpc.request("stride.records.Query", "EpochUnbondingRecord", data);
-    return promise.then(data => QueryGetEpochUnbondingRecordResponse.decode(new _m0.Reader(data)));
+    return promise.then(data => QueryGetEpochUnbondingRecordResponse.decode(new BinaryReader(data)));
   }
-
   epochUnbondingRecordAll(request: QueryAllEpochUnbondingRecordRequest = {
     pagination: undefined
   }): Promise<QueryAllEpochUnbondingRecordResponse> {
     const data = QueryAllEpochUnbondingRecordRequest.encode(request).finish();
     const promise = this.rpc.request("stride.records.Query", "EpochUnbondingRecordAll", data);
-    return promise.then(data => QueryAllEpochUnbondingRecordResponse.decode(new _m0.Reader(data)));
+    return promise.then(data => QueryAllEpochUnbondingRecordResponse.decode(new BinaryReader(data)));
   }
-
   depositRecord(request: QueryGetDepositRecordRequest): Promise<QueryGetDepositRecordResponse> {
     const data = QueryGetDepositRecordRequest.encode(request).finish();
     const promise = this.rpc.request("stride.records.Query", "DepositRecord", data);
-    return promise.then(data => QueryGetDepositRecordResponse.decode(new _m0.Reader(data)));
+    return promise.then(data => QueryGetDepositRecordResponse.decode(new BinaryReader(data)));
   }
-
   depositRecordAll(request: QueryAllDepositRecordRequest = {
     pagination: undefined
   }): Promise<QueryAllDepositRecordResponse> {
     const data = QueryAllDepositRecordRequest.encode(request).finish();
     const promise = this.rpc.request("stride.records.Query", "DepositRecordAll", data);
-    return promise.then(data => QueryAllDepositRecordResponse.decode(new _m0.Reader(data)));
+    return promise.then(data => QueryAllDepositRecordResponse.decode(new BinaryReader(data)));
   }
-
   depositRecordByHost(request: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponse> {
     const data = QueryDepositRecordByHostRequest.encode(request).finish();
     const promise = this.rpc.request("stride.records.Query", "DepositRecordByHost", data);
-    return promise.then(data => QueryDepositRecordByHostResponse.decode(new _m0.Reader(data)));
+    return promise.then(data => QueryDepositRecordByHostResponse.decode(new BinaryReader(data)));
   }
-
   lSMDeposit(request: QueryLSMDepositRequest): Promise<QueryLSMDepositResponse> {
     const data = QueryLSMDepositRequest.encode(request).finish();
     const promise = this.rpc.request("stride.records.Query", "LSMDeposit", data);
-    return promise.then(data => QueryLSMDepositResponse.decode(new _m0.Reader(data)));
+    return promise.then(data => QueryLSMDepositResponse.decode(new BinaryReader(data)));
   }
-
   lSMDeposits(request: QueryLSMDepositsRequest): Promise<QueryLSMDepositsResponse> {
     const data = QueryLSMDepositsRequest.encode(request).finish();
     const promise = this.rpc.request("stride.records.Query", "LSMDeposits", data);
-    return promise.then(data => QueryLSMDepositsResponse.decode(new _m0.Reader(data)));
+    return promise.then(data => QueryLSMDepositsResponse.decode(new BinaryReader(data)));
   }
-
 }
 export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
@@ -139,46 +116,35 @@ export const createRpcQueryExtension = (base: QueryClient) => {
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse> {
       return queryService.params(request);
     },
-
     userRedemptionRecord(request: QueryGetUserRedemptionRecordRequest): Promise<QueryGetUserRedemptionRecordResponse> {
       return queryService.userRedemptionRecord(request);
     },
-
     userRedemptionRecordAll(request?: QueryAllUserRedemptionRecordRequest): Promise<QueryAllUserRedemptionRecordResponse> {
       return queryService.userRedemptionRecordAll(request);
     },
-
     userRedemptionRecordForUser(request: QueryAllUserRedemptionRecordForUserRequest): Promise<QueryAllUserRedemptionRecordForUserResponse> {
       return queryService.userRedemptionRecordForUser(request);
     },
-
     epochUnbondingRecord(request: QueryGetEpochUnbondingRecordRequest): Promise<QueryGetEpochUnbondingRecordResponse> {
       return queryService.epochUnbondingRecord(request);
     },
-
     epochUnbondingRecordAll(request?: QueryAllEpochUnbondingRecordRequest): Promise<QueryAllEpochUnbondingRecordResponse> {
       return queryService.epochUnbondingRecordAll(request);
     },
-
     depositRecord(request: QueryGetDepositRecordRequest): Promise<QueryGetDepositRecordResponse> {
       return queryService.depositRecord(request);
     },
-
     depositRecordAll(request?: QueryAllDepositRecordRequest): Promise<QueryAllDepositRecordResponse> {
       return queryService.depositRecordAll(request);
     },
-
     depositRecordByHost(request: QueryDepositRecordByHostRequest): Promise<QueryDepositRecordByHostResponse> {
       return queryService.depositRecordByHost(request);
     },
-
     lSMDeposit(request: QueryLSMDepositRequest): Promise<QueryLSMDepositResponse> {
       return queryService.lSMDeposit(request);
     },
-
     lSMDeposits(request: QueryLSMDepositsRequest): Promise<QueryLSMDepositsResponse> {
       return queryService.lSMDeposits(request);
     }
-
   };
 };
