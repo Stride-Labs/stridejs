@@ -1,10 +1,13 @@
 {
   "name": "stridejs",
   "version": "0.10.0-alpha",
-  "description": "Codegenerated typescript files from Stride SDK proto files",
-  "author": "Dan Lynch <pyramation@gmail.com>",
+  "description": "The JavaScript SDK for Stride",
+  "contributors": [
+    "Dan Lynch <pyramation@gmail.com>",
+    "Stride Labs"
+  ],
   "homepage": "https://github.com/Stride-Labs/stridejs#readme",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "main": "main/index.js",
   "module": "module/index.js",
   "typings": "types/index.d.ts",
