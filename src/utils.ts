@@ -1,8 +1,48 @@
 import { Coin, StdFee } from "@cosmjs/amino";
 import { fromBase64, toHex, toUtf8 } from "@cosmjs/encoding";
+import { DeliverTxResponse, IndexedTx, StargateClient } from "@cosmjs/stargate";
 import { ripemd160 } from "@noble/hashes/ripemd160";
 import { sha256 } from "@noble/hashes/sha256";
 import { bech32 } from "bech32";
+
+/**
+ * This file is adapted from https://github.com/scrtlabs/secret.js, specifically these functions:
+ * - coinFromString
+ * - coinsFromString
+ * - ibcDenom
+ * - pubkeyToAddress
+ * - base64PubkeyToAddress
+ * - selfDelegatorAddressToValidatorAddress
+ * - validatorAddressToSelfDelegatorAddress
+ * - tendermintPubkeyToValconsAddress
+ * - base64TendermintPubkeyToValconsAddress
+ * - getTxIbcResponses
+ * - findIbcResponse
+ *
+ * The secret.js license:
+ *
+ * MIT License
+ *
+ * Copyright (c) 2022 SCRT Labs
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
 /**
  * Creates a Coin object from the given string representation of a coin.
@@ -206,4 +246,168 @@ export function decToString(dec: number): string {
  */
 export function convertBech32Prefix(address: string, toPrefix: string): string {
   return bech32.encode(toPrefix, bech32.decode(address).words);
+}
+
+/**
+ * Represents an IBC response, which can be either an acknowledgement or a timeout.
+ */
+export type IbcResponse = {
+  /**
+   * The type of IBC response, either "ack" for acknowledgement or "timeout" for timeout.
+   */
+  type: "ack" | "timeout";
+
+  /**
+   * The transaction details associated with the IBC response.
+   */
+  tx: IndexedTx;
+};
+/**
+ * Retrieves the IBC responses for a given transaction response, with options to customize the timeout and check interval for the IBC response transactions. If `txResponse.code = 0` and the transaction resulted in sending IBC packets, `getIbcResponse()` will return a list of IBC acknowledgement or timeout transactions which signal whether the original IBC packet was accepted, rejected or timed-out on the receiving chain.
+ *
+ * @param {object} txResponse - The transaction response object.
+ * @param {number} [resolveResponsesTimeoutMs=120000] - The timeout in milliseconds for waiting for IBC response txs to commit on-chain. Defaults to 120000 (2 minutes).
+ * @param {number} [resolveResponsesCheckIntervalMs=15000] - The interval in milliseconds between checks when waiting for IBC response txs to commit on-chain. Defaults to 15000 (15 seconds).
+ * @returns {Promise<object>} A list of IBC acknowledgement or timeout transactions which signal whether the original IBC packet was accepted, rejected or timed-out on the receiving chain.
+ */
+export function getTxIbcResponses(
+  stargateClient: StargateClient,
+  txResponse: DeliverTxResponse,
+  resolveResponsesTimeoutMs: number = 120000,
+  resolveResponsesCheckIntervalMs: number = 15000,
+): Array<Promise<IbcResponse>> {
+  if (txResponse.code !== 0) {
+    return [];
+  }
+
+  // pasrse output event to extract ibc channels and sequences
+  let rawLog: string = txResponse.rawLog!;
+  let arrayLog: Array<{
+    msg: number;
+    type: string;
+    key: string;
+    value: string;
+  }>;
+  const jsonLog: Array<{
+    msg_index: number;
+    events: Array<{
+      type: string;
+      attributes: Array<{ key: string; value: string }>;
+    }>;
+  }> = JSON.parse(rawLog);
+
+  arrayLog = [];
+  for (let msgIndex = 0; msgIndex < jsonLog.length; msgIndex++) {
+    const log = jsonLog[msgIndex];
+    for (const event of log.events) {
+      for (const attr of event.attributes) {
+        arrayLog.push({
+          msg: msgIndex,
+          type: event.type,
+          key: attr.key,
+          value: attr.value,
+        });
+      }
+    }
+  }
+
+  let ibcResponses: Array<Promise<IbcResponse>> = [];
+  const packetSequences =
+    arrayLog.filter(
+      (x) => x.type === "send_packet" && x.key === "packet_sequence",
+    ) || [];
+
+  const packetSrcChannels =
+    arrayLog.filter(
+      (x) => x.type === "send_packet" && x.key === "packet_src_channel",
+    ) || [];
+
+  for (let msgIndex = 0; msgIndex < packetSequences?.length; msgIndex++) {
+    // isDoneObject is used to cancel the second promise if the first one is resolved
+    const isDoneObject = {
+      isDone: false,
+    };
+
+    ibcResponses.push(
+      Promise.race([
+        findIbcResponse(
+          stargateClient,
+          packetSequences[msgIndex].value,
+          packetSrcChannels[msgIndex].value,
+          "ack",
+          resolveResponsesTimeoutMs,
+          resolveResponsesCheckIntervalMs,
+          isDoneObject,
+        ),
+        findIbcResponse(
+          stargateClient,
+          packetSequences[msgIndex].value,
+          packetSrcChannels[msgIndex].value,
+          "timeout",
+          resolveResponsesTimeoutMs,
+          resolveResponsesCheckIntervalMs,
+          isDoneObject,
+        ),
+      ]),
+    );
+  }
+
+  return ibcResponses;
+}
+
+/**
+ * Searches for an IBC response transaction based on the provided packet sequence and source channel, with options to specify the type of response (ack or timeout), and the timeout and interval for checking the response transactions.
+ *
+ * @param {StargateClient} stargateClient - The client used to query the blockchain for transactions.
+ * @param {string} packetSequence - The sequence number of the original IBC packet.
+ * @param {string} packetSrcChannel - The source channel of the original IBC packet.
+ * @param {"ack" | "timeout"} [type="ack"] - The type of IBC response to search for.
+ * @param {number} [resolveResponsesTimeoutMs=120000] - The timeout in milliseconds for waiting for IBC response txs to commit on-chain. Defaults to 120000 (2 minutes).
+ * @param {number} [resolveResponsesCheckIntervalMs=15000] - The interval in milliseconds between checks when waiting for IBC response txs to commit on-chain. Defaults to 15000 (15 seconds).
+ * @param {{ isDone: boolean }} [isDoneObject={ isDone: false }] - An object to track if the search process has been completed.
+ * @returns {Promise<IbcResponse>} A promise that resolves with an IBC response object containing the type of response and the transaction details, or rejects with a timeout error if no response is found within the specified timeout.
+ */
+export async function findIbcResponse(
+  stargateClient: StargateClient,
+  packetSequence: string,
+  packetSrcChannel: string,
+  type: "ack" | "timeout" = "ack",
+  resolveResponsesTimeoutMs: number = 120000,
+  resolveResponsesCheckIntervalMs: number = 15000,
+  isDoneObject: { isDone: boolean } = { isDone: false },
+): Promise<IbcResponse> {
+  return new Promise(async (resolve, reject) => {
+    let tries = resolveResponsesTimeoutMs / resolveResponsesCheckIntervalMs;
+
+    let txType: string = type;
+    if (type === "ack") {
+      txType = "acknowledge";
+    }
+
+    const query = [
+      `${txType}_packet.packet_src_channel='${packetSrcChannel}'`,
+      `${txType}_packet.packet_sequence='${packetSequence}'`,
+    ].join(" AND ");
+
+    while (tries > 0 && !isDoneObject.isDone) {
+      const txs = await stargateClient.searchTx(query);
+
+      const ibcRespTx = txs.find((tx) => tx.code === 0);
+
+      if (ibcRespTx) {
+        isDoneObject.isDone = true;
+        resolve({
+          type,
+          tx: ibcRespTx,
+        });
+      }
+
+      tries--;
+      await sleep(resolveResponsesCheckIntervalMs);
+    }
+
+    reject(
+      `timed-out while trying to resolve IBC ${type} tx for packet_src_channel='${packetSrcChannel}' and packet_sequence='${packetSequence}'`,
+    );
+  });
 }
