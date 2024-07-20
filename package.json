@@ -92,8 +92,10 @@
     "@cosmjs/stargate": "0.31.3",
     "@cosmjs/tendermint-rpc": "0.31.3",
     "@cosmology/lcd": "^0.13.4",
+    "@noble/hashes": "^1.4.0",
     "@osmonauts/helpers": "^0.6.0",
     "@osmonauts/lcd": "^0.6.0",
+    "bech32": "^2.0.0",
     "protobufjs": "^6.11.2"
   },
   "resolutions": {
