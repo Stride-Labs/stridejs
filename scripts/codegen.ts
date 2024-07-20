@@ -1,7 +1,5 @@
 import telescope from "@cosmology/telescope";
-import { execSync } from "child_process";
 import { join } from "path";
-import { config } from "./clone_repos";
 
 const outPath = join(__dirname, "../src/codegen");
 
