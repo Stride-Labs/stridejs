@@ -99,6 +99,9 @@ importers:
       '@cosmology/telescope':
         specifier: 1.8.3
         version: 1.8.3
+      '@types/node':
+        specifier: 20.14.11
+        version: 20.14.11
       babel-core:
         specifier: 7.0.0-bridge.0
         version: 7.0.0-bridge.0(@babel/core@7.18.10)
