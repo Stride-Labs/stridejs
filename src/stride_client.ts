@@ -100,15 +100,15 @@ export class StrideClient {
    * Sign and broadcast a transaction.
    *
    * @param {EncodeObject[]} messages - An array of messages to be encoded and signed.
-   * @param {StdFee | "auto" | number} fee - The transaction fee. You can pass a `StdFee` object to set the gas limit and fee manually. If a `GasPrice` object has been passed to `StrideClient.create()`, you can set `"auto"` to automatically determine the gas limit based on the transaction simulation. Alternatively, you can pass a number to enable `"auto"` mode with a custom gas adjustment multiplier (default is `1.4`).
-   * @param {string} [memo] - An optional memo for the transaction.
+   * @param {StdFee | "auto" | number} [fee="auto"] - The transaction fee. You can pass a `StdFee` object to set the gas limit and fee manually. If a `GasPrice` object has been passed to `StrideClient.create()`, you can set `"auto"` to automatically determine the gas limit based on the transaction simulation. Alternatively, you can pass a number to enable `"auto"` mode with a custom gas adjustment multiplier (default is `1.4`). Defaults to `"auto"`.
+   * @param {string} [memo=""] - An optional memo for the transaction. Defaults to `""`.
    *
    * @returns {DeliverTxResponse} - The response from the network after broadcasting the transaction, including the transaction hash and status.
    */
   public async signAndBroadcast(
     messages: readonly EncodeObject[],
-    fee: StdFee | "auto" | number,
-    memo?: string,
+    fee: StdFee | "auto" | number = "auto",
+    memo: string = "",
   ): Promise<
     DeliverTxResponse & { ibcResponses: Array<Promise<IbcResponse>> }
   > {
