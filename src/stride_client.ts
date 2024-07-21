@@ -30,7 +30,7 @@ export class StrideClient {
       ReturnType<typeof stride.ClientFactory.createRPCQueryClient>
     > &
       Awaited<ReturnType<typeof ibc.ClientFactory.createRPCQueryClient>>,
-    public readonly msgs: { stride: typeof stride } & {
+    public readonly types: { stride: typeof stride } & {
       cosmos: typeof cosmos;
     } & { ibc: typeof ibc },
   ) {}
@@ -78,8 +78,8 @@ export class StrideClient {
       }),
     );
 
-    // setup msgs directory
-    const msgs = Object.assign(
+    // setup types directory
+    const types = Object.assign(
       { stride: stride },
       { cosmos: cosmos },
       { ibc: ibc },
@@ -91,10 +91,19 @@ export class StrideClient {
       address,
       signingStargateClient,
       query,
-      msgs,
+      types,
     );
   }
 
+  /**
+   * Sign and broadcast a transaction.
+   *
+   * @param {EncodeObject[]} messages - An array of messages to be encoded and signed.
+   * @param {StdFee | "auto" | number} fee - The transaction fee. Can be "auto" if a `GasPrice` object was passed to `StrideClent.create()` upon creation.
+   * @param {string} [memo] - An optional memo for the transaction.
+   *
+   * @returns {DeliverTxResponse} - The response from the network after broadcasting the transaction, including the transaction hash and status.
+   */
   public async signAndBroadcast(
     messages: readonly EncodeObject[],
     fee: StdFee | "auto" | number,
