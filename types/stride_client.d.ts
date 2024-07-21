@@ -2,6 +2,10 @@ import { EncodeObject, OfflineSigner } from "@cosmjs/proto-signing";
 import { DeliverTxResponse, SigningStargateClientOptions, StdFee } from "@cosmjs/stargate";
 import { cosmos, ibc, stride } from "./codegen";
 import { IbcResponse } from "./utils";
+export declare type StrideClientOptions = SigningStargateClientOptions & {
+    resolveIbcResponsesTimeoutMs: number;
+    resolveIbcResponsesCheckIntervalMs: number;
+};
 export declare class StrideClient {
     readonly rpcEndpoint: string;
     readonly signer: OfflineSigner;
@@ -15,15 +19,16 @@ export declare class StrideClient {
     } & {
         ibc: typeof ibc;
     };
+    private readonly options?;
     private constructor();
     /**
      *
      * @param {string} rpcUrl - A URL to the CometBFT RPC endpoint, also known as Tendermint RPC, by default on port 26657.
      * @param {OfflineSigner} signer - A signer for signing transactions.
      * @param {string} address - walletAddress is the specific account address in the wallet that is permitted to sign transactions.
-     * @param {SigningStargateClientOptions} [options] - Optional. Configuration options for the signing client, including gas price, gas limit, and other parameters.
+     * @param {StrideClientOptions} [options] - Optional. Configuration options for the signing client, including gas price, gas limit, and other parameters.
      */
-    static create(rpcUrl: string, signer: OfflineSigner, address: string, options?: SigningStargateClientOptions): Promise<StrideClient>;
+    static create(rpcUrl: string, signer: OfflineSigner, address: string, options?: StrideClientOptions): Promise<StrideClient>;
     /**
      * Sign and broadcast a transaction.
      *

@@ -19,6 +19,11 @@ import {
 } from "./codegen";
 import { getTxIbcResponses, IbcResponse } from "./utils";
 
+export type StrideClientOptions = SigningStargateClientOptions & {
+  resolveIbcResponsesTimeoutMs: number;
+  resolveIbcResponsesCheckIntervalMs: number;
+};
+
 export class StrideClient {
   private constructor(
     public readonly rpcEndpoint: string,
@@ -34,6 +39,7 @@ export class StrideClient {
     public readonly types: { stride: typeof stride } & {
       cosmos: typeof cosmos;
     } & { ibc: typeof ibc },
+    private readonly options?: StrideClientOptions,
   ) {}
 
   /**
@@ -41,13 +47,13 @@ export class StrideClient {
    * @param {string} rpcUrl - A URL to the CometBFT RPC endpoint, also known as Tendermint RPC, by default on port 26657.
    * @param {OfflineSigner} signer - A signer for signing transactions.
    * @param {string} address - walletAddress is the specific account address in the wallet that is permitted to sign transactions.
-   * @param {SigningStargateClientOptions} [options] - Optional. Configuration options for the signing client, including gas price, gas limit, and other parameters.
+   * @param {StrideClientOptions} [options] - Optional. Configuration options for the signing client, including gas price, gas limit, and other parameters.
    */
   public static async create(
     rpcUrl: string,
     signer: OfflineSigner,
     address: string,
-    options?: SigningStargateClientOptions,
+    options?: StrideClientOptions,
   ) {
     // setup signingStargateClient
     const registry = new Registry([
@@ -60,13 +66,20 @@ export class StrideClient {
       ...cosmosAminoConverters,
       ...ibcAminoConverters,
     });
+
+    options = Object.assign(
+      {},
+      {
+        registry,
+        aminoTypes,
+      },
+      options,
+    );
+
     const signingStargateClient = await SigningStargateClient.connectWithSigner(
       rpcUrl,
       signer,
-      Object.assign({}, options, {
-        registry,
-        aminoTypes,
-      }),
+      options,
     );
 
     // setup query client
@@ -119,7 +132,12 @@ export class StrideClient {
       memo,
     );
 
-    const ibcResponses = getTxIbcResponses(this.signingStargateClient, txResp);
+    const ibcResponses = getTxIbcResponses(
+      this.signingStargateClient,
+      txResp,
+      this.options?.resolveIbcResponsesTimeoutMs,
+      this.options?.resolveIbcResponsesCheckIntervalMs,
+    );
 
     return Object.assign(txResp, { ibcResponses });
   }
