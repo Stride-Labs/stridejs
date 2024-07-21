@@ -17,6 +17,7 @@ import {
   strideAminoConverters,
   strideProtoRegistry,
 } from "./codegen";
+import { getTxIbcResponses, IbcResponse } from "./utils";
 
 export class StrideClient {
   private constructor(
@@ -108,12 +109,18 @@ export class StrideClient {
     messages: readonly EncodeObject[],
     fee: StdFee | "auto" | number,
     memo?: string,
-  ): Promise<DeliverTxResponse> {
-    return this.signingStargateClient.signAndBroadcast(
+  ): Promise<
+    DeliverTxResponse & { ibcResponses: Array<Promise<IbcResponse>> }
+  > {
+    const txResp = await this.signingStargateClient.signAndBroadcast(
       this.address,
       messages,
       fee,
       memo,
     );
+
+    const ibcResponses = getTxIbcResponses(this.signingStargateClient, txResp);
+
+    return Object.assign(txResp, { ibcResponses });
   }
 }
