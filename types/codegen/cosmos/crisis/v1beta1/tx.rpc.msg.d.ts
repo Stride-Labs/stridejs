@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { MsgVerifyInvariant, MsgVerifyInvariantResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx";
 /** Msg defines the bank Msg service. */
 export interface Msg {
@@ -14,7 +14,7 @@ export interface Msg {
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     verifyInvariant(request: MsgVerifyInvariant): Promise<MsgVerifyInvariantResponse>;
     updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }

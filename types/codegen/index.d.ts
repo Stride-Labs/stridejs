@@ -18,3 +18,4 @@ export * from "./tendermint/bundle";
 export * from "./varint";
 export * from "./utf8";
 export * from "./binary";
+export * from "./types";

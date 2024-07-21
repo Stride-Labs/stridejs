@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { MsgCreateValidator, MsgCreateValidatorResponse, MsgEditValidator, MsgEditValidatorResponse, MsgDelegate, MsgDelegateResponse, MsgBeginRedelegate, MsgBeginRedelegateResponse, MsgUndelegate, MsgUndelegateResponse, MsgCancelUnbondingDelegation, MsgCancelUnbondingDelegationResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx";
 /** Msg defines the staking Msg service. */
 export interface Msg {
@@ -37,7 +37,7 @@ export interface Msg {
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     createValidator(request: MsgCreateValidator): Promise<MsgCreateValidatorResponse>;
     editValidator(request: MsgEditValidator): Promise<MsgEditValidatorResponse>;
     delegate(request: MsgDelegate): Promise<MsgDelegateResponse>;

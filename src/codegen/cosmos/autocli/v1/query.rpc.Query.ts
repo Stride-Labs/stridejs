@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { BinaryReader } from "../../../binary";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
 import { AppOptionsRequest, AppOptionsResponse } from "./query";
@@ -9,8 +9,8 @@ export interface Query {
   appOptions(request?: AppOptionsRequest): Promise<AppOptionsResponse>;
 }
 export class QueryClientImpl implements Query {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
+  private readonly rpc: TxRpc;
+  constructor(rpc: TxRpc) {
     this.rpc = rpc;
     this.appOptions = this.appOptions.bind(this);
   }

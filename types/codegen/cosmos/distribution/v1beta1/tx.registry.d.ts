@@ -1,6 +1,7 @@
-import { GeneratedType, Registry } from "@cosmjs/proto-signing";
+import { TelescopeGeneratedType } from "../../../types";
+import { Registry } from "@cosmjs/proto-signing";
 import { MsgSetWithdrawAddress, MsgWithdrawDelegatorReward, MsgWithdrawValidatorCommission, MsgFundCommunityPool, MsgUpdateParams, MsgCommunityPoolSpend } from "./tx";
-export declare const registry: ReadonlyArray<[string, GeneratedType]>;
+export declare const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]>;
 export declare const load: (protoRegistry: Registry) => void;
 export declare const MessageComposer: {
     encoded: {

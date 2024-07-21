@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { MsgUpdateParams, MsgUpdateParamsResponse } from "./tx";
 /** Msg defines the bank Msg service. */
 export interface Msg {
@@ -12,6 +12,6 @@ export interface Msg {
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }

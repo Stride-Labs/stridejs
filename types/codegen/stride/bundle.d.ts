@@ -56,39 +56,28 @@ import * as _231 from "./staketia/query";
 import * as _232 from "./staketia/staketia";
 import * as _233 from "./staketia/tx";
 import * as _235 from "./vesting/vesting";
-import * as _385 from "./airdrop/query.lcd";
-import * as _386 from "./autopilot/query.lcd";
-import * as _387 from "./claim/query.lcd";
-import * as _388 from "./epochs/query.lcd";
-import * as _389 from "./icacallbacks/query.lcd";
-import * as _390 from "./icaoracle/query.lcd";
-import * as _391 from "./mint/v1beta1/query.lcd";
-import * as _392 from "./records/query.lcd";
-import * as _393 from "./stakedym/query.lcd";
-import * as _394 from "./stakeibc/query.lcd";
-import * as _395 from "./staketia/query.lcd";
-import * as _396 from "./airdrop/query.rpc.Query";
-import * as _397 from "./autopilot/query.rpc.Query";
-import * as _398 from "./claim/query.rpc.Query";
-import * as _399 from "./epochs/query.rpc.Query";
-import * as _400 from "./icacallbacks/query.rpc.Query";
-import * as _401 from "./icaoracle/query.rpc.Query";
-import * as _402 from "./mint/v1beta1/query.rpc.Query";
-import * as _403 from "./records/query.rpc.Query";
-import * as _404 from "./stakedym/query.rpc.Query";
-import * as _405 from "./stakeibc/query.rpc.Query";
-import * as _406 from "./staketia/query.rpc.Query";
-import * as _407 from "./airdrop/tx.rpc.msg";
-import * as _408 from "./claim/tx.rpc.msg";
-import * as _409 from "./icaoracle/tx.rpc.msg";
-import * as _410 from "./interchainquery/v1/messages.rpc.msg";
-import * as _411 from "./stakedym/tx.rpc.msg";
-import * as _412 from "./stakeibc/tx.rpc.msg";
-import * as _413 from "./staketia/tx.rpc.msg";
+import * as _359 from "./airdrop/query.rpc.Query";
+import * as _360 from "./autopilot/query.rpc.Query";
+import * as _361 from "./claim/query.rpc.Query";
+import * as _362 from "./epochs/query.rpc.Query";
+import * as _363 from "./icacallbacks/query.rpc.Query";
+import * as _364 from "./icaoracle/query.rpc.Query";
+import * as _365 from "./mint/v1beta1/query.rpc.Query";
+import * as _366 from "./records/query.rpc.Query";
+import * as _367 from "./stakedym/query.rpc.Query";
+import * as _368 from "./stakeibc/query.rpc.Query";
+import * as _369 from "./staketia/query.rpc.Query";
+import * as _370 from "./airdrop/tx.rpc.msg";
+import * as _371 from "./claim/tx.rpc.msg";
+import * as _372 from "./icaoracle/tx.rpc.msg";
+import * as _373 from "./interchainquery/v1/messages.rpc.msg";
+import * as _374 from "./stakedym/tx.rpc.msg";
+import * as _375 from "./stakeibc/tx.rpc.msg";
+import * as _376 from "./staketia/tx.rpc.msg";
 export declare namespace stride {
     const airdrop: {
-        MsgClientImpl: typeof _407.MsgClientImpl;
-        QueryClientImpl: typeof _396.QueryClientImpl;
+        MsgClientImpl: typeof _370.MsgClientImpl;
+        QueryClientImpl: typeof _359.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
             airdrop(request: _178.QueryAirdropRequest): Promise<_178.QueryAirdropResponse>;
             allAirdrops(request?: _178.QueryAllAirdropsRequest): Promise<_178.QueryAllAirdropsResponse>;
@@ -97,8 +86,7 @@ export declare namespace stride {
             allAllocations(request: _178.QueryAllAllocationsRequest): Promise<_178.QueryAllAllocationsResponse>;
             userSummary(request: _178.QueryUserSummaryRequest): Promise<_178.QueryUserSummaryResponse>;
         };
-        LCDQueryClient: typeof _385.LCDQueryClient;
-        registry: readonly [string, import("@cosmjs/proto-signing").GeneratedType][];
+        registry: readonly [string, import("..").TelescopeGeneratedType<any, any, any>][];
         load: (protoRegistry: import("@cosmjs/proto-signing").Registry) => void;
         MessageComposer: {
             encoded: {
@@ -615,11 +603,10 @@ export declare namespace stride {
         };
     };
     const autopilot: {
-        QueryClientImpl: typeof _397.QueryClientImpl;
+        QueryClientImpl: typeof _360.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
             params(request?: _182.QueryParamsRequest): Promise<_182.QueryParamsResponse>;
         };
-        LCDQueryClient: typeof _386.LCDQueryClient;
         QueryParamsRequest: {
             typeUrl: string;
             encode(_: _182.QueryParamsRequest, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
@@ -670,8 +657,8 @@ export declare namespace stride {
         };
     };
     const claim: {
-        MsgClientImpl: typeof _408.MsgClientImpl;
-        QueryClientImpl: typeof _398.QueryClientImpl;
+        MsgClientImpl: typeof _371.MsgClientImpl;
+        QueryClientImpl: typeof _361.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
             distributorAccountBalance(request: _186.QueryDistributorAccountBalanceRequest): Promise<_186.QueryDistributorAccountBalanceResponse>;
             params(request?: _186.QueryParamsRequest): Promise<_186.QueryParamsResponse>;
@@ -682,8 +669,7 @@ export declare namespace stride {
             claimStatus(request: _186.QueryClaimStatusRequest): Promise<_186.QueryClaimStatusResponse>;
             claimMetadata(request?: _186.QueryClaimMetadataRequest): Promise<_186.QueryClaimMetadataResponse>;
         };
-        LCDQueryClient: typeof _387.LCDQueryClient;
-        registry: readonly [string, import("@cosmjs/proto-signing").GeneratedType][];
+        registry: readonly [string, import("..").TelescopeGeneratedType<any, any, any>][];
         load: (protoRegistry: import("@cosmjs/proto-signing").Registry) => void;
         MessageComposer: {
             encoded: {
@@ -1131,13 +1117,12 @@ export declare namespace stride {
         };
     };
     const epochs: {
-        QueryClientImpl: typeof _399.QueryClientImpl;
+        QueryClientImpl: typeof _362.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
             epochInfos(request?: _189.QueryEpochsInfoRequest): Promise<_189.QueryEpochsInfoResponse>;
             currentEpoch(request: _189.QueryCurrentEpochRequest): Promise<_189.QueryCurrentEpochResponse>;
             epochInfo(request: _189.QueryEpochInfoRequest): Promise<_189.QueryEpochInfoResponse>;
         };
-        LCDQueryClient: typeof _388.LCDQueryClient;
         QueryEpochsInfoRequest: {
             typeUrl: string;
             encode(message: _189.QueryEpochsInfoRequest, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
@@ -1236,13 +1221,12 @@ export declare namespace stride {
         };
     };
     const icacallbacks: {
-        QueryClientImpl: typeof _400.QueryClientImpl;
+        QueryClientImpl: typeof _363.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
             params(request?: _194.QueryParamsRequest): Promise<_194.QueryParamsResponse>;
             callbackData(request: _194.QueryGetCallbackDataRequest): Promise<_194.QueryGetCallbackDataResponse>;
             callbackDataAll(request?: _194.QueryAllCallbackDataRequest): Promise<_194.QueryAllCallbackDataResponse>;
         };
-        LCDQueryClient: typeof _389.LCDQueryClient;
         QueryParamsRequest: {
             typeUrl: string;
             encode(_: _194.QueryParamsRequest, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
@@ -1377,16 +1361,15 @@ export declare namespace stride {
         };
     };
     const icaoracle: {
-        MsgClientImpl: typeof _409.MsgClientImpl;
-        QueryClientImpl: typeof _401.QueryClientImpl;
+        MsgClientImpl: typeof _372.MsgClientImpl;
+        QueryClientImpl: typeof _364.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
             oracle(request: _200.QueryOracleRequest): Promise<_200.QueryOracleResponse>;
             allOracles(request?: _200.QueryAllOraclesRequest): Promise<_200.QueryAllOraclesResponse>;
             activeOracles(request: _200.QueryActiveOraclesRequest): Promise<_200.QueryActiveOraclesResponse>;
             metrics(request: _200.QueryMetricsRequest): Promise<_200.QueryMetricsResponse>;
         };
-        LCDQueryClient: typeof _390.LCDQueryClient;
-        registry: readonly [string, import("@cosmjs/proto-signing").GeneratedType][];
+        registry: readonly [string, import("..").TelescopeGeneratedType<any, any, any>][];
         load: (protoRegistry: import("@cosmjs/proto-signing").Registry) => void;
         MessageComposer: {
             encoded: {
@@ -1832,8 +1815,8 @@ export declare namespace stride {
     };
     namespace interchainquery {
         const v1: {
-            MsgClientImpl: typeof _410.MsgClientImpl;
-            registry: readonly [string, import("@cosmjs/proto-signing").GeneratedType][];
+            MsgClientImpl: typeof _373.MsgClientImpl;
+            registry: readonly [string, import("..").TelescopeGeneratedType<any, any, any>][];
             load: (protoRegistry: import("@cosmjs/proto-signing").Registry) => void;
             MessageComposer: {
                 encoded: {
@@ -1955,12 +1938,11 @@ export declare namespace stride {
     }
     namespace mint {
         const v1beta1: {
-            QueryClientImpl: typeof _402.QueryClientImpl;
+            QueryClientImpl: typeof _365.QueryClientImpl;
             createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
                 params(request?: _207.QueryParamsRequest): Promise<_207.QueryParamsResponse>;
                 epochProvisions(request?: _207.QueryEpochProvisionsRequest): Promise<_207.QueryEpochProvisionsResponse>;
             };
-            LCDQueryClient: typeof _391.LCDQueryClient;
             QueryParamsRequest: {
                 typeUrl: string;
                 encode(_: _207.QueryParamsRequest, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
@@ -2060,7 +2042,7 @@ export declare namespace stride {
         };
     }
     const records: {
-        QueryClientImpl: typeof _403.QueryClientImpl;
+        QueryClientImpl: typeof _366.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
             params(request?: _211.QueryParamsRequest): Promise<_211.QueryParamsResponse>;
             userRedemptionRecord(request: _211.QueryGetUserRedemptionRecordRequest): Promise<_211.QueryGetUserRedemptionRecordResponse>;
@@ -2074,7 +2056,6 @@ export declare namespace stride {
             lSMDeposit(request: _211.QueryLSMDepositRequest): Promise<_211.QueryLSMDepositResponse>;
             lSMDeposits(request: _211.QueryLSMDepositsRequest): Promise<_211.QueryLSMDepositsResponse>;
         };
-        LCDQueryClient: typeof _392.LCDQueryClient;
         depositRecord_StatusFromJSON(object: any): _212.DepositRecord_Status;
         depositRecord_StatusToJSON(object: _212.DepositRecord_Status): string;
         depositRecord_SourceFromJSON(object: any): _212.DepositRecord_Source;
@@ -2469,8 +2450,8 @@ export declare namespace stride {
         };
     };
     const stakedym: {
-        MsgClientImpl: typeof _411.MsgClientImpl;
-        QueryClientImpl: typeof _404.QueryClientImpl;
+        MsgClientImpl: typeof _374.MsgClientImpl;
+        QueryClientImpl: typeof _367.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
             hostZone(request?: _214.QueryHostZoneRequest): Promise<_214.QueryHostZoneResponse>;
             delegationRecords(request: _214.QueryDelegationRecordsRequest): Promise<_214.QueryDelegationRecordsResponse>;
@@ -2479,8 +2460,7 @@ export declare namespace stride {
             redemptionRecords(request: _214.QueryRedemptionRecordsRequest): Promise<_214.QueryRedemptionRecordsResponse>;
             slashRecords(request?: _214.QuerySlashRecordsRequest): Promise<_214.QuerySlashRecordsResponse>;
         };
-        LCDQueryClient: typeof _393.LCDQueryClient;
-        registry: readonly [string, import("@cosmjs/proto-signing").GeneratedType][];
+        registry: readonly [string, import("..").TelescopeGeneratedType<any, any, any>][];
         load: (protoRegistry: import("@cosmjs/proto-signing").Registry) => void;
         MessageComposer: {
             encoded: {
@@ -3307,8 +3287,8 @@ export declare namespace stride {
         };
     };
     const stakeibc: {
-        MsgClientImpl: typeof _412.MsgClientImpl;
-        QueryClientImpl: typeof _405.QueryClientImpl;
+        MsgClientImpl: typeof _375.MsgClientImpl;
+        QueryClientImpl: typeof _368.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
             params(request?: _226.QueryParamsRequest): Promise<_226.QueryParamsResponse>;
             validators(request: _226.QueryGetValidatorsRequest): Promise<_226.QueryGetValidatorsResponse>;
@@ -3322,8 +3302,7 @@ export declare namespace stride {
             addressUnbondings(request: _226.QueryAddressUnbondings): Promise<_226.QueryAddressUnbondingsResponse>;
             allTradeRoutes(request?: _226.QueryAllTradeRoutes): Promise<_226.QueryAllTradeRoutesResponse>;
         };
-        LCDQueryClient: typeof _394.LCDQueryClient;
-        registry: readonly [string, import("@cosmjs/proto-signing").GeneratedType][];
+        registry: readonly [string, import("..").TelescopeGeneratedType<any, any, any>][];
         load: (protoRegistry: import("@cosmjs/proto-signing").Registry) => void;
         MessageComposer: {
             encoded: {
@@ -4836,8 +4815,8 @@ export declare namespace stride {
         };
     };
     const staketia: {
-        MsgClientImpl: typeof _413.MsgClientImpl;
-        QueryClientImpl: typeof _406.QueryClientImpl;
+        MsgClientImpl: typeof _376.MsgClientImpl;
+        QueryClientImpl: typeof _369.QueryClientImpl;
         createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
             hostZone(request?: _231.QueryHostZoneRequest): Promise<_231.QueryHostZoneResponse>;
             delegationRecords(request: _231.QueryDelegationRecordsRequest): Promise<_231.QueryDelegationRecordsResponse>;
@@ -4846,8 +4825,7 @@ export declare namespace stride {
             redemptionRecords(request: _231.QueryRedemptionRecordsRequest): Promise<_231.QueryRedemptionRecordsResponse>;
             slashRecords(request?: _231.QuerySlashRecordsRequest): Promise<_231.QuerySlashRecordsResponse>;
         };
-        LCDQueryClient: typeof _395.LCDQueryClient;
-        registry: readonly [string, import("@cosmjs/proto-signing").GeneratedType][];
+        registry: readonly [string, import("..").TelescopeGeneratedType<any, any, any>][];
         load: (protoRegistry: import("@cosmjs/proto-signing").Registry) => void;
         MessageComposer: {
             encoded: {
@@ -5767,15 +5745,15 @@ export declare namespace stride {
                 };
             };
             stride: {
-                airdrop: _407.MsgClientImpl;
-                claim: _408.MsgClientImpl;
-                icaoracle: _409.MsgClientImpl;
+                airdrop: _370.MsgClientImpl;
+                claim: _371.MsgClientImpl;
+                icaoracle: _372.MsgClientImpl;
                 interchainquery: {
-                    v1: _410.MsgClientImpl;
+                    v1: _373.MsgClientImpl;
                 };
-                stakedym: _411.MsgClientImpl;
-                stakeibc: _412.MsgClientImpl;
-                staketia: _413.MsgClientImpl;
+                stakedym: _374.MsgClientImpl;
+                stakeibc: _375.MsgClientImpl;
+                staketia: _376.MsgClientImpl;
             };
         }>;
         createRPCQueryClient: ({ rpcEndpoint }: {
@@ -6084,84 +6062,6 @@ export declare namespace stride {
                     redemptionRecords(request: _231.QueryRedemptionRecordsRequest): Promise<_231.QueryRedemptionRecordsResponse>;
                     slashRecords(request?: _231.QuerySlashRecordsRequest): Promise<_231.QuerySlashRecordsResponse>;
                 };
-            };
-        }>;
-        createLCDClient: ({ restEndpoint }: {
-            restEndpoint: string;
-        }) => Promise<{
-            cosmos: {
-                auth: {
-                    v1beta1: import("../cosmos/auth/v1beta1/query.lcd").LCDQueryClient;
-                };
-                authz: {
-                    v1beta1: import("../cosmos/authz/v1beta1/query.lcd").LCDQueryClient;
-                };
-                bank: {
-                    v1beta1: import("../cosmos/bank/v1beta1/query.lcd").LCDQueryClient;
-                };
-                base: {
-                    node: {
-                        v1beta1: import("../cosmos/base/node/v1beta1/query.lcd").LCDQueryClient;
-                    };
-                    tendermint: {
-                        v1beta1: import("../cosmos/base/tendermint/v1beta1/query.lcd").LCDQueryClient;
-                    };
-                };
-                consensus: {
-                    v1: import("../cosmos/consensus/v1/query.lcd").LCDQueryClient;
-                };
-                distribution: {
-                    v1beta1: import("../cosmos/distribution/v1beta1/query.lcd").LCDQueryClient;
-                };
-                evidence: {
-                    v1beta1: import("../cosmos/evidence/v1beta1/query.lcd").LCDQueryClient;
-                };
-                feegrant: {
-                    v1beta1: import("../cosmos/feegrant/v1beta1/query.lcd").LCDQueryClient;
-                };
-                gov: {
-                    v1: import("../cosmos/gov/v1/query.lcd").LCDQueryClient;
-                    v1beta1: import("../cosmos/gov/v1beta1/query.lcd").LCDQueryClient;
-                };
-                group: {
-                    v1: import("../cosmos/group/v1/query.lcd").LCDQueryClient;
-                };
-                mint: {
-                    v1beta1: import("../cosmos/mint/v1beta1/query.lcd").LCDQueryClient;
-                };
-                nft: {
-                    v1beta1: import("../cosmos/nft/v1beta1/query.lcd").LCDQueryClient;
-                };
-                params: {
-                    v1beta1: import("../cosmos/params/v1beta1/query.lcd").LCDQueryClient;
-                };
-                slashing: {
-                    v1beta1: import("../cosmos/slashing/v1beta1/query.lcd").LCDQueryClient;
-                };
-                staking: {
-                    v1beta1: import("../cosmos/staking/v1beta1/query.lcd").LCDQueryClient;
-                };
-                tx: {
-                    v1beta1: import("../cosmos/tx/v1beta1/service.lcd").LCDQueryClient;
-                };
-                upgrade: {
-                    v1beta1: import("../cosmos/upgrade/v1beta1/query.lcd").LCDQueryClient;
-                };
-            };
-            stride: {
-                airdrop: _385.LCDQueryClient;
-                autopilot: _386.LCDQueryClient;
-                claim: _387.LCDQueryClient;
-                epochs: _388.LCDQueryClient;
-                icacallbacks: _389.LCDQueryClient;
-                icaoracle: _390.LCDQueryClient;
-                mint: {
-                    v1beta1: _391.LCDQueryClient;
-                };
-                records: _392.LCDQueryClient;
-                stakedym: _393.LCDQueryClient;
-                stakeibc: _394.LCDQueryClient;
-                staketia: _395.LCDQueryClient;
             };
         }>;
     };

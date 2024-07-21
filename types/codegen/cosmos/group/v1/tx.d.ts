@@ -237,13 +237,13 @@ export interface MsgCreateGroupPolicy {
     /** metadata is any arbitrary metadata attached to the group policy. */
     metadata: string;
     /** decision_policy specifies the group policy's decision policy. */
-    decisionPolicy?: (ThresholdDecisionPolicy & PercentageDecisionPolicy & Any) | undefined;
+    decisionPolicy?: ThresholdDecisionPolicy | PercentageDecisionPolicy | Any | undefined;
 }
 export interface MsgCreateGroupPolicyProtoMsg {
     typeUrl: "/cosmos.group.v1.MsgCreateGroupPolicy";
     value: Uint8Array;
 }
-export type MsgCreateGroupPolicyEncoded = Omit<MsgCreateGroupPolicy, "decisionPolicy"> & {
+export declare type MsgCreateGroupPolicyEncoded = Omit<MsgCreateGroupPolicy, "decisionPolicy"> & {
     /** decision_policy specifies the group policy's decision policy. */ decisionPolicy?: ThresholdDecisionPolicyProtoMsg | PercentageDecisionPolicyProtoMsg | AnyProtoMsg | undefined;
 };
 /** MsgCreateGroupPolicy is the Msg/CreateGroupPolicy request type. */
@@ -355,13 +355,13 @@ export interface MsgCreateGroupWithPolicy {
      */
     groupPolicyAsAdmin: boolean;
     /** decision_policy specifies the group policy's decision policy. */
-    decisionPolicy?: (ThresholdDecisionPolicy & PercentageDecisionPolicy & Any) | undefined;
+    decisionPolicy?: ThresholdDecisionPolicy | PercentageDecisionPolicy | Any | undefined;
 }
 export interface MsgCreateGroupWithPolicyProtoMsg {
     typeUrl: "/cosmos.group.v1.MsgCreateGroupWithPolicy";
     value: Uint8Array;
 }
-export type MsgCreateGroupWithPolicyEncoded = Omit<MsgCreateGroupWithPolicy, "decisionPolicy"> & {
+export declare type MsgCreateGroupWithPolicyEncoded = Omit<MsgCreateGroupWithPolicy, "decisionPolicy"> & {
     /** decision_policy specifies the group policy's decision policy. */ decisionPolicy?: ThresholdDecisionPolicyProtoMsg | PercentageDecisionPolicyProtoMsg | AnyProtoMsg | undefined;
 };
 /** MsgCreateGroupWithPolicy is the Msg/CreateGroupWithPolicy request type. */
@@ -429,13 +429,13 @@ export interface MsgUpdateGroupPolicyDecisionPolicy {
     /** group_policy_address is the account address of group policy. */
     groupPolicyAddress: string;
     /** decision_policy is the updated group policy's decision policy. */
-    decisionPolicy?: (ThresholdDecisionPolicy & PercentageDecisionPolicy & Any) | undefined;
+    decisionPolicy?: ThresholdDecisionPolicy | PercentageDecisionPolicy | Any | undefined;
 }
 export interface MsgUpdateGroupPolicyDecisionPolicyProtoMsg {
     typeUrl: "/cosmos.group.v1.MsgUpdateGroupPolicyDecisionPolicy";
     value: Uint8Array;
 }
-export type MsgUpdateGroupPolicyDecisionPolicyEncoded = Omit<MsgUpdateGroupPolicyDecisionPolicy, "decisionPolicy"> & {
+export declare type MsgUpdateGroupPolicyDecisionPolicyEncoded = Omit<MsgUpdateGroupPolicyDecisionPolicy, "decisionPolicy"> & {
     /** decision_policy is the updated group policy's decision policy. */ decisionPolicy?: ThresholdDecisionPolicyProtoMsg | PercentageDecisionPolicyProtoMsg | AnyProtoMsg | undefined;
 };
 /** MsgUpdateGroupPolicyDecisionPolicy is the Msg/UpdateGroupPolicyDecisionPolicy request type. */

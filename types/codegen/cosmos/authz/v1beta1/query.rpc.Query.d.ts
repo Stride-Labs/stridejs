@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { QueryClient } from "@cosmjs/stargate";
 import { QueryGrantsRequest, QueryGrantsResponse, QueryGranterGrantsRequest, QueryGranterGrantsResponse, QueryGranteeGrantsRequest, QueryGranteeGrantsResponse } from "./query";
 /** Query defines the gRPC querier service. */
@@ -20,7 +20,7 @@ export interface Query {
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     grants(request: QueryGrantsRequest): Promise<QueryGrantsResponse>;
     granterGrants(request: QueryGranterGrantsRequest): Promise<QueryGranterGrantsResponse>;
     granteeGrants(request: QueryGranteeGrantsRequest): Promise<QueryGranteeGrantsResponse>;

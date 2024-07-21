@@ -1,4 +1,4 @@
-import { Rpc } from "../../helpers";
+import { TxRpc } from "../../types";
 import { QueryClient } from "@cosmjs/stargate";
 import { QueryAirdropRequest, QueryAirdropResponse, QueryAllAirdropsRequest, QueryAllAirdropsResponse, QueryUserAllocationRequest, QueryUserAllocationResponse, QueryUserAllocationsRequest, QueryUserAllocationsResponse, QueryAllAllocationsRequest, QueryAllAllocationsResponse, QueryUserSummaryRequest, QueryUserSummaryResponse } from "./query";
 /** Query defines the gRPC querier service. */
@@ -21,7 +21,7 @@ export interface Query {
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     airdrop(request: QueryAirdropRequest): Promise<QueryAirdropResponse>;
     allAirdrops(request?: QueryAllAirdropsRequest): Promise<QueryAllAirdropsResponse>;
     userAllocation(request: QueryUserAllocationRequest): Promise<QueryUserAllocationResponse>;

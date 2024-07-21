@@ -1,4 +1,4 @@
-import { Rpc } from "../../helpers";
+import { TxRpc } from "../../types";
 import { QueryClient } from "@cosmjs/stargate";
 import { QueryParamsRequest, QueryParamsResponse, QueryGetValidatorsRequest, QueryGetValidatorsResponse, QueryGetHostZoneRequest, QueryGetHostZoneResponse, QueryAllHostZoneRequest, QueryAllHostZoneResponse, QueryModuleAddressRequest, QueryModuleAddressResponse, QueryInterchainAccountFromAddressRequest, QueryInterchainAccountFromAddressResponse, QueryGetEpochTrackerRequest, QueryGetEpochTrackerResponse, QueryAllEpochTrackerRequest, QueryAllEpochTrackerResponse, QueryGetNextPacketSequenceRequest, QueryGetNextPacketSequenceResponse, QueryAddressUnbondings, QueryAddressUnbondingsResponse, QueryAllTradeRoutes, QueryAllTradeRoutesResponse } from "./query";
 /** Query defines the gRPC querier service. */
@@ -31,7 +31,7 @@ export interface Query {
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
     validators(request: QueryGetValidatorsRequest): Promise<QueryGetValidatorsResponse>;
     hostZone(request: QueryGetHostZoneRequest): Promise<QueryGetHostZoneResponse>;

@@ -433,7 +433,7 @@ export interface GroupPolicyInfo {
      */
     version: bigint;
     /** decision_policy specifies the group policy's decision policy. */
-    decisionPolicy?: (ThresholdDecisionPolicy & PercentageDecisionPolicy & Any) | undefined;
+    decisionPolicy?: ThresholdDecisionPolicy | PercentageDecisionPolicy | Any | undefined;
     /** created_at is a timestamp specifying when a group policy was created. */
     createdAt: Date;
 }
@@ -441,7 +441,7 @@ export interface GroupPolicyInfoProtoMsg {
     typeUrl: "/cosmos.group.v1.GroupPolicyInfo";
     value: Uint8Array;
 }
-export type GroupPolicyInfoEncoded = Omit<GroupPolicyInfo, "decisionPolicy"> & {
+export declare type GroupPolicyInfoEncoded = Omit<GroupPolicyInfo, "decisionPolicy"> & {
     /** decision_policy specifies the group policy's decision policy. */ decisionPolicy?: ThresholdDecisionPolicyProtoMsg | PercentageDecisionPolicyProtoMsg | AnyProtoMsg | undefined;
 };
 /** GroupPolicyInfo represents the high-level on-chain information for a group policy. */

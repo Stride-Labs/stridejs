@@ -41,7 +41,7 @@ export interface GenericAuthorizationSDKType {
  * the provide method with expiration time.
  */
 export interface Grant {
-    authorization?: (GenericAuthorization & SendAuthorization & StakeAuthorization & TransferAuthorization & Any) | undefined;
+    authorization?: GenericAuthorization | SendAuthorization | StakeAuthorization | TransferAuthorization | Any | undefined;
     /**
      * time when the grant will expire and will be pruned. If null, then the grant
      * doesn't have a time expiration (other conditions  in `authorization`
@@ -53,7 +53,7 @@ export interface GrantProtoMsg {
     typeUrl: "/cosmos.authz.v1beta1.Grant";
     value: Uint8Array;
 }
-export type GrantEncoded = Omit<Grant, "authorization"> & {
+export declare type GrantEncoded = Omit<Grant, "authorization"> & {
     authorization?: GenericAuthorizationProtoMsg | SendAuthorizationProtoMsg | StakeAuthorizationProtoMsg | TransferAuthorizationProtoMsg | AnyProtoMsg | undefined;
 };
 /**
@@ -88,14 +88,14 @@ export interface GrantSDKType {
 export interface GrantAuthorization {
     granter: string;
     grantee: string;
-    authorization?: (GenericAuthorization & SendAuthorization & StakeAuthorization & TransferAuthorization & Any) | undefined;
+    authorization?: GenericAuthorization | SendAuthorization | StakeAuthorization | TransferAuthorization | Any | undefined;
     expiration?: Date;
 }
 export interface GrantAuthorizationProtoMsg {
     typeUrl: "/cosmos.authz.v1beta1.GrantAuthorization";
     value: Uint8Array;
 }
-export type GrantAuthorizationEncoded = Omit<GrantAuthorization, "authorization"> & {
+export declare type GrantAuthorizationEncoded = Omit<GrantAuthorization, "authorization"> & {
     authorization?: GenericAuthorizationProtoMsg | SendAuthorizationProtoMsg | StakeAuthorizationProtoMsg | TransferAuthorizationProtoMsg | AnyProtoMsg | undefined;
 };
 /**

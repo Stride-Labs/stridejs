@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { MsgUnjail, MsgUnjailResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx";
 /** Msg defines the slashing Msg service. */
 export interface Msg {
@@ -18,7 +18,7 @@ export interface Msg {
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     unjail(request: MsgUnjail): Promise<MsgUnjailResponse>;
     updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }

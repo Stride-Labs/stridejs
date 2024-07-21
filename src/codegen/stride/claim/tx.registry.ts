@@ -1,6 +1,7 @@
-import { GeneratedType, Registry } from "@cosmjs/proto-signing";
+import { TelescopeGeneratedType } from "../../types";
+import { Registry } from "@cosmjs/proto-signing";
 import { MsgSetAirdropAllocations, MsgClaimFreeAmount, MsgCreateAirdrop, MsgDeleteAirdrop } from "./tx";
-export const registry: ReadonlyArray<[string, GeneratedType]> = [["/stride.claim.MsgSetAirdropAllocations", MsgSetAirdropAllocations], ["/stride.claim.MsgClaimFreeAmount", MsgClaimFreeAmount], ["/stride.claim.MsgCreateAirdrop", MsgCreateAirdrop], ["/stride.claim.MsgDeleteAirdrop", MsgDeleteAirdrop]];
+export const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]> = [["/stride.claim.MsgSetAirdropAllocations", MsgSetAirdropAllocations], ["/stride.claim.MsgClaimFreeAmount", MsgClaimFreeAmount], ["/stride.claim.MsgCreateAirdrop", MsgCreateAirdrop], ["/stride.claim.MsgDeleteAirdrop", MsgDeleteAirdrop]];
 export const load = (protoRegistry: Registry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);

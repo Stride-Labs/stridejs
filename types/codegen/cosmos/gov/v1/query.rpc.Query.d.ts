@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { QueryClient } from "@cosmjs/stargate";
 import { QueryProposalRequest, QueryProposalResponse, QueryProposalsRequest, QueryProposalsResponse, QueryVoteRequest, QueryVoteResponse, QueryVotesRequest, QueryVotesResponse, QueryParamsRequest, QueryParamsResponse, QueryDepositRequest, QueryDepositResponse, QueryDepositsRequest, QueryDepositsResponse, QueryTallyResultRequest, QueryTallyResultResponse } from "./query";
 /** Query defines the gRPC querier service for gov module */
@@ -22,7 +22,7 @@ export interface Query {
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     proposal(request: QueryProposalRequest): Promise<QueryProposalResponse>;
     proposals(request: QueryProposalsRequest): Promise<QueryProposalsResponse>;
     vote(request: QueryVoteRequest): Promise<QueryVoteResponse>;

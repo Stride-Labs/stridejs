@@ -1,6 +1,7 @@
-import { GeneratedType, Registry } from "@cosmjs/proto-signing";
+import { TelescopeGeneratedType } from "../../types";
+import { Registry } from "@cosmjs/proto-signing";
 import { MsgAddOracle, MsgInstantiateOracle, MsgRestoreOracleICA, MsgToggleOracle, MsgRemoveOracle } from "./tx";
-export const registry: ReadonlyArray<[string, GeneratedType]> = [["/stride.icaoracle.MsgAddOracle", MsgAddOracle], ["/stride.icaoracle.MsgInstantiateOracle", MsgInstantiateOracle], ["/stride.icaoracle.MsgRestoreOracleICA", MsgRestoreOracleICA], ["/stride.icaoracle.MsgToggleOracle", MsgToggleOracle], ["/stride.icaoracle.MsgRemoveOracle", MsgRemoveOracle]];
+export const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]> = [["/stride.icaoracle.MsgAddOracle", MsgAddOracle], ["/stride.icaoracle.MsgInstantiateOracle", MsgInstantiateOracle], ["/stride.icaoracle.MsgRestoreOracleICA", MsgRestoreOracleICA], ["/stride.icaoracle.MsgToggleOracle", MsgToggleOracle], ["/stride.icaoracle.MsgRemoveOracle", MsgRemoveOracle]];
 export const load = (protoRegistry: Registry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);

@@ -1,6 +1,7 @@
-import { GeneratedType, Registry } from "@cosmjs/proto-signing";
+import { TelescopeGeneratedType } from "../../types";
+import { Registry } from "@cosmjs/proto-signing";
 import { MsgClaimDaily, MsgClaimEarly, MsgCreateAirdrop, MsgUpdateAirdrop, MsgAddAllocations, MsgUpdateUserAllocation, MsgLinkAddresses } from "./tx";
-export const registry: ReadonlyArray<[string, GeneratedType]> = [["/stride.airdrop.MsgClaimDaily", MsgClaimDaily], ["/stride.airdrop.MsgClaimEarly", MsgClaimEarly], ["/stride.airdrop.MsgCreateAirdrop", MsgCreateAirdrop], ["/stride.airdrop.MsgUpdateAirdrop", MsgUpdateAirdrop], ["/stride.airdrop.MsgAddAllocations", MsgAddAllocations], ["/stride.airdrop.MsgUpdateUserAllocation", MsgUpdateUserAllocation], ["/stride.airdrop.MsgLinkAddresses", MsgLinkAddresses]];
+export const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]> = [["/stride.airdrop.MsgClaimDaily", MsgClaimDaily], ["/stride.airdrop.MsgClaimEarly", MsgClaimEarly], ["/stride.airdrop.MsgCreateAirdrop", MsgCreateAirdrop], ["/stride.airdrop.MsgUpdateAirdrop", MsgUpdateAirdrop], ["/stride.airdrop.MsgAddAllocations", MsgAddAllocations], ["/stride.airdrop.MsgUpdateUserAllocation", MsgUpdateUserAllocation], ["/stride.airdrop.MsgLinkAddresses", MsgLinkAddresses]];
 export const load = (protoRegistry: Registry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);

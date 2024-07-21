@@ -1,4 +1,4 @@
-import { Rpc } from "../../helpers";
+import { TxRpc } from "../../types";
 import { QueryClient } from "@cosmjs/stargate";
 import { QueryOracleRequest, QueryOracleResponse, QueryAllOraclesRequest, QueryAllOraclesResponse, QueryActiveOraclesRequest, QueryActiveOraclesResponse, QueryMetricsRequest, QueryMetricsResponse } from "./query";
 /** Query defines the gRPC querier service. */
@@ -25,7 +25,7 @@ export interface Query {
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     oracle(request: QueryOracleRequest): Promise<QueryOracleResponse>;
     allOracles(request?: QueryAllOraclesRequest): Promise<QueryAllOraclesResponse>;
     activeOracles(request: QueryActiveOraclesRequest): Promise<QueryActiveOraclesResponse>;

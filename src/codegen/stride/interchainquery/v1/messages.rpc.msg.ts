@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { BinaryReader } from "../../../binary";
 import { MsgSubmitQueryResponse, MsgSubmitQueryResponseResponse } from "./messages";
 /** Msg defines the interchainquery Msg service. */
@@ -7,8 +7,8 @@ export interface Msg {
   submitQueryResponse(request: MsgSubmitQueryResponse): Promise<MsgSubmitQueryResponseResponse>;
 }
 export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
+  private readonly rpc: TxRpc;
+  constructor(rpc: TxRpc) {
     this.rpc = rpc;
     this.submitQueryResponse = this.submitQueryResponse.bind(this);
   }

@@ -166,7 +166,7 @@ export declare function convertBech32Prefix(address: string, toPrefix: string): 
 /**
  * Represents an IBC response, which can be either an acknowledgement or a timeout.
  */
-export type IbcResponse = {
+export declare type IbcResponse = {
     /**
      * The type of IBC response, either "ack" for acknowledgement or "timeout" for timeout.
      */

@@ -12,7 +12,7 @@ import { BinaryReader, BinaryWriter } from "../../../binary";
  */
 export interface MsgSubmitProposal {
     /** content is the proposal's content. */
-    content?: (CommunityPoolSpendProposal & CommunityPoolSpendProposalWithDeposit & TextProposal & ParameterChangeProposal & SoftwareUpgradeProposal & CancelSoftwareUpgradeProposal & ClientUpdateProposal & UpgradeProposal & Any) | undefined;
+    content?: CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | TextProposal | ParameterChangeProposal | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | ClientUpdateProposal | UpgradeProposal | Any | undefined;
     /** initial_deposit is the deposit value that must be paid at proposal submission. */
     initialDeposit: Coin[];
     /** proposer is the account address of the proposer. */
@@ -22,7 +22,7 @@ export interface MsgSubmitProposalProtoMsg {
     typeUrl: "/cosmos.gov.v1beta1.MsgSubmitProposal";
     value: Uint8Array;
 }
-export type MsgSubmitProposalEncoded = Omit<MsgSubmitProposal, "content"> & {
+export declare type MsgSubmitProposalEncoded = Omit<MsgSubmitProposal, "content"> & {
     /** content is the proposal's content. */ content?: CommunityPoolSpendProposalProtoMsg | CommunityPoolSpendProposalWithDepositProtoMsg | TextProposalProtoMsg | ParameterChangeProposalProtoMsg | SoftwareUpgradeProposalProtoMsg | CancelSoftwareUpgradeProposalProtoMsg | ClientUpdateProposalProtoMsg | UpgradeProposalProtoMsg | AnyProtoMsg | undefined;
 };
 /**

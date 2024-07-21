@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { MsgGrant, MsgGrantResponse, MsgExec, MsgExecResponse, MsgRevoke, MsgRevokeResponse } from "./tx";
 /** Msg defines the authz Msg service. */
 export interface Msg {
@@ -23,7 +23,7 @@ export interface Msg {
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     grant(request: MsgGrant): Promise<MsgGrantResponse>;
     exec(request: MsgExec): Promise<MsgExecResponse>;
     revoke(request: MsgRevoke): Promise<MsgRevokeResponse>;

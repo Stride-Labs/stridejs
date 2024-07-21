@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { MsgSubmitQueryResponse, MsgSubmitQueryResponseResponse } from "./messages";
 /** Msg defines the interchainquery Msg service. */
 export interface Msg {
@@ -7,6 +7,6 @@ export interface Msg {
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     submitQueryResponse(request: MsgSubmitQueryResponse): Promise<MsgSubmitQueryResponseResponse>;
 }

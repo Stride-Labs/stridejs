@@ -107,7 +107,7 @@ export interface MsgSubmitProposalResponseSDKType {
  */
 export interface MsgExecLegacyContent {
     /** content is the proposal's content. */
-    content?: (CommunityPoolSpendProposal & CommunityPoolSpendProposalWithDeposit & TextProposal & ParameterChangeProposal & SoftwareUpgradeProposal & CancelSoftwareUpgradeProposal & ClientUpdateProposal & UpgradeProposal & Any) | undefined;
+    content?: CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | TextProposal | ParameterChangeProposal | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | ClientUpdateProposal | UpgradeProposal | Any | undefined;
     /** authority must be the gov module address. */
     authority: string;
 }
@@ -115,7 +115,7 @@ export interface MsgExecLegacyContentProtoMsg {
     typeUrl: "/cosmos.gov.v1.MsgExecLegacyContent";
     value: Uint8Array;
 }
-export type MsgExecLegacyContentEncoded = Omit<MsgExecLegacyContent, "content"> & {
+export declare type MsgExecLegacyContentEncoded = Omit<MsgExecLegacyContent, "content"> & {
     /** content is the proposal's content. */ content?: CommunityPoolSpendProposalProtoMsg | CommunityPoolSpendProposalWithDepositProtoMsg | TextProposalProtoMsg | ParameterChangeProposalProtoMsg | SoftwareUpgradeProposalProtoMsg | CancelSoftwareUpgradeProposalProtoMsg | ClientUpdateProposalProtoMsg | UpgradeProposalProtoMsg | AnyProtoMsg | undefined;
 };
 /**

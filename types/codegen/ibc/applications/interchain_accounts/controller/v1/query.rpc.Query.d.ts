@@ -1,4 +1,4 @@
-import { Rpc } from "../../../../../helpers";
+import { TxRpc } from "../../../../../types";
 import { QueryClient } from "@cosmjs/stargate";
 import { QueryInterchainAccountRequest, QueryInterchainAccountResponse, QueryParamsRequest, QueryParamsResponse } from "./query";
 /** Query provides defines the gRPC querier service. */
@@ -10,7 +10,7 @@ export interface Query {
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     interchainAccount(request: QueryInterchainAccountRequest): Promise<QueryInterchainAccountResponse>;
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
 }

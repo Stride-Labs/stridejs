@@ -43,7 +43,7 @@ export interface QueryAccountsRequestSDKType {
  */
 export interface QueryAccountsResponse {
     /** accounts are the existing accounts */
-    accounts: (BaseAccount & Any)[] | Any[];
+    accounts: (BaseAccount | Any)[] | Any[];
     /** pagination defines the pagination in the response. */
     pagination?: PageResponse;
 }
@@ -51,7 +51,7 @@ export interface QueryAccountsResponseProtoMsg {
     typeUrl: "/cosmos.auth.v1beta1.QueryAccountsResponse";
     value: Uint8Array;
 }
-export type QueryAccountsResponseEncoded = Omit<QueryAccountsResponse, "accounts"> & {
+export declare type QueryAccountsResponseEncoded = Omit<QueryAccountsResponse, "accounts"> & {
     /** accounts are the existing accounts */ accounts: (BaseAccountProtoMsg | AnyProtoMsg)[];
 };
 /**
@@ -103,13 +103,13 @@ export interface QueryAccountRequestSDKType {
 /** QueryAccountResponse is the response type for the Query/Account RPC method. */
 export interface QueryAccountResponse {
     /** account defines the account of the corresponding address. */
-    account?: (BaseAccount & Any) | undefined;
+    account?: BaseAccount | Any | undefined;
 }
 export interface QueryAccountResponseProtoMsg {
     typeUrl: "/cosmos.auth.v1beta1.QueryAccountResponse";
     value: Uint8Array;
 }
-export type QueryAccountResponseEncoded = Omit<QueryAccountResponse, "account"> & {
+export declare type QueryAccountResponseEncoded = Omit<QueryAccountResponse, "account"> & {
     /** account defines the account of the corresponding address. */ account?: BaseAccountProtoMsg | AnyProtoMsg | undefined;
 };
 /** QueryAccountResponse is the response type for the Query/Account RPC method. */
@@ -199,13 +199,13 @@ export interface QueryModuleAccountsRequestSDKType {
  * Since: cosmos-sdk 0.46
  */
 export interface QueryModuleAccountsResponse {
-    accounts: (ModuleAccount & Any)[] | Any[];
+    accounts: (ModuleAccount | Any)[] | Any[];
 }
 export interface QueryModuleAccountsResponseProtoMsg {
     typeUrl: "/cosmos.auth.v1beta1.QueryModuleAccountsResponse";
     value: Uint8Array;
 }
-export type QueryModuleAccountsResponseEncoded = Omit<QueryModuleAccountsResponse, "accounts"> & {
+export declare type QueryModuleAccountsResponseEncoded = Omit<QueryModuleAccountsResponse, "accounts"> & {
     accounts: (ModuleAccountProtoMsg | AnyProtoMsg)[];
 };
 /**
@@ -250,13 +250,13 @@ export interface QueryModuleAccountByNameRequestSDKType {
 }
 /** QueryModuleAccountByNameResponse is the response type for the Query/ModuleAccountByName RPC method. */
 export interface QueryModuleAccountByNameResponse {
-    account?: (ModuleAccount & Any) | undefined;
+    account?: ModuleAccount | Any | undefined;
 }
 export interface QueryModuleAccountByNameResponseProtoMsg {
     typeUrl: "/cosmos.auth.v1beta1.QueryModuleAccountByNameResponse";
     value: Uint8Array;
 }
-export type QueryModuleAccountByNameResponseEncoded = Omit<QueryModuleAccountByNameResponse, "account"> & {
+export declare type QueryModuleAccountByNameResponseEncoded = Omit<QueryModuleAccountByNameResponse, "account"> & {
     account?: ModuleAccountProtoMsg | AnyProtoMsg | undefined;
 };
 /** QueryModuleAccountByNameResponse is the response type for the Query/ModuleAccountByName RPC method. */

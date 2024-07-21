@@ -66,7 +66,7 @@ export declare function varint32write(value: number, bytes: number[]): void;
  * See https://github.com/protocolbuffers/protobuf/blob/8a71927d74a4ce34efe2d8769fda198f52d20d12/js/experimental/runtime/kernel/buffer_decoder.js#L220
  */
 export declare function varint32read(this: ReaderLike): number;
-type ReaderLike = {
+declare type ReaderLike = {
     buf: Uint8Array;
     pos: number;
     len: number;
@@ -99,7 +99,7 @@ export declare function writeVarint64(val: {
     lo: number;
     hi: number;
 }, buf: Uint8Array | number[], pos: number): void;
-export declare function int64Length(lo: number, hi: number): 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+export declare function int64Length(lo: number, hi: number): 1 | 2 | 4 | 3 | 6 | 7 | 10 | 8 | 9 | 5;
 export declare function writeFixed32(val: number, buf: Uint8Array | number[], pos: number): void;
 export declare function writeByte(val: number, buf: Uint8Array | number[], pos: number): void;
 export {};

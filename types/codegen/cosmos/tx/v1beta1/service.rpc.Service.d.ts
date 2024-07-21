@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { QueryClient } from "@cosmjs/stargate";
 import { SimulateRequest, SimulateResponse, GetTxRequest, GetTxResponse, BroadcastTxRequest, BroadcastTxResponse, GetTxsEventRequest, GetTxsEventResponse, GetBlockWithTxsRequest, GetBlockWithTxsResponse, TxDecodeRequest, TxDecodeResponse, TxEncodeRequest, TxEncodeResponse, TxEncodeAminoRequest, TxEncodeAminoResponse, TxDecodeAminoRequest, TxDecodeAminoResponse } from "./service";
 /** Service defines a gRPC service for interacting with transactions. */
@@ -44,7 +44,7 @@ export interface Service {
 }
 export declare class ServiceClientImpl implements Service {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     simulate(request: SimulateRequest): Promise<SimulateResponse>;
     getTx(request: GetTxRequest): Promise<GetTxResponse>;
     broadcastTx(request: BroadcastTxRequest): Promise<BroadcastTxResponse>;

@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { MsgSubmitProposal, MsgSubmitProposalResponse, MsgVote, MsgVoteResponse, MsgVoteWeighted, MsgVoteWeightedResponse, MsgDeposit, MsgDepositResponse } from "./tx";
 /** Msg defines the bank Msg service. */
 export interface Msg {
@@ -17,7 +17,7 @@ export interface Msg {
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     submitProposal(request: MsgSubmitProposal): Promise<MsgSubmitProposalResponse>;
     vote(request: MsgVote): Promise<MsgVoteResponse>;
     voteWeighted(request: MsgVoteWeighted): Promise<MsgVoteWeightedResponse>;

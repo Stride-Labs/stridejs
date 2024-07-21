@@ -1,4 +1,4 @@
-import { Rpc } from "../../../../../helpers";
+import { TxRpc } from "../../../../../types";
 import { BinaryReader } from "../../../../../binary";
 import { MsgRegisterInterchainAccount, MsgRegisterInterchainAccountResponse, MsgSendTx, MsgSendTxResponse } from "./tx";
 /** Msg defines the 27-interchain-accounts/controller Msg service. */
@@ -9,8 +9,8 @@ export interface Msg {
   sendTx(request: MsgSendTx): Promise<MsgSendTxResponse>;
 }
 export class MsgClientImpl implements Msg {
-  private readonly rpc: Rpc;
-  constructor(rpc: Rpc) {
+  private readonly rpc: TxRpc;
+  constructor(rpc: TxRpc) {
     this.rpc = rpc;
     this.registerInterchainAccount = this.registerInterchainAccount.bind(this);
     this.sendTx = this.sendTx.bind(this);

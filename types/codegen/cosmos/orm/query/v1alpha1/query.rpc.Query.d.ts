@@ -1,4 +1,4 @@
-import { Rpc } from "../../../../helpers";
+import { TxRpc } from "../../../../types";
 import { QueryClient } from "@cosmjs/stargate";
 import { GetRequest, GetResponse, ListRequest, ListResponse } from "./query";
 /** Query is a generic gRPC service for querying ORM data. */
@@ -10,7 +10,7 @@ export interface Query {
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     get(request: GetRequest): Promise<GetResponse>;
     list(request: ListRequest): Promise<ListResponse>;
 }

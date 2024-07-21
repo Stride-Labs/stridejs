@@ -182,7 +182,7 @@ export interface Proposal {
     /** proposal_id defines the unique id of the proposal. */
     proposalId: bigint;
     /** content is the proposal's content. */
-    content?: (TextProposal & CommunityPoolSpendProposal & CommunityPoolSpendProposalWithDeposit & ParameterChangeProposal & SoftwareUpgradeProposal & CancelSoftwareUpgradeProposal & ClientUpdateProposal & UpgradeProposal & Any) | undefined;
+    content?: TextProposal | CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | ParameterChangeProposal | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | ClientUpdateProposal | UpgradeProposal | Any | undefined;
     /** status defines the proposal status. */
     status: ProposalStatus;
     /**
@@ -206,7 +206,7 @@ export interface ProposalProtoMsg {
     typeUrl: "/cosmos.gov.v1beta1.Proposal";
     value: Uint8Array;
 }
-export type ProposalEncoded = Omit<Proposal, "content"> & {
+export declare type ProposalEncoded = Omit<Proposal, "content"> & {
     /** content is the proposal's content. */ content?: TextProposalProtoMsg | CommunityPoolSpendProposalProtoMsg | CommunityPoolSpendProposalWithDepositProtoMsg | ParameterChangeProposalProtoMsg | SoftwareUpgradeProposalProtoMsg | CancelSoftwareUpgradeProposalProtoMsg | ClientUpdateProposalProtoMsg | UpgradeProposalProtoMsg | AnyProtoMsg | undefined;
 };
 /** Proposal defines the core field members of a governance proposal. */

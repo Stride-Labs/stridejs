@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { QueryClient } from "@cosmjs/stargate";
 import { QueryConfigRequest, QueryConfigResponse } from "./query";
 /** Query is the app module query service. */
@@ -8,7 +8,7 @@ export interface Query {
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     config(request?: QueryConfigRequest): Promise<QueryConfigResponse>;
 }
 export declare const createRpcQueryExtension: (base: QueryClient) => {

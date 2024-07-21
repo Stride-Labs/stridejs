@@ -58,70 +58,56 @@ import * as _232 from "./staketia/staketia";
 import * as _233 from "./staketia/tx";
 import * as _234 from "./vesting/tx";
 import * as _235 from "./vesting/vesting";
-import * as _371 from "./airdrop/tx.amino";
-import * as _372 from "./claim/tx.amino";
-import * as _373 from "./icaoracle/tx.amino";
-import * as _374 from "./interchainquery/v1/messages.amino";
-import * as _375 from "./stakedym/tx.amino";
-import * as _376 from "./stakeibc/tx.amino";
-import * as _377 from "./staketia/tx.amino";
-import * as _378 from "./airdrop/tx.registry";
-import * as _379 from "./claim/tx.registry";
-import * as _380 from "./icaoracle/tx.registry";
-import * as _381 from "./interchainquery/v1/messages.registry";
-import * as _382 from "./stakedym/tx.registry";
-import * as _383 from "./stakeibc/tx.registry";
-import * as _384 from "./staketia/tx.registry";
-import * as _385 from "./airdrop/query.lcd";
-import * as _386 from "./autopilot/query.lcd";
-import * as _387 from "./claim/query.lcd";
-import * as _388 from "./epochs/query.lcd";
-import * as _389 from "./icacallbacks/query.lcd";
-import * as _390 from "./icaoracle/query.lcd";
-import * as _391 from "./mint/v1beta1/query.lcd";
-import * as _392 from "./records/query.lcd";
-import * as _393 from "./stakedym/query.lcd";
-import * as _394 from "./stakeibc/query.lcd";
-import * as _395 from "./staketia/query.lcd";
-import * as _396 from "./airdrop/query.rpc.Query";
-import * as _397 from "./autopilot/query.rpc.Query";
-import * as _398 from "./claim/query.rpc.Query";
-import * as _399 from "./epochs/query.rpc.Query";
-import * as _400 from "./icacallbacks/query.rpc.Query";
-import * as _401 from "./icaoracle/query.rpc.Query";
-import * as _402 from "./mint/v1beta1/query.rpc.Query";
-import * as _403 from "./records/query.rpc.Query";
-import * as _404 from "./stakedym/query.rpc.Query";
-import * as _405 from "./stakeibc/query.rpc.Query";
-import * as _406 from "./staketia/query.rpc.Query";
-import * as _407 from "./airdrop/tx.rpc.msg";
-import * as _408 from "./claim/tx.rpc.msg";
-import * as _409 from "./icaoracle/tx.rpc.msg";
-import * as _410 from "./interchainquery/v1/messages.rpc.msg";
-import * as _411 from "./stakedym/tx.rpc.msg";
-import * as _412 from "./stakeibc/tx.rpc.msg";
-import * as _413 from "./staketia/tx.rpc.msg";
-import * as _420 from "./lcd";
-import * as _421 from "./rpc.query";
-import * as _422 from "./rpc.tx";
+import * as _345 from "./airdrop/tx.amino";
+import * as _346 from "./claim/tx.amino";
+import * as _347 from "./icaoracle/tx.amino";
+import * as _348 from "./interchainquery/v1/messages.amino";
+import * as _349 from "./stakedym/tx.amino";
+import * as _350 from "./stakeibc/tx.amino";
+import * as _351 from "./staketia/tx.amino";
+import * as _352 from "./airdrop/tx.registry";
+import * as _353 from "./claim/tx.registry";
+import * as _354 from "./icaoracle/tx.registry";
+import * as _355 from "./interchainquery/v1/messages.registry";
+import * as _356 from "./stakedym/tx.registry";
+import * as _357 from "./stakeibc/tx.registry";
+import * as _358 from "./staketia/tx.registry";
+import * as _359 from "./airdrop/query.rpc.Query";
+import * as _360 from "./autopilot/query.rpc.Query";
+import * as _361 from "./claim/query.rpc.Query";
+import * as _362 from "./epochs/query.rpc.Query";
+import * as _363 from "./icacallbacks/query.rpc.Query";
+import * as _364 from "./icaoracle/query.rpc.Query";
+import * as _365 from "./mint/v1beta1/query.rpc.Query";
+import * as _366 from "./records/query.rpc.Query";
+import * as _367 from "./stakedym/query.rpc.Query";
+import * as _368 from "./stakeibc/query.rpc.Query";
+import * as _369 from "./staketia/query.rpc.Query";
+import * as _370 from "./airdrop/tx.rpc.msg";
+import * as _371 from "./claim/tx.rpc.msg";
+import * as _372 from "./icaoracle/tx.rpc.msg";
+import * as _373 from "./interchainquery/v1/messages.rpc.msg";
+import * as _374 from "./stakedym/tx.rpc.msg";
+import * as _375 from "./stakeibc/tx.rpc.msg";
+import * as _376 from "./staketia/tx.rpc.msg";
+import * as _381 from "./rpc.query";
+import * as _382 from "./rpc.tx";
 export namespace stride {
   export const airdrop = {
     ..._176,
     ..._177,
     ..._178,
     ..._179,
-    ..._371,
-    ..._378,
-    ..._385,
-    ..._396,
-    ..._407
+    ..._345,
+    ..._352,
+    ..._359,
+    ..._370
   };
   export const autopilot = {
     ..._180,
     ..._181,
     ..._182,
-    ..._386,
-    ..._397
+    ..._360
   };
   export const claim = {
     ..._183,
@@ -129,17 +115,15 @@ export namespace stride {
     ..._185,
     ..._186,
     ..._187,
-    ..._372,
-    ..._379,
-    ..._387,
-    ..._398,
-    ..._408
+    ..._346,
+    ..._353,
+    ..._361,
+    ..._371
   };
   export const epochs = {
     ..._188,
     ..._189,
-    ..._388,
-    ..._399
+    ..._362
   };
   export const icacallbacks = {
     ..._190,
@@ -148,8 +132,7 @@ export namespace stride {
     ..._193,
     ..._194,
     ..._195,
-    ..._389,
-    ..._400
+    ..._363
   };
   export const icaoracle = {
     ..._196,
@@ -158,20 +141,19 @@ export namespace stride {
     ..._199,
     ..._200,
     ..._201,
-    ..._373,
-    ..._380,
-    ..._390,
-    ..._401,
-    ..._409
+    ..._347,
+    ..._354,
+    ..._364,
+    ..._372
   };
   export namespace interchainquery {
     export const v1 = {
       ..._202,
       ..._203,
       ..._204,
-      ..._374,
-      ..._381,
-      ..._410
+      ..._348,
+      ..._355,
+      ..._373
     };
   }
   export namespace mint {
@@ -179,8 +161,7 @@ export namespace stride {
       ..._205,
       ..._206,
       ..._207,
-      ..._391,
-      ..._402
+      ..._365
     };
   }
   export const records = {
@@ -189,19 +170,17 @@ export namespace stride {
     ..._210,
     ..._211,
     ..._212,
-    ..._392,
-    ..._403
+    ..._366
   };
   export const stakedym = {
     ..._213,
     ..._214,
     ..._215,
     ..._216,
-    ..._375,
-    ..._382,
-    ..._393,
-    ..._404,
-    ..._411
+    ..._349,
+    ..._356,
+    ..._367,
+    ..._374
   };
   export const stakeibc = {
     ..._217,
@@ -217,30 +196,27 @@ export namespace stride {
     ..._227,
     ..._228,
     ..._229,
-    ..._376,
-    ..._383,
-    ..._394,
-    ..._405,
-    ..._412
+    ..._350,
+    ..._357,
+    ..._368,
+    ..._375
   };
   export const staketia = {
     ..._230,
     ..._231,
     ..._232,
     ..._233,
-    ..._377,
-    ..._384,
-    ..._395,
-    ..._406,
-    ..._413
+    ..._351,
+    ..._358,
+    ..._369,
+    ..._376
   };
   export const vesting = {
     ..._234,
     ..._235
   };
   export const ClientFactory = {
-    ..._420,
-    ..._421,
-    ..._422
+    ..._381,
+    ..._382
   };
 }

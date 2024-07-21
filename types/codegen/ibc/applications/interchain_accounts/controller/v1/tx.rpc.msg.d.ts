@@ -1,4 +1,4 @@
-import { Rpc } from "../../../../../helpers";
+import { TxRpc } from "../../../../../types";
 import { MsgRegisterInterchainAccount, MsgRegisterInterchainAccountResponse, MsgSendTx, MsgSendTxResponse } from "./tx";
 /** Msg defines the 27-interchain-accounts/controller Msg service. */
 export interface Msg {
@@ -9,7 +9,7 @@ export interface Msg {
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     registerInterchainAccount(request: MsgRegisterInterchainAccount): Promise<MsgRegisterInterchainAccountResponse>;
     sendTx(request: MsgSendTx): Promise<MsgSendTxResponse>;
 }

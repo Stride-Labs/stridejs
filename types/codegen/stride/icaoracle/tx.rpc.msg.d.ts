@@ -1,4 +1,4 @@
-import { Rpc } from "../../helpers";
+import { TxRpc } from "../../types";
 import { MsgAddOracle, MsgAddOracleResponse, MsgInstantiateOracle, MsgInstantiateOracleResponse, MsgRestoreOracleICA, MsgRestoreOracleICAResponse, MsgToggleOracle, MsgToggleOracleResponse, MsgRemoveOracle, MsgRemoveOracleResponse } from "./tx";
 /** Msg defines the Msg service. */
 export interface Msg {
@@ -15,7 +15,7 @@ export interface Msg {
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     addOracle(request: MsgAddOracle): Promise<MsgAddOracleResponse>;
     instantiateOracle(request: MsgInstantiateOracle): Promise<MsgInstantiateOracleResponse>;
     restoreOracleICA(request: MsgRestoreOracleICA): Promise<MsgRestoreOracleICAResponse>;

@@ -1,4 +1,4 @@
-import { Rpc } from "../../../helpers";
+import { TxRpc } from "../../../types";
 import { MsgSubmitProposal, MsgSubmitProposalResponse, MsgExecLegacyContent, MsgExecLegacyContentResponse, MsgVote, MsgVoteResponse, MsgVoteWeighted, MsgVoteWeightedResponse, MsgDeposit, MsgDepositResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx";
 /** Msg defines the gov Msg service. */
 export interface Msg {
@@ -25,7 +25,7 @@ export interface Msg {
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     submitProposal(request: MsgSubmitProposal): Promise<MsgSubmitProposalResponse>;
     execLegacyContent(request: MsgExecLegacyContent): Promise<MsgExecLegacyContentResponse>;
     vote(request: MsgVote): Promise<MsgVoteResponse>;

@@ -1,4 +1,4 @@
-import { Rpc } from "../../../../helpers";
+import { TxRpc } from "../../../../types";
 import { QueryClient } from "@cosmjs/stargate";
 import { GetNodeInfoRequest, GetNodeInfoResponse, GetSyncingRequest, GetSyncingResponse, GetLatestBlockRequest, GetLatestBlockResponse, GetBlockByHeightRequest, GetBlockByHeightResponse, GetLatestValidatorSetRequest, GetLatestValidatorSetResponse, GetValidatorSetByHeightRequest, GetValidatorSetByHeightResponse, ABCIQueryRequest, ABCIQueryResponse } from "./query";
 /** Service defines the gRPC querier service for tendermint queries. */
@@ -26,7 +26,7 @@ export interface Service {
 }
 export declare class ServiceClientImpl implements Service {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     getNodeInfo(request?: GetNodeInfoRequest): Promise<GetNodeInfoResponse>;
     getSyncing(request?: GetSyncingRequest): Promise<GetSyncingResponse>;
     getLatestBlock(request?: GetLatestBlockRequest): Promise<GetLatestBlockResponse>;

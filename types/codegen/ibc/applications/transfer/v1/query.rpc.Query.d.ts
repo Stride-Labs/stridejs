@@ -1,4 +1,4 @@
-import { Rpc } from "../../../../helpers";
+import { TxRpc } from "../../../../types";
 import { QueryClient } from "@cosmjs/stargate";
 import { QueryDenomTracesRequest, QueryDenomTracesResponse, QueryDenomTraceRequest, QueryDenomTraceResponse, QueryParamsRequest, QueryParamsResponse, QueryDenomHashRequest, QueryDenomHashResponse, QueryEscrowAddressRequest, QueryEscrowAddressResponse, QueryTotalEscrowForDenomRequest, QueryTotalEscrowForDenomResponse } from "./query";
 /** Query provides defines the gRPC querier service. */
@@ -18,7 +18,7 @@ export interface Query {
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     denomTraces(request?: QueryDenomTracesRequest): Promise<QueryDenomTracesResponse>;
     denomTrace(request: QueryDenomTraceRequest): Promise<QueryDenomTraceResponse>;
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;

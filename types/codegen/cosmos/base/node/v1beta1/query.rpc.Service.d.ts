@@ -1,4 +1,4 @@
-import { Rpc } from "../../../../helpers";
+import { TxRpc } from "../../../../types";
 import { QueryClient } from "@cosmjs/stargate";
 import { ConfigRequest, ConfigResponse } from "./query";
 /** Service defines the gRPC querier service for node related queries. */
@@ -8,7 +8,7 @@ export interface Service {
 }
 export declare class ServiceClientImpl implements Service {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     config(request?: ConfigRequest): Promise<ConfigResponse>;
 }
 export declare const createRpcQueryExtension: (base: QueryClient) => {
