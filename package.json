@@ -24,7 +24,7 @@
     "build:main": "cross-env BABEL_ENV=production babel src --out-dir main --delete-dir-on-start --extensions \".tsx,.ts,.js\"",
     "build:module": "cross-env MODULE=true babel src --out-dir module --delete-dir-on-start  --extensions \".tsx,.ts,.js\"",
     "build": "pnpm run build:module && pnpm run build:main",
-    "build:ts": "tsc --project ./tsconfig.json",
+    "build:ts": "tsc",
     "buidl": "pnpm run build && pnpm run build:ts",
     "codegen": "pnpm run codegen:cleanup && pnpm run codegen:clone && pnpm run codegen:build-stride && pnpm run codegen:build-cosmos-sdk && pnpm run codegen:build-ibc-go && pnpm run codegen:run",
     "codegen:cleanup": "cross-env rm -rf src/codegen scripts/proto scripts/repos",
@@ -59,8 +59,6 @@
     "@cosmjs/utils": "0.32.4",
     "@cosmology/lcd": "0.13.4",
     "@noble/hashes": "1.4.0",
-    "@osmonauts/helpers": "0.6.0",
-    "@osmonauts/lcd": "0.6.0",
     "bech32": "2.0.0",
     "cosmjs-types": "0.9.0"
   },
@@ -87,13 +85,9 @@
     "eslint": "8.21.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
-    "long": "5.2.0",
     "prettier": "2.7.1",
     "ts-node": "latest",
     "typescript": "4.7.4"
-  },
-  "resolutions": {
-    "long": "5.2.0"
   },
   "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a"
 }
