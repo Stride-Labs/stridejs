@@ -3,8 +3,8 @@ import { DeliverTxResponse, SigningStargateClientOptions, StdFee } from "@cosmjs
 import { cosmos, ibc, stride } from "./codegen";
 import { IbcResponse } from "./utils";
 export declare type StrideClientOptions = SigningStargateClientOptions & {
-    resolveIbcResponsesTimeoutMs: number;
-    resolveIbcResponsesCheckIntervalMs: number;
+    resolveIbcResponsesTimeoutMs?: number;
+    resolveIbcResponsesCheckIntervalMs?: number;
 };
 export declare class StrideClient {
     readonly rpcEndpoint: string;

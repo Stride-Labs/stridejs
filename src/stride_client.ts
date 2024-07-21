@@ -20,8 +20,8 @@ import {
 import { getTxIbcResponses, IbcResponse } from "./utils";
 
 export type StrideClientOptions = SigningStargateClientOptions & {
-  resolveIbcResponsesTimeoutMs: number;
-  resolveIbcResponsesCheckIntervalMs: number;
+  resolveIbcResponsesTimeoutMs?: number;
+  resolveIbcResponsesCheckIntervalMs?: number;
 };
 
 export class StrideClient {
