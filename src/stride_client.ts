@@ -99,7 +99,7 @@ export class StrideClient {
    * Sign and broadcast a transaction.
    *
    * @param {EncodeObject[]} messages - An array of messages to be encoded and signed.
-   * @param {StdFee | "auto" | number} fee - The transaction fee. Can be "auto" if a `GasPrice` object was passed to `StrideClent.create()` upon creation.
+   * @param {StdFee | "auto" | number} fee - The transaction fee. You can pass a `StdFee` object to set the gas limit and fee manually. If a `GasPrice` object has been passed to `StrideClient.create()`, you can set `"auto"` to automatically determine the gas limit based on the transaction simulation. Alternatively, you can pass a number to enable `"auto"` mode with a custom gas adjustment multiplier (default is `1.4`).
    * @param {string} [memo] - An optional memo for the transaction.
    *
    * @returns {DeliverTxResponse} - The response from the network after broadcasting the transaction, including the transaction hash and status.
