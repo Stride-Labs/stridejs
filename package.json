@@ -50,6 +50,7 @@
     "url": "https://github.com/Stride-Labs/stridejs/issues"
   },
   "dependencies": {
+    "@babel/runtime": "7.24.8",
     "@cosmjs/amino": "0.32.4",
     "@cosmjs/encoding": "0.32.4",
     "@cosmjs/math": "0.32.4",
