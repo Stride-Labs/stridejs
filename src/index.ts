@@ -1,4 +1,19 @@
-export * from "@cosmjs/encoding"; // fromAscii, toAscii, fromBase64, toBase64, fromBech32, normalizeBech32, toBech32, fromHex, toHex, fromRfc3339, toRfc3339, fromUtf8, toUtf8
+export {
+  fromAscii,
+  fromBase64,
+  fromBech32,
+  fromHex,
+  fromRfc3339,
+  fromUtf8,
+  normalizeBech32,
+  toAscii,
+  toBase64,
+  toBech32,
+  toHex,
+  toRfc3339,
+  toUtf8,
+} from "@cosmjs/encoding";
 export * from "./codegen";
 export * from "./parser";
+export * from "./stride_client";
 export * from "./utils";
