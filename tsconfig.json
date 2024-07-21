@@ -9,5 +9,5 @@
     "lib": ["es2015"]
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "scripts", "main", "module"]
 }
