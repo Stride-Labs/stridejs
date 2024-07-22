@@ -1,16 +1,29 @@
 import { EncodeObject, OfflineSigner } from "@cosmjs/proto-signing";
-import { DeliverTxResponse, SigningStargateClientOptions, StdFee } from "@cosmjs/stargate";
+import { DeliverTxResponse, SigningStargateClient, SigningStargateClientOptions, StdFee } from "@cosmjs/stargate";
 import { cosmos, ibc, stride } from "./codegen";
 import { IbcResponse } from "./utils";
 export declare type StrideClientOptions = SigningStargateClientOptions & {
+    /**
+     * How much time (in milliseconds) to wait for IBC response txs (acknowledge/timeout).
+     *
+     * Defaults to `180_000` (3 minutes).
+     *
+     */
     resolveIbcResponsesTimeoutMs?: number;
+    /**
+     * When waiting for the IBC response txs (acknowledge/timeout) to commit on-chain, how much time (in milliseconds) to wait between checks.
+     *
+     * Smaller intervals will cause more load on your node provider. Keep in mind that blocks on Stride take about 6 seconds to finalize.
+     *
+     * Defaults to `12_000` (12 seconds).
+     */
     resolveIbcResponsesCheckIntervalMs?: number;
 };
 export declare class StrideClient {
     readonly rpcEndpoint: string;
     readonly signer: OfflineSigner;
     readonly address: string;
-    private readonly signingStargateClient;
+    readonly signingStargateClient: Awaited<ReturnType<typeof SigningStargateClient.connectWithSigner>>;
     readonly query: Awaited<ReturnType<typeof stride.ClientFactory.createRPCQueryClient>> & Awaited<ReturnType<typeof ibc.ClientFactory.createRPCQueryClient>>;
     readonly types: {
         stride: typeof stride;
@@ -19,14 +32,15 @@ export declare class StrideClient {
     } & {
         ibc: typeof ibc;
     };
-    private readonly options?;
+    readonly options?: StrideClientOptions;
     private constructor();
     /**
+     * Creates a new StrideClient object.
      *
      * @param {string} rpcUrl - A URL to the CometBFT RPC endpoint, also known as Tendermint RPC, by default on port 26657.
      * @param {OfflineSigner} signer - A signer for signing transactions.
-     * @param {string} address - walletAddress is the specific account address in the wallet that is permitted to sign transactions.
-     * @param {StrideClientOptions} [options] - Optional. Configuration options for the signing client, including gas price, gas limit, and other parameters.
+     * @param {string} address - The account address inside the `signer` that is permitted to sign transactions.
+     * @param {StrideClientOptions} [options] - Optional. Configurations for the signing client, including gas price, gas limit, and other parameters.
      */
     static create(rpcUrl: string, signer: OfflineSigner, address: string, options?: StrideClientOptions): Promise<StrideClient>;
     /**

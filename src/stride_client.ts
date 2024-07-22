@@ -20,7 +20,20 @@ import {
 import { getTxIbcResponses, IbcResponse } from "./utils";
 
 export type StrideClientOptions = SigningStargateClientOptions & {
+  /**
+   * How much time (in milliseconds) to wait for IBC response txs (acknowledge/timeout).
+   *
+   * Defaults to `180_000` (3 minutes).
+   *
+   */
   resolveIbcResponsesTimeoutMs?: number;
+  /**
+   * When waiting for the IBC response txs (acknowledge/timeout) to commit on-chain, how much time (in milliseconds) to wait between checks.
+   *
+   * Smaller intervals will cause more load on your node provider. Keep in mind that blocks on Stride take about 6 seconds to finalize.
+   *
+   * Defaults to `12_000` (12 seconds).
+   */
   resolveIbcResponsesCheckIntervalMs?: number;
 };
 
@@ -29,7 +42,7 @@ export class StrideClient {
     public readonly rpcEndpoint: string,
     public readonly signer: OfflineSigner,
     public readonly address: string,
-    private readonly signingStargateClient: Awaited<
+    public readonly signingStargateClient: Awaited<
       ReturnType<typeof SigningStargateClient.connectWithSigner>
     >,
     public readonly query: Awaited<
@@ -39,15 +52,16 @@ export class StrideClient {
     public readonly types: { stride: typeof stride } & {
       cosmos: typeof cosmos;
     } & { ibc: typeof ibc },
-    private readonly options?: StrideClientOptions,
+    public readonly options?: StrideClientOptions,
   ) {}
 
   /**
+   * Creates a new StrideClient object.
    *
    * @param {string} rpcUrl - A URL to the CometBFT RPC endpoint, also known as Tendermint RPC, by default on port 26657.
    * @param {OfflineSigner} signer - A signer for signing transactions.
-   * @param {string} address - walletAddress is the specific account address in the wallet that is permitted to sign transactions.
-   * @param {StrideClientOptions} [options] - Optional. Configuration options for the signing client, including gas price, gas limit, and other parameters.
+   * @param {string} address - The account address inside the `signer` that is permitted to sign transactions.
+   * @param {StrideClientOptions} [options] - Optional. Configurations for the signing client, including gas price, gas limit, and other parameters.
    */
   public static async create(
     rpcUrl: string,
