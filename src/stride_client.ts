@@ -106,6 +106,7 @@ export class StrideClient {
       signingStargateClient,
       query,
       types,
+      options,
     );
   }
 
@@ -135,8 +136,8 @@ export class StrideClient {
     const ibcResponses = getTxIbcResponses(
       this.signingStargateClient,
       txResp,
-      this.options?.resolveIbcResponsesTimeoutMs,
-      this.options?.resolveIbcResponsesCheckIntervalMs,
+      this.options?.resolveIbcResponsesTimeoutMs ?? undefined,
+      this.options?.resolveIbcResponsesCheckIntervalMs ?? undefined,
     );
 
     return Object.assign(txResp, { ibcResponses });
