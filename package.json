@@ -34,7 +34,8 @@
     "prepare": "pnpm run build",
     "dev": "cross-env NODE_ENV=development babel-node src/index --extensions \".tsx,.ts,.js\"",
     "watch": "cross-env NODE_ENV=development babel-watch src/index --extensions \".tsx,.ts,.js\"",
-    "lint": "eslint src --fix"
+    "lint": "eslint src --fix",
+    "ts:watch": "tsc -w"
   },
   "publishConfig": {
     "access": "public"

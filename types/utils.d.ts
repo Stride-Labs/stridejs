@@ -180,8 +180,8 @@ export declare type IbcResponse = {
  * Retrieves the IBC responses for a given transaction response, with options to customize the timeout and check interval for the IBC response transactions. If `txResponse.code = 0` and the transaction resulted in sending IBC packets, `getIbcResponse()` will return a list of IBC acknowledgement or timeout transactions which signal whether the original IBC packet was accepted, rejected or timed-out on the receiving chain.
  *
  * @param {object} txResponse - The transaction response object.
- * @param {number} [resolveResponsesTimeoutMs=120000] - The timeout in milliseconds for waiting for IBC response txs to commit on-chain. Defaults to 120000 (2 minutes).
- * @param {number} [resolveResponsesCheckIntervalMs=15000] - The interval in milliseconds between checks when waiting for IBC response txs to commit on-chain. Defaults to 15000 (15 seconds).
+ * @param {number} [resolveResponsesTimeoutMs=180000] - The timeout in milliseconds for waiting for IBC response txs to commit on-chain. Defaults to 180000 (3 minutes).
+ * @param {number} [resolveResponsesCheckIntervalMs=12000] - The interval in milliseconds between checks when waiting for IBC response txs to commit on-chain. Defaults to 12000 (12 seconds).
  * @returns {Promise<object>} A list of IBC acknowledgement or timeout transactions which signal whether the original IBC packet was accepted, rejected or timed-out on the receiving chain.
  */
 export declare function getTxIbcResponses(stargateClient: StargateClient, txResponse: DeliverTxResponse, resolveResponsesTimeoutMs?: number, resolveResponsesCheckIntervalMs?: number): Array<Promise<IbcResponse>>;
@@ -192,8 +192,8 @@ export declare function getTxIbcResponses(stargateClient: StargateClient, txResp
  * @param {string} packetSequence - The sequence number of the original IBC packet.
  * @param {string} packetSrcChannel - The source channel of the original IBC packet.
  * @param {"ack" | "timeout"} [type="ack"] - The type of IBC response to search for.
- * @param {number} [resolveResponsesTimeoutMs=120000] - The timeout in milliseconds for waiting for IBC response txs to commit on-chain. Defaults to 120000 (2 minutes).
- * @param {number} [resolveResponsesCheckIntervalMs=15000] - The interval in milliseconds between checks when waiting for IBC response txs to commit on-chain. Defaults to 15000 (15 seconds).
+ * @param {number} [resolveResponsesTimeoutMs=180000] - The timeout in milliseconds for waiting for IBC response txs to commit on-chain. Defaults to 180000 (3 minutes).
+ * @param {number} [resolveResponsesCheckIntervalMs=12000] - The interval in milliseconds between checks when waiting for IBC response txs to commit on-chain. Defaults to 15000 (15 seconds).
  * @param {{ isDone: boolean }} [isDoneObject={ isDone: false }] - An object to track if the search process has been completed.
  * @returns {Promise<IbcResponse>} A promise that resolves with an IBC response object containing the type of response and the transaction details, or rejects with a timeout error if no response is found within the specified timeout.
  */
