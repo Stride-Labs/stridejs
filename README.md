@@ -209,7 +209,7 @@ pnpm run codegen
 Build the module and types:
 
 ```bash
-pnpm run buidl
+pnpm run build
 ```
 
 ### Publishing
