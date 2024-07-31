@@ -1,15 +1,9 @@
-import { Uint64 } from "@cosmjs/math";
 import { decodePubkey } from "@cosmjs/proto-signing";
+import { Account, accountFromAny } from "@cosmjs/stargate";
 import { assert } from "@cosmjs/utils";
-import { accountFromAny, Account } from "@cosmjs/stargate";
-import { BaseAccount } from "cosmjs-types/cosmos/auth/v1beta1/auth";
 import { Any } from "cosmjs-types/google/protobuf/any";
-import Long from "long";
 import { stride } from "./codegen";
-
-function uint64FromProto(input: number | Long): Uint64 {
-  return Uint64.fromString(input.toString());
-}
+import { BaseAccount } from "./codegen/cosmos/auth/v1beta1/auth";
 
 function accountFromBaseAccount(input: BaseAccount): Account {
   const { address, pubKey, accountNumber, sequence } = input;
@@ -17,8 +11,8 @@ function accountFromBaseAccount(input: BaseAccount): Account {
   return {
     address: address,
     pubkey: pubkey,
-    accountNumber: uint64FromProto(accountNumber).toNumber(),
-    sequence: uint64FromProto(sequence).toNumber(),
+    accountNumber: Number(accountNumber),
+    sequence: Number(sequence),
   };
 }
 

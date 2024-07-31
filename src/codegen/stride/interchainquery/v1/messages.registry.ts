@@ -1,6 +1,7 @@
-import { GeneratedType, Registry } from "@cosmjs/proto-signing";
+import { TelescopeGeneratedType } from "../../../types";
+import { Registry } from "@cosmjs/proto-signing";
 import { MsgSubmitQueryResponse } from "./messages";
-export const registry: ReadonlyArray<[string, GeneratedType]> = [["/stride.interchainquery.v1.MsgSubmitQueryResponse", MsgSubmitQueryResponse]];
+export const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]> = [["/stride.interchainquery.v1.MsgSubmitQueryResponse", MsgSubmitQueryResponse]];
 export const load = (protoRegistry: Registry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -14,7 +15,6 @@ export const MessageComposer = {
         value: MsgSubmitQueryResponse.encode(value).finish()
       };
     }
-
   },
   withTypeUrl: {
     submitQueryResponse(value: MsgSubmitQueryResponse) {
@@ -23,7 +23,6 @@ export const MessageComposer = {
         value
       };
     }
-
   },
   fromPartial: {
     submitQueryResponse(value: MsgSubmitQueryResponse) {
@@ -32,6 +31,5 @@ export const MessageComposer = {
         value: MsgSubmitQueryResponse.fromPartial(value)
       };
     }
-
   }
 };

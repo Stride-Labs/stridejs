@@ -1,5 +1,6 @@
-import { OfflineSigner, GeneratedType, Registry } from "@cosmjs/proto-signing";
+import { GeneratedType, Registry, OfflineSigner } from "@cosmjs/proto-signing";
 import { defaultRegistryTypes, AminoTypes, SigningStargateClient } from "@cosmjs/stargate";
+import { HttpEndpoint } from "@cosmjs/tendermint-rpc";
 import * as strideAirdropTxRegistry from "./airdrop/tx.registry";
 import * as strideClaimTxRegistry from "./claim/tx.registry";
 import * as strideIcaoracleTxRegistry from "./icaoracle/tx.registry";
@@ -14,7 +15,8 @@ import * as strideInterchainqueryV1MessagesAmino from "./interchainquery/v1/mess
 import * as strideStakedymTxAmino from "./stakedym/tx.amino";
 import * as strideStakeibcTxAmino from "./stakeibc/tx.amino";
 import * as strideStaketiaTxAmino from "./staketia/tx.amino";
-export const strideAminoConverters = { ...strideAirdropTxAmino.AminoConverter,
+export const strideAminoConverters = {
+  ...strideAirdropTxAmino.AminoConverter,
   ...strideClaimTxAmino.AminoConverter,
   ...strideIcaoracleTxAmino.AminoConverter,
   ...strideInterchainqueryV1MessagesAmino.AminoConverter,
@@ -32,7 +34,8 @@ export const getSigningStrideClientOptions = ({
   aminoTypes: AminoTypes;
 } => {
   const registry = new Registry([...defaultTypes, ...strideProtoRegistry]);
-  const aminoTypes = new AminoTypes({ ...strideAminoConverters
+  const aminoTypes = new AminoTypes({
+    ...strideAminoConverters
   });
   return {
     registry,
@@ -44,7 +47,7 @@ export const getSigningStrideClient = async ({
   signer,
   defaultTypes = defaultRegistryTypes
 }: {
-  rpcEndpoint: string;
+  rpcEndpoint: string | HttpEndpoint;
   signer: OfflineSigner;
   defaultTypes?: ReadonlyArray<[string, GeneratedType]>;
 }) => {
@@ -55,7 +58,7 @@ export const getSigningStrideClient = async ({
     defaultTypes
   });
   const client = await SigningStargateClient.connectWithSigner(rpcEndpoint, signer, {
-    registry,
+    registry: registry as any,
     aminoTypes
   });
   return client;
