@@ -45,8 +45,8 @@ import { DeliverTxResponse, IndexedTx, StargateClient } from "@cosmjs/stargate";
  * ```
  * coinFromString("1ustrd") => {amount:"1",denom:"ustrd"}
  * ```
- * @param {string} coinAsString A string representation of a coin in the format "amountdenom"
- * @returns {Coin} A Coin object with the extracted amount and denom
+ * @param {string} coinAsString A string representation of a coin in the format `"{amount}{denom}"`.
+ * @returns {Coin} A Coin object with the extracted amount and denom.
  */
 export declare function coinFromString(coinAsString: string): Coin;
 /**
@@ -57,15 +57,15 @@ export declare function coinFromString(coinAsString: string): Coin;
  * coinsFromString("1ustrd,2uosmo") => => [{amount:"1",denom:"ustrd"},{amount:"2",denom:"uosmo"}]
  * ```
  *
- * @param {string} coinsAsString A string of comma-separated coins in the format "amountdenom,amountdenom,..."
- * @returns {Coin[]} An array of Coin objects
+ * @param {string} coinsAsString A string of comma-separated coins in the format `"{amount}{denom},{amount}{denom},..."`.
+ * @returns {Coin[]} An array of Coin objects.
  */
 export declare function coinsFromString(coinsAsString: string): Coin[];
 /**
  * Creates a StdFee object from the given gas limit and gas price.
  *
  * @param {number} gasLimit The gas limit to use for the fee calculation.
- * @param {number} [gasPrice=0.025] The gas price to use for the fee calculation. Defaults to 0.025.
+ * @param {number} [gasPrice=0.025] The gas price to use for the fee calculation. Defaults to `0.025`.
  * @returns {StdFee} A StdFee object with the calculated fee amount and gas limit.
  */
 export declare function feeFromGas(gasLimit: number, gasPrice?: number): StdFee;
@@ -87,58 +87,58 @@ export declare function ibcDenom(paths: {
     incomingChannelId: string;
 }[], coinMinimalDenom: string): string;
 /**
- * Convert a secp256k1 compressed public key to an address
+ * Convert a secp256k1 compressed public key to an address.
  *
- * @param {Uint8Array} pubkey The account's pubkey, should be 33 bytes (compressed secp256k1)
+ * @param {Uint8Array} pubkey The account's pubkey, should be 33 bytes (compressed secp256k1).
  * @param {String} [prefix="stride"] The address' bech32 prefix. Defaults to `"stride"`.
- * @returns the account's address
+ * @returns the account's address.
  */
 export declare function pubkeyToAddress(pubkey: Uint8Array, prefix?: string): string;
 /**
- * Convert a secp256k1 compressed public key to an address
+ * Convert a secp256k1 compressed public key to an address.
  *
- * @param {Uint8Array} pubkey The account's pubkey as base64 string, should be 33 bytes (compressed secp256k1)
+ * @param {Uint8Array} pubkey The account's pubkey as base64 string, should be 33 bytes (compressed secp256k1).
  * @param {String} [prefix="stride"] The address' bech32 prefix. Defaults to `"stride"`.
  * @returns the account's address
  */
 export declare function base64PubkeyToAddress(pubkey: string, prefix?: string): string;
 /**
- * Convert self delegator address to validator address
+ * Convert self delegator address to validator address.
  *
- * @param {String} selfDelegator The self delegator bech32 encoded address
+ * @param {String} selfDelegator The self delegator bech32 encoded address.
  * @param {String} [prefix="stride"] The self delegator address' bech32 prefix. Defaults to `"stride"`.
  * @returns the account's address
  */
 export declare function selfDelegatorAddressToValidatorAddress(selfDelegator: string, prefix?: string): string;
 /**
- * Convert self delegator address to validator address
+ * Convert self delegator address to validator address.
  *
- * @param {String} validator The validator bech32 encoded address
+ * @param {String} validator The validator bech32 encoded address.
  * @param {String} [prefix="stride"] The self delegator address' bech32 prefix. Defaults to `"stride"`.
  * @returns the account's address
  */
 export declare function validatorAddressToSelfDelegatorAddress(validator: string, prefix?: string): string;
 /**
- * Convert a Tendermint ed25519 public key to a consensus address
+ * Convert a Tendermint ed25519 public key to a consensus address.
  *
- * @param {Uint8Array} pubkey The tendermint pubkey, should be 32 bytes (ed25519)
+ * @param {Uint8Array} pubkey The tendermint pubkey, should be 32 bytes (ed25519).
  * @param {String} [prefix="stride"] The valcons address' bech32 prefix. Defaults to `"stride"`.
  * @returns the valcons account's address
  */
 export declare function tendermintPubkeyToValconsAddress(pubkey: Uint8Array, prefix?: string): string;
 /**
- * Convert a secp256k1 compressed public key to an address
+ * Convert a secp256k1 compressed public key to an address.
  *
- * @param {Uint8Array} pubkey The account's pubkey as base64 string, should be 33 bytes (compressed secp256k1)
+ * @param {Uint8Array} pubkey The account's pubkey as base64 string, should be 33 bytes (compressed secp256k1).
  * @param {String} [prefix="stride"] The address' bech32 prefix. Defaults to `"stride"`.
- * @returns the account's address
+ * @returns the account's address.
  */
 export declare function base64TendermintPubkeyToValconsAddress(pubkey: string, prefix?: string): string;
 /**
- * Sleep for a certain amount of time
+ * Sleep for a certain amount of time.
  *
- * @param {number} ms The number of milliseconds to sleep for
- * @returns {Promise<void>} A promise that resolves after the sleep
+ * @param {number} ms The number of milliseconds to sleep for.
+ * @returns {Promise<void>} A promise that resolves after the sleep.
  */
 export declare function sleep(ms: number): Promise<void>;
 /**
@@ -164,7 +164,7 @@ export declare function decToString(dec: number): string;
  */
 export declare function convertBech32Prefix(address: string, toPrefix: string): string;
 /**
- * Represents an IBC response, which can be either an acknowledgement or a timeout.
+ * Represents an IBC response. It can be either an acknowledgement or a timeout, and it also contains the transaction with the acknowledgement or timeout message.
  */
 export declare type IbcResponse = {
     /**
@@ -180,8 +180,8 @@ export declare type IbcResponse = {
  * Retrieves the IBC responses for a given transaction response, with options to customize the timeout and check interval for the IBC response transactions. If `txResponse.code = 0` and the transaction resulted in sending IBC packets, `getIbcResponse()` will return a list of IBC acknowledgement or timeout transactions which signal whether the original IBC packet was accepted, rejected or timed-out on the receiving chain.
  *
  * @param {object} txResponse - The transaction response object.
- * @param {number} [resolveResponsesTimeoutMs=180000] - The timeout in milliseconds for waiting for IBC response txs to commit on-chain. Defaults to 180000 (3 minutes).
- * @param {number} [resolveResponsesCheckIntervalMs=12000] - The interval in milliseconds between checks when waiting for IBC response txs to commit on-chain. Defaults to 12000 (12 seconds).
+ * @param {number} [resolveResponsesTimeoutMs=180000] - The timeout in milliseconds for waiting for IBC response txs to commit on-chain. Defaults to `180000` (3 minutes).
+ * @param {number} [resolveResponsesCheckIntervalMs=12000] - The interval in milliseconds between checks when waiting for IBC response txs to commit on-chain. Defaults to `12000` (12 seconds).
  * @returns {Promise<object>} A list of IBC acknowledgement or timeout transactions which signal whether the original IBC packet was accepted, rejected or timed-out on the receiving chain.
  */
 export declare function getTxIbcResponses(stargateClient: StargateClient, txResponse: DeliverTxResponse, resolveResponsesTimeoutMs?: number, resolveResponsesCheckIntervalMs?: number): Array<Promise<IbcResponse>>;
@@ -192,8 +192,8 @@ export declare function getTxIbcResponses(stargateClient: StargateClient, txResp
  * @param {string} packetSequence - The sequence number of the original IBC packet.
  * @param {string} packetSrcChannel - The source channel of the original IBC packet.
  * @param {"ack" | "timeout"} [type="ack"] - The type of IBC response to search for.
- * @param {number} [resolveResponsesTimeoutMs=180000] - The timeout in milliseconds for waiting for IBC response txs to commit on-chain. Defaults to 180000 (3 minutes).
- * @param {number} [resolveResponsesCheckIntervalMs=12000] - The interval in milliseconds between checks when waiting for IBC response txs to commit on-chain. Defaults to 15000 (15 seconds).
+ * @param {number} [resolveResponsesTimeoutMs=180000] - The timeout in milliseconds for waiting for IBC response txs to commit on-chain. Defaults to `180000` (3 minutes).
+ * @param {number} [resolveResponsesCheckIntervalMs=12000] - The interval in milliseconds between checks when waiting for IBC response txs to commit on-chain. Defaults to `12000` (12 seconds).
  * @param {{ isDone: boolean }} [isDoneObject={ isDone: false }] - An object to track if the search process has been completed.
  * @returns {Promise<IbcResponse>} A promise that resolves with an IBC response object containing the type of response and the transaction details, or rejects with a timeout error if no response is found within the specified timeout.
  */

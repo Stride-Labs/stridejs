@@ -31,7 +31,7 @@
     "codegen:build-cosmos-sdk": "buf export scripts/repos/cosmos-sdk --output=scripts/proto",
     "codegen:build-ibc-go": "buf export scripts/repos/ibc-go --output=scripts/proto",
     "codegen:run": "cross-env NODE_ENV=development ts-node scripts/codegen.ts",
-    "prepare": "pnpm run build",
+    "prepare": "pnpm run codegen && pnpm run build",
     "dev": "cross-env NODE_ENV=development babel-node src/index --extensions \".tsx,.ts,.js\"",
     "watch": "cross-env NODE_ENV=development babel-watch src/index --extensions \".tsx,.ts,.js\"",
     "lint": "eslint src --fix",
