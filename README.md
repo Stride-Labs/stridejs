@@ -37,7 +37,7 @@ const client = await SigningStargateClient.connectWithSigner(
     registry,
     aminoTypes,
     accountParser: strideAccountParser,
-  }
+  },
 );
 ```
 
@@ -109,7 +109,7 @@ const tx = await strideAccount.client.signAndBroadcast(
   "stride1addresshere",
   [msgClaimFreeAmount],
   fee,
-  ""
+  "",
 );
 
 assertIsDeliverTxSuccess(tx);
@@ -135,7 +135,7 @@ When first cloning the repo:
 ```bash
 git submodule sync --recursive
 git submodule update --init --recursive
-npm install
+pnpm install
 ```
 
 ### Checkout Relevant Branches
@@ -203,13 +203,13 @@ Make sure to add the new transaction types with the same pattern:
 Update the generated ts files:
 
 ```bash
-npm run codegen
+pnpm run codegen
 ```
 
 Build the module and types:
 
 ```bash
-npm run buidl
+pnpm run buidl
 ```
 
 ### Publishing
