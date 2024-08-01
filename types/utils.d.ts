@@ -70,6 +70,19 @@ export declare function coinsFromString(coinsAsString: string): Coin[];
  */
 export declare function feeFromGas(gasLimit: number, gasPrice?: number): StdFee;
 /**
+ * Represents an IBC transfer path.
+ */
+export declare type IbcTransferPath = {
+    /**
+     * The port ID on the receiving chain.
+     */
+    incomingPortId: string;
+    /**
+     * The channel ID on the receiving chain.
+     */
+    incomingChannelId: string;
+};
+/**
  * Compute the IBC denom of a token that was sent over IBC.
  *
  * @example
@@ -78,14 +91,11 @@ export declare function feeFromGas(gasLimit: number, gasPrice?: number): StdFee;
  * ibcDenom([{incomingPortId: "transfer", incomingChannelId: "channel-326"}], "ustrd")
  * ```
  *
- * @param {Object[]} paths An array of objects containing information about the IBC transfer paths.
+ * @param {IbcTransferPath[]} paths An array of objects containing information about the IBC transfer paths.
  * @param {string} coinMinimalDenom The minimal denom of the coin.
  * @returns {string} The computed IBC denom of the token.
  */
-export declare function ibcDenom(paths: {
-    incomingPortId: string;
-    incomingChannelId: string;
-}[], coinMinimalDenom: string): string;
+export declare function ibcDenom(paths: IbcTransferPath[], coinMinimalDenom: string): string;
 /**
  * Convert a secp256k1 compressed public key to an address.
  *
@@ -95,9 +105,9 @@ export declare function ibcDenom(paths: {
  */
 export declare function pubkeyToAddress(pubkey: Uint8Array, prefix?: string): string;
 /**
- * Convert a secp256k1 compressed public key to an address.
+ * Convert a base64 encoded secp256k1 compressed public key to an address.
  *
- * @param {Uint8Array} pubkey The account's pubkey as base64 string, should be 33 bytes (compressed secp256k1).
+ * @param {string} pubkey The account's pubkey as base64 string, should be 33 bytes (compressed secp256k1).
  * @param {String} [prefix="stride"] The address' bech32 prefix. Defaults to `"stride"`.
  * @returns the account's address
  */
@@ -127,9 +137,9 @@ export declare function validatorAddressToSelfDelegatorAddress(validator: string
  */
 export declare function tendermintPubkeyToValconsAddress(pubkey: Uint8Array, prefix?: string): string;
 /**
- * Convert a secp256k1 compressed public key to an address.
+ * Convert a base64 encoded secp256k1 compressed public key to a validator address.
  *
- * @param {Uint8Array} pubkey The account's pubkey as base64 string, should be 33 bytes (compressed secp256k1).
+ * @param {string} pubkey The account's pubkey as base64 string, should be 33 bytes (compressed secp256k1).
  * @param {String} [prefix="stride"] The address' bech32 prefix. Defaults to `"stride"`.
  * @returns the account's address.
  */
