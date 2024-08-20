@@ -1,77 +1,33 @@
-import { AminoMsg } from "@cosmjs/amino";
-import { MsgSetWithdrawAddress, MsgWithdrawDelegatorReward, MsgWithdrawValidatorCommission, MsgWithdrawTokenizeShareRecordReward, MsgWithdrawAllTokenizeShareRecordReward, MsgFundCommunityPool } from "./tx";
-export interface AminoMsgSetWithdrawAddress extends AminoMsg {
-    type: "cosmos-sdk/MsgModifyWithdrawAddress";
-    value: {
-        delegator_address: string;
-        withdraw_address: string;
-    };
-}
-export interface AminoMsgWithdrawDelegatorReward extends AminoMsg {
-    type: "cosmos-sdk/MsgWithdrawDelegationReward";
-    value: {
-        delegator_address: string;
-        validator_address: string;
-    };
-}
-export interface AminoMsgWithdrawValidatorCommission extends AminoMsg {
-    type: "cosmos-sdk/MsgWithdrawValidatorCommission";
-    value: {
-        validator_address: string;
-    };
-}
-export interface AminoMsgWithdrawTokenizeShareRecordReward extends AminoMsg {
-    type: "cosmos-sdk/MsgWithdrawTokenizeShareRecordReward";
-    value: {
-        owner_address: string;
-        record_id: string;
-    };
-}
-export interface AminoMsgWithdrawAllTokenizeShareRecordReward extends AminoMsg {
-    type: "cosmos-sdk/MsgWithdrawAllTokenizeShareRecordReward";
-    value: {
-        owner_address: string;
-    };
-}
-export interface AminoMsgFundCommunityPool extends AminoMsg {
-    type: "cosmos-sdk/MsgFundCommunityPool";
-    value: {
-        amount: {
-            denom: string;
-            amount: string;
-        }[];
-        depositor: string;
-    };
-}
+import { MsgSetWithdrawAddress, MsgWithdrawDelegatorReward, MsgWithdrawValidatorCommission, MsgFundCommunityPool, MsgUpdateParams, MsgCommunityPoolSpend } from "./tx";
 export declare const AminoConverter: {
     "/cosmos.distribution.v1beta1.MsgSetWithdrawAddress": {
         aminoType: string;
-        toAmino: ({ delegatorAddress, withdrawAddress }: MsgSetWithdrawAddress) => AminoMsgSetWithdrawAddress["value"];
-        fromAmino: ({ delegator_address, withdraw_address }: AminoMsgSetWithdrawAddress["value"]) => MsgSetWithdrawAddress;
+        toAmino: (message: MsgSetWithdrawAddress) => import("./tx").MsgSetWithdrawAddressAmino;
+        fromAmino: (object: import("./tx").MsgSetWithdrawAddressAmino) => MsgSetWithdrawAddress;
     };
     "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward": {
         aminoType: string;
-        toAmino: ({ delegatorAddress, validatorAddress }: MsgWithdrawDelegatorReward) => AminoMsgWithdrawDelegatorReward["value"];
-        fromAmino: ({ delegator_address, validator_address }: AminoMsgWithdrawDelegatorReward["value"]) => MsgWithdrawDelegatorReward;
+        toAmino: (message: MsgWithdrawDelegatorReward) => import("./tx").MsgWithdrawDelegatorRewardAmino;
+        fromAmino: (object: import("./tx").MsgWithdrawDelegatorRewardAmino) => MsgWithdrawDelegatorReward;
     };
     "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission": {
         aminoType: string;
-        toAmino: ({ validatorAddress }: MsgWithdrawValidatorCommission) => AminoMsgWithdrawValidatorCommission["value"];
-        fromAmino: ({ validator_address }: AminoMsgWithdrawValidatorCommission["value"]) => MsgWithdrawValidatorCommission;
-    };
-    "/cosmos.distribution.v1beta1.MsgWithdrawTokenizeShareRecordReward": {
-        aminoType: string;
-        toAmino: ({ ownerAddress, recordId }: MsgWithdrawTokenizeShareRecordReward) => AminoMsgWithdrawTokenizeShareRecordReward["value"];
-        fromAmino: ({ owner_address, record_id }: AminoMsgWithdrawTokenizeShareRecordReward["value"]) => MsgWithdrawTokenizeShareRecordReward;
-    };
-    "/cosmos.distribution.v1beta1.MsgWithdrawAllTokenizeShareRecordReward": {
-        aminoType: string;
-        toAmino: ({ ownerAddress }: MsgWithdrawAllTokenizeShareRecordReward) => AminoMsgWithdrawAllTokenizeShareRecordReward["value"];
-        fromAmino: ({ owner_address }: AminoMsgWithdrawAllTokenizeShareRecordReward["value"]) => MsgWithdrawAllTokenizeShareRecordReward;
+        toAmino: (message: MsgWithdrawValidatorCommission) => import("./tx").MsgWithdrawValidatorCommissionAmino;
+        fromAmino: (object: import("./tx").MsgWithdrawValidatorCommissionAmino) => MsgWithdrawValidatorCommission;
     };
     "/cosmos.distribution.v1beta1.MsgFundCommunityPool": {
         aminoType: string;
-        toAmino: ({ amount, depositor }: MsgFundCommunityPool) => AminoMsgFundCommunityPool["value"];
-        fromAmino: ({ amount, depositor }: AminoMsgFundCommunityPool["value"]) => MsgFundCommunityPool;
+        toAmino: (message: MsgFundCommunityPool) => import("./tx").MsgFundCommunityPoolAmino;
+        fromAmino: (object: import("./tx").MsgFundCommunityPoolAmino) => MsgFundCommunityPool;
+    };
+    "/cosmos.distribution.v1beta1.MsgUpdateParams": {
+        aminoType: string;
+        toAmino: (message: MsgUpdateParams) => import("./tx").MsgUpdateParamsAmino;
+        fromAmino: (object: import("./tx").MsgUpdateParamsAmino) => MsgUpdateParams;
+    };
+    "/cosmos.distribution.v1beta1.MsgCommunityPoolSpend": {
+        aminoType: string;
+        toAmino: (message: MsgCommunityPoolSpend) => import("./tx").MsgCommunityPoolSpendAmino;
+        fromAmino: (object: import("./tx").MsgCommunityPoolSpendAmino) => MsgCommunityPoolSpend;
     };
 };

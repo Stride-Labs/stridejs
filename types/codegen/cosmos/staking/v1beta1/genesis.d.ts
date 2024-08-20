@@ -1,9 +1,8 @@
-import { Params, ParamsSDKType, Validator, ValidatorSDKType, Delegation, DelegationSDKType, UnbondingDelegation, UnbondingDelegationSDKType, Redelegation, RedelegationSDKType, TokenizeShareRecord, TokenizeShareRecordSDKType } from "./staking";
-import * as _m0 from "protobufjs/minimal";
-import { Long, DeepPartial } from "@osmonauts/helpers";
+import { Params, ParamsAmino, ParamsSDKType, Validator, ValidatorAmino, ValidatorSDKType, Delegation, DelegationAmino, DelegationSDKType, UnbondingDelegation, UnbondingDelegationAmino, UnbondingDelegationSDKType, Redelegation, RedelegationAmino, RedelegationSDKType } from "./staking";
+import { BinaryReader, BinaryWriter } from "../../../binary";
 /** GenesisState defines the staking module's genesis state. */
 export interface GenesisState {
-    /** params defines all the paramaters of related to deposit. */
+    /** params defines all the parameters of related to deposit. */
     params: Params;
     /**
      * last_total_power tracks the total amounts of bonded tokens recorded during
@@ -24,91 +23,100 @@ export interface GenesisState {
     /** redelegations defines the redelegations active at genesis. */
     redelegations: Redelegation[];
     exported: boolean;
-    /** store tokenize share records to provide reward to record owners */
-    tokenizeShareRecords: TokenizeShareRecord[];
-    /** last tokenize share record id, used for next share record id calculation */
-    lastTokenizeShareRecordId: Long;
-    /** total number of liquid staked tokens at genesis */
-    totalLiquidStakedTokens: Uint8Array;
-    /** tokenize shares locks at genesis */
-    tokenizeShareLocks: TokenizeShareLock[];
+}
+export interface GenesisStateProtoMsg {
+    typeUrl: "/cosmos.staking.v1beta1.GenesisState";
+    value: Uint8Array;
 }
 /** GenesisState defines the staking module's genesis state. */
-export interface GenesisStateSDKType {
-    /** params defines all the paramaters of related to deposit. */
-    params: ParamsSDKType;
+export interface GenesisStateAmino {
+    /** params defines all the parameters of related to deposit. */
+    params: ParamsAmino;
     /**
      * last_total_power tracks the total amounts of bonded tokens recorded during
      * the previous end block.
      */
-    last_total_power: Uint8Array;
+    last_total_power: string;
     /**
      * last_validator_powers is a special index that provides a historical list
      * of the last-block's bonded validators.
      */
-    last_validator_powers: LastValidatorPowerSDKType[];
+    last_validator_powers: LastValidatorPowerAmino[];
     /** delegations defines the validator set at genesis. */
-    validators: ValidatorSDKType[];
+    validators: ValidatorAmino[];
     /** delegations defines the delegations active at genesis. */
-    delegations: DelegationSDKType[];
+    delegations: DelegationAmino[];
     /** unbonding_delegations defines the unbonding delegations active at genesis. */
-    unbonding_delegations: UnbondingDelegationSDKType[];
+    unbonding_delegations: UnbondingDelegationAmino[];
     /** redelegations defines the redelegations active at genesis. */
+    redelegations: RedelegationAmino[];
+    exported?: boolean;
+}
+export interface GenesisStateAminoMsg {
+    type: "cosmos-sdk/GenesisState";
+    value: GenesisStateAmino;
+}
+/** GenesisState defines the staking module's genesis state. */
+export interface GenesisStateSDKType {
+    params: ParamsSDKType;
+    last_total_power: Uint8Array;
+    last_validator_powers: LastValidatorPowerSDKType[];
+    validators: ValidatorSDKType[];
+    delegations: DelegationSDKType[];
+    unbonding_delegations: UnbondingDelegationSDKType[];
     redelegations: RedelegationSDKType[];
     exported: boolean;
-    /** store tokenize share records to provide reward to record owners */
-    tokenize_share_records: TokenizeShareRecordSDKType[];
-    /** last tokenize share record id, used for next share record id calculation */
-    last_tokenize_share_record_id: Long;
-    /** total number of liquid staked tokens at genesis */
-    total_liquid_staked_tokens: Uint8Array;
-    /** tokenize shares locks at genesis */
-    tokenize_share_locks: TokenizeShareLockSDKType[];
-}
-/** TokenizeSharesLock required for specifying account locks at genesis */
-export interface TokenizeShareLock {
-    /** Address of the account that is locked */
-    address: string;
-    /** Status of the lock (LOCKED or LOCK_EXPIRING) */
-    status: string;
-    /** Completion time if the lock is expiring */
-    completionTime: Date;
-}
-/** TokenizeSharesLock required for specifying account locks at genesis */
-export interface TokenizeShareLockSDKType {
-    /** Address of the account that is locked */
-    address: string;
-    /** Status of the lock (LOCKED or LOCK_EXPIRING) */
-    status: string;
-    /** Completion time if the lock is expiring */
-    completion_time: Date;
 }
 /** LastValidatorPower required for validator set update logic. */
 export interface LastValidatorPower {
     /** address is the address of the validator. */
     address: string;
     /** power defines the power of the validator. */
-    power: Long;
+    power: bigint;
+}
+export interface LastValidatorPowerProtoMsg {
+    typeUrl: "/cosmos.staking.v1beta1.LastValidatorPower";
+    value: Uint8Array;
+}
+/** LastValidatorPower required for validator set update logic. */
+export interface LastValidatorPowerAmino {
+    /** address is the address of the validator. */
+    address?: string;
+    /** power defines the power of the validator. */
+    power?: string;
+}
+export interface LastValidatorPowerAminoMsg {
+    type: "cosmos-sdk/LastValidatorPower";
+    value: LastValidatorPowerAmino;
 }
 /** LastValidatorPower required for validator set update logic. */
 export interface LastValidatorPowerSDKType {
-    /** address is the address of the validator. */
     address: string;
-    /** power defines the power of the validator. */
-    power: Long;
+    power: bigint;
 }
 export declare const GenesisState: {
-    encode(message: GenesisState, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): GenesisState;
-    fromPartial(object: DeepPartial<GenesisState>): GenesisState;
-};
-export declare const TokenizeShareLock: {
-    encode(message: TokenizeShareLock, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): TokenizeShareLock;
-    fromPartial(object: DeepPartial<TokenizeShareLock>): TokenizeShareLock;
+    typeUrl: string;
+    encode(message: GenesisState, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): GenesisState;
+    fromPartial(object: Partial<GenesisState>): GenesisState;
+    fromAmino(object: GenesisStateAmino): GenesisState;
+    toAmino(message: GenesisState): GenesisStateAmino;
+    fromAminoMsg(object: GenesisStateAminoMsg): GenesisState;
+    toAminoMsg(message: GenesisState): GenesisStateAminoMsg;
+    fromProtoMsg(message: GenesisStateProtoMsg): GenesisState;
+    toProto(message: GenesisState): Uint8Array;
+    toProtoMsg(message: GenesisState): GenesisStateProtoMsg;
 };
 export declare const LastValidatorPower: {
-    encode(message: LastValidatorPower, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): LastValidatorPower;
-    fromPartial(object: DeepPartial<LastValidatorPower>): LastValidatorPower;
+    typeUrl: string;
+    encode(message: LastValidatorPower, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): LastValidatorPower;
+    fromPartial(object: Partial<LastValidatorPower>): LastValidatorPower;
+    fromAmino(object: LastValidatorPowerAmino): LastValidatorPower;
+    toAmino(message: LastValidatorPower): LastValidatorPowerAmino;
+    fromAminoMsg(object: LastValidatorPowerAminoMsg): LastValidatorPower;
+    toAminoMsg(message: LastValidatorPower): LastValidatorPowerAminoMsg;
+    fromProtoMsg(message: LastValidatorPowerProtoMsg): LastValidatorPower;
+    toProto(message: LastValidatorPower): Uint8Array;
+    toProtoMsg(message: LastValidatorPower): LastValidatorPowerProtoMsg;
 };

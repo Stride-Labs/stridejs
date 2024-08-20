@@ -1,5 +1,4 @@
-import * as _m0 from "protobufjs/minimal";
-import { DeepPartial } from "@osmonauts/helpers";
+import { BinaryReader, BinaryWriter } from "../../binary";
 /**
  * Params defines the parameters for the module.
  * next id: 1
@@ -9,17 +8,40 @@ export interface Params {
     stakeibcActive: boolean;
     claimActive: boolean;
 }
+export interface ParamsProtoMsg {
+    typeUrl: "/stride.autopilot.Params";
+    value: Uint8Array;
+}
+/**
+ * Params defines the parameters for the module.
+ * next id: 1
+ */
+export interface ParamsAmino {
+    /** optionally, turn off each module */
+    stakeibc_active?: boolean;
+    claim_active?: boolean;
+}
+export interface ParamsAminoMsg {
+    type: "/stride.autopilot.Params";
+    value: ParamsAmino;
+}
 /**
  * Params defines the parameters for the module.
  * next id: 1
  */
 export interface ParamsSDKType {
-    /** optionally, turn off each module */
     stakeibc_active: boolean;
     claim_active: boolean;
 }
 export declare const Params: {
-    encode(message: Params, writer?: _m0.Writer): _m0.Writer;
-    decode(input: _m0.Reader | Uint8Array, length?: number): Params;
-    fromPartial(object: DeepPartial<Params>): Params;
+    typeUrl: string;
+    encode(message: Params, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): Params;
+    fromPartial(object: Partial<Params>): Params;
+    fromAmino(object: ParamsAmino): Params;
+    toAmino(message: Params): ParamsAmino;
+    fromAminoMsg(object: ParamsAminoMsg): Params;
+    fromProtoMsg(message: ParamsProtoMsg): Params;
+    toProto(message: Params): Uint8Array;
+    toProtoMsg(message: Params): ParamsProtoMsg;
 };

@@ -1,35 +1,48 @@
-import { Rpc } from "@osmonauts/helpers";
-import { MsgCreateValidator, MsgCreateValidatorResponse, MsgEditValidator, MsgEditValidatorResponse, MsgDelegate, MsgDelegateResponse, MsgBeginRedelegate, MsgBeginRedelegateResponse, MsgUndelegate, MsgUndelegateResponse, MsgUnbondValidator, MsgUnbondValidatorResponse, MsgCancelUnbondingDelegation, MsgCancelUnbondingDelegationResponse, MsgTokenizeShares, MsgTokenizeSharesResponse, MsgRedeemTokensForShares, MsgRedeemTokensForSharesResponse, MsgTransferTokenizeShareRecord, MsgTransferTokenizeShareRecordResponse, MsgDisableTokenizeShares, MsgDisableTokenizeSharesResponse, MsgEnableTokenizeShares, MsgEnableTokenizeSharesResponse, MsgValidatorBond, MsgValidatorBondResponse } from "./tx";
-/** Msg defines the RPC service */
+import { TxRpc } from "../../../types";
+import { MsgCreateValidator, MsgCreateValidatorResponse, MsgEditValidator, MsgEditValidatorResponse, MsgDelegate, MsgDelegateResponse, MsgBeginRedelegate, MsgBeginRedelegateResponse, MsgUndelegate, MsgUndelegateResponse, MsgCancelUnbondingDelegation, MsgCancelUnbondingDelegationResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx";
+/** Msg defines the staking Msg service. */
 export interface Msg {
+    /** CreateValidator defines a method for creating a new validator. */
     createValidator(request: MsgCreateValidator): Promise<MsgCreateValidatorResponse>;
+    /** EditValidator defines a method for editing an existing validator. */
     editValidator(request: MsgEditValidator): Promise<MsgEditValidatorResponse>;
+    /**
+     * Delegate defines a method for performing a delegation of coins
+     * from a delegator to a validator.
+     */
     delegate(request: MsgDelegate): Promise<MsgDelegateResponse>;
+    /**
+     * BeginRedelegate defines a method for performing a redelegation
+     * of coins from a delegator and source validator to a destination validator.
+     */
     beginRedelegate(request: MsgBeginRedelegate): Promise<MsgBeginRedelegateResponse>;
+    /**
+     * Undelegate defines a method for performing an undelegation from a
+     * delegate and a validator.
+     */
     undelegate(request: MsgUndelegate): Promise<MsgUndelegateResponse>;
-    unbondValidator(request: MsgUnbondValidator): Promise<MsgUnbondValidatorResponse>;
+    /**
+     * CancelUnbondingDelegation defines a method for performing canceling the unbonding delegation
+     * and delegate back to previous validator.
+     *
+     * Since: cosmos-sdk 0.46
+     */
     cancelUnbondingDelegation(request: MsgCancelUnbondingDelegation): Promise<MsgCancelUnbondingDelegationResponse>;
-    tokenizeShares(request: MsgTokenizeShares): Promise<MsgTokenizeSharesResponse>;
-    redeemTokensForShares(request: MsgRedeemTokensForShares): Promise<MsgRedeemTokensForSharesResponse>;
-    transferTokenizeShareRecord(request: MsgTransferTokenizeShareRecord): Promise<MsgTransferTokenizeShareRecordResponse>;
-    disableTokenizeShares(request: MsgDisableTokenizeShares): Promise<MsgDisableTokenizeSharesResponse>;
-    enableTokenizeShares(request: MsgEnableTokenizeShares): Promise<MsgEnableTokenizeSharesResponse>;
-    validatorBond(request: MsgValidatorBond): Promise<MsgValidatorBondResponse>;
+    /**
+     * UpdateParams defines an operation for updating the x/staking module
+     * parameters.
+     * Since: cosmos-sdk 0.47
+     */
+    updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
-    constructor(rpc: Rpc);
+    constructor(rpc: TxRpc);
     createValidator(request: MsgCreateValidator): Promise<MsgCreateValidatorResponse>;
     editValidator(request: MsgEditValidator): Promise<MsgEditValidatorResponse>;
     delegate(request: MsgDelegate): Promise<MsgDelegateResponse>;
     beginRedelegate(request: MsgBeginRedelegate): Promise<MsgBeginRedelegateResponse>;
     undelegate(request: MsgUndelegate): Promise<MsgUndelegateResponse>;
-    unbondValidator(request: MsgUnbondValidator): Promise<MsgUnbondValidatorResponse>;
     cancelUnbondingDelegation(request: MsgCancelUnbondingDelegation): Promise<MsgCancelUnbondingDelegationResponse>;
-    tokenizeShares(request: MsgTokenizeShares): Promise<MsgTokenizeSharesResponse>;
-    redeemTokensForShares(request: MsgRedeemTokensForShares): Promise<MsgRedeemTokensForSharesResponse>;
-    transferTokenizeShareRecord(request: MsgTransferTokenizeShareRecord): Promise<MsgTransferTokenizeShareRecordResponse>;
-    disableTokenizeShares(request: MsgDisableTokenizeShares): Promise<MsgDisableTokenizeSharesResponse>;
-    enableTokenizeShares(request: MsgEnableTokenizeShares): Promise<MsgEnableTokenizeSharesResponse>;
-    validatorBond(request: MsgValidatorBond): Promise<MsgValidatorBondResponse>;
+    updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
 }

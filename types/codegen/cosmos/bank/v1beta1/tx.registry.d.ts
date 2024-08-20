@@ -1,6 +1,7 @@
-import { GeneratedType, Registry } from "@cosmjs/proto-signing";
-import { MsgSend, MsgMultiSend } from "./tx";
-export declare const registry: ReadonlyArray<[string, GeneratedType]>;
+import { TelescopeGeneratedType } from "../../../types";
+import { Registry } from "@cosmjs/proto-signing";
+import { MsgSend, MsgMultiSend, MsgUpdateParams, MsgSetSendEnabled } from "./tx";
+export declare const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]>;
 export declare const load: (protoRegistry: Registry) => void;
 export declare const MessageComposer: {
     encoded: {
@@ -9,6 +10,14 @@ export declare const MessageComposer: {
             value: Uint8Array;
         };
         multiSend(value: MsgMultiSend): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        updateParams(value: MsgUpdateParams): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        setSendEnabled(value: MsgSetSendEnabled): {
             typeUrl: string;
             value: Uint8Array;
         };
@@ -22,6 +31,14 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgMultiSend;
         };
+        updateParams(value: MsgUpdateParams): {
+            typeUrl: string;
+            value: MsgUpdateParams;
+        };
+        setSendEnabled(value: MsgSetSendEnabled): {
+            typeUrl: string;
+            value: MsgSetSendEnabled;
+        };
     };
     fromPartial: {
         send(value: MsgSend): {
@@ -31,6 +48,14 @@ export declare const MessageComposer: {
         multiSend(value: MsgMultiSend): {
             typeUrl: string;
             value: MsgMultiSend;
+        };
+        updateParams(value: MsgUpdateParams): {
+            typeUrl: string;
+            value: MsgUpdateParams;
+        };
+        setSendEnabled(value: MsgSetSendEnabled): {
+            typeUrl: string;
+            value: MsgSetSendEnabled;
         };
     };
 };

@@ -1,6 +1,7 @@
-import { GeneratedType, Registry } from "@cosmjs/proto-signing";
+import { TelescopeGeneratedType } from "../../../types";
+import { Registry } from "@cosmjs/proto-signing";
 import { MsgSubmitEvidence } from "./tx";
-export const registry: ReadonlyArray<[string, GeneratedType]> = [["/cosmos.evidence.v1beta1.MsgSubmitEvidence", MsgSubmitEvidence]];
+export const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]> = [["/cosmos.evidence.v1beta1.MsgSubmitEvidence", MsgSubmitEvidence]];
 export const load = (protoRegistry: Registry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -14,7 +15,6 @@ export const MessageComposer = {
         value: MsgSubmitEvidence.encode(value).finish()
       };
     }
-
   },
   withTypeUrl: {
     submitEvidence(value: MsgSubmitEvidence) {
@@ -23,7 +23,6 @@ export const MessageComposer = {
         value
       };
     }
-
   },
   fromPartial: {
     submitEvidence(value: MsgSubmitEvidence) {
@@ -32,6 +31,5 @@ export const MessageComposer = {
         value: MsgSubmitEvidence.fromPartial(value)
       };
     }
-
   }
 };

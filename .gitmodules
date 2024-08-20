@@ -1,9 +1,0 @@
-[submodule "stride"]
-	path = stride
-	url = git@github.com:Stride-Labs/stride.git
-	branch = main
-
-[submodule "cosmos"]
-	path = cosmos
-	url = git@github.com:cosmos/cosmos-sdk.git
-    branch = v0.45.16-ics-lsm-rc0
