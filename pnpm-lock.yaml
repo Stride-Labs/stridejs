@@ -33,6 +33,7 @@ specifiers:
   cosmjs-types: 0.9.0
   cross-env: 7.0.2
   esbuild: 0.23.0
+  esbuild-node-externals: 1.14.0
   eslint: 8.21.0
   eslint-config-prettier: 8.5.0
   eslint-plugin-prettier: 4.2.1
@@ -75,6 +76,7 @@ devDependencies:
   babel-watch: 7.0.0_@babel+core@7.24.7
   cross-env: 7.0.2
   esbuild: 0.23.0
+  esbuild-node-externals: 1.14.0_esbuild@0.23.0
   eslint: 8.21.0
   eslint-config-prettier: 8.5.0_eslint@8.21.0
   eslint-plugin-prettier: 4.2.1_h62lvancfh4b7r6zn2dgodrh5e
@@ -4558,6 +4560,17 @@ packages:
       es6-symbol: 3.1.4
     dev: true
 
+  /esbuild-node-externals/1.14.0_esbuild@0.23.0:
+    resolution: {integrity: sha512-jMWnTlCII3cLEjR5+u0JRSTJuP+MgbjEHKfwSIAI41NgLQ0ZjfzjchlbEn0r7v2u5gCBMSEYvYlkO7GDG8gG3A==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      esbuild: 0.12 - 0.23
+    dependencies:
+      esbuild: 0.23.0
+      find-up: 5.0.0
+      tslib: 2.6.3
+    dev: true
+
   /esbuild/0.23.0:
     resolution: {integrity: sha512-1lvV17H2bMYda/WaFb2jLPeHU3zml2k4/yagNMG8Q/YtfMjCwEUZa2eXXMgZTVSL5q1n4H7sQ0X6CdJDqqeCFA==}
     engines: {node: '>=18'}
@@ -7273,6 +7286,10 @@ packages:
 
   /tslib/1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+    dev: true
+
+  /tslib/2.6.3:
+    resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
     dev: true
 
   /type-check/0.4.0:
