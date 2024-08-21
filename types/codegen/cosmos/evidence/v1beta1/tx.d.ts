@@ -5,9 +5,7 @@ import { BinaryReader, BinaryWriter } from "../../../binary";
  * Evidence of misbehavior such as equivocation or counterfactual signing.
  */
 export interface MsgSubmitEvidence {
-    /** submitter is the signer account address of evidence. */
     submitter: string;
-    /** evidence defines the evidence of misbehavior. */
     evidence?: Any | undefined;
 }
 export interface MsgSubmitEvidenceProtoMsg {
@@ -15,16 +13,14 @@ export interface MsgSubmitEvidenceProtoMsg {
     value: Uint8Array;
 }
 export declare type MsgSubmitEvidenceEncoded = Omit<MsgSubmitEvidence, "evidence"> & {
-    /** evidence defines the evidence of misbehavior. */ evidence?: AnyProtoMsg | undefined;
+    evidence?: AnyProtoMsg | undefined;
 };
 /**
  * MsgSubmitEvidence represents a message that supports submitting arbitrary
  * Evidence of misbehavior such as equivocation or counterfactual signing.
  */
 export interface MsgSubmitEvidenceAmino {
-    /** submitter is the signer account address of evidence. */
     submitter?: string;
-    /** evidence defines the evidence of misbehavior. */
     evidence?: AnyAmino;
 }
 export interface MsgSubmitEvidenceAminoMsg {
@@ -87,6 +83,6 @@ export declare const MsgSubmitEvidenceResponse: {
     toProto(message: MsgSubmitEvidenceResponse): Uint8Array;
     toProtoMsg(message: MsgSubmitEvidenceResponse): MsgSubmitEvidenceResponseProtoMsg;
 };
-export declare const Cosmos_evidencev1beta1Evidence_InterfaceDecoder: (input: BinaryReader | Uint8Array) => Any;
-export declare const Cosmos_evidencev1beta1Evidence_FromAmino: (content: AnyAmino) => Any;
-export declare const Cosmos_evidencev1beta1Evidence_ToAmino: (content: Any) => AnyAmino;
+export declare const Evidence_InterfaceDecoder: (input: BinaryReader | Uint8Array) => Any;
+export declare const Evidence_FromAmino: (content: AnyAmino) => Any;
+export declare const Evidence_ToAmino: (content: Any) => AnyAmino;

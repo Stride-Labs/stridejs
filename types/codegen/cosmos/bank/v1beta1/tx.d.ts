@@ -1,5 +1,5 @@
 import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
-import { Input, InputAmino, InputSDKType, Output, OutputAmino, OutputSDKType, Params, ParamsAmino, ParamsSDKType, SendEnabled, SendEnabledAmino, SendEnabledSDKType } from "./bank";
+import { Input, InputAmino, InputSDKType, Output, OutputAmino, OutputSDKType } from "./bank";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 /** MsgSend represents a message to send coins from one account to another. */
 export interface MsgSend {
@@ -15,7 +15,7 @@ export interface MsgSendProtoMsg {
 export interface MsgSendAmino {
     from_address?: string;
     to_address?: string;
-    amount: CoinAmino[];
+    amount?: CoinAmino[];
 }
 export interface MsgSendAminoMsg {
     type: "cosmos-sdk/MsgSend";
@@ -46,10 +46,6 @@ export interface MsgSendResponseSDKType {
 }
 /** MsgMultiSend represents an arbitrary multi-in, multi-out send message. */
 export interface MsgMultiSend {
-    /**
-     * Inputs, despite being `repeated`, only allows one sender input. This is
-     * checked in MsgMultiSend's ValidateBasic.
-     */
     inputs: Input[];
     outputs: Output[];
 }
@@ -59,12 +55,8 @@ export interface MsgMultiSendProtoMsg {
 }
 /** MsgMultiSend represents an arbitrary multi-in, multi-out send message. */
 export interface MsgMultiSendAmino {
-    /**
-     * Inputs, despite being `repeated`, only allows one sender input. This is
-     * checked in MsgMultiSend's ValidateBasic.
-     */
-    inputs: InputAmino[];
-    outputs: OutputAmino[];
+    inputs?: InputAmino[];
+    outputs?: OutputAmino[];
 }
 export interface MsgMultiSendAminoMsg {
     type: "cosmos-sdk/MsgMultiSend";
@@ -91,178 +83,6 @@ export interface MsgMultiSendResponseAminoMsg {
 }
 /** MsgMultiSendResponse defines the Msg/MultiSend response type. */
 export interface MsgMultiSendResponseSDKType {
-}
-/**
- * MsgUpdateParams is the Msg/UpdateParams request type.
- *
- * Since: cosmos-sdk 0.47
- */
-export interface MsgUpdateParams {
-    /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
-    authority: string;
-    /**
-     * params defines the x/bank parameters to update.
-     *
-     * NOTE: All parameters must be supplied.
-     */
-    params: Params;
-}
-export interface MsgUpdateParamsProtoMsg {
-    typeUrl: "/cosmos.bank.v1beta1.MsgUpdateParams";
-    value: Uint8Array;
-}
-/**
- * MsgUpdateParams is the Msg/UpdateParams request type.
- *
- * Since: cosmos-sdk 0.47
- */
-export interface MsgUpdateParamsAmino {
-    /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
-    authority?: string;
-    /**
-     * params defines the x/bank parameters to update.
-     *
-     * NOTE: All parameters must be supplied.
-     */
-    params: ParamsAmino;
-}
-export interface MsgUpdateParamsAminoMsg {
-    type: "cosmos-sdk/x/bank/MsgUpdateParams";
-    value: MsgUpdateParamsAmino;
-}
-/**
- * MsgUpdateParams is the Msg/UpdateParams request type.
- *
- * Since: cosmos-sdk 0.47
- */
-export interface MsgUpdateParamsSDKType {
-    authority: string;
-    params: ParamsSDKType;
-}
-/**
- * MsgUpdateParamsResponse defines the response structure for executing a
- * MsgUpdateParams message.
- *
- * Since: cosmos-sdk 0.47
- */
-export interface MsgUpdateParamsResponse {
-}
-export interface MsgUpdateParamsResponseProtoMsg {
-    typeUrl: "/cosmos.bank.v1beta1.MsgUpdateParamsResponse";
-    value: Uint8Array;
-}
-/**
- * MsgUpdateParamsResponse defines the response structure for executing a
- * MsgUpdateParams message.
- *
- * Since: cosmos-sdk 0.47
- */
-export interface MsgUpdateParamsResponseAmino {
-}
-export interface MsgUpdateParamsResponseAminoMsg {
-    type: "cosmos-sdk/MsgUpdateParamsResponse";
-    value: MsgUpdateParamsResponseAmino;
-}
-/**
- * MsgUpdateParamsResponse defines the response structure for executing a
- * MsgUpdateParams message.
- *
- * Since: cosmos-sdk 0.47
- */
-export interface MsgUpdateParamsResponseSDKType {
-}
-/**
- * MsgSetSendEnabled is the Msg/SetSendEnabled request type.
- *
- * Only entries to add/update/delete need to be included.
- * Existing SendEnabled entries that are not included in this
- * message are left unchanged.
- *
- * Since: cosmos-sdk 0.47
- */
-export interface MsgSetSendEnabled {
-    authority: string;
-    /** send_enabled is the list of entries to add or update. */
-    sendEnabled: SendEnabled[];
-    /**
-     * use_default_for is a list of denoms that should use the params.default_send_enabled value.
-     * Denoms listed here will have their SendEnabled entries deleted.
-     * If a denom is included that doesn't have a SendEnabled entry,
-     * it will be ignored.
-     */
-    useDefaultFor: string[];
-}
-export interface MsgSetSendEnabledProtoMsg {
-    typeUrl: "/cosmos.bank.v1beta1.MsgSetSendEnabled";
-    value: Uint8Array;
-}
-/**
- * MsgSetSendEnabled is the Msg/SetSendEnabled request type.
- *
- * Only entries to add/update/delete need to be included.
- * Existing SendEnabled entries that are not included in this
- * message are left unchanged.
- *
- * Since: cosmos-sdk 0.47
- */
-export interface MsgSetSendEnabledAmino {
-    authority?: string;
-    /** send_enabled is the list of entries to add or update. */
-    send_enabled?: SendEnabledAmino[];
-    /**
-     * use_default_for is a list of denoms that should use the params.default_send_enabled value.
-     * Denoms listed here will have their SendEnabled entries deleted.
-     * If a denom is included that doesn't have a SendEnabled entry,
-     * it will be ignored.
-     */
-    use_default_for?: string[];
-}
-export interface MsgSetSendEnabledAminoMsg {
-    type: "cosmos-sdk/MsgSetSendEnabled";
-    value: MsgSetSendEnabledAmino;
-}
-/**
- * MsgSetSendEnabled is the Msg/SetSendEnabled request type.
- *
- * Only entries to add/update/delete need to be included.
- * Existing SendEnabled entries that are not included in this
- * message are left unchanged.
- *
- * Since: cosmos-sdk 0.47
- */
-export interface MsgSetSendEnabledSDKType {
-    authority: string;
-    send_enabled: SendEnabledSDKType[];
-    use_default_for: string[];
-}
-/**
- * MsgSetSendEnabledResponse defines the Msg/SetSendEnabled response type.
- *
- * Since: cosmos-sdk 0.47
- */
-export interface MsgSetSendEnabledResponse {
-}
-export interface MsgSetSendEnabledResponseProtoMsg {
-    typeUrl: "/cosmos.bank.v1beta1.MsgSetSendEnabledResponse";
-    value: Uint8Array;
-}
-/**
- * MsgSetSendEnabledResponse defines the Msg/SetSendEnabled response type.
- *
- * Since: cosmos-sdk 0.47
- */
-export interface MsgSetSendEnabledResponseAmino {
-}
-export interface MsgSetSendEnabledResponseAminoMsg {
-    type: "cosmos-sdk/MsgSetSendEnabledResponse";
-    value: MsgSetSendEnabledResponseAmino;
-}
-/**
- * MsgSetSendEnabledResponse defines the Msg/SetSendEnabled response type.
- *
- * Since: cosmos-sdk 0.47
- */
-export interface MsgSetSendEnabledResponseSDKType {
 }
 export declare const MsgSend: {
     typeUrl: string;
@@ -315,56 +135,4 @@ export declare const MsgMultiSendResponse: {
     fromProtoMsg(message: MsgMultiSendResponseProtoMsg): MsgMultiSendResponse;
     toProto(message: MsgMultiSendResponse): Uint8Array;
     toProtoMsg(message: MsgMultiSendResponse): MsgMultiSendResponseProtoMsg;
-};
-export declare const MsgUpdateParams: {
-    typeUrl: string;
-    encode(message: MsgUpdateParams, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParams;
-    fromPartial(object: Partial<MsgUpdateParams>): MsgUpdateParams;
-    fromAmino(object: MsgUpdateParamsAmino): MsgUpdateParams;
-    toAmino(message: MsgUpdateParams): MsgUpdateParamsAmino;
-    fromAminoMsg(object: MsgUpdateParamsAminoMsg): MsgUpdateParams;
-    toAminoMsg(message: MsgUpdateParams): MsgUpdateParamsAminoMsg;
-    fromProtoMsg(message: MsgUpdateParamsProtoMsg): MsgUpdateParams;
-    toProto(message: MsgUpdateParams): Uint8Array;
-    toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg;
-};
-export declare const MsgUpdateParamsResponse: {
-    typeUrl: string;
-    encode(_: MsgUpdateParamsResponse, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParamsResponse;
-    fromPartial(_: Partial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse;
-    fromAmino(_: MsgUpdateParamsResponseAmino): MsgUpdateParamsResponse;
-    toAmino(_: MsgUpdateParamsResponse): MsgUpdateParamsResponseAmino;
-    fromAminoMsg(object: MsgUpdateParamsResponseAminoMsg): MsgUpdateParamsResponse;
-    toAminoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseAminoMsg;
-    fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse;
-    toProto(message: MsgUpdateParamsResponse): Uint8Array;
-    toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg;
-};
-export declare const MsgSetSendEnabled: {
-    typeUrl: string;
-    encode(message: MsgSetSendEnabled, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): MsgSetSendEnabled;
-    fromPartial(object: Partial<MsgSetSendEnabled>): MsgSetSendEnabled;
-    fromAmino(object: MsgSetSendEnabledAmino): MsgSetSendEnabled;
-    toAmino(message: MsgSetSendEnabled): MsgSetSendEnabledAmino;
-    fromAminoMsg(object: MsgSetSendEnabledAminoMsg): MsgSetSendEnabled;
-    toAminoMsg(message: MsgSetSendEnabled): MsgSetSendEnabledAminoMsg;
-    fromProtoMsg(message: MsgSetSendEnabledProtoMsg): MsgSetSendEnabled;
-    toProto(message: MsgSetSendEnabled): Uint8Array;
-    toProtoMsg(message: MsgSetSendEnabled): MsgSetSendEnabledProtoMsg;
-};
-export declare const MsgSetSendEnabledResponse: {
-    typeUrl: string;
-    encode(_: MsgSetSendEnabledResponse, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): MsgSetSendEnabledResponse;
-    fromPartial(_: Partial<MsgSetSendEnabledResponse>): MsgSetSendEnabledResponse;
-    fromAmino(_: MsgSetSendEnabledResponseAmino): MsgSetSendEnabledResponse;
-    toAmino(_: MsgSetSendEnabledResponse): MsgSetSendEnabledResponseAmino;
-    fromAminoMsg(object: MsgSetSendEnabledResponseAminoMsg): MsgSetSendEnabledResponse;
-    toAminoMsg(message: MsgSetSendEnabledResponse): MsgSetSendEnabledResponseAminoMsg;
-    fromProtoMsg(message: MsgSetSendEnabledResponseProtoMsg): MsgSetSendEnabledResponse;
-    toProto(message: MsgSetSendEnabledResponse): Uint8Array;
-    toProtoMsg(message: MsgSetSendEnabledResponse): MsgSetSendEnabledResponseProtoMsg;
 };

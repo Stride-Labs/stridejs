@@ -53,64 +53,36 @@ export interface MetadataAminoMsg {
 export interface MetadataSDKType {
     chunk_hashes: Uint8Array[];
 }
-/**
- * SnapshotItem is an item contained in a rootmulti.Store snapshot.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotItem is an item contained in a rootmulti.Store snapshot. */
 export interface SnapshotItem {
     store?: SnapshotStoreItem;
     iavl?: SnapshotIAVLItem;
     extension?: SnapshotExtensionMeta;
     extensionPayload?: SnapshotExtensionPayload;
-    /** @deprecated */
-    kv?: SnapshotKVItem;
-    /** @deprecated */
-    schema?: SnapshotSchema;
 }
 export interface SnapshotItemProtoMsg {
     typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotItem";
     value: Uint8Array;
 }
-/**
- * SnapshotItem is an item contained in a rootmulti.Store snapshot.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotItem is an item contained in a rootmulti.Store snapshot. */
 export interface SnapshotItemAmino {
     store?: SnapshotStoreItemAmino;
     iavl?: SnapshotIAVLItemAmino;
     extension?: SnapshotExtensionMetaAmino;
     extension_payload?: SnapshotExtensionPayloadAmino;
-    /** @deprecated */
-    kv?: SnapshotKVItemAmino;
-    /** @deprecated */
-    schema?: SnapshotSchemaAmino;
 }
 export interface SnapshotItemAminoMsg {
     type: "cosmos-sdk/SnapshotItem";
     value: SnapshotItemAmino;
 }
-/**
- * SnapshotItem is an item contained in a rootmulti.Store snapshot.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotItem is an item contained in a rootmulti.Store snapshot. */
 export interface SnapshotItemSDKType {
     store?: SnapshotStoreItemSDKType;
     iavl?: SnapshotIAVLItemSDKType;
     extension?: SnapshotExtensionMetaSDKType;
     extension_payload?: SnapshotExtensionPayloadSDKType;
-    /** @deprecated */
-    kv?: SnapshotKVItemSDKType;
-    /** @deprecated */
-    schema?: SnapshotSchemaSDKType;
 }
-/**
- * SnapshotStoreItem contains metadata about a snapshotted store.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotStoreItem contains metadata about a snapshotted store. */
 export interface SnapshotStoreItem {
     name: string;
 }
@@ -118,11 +90,7 @@ export interface SnapshotStoreItemProtoMsg {
     typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotStoreItem";
     value: Uint8Array;
 }
-/**
- * SnapshotStoreItem contains metadata about a snapshotted store.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotStoreItem contains metadata about a snapshotted store. */
 export interface SnapshotStoreItemAmino {
     name?: string;
 }
@@ -130,19 +98,11 @@ export interface SnapshotStoreItemAminoMsg {
     type: "cosmos-sdk/SnapshotStoreItem";
     value: SnapshotStoreItemAmino;
 }
-/**
- * SnapshotStoreItem contains metadata about a snapshotted store.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotStoreItem contains metadata about a snapshotted store. */
 export interface SnapshotStoreItemSDKType {
     name: string;
 }
-/**
- * SnapshotIAVLItem is an exported IAVL node.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotIAVLItem is an exported IAVL node. */
 export interface SnapshotIAVLItem {
     key: Uint8Array;
     value: Uint8Array;
@@ -155,11 +115,7 @@ export interface SnapshotIAVLItemProtoMsg {
     typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotIAVLItem";
     value: Uint8Array;
 }
-/**
- * SnapshotIAVLItem is an exported IAVL node.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotIAVLItem is an exported IAVL node. */
 export interface SnapshotIAVLItemAmino {
     key?: string;
     value?: string;
@@ -172,22 +128,14 @@ export interface SnapshotIAVLItemAminoMsg {
     type: "cosmos-sdk/SnapshotIAVLItem";
     value: SnapshotIAVLItemAmino;
 }
-/**
- * SnapshotIAVLItem is an exported IAVL node.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotIAVLItem is an exported IAVL node. */
 export interface SnapshotIAVLItemSDKType {
     key: Uint8Array;
     value: Uint8Array;
     version: bigint;
     height: number;
 }
-/**
- * SnapshotExtensionMeta contains metadata about an external snapshotter.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotExtensionMeta contains metadata about an external snapshotter. */
 export interface SnapshotExtensionMeta {
     name: string;
     format: number;
@@ -196,11 +144,7 @@ export interface SnapshotExtensionMetaProtoMsg {
     typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotExtensionMeta";
     value: Uint8Array;
 }
-/**
- * SnapshotExtensionMeta contains metadata about an external snapshotter.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotExtensionMeta contains metadata about an external snapshotter. */
 export interface SnapshotExtensionMetaAmino {
     name?: string;
     format?: number;
@@ -209,20 +153,12 @@ export interface SnapshotExtensionMetaAminoMsg {
     type: "cosmos-sdk/SnapshotExtensionMeta";
     value: SnapshotExtensionMetaAmino;
 }
-/**
- * SnapshotExtensionMeta contains metadata about an external snapshotter.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotExtensionMeta contains metadata about an external snapshotter. */
 export interface SnapshotExtensionMetaSDKType {
     name: string;
     format: number;
 }
-/**
- * SnapshotExtensionPayload contains payloads of an external snapshotter.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotExtensionPayload contains payloads of an external snapshotter. */
 export interface SnapshotExtensionPayload {
     payload: Uint8Array;
 }
@@ -230,11 +166,7 @@ export interface SnapshotExtensionPayloadProtoMsg {
     typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotExtensionPayload";
     value: Uint8Array;
 }
-/**
- * SnapshotExtensionPayload contains payloads of an external snapshotter.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotExtensionPayload contains payloads of an external snapshotter. */
 export interface SnapshotExtensionPayloadAmino {
     payload?: string;
 }
@@ -242,92 +174,9 @@ export interface SnapshotExtensionPayloadAminoMsg {
     type: "cosmos-sdk/SnapshotExtensionPayload";
     value: SnapshotExtensionPayloadAmino;
 }
-/**
- * SnapshotExtensionPayload contains payloads of an external snapshotter.
- *
- * Since: cosmos-sdk 0.46
- */
+/** SnapshotExtensionPayload contains payloads of an external snapshotter. */
 export interface SnapshotExtensionPayloadSDKType {
     payload: Uint8Array;
-}
-/**
- * SnapshotKVItem is an exported Key/Value Pair
- *
- * Since: cosmos-sdk 0.46
- * Deprecated: This message was part of store/v2alpha1 which has been deleted from v0.47.
- */
-/** @deprecated */
-export interface SnapshotKVItem {
-    key: Uint8Array;
-    value: Uint8Array;
-}
-export interface SnapshotKVItemProtoMsg {
-    typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotKVItem";
-    value: Uint8Array;
-}
-/**
- * SnapshotKVItem is an exported Key/Value Pair
- *
- * Since: cosmos-sdk 0.46
- * Deprecated: This message was part of store/v2alpha1 which has been deleted from v0.47.
- */
-/** @deprecated */
-export interface SnapshotKVItemAmino {
-    key?: string;
-    value?: string;
-}
-export interface SnapshotKVItemAminoMsg {
-    type: "cosmos-sdk/SnapshotKVItem";
-    value: SnapshotKVItemAmino;
-}
-/**
- * SnapshotKVItem is an exported Key/Value Pair
- *
- * Since: cosmos-sdk 0.46
- * Deprecated: This message was part of store/v2alpha1 which has been deleted from v0.47.
- */
-/** @deprecated */
-export interface SnapshotKVItemSDKType {
-    key: Uint8Array;
-    value: Uint8Array;
-}
-/**
- * SnapshotSchema is an exported schema of smt store
- *
- * Since: cosmos-sdk 0.46
- * Deprecated: This message was part of store/v2alpha1 which has been deleted from v0.47.
- */
-/** @deprecated */
-export interface SnapshotSchema {
-    keys: Uint8Array[];
-}
-export interface SnapshotSchemaProtoMsg {
-    typeUrl: "/cosmos.base.snapshots.v1beta1.SnapshotSchema";
-    value: Uint8Array;
-}
-/**
- * SnapshotSchema is an exported schema of smt store
- *
- * Since: cosmos-sdk 0.46
- * Deprecated: This message was part of store/v2alpha1 which has been deleted from v0.47.
- */
-/** @deprecated */
-export interface SnapshotSchemaAmino {
-    keys?: string[];
-}
-export interface SnapshotSchemaAminoMsg {
-    type: "cosmos-sdk/SnapshotSchema";
-    value: SnapshotSchemaAmino;
-}
-/**
- * SnapshotSchema is an exported schema of smt store
- *
- * Since: cosmos-sdk 0.46
- * Deprecated: This message was part of store/v2alpha1 which has been deleted from v0.47.
- */
-/** @deprecated */
-export interface SnapshotSchemaSDKType {
-    keys: Uint8Array[];
 }
 export declare const Snapshot: {
     typeUrl: string;
@@ -419,30 +268,4 @@ export declare const SnapshotExtensionPayload: {
     fromProtoMsg(message: SnapshotExtensionPayloadProtoMsg): SnapshotExtensionPayload;
     toProto(message: SnapshotExtensionPayload): Uint8Array;
     toProtoMsg(message: SnapshotExtensionPayload): SnapshotExtensionPayloadProtoMsg;
-};
-export declare const SnapshotKVItem: {
-    typeUrl: string;
-    encode(message: SnapshotKVItem, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): SnapshotKVItem;
-    fromPartial(object: Partial<SnapshotKVItem>): SnapshotKVItem;
-    fromAmino(object: SnapshotKVItemAmino): SnapshotKVItem;
-    toAmino(message: SnapshotKVItem): SnapshotKVItemAmino;
-    fromAminoMsg(object: SnapshotKVItemAminoMsg): SnapshotKVItem;
-    toAminoMsg(message: SnapshotKVItem): SnapshotKVItemAminoMsg;
-    fromProtoMsg(message: SnapshotKVItemProtoMsg): SnapshotKVItem;
-    toProto(message: SnapshotKVItem): Uint8Array;
-    toProtoMsg(message: SnapshotKVItem): SnapshotKVItemProtoMsg;
-};
-export declare const SnapshotSchema: {
-    typeUrl: string;
-    encode(message: SnapshotSchema, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): SnapshotSchema;
-    fromPartial(object: Partial<SnapshotSchema>): SnapshotSchema;
-    fromAmino(object: SnapshotSchemaAmino): SnapshotSchema;
-    toAmino(message: SnapshotSchema): SnapshotSchemaAmino;
-    fromAminoMsg(object: SnapshotSchemaAminoMsg): SnapshotSchema;
-    toAminoMsg(message: SnapshotSchema): SnapshotSchemaAminoMsg;
-    fromProtoMsg(message: SnapshotSchemaProtoMsg): SnapshotSchema;
-    toProto(message: SnapshotSchema): Uint8Array;
-    toProtoMsg(message: SnapshotSchema): SnapshotSchemaProtoMsg;
 };

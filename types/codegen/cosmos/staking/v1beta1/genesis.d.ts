@@ -1,8 +1,8 @@
-import { Params, ParamsAmino, ParamsSDKType, Validator, ValidatorAmino, ValidatorSDKType, Delegation, DelegationAmino, DelegationSDKType, UnbondingDelegation, UnbondingDelegationAmino, UnbondingDelegationSDKType, Redelegation, RedelegationAmino, RedelegationSDKType } from "./staking";
+import { Params, ParamsAmino, ParamsSDKType, Validator, ValidatorAmino, ValidatorSDKType, Delegation, DelegationAmino, DelegationSDKType, UnbondingDelegation, UnbondingDelegationAmino, UnbondingDelegationSDKType, Redelegation, RedelegationAmino, RedelegationSDKType, TokenizeShareRecord, TokenizeShareRecordAmino, TokenizeShareRecordSDKType } from "./staking";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 /** GenesisState defines the staking module's genesis state. */
 export interface GenesisState {
-    /** params defines all the parameters of related to deposit. */
+    /** params defines all the paramaters of related to deposit. */
     params: Params;
     /**
      * last_total_power tracks the total amounts of bonded tokens recorded during
@@ -23,6 +23,14 @@ export interface GenesisState {
     /** redelegations defines the redelegations active at genesis. */
     redelegations: Redelegation[];
     exported: boolean;
+    /** store tokenize share records to provide reward to record owners */
+    tokenizeShareRecords: TokenizeShareRecord[];
+    /** last tokenize share record id, used for next share record id calculation */
+    lastTokenizeShareRecordId: bigint;
+    /** total number of liquid staked tokens at genesis */
+    totalLiquidStakedTokens: Uint8Array;
+    /** tokenize shares locks at genesis */
+    tokenizeShareLocks: TokenizeShareLock[];
 }
 export interface GenesisStateProtoMsg {
     typeUrl: "/cosmos.staking.v1beta1.GenesisState";
@@ -30,27 +38,35 @@ export interface GenesisStateProtoMsg {
 }
 /** GenesisState defines the staking module's genesis state. */
 export interface GenesisStateAmino {
-    /** params defines all the parameters of related to deposit. */
-    params: ParamsAmino;
+    /** params defines all the paramaters of related to deposit. */
+    params?: ParamsAmino;
     /**
      * last_total_power tracks the total amounts of bonded tokens recorded during
      * the previous end block.
      */
-    last_total_power: string;
+    last_total_power?: string;
     /**
      * last_validator_powers is a special index that provides a historical list
      * of the last-block's bonded validators.
      */
-    last_validator_powers: LastValidatorPowerAmino[];
+    last_validator_powers?: LastValidatorPowerAmino[];
     /** delegations defines the validator set at genesis. */
-    validators: ValidatorAmino[];
+    validators?: ValidatorAmino[];
     /** delegations defines the delegations active at genesis. */
-    delegations: DelegationAmino[];
+    delegations?: DelegationAmino[];
     /** unbonding_delegations defines the unbonding delegations active at genesis. */
-    unbonding_delegations: UnbondingDelegationAmino[];
+    unbonding_delegations?: UnbondingDelegationAmino[];
     /** redelegations defines the redelegations active at genesis. */
-    redelegations: RedelegationAmino[];
+    redelegations?: RedelegationAmino[];
     exported?: boolean;
+    /** store tokenize share records to provide reward to record owners */
+    tokenize_share_records?: TokenizeShareRecordAmino[];
+    /** last tokenize share record id, used for next share record id calculation */
+    last_tokenize_share_record_id?: string;
+    /** total number of liquid staked tokens at genesis */
+    total_liquid_staked_tokens?: string;
+    /** tokenize shares locks at genesis */
+    tokenize_share_locks?: TokenizeShareLockAmino[];
 }
 export interface GenesisStateAminoMsg {
     type: "cosmos-sdk/GenesisState";
@@ -66,6 +82,42 @@ export interface GenesisStateSDKType {
     unbonding_delegations: UnbondingDelegationSDKType[];
     redelegations: RedelegationSDKType[];
     exported: boolean;
+    tokenize_share_records: TokenizeShareRecordSDKType[];
+    last_tokenize_share_record_id: bigint;
+    total_liquid_staked_tokens: Uint8Array;
+    tokenize_share_locks: TokenizeShareLockSDKType[];
+}
+/** TokenizeSharesLock required for specifying account locks at genesis */
+export interface TokenizeShareLock {
+    /** Address of the account that is locked */
+    address: string;
+    /** Status of the lock (LOCKED or LOCK_EXPIRING) */
+    status: string;
+    /** Completion time if the lock is expiring */
+    completionTime: Date;
+}
+export interface TokenizeShareLockProtoMsg {
+    typeUrl: "/cosmos.staking.v1beta1.TokenizeShareLock";
+    value: Uint8Array;
+}
+/** TokenizeSharesLock required for specifying account locks at genesis */
+export interface TokenizeShareLockAmino {
+    /** Address of the account that is locked */
+    address?: string;
+    /** Status of the lock (LOCKED or LOCK_EXPIRING) */
+    status?: string;
+    /** Completion time if the lock is expiring */
+    completion_time?: string;
+}
+export interface TokenizeShareLockAminoMsg {
+    type: "cosmos-sdk/TokenizeShareLock";
+    value: TokenizeShareLockAmino;
+}
+/** TokenizeSharesLock required for specifying account locks at genesis */
+export interface TokenizeShareLockSDKType {
+    address: string;
+    status: string;
+    completion_time: Date;
 }
 /** LastValidatorPower required for validator set update logic. */
 export interface LastValidatorPower {
@@ -106,6 +158,19 @@ export declare const GenesisState: {
     fromProtoMsg(message: GenesisStateProtoMsg): GenesisState;
     toProto(message: GenesisState): Uint8Array;
     toProtoMsg(message: GenesisState): GenesisStateProtoMsg;
+};
+export declare const TokenizeShareLock: {
+    typeUrl: string;
+    encode(message: TokenizeShareLock, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): TokenizeShareLock;
+    fromPartial(object: Partial<TokenizeShareLock>): TokenizeShareLock;
+    fromAmino(object: TokenizeShareLockAmino): TokenizeShareLock;
+    toAmino(message: TokenizeShareLock): TokenizeShareLockAmino;
+    fromAminoMsg(object: TokenizeShareLockAminoMsg): TokenizeShareLock;
+    toAminoMsg(message: TokenizeShareLock): TokenizeShareLockAminoMsg;
+    fromProtoMsg(message: TokenizeShareLockProtoMsg): TokenizeShareLock;
+    toProto(message: TokenizeShareLock): Uint8Array;
+    toProtoMsg(message: TokenizeShareLock): TokenizeShareLockProtoMsg;
 };
 export declare const LastValidatorPower: {
     typeUrl: string;

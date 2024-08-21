@@ -12,7 +12,7 @@ export const config = [
   },
   {
     repo: "https://github.com/cosmos/cosmos-sdk",
-    rev: "v0.47.10",
+    rev: "v0.45.16-ics-lsm",
   },
   {
     repo: "https://github.com/cosmos/ibc-go",

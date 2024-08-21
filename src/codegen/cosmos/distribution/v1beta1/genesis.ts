@@ -44,7 +44,7 @@ export interface DelegatorWithdrawInfoSDKType {
 export interface ValidatorOutstandingRewardsRecord {
   /** validator_address is the address of the validator. */
   validatorAddress: string;
-  /** outstanding_rewards represents the outstanding rewards of a validator. */
+  /** outstanding_rewards represents the oustanding rewards of a validator. */
   outstandingRewards: DecCoin[];
 }
 export interface ValidatorOutstandingRewardsRecordProtoMsg {
@@ -55,8 +55,8 @@ export interface ValidatorOutstandingRewardsRecordProtoMsg {
 export interface ValidatorOutstandingRewardsRecordAmino {
   /** validator_address is the address of the validator. */
   validator_address?: string;
-  /** outstanding_rewards represents the outstanding rewards of a validator. */
-  outstanding_rewards: DecCoinAmino[];
+  /** outstanding_rewards represents the oustanding rewards of a validator. */
+  outstanding_rewards?: DecCoinAmino[];
 }
 export interface ValidatorOutstandingRewardsRecordAminoMsg {
   type: "cosmos-sdk/ValidatorOutstandingRewardsRecord";
@@ -89,7 +89,7 @@ export interface ValidatorAccumulatedCommissionRecordAmino {
   /** validator_address is the address of the validator. */
   validator_address?: string;
   /** accumulated is the accumulated commission of a validator. */
-  accumulated: ValidatorAccumulatedCommissionAmino;
+  accumulated?: ValidatorAccumulatedCommissionAmino;
 }
 export interface ValidatorAccumulatedCommissionRecordAminoMsg {
   type: "cosmos-sdk/ValidatorAccumulatedCommissionRecord";
@@ -129,7 +129,7 @@ export interface ValidatorHistoricalRewardsRecordAmino {
   /** period defines the period the historical rewards apply to. */
   period?: string;
   /** rewards defines the historical rewards of a validator. */
-  rewards: ValidatorHistoricalRewardsAmino;
+  rewards?: ValidatorHistoricalRewardsAmino;
 }
 export interface ValidatorHistoricalRewardsRecordAminoMsg {
   type: "cosmos-sdk/ValidatorHistoricalRewardsRecord";
@@ -160,7 +160,7 @@ export interface ValidatorCurrentRewardsRecordAmino {
   /** validator_address is the address of the validator. */
   validator_address?: string;
   /** rewards defines the current rewards of a validator. */
-  rewards: ValidatorCurrentRewardsAmino;
+  rewards?: ValidatorCurrentRewardsAmino;
 }
 export interface ValidatorCurrentRewardsRecordAminoMsg {
   type: "cosmos-sdk/ValidatorCurrentRewardsRecord";
@@ -191,7 +191,7 @@ export interface DelegatorStartingInfoRecordAmino {
   /** validator_address is the address of the validator. */
   validator_address?: string;
   /** starting_info defines the starting info of a delegator. */
-  starting_info: DelegatorStartingInfoAmino;
+  starting_info?: DelegatorStartingInfoAmino;
 }
 export interface DelegatorStartingInfoRecordAminoMsg {
   type: "cosmos-sdk/DelegatorStartingInfoRecord";
@@ -207,7 +207,7 @@ export interface DelegatorStartingInfoRecordSDKType {
 export interface ValidatorSlashEventRecord {
   /** validator_address is the address of the validator. */
   validatorAddress: string;
-  /** height defines the block height at which the slash event occurred. */
+  /** height defines the block height at which the slash event occured. */
   height: bigint;
   /** period is the period of the slash event. */
   period: bigint;
@@ -222,12 +222,12 @@ export interface ValidatorSlashEventRecordProtoMsg {
 export interface ValidatorSlashEventRecordAmino {
   /** validator_address is the address of the validator. */
   validator_address?: string;
-  /** height defines the block height at which the slash event occurred. */
+  /** height defines the block height at which the slash event occured. */
   height?: string;
   /** period is the period of the slash event. */
   period?: string;
   /** validator_slash_event describes the slash event. */
-  validator_slash_event: ValidatorSlashEventAmino;
+  validator_slash_event?: ValidatorSlashEventAmino;
 }
 export interface ValidatorSlashEventRecordAminoMsg {
   type: "cosmos-sdk/ValidatorSlashEventRecord";
@@ -242,7 +242,7 @@ export interface ValidatorSlashEventRecordSDKType {
 }
 /** GenesisState defines the distribution module's genesis state. */
 export interface GenesisState {
-  /** params defines all the parameters of the module. */
+  /** params defines all the paramaters of the module. */
   params: Params;
   /** fee_pool defines the fee pool at genesis. */
   feePool: FeePool;
@@ -252,7 +252,7 @@ export interface GenesisState {
   previousProposer: string;
   /** fee_pool defines the outstanding rewards of all validators at genesis. */
   outstandingRewards: ValidatorOutstandingRewardsRecord[];
-  /** fee_pool defines the accumulated commissions of all validators at genesis. */
+  /** fee_pool defines the accumulated commisions of all validators at genesis. */
   validatorAccumulatedCommissions: ValidatorAccumulatedCommissionRecord[];
   /** fee_pool defines the historical rewards of all validators at genesis. */
   validatorHistoricalRewards: ValidatorHistoricalRewardsRecord[];
@@ -269,26 +269,26 @@ export interface GenesisStateProtoMsg {
 }
 /** GenesisState defines the distribution module's genesis state. */
 export interface GenesisStateAmino {
-  /** params defines all the parameters of the module. */
-  params: ParamsAmino;
+  /** params defines all the paramaters of the module. */
+  params?: ParamsAmino;
   /** fee_pool defines the fee pool at genesis. */
-  fee_pool: FeePoolAmino;
+  fee_pool?: FeePoolAmino;
   /** fee_pool defines the delegator withdraw infos at genesis. */
-  delegator_withdraw_infos: DelegatorWithdrawInfoAmino[];
+  delegator_withdraw_infos?: DelegatorWithdrawInfoAmino[];
   /** fee_pool defines the previous proposer at genesis. */
   previous_proposer?: string;
   /** fee_pool defines the outstanding rewards of all validators at genesis. */
-  outstanding_rewards: ValidatorOutstandingRewardsRecordAmino[];
-  /** fee_pool defines the accumulated commissions of all validators at genesis. */
-  validator_accumulated_commissions: ValidatorAccumulatedCommissionRecordAmino[];
+  outstanding_rewards?: ValidatorOutstandingRewardsRecordAmino[];
+  /** fee_pool defines the accumulated commisions of all validators at genesis. */
+  validator_accumulated_commissions?: ValidatorAccumulatedCommissionRecordAmino[];
   /** fee_pool defines the historical rewards of all validators at genesis. */
-  validator_historical_rewards: ValidatorHistoricalRewardsRecordAmino[];
+  validator_historical_rewards?: ValidatorHistoricalRewardsRecordAmino[];
   /** fee_pool defines the current rewards of all validators at genesis. */
-  validator_current_rewards: ValidatorCurrentRewardsRecordAmino[];
+  validator_current_rewards?: ValidatorCurrentRewardsRecordAmino[];
   /** fee_pool defines the delegator starting infos at genesis. */
-  delegator_starting_infos: DelegatorStartingInfoRecordAmino[];
+  delegator_starting_infos?: DelegatorStartingInfoRecordAmino[];
   /** fee_pool defines the validator slash events at genesis. */
-  validator_slash_events: ValidatorSlashEventRecordAmino[];
+  validator_slash_events?: ValidatorSlashEventRecordAmino[];
 }
 export interface GenesisStateAminoMsg {
   type: "cosmos-sdk/GenesisState";
@@ -527,7 +527,7 @@ export const ValidatorAccumulatedCommissionRecord = {
   toAmino(message: ValidatorAccumulatedCommissionRecord): ValidatorAccumulatedCommissionRecordAmino {
     const obj: any = {};
     obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
-    obj.accumulated = message.accumulated ? ValidatorAccumulatedCommission.toAmino(message.accumulated) : ValidatorAccumulatedCommission.toAmino(ValidatorAccumulatedCommission.fromPartial({}));
+    obj.accumulated = message.accumulated ? ValidatorAccumulatedCommission.toAmino(message.accumulated) : undefined;
     return obj;
   },
   fromAminoMsg(object: ValidatorAccumulatedCommissionRecordAminoMsg): ValidatorAccumulatedCommissionRecord {
@@ -620,7 +620,7 @@ export const ValidatorHistoricalRewardsRecord = {
     const obj: any = {};
     obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
     obj.period = message.period !== BigInt(0) ? message.period.toString() : undefined;
-    obj.rewards = message.rewards ? ValidatorHistoricalRewards.toAmino(message.rewards) : ValidatorHistoricalRewards.toAmino(ValidatorHistoricalRewards.fromPartial({}));
+    obj.rewards = message.rewards ? ValidatorHistoricalRewards.toAmino(message.rewards) : undefined;
     return obj;
   },
   fromAminoMsg(object: ValidatorHistoricalRewardsRecordAminoMsg): ValidatorHistoricalRewardsRecord {
@@ -701,7 +701,7 @@ export const ValidatorCurrentRewardsRecord = {
   toAmino(message: ValidatorCurrentRewardsRecord): ValidatorCurrentRewardsRecordAmino {
     const obj: any = {};
     obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
-    obj.rewards = message.rewards ? ValidatorCurrentRewards.toAmino(message.rewards) : ValidatorCurrentRewards.toAmino(ValidatorCurrentRewards.fromPartial({}));
+    obj.rewards = message.rewards ? ValidatorCurrentRewards.toAmino(message.rewards) : undefined;
     return obj;
   },
   fromAminoMsg(object: ValidatorCurrentRewardsRecordAminoMsg): ValidatorCurrentRewardsRecord {
@@ -794,7 +794,7 @@ export const DelegatorStartingInfoRecord = {
     const obj: any = {};
     obj.delegator_address = message.delegatorAddress === "" ? undefined : message.delegatorAddress;
     obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
-    obj.starting_info = message.startingInfo ? DelegatorStartingInfo.toAmino(message.startingInfo) : DelegatorStartingInfo.toAmino(DelegatorStartingInfo.fromPartial({}));
+    obj.starting_info = message.startingInfo ? DelegatorStartingInfo.toAmino(message.startingInfo) : undefined;
     return obj;
   },
   fromAminoMsg(object: DelegatorStartingInfoRecordAminoMsg): DelegatorStartingInfoRecord {
@@ -899,7 +899,7 @@ export const ValidatorSlashEventRecord = {
     obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
     obj.height = message.height !== BigInt(0) ? message.height.toString() : undefined;
     obj.period = message.period !== BigInt(0) ? message.period.toString() : undefined;
-    obj.validator_slash_event = message.validatorSlashEvent ? ValidatorSlashEvent.toAmino(message.validatorSlashEvent) : ValidatorSlashEvent.toAmino(ValidatorSlashEvent.fromPartial({}));
+    obj.validator_slash_event = message.validatorSlashEvent ? ValidatorSlashEvent.toAmino(message.validatorSlashEvent) : undefined;
     return obj;
   },
   fromAminoMsg(object: ValidatorSlashEventRecordAminoMsg): ValidatorSlashEventRecord {
@@ -1053,8 +1053,8 @@ export const GenesisState = {
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
-    obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
-    obj.fee_pool = message.feePool ? FeePool.toAmino(message.feePool) : FeePool.toAmino(FeePool.fromPartial({}));
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    obj.fee_pool = message.feePool ? FeePool.toAmino(message.feePool) : undefined;
     if (message.delegatorWithdrawInfos) {
       obj.delegator_withdraw_infos = message.delegatorWithdrawInfos.map(e => e ? DelegatorWithdrawInfo.toAmino(e) : undefined);
     } else {

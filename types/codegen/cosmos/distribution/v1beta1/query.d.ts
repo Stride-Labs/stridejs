@@ -1,5 +1,5 @@
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
-import { Params, ParamsAmino, ParamsSDKType, ValidatorOutstandingRewards, ValidatorOutstandingRewardsAmino, ValidatorOutstandingRewardsSDKType, ValidatorAccumulatedCommission, ValidatorAccumulatedCommissionAmino, ValidatorAccumulatedCommissionSDKType, ValidatorSlashEvent, ValidatorSlashEventAmino, ValidatorSlashEventSDKType, DelegationDelegatorReward, DelegationDelegatorRewardAmino, DelegationDelegatorRewardSDKType } from "./distribution";
+import { Params, ParamsAmino, ParamsSDKType, ValidatorOutstandingRewards, ValidatorOutstandingRewardsAmino, ValidatorOutstandingRewardsSDKType, ValidatorAccumulatedCommission, ValidatorAccumulatedCommissionAmino, ValidatorAccumulatedCommissionSDKType, ValidatorSlashEvent, ValidatorSlashEventAmino, ValidatorSlashEventSDKType, DelegationDelegatorReward, DelegationDelegatorRewardAmino, DelegationDelegatorRewardSDKType, TokenizeShareRecordReward, TokenizeShareRecordRewardAmino, TokenizeShareRecordRewardSDKType } from "./distribution";
 import { DecCoin, DecCoinAmino, DecCoinSDKType } from "../../base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 /** QueryParamsRequest is the request type for the Query/Params RPC method. */
@@ -31,7 +31,7 @@ export interface QueryParamsResponseProtoMsg {
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
 export interface QueryParamsResponseAmino {
     /** params defines the parameters of the module. */
-    params: ParamsAmino;
+    params?: ParamsAmino;
 }
 export interface QueryParamsResponseAminoMsg {
     type: "cosmos-sdk/QueryParamsResponse";
@@ -40,60 +40,6 @@ export interface QueryParamsResponseAminoMsg {
 /** QueryParamsResponse is the response type for the Query/Params RPC method. */
 export interface QueryParamsResponseSDKType {
     params: ParamsSDKType;
-}
-/** QueryValidatorDistributionInfoRequest is the request type for the Query/ValidatorDistributionInfo RPC method. */
-export interface QueryValidatorDistributionInfoRequest {
-    /** validator_address defines the validator address to query for. */
-    validatorAddress: string;
-}
-export interface QueryValidatorDistributionInfoRequestProtoMsg {
-    typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorDistributionInfoRequest";
-    value: Uint8Array;
-}
-/** QueryValidatorDistributionInfoRequest is the request type for the Query/ValidatorDistributionInfo RPC method. */
-export interface QueryValidatorDistributionInfoRequestAmino {
-    /** validator_address defines the validator address to query for. */
-    validator_address?: string;
-}
-export interface QueryValidatorDistributionInfoRequestAminoMsg {
-    type: "cosmos-sdk/QueryValidatorDistributionInfoRequest";
-    value: QueryValidatorDistributionInfoRequestAmino;
-}
-/** QueryValidatorDistributionInfoRequest is the request type for the Query/ValidatorDistributionInfo RPC method. */
-export interface QueryValidatorDistributionInfoRequestSDKType {
-    validator_address: string;
-}
-/** QueryValidatorDistributionInfoResponse is the response type for the Query/ValidatorDistributionInfo RPC method. */
-export interface QueryValidatorDistributionInfoResponse {
-    /** operator_address defines the validator operator address. */
-    operatorAddress: string;
-    /** self_bond_rewards defines the self delegations rewards. */
-    selfBondRewards: DecCoin[];
-    /** commission defines the commission the validator received. */
-    commission: DecCoin[];
-}
-export interface QueryValidatorDistributionInfoResponseProtoMsg {
-    typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorDistributionInfoResponse";
-    value: Uint8Array;
-}
-/** QueryValidatorDistributionInfoResponse is the response type for the Query/ValidatorDistributionInfo RPC method. */
-export interface QueryValidatorDistributionInfoResponseAmino {
-    /** operator_address defines the validator operator address. */
-    operator_address?: string;
-    /** self_bond_rewards defines the self delegations rewards. */
-    self_bond_rewards: DecCoinAmino[];
-    /** commission defines the commission the validator received. */
-    commission?: DecCoinAmino[];
-}
-export interface QueryValidatorDistributionInfoResponseAminoMsg {
-    type: "cosmos-sdk/QueryValidatorDistributionInfoResponse";
-    value: QueryValidatorDistributionInfoResponseAmino;
-}
-/** QueryValidatorDistributionInfoResponse is the response type for the Query/ValidatorDistributionInfo RPC method. */
-export interface QueryValidatorDistributionInfoResponseSDKType {
-    operator_address: string;
-    self_bond_rewards: DecCoinSDKType[];
-    commission: DecCoinSDKType[];
 }
 /**
  * QueryValidatorOutstandingRewardsRequest is the request type for the
@@ -142,7 +88,7 @@ export interface QueryValidatorOutstandingRewardsResponseProtoMsg {
  * Query/ValidatorOutstandingRewards RPC method.
  */
 export interface QueryValidatorOutstandingRewardsResponseAmino {
-    rewards: ValidatorOutstandingRewardsAmino;
+    rewards?: ValidatorOutstandingRewardsAmino;
 }
 export interface QueryValidatorOutstandingRewardsResponseAminoMsg {
     type: "cosmos-sdk/QueryValidatorOutstandingRewardsResponse";
@@ -191,7 +137,7 @@ export interface QueryValidatorCommissionRequestSDKType {
  * Query/ValidatorCommission RPC method
  */
 export interface QueryValidatorCommissionResponse {
-    /** commission defines the commission the validator received. */
+    /** commission defines the commision the validator received. */
     commission: ValidatorAccumulatedCommission;
 }
 export interface QueryValidatorCommissionResponseProtoMsg {
@@ -203,8 +149,8 @@ export interface QueryValidatorCommissionResponseProtoMsg {
  * Query/ValidatorCommission RPC method
  */
 export interface QueryValidatorCommissionResponseAmino {
-    /** commission defines the commission the validator received. */
-    commission: ValidatorAccumulatedCommissionAmino;
+    /** commission defines the commision the validator received. */
+    commission?: ValidatorAccumulatedCommissionAmino;
 }
 export interface QueryValidatorCommissionResponseAminoMsg {
     type: "cosmos-sdk/QueryValidatorCommissionResponse";
@@ -283,7 +229,7 @@ export interface QueryValidatorSlashesResponseProtoMsg {
  */
 export interface QueryValidatorSlashesResponseAmino {
     /** slashes defines the slashes the validator received. */
-    slashes: ValidatorSlashEventAmino[];
+    slashes?: ValidatorSlashEventAmino[];
     /** pagination defines the pagination in the response. */
     pagination?: PageResponseAmino;
 }
@@ -353,7 +299,7 @@ export interface QueryDelegationRewardsResponseProtoMsg {
  */
 export interface QueryDelegationRewardsResponseAmino {
     /** rewards defines the rewards accrued by a delegation. */
-    rewards: DecCoinAmino[];
+    rewards?: DecCoinAmino[];
 }
 export interface QueryDelegationRewardsResponseAminoMsg {
     type: "cosmos-sdk/QueryDelegationRewardsResponse";
@@ -417,9 +363,9 @@ export interface QueryDelegationTotalRewardsResponseProtoMsg {
  */
 export interface QueryDelegationTotalRewardsResponseAmino {
     /** rewards defines all the rewards accrued by a delegator. */
-    rewards: DelegationDelegatorRewardAmino[];
+    rewards?: DelegationDelegatorRewardAmino[];
     /** total defines the sum of all the rewards. */
-    total: DecCoinAmino[];
+    total?: DecCoinAmino[];
 }
 export interface QueryDelegationTotalRewardsResponseAminoMsg {
     type: "cosmos-sdk/QueryDelegationTotalRewardsResponse";
@@ -601,7 +547,7 @@ export interface QueryCommunityPoolResponseProtoMsg {
  */
 export interface QueryCommunityPoolResponseAmino {
     /** pool defines community pool's coins. */
-    pool: DecCoinAmino[];
+    pool?: DecCoinAmino[];
 }
 export interface QueryCommunityPoolResponseAminoMsg {
     type: "cosmos-sdk/QueryCommunityPoolResponse";
@@ -613,6 +559,71 @@ export interface QueryCommunityPoolResponseAminoMsg {
  */
 export interface QueryCommunityPoolResponseSDKType {
     pool: DecCoinSDKType[];
+}
+/**
+ * QueryTokenizeShareRecordRewardRequest is the request type for the Query/TokenizeShareRecordReward RPC
+ * method.
+ */
+export interface QueryTokenizeShareRecordRewardRequest {
+    ownerAddress: string;
+}
+export interface QueryTokenizeShareRecordRewardRequestProtoMsg {
+    typeUrl: "/cosmos.distribution.v1beta1.QueryTokenizeShareRecordRewardRequest";
+    value: Uint8Array;
+}
+/**
+ * QueryTokenizeShareRecordRewardRequest is the request type for the Query/TokenizeShareRecordReward RPC
+ * method.
+ */
+export interface QueryTokenizeShareRecordRewardRequestAmino {
+    owner_address?: string;
+}
+export interface QueryTokenizeShareRecordRewardRequestAminoMsg {
+    type: "cosmos-sdk/QueryTokenizeShareRecordRewardRequest";
+    value: QueryTokenizeShareRecordRewardRequestAmino;
+}
+/**
+ * QueryTokenizeShareRecordRewardRequest is the request type for the Query/TokenizeShareRecordReward RPC
+ * method.
+ */
+export interface QueryTokenizeShareRecordRewardRequestSDKType {
+    owner_address: string;
+}
+/**
+ * QueryTokenizeShareRecordRewardResponse is the response type for the Query/TokenizeShareRecordReward
+ * RPC method.
+ */
+export interface QueryTokenizeShareRecordRewardResponse {
+    /** rewards defines all the rewards accrued by a delegator. */
+    rewards: TokenizeShareRecordReward[];
+    /** total defines the sum of all the rewards. */
+    total: DecCoin[];
+}
+export interface QueryTokenizeShareRecordRewardResponseProtoMsg {
+    typeUrl: "/cosmos.distribution.v1beta1.QueryTokenizeShareRecordRewardResponse";
+    value: Uint8Array;
+}
+/**
+ * QueryTokenizeShareRecordRewardResponse is the response type for the Query/TokenizeShareRecordReward
+ * RPC method.
+ */
+export interface QueryTokenizeShareRecordRewardResponseAmino {
+    /** rewards defines all the rewards accrued by a delegator. */
+    rewards?: TokenizeShareRecordRewardAmino[];
+    /** total defines the sum of all the rewards. */
+    total?: DecCoinAmino[];
+}
+export interface QueryTokenizeShareRecordRewardResponseAminoMsg {
+    type: "cosmos-sdk/QueryTokenizeShareRecordRewardResponse";
+    value: QueryTokenizeShareRecordRewardResponseAmino;
+}
+/**
+ * QueryTokenizeShareRecordRewardResponse is the response type for the Query/TokenizeShareRecordReward
+ * RPC method.
+ */
+export interface QueryTokenizeShareRecordRewardResponseSDKType {
+    rewards: TokenizeShareRecordRewardSDKType[];
+    total: DecCoinSDKType[];
 }
 export declare const QueryParamsRequest: {
     typeUrl: string;
@@ -639,32 +650,6 @@ export declare const QueryParamsResponse: {
     fromProtoMsg(message: QueryParamsResponseProtoMsg): QueryParamsResponse;
     toProto(message: QueryParamsResponse): Uint8Array;
     toProtoMsg(message: QueryParamsResponse): QueryParamsResponseProtoMsg;
-};
-export declare const QueryValidatorDistributionInfoRequest: {
-    typeUrl: string;
-    encode(message: QueryValidatorDistributionInfoRequest, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): QueryValidatorDistributionInfoRequest;
-    fromPartial(object: Partial<QueryValidatorDistributionInfoRequest>): QueryValidatorDistributionInfoRequest;
-    fromAmino(object: QueryValidatorDistributionInfoRequestAmino): QueryValidatorDistributionInfoRequest;
-    toAmino(message: QueryValidatorDistributionInfoRequest): QueryValidatorDistributionInfoRequestAmino;
-    fromAminoMsg(object: QueryValidatorDistributionInfoRequestAminoMsg): QueryValidatorDistributionInfoRequest;
-    toAminoMsg(message: QueryValidatorDistributionInfoRequest): QueryValidatorDistributionInfoRequestAminoMsg;
-    fromProtoMsg(message: QueryValidatorDistributionInfoRequestProtoMsg): QueryValidatorDistributionInfoRequest;
-    toProto(message: QueryValidatorDistributionInfoRequest): Uint8Array;
-    toProtoMsg(message: QueryValidatorDistributionInfoRequest): QueryValidatorDistributionInfoRequestProtoMsg;
-};
-export declare const QueryValidatorDistributionInfoResponse: {
-    typeUrl: string;
-    encode(message: QueryValidatorDistributionInfoResponse, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): QueryValidatorDistributionInfoResponse;
-    fromPartial(object: Partial<QueryValidatorDistributionInfoResponse>): QueryValidatorDistributionInfoResponse;
-    fromAmino(object: QueryValidatorDistributionInfoResponseAmino): QueryValidatorDistributionInfoResponse;
-    toAmino(message: QueryValidatorDistributionInfoResponse): QueryValidatorDistributionInfoResponseAmino;
-    fromAminoMsg(object: QueryValidatorDistributionInfoResponseAminoMsg): QueryValidatorDistributionInfoResponse;
-    toAminoMsg(message: QueryValidatorDistributionInfoResponse): QueryValidatorDistributionInfoResponseAminoMsg;
-    fromProtoMsg(message: QueryValidatorDistributionInfoResponseProtoMsg): QueryValidatorDistributionInfoResponse;
-    toProto(message: QueryValidatorDistributionInfoResponse): Uint8Array;
-    toProtoMsg(message: QueryValidatorDistributionInfoResponse): QueryValidatorDistributionInfoResponseProtoMsg;
 };
 export declare const QueryValidatorOutstandingRewardsRequest: {
     typeUrl: string;
@@ -873,4 +858,30 @@ export declare const QueryCommunityPoolResponse: {
     fromProtoMsg(message: QueryCommunityPoolResponseProtoMsg): QueryCommunityPoolResponse;
     toProto(message: QueryCommunityPoolResponse): Uint8Array;
     toProtoMsg(message: QueryCommunityPoolResponse): QueryCommunityPoolResponseProtoMsg;
+};
+export declare const QueryTokenizeShareRecordRewardRequest: {
+    typeUrl: string;
+    encode(message: QueryTokenizeShareRecordRewardRequest, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryTokenizeShareRecordRewardRequest;
+    fromPartial(object: Partial<QueryTokenizeShareRecordRewardRequest>): QueryTokenizeShareRecordRewardRequest;
+    fromAmino(object: QueryTokenizeShareRecordRewardRequestAmino): QueryTokenizeShareRecordRewardRequest;
+    toAmino(message: QueryTokenizeShareRecordRewardRequest): QueryTokenizeShareRecordRewardRequestAmino;
+    fromAminoMsg(object: QueryTokenizeShareRecordRewardRequestAminoMsg): QueryTokenizeShareRecordRewardRequest;
+    toAminoMsg(message: QueryTokenizeShareRecordRewardRequest): QueryTokenizeShareRecordRewardRequestAminoMsg;
+    fromProtoMsg(message: QueryTokenizeShareRecordRewardRequestProtoMsg): QueryTokenizeShareRecordRewardRequest;
+    toProto(message: QueryTokenizeShareRecordRewardRequest): Uint8Array;
+    toProtoMsg(message: QueryTokenizeShareRecordRewardRequest): QueryTokenizeShareRecordRewardRequestProtoMsg;
+};
+export declare const QueryTokenizeShareRecordRewardResponse: {
+    typeUrl: string;
+    encode(message: QueryTokenizeShareRecordRewardResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryTokenizeShareRecordRewardResponse;
+    fromPartial(object: Partial<QueryTokenizeShareRecordRewardResponse>): QueryTokenizeShareRecordRewardResponse;
+    fromAmino(object: QueryTokenizeShareRecordRewardResponseAmino): QueryTokenizeShareRecordRewardResponse;
+    toAmino(message: QueryTokenizeShareRecordRewardResponse): QueryTokenizeShareRecordRewardResponseAmino;
+    fromAminoMsg(object: QueryTokenizeShareRecordRewardResponseAminoMsg): QueryTokenizeShareRecordRewardResponse;
+    toAminoMsg(message: QueryTokenizeShareRecordRewardResponse): QueryTokenizeShareRecordRewardResponseAminoMsg;
+    fromProtoMsg(message: QueryTokenizeShareRecordRewardResponseProtoMsg): QueryTokenizeShareRecordRewardResponse;
+    toProto(message: QueryTokenizeShareRecordRewardResponse): Uint8Array;
+    toProtoMsg(message: QueryTokenizeShareRecordRewardResponse): QueryTokenizeShareRecordRewardResponseProtoMsg;
 };

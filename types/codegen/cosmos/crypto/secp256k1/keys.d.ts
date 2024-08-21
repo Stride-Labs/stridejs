@@ -24,7 +24,7 @@ export interface PubKeyAmino {
     key?: string;
 }
 export interface PubKeyAminoMsg {
-    type: "tendermint/PubKeySecp256k1";
+    type: "cosmos-sdk/PubKey";
     value: PubKeyAmino;
 }
 /**
@@ -50,7 +50,7 @@ export interface PrivKeyAmino {
     key?: string;
 }
 export interface PrivKeyAminoMsg {
-    type: "tendermint/PrivKeySecp256k1";
+    type: "cosmos-sdk/PrivKey";
     value: PrivKeyAmino;
 }
 /** PrivKey defines a secp256k1 private key. */

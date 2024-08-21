@@ -22,7 +22,7 @@ export interface MsgGrantProtoMsg {
 export interface MsgGrantAmino {
   granter?: string;
   grantee?: string;
-  grant: GrantAmino;
+  grant?: GrantAmino;
 }
 export interface MsgGrantAminoMsg {
   type: "cosmos-sdk/MsgGrant";
@@ -65,7 +65,7 @@ export interface MsgExecResponseSDKType {
 export interface MsgExec {
   grantee: string;
   /**
-   * Execute Msg.
+   * Authorization Msg requests to execute. Each msg must implement Authorization interface
    * The x/authz will try to find a grant matching (msg.signers[0], grantee, MsgTypeURL(msg))
    * triple and validate it.
    */
@@ -77,7 +77,7 @@ export interface MsgExecProtoMsg {
 }
 export type MsgExecEncoded = Omit<MsgExec, "msgs"> & {
   /**
-   * Execute Msg.
+   * Authorization Msg requests to execute. Each msg must implement Authorization interface
    * The x/authz will try to find a grant matching (msg.signers[0], grantee, MsgTypeURL(msg))
    * triple and validate it.
    */
@@ -91,7 +91,7 @@ export type MsgExecEncoded = Omit<MsgExec, "msgs"> & {
 export interface MsgExecAmino {
   grantee?: string;
   /**
-   * Execute Msg.
+   * Authorization Msg requests to execute. Each msg must implement Authorization interface
    * The x/authz will try to find a grant matching (msg.signers[0], grantee, MsgTypeURL(msg))
    * triple and validate it.
    */
@@ -241,7 +241,7 @@ export const MsgGrant = {
     const obj: any = {};
     obj.granter = message.granter === "" ? undefined : message.granter;
     obj.grantee = message.grantee === "" ? undefined : message.grantee;
-    obj.grant = message.grant ? Grant.toAmino(message.grant) : Grant.toAmino(Grant.fromPartial({}));
+    obj.grant = message.grant ? Grant.toAmino(message.grant) : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgGrantAminoMsg): MsgGrant {
@@ -385,14 +385,14 @@ export const MsgExec = {
     if (object.grantee !== undefined && object.grantee !== null) {
       message.grantee = object.grantee;
     }
-    message.msgs = object.msgs?.map(e => Cosmos_basev1beta1Msg_FromAmino(e)) || [];
+    message.msgs = object.msgs?.map(e => Sdk_MsgauthzAuthorization_FromAmino(e)) || [];
     return message;
   },
   toAmino(message: MsgExec): MsgExecAmino {
     const obj: any = {};
     obj.grantee = message.grantee === "" ? undefined : message.grantee;
     if (message.msgs) {
-      obj.msgs = message.msgs.map(e => e ? Cosmos_basev1beta1Msg_ToAmino(e as Any) : undefined);
+      obj.msgs = message.msgs.map(e => e ? Sdk_MsgauthzAuthorization_ToAmino(e as Any) : undefined);
     } else {
       obj.msgs = message.msgs;
     }
@@ -625,7 +625,7 @@ export const MsgRevokeResponse = {
     };
   }
 };
-export const Cosmos_basev1beta1Msg_InterfaceDecoder = (input: BinaryReader | Uint8Array): Any => {
+export const Sdk_Msg_InterfaceDecoder = (input: BinaryReader | Uint8Array): Any => {
   const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
   const data = Any.decode(reader, reader.uint32());
   switch (data.typeUrl) {
@@ -633,9 +633,23 @@ export const Cosmos_basev1beta1Msg_InterfaceDecoder = (input: BinaryReader | Uin
       return data;
   }
 };
-export const Cosmos_basev1beta1Msg_FromAmino = (content: AnyAmino): Any => {
+export const Sdk_Msg_FromAmino = (content: AnyAmino): Any => {
   return Any.fromAmino(content);
 };
-export const Cosmos_basev1beta1Msg_ToAmino = (content: Any) => {
+export const Sdk_Msg_ToAmino = (content: Any) => {
+  return Any.toAmino(content);
+};
+export const Authz_Authorization_InterfaceDecoder = (input: BinaryReader | Uint8Array): Any => {
+  const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+  const data = Any.decode(reader, reader.uint32());
+  switch (data.typeUrl) {
+    default:
+      return data;
+  }
+};
+export const Authz_Authorization_FromAmino = (content: AnyAmino): Any => {
+  return Any.fromAmino(content);
+};
+export const Authz_Authorization_ToAmino = (content: Any) => {
   return Any.toAmino(content);
 };

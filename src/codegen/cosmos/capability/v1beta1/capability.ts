@@ -76,7 +76,7 @@ export interface CapabilityOwnersProtoMsg {
  * owners must be unique.
  */
 export interface CapabilityOwnersAmino {
-  owners: OwnerAmino[];
+  owners?: OwnerAmino[];
 }
 export interface CapabilityOwnersAminoMsg {
   type: "cosmos-sdk/CapabilityOwners";

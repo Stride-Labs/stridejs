@@ -21,7 +21,7 @@ export interface MsgGrantProtoMsg {
 export interface MsgGrantAmino {
     granter?: string;
     grantee?: string;
-    grant: GrantAmino;
+    grant?: GrantAmino;
 }
 export interface MsgGrantAminoMsg {
     type: "cosmos-sdk/MsgGrant";
@@ -64,7 +64,7 @@ export interface MsgExecResponseSDKType {
 export interface MsgExec {
     grantee: string;
     /**
-     * Execute Msg.
+     * Authorization Msg requests to execute. Each msg must implement Authorization interface
      * The x/authz will try to find a grant matching (msg.signers[0], grantee, MsgTypeURL(msg))
      * triple and validate it.
      */
@@ -76,7 +76,7 @@ export interface MsgExecProtoMsg {
 }
 export declare type MsgExecEncoded = Omit<MsgExec, "msgs"> & {
     /**
-     * Execute Msg.
+     * Authorization Msg requests to execute. Each msg must implement Authorization interface
      * The x/authz will try to find a grant matching (msg.signers[0], grantee, MsgTypeURL(msg))
      * triple and validate it.
      */
@@ -90,7 +90,7 @@ export declare type MsgExecEncoded = Omit<MsgExec, "msgs"> & {
 export interface MsgExecAmino {
     grantee?: string;
     /**
-     * Execute Msg.
+     * Authorization Msg requests to execute. Each msg must implement Authorization interface
      * The x/authz will try to find a grant matching (msg.signers[0], grantee, MsgTypeURL(msg))
      * triple and validate it.
      */
@@ -256,6 +256,9 @@ export declare const MsgRevokeResponse: {
     toProto(message: MsgRevokeResponse): Uint8Array;
     toProtoMsg(message: MsgRevokeResponse): MsgRevokeResponseProtoMsg;
 };
-export declare const Cosmos_basev1beta1Msg_InterfaceDecoder: (input: BinaryReader | Uint8Array) => Any;
-export declare const Cosmos_basev1beta1Msg_FromAmino: (content: AnyAmino) => Any;
-export declare const Cosmos_basev1beta1Msg_ToAmino: (content: Any) => AnyAmino;
+export declare const Sdk_Msg_InterfaceDecoder: (input: BinaryReader | Uint8Array) => Any;
+export declare const Sdk_Msg_FromAmino: (content: AnyAmino) => Any;
+export declare const Sdk_Msg_ToAmino: (content: Any) => AnyAmino;
+export declare const Authz_Authorization_InterfaceDecoder: (input: BinaryReader | Uint8Array) => Any;
+export declare const Authz_Authorization_FromAmino: (content: AnyAmino) => Any;
+export declare const Authz_Authorization_ToAmino: (content: Any) => AnyAmino;
