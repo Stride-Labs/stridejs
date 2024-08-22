@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.11.3
+
+- Rework internal build to allow for support different outputs and inspection: cjs and esm
+
 ## 0.11.0
 
 - Introduces utilities and goodies from secretjs
