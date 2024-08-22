@@ -1,8 +1,13 @@
 # Changelog
 
+## 0.11.4
+
+- [BUILD] Fix missing emitted types
+- [BUILD] Remove unused dependencies from the lockfile
+
 ## 0.11.3
 
-- Rework internal build to allow for support different outputs and inspection: cjs and esm
+- [BUILD] Rework internal build to allow for support different outputs and inspection: cjs and esm
 
 ## 0.11.0
 
