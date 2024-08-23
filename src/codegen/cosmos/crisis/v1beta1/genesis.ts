@@ -18,7 +18,7 @@ export interface GenesisStateAmino {
    * constant_fee is the fee used to verify the invariant in the crisis
    * module.
    */
-  constant_fee: CoinAmino;
+  constant_fee?: CoinAmino;
 }
 export interface GenesisStateAminoMsg {
   type: "cosmos-sdk/GenesisState";
@@ -72,7 +72,7 @@ export const GenesisState = {
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
-    obj.constant_fee = message.constantFee ? Coin.toAmino(message.constantFee) : Coin.toAmino(Coin.fromPartial({}));
+    obj.constant_fee = message.constantFee ? Coin.toAmino(message.constantFee) : undefined;
     return obj;
   },
   fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {

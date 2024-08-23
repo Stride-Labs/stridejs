@@ -10,7 +10,7 @@ export interface MsgGrantAllowance {
     granter: string;
     /** grantee is the address of the user being granted an allowance of another user's funds. */
     grantee: string;
-    /** allowance can be any of basic, periodic, allowed fee allowance. */
+    /** allowance can be any of basic and filtered fee allowance. */
     allowance?: BasicAllowance | PeriodicAllowance | AllowedMsgAllowance | Any | undefined;
 }
 export interface MsgGrantAllowanceProtoMsg {
@@ -18,7 +18,7 @@ export interface MsgGrantAllowanceProtoMsg {
     value: Uint8Array;
 }
 export declare type MsgGrantAllowanceEncoded = Omit<MsgGrantAllowance, "allowance"> & {
-    /** allowance can be any of basic, periodic, allowed fee allowance. */ allowance?: BasicAllowanceProtoMsg | PeriodicAllowanceProtoMsg | AllowedMsgAllowanceProtoMsg | AnyProtoMsg | undefined;
+    /** allowance can be any of basic and filtered fee allowance. */ allowance?: BasicAllowanceProtoMsg | PeriodicAllowanceProtoMsg | AllowedMsgAllowanceProtoMsg | AnyProtoMsg | undefined;
 };
 /**
  * MsgGrantAllowance adds permission for Grantee to spend up to Allowance
@@ -29,7 +29,7 @@ export interface MsgGrantAllowanceAmino {
     granter?: string;
     /** grantee is the address of the user being granted an allowance of another user's funds. */
     grantee?: string;
-    /** allowance can be any of basic, periodic, allowed fee allowance. */
+    /** allowance can be any of basic and filtered fee allowance. */
     allowance?: AnyAmino;
 }
 export interface MsgGrantAllowanceAminoMsg {
@@ -158,6 +158,6 @@ export declare const MsgRevokeAllowanceResponse: {
     toProto(message: MsgRevokeAllowanceResponse): Uint8Array;
     toProtoMsg(message: MsgRevokeAllowanceResponse): MsgRevokeAllowanceResponseProtoMsg;
 };
-export declare const Cosmos_feegrantv1beta1FeeAllowanceI_InterfaceDecoder: (input: BinaryReader | Uint8Array) => BasicAllowance | PeriodicAllowance | AllowedMsgAllowance | Any;
-export declare const Cosmos_feegrantv1beta1FeeAllowanceI_FromAmino: (content: AnyAmino) => Any;
-export declare const Cosmos_feegrantv1beta1FeeAllowanceI_ToAmino: (content: Any) => AnyAmino;
+export declare const FeeAllowanceI_InterfaceDecoder: (input: BinaryReader | Uint8Array) => BasicAllowance | PeriodicAllowance | AllowedMsgAllowance | Any;
+export declare const FeeAllowanceI_FromAmino: (content: AnyAmino) => Any;
+export declare const FeeAllowanceI_ToAmino: (content: Any) => AnyAmino;

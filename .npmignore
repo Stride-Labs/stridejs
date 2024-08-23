@@ -15,21 +15,18 @@ yarn.lock
 # project files
 __fixtures__
 __tests__
-.babelrc
-.babelrc.js
 .editorconfig
 .eslintignore
 .eslintrc
 .eslintrc.js
 .gitignore
-.travis.yml
 .vscode
 CHANGELOG.md
-examples
 jest.config.js
 package.json
 src
 test
+dist
 
 # stride/
 # cosmos/

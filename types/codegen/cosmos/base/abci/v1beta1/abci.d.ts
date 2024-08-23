@@ -40,7 +40,7 @@ export interface TxResponse {
     /**
      * Events defines all the events emitted by processing a transaction. Note,
      * these events include those emitted by processing all the messages and those
-     * emitted from the ante. Whereas Logs contains the events, with
+     * emitted from the ante handler. Whereas Logs contains the events, with
      * additional metadata, emitted only by processing the messages.
      *
      * Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
@@ -90,7 +90,7 @@ export interface TxResponseAmino {
     /**
      * Events defines all the events emitted by processing a transaction. Note,
      * these events include those emitted by processing all the messages and those
-     * emitted from the ante. Whereas Logs contains the events, with
+     * emitted from the ante handler. Whereas Logs contains the events, with
      * additional metadata, emitted only by processing the messages.
      *
      * Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
@@ -136,7 +136,7 @@ export interface ABCIMessageLogProtoMsg {
 }
 /** ABCIMessageLog defines a structure containing an indexed tx ABCI message log. */
 export interface ABCIMessageLogAmino {
-    msg_index: number;
+    msg_index?: number;
     log?: string;
     /**
      * Events contains a slice of Event objects that were emitted during some
@@ -250,10 +250,7 @@ export interface Result {
     /**
      * Data is any data returned from message or handler execution. It MUST be
      * length prefixed in order to separate data from multiple message executions.
-     * Deprecated. This field is still populated, but prefer msg_response instead
-     * because it also contains the Msg response typeURL.
      */
-    /** @deprecated */
     data: Uint8Array;
     /** Log contains the log information from message or handler execution. */
     log: string;
@@ -262,12 +259,6 @@ export interface Result {
      * or handler execution.
      */
     events: Event[];
-    /**
-     * msg_responses contains the Msg handler responses type packed in Anys.
-     *
-     * Since: cosmos-sdk 0.46
-     */
-    msgResponses: Any[];
 }
 export interface ResultProtoMsg {
     typeUrl: "/cosmos.base.abci.v1beta1.Result";
@@ -278,10 +269,7 @@ export interface ResultAmino {
     /**
      * Data is any data returned from message or handler execution. It MUST be
      * length prefixed in order to separate data from multiple message executions.
-     * Deprecated. This field is still populated, but prefer msg_response instead
-     * because it also contains the Msg response typeURL.
      */
-    /** @deprecated */
     data?: string;
     /** Log contains the log information from message or handler execution. */
     log?: string;
@@ -290,12 +278,6 @@ export interface ResultAmino {
      * or handler execution.
      */
     events?: EventAmino[];
-    /**
-     * msg_responses contains the Msg handler responses type packed in Anys.
-     *
-     * Since: cosmos-sdk 0.46
-     */
-    msg_responses?: AnyAmino[];
 }
 export interface ResultAminoMsg {
     type: "cosmos-sdk/Result";
@@ -303,11 +285,9 @@ export interface ResultAminoMsg {
 }
 /** Result is the union of ResponseFormat and ResponseCheckTx. */
 export interface ResultSDKType {
-    /** @deprecated */
     data: Uint8Array;
     log: string;
     events: EventSDKType[];
-    msg_responses: AnySDKType[];
 }
 /**
  * SimulationResponse defines the response generated when a transaction is
@@ -345,7 +325,6 @@ export interface SimulationResponseSDKType {
  * MsgData defines the data returned in a Result object during message
  * execution.
  */
-/** @deprecated */
 export interface MsgData {
     msgType: string;
     data: Uint8Array;
@@ -358,7 +337,6 @@ export interface MsgDataProtoMsg {
  * MsgData defines the data returned in a Result object during message
  * execution.
  */
-/** @deprecated */
 export interface MsgDataAmino {
     msg_type?: string;
     data?: string;
@@ -371,7 +349,6 @@ export interface MsgDataAminoMsg {
  * MsgData defines the data returned in a Result object during message
  * execution.
  */
-/** @deprecated */
 export interface MsgDataSDKType {
     msg_type: string;
     data: Uint8Array;
@@ -381,15 +358,7 @@ export interface MsgDataSDKType {
  * for each message.
  */
 export interface TxMsgData {
-    /** data field is deprecated and not populated. */
-    /** @deprecated */
     data: MsgData[];
-    /**
-     * msg_responses contains the Msg handler responses packed into Anys.
-     *
-     * Since: cosmos-sdk 0.46
-     */
-    msgResponses: Any[];
 }
 export interface TxMsgDataProtoMsg {
     typeUrl: "/cosmos.base.abci.v1beta1.TxMsgData";
@@ -400,15 +369,7 @@ export interface TxMsgDataProtoMsg {
  * for each message.
  */
 export interface TxMsgDataAmino {
-    /** data field is deprecated and not populated. */
-    /** @deprecated */
     data?: MsgDataAmino[];
-    /**
-     * msg_responses contains the Msg handler responses packed into Anys.
-     *
-     * Since: cosmos-sdk 0.46
-     */
-    msg_responses?: AnyAmino[];
 }
 export interface TxMsgDataAminoMsg {
     type: "cosmos-sdk/TxMsgData";
@@ -419,9 +380,7 @@ export interface TxMsgDataAminoMsg {
  * for each message.
  */
 export interface TxMsgDataSDKType {
-    /** @deprecated */
     data: MsgDataSDKType[];
-    msg_responses: AnySDKType[];
 }
 /** SearchTxsResult defines a structure for querying txs pageable */
 export interface SearchTxsResult {
@@ -445,13 +404,13 @@ export interface SearchTxsResultProtoMsg {
 /** SearchTxsResult defines a structure for querying txs pageable */
 export interface SearchTxsResultAmino {
     /** Count of all txs */
-    total_count?: string;
+    total_count: string;
     /** Count of txs in current page */
     count?: string;
     /** Index of current page, start from 1 */
-    page_number?: string;
+    page_number: string;
     /** Count of total pages */
-    page_total?: string;
+    page_total: string;
     /** Max count txs per page */
     limit?: string;
     /** List of txs in current page */

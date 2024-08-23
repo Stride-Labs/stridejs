@@ -1,7 +1,6 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 /** ParameterChangeProposal defines a proposal to change one or more parameters. */
 export interface ParameterChangeProposal {
-  $typeUrl?: "/cosmos.params.v1beta1.ParameterChangeProposal";
   title: string;
   description: string;
   changes: ParamChange[];
@@ -14,7 +13,7 @@ export interface ParameterChangeProposalProtoMsg {
 export interface ParameterChangeProposalAmino {
   title?: string;
   description?: string;
-  changes: ParamChangeAmino[];
+  changes?: ParamChangeAmino[];
 }
 export interface ParameterChangeProposalAminoMsg {
   type: "cosmos-sdk/ParameterChangeProposal";
@@ -22,7 +21,6 @@ export interface ParameterChangeProposalAminoMsg {
 }
 /** ParameterChangeProposal defines a proposal to change one or more parameters. */
 export interface ParameterChangeProposalSDKType {
-  $typeUrl?: "/cosmos.params.v1beta1.ParameterChangeProposal";
   title: string;
   description: string;
   changes: ParamChangeSDKType[];
@@ -64,7 +62,6 @@ export interface ParamChangeSDKType {
 }
 function createBaseParameterChangeProposal(): ParameterChangeProposal {
   return {
-    $typeUrl: "/cosmos.params.v1beta1.ParameterChangeProposal",
     title: "",
     description: "",
     changes: []

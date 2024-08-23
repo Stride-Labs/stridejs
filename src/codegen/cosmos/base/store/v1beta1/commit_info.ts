@@ -1,6 +1,5 @@
-import { Timestamp } from "../../../../google/protobuf/timestamp";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { toTimestamp, fromTimestamp, bytesFromBase64, base64FromBytes } from "../../../../helpers";
+import { bytesFromBase64, base64FromBytes } from "../../../../helpers";
 /**
  * CommitInfo defines commit information used by the multi-store when committing
  * a version/height.
@@ -8,7 +7,6 @@ import { toTimestamp, fromTimestamp, bytesFromBase64, base64FromBytes } from "..
 export interface CommitInfo {
   version: bigint;
   storeInfos: StoreInfo[];
-  timestamp: Date;
 }
 export interface CommitInfoProtoMsg {
   typeUrl: "/cosmos.base.store.v1beta1.CommitInfo";
@@ -21,7 +19,6 @@ export interface CommitInfoProtoMsg {
 export interface CommitInfoAmino {
   version?: string;
   store_infos?: StoreInfoAmino[];
-  timestamp?: string;
 }
 export interface CommitInfoAminoMsg {
   type: "cosmos-sdk/CommitInfo";
@@ -34,7 +31,6 @@ export interface CommitInfoAminoMsg {
 export interface CommitInfoSDKType {
   version: bigint;
   store_infos: StoreInfoSDKType[];
-  timestamp: Date;
 }
 /**
  * StoreInfo defines store-specific commit information. It contains a reference
@@ -69,7 +65,7 @@ export interface StoreInfoSDKType {
   commit_id: CommitIDSDKType;
 }
 /**
- * CommitID defines the commitment information when a specific store is
+ * CommitID defines the committment information when a specific store is
  * committed.
  */
 export interface CommitID {
@@ -81,7 +77,7 @@ export interface CommitIDProtoMsg {
   value: Uint8Array;
 }
 /**
- * CommitID defines the commitment information when a specific store is
+ * CommitID defines the committment information when a specific store is
  * committed.
  */
 export interface CommitIDAmino {
@@ -93,7 +89,7 @@ export interface CommitIDAminoMsg {
   value: CommitIDAmino;
 }
 /**
- * CommitID defines the commitment information when a specific store is
+ * CommitID defines the committment information when a specific store is
  * committed.
  */
 export interface CommitIDSDKType {
@@ -103,8 +99,7 @@ export interface CommitIDSDKType {
 function createBaseCommitInfo(): CommitInfo {
   return {
     version: BigInt(0),
-    storeInfos: [],
-    timestamp: new Date()
+    storeInfos: []
   };
 }
 export const CommitInfo = {
@@ -115,9 +110,6 @@ export const CommitInfo = {
     }
     for (const v of message.storeInfos) {
       StoreInfo.encode(v!, writer.uint32(18).fork()).ldelim();
-    }
-    if (message.timestamp !== undefined) {
-      Timestamp.encode(toTimestamp(message.timestamp), writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -134,9 +126,6 @@ export const CommitInfo = {
         case 2:
           message.storeInfos.push(StoreInfo.decode(reader, reader.uint32()));
           break;
-        case 3:
-          message.timestamp = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -148,7 +137,6 @@ export const CommitInfo = {
     const message = createBaseCommitInfo();
     message.version = object.version !== undefined && object.version !== null ? BigInt(object.version.toString()) : BigInt(0);
     message.storeInfos = object.storeInfos?.map(e => StoreInfo.fromPartial(e)) || [];
-    message.timestamp = object.timestamp ?? undefined;
     return message;
   },
   fromAmino(object: CommitInfoAmino): CommitInfo {
@@ -157,9 +145,6 @@ export const CommitInfo = {
       message.version = BigInt(object.version);
     }
     message.storeInfos = object.store_infos?.map(e => StoreInfo.fromAmino(e)) || [];
-    if (object.timestamp !== undefined && object.timestamp !== null) {
-      message.timestamp = fromTimestamp(Timestamp.fromAmino(object.timestamp));
-    }
     return message;
   },
   toAmino(message: CommitInfo): CommitInfoAmino {
@@ -170,7 +155,6 @@ export const CommitInfo = {
     } else {
       obj.store_infos = message.storeInfos;
     }
-    obj.timestamp = message.timestamp ? Timestamp.toAmino(toTimestamp(message.timestamp)) : undefined;
     return obj;
   },
   fromAminoMsg(object: CommitInfoAminoMsg): CommitInfo {

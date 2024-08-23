@@ -1,45 +1,45 @@
-import * as _175 from "./gamm/v1beta1/osmosis";
+import * as _123 from "./gamm/v1beta1/osmosis";
 export declare namespace osmosis {
     namespace gamm {
         const v1beta1: {
             MsgSwapExactAmountIn: {
                 typeUrl: string;
-                encode(message: _175.MsgSwapExactAmountIn, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
-                decode(input: Uint8Array | import("..").BinaryReader, length?: number): _175.MsgSwapExactAmountIn;
-                fromPartial(object: Partial<_175.MsgSwapExactAmountIn>): _175.MsgSwapExactAmountIn;
-                fromAmino(object: _175.MsgSwapExactAmountInAmino): _175.MsgSwapExactAmountIn;
-                toAmino(message: _175.MsgSwapExactAmountIn): _175.MsgSwapExactAmountInAmino;
-                fromAminoMsg(object: _175.MsgSwapExactAmountInAminoMsg): _175.MsgSwapExactAmountIn;
-                toAminoMsg(message: _175.MsgSwapExactAmountIn): _175.MsgSwapExactAmountInAminoMsg;
-                fromProtoMsg(message: _175.MsgSwapExactAmountInProtoMsg): _175.MsgSwapExactAmountIn;
-                toProto(message: _175.MsgSwapExactAmountIn): Uint8Array;
-                toProtoMsg(message: _175.MsgSwapExactAmountIn): _175.MsgSwapExactAmountInProtoMsg;
+                encode(message: _123.MsgSwapExactAmountIn, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
+                decode(input: Uint8Array | import("..").BinaryReader, length?: number): _123.MsgSwapExactAmountIn;
+                fromPartial(object: Partial<_123.MsgSwapExactAmountIn>): _123.MsgSwapExactAmountIn;
+                fromAmino(object: _123.MsgSwapExactAmountInAmino): _123.MsgSwapExactAmountIn;
+                toAmino(message: _123.MsgSwapExactAmountIn): _123.MsgSwapExactAmountInAmino;
+                fromAminoMsg(object: _123.MsgSwapExactAmountInAminoMsg): _123.MsgSwapExactAmountIn;
+                toAminoMsg(message: _123.MsgSwapExactAmountIn): _123.MsgSwapExactAmountInAminoMsg;
+                fromProtoMsg(message: _123.MsgSwapExactAmountInProtoMsg): _123.MsgSwapExactAmountIn;
+                toProto(message: _123.MsgSwapExactAmountIn): Uint8Array;
+                toProtoMsg(message: _123.MsgSwapExactAmountIn): _123.MsgSwapExactAmountInProtoMsg;
             };
             SwapAmountInRoute: {
                 typeUrl: string;
-                encode(message: _175.SwapAmountInRoute, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
-                decode(input: Uint8Array | import("..").BinaryReader, length?: number): _175.SwapAmountInRoute;
-                fromPartial(object: Partial<_175.SwapAmountInRoute>): _175.SwapAmountInRoute;
-                fromAmino(object: _175.SwapAmountInRouteAmino): _175.SwapAmountInRoute;
-                toAmino(message: _175.SwapAmountInRoute): _175.SwapAmountInRouteAmino;
-                fromAminoMsg(object: _175.SwapAmountInRouteAminoMsg): _175.SwapAmountInRoute;
-                toAminoMsg(message: _175.SwapAmountInRoute): _175.SwapAmountInRouteAminoMsg;
-                fromProtoMsg(message: _175.SwapAmountInRouteProtoMsg): _175.SwapAmountInRoute;
-                toProto(message: _175.SwapAmountInRoute): Uint8Array;
-                toProtoMsg(message: _175.SwapAmountInRoute): _175.SwapAmountInRouteProtoMsg;
+                encode(message: _123.SwapAmountInRoute, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
+                decode(input: Uint8Array | import("..").BinaryReader, length?: number): _123.SwapAmountInRoute;
+                fromPartial(object: Partial<_123.SwapAmountInRoute>): _123.SwapAmountInRoute;
+                fromAmino(object: _123.SwapAmountInRouteAmino): _123.SwapAmountInRoute;
+                toAmino(message: _123.SwapAmountInRoute): _123.SwapAmountInRouteAmino;
+                fromAminoMsg(object: _123.SwapAmountInRouteAminoMsg): _123.SwapAmountInRoute;
+                toAminoMsg(message: _123.SwapAmountInRoute): _123.SwapAmountInRouteAminoMsg;
+                fromProtoMsg(message: _123.SwapAmountInRouteProtoMsg): _123.SwapAmountInRoute;
+                toProto(message: _123.SwapAmountInRoute): Uint8Array;
+                toProtoMsg(message: _123.SwapAmountInRoute): _123.SwapAmountInRouteProtoMsg;
             };
             OsmosisTwapRecord: {
                 typeUrl: string;
-                encode(message: _175.OsmosisTwapRecord, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
-                decode(input: Uint8Array | import("..").BinaryReader, length?: number): _175.OsmosisTwapRecord;
-                fromPartial(object: Partial<_175.OsmosisTwapRecord>): _175.OsmosisTwapRecord;
-                fromAmino(object: _175.OsmosisTwapRecordAmino): _175.OsmosisTwapRecord;
-                toAmino(message: _175.OsmosisTwapRecord): _175.OsmosisTwapRecordAmino;
-                fromAminoMsg(object: _175.OsmosisTwapRecordAminoMsg): _175.OsmosisTwapRecord;
-                toAminoMsg(message: _175.OsmosisTwapRecord): _175.OsmosisTwapRecordAminoMsg;
-                fromProtoMsg(message: _175.OsmosisTwapRecordProtoMsg): _175.OsmosisTwapRecord;
-                toProto(message: _175.OsmosisTwapRecord): Uint8Array;
-                toProtoMsg(message: _175.OsmosisTwapRecord): _175.OsmosisTwapRecordProtoMsg;
+                encode(message: _123.OsmosisTwapRecord, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
+                decode(input: Uint8Array | import("..").BinaryReader, length?: number): _123.OsmosisTwapRecord;
+                fromPartial(object: Partial<_123.OsmosisTwapRecord>): _123.OsmosisTwapRecord;
+                fromAmino(object: _123.OsmosisTwapRecordAmino): _123.OsmosisTwapRecord;
+                toAmino(message: _123.OsmosisTwapRecord): _123.OsmosisTwapRecordAmino;
+                fromAminoMsg(object: _123.OsmosisTwapRecordAminoMsg): _123.OsmosisTwapRecord;
+                toAminoMsg(message: _123.OsmosisTwapRecord): _123.OsmosisTwapRecordAminoMsg;
+                fromProtoMsg(message: _123.OsmosisTwapRecordProtoMsg): _123.OsmosisTwapRecord;
+                toProto(message: _123.OsmosisTwapRecord): Uint8Array;
+                toProtoMsg(message: _123.OsmosisTwapRecord): _123.OsmosisTwapRecordProtoMsg;
             };
         };
     }

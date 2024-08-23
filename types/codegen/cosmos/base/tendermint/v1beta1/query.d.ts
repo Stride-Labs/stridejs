@@ -1,12 +1,7 @@
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../query/v1beta1/pagination";
 import { Any, AnyAmino, AnySDKType } from "../../../../google/protobuf/any";
 import { BlockID, BlockIDAmino, BlockIDSDKType } from "../../../../tendermint/types/types";
-import { Block as Block1 } from "../../../../tendermint/types/block";
-import { BlockAmino as Block1Amino } from "../../../../tendermint/types/block";
-import { BlockSDKType as Block1SDKType } from "../../../../tendermint/types/block";
-import { Block as Block2 } from "./types";
-import { BlockAmino as Block2Amino } from "./types";
-import { BlockSDKType as Block2SDKType } from "./types";
+import { Block, BlockAmino, BlockSDKType } from "../../../../tendermint/types/block";
 import { DefaultNodeInfo, DefaultNodeInfoAmino, DefaultNodeInfoSDKType } from "../../../../tendermint/p2p/types";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 /** GetValidatorSetByHeightRequest is the request type for the Query/GetValidatorSetByHeight RPC method. */
@@ -164,10 +159,7 @@ export interface GetBlockByHeightRequestSDKType {
 /** GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight RPC method. */
 export interface GetBlockByHeightResponse {
     blockId?: BlockID;
-    /** Deprecated: please use `sdk_block` instead */
-    block?: Block1;
-    /** Since: cosmos-sdk 0.47 */
-    sdkBlock?: Block2;
+    block?: Block;
 }
 export interface GetBlockByHeightResponseProtoMsg {
     typeUrl: "/cosmos.base.tendermint.v1beta1.GetBlockByHeightResponse";
@@ -176,10 +168,7 @@ export interface GetBlockByHeightResponseProtoMsg {
 /** GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight RPC method. */
 export interface GetBlockByHeightResponseAmino {
     block_id?: BlockIDAmino;
-    /** Deprecated: please use `sdk_block` instead */
-    block?: Block1Amino;
-    /** Since: cosmos-sdk 0.47 */
-    sdk_block?: Block2Amino;
+    block?: BlockAmino;
 }
 export interface GetBlockByHeightResponseAminoMsg {
     type: "cosmos-sdk/GetBlockByHeightResponse";
@@ -188,8 +177,7 @@ export interface GetBlockByHeightResponseAminoMsg {
 /** GetBlockByHeightResponse is the response type for the Query/GetBlockByHeight RPC method. */
 export interface GetBlockByHeightResponseSDKType {
     block_id?: BlockIDSDKType;
-    block?: Block1SDKType;
-    sdk_block?: Block2SDKType;
+    block?: BlockSDKType;
 }
 /** GetLatestBlockRequest is the request type for the Query/GetLatestBlock RPC method. */
 export interface GetLatestBlockRequest {
@@ -211,10 +199,7 @@ export interface GetLatestBlockRequestSDKType {
 /** GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC method. */
 export interface GetLatestBlockResponse {
     blockId?: BlockID;
-    /** Deprecated: please use `sdk_block` instead */
-    block?: Block1;
-    /** Since: cosmos-sdk 0.47 */
-    sdkBlock?: Block2;
+    block?: Block;
 }
 export interface GetLatestBlockResponseProtoMsg {
     typeUrl: "/cosmos.base.tendermint.v1beta1.GetLatestBlockResponse";
@@ -223,10 +208,7 @@ export interface GetLatestBlockResponseProtoMsg {
 /** GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC method. */
 export interface GetLatestBlockResponseAmino {
     block_id?: BlockIDAmino;
-    /** Deprecated: please use `sdk_block` instead */
-    block?: Block1Amino;
-    /** Since: cosmos-sdk 0.47 */
-    sdk_block?: Block2Amino;
+    block?: BlockAmino;
 }
 export interface GetLatestBlockResponseAminoMsg {
     type: "cosmos-sdk/GetLatestBlockResponse";
@@ -235,8 +217,7 @@ export interface GetLatestBlockResponseAminoMsg {
 /** GetLatestBlockResponse is the response type for the Query/GetLatestBlock RPC method. */
 export interface GetLatestBlockResponseSDKType {
     block_id?: BlockIDSDKType;
-    block?: Block1SDKType;
-    sdk_block?: Block2SDKType;
+    block?: BlockSDKType;
 }
 /** GetSyncingRequest is the request type for the Query/GetSyncing RPC method. */
 export interface GetSyncingRequest {
@@ -292,7 +273,7 @@ export interface GetNodeInfoRequestAminoMsg {
 /** GetNodeInfoRequest is the request type for the Query/GetNodeInfo RPC method. */
 export interface GetNodeInfoRequestSDKType {
 }
-/** GetNodeInfoResponse is the response type for the Query/GetNodeInfo RPC method. */
+/** GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC method. */
 export interface GetNodeInfoResponse {
     defaultNodeInfo?: DefaultNodeInfo;
     applicationVersion?: VersionInfo;
@@ -301,7 +282,7 @@ export interface GetNodeInfoResponseProtoMsg {
     typeUrl: "/cosmos.base.tendermint.v1beta1.GetNodeInfoResponse";
     value: Uint8Array;
 }
-/** GetNodeInfoResponse is the response type for the Query/GetNodeInfo RPC method. */
+/** GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC method. */
 export interface GetNodeInfoResponseAmino {
     default_node_info?: DefaultNodeInfoAmino;
     application_version?: VersionInfoAmino;
@@ -310,7 +291,7 @@ export interface GetNodeInfoResponseAminoMsg {
     type: "cosmos-sdk/GetNodeInfoResponse";
     value: GetNodeInfoResponseAmino;
 }
-/** GetNodeInfoResponse is the response type for the Query/GetNodeInfo RPC method. */
+/** GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC method. */
 export interface GetNodeInfoResponseSDKType {
     default_node_info?: DefaultNodeInfoSDKType;
     application_version?: VersionInfoSDKType;
@@ -389,174 +370,6 @@ export interface ModuleSDKType {
     path: string;
     version: string;
     sum: string;
-}
-/** ABCIQueryRequest defines the request structure for the ABCIQuery gRPC query. */
-export interface ABCIQueryRequest {
-    data: Uint8Array;
-    path: string;
-    height: bigint;
-    prove: boolean;
-}
-export interface ABCIQueryRequestProtoMsg {
-    typeUrl: "/cosmos.base.tendermint.v1beta1.ABCIQueryRequest";
-    value: Uint8Array;
-}
-/** ABCIQueryRequest defines the request structure for the ABCIQuery gRPC query. */
-export interface ABCIQueryRequestAmino {
-    data?: string;
-    path?: string;
-    height?: string;
-    prove?: boolean;
-}
-export interface ABCIQueryRequestAminoMsg {
-    type: "cosmos-sdk/ABCIQueryRequest";
-    value: ABCIQueryRequestAmino;
-}
-/** ABCIQueryRequest defines the request structure for the ABCIQuery gRPC query. */
-export interface ABCIQueryRequestSDKType {
-    data: Uint8Array;
-    path: string;
-    height: bigint;
-    prove: boolean;
-}
-/**
- * ABCIQueryResponse defines the response structure for the ABCIQuery gRPC query.
- *
- * Note: This type is a duplicate of the ResponseQuery proto type defined in
- * Tendermint.
- */
-export interface ABCIQueryResponse {
-    code: number;
-    /** nondeterministic */
-    log: string;
-    /** nondeterministic */
-    info: string;
-    index: bigint;
-    key: Uint8Array;
-    value: Uint8Array;
-    proofOps?: ProofOps;
-    height: bigint;
-    codespace: string;
-}
-export interface ABCIQueryResponseProtoMsg {
-    typeUrl: "/cosmos.base.tendermint.v1beta1.ABCIQueryResponse";
-    value: Uint8Array;
-}
-/**
- * ABCIQueryResponse defines the response structure for the ABCIQuery gRPC query.
- *
- * Note: This type is a duplicate of the ResponseQuery proto type defined in
- * Tendermint.
- */
-export interface ABCIQueryResponseAmino {
-    code?: number;
-    /** nondeterministic */
-    log?: string;
-    /** nondeterministic */
-    info?: string;
-    index?: string;
-    key?: string;
-    value?: string;
-    proof_ops?: ProofOpsAmino;
-    height?: string;
-    codespace?: string;
-}
-export interface ABCIQueryResponseAminoMsg {
-    type: "cosmos-sdk/ABCIQueryResponse";
-    value: ABCIQueryResponseAmino;
-}
-/**
- * ABCIQueryResponse defines the response structure for the ABCIQuery gRPC query.
- *
- * Note: This type is a duplicate of the ResponseQuery proto type defined in
- * Tendermint.
- */
-export interface ABCIQueryResponseSDKType {
-    code: number;
-    log: string;
-    info: string;
-    index: bigint;
-    key: Uint8Array;
-    value: Uint8Array;
-    proof_ops?: ProofOpsSDKType;
-    height: bigint;
-    codespace: string;
-}
-/**
- * ProofOp defines an operation used for calculating Merkle root. The data could
- * be arbitrary format, providing necessary data for example neighbouring node
- * hash.
- *
- * Note: This type is a duplicate of the ProofOp proto type defined in Tendermint.
- */
-export interface ProofOp {
-    type: string;
-    key: Uint8Array;
-    data: Uint8Array;
-}
-export interface ProofOpProtoMsg {
-    typeUrl: "/cosmos.base.tendermint.v1beta1.ProofOp";
-    value: Uint8Array;
-}
-/**
- * ProofOp defines an operation used for calculating Merkle root. The data could
- * be arbitrary format, providing necessary data for example neighbouring node
- * hash.
- *
- * Note: This type is a duplicate of the ProofOp proto type defined in Tendermint.
- */
-export interface ProofOpAmino {
-    type?: string;
-    key?: string;
-    data?: string;
-}
-export interface ProofOpAminoMsg {
-    type: "cosmos-sdk/ProofOp";
-    value: ProofOpAmino;
-}
-/**
- * ProofOp defines an operation used for calculating Merkle root. The data could
- * be arbitrary format, providing necessary data for example neighbouring node
- * hash.
- *
- * Note: This type is a duplicate of the ProofOp proto type defined in Tendermint.
- */
-export interface ProofOpSDKType {
-    type: string;
-    key: Uint8Array;
-    data: Uint8Array;
-}
-/**
- * ProofOps is Merkle proof defined by the list of ProofOps.
- *
- * Note: This type is a duplicate of the ProofOps proto type defined in Tendermint.
- */
-export interface ProofOps {
-    ops: ProofOp[];
-}
-export interface ProofOpsProtoMsg {
-    typeUrl: "/cosmos.base.tendermint.v1beta1.ProofOps";
-    value: Uint8Array;
-}
-/**
- * ProofOps is Merkle proof defined by the list of ProofOps.
- *
- * Note: This type is a duplicate of the ProofOps proto type defined in Tendermint.
- */
-export interface ProofOpsAmino {
-    ops: ProofOpAmino[];
-}
-export interface ProofOpsAminoMsg {
-    type: "cosmos-sdk/ProofOps";
-    value: ProofOpsAmino;
-}
-/**
- * ProofOps is Merkle proof defined by the list of ProofOps.
- *
- * Note: This type is a duplicate of the ProofOps proto type defined in Tendermint.
- */
-export interface ProofOpsSDKType {
-    ops: ProofOpSDKType[];
 }
 export declare const GetValidatorSetByHeightRequest: {
     typeUrl: string;
@@ -752,56 +565,4 @@ export declare const Module: {
     fromProtoMsg(message: ModuleProtoMsg): Module;
     toProto(message: Module): Uint8Array;
     toProtoMsg(message: Module): ModuleProtoMsg;
-};
-export declare const ABCIQueryRequest: {
-    typeUrl: string;
-    encode(message: ABCIQueryRequest, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): ABCIQueryRequest;
-    fromPartial(object: Partial<ABCIQueryRequest>): ABCIQueryRequest;
-    fromAmino(object: ABCIQueryRequestAmino): ABCIQueryRequest;
-    toAmino(message: ABCIQueryRequest): ABCIQueryRequestAmino;
-    fromAminoMsg(object: ABCIQueryRequestAminoMsg): ABCIQueryRequest;
-    toAminoMsg(message: ABCIQueryRequest): ABCIQueryRequestAminoMsg;
-    fromProtoMsg(message: ABCIQueryRequestProtoMsg): ABCIQueryRequest;
-    toProto(message: ABCIQueryRequest): Uint8Array;
-    toProtoMsg(message: ABCIQueryRequest): ABCIQueryRequestProtoMsg;
-};
-export declare const ABCIQueryResponse: {
-    typeUrl: string;
-    encode(message: ABCIQueryResponse, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): ABCIQueryResponse;
-    fromPartial(object: Partial<ABCIQueryResponse>): ABCIQueryResponse;
-    fromAmino(object: ABCIQueryResponseAmino): ABCIQueryResponse;
-    toAmino(message: ABCIQueryResponse): ABCIQueryResponseAmino;
-    fromAminoMsg(object: ABCIQueryResponseAminoMsg): ABCIQueryResponse;
-    toAminoMsg(message: ABCIQueryResponse): ABCIQueryResponseAminoMsg;
-    fromProtoMsg(message: ABCIQueryResponseProtoMsg): ABCIQueryResponse;
-    toProto(message: ABCIQueryResponse): Uint8Array;
-    toProtoMsg(message: ABCIQueryResponse): ABCIQueryResponseProtoMsg;
-};
-export declare const ProofOp: {
-    typeUrl: string;
-    encode(message: ProofOp, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): ProofOp;
-    fromPartial(object: Partial<ProofOp>): ProofOp;
-    fromAmino(object: ProofOpAmino): ProofOp;
-    toAmino(message: ProofOp): ProofOpAmino;
-    fromAminoMsg(object: ProofOpAminoMsg): ProofOp;
-    toAminoMsg(message: ProofOp): ProofOpAminoMsg;
-    fromProtoMsg(message: ProofOpProtoMsg): ProofOp;
-    toProto(message: ProofOp): Uint8Array;
-    toProtoMsg(message: ProofOp): ProofOpProtoMsg;
-};
-export declare const ProofOps: {
-    typeUrl: string;
-    encode(message: ProofOps, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): ProofOps;
-    fromPartial(object: Partial<ProofOps>): ProofOps;
-    fromAmino(object: ProofOpsAmino): ProofOps;
-    toAmino(message: ProofOps): ProofOpsAmino;
-    fromAminoMsg(object: ProofOpsAminoMsg): ProofOps;
-    toAminoMsg(message: ProofOps): ProofOpsAminoMsg;
-    fromProtoMsg(message: ProofOpsProtoMsg): ProofOps;
-    toProto(message: ProofOps): Uint8Array;
-    toProtoMsg(message: ProofOps): ProofOpsProtoMsg;
 };

@@ -24,7 +24,7 @@ export interface PubKeyAmino {
     key?: string;
 }
 export interface PubKeyAminoMsg {
-    type: "tendermint/PubKeyEd25519";
+    type: "cosmos-sdk/PubKey";
     value: PubKeyAmino;
 }
 /**
@@ -56,7 +56,7 @@ export interface PrivKeyAmino {
     key?: string;
 }
 export interface PrivKeyAminoMsg {
-    type: "tendermint/PrivKeyEd25519";
+    type: "cosmos-sdk/PrivKey";
     value: PrivKeyAmino;
 }
 /**

@@ -23,7 +23,7 @@ export interface LegacyAminoPubKeyAmino {
   public_keys?: AnyAmino[];
 }
 export interface LegacyAminoPubKeyAminoMsg {
-  type: "tendermint/PubKeyMultisigThreshold";
+  type: "cosmos-sdk/LegacyAminoPubKey";
   value: LegacyAminoPubKeyAmino;
 }
 /**
@@ -101,7 +101,7 @@ export const LegacyAminoPubKey = {
   },
   toAminoMsg(message: LegacyAminoPubKey): LegacyAminoPubKeyAminoMsg {
     return {
-      type: "tendermint/PubKeyMultisigThreshold",
+      type: "cosmos-sdk/LegacyAminoPubKey",
       value: LegacyAminoPubKey.toAmino(message)
     };
   },
