@@ -8,7 +8,7 @@ export const reposDir = join(__dirname, "repos");
 export const config = [
   {
     repo: "https://github.com/Stride-Labs/stride",
-    rev: "assaf-test", // x/airdrop protos
+    rev: "sam/v24-rc0", 
   },
   {
     repo: "https://github.com/cosmos/cosmos-sdk",
