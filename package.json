@@ -9,8 +9,7 @@
   "homepage": "https://github.com/Stride-Labs/stridejs#readme",
   "license": "MIT",
   "source": "src/index.ts",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/esm/index.js",
   "types": "types/index.d.ts",
   "directories": {
     "lib": "src",
@@ -32,7 +31,7 @@
     "codegen:build-cosmos-sdk": "buf export scripts/repos/cosmos-sdk --output=scripts/proto",
     "codegen:build-ibc-go": "buf export scripts/repos/ibc-go --output=scripts/proto",
     "codegen:run": "cross-env NODE_ENV=development ts-node scripts/codegen.ts",
-    "prepare": "pnpm run codegen && pnpm run build",
+    "prepare": "pnpm run codegen",
     "ts:watch": "tsc -w"
   },
   "publishConfig": {
