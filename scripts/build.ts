@@ -7,7 +7,7 @@ const main = async () => {
   await Promise.all([
     esbuild.build({
       entryPoints: ["./src/**/*.ts"],
-      bundle: true,
+      bundle: false,
       platform: "node",
       minify: false,
       format: "esm",
@@ -17,7 +17,7 @@ const main = async () => {
 
     esbuild.build({
       entryPoints: ["./src/**/*.ts"],
-      bundle: true,
+      bundle: false,
       platform: "node",
       minify: false,
       format: "cjs",
