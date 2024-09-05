@@ -48,3 +48,5 @@ lib
 # Used by the build script
 scripts/proto
 scripts/repos
+
+/types
