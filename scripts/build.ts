@@ -17,7 +17,7 @@ const main = async () => {
 
     esbuild.build({
       entryPoints: ["./src/**/*.ts"],
-      bundle: false,
+      bundle: true,
       platform: "node",
       minify: false,
       format: "cjs",
