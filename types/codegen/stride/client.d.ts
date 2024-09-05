@@ -117,6 +117,11 @@ export declare const strideAminoConverters: {
         toAmino: (message: import("./stakeibc/tx").MsgRestoreInterchainAccount) => import("./stakeibc/tx").MsgRestoreInterchainAccountAmino;
         fromAmino: (object: import("./stakeibc/tx").MsgRestoreInterchainAccountAmino) => import("./stakeibc/tx").MsgRestoreInterchainAccount;
     };
+    "/stride.stakeibc.MsgCloseDelegationChannel": {
+        aminoType: string;
+        toAmino: (message: import("./stakeibc/tx").MsgCloseDelegationChannel) => import("./stakeibc/tx").MsgCloseDelegationChannelAmino;
+        fromAmino: (object: import("./stakeibc/tx").MsgCloseDelegationChannelAmino) => import("./stakeibc/tx").MsgCloseDelegationChannel;
+    };
     "/stride.stakeibc.MsgUpdateValidatorSharesExchRate": {
         aminoType: string;
         toAmino: (message: import("./stakeibc/tx").MsgUpdateValidatorSharesExchRate) => import("./stakeibc/tx").MsgUpdateValidatorSharesExchRateAmino;

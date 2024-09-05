@@ -8,11 +8,11 @@ export const reposDir = join(__dirname, "repos");
 export const config = [
   {
     repo: "https://github.com/Stride-Labs/stride",
-    rev: "sam/v24-rc0", 
+    rev: "sam/v24-rc0",
   },
   {
-    repo: "https://github.com/cosmos/cosmos-sdk",
-    rev: "v0.45.16-ics-lsm",
+    repo: "https://github.com/Stride-Labs/cosmos-sdk",
+    rev: "v0.47.10-stride-distribution-fix-0-mempool-verbose-error-1",
   },
   {
     repo: "https://github.com/cosmos/ibc-go",

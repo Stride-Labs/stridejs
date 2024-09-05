@@ -4,7 +4,7 @@ import { BinaryReader, BinaryWriter } from "../../../binary";
 export interface GenesisState {
     /** minter is a space for holding current inflation information. */
     minter: Minter;
-    /** params defines all the paramaters of the module. */
+    /** params defines all the parameters of the module. */
     params: Params;
 }
 export interface GenesisStateProtoMsg {
@@ -14,9 +14,9 @@ export interface GenesisStateProtoMsg {
 /** GenesisState defines the mint module's genesis state. */
 export interface GenesisStateAmino {
     /** minter is a space for holding current inflation information. */
-    minter?: MinterAmino;
-    /** params defines all the paramaters of the module. */
-    params?: ParamsAmino;
+    minter: MinterAmino;
+    /** params defines all the parameters of the module. */
+    params: ParamsAmino;
 }
 export interface GenesisStateAminoMsg {
     type: "cosmos-sdk/GenesisState";
