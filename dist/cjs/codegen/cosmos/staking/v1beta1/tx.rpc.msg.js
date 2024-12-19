@@ -31,8 +31,14 @@ class MsgClientImpl {
     this.delegate = this.delegate.bind(this);
     this.beginRedelegate = this.beginRedelegate.bind(this);
     this.undelegate = this.undelegate.bind(this);
+    this.unbondValidator = this.unbondValidator.bind(this);
     this.cancelUnbondingDelegation = this.cancelUnbondingDelegation.bind(this);
-    this.updateParams = this.updateParams.bind(this);
+    this.tokenizeShares = this.tokenizeShares.bind(this);
+    this.redeemTokensForShares = this.redeemTokensForShares.bind(this);
+    this.transferTokenizeShareRecord = this.transferTokenizeShareRecord.bind(this);
+    this.disableTokenizeShares = this.disableTokenizeShares.bind(this);
+    this.enableTokenizeShares = this.enableTokenizeShares.bind(this);
+    this.validatorBond = this.validatorBond.bind(this);
   }
   createValidator(request) {
     const data = import_tx.MsgCreateValidator.encode(request).finish();
@@ -59,15 +65,45 @@ class MsgClientImpl {
     const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "Undelegate", data);
     return promise.then((data2) => import_tx.MsgUndelegateResponse.decode(new import_binary.BinaryReader(data2)));
   }
+  unbondValidator(request) {
+    const data = import_tx.MsgUnbondValidator.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "UnbondValidator", data);
+    return promise.then((data2) => import_tx.MsgUnbondValidatorResponse.decode(new import_binary.BinaryReader(data2)));
+  }
   cancelUnbondingDelegation(request) {
     const data = import_tx.MsgCancelUnbondingDelegation.encode(request).finish();
     const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "CancelUnbondingDelegation", data);
     return promise.then((data2) => import_tx.MsgCancelUnbondingDelegationResponse.decode(new import_binary.BinaryReader(data2)));
   }
-  updateParams(request) {
-    const data = import_tx.MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "UpdateParams", data);
-    return promise.then((data2) => import_tx.MsgUpdateParamsResponse.decode(new import_binary.BinaryReader(data2)));
+  tokenizeShares(request) {
+    const data = import_tx.MsgTokenizeShares.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "TokenizeShares", data);
+    return promise.then((data2) => import_tx.MsgTokenizeSharesResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  redeemTokensForShares(request) {
+    const data = import_tx.MsgRedeemTokensForShares.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "RedeemTokensForShares", data);
+    return promise.then((data2) => import_tx.MsgRedeemTokensForSharesResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  transferTokenizeShareRecord(request) {
+    const data = import_tx.MsgTransferTokenizeShareRecord.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "TransferTokenizeShareRecord", data);
+    return promise.then((data2) => import_tx.MsgTransferTokenizeShareRecordResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  disableTokenizeShares(request) {
+    const data = import_tx.MsgDisableTokenizeShares.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "DisableTokenizeShares", data);
+    return promise.then((data2) => import_tx.MsgDisableTokenizeSharesResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  enableTokenizeShares(request) {
+    const data = import_tx.MsgEnableTokenizeShares.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "EnableTokenizeShares", data);
+    return promise.then((data2) => import_tx.MsgEnableTokenizeSharesResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  validatorBond(request) {
+    const data = import_tx.MsgValidatorBond.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Msg", "ValidatorBond", data);
+    return promise.then((data2) => import_tx.MsgValidatorBondResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

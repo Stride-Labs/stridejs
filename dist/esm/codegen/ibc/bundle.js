@@ -1,69 +1,69 @@
-import * as _136 from "./applications/fee/v1/ack";
-import * as _137 from "./applications/fee/v1/fee";
-import * as _138 from "./applications/fee/v1/genesis";
-import * as _139 from "./applications/fee/v1/metadata";
-import * as _140 from "./applications/fee/v1/query";
-import * as _141 from "./applications/fee/v1/tx";
-import * as _142 from "./applications/interchain_accounts/controller/v1/controller";
-import * as _143 from "./applications/interchain_accounts/controller/v1/query";
-import * as _144 from "./applications/interchain_accounts/controller/v1/tx";
-import * as _145 from "./applications/interchain_accounts/genesis/v1/genesis";
-import * as _146 from "./applications/interchain_accounts/host/v1/host";
-import * as _147 from "./applications/interchain_accounts/host/v1/query";
-import * as _148 from "./applications/interchain_accounts/v1/account";
-import * as _149 from "./applications/interchain_accounts/v1/metadata";
-import * as _150 from "./applications/interchain_accounts/v1/packet";
-import * as _151 from "./applications/transfer/v1/authz";
-import * as _152 from "./applications/transfer/v1/genesis";
-import * as _153 from "./applications/transfer/v1/query";
-import * as _154 from "./applications/transfer/v1/transfer";
-import * as _155 from "./applications/transfer/v1/tx";
-import * as _156 from "./applications/transfer/v2/packet";
-import * as _157 from "./core/channel/v1/channel";
-import * as _158 from "./core/channel/v1/genesis";
-import * as _159 from "./core/channel/v1/query";
-import * as _160 from "./core/channel/v1/tx";
-import * as _161 from "./core/client/v1/client";
-import * as _162 from "./core/client/v1/genesis";
-import * as _163 from "./core/client/v1/query";
-import * as _164 from "./core/client/v1/tx";
-import * as _165 from "./core/commitment/v1/commitment";
-import * as _166 from "./core/connection/v1/connection";
-import * as _167 from "./core/connection/v1/genesis";
-import * as _168 from "./core/connection/v1/query";
-import * as _169 from "./core/connection/v1/tx";
-import * as _170 from "./core/types/v1/genesis";
-import * as _171 from "./lightclients/localhost/v2/localhost";
-import * as _172 from "./lightclients/solomachine/v2/solomachine";
-import * as _173 from "./lightclients/solomachine/v3/solomachine";
-import * as _174 from "./lightclients/tendermint/v1/tendermint";
-import * as _329 from "./applications/fee/v1/tx.amino";
-import * as _330 from "./applications/interchain_accounts/controller/v1/tx.amino";
-import * as _331 from "./applications/transfer/v1/tx.amino";
-import * as _332 from "./core/channel/v1/tx.amino";
-import * as _333 from "./core/client/v1/tx.amino";
-import * as _334 from "./core/connection/v1/tx.amino";
-import * as _335 from "./applications/fee/v1/tx.registry";
-import * as _336 from "./applications/interchain_accounts/controller/v1/tx.registry";
-import * as _337 from "./applications/transfer/v1/tx.registry";
-import * as _338 from "./core/channel/v1/tx.registry";
-import * as _339 from "./core/client/v1/tx.registry";
-import * as _340 from "./core/connection/v1/tx.registry";
-import * as _341 from "./applications/fee/v1/query.rpc.Query";
-import * as _342 from "./applications/interchain_accounts/controller/v1/query.rpc.Query";
-import * as _343 from "./applications/interchain_accounts/host/v1/query.rpc.Query";
-import * as _344 from "./applications/transfer/v1/query.rpc.Query";
-import * as _345 from "./core/channel/v1/query.rpc.Query";
-import * as _346 from "./core/client/v1/query.rpc.Query";
-import * as _347 from "./core/connection/v1/query.rpc.Query";
-import * as _348 from "./applications/fee/v1/tx.rpc.msg";
-import * as _349 from "./applications/interchain_accounts/controller/v1/tx.rpc.msg";
-import * as _350 from "./applications/transfer/v1/tx.rpc.msg";
-import * as _351 from "./core/channel/v1/tx.rpc.msg";
-import * as _352 from "./core/client/v1/tx.rpc.msg";
-import * as _353 from "./core/connection/v1/tx.rpc.msg";
-import * as _397 from "./rpc.query";
-import * as _398 from "./rpc.tx";
+import * as _84 from "./applications/fee/v1/ack";
+import * as _85 from "./applications/fee/v1/fee";
+import * as _86 from "./applications/fee/v1/genesis";
+import * as _87 from "./applications/fee/v1/metadata";
+import * as _88 from "./applications/fee/v1/query";
+import * as _89 from "./applications/fee/v1/tx";
+import * as _90 from "./applications/interchain_accounts/controller/v1/controller";
+import * as _91 from "./applications/interchain_accounts/controller/v1/query";
+import * as _92 from "./applications/interchain_accounts/controller/v1/tx";
+import * as _93 from "./applications/interchain_accounts/genesis/v1/genesis";
+import * as _94 from "./applications/interchain_accounts/host/v1/host";
+import * as _95 from "./applications/interchain_accounts/host/v1/query";
+import * as _96 from "./applications/interchain_accounts/v1/account";
+import * as _97 from "./applications/interchain_accounts/v1/metadata";
+import * as _98 from "./applications/interchain_accounts/v1/packet";
+import * as _99 from "./applications/transfer/v1/authz";
+import * as _100 from "./applications/transfer/v1/genesis";
+import * as _101 from "./applications/transfer/v1/query";
+import * as _102 from "./applications/transfer/v1/transfer";
+import * as _103 from "./applications/transfer/v1/tx";
+import * as _104 from "./applications/transfer/v2/packet";
+import * as _105 from "./core/channel/v1/channel";
+import * as _106 from "./core/channel/v1/genesis";
+import * as _107 from "./core/channel/v1/query";
+import * as _108 from "./core/channel/v1/tx";
+import * as _109 from "./core/client/v1/client";
+import * as _110 from "./core/client/v1/genesis";
+import * as _111 from "./core/client/v1/query";
+import * as _112 from "./core/client/v1/tx";
+import * as _113 from "./core/commitment/v1/commitment";
+import * as _114 from "./core/connection/v1/connection";
+import * as _115 from "./core/connection/v1/genesis";
+import * as _116 from "./core/connection/v1/query";
+import * as _117 from "./core/connection/v1/tx";
+import * as _118 from "./core/types/v1/genesis";
+import * as _119 from "./lightclients/localhost/v2/localhost";
+import * as _120 from "./lightclients/solomachine/v2/solomachine";
+import * as _121 from "./lightclients/solomachine/v3/solomachine";
+import * as _122 from "./lightclients/tendermint/v1/tendermint";
+import * as _249 from "./applications/fee/v1/tx.amino";
+import * as _250 from "./applications/interchain_accounts/controller/v1/tx.amino";
+import * as _251 from "./applications/transfer/v1/tx.amino";
+import * as _252 from "./core/channel/v1/tx.amino";
+import * as _253 from "./core/client/v1/tx.amino";
+import * as _254 from "./core/connection/v1/tx.amino";
+import * as _255 from "./applications/fee/v1/tx.registry";
+import * as _256 from "./applications/interchain_accounts/controller/v1/tx.registry";
+import * as _257 from "./applications/transfer/v1/tx.registry";
+import * as _258 from "./core/channel/v1/tx.registry";
+import * as _259 from "./core/client/v1/tx.registry";
+import * as _260 from "./core/connection/v1/tx.registry";
+import * as _261 from "./applications/fee/v1/query.rpc.Query";
+import * as _262 from "./applications/interchain_accounts/controller/v1/query.rpc.Query";
+import * as _263 from "./applications/interchain_accounts/host/v1/query.rpc.Query";
+import * as _264 from "./applications/transfer/v1/query.rpc.Query";
+import * as _265 from "./core/channel/v1/query.rpc.Query";
+import * as _266 from "./core/client/v1/query.rpc.Query";
+import * as _267 from "./core/connection/v1/query.rpc.Query";
+import * as _268 from "./applications/fee/v1/tx.rpc.msg";
+import * as _269 from "./applications/interchain_accounts/controller/v1/tx.rpc.msg";
+import * as _270 from "./applications/transfer/v1/tx.rpc.msg";
+import * as _271 from "./core/channel/v1/tx.rpc.msg";
+import * as _272 from "./core/client/v1/tx.rpc.msg";
+import * as _273 from "./core/connection/v1/tx.rpc.msg";
+import * as _317 from "./rpc.query";
+import * as _318 from "./rpc.tx";
 var ibc;
 ((ibc2) => {
   let applications;
@@ -71,16 +71,16 @@ var ibc;
     let fee;
     ((fee2) => {
       fee2.v1 = {
-        ..._136,
-        ..._137,
-        ..._138,
-        ..._139,
-        ..._140,
-        ..._141,
-        ..._329,
-        ..._335,
-        ..._341,
-        ..._348
+        ..._84,
+        ..._85,
+        ..._86,
+        ..._87,
+        ..._88,
+        ..._89,
+        ..._249,
+        ..._255,
+        ..._261,
+        ..._268
       };
     })(fee = applications2.fee || (applications2.fee = {}));
     let interchain_accounts;
@@ -88,50 +88,50 @@ var ibc;
       let controller;
       ((controller2) => {
         controller2.v1 = {
-          ..._142,
-          ..._143,
-          ..._144,
-          ..._330,
-          ..._336,
-          ..._342,
-          ..._349
+          ..._90,
+          ..._91,
+          ..._92,
+          ..._250,
+          ..._256,
+          ..._262,
+          ..._269
         };
       })(controller = interchain_accounts2.controller || (interchain_accounts2.controller = {}));
       let genesis;
       ((genesis2) => {
         genesis2.v1 = {
-          ..._145
+          ..._93
         };
       })(genesis = interchain_accounts2.genesis || (interchain_accounts2.genesis = {}));
       let host;
       ((host2) => {
         host2.v1 = {
-          ..._146,
-          ..._147,
-          ..._343
+          ..._94,
+          ..._95,
+          ..._263
         };
       })(host = interchain_accounts2.host || (interchain_accounts2.host = {}));
       interchain_accounts2.v1 = {
-        ..._148,
-        ..._149,
-        ..._150
+        ..._96,
+        ..._97,
+        ..._98
       };
     })(interchain_accounts = applications2.interchain_accounts || (applications2.interchain_accounts = {}));
     let transfer;
     ((transfer2) => {
       transfer2.v1 = {
-        ..._151,
-        ..._152,
-        ..._153,
-        ..._154,
-        ..._155,
-        ..._331,
-        ..._337,
-        ..._344,
-        ..._350
+        ..._99,
+        ..._100,
+        ..._101,
+        ..._102,
+        ..._103,
+        ..._251,
+        ..._257,
+        ..._264,
+        ..._270
       };
       transfer2.v2 = {
-        ..._156
+        ..._104
       };
     })(transfer = applications2.transfer || (applications2.transfer = {}));
   })(applications = ibc2.applications || (ibc2.applications = {}));
@@ -140,52 +140,52 @@ var ibc;
     let channel;
     ((channel2) => {
       channel2.v1 = {
-        ..._157,
-        ..._158,
-        ..._159,
-        ..._160,
-        ..._332,
-        ..._338,
-        ..._345,
-        ..._351
+        ..._105,
+        ..._106,
+        ..._107,
+        ..._108,
+        ..._252,
+        ..._258,
+        ..._265,
+        ..._271
       };
     })(channel = core2.channel || (core2.channel = {}));
     let client;
     ((client2) => {
       client2.v1 = {
-        ..._161,
-        ..._162,
-        ..._163,
-        ..._164,
-        ..._333,
-        ..._339,
-        ..._346,
-        ..._352
+        ..._109,
+        ..._110,
+        ..._111,
+        ..._112,
+        ..._253,
+        ..._259,
+        ..._266,
+        ..._272
       };
     })(client = core2.client || (core2.client = {}));
     let commitment;
     ((commitment2) => {
       commitment2.v1 = {
-        ..._165
+        ..._113
       };
     })(commitment = core2.commitment || (core2.commitment = {}));
     let connection;
     ((connection2) => {
       connection2.v1 = {
-        ..._166,
-        ..._167,
-        ..._168,
-        ..._169,
-        ..._334,
-        ..._340,
-        ..._347,
-        ..._353
+        ..._114,
+        ..._115,
+        ..._116,
+        ..._117,
+        ..._254,
+        ..._260,
+        ..._267,
+        ..._273
       };
     })(connection = core2.connection || (core2.connection = {}));
     let types;
     ((types2) => {
       types2.v1 = {
-        ..._170
+        ..._118
       };
     })(types = core2.types || (core2.types = {}));
   })(core = ibc2.core || (ibc2.core = {}));
@@ -194,28 +194,28 @@ var ibc;
     let localhost;
     ((localhost2) => {
       localhost2.v2 = {
-        ..._171
+        ..._119
       };
     })(localhost = lightclients2.localhost || (lightclients2.localhost = {}));
     let solomachine;
     ((solomachine2) => {
       solomachine2.v2 = {
-        ..._172
+        ..._120
       };
       solomachine2.v3 = {
-        ..._173
+        ..._121
       };
     })(solomachine = lightclients2.solomachine || (lightclients2.solomachine = {}));
     let tendermint;
     ((tendermint2) => {
       tendermint2.v1 = {
-        ..._174
+        ..._122
       };
     })(tendermint = lightclients2.tendermint || (lightclients2.tendermint = {}));
   })(lightclients = ibc2.lightclients || (ibc2.lightclients = {}));
   ibc2.ClientFactory = {
-    ..._397,
-    ..._398
+    ..._317,
+    ..._318
   };
 })(ibc || (ibc = {}));
 export {

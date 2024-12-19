@@ -101,7 +101,7 @@ const QueryParamsResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
+    obj.params = message.params ? Params.toAmino(message.params) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -239,7 +239,7 @@ const QuerySigningInfoResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.val_signing_info = message.valSigningInfo ? ValidatorSigningInfo.toAmino(message.valSigningInfo) : ValidatorSigningInfo.toAmino(ValidatorSigningInfo.fromPartial({}));
+    obj.val_signing_info = message.valSigningInfo ? ValidatorSigningInfo.toAmino(message.valSigningInfo) : void 0;
     return obj;
   },
   fromAminoMsg(object) {

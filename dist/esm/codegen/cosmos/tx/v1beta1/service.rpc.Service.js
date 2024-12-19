@@ -1,6 +1,6 @@
 import { BinaryReader } from "../../../binary";
 import { createProtobufRpcClient } from "@cosmjs/stargate";
-import { SimulateRequest, SimulateResponse, GetTxRequest, GetTxResponse, BroadcastTxRequest, BroadcastTxResponse, GetTxsEventRequest, GetTxsEventResponse, GetBlockWithTxsRequest, GetBlockWithTxsResponse, TxDecodeRequest, TxDecodeResponse, TxEncodeRequest, TxEncodeResponse, TxEncodeAminoRequest, TxEncodeAminoResponse, TxDecodeAminoRequest, TxDecodeAminoResponse } from "./service";
+import { SimulateRequest, SimulateResponse, GetTxRequest, GetTxResponse, BroadcastTxRequest, BroadcastTxResponse, GetTxsEventRequest, GetTxsEventResponse, GetBlockWithTxsRequest, GetBlockWithTxsResponse } from "./service";
 class ServiceClientImpl {
   rpc;
   constructor(rpc) {
@@ -10,10 +10,6 @@ class ServiceClientImpl {
     this.broadcastTx = this.broadcastTx.bind(this);
     this.getTxsEvent = this.getTxsEvent.bind(this);
     this.getBlockWithTxs = this.getBlockWithTxs.bind(this);
-    this.txDecode = this.txDecode.bind(this);
-    this.txEncode = this.txEncode.bind(this);
-    this.txEncodeAmino = this.txEncodeAmino.bind(this);
-    this.txDecodeAmino = this.txDecodeAmino.bind(this);
   }
   simulate(request) {
     const data = SimulateRequest.encode(request).finish();
@@ -40,26 +36,6 @@ class ServiceClientImpl {
     const promise = this.rpc.request("cosmos.tx.v1beta1.Service", "GetBlockWithTxs", data);
     return promise.then((data2) => GetBlockWithTxsResponse.decode(new BinaryReader(data2)));
   }
-  txDecode(request) {
-    const data = TxDecodeRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.tx.v1beta1.Service", "TxDecode", data);
-    return promise.then((data2) => TxDecodeResponse.decode(new BinaryReader(data2)));
-  }
-  txEncode(request) {
-    const data = TxEncodeRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.tx.v1beta1.Service", "TxEncode", data);
-    return promise.then((data2) => TxEncodeResponse.decode(new BinaryReader(data2)));
-  }
-  txEncodeAmino(request) {
-    const data = TxEncodeAminoRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.tx.v1beta1.Service", "TxEncodeAmino", data);
-    return promise.then((data2) => TxEncodeAminoResponse.decode(new BinaryReader(data2)));
-  }
-  txDecodeAmino(request) {
-    const data = TxDecodeAminoRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.tx.v1beta1.Service", "TxDecodeAmino", data);
-    return promise.then((data2) => TxDecodeAminoResponse.decode(new BinaryReader(data2)));
-  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = createProtobufRpcClient(base);
@@ -79,18 +55,6 @@ const createRpcQueryExtension = (base) => {
     },
     getBlockWithTxs(request) {
       return queryService.getBlockWithTxs(request);
-    },
-    txDecode(request) {
-      return queryService.txDecode(request);
-    },
-    txEncode(request) {
-      return queryService.txEncode(request);
-    },
-    txEncodeAmino(request) {
-      return queryService.txEncodeAmino(request);
-    },
-    txDecodeAmino(request) {
-      return queryService.txDecodeAmino(request);
     }
   };
 };

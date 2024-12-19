@@ -32,7 +32,6 @@ class QueryClientImpl {
     this.appliedPlan = this.appliedPlan.bind(this);
     this.upgradedConsensusState = this.upgradedConsensusState.bind(this);
     this.moduleVersions = this.moduleVersions.bind(this);
-    this.authority = this.authority.bind(this);
   }
   currentPlan(request = {}) {
     const data = import_query.QueryCurrentPlanRequest.encode(request).finish();
@@ -54,11 +53,6 @@ class QueryClientImpl {
     const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "ModuleVersions", data);
     return promise.then((data2) => import_query.QueryModuleVersionsResponse.decode(new import_binary.BinaryReader(data2)));
   }
-  authority(request = {}) {
-    const data = import_query.QueryAuthorityRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "Authority", data);
-    return promise.then((data2) => import_query.QueryAuthorityResponse.decode(new import_binary.BinaryReader(data2)));
-  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = (0, import_stargate.createProtobufRpcClient)(base);
@@ -75,9 +69,6 @@ const createRpcQueryExtension = (base) => {
     },
     moduleVersions(request) {
       return queryService.moduleVersions(request);
-    },
-    authority(request) {
-      return queryService.authority(request);
     }
   };
 };

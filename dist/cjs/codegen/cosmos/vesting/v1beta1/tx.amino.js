@@ -26,16 +26,6 @@ const AminoConverter = {
     aminoType: "cosmos-sdk/MsgCreateVestingAccount",
     toAmino: import_tx.MsgCreateVestingAccount.toAmino,
     fromAmino: import_tx.MsgCreateVestingAccount.fromAmino
-  },
-  "/cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccount": {
-    aminoType: "cosmos-sdk/MsgCreatePermLockedAccount",
-    toAmino: import_tx.MsgCreatePermanentLockedAccount.toAmino,
-    fromAmino: import_tx.MsgCreatePermanentLockedAccount.fromAmino
-  },
-  "/cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccount": {
-    aminoType: "cosmos-sdk/MsgCreatePeriodicVestingAccount",
-    toAmino: import_tx.MsgCreatePeriodicVestingAccount.toAmino,
-    fromAmino: import_tx.MsgCreatePeriodicVestingAccount.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

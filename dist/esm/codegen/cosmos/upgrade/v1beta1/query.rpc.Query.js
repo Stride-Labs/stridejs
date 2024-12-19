@@ -1,6 +1,6 @@
 import { BinaryReader } from "../../../binary";
 import { createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryCurrentPlanRequest, QueryCurrentPlanResponse, QueryAppliedPlanRequest, QueryAppliedPlanResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse, QueryModuleVersionsRequest, QueryModuleVersionsResponse, QueryAuthorityRequest, QueryAuthorityResponse } from "./query";
+import { QueryCurrentPlanRequest, QueryCurrentPlanResponse, QueryAppliedPlanRequest, QueryAppliedPlanResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse, QueryModuleVersionsRequest, QueryModuleVersionsResponse } from "./query";
 class QueryClientImpl {
   rpc;
   constructor(rpc) {
@@ -9,7 +9,6 @@ class QueryClientImpl {
     this.appliedPlan = this.appliedPlan.bind(this);
     this.upgradedConsensusState = this.upgradedConsensusState.bind(this);
     this.moduleVersions = this.moduleVersions.bind(this);
-    this.authority = this.authority.bind(this);
   }
   currentPlan(request = {}) {
     const data = QueryCurrentPlanRequest.encode(request).finish();
@@ -31,11 +30,6 @@ class QueryClientImpl {
     const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "ModuleVersions", data);
     return promise.then((data2) => QueryModuleVersionsResponse.decode(new BinaryReader(data2)));
   }
-  authority(request = {}) {
-    const data = QueryAuthorityRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.upgrade.v1beta1.Query", "Authority", data);
-    return promise.then((data2) => QueryAuthorityResponse.decode(new BinaryReader(data2)));
-  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = createProtobufRpcClient(base);
@@ -52,9 +46,6 @@ const createRpcQueryExtension = (base) => {
     },
     moduleVersions(request) {
       return queryService.moduleVersions(request);
-    },
-    authority(request) {
-      return queryService.authority(request);
     }
   };
 };

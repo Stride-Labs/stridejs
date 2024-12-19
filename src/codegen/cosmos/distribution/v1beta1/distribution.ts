@@ -4,17 +4,7 @@ import { Decimal } from "@cosmjs/math";
 /** Params defines the set of params for the distribution module. */
 export interface Params {
   communityTax: string;
-  /**
-   * Deprecated: The base_proposer_reward field is deprecated and is no longer used
-   * in the x/distribution module's reward mechanism.
-   */
-  /** @deprecated */
   baseProposerReward: string;
-  /**
-   * Deprecated: The bonus_proposer_reward field is deprecated and is no longer used
-   * in the x/distribution module's reward mechanism.
-   */
-  /** @deprecated */
   bonusProposerReward: string;
   withdrawAddrEnabled: boolean;
 }
@@ -25,30 +15,18 @@ export interface ParamsProtoMsg {
 /** Params defines the set of params for the distribution module. */
 export interface ParamsAmino {
   community_tax?: string;
-  /**
-   * Deprecated: The base_proposer_reward field is deprecated and is no longer used
-   * in the x/distribution module's reward mechanism.
-   */
-  /** @deprecated */
   base_proposer_reward?: string;
-  /**
-   * Deprecated: The bonus_proposer_reward field is deprecated and is no longer used
-   * in the x/distribution module's reward mechanism.
-   */
-  /** @deprecated */
   bonus_proposer_reward?: string;
   withdraw_addr_enabled?: boolean;
 }
 export interface ParamsAminoMsg {
-  type: "cosmos-sdk/x/distribution/Params";
+  type: "cosmos-sdk/Params";
   value: ParamsAmino;
 }
 /** Params defines the set of params for the distribution module. */
 export interface ParamsSDKType {
   community_tax: string;
-  /** @deprecated */
   base_proposer_reward: string;
-  /** @deprecated */
   bonus_proposer_reward: string;
   withdraw_addr_enabled: boolean;
 }
@@ -89,7 +67,7 @@ export interface ValidatorHistoricalRewardsProtoMsg {
  *  + one per validator for the zeroeth period, set on initialization
  */
 export interface ValidatorHistoricalRewardsAmino {
-  cumulative_reward_ratio: DecCoinAmino[];
+  cumulative_reward_ratio?: DecCoinAmino[];
   reference_count?: number;
 }
 export interface ValidatorHistoricalRewardsAminoMsg {
@@ -133,7 +111,7 @@ export interface ValidatorCurrentRewardsProtoMsg {
  * each block as long as the validator's tokens remain constant.
  */
 export interface ValidatorCurrentRewardsAmino {
-  rewards: DecCoinAmino[];
+  rewards?: DecCoinAmino[];
   period?: string;
 }
 export interface ValidatorCurrentRewardsAminoMsg {
@@ -165,7 +143,7 @@ export interface ValidatorAccumulatedCommissionProtoMsg {
  * for a validator kept as a running counter, can be withdrawn at any time.
  */
 export interface ValidatorAccumulatedCommissionAmino {
-  commission: DecCoinAmino[];
+  commission?: DecCoinAmino[];
 }
 export interface ValidatorAccumulatedCommissionAminoMsg {
   type: "cosmos-sdk/ValidatorAccumulatedCommission";
@@ -194,7 +172,7 @@ export interface ValidatorOutstandingRewardsProtoMsg {
  * for a validator inexpensive to track, allows simple sanity checks.
  */
 export interface ValidatorOutstandingRewardsAmino {
-  rewards: DecCoinAmino[];
+  rewards?: DecCoinAmino[];
 }
 export interface ValidatorOutstandingRewardsAminoMsg {
   type: "cosmos-sdk/ValidatorOutstandingRewards";
@@ -255,7 +233,7 @@ export interface ValidatorSlashEventsProtoMsg {
 }
 /** ValidatorSlashEvents is a collection of ValidatorSlashEvent messages. */
 export interface ValidatorSlashEventsAmino {
-  validator_slash_events: ValidatorSlashEventAmino[];
+  validator_slash_events?: ValidatorSlashEventAmino[];
 }
 export interface ValidatorSlashEventsAminoMsg {
   type: "cosmos-sdk/ValidatorSlashEvents";
@@ -275,7 +253,7 @@ export interface FeePoolProtoMsg {
 }
 /** FeePool is the global fee pool for distribution. */
 export interface FeePoolAmino {
-  community_pool: DecCoinAmino[];
+  community_pool?: DecCoinAmino[];
 }
 export interface FeePoolAminoMsg {
   type: "cosmos-sdk/FeePool";
@@ -289,15 +267,8 @@ export interface FeePoolSDKType {
  * CommunityPoolSpendProposal details a proposal for use of community funds,
  * together with how many coins are proposed to be spent, and to which
  * recipient account.
- * 
- * Deprecated: Do not use. As of the Cosmos SDK release v0.47.x, there is no
- * longer a need for an explicit CommunityPoolSpendProposal. To spend community
- * pool funds, a simple MsgCommunityPoolSpend can be invoked from the x/gov
- * module via a v1 governance proposal.
  */
-/** @deprecated */
 export interface CommunityPoolSpendProposal {
-  $typeUrl?: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal";
   title: string;
   description: string;
   recipient: string;
@@ -311,18 +282,12 @@ export interface CommunityPoolSpendProposalProtoMsg {
  * CommunityPoolSpendProposal details a proposal for use of community funds,
  * together with how many coins are proposed to be spent, and to which
  * recipient account.
- * 
- * Deprecated: Do not use. As of the Cosmos SDK release v0.47.x, there is no
- * longer a need for an explicit CommunityPoolSpendProposal. To spend community
- * pool funds, a simple MsgCommunityPoolSpend can be invoked from the x/gov
- * module via a v1 governance proposal.
  */
-/** @deprecated */
 export interface CommunityPoolSpendProposalAmino {
   title?: string;
   description?: string;
   recipient?: string;
-  amount: CoinAmino[];
+  amount?: CoinAmino[];
 }
 export interface CommunityPoolSpendProposalAminoMsg {
   type: "cosmos-sdk/CommunityPoolSpendProposal";
@@ -332,15 +297,8 @@ export interface CommunityPoolSpendProposalAminoMsg {
  * CommunityPoolSpendProposal details a proposal for use of community funds,
  * together with how many coins are proposed to be spent, and to which
  * recipient account.
- * 
- * Deprecated: Do not use. As of the Cosmos SDK release v0.47.x, there is no
- * longer a need for an explicit CommunityPoolSpendProposal. To spend community
- * pool funds, a simple MsgCommunityPoolSpend can be invoked from the x/gov
- * module via a v1 governance proposal.
  */
-/** @deprecated */
 export interface CommunityPoolSpendProposalSDKType {
-  $typeUrl?: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal";
   title: string;
   description: string;
   recipient: string;
@@ -411,7 +369,7 @@ export interface DelegationDelegatorRewardProtoMsg {
  */
 export interface DelegationDelegatorRewardAmino {
   validator_address?: string;
-  reward: DecCoinAmino[];
+  reward?: DecCoinAmino[];
 }
 export interface DelegationDelegatorRewardAminoMsg {
   type: "cosmos-sdk/DelegationDelegatorReward";
@@ -425,12 +383,34 @@ export interface DelegationDelegatorRewardSDKType {
   validator_address: string;
   reward: DecCoinSDKType[];
 }
+/** TokenizeShareRecordReward represents the properties of tokenize share */
+export interface TokenizeShareRecordReward {
+  recordId: bigint;
+  reward: DecCoin[];
+}
+export interface TokenizeShareRecordRewardProtoMsg {
+  typeUrl: "/cosmos.distribution.v1beta1.TokenizeShareRecordReward";
+  value: Uint8Array;
+}
+/** TokenizeShareRecordReward represents the properties of tokenize share */
+export interface TokenizeShareRecordRewardAmino {
+  record_id?: string;
+  reward?: DecCoinAmino[];
+}
+export interface TokenizeShareRecordRewardAminoMsg {
+  type: "cosmos-sdk/TokenizeShareRecordReward";
+  value: TokenizeShareRecordRewardAmino;
+}
+/** TokenizeShareRecordReward represents the properties of tokenize share */
+export interface TokenizeShareRecordRewardSDKType {
+  record_id: bigint;
+  reward: DecCoinSDKType[];
+}
 /**
  * CommunityPoolSpendProposalWithDeposit defines a CommunityPoolSpendProposal
  * with a deposit
  */
 export interface CommunityPoolSpendProposalWithDeposit {
-  $typeUrl?: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit";
   title: string;
   description: string;
   recipient: string;
@@ -461,7 +441,6 @@ export interface CommunityPoolSpendProposalWithDepositAminoMsg {
  * with a deposit
  */
 export interface CommunityPoolSpendProposalWithDepositSDKType {
-  $typeUrl?: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit";
   title: string;
   description: string;
   recipient: string;
@@ -556,7 +535,7 @@ export const Params = {
   },
   toAminoMsg(message: Params): ParamsAminoMsg {
     return {
-      type: "cosmos-sdk/x/distribution/Params",
+      type: "cosmos-sdk/Params",
       value: Params.toAmino(message)
     };
   },
@@ -1106,7 +1085,6 @@ export const FeePool = {
 };
 function createBaseCommunityPoolSpendProposal(): CommunityPoolSpendProposal {
   return {
-    $typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal",
     title: "",
     description: "",
     recipient: "",
@@ -1388,9 +1366,91 @@ export const DelegationDelegatorReward = {
     };
   }
 };
+function createBaseTokenizeShareRecordReward(): TokenizeShareRecordReward {
+  return {
+    recordId: BigInt(0),
+    reward: []
+  };
+}
+export const TokenizeShareRecordReward = {
+  typeUrl: "/cosmos.distribution.v1beta1.TokenizeShareRecordReward",
+  encode(message: TokenizeShareRecordReward, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.recordId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.recordId);
+    }
+    for (const v of message.reward) {
+      DecCoin.encode(v!, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): TokenizeShareRecordReward {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseTokenizeShareRecordReward();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.recordId = reader.uint64();
+          break;
+        case 2:
+          message.reward.push(DecCoin.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<TokenizeShareRecordReward>): TokenizeShareRecordReward {
+    const message = createBaseTokenizeShareRecordReward();
+    message.recordId = object.recordId !== undefined && object.recordId !== null ? BigInt(object.recordId.toString()) : BigInt(0);
+    message.reward = object.reward?.map(e => DecCoin.fromPartial(e)) || [];
+    return message;
+  },
+  fromAmino(object: TokenizeShareRecordRewardAmino): TokenizeShareRecordReward {
+    const message = createBaseTokenizeShareRecordReward();
+    if (object.record_id !== undefined && object.record_id !== null) {
+      message.recordId = BigInt(object.record_id);
+    }
+    message.reward = object.reward?.map(e => DecCoin.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message: TokenizeShareRecordReward): TokenizeShareRecordRewardAmino {
+    const obj: any = {};
+    obj.record_id = message.recordId !== BigInt(0) ? message.recordId.toString() : undefined;
+    if (message.reward) {
+      obj.reward = message.reward.map(e => e ? DecCoin.toAmino(e) : undefined);
+    } else {
+      obj.reward = message.reward;
+    }
+    return obj;
+  },
+  fromAminoMsg(object: TokenizeShareRecordRewardAminoMsg): TokenizeShareRecordReward {
+    return TokenizeShareRecordReward.fromAmino(object.value);
+  },
+  toAminoMsg(message: TokenizeShareRecordReward): TokenizeShareRecordRewardAminoMsg {
+    return {
+      type: "cosmos-sdk/TokenizeShareRecordReward",
+      value: TokenizeShareRecordReward.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: TokenizeShareRecordRewardProtoMsg): TokenizeShareRecordReward {
+    return TokenizeShareRecordReward.decode(message.value);
+  },
+  toProto(message: TokenizeShareRecordReward): Uint8Array {
+    return TokenizeShareRecordReward.encode(message).finish();
+  },
+  toProtoMsg(message: TokenizeShareRecordReward): TokenizeShareRecordRewardProtoMsg {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.TokenizeShareRecordReward",
+      value: TokenizeShareRecordReward.encode(message).finish()
+    };
+  }
+};
 function createBaseCommunityPoolSpendProposalWithDeposit(): CommunityPoolSpendProposalWithDeposit {
   return {
-    $typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit",
     title: "",
     description: "",
     recipient: "",

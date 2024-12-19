@@ -29,17 +29,11 @@ class QueryClientImpl {
   constructor(rpc) {
     this.rpc = rpc;
     this.params = this.params.bind(this);
-    this.subspaces = this.subspaces.bind(this);
   }
   params(request) {
     const data = import_query.QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.params.v1beta1.Query", "Params", data);
     return promise.then((data2) => import_query.QueryParamsResponse.decode(new import_binary.BinaryReader(data2)));
-  }
-  subspaces(request = {}) {
-    const data = import_query.QuerySubspacesRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.params.v1beta1.Query", "Subspaces", data);
-    return promise.then((data2) => import_query.QuerySubspacesResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 const createRpcQueryExtension = (base) => {
@@ -48,9 +42,6 @@ const createRpcQueryExtension = (base) => {
   return {
     params(request) {
       return queryService.params(request);
-    },
-    subspaces(request) {
-      return queryService.subspaces(request);
     }
   };
 };

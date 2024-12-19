@@ -70,7 +70,7 @@ const MsgGrant = {
     const obj = {};
     obj.granter = message.granter === "" ? void 0 : message.granter;
     obj.grantee = message.grantee === "" ? void 0 : message.grantee;
-    obj.grant = message.grant ? Grant.toAmino(message.grant) : Grant.toAmino(Grant.fromPartial({}));
+    obj.grant = message.grant ? Grant.toAmino(message.grant) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -214,14 +214,14 @@ const MsgExec = {
     if (object.grantee !== void 0 && object.grantee !== null) {
       message.grantee = object.grantee;
     }
-    message.msgs = object.msgs?.map((e) => Cosmos_basev1beta1Msg_FromAmino(e)) || [];
+    message.msgs = object.msgs?.map((e) => Sdk_MsgauthzAuthorization_FromAmino(e)) || [];
     return message;
   },
   toAmino(message) {
     const obj = {};
     obj.grantee = message.grantee === "" ? void 0 : message.grantee;
     if (message.msgs) {
-      obj.msgs = message.msgs.map((e) => e ? Cosmos_basev1beta1Msg_ToAmino(e) : void 0);
+      obj.msgs = message.msgs.map((e) => e ? Sdk_MsgauthzAuthorization_ToAmino(e) : void 0);
     } else {
       obj.msgs = message.msgs;
     }
@@ -454,7 +454,7 @@ const MsgRevokeResponse = {
     };
   }
 };
-const Cosmos_basev1beta1Msg_InterfaceDecoder = (input) => {
+const Sdk_Msg_InterfaceDecoder = (input) => {
   const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
   const data = Any.decode(reader, reader.uint32());
   switch (data.typeUrl) {
@@ -462,20 +462,37 @@ const Cosmos_basev1beta1Msg_InterfaceDecoder = (input) => {
       return data;
   }
 };
-const Cosmos_basev1beta1Msg_FromAmino = (content) => {
+const Sdk_Msg_FromAmino = (content) => {
   return Any.fromAmino(content);
 };
-const Cosmos_basev1beta1Msg_ToAmino = (content) => {
+const Sdk_Msg_ToAmino = (content) => {
+  return Any.toAmino(content);
+};
+const Authz_Authorization_InterfaceDecoder = (input) => {
+  const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+  const data = Any.decode(reader, reader.uint32());
+  switch (data.typeUrl) {
+    default:
+      return data;
+  }
+};
+const Authz_Authorization_FromAmino = (content) => {
+  return Any.fromAmino(content);
+};
+const Authz_Authorization_ToAmino = (content) => {
   return Any.toAmino(content);
 };
 export {
-  Cosmos_basev1beta1Msg_FromAmino,
-  Cosmos_basev1beta1Msg_InterfaceDecoder,
-  Cosmos_basev1beta1Msg_ToAmino,
+  Authz_Authorization_FromAmino,
+  Authz_Authorization_InterfaceDecoder,
+  Authz_Authorization_ToAmino,
   MsgExec,
   MsgExecResponse,
   MsgGrant,
   MsgGrantResponse,
   MsgRevoke,
-  MsgRevokeResponse
+  MsgRevokeResponse,
+  Sdk_Msg_FromAmino,
+  Sdk_Msg_InterfaceDecoder,
+  Sdk_Msg_ToAmino
 };

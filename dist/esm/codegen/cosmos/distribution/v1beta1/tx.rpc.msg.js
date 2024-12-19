@@ -1,5 +1,5 @@
 import { BinaryReader } from "../../../binary";
-import { MsgSetWithdrawAddress, MsgSetWithdrawAddressResponse, MsgWithdrawDelegatorReward, MsgWithdrawDelegatorRewardResponse, MsgWithdrawValidatorCommission, MsgWithdrawValidatorCommissionResponse, MsgFundCommunityPool, MsgFundCommunityPoolResponse, MsgUpdateParams, MsgUpdateParamsResponse, MsgCommunityPoolSpend, MsgCommunityPoolSpendResponse } from "./tx";
+import { MsgSetWithdrawAddress, MsgSetWithdrawAddressResponse, MsgWithdrawDelegatorReward, MsgWithdrawDelegatorRewardResponse, MsgWithdrawValidatorCommission, MsgWithdrawValidatorCommissionResponse, MsgWithdrawTokenizeShareRecordReward, MsgWithdrawTokenizeShareRecordRewardResponse, MsgWithdrawAllTokenizeShareRecordReward, MsgWithdrawAllTokenizeShareRecordRewardResponse, MsgFundCommunityPool, MsgFundCommunityPoolResponse } from "./tx";
 class MsgClientImpl {
   rpc;
   constructor(rpc) {
@@ -7,9 +7,9 @@ class MsgClientImpl {
     this.setWithdrawAddress = this.setWithdrawAddress.bind(this);
     this.withdrawDelegatorReward = this.withdrawDelegatorReward.bind(this);
     this.withdrawValidatorCommission = this.withdrawValidatorCommission.bind(this);
+    this.withdrawTokenizeShareRecordReward = this.withdrawTokenizeShareRecordReward.bind(this);
+    this.withdrawAllTokenizeShareRecordReward = this.withdrawAllTokenizeShareRecordReward.bind(this);
     this.fundCommunityPool = this.fundCommunityPool.bind(this);
-    this.updateParams = this.updateParams.bind(this);
-    this.communityPoolSpend = this.communityPoolSpend.bind(this);
   }
   setWithdrawAddress(request) {
     const data = MsgSetWithdrawAddress.encode(request).finish();
@@ -26,20 +26,20 @@ class MsgClientImpl {
     const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "WithdrawValidatorCommission", data);
     return promise.then((data2) => MsgWithdrawValidatorCommissionResponse.decode(new BinaryReader(data2)));
   }
+  withdrawTokenizeShareRecordReward(request) {
+    const data = MsgWithdrawTokenizeShareRecordReward.encode(request).finish();
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "WithdrawTokenizeShareRecordReward", data);
+    return promise.then((data2) => MsgWithdrawTokenizeShareRecordRewardResponse.decode(new BinaryReader(data2)));
+  }
+  withdrawAllTokenizeShareRecordReward(request) {
+    const data = MsgWithdrawAllTokenizeShareRecordReward.encode(request).finish();
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "WithdrawAllTokenizeShareRecordReward", data);
+    return promise.then((data2) => MsgWithdrawAllTokenizeShareRecordRewardResponse.decode(new BinaryReader(data2)));
+  }
   fundCommunityPool(request) {
     const data = MsgFundCommunityPool.encode(request).finish();
     const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "FundCommunityPool", data);
     return promise.then((data2) => MsgFundCommunityPoolResponse.decode(new BinaryReader(data2)));
-  }
-  updateParams(request) {
-    const data = MsgUpdateParams.encode(request).finish();
-    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "UpdateParams", data);
-    return promise.then((data2) => MsgUpdateParamsResponse.decode(new BinaryReader(data2)));
-  }
-  communityPoolSpend(request) {
-    const data = MsgCommunityPoolSpend.encode(request).finish();
-    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "CommunityPoolSpend", data);
-    return promise.then((data2) => MsgCommunityPoolSpendResponse.decode(new BinaryReader(data2)));
   }
 }
 export {

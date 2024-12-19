@@ -29,8 +29,7 @@ var import_binary = require("../../../binary");
 var import_helpers = require("../../../helpers");
 function createBaseQueryEvidenceRequest() {
   return {
-    evidenceHash: new Uint8Array(),
-    hash: ""
+    evidenceHash: new Uint8Array()
   };
 }
 const QueryEvidenceRequest = {
@@ -38,9 +37,6 @@ const QueryEvidenceRequest = {
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.evidenceHash.length !== 0) {
       writer.uint32(10).bytes(message.evidenceHash);
-    }
-    if (message.hash !== "") {
-      writer.uint32(18).string(message.hash);
     }
     return writer;
   },
@@ -54,9 +50,6 @@ const QueryEvidenceRequest = {
         case 1:
           message.evidenceHash = reader.bytes();
           break;
-        case 2:
-          message.hash = reader.string();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -67,7 +60,6 @@ const QueryEvidenceRequest = {
   fromPartial(object) {
     const message = createBaseQueryEvidenceRequest();
     message.evidenceHash = object.evidenceHash ?? new Uint8Array();
-    message.hash = object.hash ?? "";
     return message;
   },
   fromAmino(object) {
@@ -75,15 +67,11 @@ const QueryEvidenceRequest = {
     if (object.evidence_hash !== void 0 && object.evidence_hash !== null) {
       message.evidenceHash = (0, import_helpers.bytesFromBase64)(object.evidence_hash);
     }
-    if (object.hash !== void 0 && object.hash !== null) {
-      message.hash = object.hash;
-    }
     return message;
   },
   toAmino(message) {
     const obj = {};
     obj.evidence_hash = message.evidenceHash ? (0, import_helpers.base64FromBytes)(message.evidenceHash) : void 0;
-    obj.hash = message.hash === "" ? void 0 : message.hash;
     return obj;
   },
   fromAminoMsg(object) {

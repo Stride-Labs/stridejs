@@ -283,7 +283,7 @@ const ABCIMessageLog = {
   },
   toAmino(message) {
     const obj = {};
-    obj.msg_index = message.msgIndex ?? 0;
+    obj.msg_index = message.msgIndex === 0 ? void 0 : message.msgIndex;
     obj.log = message.log === "" ? void 0 : message.log;
     if (message.events) {
       obj.events = message.events.map((e) => e ? StringEvent.toAmino(e) : void 0);
@@ -563,8 +563,7 @@ function createBaseResult() {
   return {
     data: new Uint8Array(),
     log: "",
-    events: [],
-    msgResponses: []
+    events: []
   };
 }
 const Result = {
@@ -578,9 +577,6 @@ const Result = {
     }
     for (const v of message.events) {
       Event.encode(v, writer.uint32(26).fork()).ldelim();
-    }
-    for (const v of message.msgResponses) {
-      Any.encode(v, writer.uint32(34).fork()).ldelim();
     }
     return writer;
   },
@@ -600,9 +596,6 @@ const Result = {
         case 3:
           message.events.push(Event.decode(reader, reader.uint32()));
           break;
-        case 4:
-          message.msgResponses.push(Any.decode(reader, reader.uint32()));
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -615,7 +608,6 @@ const Result = {
     message.data = object.data ?? new Uint8Array();
     message.log = object.log ?? "";
     message.events = object.events?.map((e) => Event.fromPartial(e)) || [];
-    message.msgResponses = object.msgResponses?.map((e) => Any.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object) {
@@ -627,7 +619,6 @@ const Result = {
       message.log = object.log;
     }
     message.events = object.events?.map((e) => Event.fromAmino(e)) || [];
-    message.msgResponses = object.msg_responses?.map((e) => Any.fromAmino(e)) || [];
     return message;
   },
   toAmino(message) {
@@ -638,11 +629,6 @@ const Result = {
       obj.events = message.events.map((e) => e ? Event.toAmino(e) : void 0);
     } else {
       obj.events = message.events;
-    }
-    if (message.msgResponses) {
-      obj.msg_responses = message.msgResponses.map((e) => e ? Any.toAmino(e) : void 0);
-    } else {
-      obj.msg_responses = message.msgResponses;
     }
     return obj;
   },
@@ -832,8 +818,7 @@ const MsgData = {
 };
 function createBaseTxMsgData() {
   return {
-    data: [],
-    msgResponses: []
+    data: []
   };
 }
 const TxMsgData = {
@@ -841,9 +826,6 @@ const TxMsgData = {
   encode(message, writer = BinaryWriter.create()) {
     for (const v of message.data) {
       MsgData.encode(v, writer.uint32(10).fork()).ldelim();
-    }
-    for (const v of message.msgResponses) {
-      Any.encode(v, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -857,9 +839,6 @@ const TxMsgData = {
         case 1:
           message.data.push(MsgData.decode(reader, reader.uint32()));
           break;
-        case 2:
-          message.msgResponses.push(Any.decode(reader, reader.uint32()));
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -870,13 +849,11 @@ const TxMsgData = {
   fromPartial(object) {
     const message = createBaseTxMsgData();
     message.data = object.data?.map((e) => MsgData.fromPartial(e)) || [];
-    message.msgResponses = object.msgResponses?.map((e) => Any.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object) {
     const message = createBaseTxMsgData();
     message.data = object.data?.map((e) => MsgData.fromAmino(e)) || [];
-    message.msgResponses = object.msg_responses?.map((e) => Any.fromAmino(e)) || [];
     return message;
   },
   toAmino(message) {
@@ -885,11 +862,6 @@ const TxMsgData = {
       obj.data = message.data.map((e) => e ? MsgData.toAmino(e) : void 0);
     } else {
       obj.data = message.data;
-    }
-    if (message.msgResponses) {
-      obj.msg_responses = message.msgResponses.map((e) => e ? Any.toAmino(e) : void 0);
-    } else {
-      obj.msg_responses = message.msgResponses;
     }
     return obj;
   },
@@ -1012,10 +984,10 @@ const SearchTxsResult = {
   },
   toAmino(message) {
     const obj = {};
-    obj.total_count = message.totalCount !== BigInt(0) ? message.totalCount.toString() : void 0;
+    obj.total_count = message.totalCount ? message.totalCount.toString() : "0";
     obj.count = message.count !== BigInt(0) ? message.count.toString() : void 0;
-    obj.page_number = message.pageNumber !== BigInt(0) ? message.pageNumber.toString() : void 0;
-    obj.page_total = message.pageTotal !== BigInt(0) ? message.pageTotal.toString() : void 0;
+    obj.page_number = message.pageNumber ? message.pageNumber.toString() : "0";
+    obj.page_total = message.pageTotal ? message.pageTotal.toString() : "0";
     obj.limit = message.limit !== BigInt(0) ? message.limit.toString() : void 0;
     if (message.txs) {
       obj.txs = message.txs.map((e) => e ? TxResponse.toAmino(e) : void 0);

@@ -87,7 +87,7 @@ const GenesisState = {
   },
   toAmino(message) {
     const obj = {};
-    obj.params = message.params ? import_slashing.Params.toAmino(message.params) : import_slashing.Params.toAmino(import_slashing.Params.fromPartial({}));
+    obj.params = message.params ? import_slashing.Params.toAmino(message.params) : void 0;
     if (message.signingInfos) {
       obj.signing_infos = message.signingInfos.map((e) => e ? SigningInfo.toAmino(e) : void 0);
     } else {
@@ -178,7 +178,7 @@ const SigningInfo = {
   toAmino(message) {
     const obj = {};
     obj.address = message.address === "" ? void 0 : message.address;
-    obj.validator_signing_info = message.validatorSigningInfo ? import_slashing.ValidatorSigningInfo.toAmino(message.validatorSigningInfo) : import_slashing.ValidatorSigningInfo.toAmino(import_slashing.ValidatorSigningInfo.fromPartial({}));
+    obj.validator_signing_info = message.validatorSigningInfo ? import_slashing.ValidatorSigningInfo.toAmino(message.validatorSigningInfo) : void 0;
     return obj;
   },
   fromAminoMsg(object) {

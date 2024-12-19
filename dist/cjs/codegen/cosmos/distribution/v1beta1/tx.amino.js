@@ -37,20 +37,20 @@ const AminoConverter = {
     toAmino: import_tx.MsgWithdrawValidatorCommission.toAmino,
     fromAmino: import_tx.MsgWithdrawValidatorCommission.fromAmino
   },
+  "/cosmos.distribution.v1beta1.MsgWithdrawTokenizeShareRecordReward": {
+    aminoType: "cosmos-sdk/MsgWithdrawTokenizeShareRecordReward",
+    toAmino: import_tx.MsgWithdrawTokenizeShareRecordReward.toAmino,
+    fromAmino: import_tx.MsgWithdrawTokenizeShareRecordReward.fromAmino
+  },
+  "/cosmos.distribution.v1beta1.MsgWithdrawAllTokenizeShareRecordReward": {
+    aminoType: "cosmos-sdk/MsgWithdrawAllTokenizeShareRecordReward",
+    toAmino: import_tx.MsgWithdrawAllTokenizeShareRecordReward.toAmino,
+    fromAmino: import_tx.MsgWithdrawAllTokenizeShareRecordReward.fromAmino
+  },
   "/cosmos.distribution.v1beta1.MsgFundCommunityPool": {
     aminoType: "cosmos-sdk/MsgFundCommunityPool",
     toAmino: import_tx.MsgFundCommunityPool.toAmino,
     fromAmino: import_tx.MsgFundCommunityPool.fromAmino
-  },
-  "/cosmos.distribution.v1beta1.MsgUpdateParams": {
-    aminoType: "cosmos-sdk/distribution/MsgUpdateParams",
-    toAmino: import_tx.MsgUpdateParams.toAmino,
-    fromAmino: import_tx.MsgUpdateParams.fromAmino
-  },
-  "/cosmos.distribution.v1beta1.MsgCommunityPoolSpend": {
-    aminoType: "cosmos-sdk/distr/MsgCommunityPoolSpend",
-    toAmino: import_tx.MsgCommunityPoolSpend.toAmino,
-    fromAmino: import_tx.MsgCommunityPoolSpend.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

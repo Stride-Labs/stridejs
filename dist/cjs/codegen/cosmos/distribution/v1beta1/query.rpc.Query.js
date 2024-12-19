@@ -29,7 +29,6 @@ class QueryClientImpl {
   constructor(rpc) {
     this.rpc = rpc;
     this.params = this.params.bind(this);
-    this.validatorDistributionInfo = this.validatorDistributionInfo.bind(this);
     this.validatorOutstandingRewards = this.validatorOutstandingRewards.bind(this);
     this.validatorCommission = this.validatorCommission.bind(this);
     this.validatorSlashes = this.validatorSlashes.bind(this);
@@ -38,16 +37,12 @@ class QueryClientImpl {
     this.delegatorValidators = this.delegatorValidators.bind(this);
     this.delegatorWithdrawAddress = this.delegatorWithdrawAddress.bind(this);
     this.communityPool = this.communityPool.bind(this);
+    this.tokenizeShareRecordReward = this.tokenizeShareRecordReward.bind(this);
   }
   params(request = {}) {
     const data = import_query.QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.distribution.v1beta1.Query", "Params", data);
     return promise.then((data2) => import_query.QueryParamsResponse.decode(new import_binary.BinaryReader(data2)));
-  }
-  validatorDistributionInfo(request) {
-    const data = import_query.QueryValidatorDistributionInfoRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.distribution.v1beta1.Query", "ValidatorDistributionInfo", data);
-    return promise.then((data2) => import_query.QueryValidatorDistributionInfoResponse.decode(new import_binary.BinaryReader(data2)));
   }
   validatorOutstandingRewards(request) {
     const data = import_query.QueryValidatorOutstandingRewardsRequest.encode(request).finish();
@@ -89,6 +84,11 @@ class QueryClientImpl {
     const promise = this.rpc.request("cosmos.distribution.v1beta1.Query", "CommunityPool", data);
     return promise.then((data2) => import_query.QueryCommunityPoolResponse.decode(new import_binary.BinaryReader(data2)));
   }
+  tokenizeShareRecordReward(request) {
+    const data = import_query.QueryTokenizeShareRecordRewardRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Query", "TokenizeShareRecordReward", data);
+    return promise.then((data2) => import_query.QueryTokenizeShareRecordRewardResponse.decode(new import_binary.BinaryReader(data2)));
+  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = (0, import_stargate.createProtobufRpcClient)(base);
@@ -96,9 +96,6 @@ const createRpcQueryExtension = (base) => {
   return {
     params(request) {
       return queryService.params(request);
-    },
-    validatorDistributionInfo(request) {
-      return queryService.validatorDistributionInfo(request);
     },
     validatorOutstandingRewards(request) {
       return queryService.validatorOutstandingRewards(request);
@@ -123,6 +120,9 @@ const createRpcQueryExtension = (base) => {
     },
     communityPool(request) {
       return queryService.communityPool(request);
+    },
+    tokenizeShareRecordReward(request) {
+      return queryService.tokenizeShareRecordReward(request);
     }
   };
 };

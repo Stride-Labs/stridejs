@@ -1,11 +1,9 @@
 import { PageRequest, PageResponse } from "../../query/v1beta1/pagination";
 import { Any } from "../../../../google/protobuf/any";
 import { BlockID } from "../../../../tendermint/types/types";
-import { Block as Block1 } from "../../../../tendermint/types/block";
-import { Block as Block2 } from "./types";
+import { Block } from "../../../../tendermint/types/block";
 import { DefaultNodeInfo } from "../../../../tendermint/p2p/types";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { bytesFromBase64, base64FromBytes } from "../../../../helpers";
 function createBaseGetValidatorSetByHeightRequest() {
   return {
     height: BigInt(0),
@@ -523,8 +521,7 @@ const GetBlockByHeightRequest = {
 function createBaseGetBlockByHeightResponse() {
   return {
     blockId: void 0,
-    block: void 0,
-    sdkBlock: void 0
+    block: void 0
   };
 }
 const GetBlockByHeightResponse = {
@@ -534,10 +531,7 @@ const GetBlockByHeightResponse = {
       BlockID.encode(message.blockId, writer.uint32(10).fork()).ldelim();
     }
     if (message.block !== void 0) {
-      Block1.encode(message.block, writer.uint32(18).fork()).ldelim();
-    }
-    if (message.sdkBlock !== void 0) {
-      Block2.encode(message.sdkBlock, writer.uint32(26).fork()).ldelim();
+      Block.encode(message.block, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -552,10 +546,7 @@ const GetBlockByHeightResponse = {
           message.blockId = BlockID.decode(reader, reader.uint32());
           break;
         case 2:
-          message.block = Block1.decode(reader, reader.uint32());
-          break;
-        case 3:
-          message.sdkBlock = Block2.decode(reader, reader.uint32());
+          message.block = Block.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -567,8 +558,7 @@ const GetBlockByHeightResponse = {
   fromPartial(object) {
     const message = createBaseGetBlockByHeightResponse();
     message.blockId = object.blockId !== void 0 && object.blockId !== null ? BlockID.fromPartial(object.blockId) : void 0;
-    message.block = object.block !== void 0 && object.block !== null ? Block1.fromPartial(object.block) : void 0;
-    message.sdkBlock = object.sdkBlock !== void 0 && object.sdkBlock !== null ? Block2.fromPartial(object.sdkBlock) : void 0;
+    message.block = object.block !== void 0 && object.block !== null ? Block.fromPartial(object.block) : void 0;
     return message;
   },
   fromAmino(object) {
@@ -577,18 +567,14 @@ const GetBlockByHeightResponse = {
       message.blockId = BlockID.fromAmino(object.block_id);
     }
     if (object.block !== void 0 && object.block !== null) {
-      message.block = Block1.fromAmino(object.block);
-    }
-    if (object.sdk_block !== void 0 && object.sdk_block !== null) {
-      message.sdkBlock = Block2.fromAmino(object.sdk_block);
+      message.block = Block.fromAmino(object.block);
     }
     return message;
   },
   toAmino(message) {
     const obj = {};
     obj.block_id = message.blockId ? BlockID.toAmino(message.blockId) : void 0;
-    obj.block = message.block ? Block1.toAmino(message.block) : void 0;
-    obj.sdk_block = message.sdkBlock ? Block2.toAmino(message.sdkBlock) : void 0;
+    obj.block = message.block ? Block.toAmino(message.block) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -672,8 +658,7 @@ const GetLatestBlockRequest = {
 function createBaseGetLatestBlockResponse() {
   return {
     blockId: void 0,
-    block: void 0,
-    sdkBlock: void 0
+    block: void 0
   };
 }
 const GetLatestBlockResponse = {
@@ -683,10 +668,7 @@ const GetLatestBlockResponse = {
       BlockID.encode(message.blockId, writer.uint32(10).fork()).ldelim();
     }
     if (message.block !== void 0) {
-      Block1.encode(message.block, writer.uint32(18).fork()).ldelim();
-    }
-    if (message.sdkBlock !== void 0) {
-      Block2.encode(message.sdkBlock, writer.uint32(26).fork()).ldelim();
+      Block.encode(message.block, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -701,10 +683,7 @@ const GetLatestBlockResponse = {
           message.blockId = BlockID.decode(reader, reader.uint32());
           break;
         case 2:
-          message.block = Block1.decode(reader, reader.uint32());
-          break;
-        case 3:
-          message.sdkBlock = Block2.decode(reader, reader.uint32());
+          message.block = Block.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -716,8 +695,7 @@ const GetLatestBlockResponse = {
   fromPartial(object) {
     const message = createBaseGetLatestBlockResponse();
     message.blockId = object.blockId !== void 0 && object.blockId !== null ? BlockID.fromPartial(object.blockId) : void 0;
-    message.block = object.block !== void 0 && object.block !== null ? Block1.fromPartial(object.block) : void 0;
-    message.sdkBlock = object.sdkBlock !== void 0 && object.sdkBlock !== null ? Block2.fromPartial(object.sdkBlock) : void 0;
+    message.block = object.block !== void 0 && object.block !== null ? Block.fromPartial(object.block) : void 0;
     return message;
   },
   fromAmino(object) {
@@ -726,18 +704,14 @@ const GetLatestBlockResponse = {
       message.blockId = BlockID.fromAmino(object.block_id);
     }
     if (object.block !== void 0 && object.block !== null) {
-      message.block = Block1.fromAmino(object.block);
-    }
-    if (object.sdk_block !== void 0 && object.sdk_block !== null) {
-      message.sdkBlock = Block2.fromAmino(object.sdk_block);
+      message.block = Block.fromAmino(object.block);
     }
     return message;
   },
   toAmino(message) {
     const obj = {};
     obj.block_id = message.blockId ? BlockID.toAmino(message.blockId) : void 0;
-    obj.block = message.block ? Block1.toAmino(message.block) : void 0;
-    obj.sdk_block = message.sdkBlock ? Block2.toAmino(message.sdkBlock) : void 0;
+    obj.block = message.block ? Block.toAmino(message.block) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1272,443 +1246,7 @@ const Module = {
     };
   }
 };
-function createBaseABCIQueryRequest() {
-  return {
-    data: new Uint8Array(),
-    path: "",
-    height: BigInt(0),
-    prove: false
-  };
-}
-const ABCIQueryRequest = {
-  typeUrl: "/cosmos.base.tendermint.v1beta1.ABCIQueryRequest",
-  encode(message, writer = BinaryWriter.create()) {
-    if (message.data.length !== 0) {
-      writer.uint32(10).bytes(message.data);
-    }
-    if (message.path !== "") {
-      writer.uint32(18).string(message.path);
-    }
-    if (message.height !== BigInt(0)) {
-      writer.uint32(24).int64(message.height);
-    }
-    if (message.prove === true) {
-      writer.uint32(32).bool(message.prove);
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseABCIQueryRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.data = reader.bytes();
-          break;
-        case 2:
-          message.path = reader.string();
-          break;
-        case 3:
-          message.height = reader.int64();
-          break;
-        case 4:
-          message.prove = reader.bool();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseABCIQueryRequest();
-    message.data = object.data ?? new Uint8Array();
-    message.path = object.path ?? "";
-    message.height = object.height !== void 0 && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
-    message.prove = object.prove ?? false;
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseABCIQueryRequest();
-    if (object.data !== void 0 && object.data !== null) {
-      message.data = bytesFromBase64(object.data);
-    }
-    if (object.path !== void 0 && object.path !== null) {
-      message.path = object.path;
-    }
-    if (object.height !== void 0 && object.height !== null) {
-      message.height = BigInt(object.height);
-    }
-    if (object.prove !== void 0 && object.prove !== null) {
-      message.prove = object.prove;
-    }
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    obj.data = message.data ? base64FromBytes(message.data) : void 0;
-    obj.path = message.path === "" ? void 0 : message.path;
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
-    obj.prove = message.prove === false ? void 0 : message.prove;
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return ABCIQueryRequest.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/ABCIQueryRequest",
-      value: ABCIQueryRequest.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return ABCIQueryRequest.decode(message.value);
-  },
-  toProto(message) {
-    return ABCIQueryRequest.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/cosmos.base.tendermint.v1beta1.ABCIQueryRequest",
-      value: ABCIQueryRequest.encode(message).finish()
-    };
-  }
-};
-function createBaseABCIQueryResponse() {
-  return {
-    code: 0,
-    log: "",
-    info: "",
-    index: BigInt(0),
-    key: new Uint8Array(),
-    value: new Uint8Array(),
-    proofOps: void 0,
-    height: BigInt(0),
-    codespace: ""
-  };
-}
-const ABCIQueryResponse = {
-  typeUrl: "/cosmos.base.tendermint.v1beta1.ABCIQueryResponse",
-  encode(message, writer = BinaryWriter.create()) {
-    if (message.code !== 0) {
-      writer.uint32(8).uint32(message.code);
-    }
-    if (message.log !== "") {
-      writer.uint32(26).string(message.log);
-    }
-    if (message.info !== "") {
-      writer.uint32(34).string(message.info);
-    }
-    if (message.index !== BigInt(0)) {
-      writer.uint32(40).int64(message.index);
-    }
-    if (message.key.length !== 0) {
-      writer.uint32(50).bytes(message.key);
-    }
-    if (message.value.length !== 0) {
-      writer.uint32(58).bytes(message.value);
-    }
-    if (message.proofOps !== void 0) {
-      ProofOps.encode(message.proofOps, writer.uint32(66).fork()).ldelim();
-    }
-    if (message.height !== BigInt(0)) {
-      writer.uint32(72).int64(message.height);
-    }
-    if (message.codespace !== "") {
-      writer.uint32(82).string(message.codespace);
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseABCIQueryResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.code = reader.uint32();
-          break;
-        case 3:
-          message.log = reader.string();
-          break;
-        case 4:
-          message.info = reader.string();
-          break;
-        case 5:
-          message.index = reader.int64();
-          break;
-        case 6:
-          message.key = reader.bytes();
-          break;
-        case 7:
-          message.value = reader.bytes();
-          break;
-        case 8:
-          message.proofOps = ProofOps.decode(reader, reader.uint32());
-          break;
-        case 9:
-          message.height = reader.int64();
-          break;
-        case 10:
-          message.codespace = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseABCIQueryResponse();
-    message.code = object.code ?? 0;
-    message.log = object.log ?? "";
-    message.info = object.info ?? "";
-    message.index = object.index !== void 0 && object.index !== null ? BigInt(object.index.toString()) : BigInt(0);
-    message.key = object.key ?? new Uint8Array();
-    message.value = object.value ?? new Uint8Array();
-    message.proofOps = object.proofOps !== void 0 && object.proofOps !== null ? ProofOps.fromPartial(object.proofOps) : void 0;
-    message.height = object.height !== void 0 && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
-    message.codespace = object.codespace ?? "";
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseABCIQueryResponse();
-    if (object.code !== void 0 && object.code !== null) {
-      message.code = object.code;
-    }
-    if (object.log !== void 0 && object.log !== null) {
-      message.log = object.log;
-    }
-    if (object.info !== void 0 && object.info !== null) {
-      message.info = object.info;
-    }
-    if (object.index !== void 0 && object.index !== null) {
-      message.index = BigInt(object.index);
-    }
-    if (object.key !== void 0 && object.key !== null) {
-      message.key = bytesFromBase64(object.key);
-    }
-    if (object.value !== void 0 && object.value !== null) {
-      message.value = bytesFromBase64(object.value);
-    }
-    if (object.proof_ops !== void 0 && object.proof_ops !== null) {
-      message.proofOps = ProofOps.fromAmino(object.proof_ops);
-    }
-    if (object.height !== void 0 && object.height !== null) {
-      message.height = BigInt(object.height);
-    }
-    if (object.codespace !== void 0 && object.codespace !== null) {
-      message.codespace = object.codespace;
-    }
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    obj.code = message.code === 0 ? void 0 : message.code;
-    obj.log = message.log === "" ? void 0 : message.log;
-    obj.info = message.info === "" ? void 0 : message.info;
-    obj.index = message.index !== BigInt(0) ? message.index.toString() : void 0;
-    obj.key = message.key ? base64FromBytes(message.key) : void 0;
-    obj.value = message.value ? base64FromBytes(message.value) : void 0;
-    obj.proof_ops = message.proofOps ? ProofOps.toAmino(message.proofOps) : void 0;
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
-    obj.codespace = message.codespace === "" ? void 0 : message.codespace;
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return ABCIQueryResponse.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/ABCIQueryResponse",
-      value: ABCIQueryResponse.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return ABCIQueryResponse.decode(message.value);
-  },
-  toProto(message) {
-    return ABCIQueryResponse.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/cosmos.base.tendermint.v1beta1.ABCIQueryResponse",
-      value: ABCIQueryResponse.encode(message).finish()
-    };
-  }
-};
-function createBaseProofOp() {
-  return {
-    type: "",
-    key: new Uint8Array(),
-    data: new Uint8Array()
-  };
-}
-const ProofOp = {
-  typeUrl: "/cosmos.base.tendermint.v1beta1.ProofOp",
-  encode(message, writer = BinaryWriter.create()) {
-    if (message.type !== "") {
-      writer.uint32(10).string(message.type);
-    }
-    if (message.key.length !== 0) {
-      writer.uint32(18).bytes(message.key);
-    }
-    if (message.data.length !== 0) {
-      writer.uint32(26).bytes(message.data);
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseProofOp();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.type = reader.string();
-          break;
-        case 2:
-          message.key = reader.bytes();
-          break;
-        case 3:
-          message.data = reader.bytes();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseProofOp();
-    message.type = object.type ?? "";
-    message.key = object.key ?? new Uint8Array();
-    message.data = object.data ?? new Uint8Array();
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseProofOp();
-    if (object.type !== void 0 && object.type !== null) {
-      message.type = object.type;
-    }
-    if (object.key !== void 0 && object.key !== null) {
-      message.key = bytesFromBase64(object.key);
-    }
-    if (object.data !== void 0 && object.data !== null) {
-      message.data = bytesFromBase64(object.data);
-    }
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    obj.type = message.type === "" ? void 0 : message.type;
-    obj.key = message.key ? base64FromBytes(message.key) : void 0;
-    obj.data = message.data ? base64FromBytes(message.data) : void 0;
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return ProofOp.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/ProofOp",
-      value: ProofOp.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return ProofOp.decode(message.value);
-  },
-  toProto(message) {
-    return ProofOp.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/cosmos.base.tendermint.v1beta1.ProofOp",
-      value: ProofOp.encode(message).finish()
-    };
-  }
-};
-function createBaseProofOps() {
-  return {
-    ops: []
-  };
-}
-const ProofOps = {
-  typeUrl: "/cosmos.base.tendermint.v1beta1.ProofOps",
-  encode(message, writer = BinaryWriter.create()) {
-    for (const v of message.ops) {
-      ProofOp.encode(v, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseProofOps();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.ops.push(ProofOp.decode(reader, reader.uint32()));
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseProofOps();
-    message.ops = object.ops?.map((e) => ProofOp.fromPartial(e)) || [];
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseProofOps();
-    message.ops = object.ops?.map((e) => ProofOp.fromAmino(e)) || [];
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    if (message.ops) {
-      obj.ops = message.ops.map((e) => e ? ProofOp.toAmino(e) : void 0);
-    } else {
-      obj.ops = message.ops;
-    }
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return ProofOps.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/ProofOps",
-      value: ProofOps.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return ProofOps.decode(message.value);
-  },
-  toProto(message) {
-    return ProofOps.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/cosmos.base.tendermint.v1beta1.ProofOps",
-      value: ProofOps.encode(message).finish()
-    };
-  }
-};
 export {
-  ABCIQueryRequest,
-  ABCIQueryResponse,
   GetBlockByHeightRequest,
   GetBlockByHeightResponse,
   GetLatestBlockRequest,
@@ -1722,8 +1260,6 @@ export {
   GetValidatorSetByHeightRequest,
   GetValidatorSetByHeightResponse,
   Module,
-  ProofOp,
-  ProofOps,
   Validator,
   VersionInfo
 };

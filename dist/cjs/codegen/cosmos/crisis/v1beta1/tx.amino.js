@@ -26,11 +26,6 @@ const AminoConverter = {
     aminoType: "cosmos-sdk/MsgVerifyInvariant",
     toAmino: import_tx.MsgVerifyInvariant.toAmino,
     fromAmino: import_tx.MsgVerifyInvariant.fromAmino
-  },
-  "/cosmos.crisis.v1beta1.MsgUpdateParams": {
-    aminoType: "cosmos-sdk/x/crisis/MsgUpdateParams",
-    toAmino: import_tx.MsgUpdateParams.toAmino,
-    fromAmino: import_tx.MsgUpdateParams.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

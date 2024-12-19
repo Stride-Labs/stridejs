@@ -6,7 +6,6 @@ var SignMode = /* @__PURE__ */ ((SignMode2) => {
   SignMode2[SignMode2["SIGN_MODE_UNSPECIFIED"] = 0] = "SIGN_MODE_UNSPECIFIED";
   SignMode2[SignMode2["SIGN_MODE_DIRECT"] = 1] = "SIGN_MODE_DIRECT";
   SignMode2[SignMode2["SIGN_MODE_TEXTUAL"] = 2] = "SIGN_MODE_TEXTUAL";
-  SignMode2[SignMode2["SIGN_MODE_DIRECT_AUX"] = 3] = "SIGN_MODE_DIRECT_AUX";
   SignMode2[SignMode2["SIGN_MODE_LEGACY_AMINO_JSON"] = 127] = "SIGN_MODE_LEGACY_AMINO_JSON";
   SignMode2[SignMode2["SIGN_MODE_EIP_191"] = 191] = "SIGN_MODE_EIP_191";
   SignMode2[SignMode2["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
@@ -25,9 +24,6 @@ function signModeFromJSON(object) {
     case 2:
     case "SIGN_MODE_TEXTUAL":
       return 2 /* SIGN_MODE_TEXTUAL */;
-    case 3:
-    case "SIGN_MODE_DIRECT_AUX":
-      return 3 /* SIGN_MODE_DIRECT_AUX */;
     case 127:
     case "SIGN_MODE_LEGACY_AMINO_JSON":
       return 127 /* SIGN_MODE_LEGACY_AMINO_JSON */;
@@ -48,8 +44,6 @@ function signModeToJSON(object) {
       return "SIGN_MODE_DIRECT";
     case 2 /* SIGN_MODE_TEXTUAL */:
       return "SIGN_MODE_TEXTUAL";
-    case 3 /* SIGN_MODE_DIRECT_AUX */:
-      return "SIGN_MODE_DIRECT_AUX";
     case 127 /* SIGN_MODE_LEGACY_AMINO_JSON */:
       return "SIGN_MODE_LEGACY_AMINO_JSON";
     case 191 /* SIGN_MODE_EIP_191 */:

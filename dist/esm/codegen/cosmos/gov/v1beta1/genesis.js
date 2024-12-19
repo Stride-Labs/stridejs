@@ -120,9 +120,9 @@ const GenesisState = {
     } else {
       obj.proposals = message.proposals;
     }
-    obj.deposit_params = message.depositParams ? DepositParams.toAmino(message.depositParams) : DepositParams.toAmino(DepositParams.fromPartial({}));
-    obj.voting_params = message.votingParams ? VotingParams.toAmino(message.votingParams) : VotingParams.toAmino(VotingParams.fromPartial({}));
-    obj.tally_params = message.tallyParams ? TallyParams.toAmino(message.tallyParams) : TallyParams.toAmino(TallyParams.fromPartial({}));
+    obj.deposit_params = message.depositParams ? DepositParams.toAmino(message.depositParams) : void 0;
+    obj.voting_params = message.votingParams ? VotingParams.toAmino(message.votingParams) : void 0;
+    obj.tally_params = message.tallyParams ? TallyParams.toAmino(message.tallyParams) : void 0;
     return obj;
   },
   fromAminoMsg(object) {

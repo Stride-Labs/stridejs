@@ -30,14 +30,8 @@ class QueryClientImpl {
     this.rpc = rpc;
     this.accounts = this.accounts.bind(this);
     this.account = this.account.bind(this);
-    this.accountAddressByID = this.accountAddressByID.bind(this);
     this.params = this.params.bind(this);
-    this.moduleAccounts = this.moduleAccounts.bind(this);
     this.moduleAccountByName = this.moduleAccountByName.bind(this);
-    this.bech32Prefix = this.bech32Prefix.bind(this);
-    this.addressBytesToString = this.addressBytesToString.bind(this);
-    this.addressStringToBytes = this.addressStringToBytes.bind(this);
-    this.accountInfo = this.accountInfo.bind(this);
   }
   accounts(request = {
     pagination: void 0
@@ -51,45 +45,15 @@ class QueryClientImpl {
     const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "Account", data);
     return promise.then((data2) => import_query.QueryAccountResponse.decode(new import_binary.BinaryReader(data2)));
   }
-  accountAddressByID(request) {
-    const data = import_query.QueryAccountAddressByIDRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "AccountAddressByID", data);
-    return promise.then((data2) => import_query.QueryAccountAddressByIDResponse.decode(new import_binary.BinaryReader(data2)));
-  }
   params(request = {}) {
     const data = import_query.QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "Params", data);
     return promise.then((data2) => import_query.QueryParamsResponse.decode(new import_binary.BinaryReader(data2)));
   }
-  moduleAccounts(request = {}) {
-    const data = import_query.QueryModuleAccountsRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "ModuleAccounts", data);
-    return promise.then((data2) => import_query.QueryModuleAccountsResponse.decode(new import_binary.BinaryReader(data2)));
-  }
   moduleAccountByName(request) {
     const data = import_query.QueryModuleAccountByNameRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "ModuleAccountByName", data);
     return promise.then((data2) => import_query.QueryModuleAccountByNameResponse.decode(new import_binary.BinaryReader(data2)));
-  }
-  bech32Prefix(request = {}) {
-    const data = import_query.Bech32PrefixRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "Bech32Prefix", data);
-    return promise.then((data2) => import_query.Bech32PrefixResponse.decode(new import_binary.BinaryReader(data2)));
-  }
-  addressBytesToString(request) {
-    const data = import_query.AddressBytesToStringRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "AddressBytesToString", data);
-    return promise.then((data2) => import_query.AddressBytesToStringResponse.decode(new import_binary.BinaryReader(data2)));
-  }
-  addressStringToBytes(request) {
-    const data = import_query.AddressStringToBytesRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "AddressStringToBytes", data);
-    return promise.then((data2) => import_query.AddressStringToBytesResponse.decode(new import_binary.BinaryReader(data2)));
-  }
-  accountInfo(request) {
-    const data = import_query.QueryAccountInfoRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.auth.v1beta1.Query", "AccountInfo", data);
-    return promise.then((data2) => import_query.QueryAccountInfoResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 const createRpcQueryExtension = (base) => {
@@ -102,29 +66,11 @@ const createRpcQueryExtension = (base) => {
     account(request) {
       return queryService.account(request);
     },
-    accountAddressByID(request) {
-      return queryService.accountAddressByID(request);
-    },
     params(request) {
       return queryService.params(request);
     },
-    moduleAccounts(request) {
-      return queryService.moduleAccounts(request);
-    },
     moduleAccountByName(request) {
       return queryService.moduleAccountByName(request);
-    },
-    bech32Prefix(request) {
-      return queryService.bech32Prefix(request);
-    },
-    addressBytesToString(request) {
-      return queryService.addressBytesToString(request);
-    },
-    addressStringToBytes(request) {
-      return queryService.addressStringToBytes(request);
-    },
-    accountInfo(request) {
-      return queryService.accountInfo(request);
     }
   };
 };

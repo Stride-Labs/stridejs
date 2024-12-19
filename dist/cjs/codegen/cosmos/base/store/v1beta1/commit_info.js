@@ -22,14 +22,12 @@ __export(commit_info_exports, {
   StoreInfo: () => StoreInfo
 });
 module.exports = __toCommonJS(commit_info_exports);
-var import_timestamp = require("../../../../google/protobuf/timestamp");
 var import_binary = require("../../../../binary");
 var import_helpers = require("../../../../helpers");
 function createBaseCommitInfo() {
   return {
     version: BigInt(0),
-    storeInfos: [],
-    timestamp: /* @__PURE__ */ new Date()
+    storeInfos: []
   };
 }
 const CommitInfo = {
@@ -40,9 +38,6 @@ const CommitInfo = {
     }
     for (const v of message.storeInfos) {
       StoreInfo.encode(v, writer.uint32(18).fork()).ldelim();
-    }
-    if (message.timestamp !== void 0) {
-      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.timestamp), writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -59,9 +54,6 @@ const CommitInfo = {
         case 2:
           message.storeInfos.push(StoreInfo.decode(reader, reader.uint32()));
           break;
-        case 3:
-          message.timestamp = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -73,7 +65,6 @@ const CommitInfo = {
     const message = createBaseCommitInfo();
     message.version = object.version !== void 0 && object.version !== null ? BigInt(object.version.toString()) : BigInt(0);
     message.storeInfos = object.storeInfos?.map((e) => StoreInfo.fromPartial(e)) || [];
-    message.timestamp = object.timestamp ?? void 0;
     return message;
   },
   fromAmino(object) {
@@ -82,9 +73,6 @@ const CommitInfo = {
       message.version = BigInt(object.version);
     }
     message.storeInfos = object.store_infos?.map((e) => StoreInfo.fromAmino(e)) || [];
-    if (object.timestamp !== void 0 && object.timestamp !== null) {
-      message.timestamp = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.fromAmino(object.timestamp));
-    }
     return message;
   },
   toAmino(message) {
@@ -95,7 +83,6 @@ const CommitInfo = {
     } else {
       obj.store_infos = message.storeInfos;
     }
-    obj.timestamp = message.timestamp ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.timestamp)) : void 0;
     return obj;
   },
   fromAminoMsg(object) {

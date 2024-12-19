@@ -2,10 +2,10 @@ import { Duration } from "../../google/protobuf/duration";
 import { BinaryReader, BinaryWriter } from "../../binary";
 function createBaseConsensusParams() {
   return {
-    block: void 0,
-    evidence: void 0,
-    validator: void 0,
-    version: void 0
+    block: BlockParams.fromPartial({}),
+    evidence: EvidenceParams.fromPartial({}),
+    validator: ValidatorParams.fromPartial({}),
+    version: VersionParams.fromPartial({})
   };
 }
 const ConsensusParams = {
@@ -102,7 +102,8 @@ const ConsensusParams = {
 function createBaseBlockParams() {
   return {
     maxBytes: BigInt(0),
-    maxGas: BigInt(0)
+    maxGas: BigInt(0),
+    timeIotaMs: BigInt(0)
   };
 }
 const BlockParams = {
@@ -113,6 +114,9 @@ const BlockParams = {
     }
     if (message.maxGas !== BigInt(0)) {
       writer.uint32(16).int64(message.maxGas);
+    }
+    if (message.timeIotaMs !== BigInt(0)) {
+      writer.uint32(24).int64(message.timeIotaMs);
     }
     return writer;
   },
@@ -129,6 +133,9 @@ const BlockParams = {
         case 2:
           message.maxGas = reader.int64();
           break;
+        case 3:
+          message.timeIotaMs = reader.int64();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -140,6 +147,7 @@ const BlockParams = {
     const message = createBaseBlockParams();
     message.maxBytes = object.maxBytes !== void 0 && object.maxBytes !== null ? BigInt(object.maxBytes.toString()) : BigInt(0);
     message.maxGas = object.maxGas !== void 0 && object.maxGas !== null ? BigInt(object.maxGas.toString()) : BigInt(0);
+    message.timeIotaMs = object.timeIotaMs !== void 0 && object.timeIotaMs !== null ? BigInt(object.timeIotaMs.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object) {
@@ -150,12 +158,16 @@ const BlockParams = {
     if (object.max_gas !== void 0 && object.max_gas !== null) {
       message.maxGas = BigInt(object.max_gas);
     }
+    if (object.time_iota_ms !== void 0 && object.time_iota_ms !== null) {
+      message.timeIotaMs = BigInt(object.time_iota_ms);
+    }
     return message;
   },
   toAmino(message) {
     const obj = {};
     obj.max_bytes = message.maxBytes !== BigInt(0) ? message.maxBytes.toString() : void 0;
     obj.max_gas = message.maxGas !== BigInt(0) ? message.maxGas.toString() : void 0;
+    obj.time_iota_ms = message.timeIotaMs !== BigInt(0) ? message.timeIotaMs.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -328,14 +340,14 @@ const ValidatorParams = {
 };
 function createBaseVersionParams() {
   return {
-    app: BigInt(0)
+    appVersion: BigInt(0)
   };
 }
 const VersionParams = {
   typeUrl: "/tendermint.types.VersionParams",
   encode(message, writer = BinaryWriter.create()) {
-    if (message.app !== BigInt(0)) {
-      writer.uint32(8).uint64(message.app);
+    if (message.appVersion !== BigInt(0)) {
+      writer.uint32(8).uint64(message.appVersion);
     }
     return writer;
   },
@@ -347,7 +359,7 @@ const VersionParams = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.app = reader.uint64();
+          message.appVersion = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -358,19 +370,19 @@ const VersionParams = {
   },
   fromPartial(object) {
     const message = createBaseVersionParams();
-    message.app = object.app !== void 0 && object.app !== null ? BigInt(object.app.toString()) : BigInt(0);
+    message.appVersion = object.appVersion !== void 0 && object.appVersion !== null ? BigInt(object.appVersion.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object) {
     const message = createBaseVersionParams();
-    if (object.app !== void 0 && object.app !== null) {
-      message.app = BigInt(object.app);
+    if (object.app_version !== void 0 && object.app_version !== null) {
+      message.appVersion = BigInt(object.app_version);
     }
     return message;
   },
   toAmino(message) {
     const obj = {};
-    obj.app = message.app !== BigInt(0) ? message.app.toString() : void 0;
+    obj.app_version = message.appVersion !== BigInt(0) ? message.appVersion.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

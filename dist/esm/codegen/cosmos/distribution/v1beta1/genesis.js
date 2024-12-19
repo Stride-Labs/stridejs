@@ -221,7 +221,7 @@ const ValidatorAccumulatedCommissionRecord = {
   toAmino(message) {
     const obj = {};
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
-    obj.accumulated = message.accumulated ? ValidatorAccumulatedCommission.toAmino(message.accumulated) : ValidatorAccumulatedCommission.toAmino(ValidatorAccumulatedCommission.fromPartial({}));
+    obj.accumulated = message.accumulated ? ValidatorAccumulatedCommission.toAmino(message.accumulated) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -314,7 +314,7 @@ const ValidatorHistoricalRewardsRecord = {
     const obj = {};
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
     obj.period = message.period !== BigInt(0) ? message.period.toString() : void 0;
-    obj.rewards = message.rewards ? ValidatorHistoricalRewards.toAmino(message.rewards) : ValidatorHistoricalRewards.toAmino(ValidatorHistoricalRewards.fromPartial({}));
+    obj.rewards = message.rewards ? ValidatorHistoricalRewards.toAmino(message.rewards) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -395,7 +395,7 @@ const ValidatorCurrentRewardsRecord = {
   toAmino(message) {
     const obj = {};
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
-    obj.rewards = message.rewards ? ValidatorCurrentRewards.toAmino(message.rewards) : ValidatorCurrentRewards.toAmino(ValidatorCurrentRewards.fromPartial({}));
+    obj.rewards = message.rewards ? ValidatorCurrentRewards.toAmino(message.rewards) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -488,7 +488,7 @@ const DelegatorStartingInfoRecord = {
     const obj = {};
     obj.delegator_address = message.delegatorAddress === "" ? void 0 : message.delegatorAddress;
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
-    obj.starting_info = message.startingInfo ? DelegatorStartingInfo.toAmino(message.startingInfo) : DelegatorStartingInfo.toAmino(DelegatorStartingInfo.fromPartial({}));
+    obj.starting_info = message.startingInfo ? DelegatorStartingInfo.toAmino(message.startingInfo) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -593,7 +593,7 @@ const ValidatorSlashEventRecord = {
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
     obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
     obj.period = message.period !== BigInt(0) ? message.period.toString() : void 0;
-    obj.validator_slash_event = message.validatorSlashEvent ? ValidatorSlashEvent.toAmino(message.validatorSlashEvent) : ValidatorSlashEvent.toAmino(ValidatorSlashEvent.fromPartial({}));
+    obj.validator_slash_event = message.validatorSlashEvent ? ValidatorSlashEvent.toAmino(message.validatorSlashEvent) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -747,8 +747,8 @@ const GenesisState = {
   },
   toAmino(message) {
     const obj = {};
-    obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
-    obj.fee_pool = message.feePool ? FeePool.toAmino(message.feePool) : FeePool.toAmino(FeePool.fromPartial({}));
+    obj.params = message.params ? Params.toAmino(message.params) : void 0;
+    obj.fee_pool = message.feePool ? FeePool.toAmino(message.feePool) : void 0;
     if (message.delegatorWithdrawInfos) {
       obj.delegator_withdraw_infos = message.delegatorWithdrawInfos.map((e) => e ? DelegatorWithdrawInfo.toAmino(e) : void 0);
     } else {

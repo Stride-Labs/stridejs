@@ -23,7 +23,7 @@ __export(tx_registry_exports, {
 });
 module.exports = __toCommonJS(tx_registry_exports);
 var import_tx = require("./tx");
-const registry = [["/cosmos.slashing.v1beta1.MsgUnjail", import_tx.MsgUnjail], ["/cosmos.slashing.v1beta1.MsgUpdateParams", import_tx.MsgUpdateParams]];
+const registry = [["/cosmos.slashing.v1beta1.MsgUnjail", import_tx.MsgUnjail]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -36,24 +36,12 @@ const MessageComposer = {
         typeUrl: "/cosmos.slashing.v1beta1.MsgUnjail",
         value: import_tx.MsgUnjail.encode(value).finish()
       };
-    },
-    updateParams(value) {
-      return {
-        typeUrl: "/cosmos.slashing.v1beta1.MsgUpdateParams",
-        value: import_tx.MsgUpdateParams.encode(value).finish()
-      };
     }
   },
   withTypeUrl: {
     unjail(value) {
       return {
         typeUrl: "/cosmos.slashing.v1beta1.MsgUnjail",
-        value
-      };
-    },
-    updateParams(value) {
-      return {
-        typeUrl: "/cosmos.slashing.v1beta1.MsgUpdateParams",
         value
       };
     }
@@ -63,12 +51,6 @@ const MessageComposer = {
       return {
         typeUrl: "/cosmos.slashing.v1beta1.MsgUnjail",
         value: import_tx.MsgUnjail.fromPartial(value)
-      };
-    },
-    updateParams(value) {
-      return {
-        typeUrl: "/cosmos.slashing.v1beta1.MsgUpdateParams",
-        value: import_tx.MsgUpdateParams.fromPartial(value)
       };
     }
   }

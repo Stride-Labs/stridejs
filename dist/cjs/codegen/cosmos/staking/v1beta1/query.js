@@ -17,6 +17,8 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var query_exports = {};
 __export(query_exports, {
+  QueryAllTokenizeShareRecordsRequest: () => QueryAllTokenizeShareRecordsRequest,
+  QueryAllTokenizeShareRecordsResponse: () => QueryAllTokenizeShareRecordsResponse,
   QueryDelegationRequest: () => QueryDelegationRequest,
   QueryDelegationResponse: () => QueryDelegationResponse,
   QueryDelegatorDelegationsRequest: () => QueryDelegatorDelegationsRequest,
@@ -29,12 +31,26 @@ __export(query_exports, {
   QueryDelegatorValidatorsResponse: () => QueryDelegatorValidatorsResponse,
   QueryHistoricalInfoRequest: () => QueryHistoricalInfoRequest,
   QueryHistoricalInfoResponse: () => QueryHistoricalInfoResponse,
+  QueryLastTokenizeShareRecordIdRequest: () => QueryLastTokenizeShareRecordIdRequest,
+  QueryLastTokenizeShareRecordIdResponse: () => QueryLastTokenizeShareRecordIdResponse,
   QueryParamsRequest: () => QueryParamsRequest,
   QueryParamsResponse: () => QueryParamsResponse,
   QueryPoolRequest: () => QueryPoolRequest,
   QueryPoolResponse: () => QueryPoolResponse,
   QueryRedelegationsRequest: () => QueryRedelegationsRequest,
   QueryRedelegationsResponse: () => QueryRedelegationsResponse,
+  QueryTokenizeShareLockInfo: () => QueryTokenizeShareLockInfo,
+  QueryTokenizeShareLockInfoResponse: () => QueryTokenizeShareLockInfoResponse,
+  QueryTokenizeShareRecordByDenomRequest: () => QueryTokenizeShareRecordByDenomRequest,
+  QueryTokenizeShareRecordByDenomResponse: () => QueryTokenizeShareRecordByDenomResponse,
+  QueryTokenizeShareRecordByIdRequest: () => QueryTokenizeShareRecordByIdRequest,
+  QueryTokenizeShareRecordByIdResponse: () => QueryTokenizeShareRecordByIdResponse,
+  QueryTokenizeShareRecordsOwnedRequest: () => QueryTokenizeShareRecordsOwnedRequest,
+  QueryTokenizeShareRecordsOwnedResponse: () => QueryTokenizeShareRecordsOwnedResponse,
+  QueryTotalLiquidStaked: () => QueryTotalLiquidStaked,
+  QueryTotalLiquidStakedResponse: () => QueryTotalLiquidStakedResponse,
+  QueryTotalTokenizeSharedAssetsRequest: () => QueryTotalTokenizeSharedAssetsRequest,
+  QueryTotalTokenizeSharedAssetsResponse: () => QueryTotalTokenizeSharedAssetsResponse,
   QueryUnbondingDelegationRequest: () => QueryUnbondingDelegationRequest,
   QueryUnbondingDelegationResponse: () => QueryUnbondingDelegationResponse,
   QueryValidatorDelegationsRequest: () => QueryValidatorDelegationsRequest,
@@ -49,6 +65,7 @@ __export(query_exports, {
 module.exports = __toCommonJS(query_exports);
 var import_pagination = require("../../base/query/v1beta1/pagination");
 var import_staking = require("./staking");
+var import_coin = require("../../base/v1beta1/coin");
 var import_binary = require("../../../binary");
 function createBaseQueryValidatorsRequest() {
   return {
@@ -327,7 +344,7 @@ const QueryValidatorResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.validator = message.validator ? import_staking.Validator.toAmino(message.validator) : import_staking.Validator.toAmino(import_staking.Validator.fromPartial({}));
+    obj.validator = message.validator ? import_staking.Validator.toAmino(message.validator) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -955,7 +972,7 @@ const QueryUnbondingDelegationResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.unbond = message.unbond ? import_staking.UnbondingDelegation.toAmino(message.unbond) : import_staking.UnbondingDelegation.toAmino(import_staking.UnbondingDelegation.fromPartial({}));
+    obj.unbond = message.unbond ? import_staking.UnbondingDelegation.toAmino(message.unbond) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1785,7 +1802,7 @@ const QueryDelegatorValidatorResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.validator = message.validator ? import_staking.Validator.toAmino(message.validator) : import_staking.Validator.toAmino(import_staking.Validator.fromPartial({}));
+    obj.validator = message.validator ? import_staking.Validator.toAmino(message.validator) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -2048,7 +2065,7 @@ const QueryPoolResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.pool = message.pool ? import_staking.Pool.toAmino(message.pool) : import_staking.Pool.toAmino(import_staking.Pool.fromPartial({}));
+    obj.pool = message.pool ? import_staking.Pool.toAmino(message.pool) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -2173,7 +2190,7 @@ const QueryParamsResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.params = message.params ? import_staking.Params.toAmino(message.params) : import_staking.Params.toAmino(import_staking.Params.fromPartial({}));
+    obj.params = message.params ? import_staking.Params.toAmino(message.params) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -2198,8 +2215,1103 @@ const QueryParamsResponse = {
     };
   }
 };
+function createBaseQueryTokenizeShareRecordByIdRequest() {
+  return {
+    id: BigInt(0)
+  };
+}
+const QueryTokenizeShareRecordByIdRequest = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareRecordByIdRequest",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.id !== BigInt(0)) {
+      writer.uint32(8).uint64(message.id);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordByIdRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.id = reader.uint64();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryTokenizeShareRecordByIdRequest();
+    message.id = object.id !== void 0 && object.id !== null ? BigInt(object.id.toString()) : BigInt(0);
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryTokenizeShareRecordByIdRequest();
+    if (object.id !== void 0 && object.id !== null) {
+      message.id = BigInt(object.id);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.id = message.id !== BigInt(0) ? message.id.toString() : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryTokenizeShareRecordByIdRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryTokenizeShareRecordByIdRequest",
+      value: QueryTokenizeShareRecordByIdRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryTokenizeShareRecordByIdRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryTokenizeShareRecordByIdRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareRecordByIdRequest",
+      value: QueryTokenizeShareRecordByIdRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryTokenizeShareRecordByIdResponse() {
+  return {
+    record: import_staking.TokenizeShareRecord.fromPartial({})
+  };
+}
+const QueryTokenizeShareRecordByIdResponse = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareRecordByIdResponse",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.record !== void 0) {
+      import_staking.TokenizeShareRecord.encode(message.record, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordByIdResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.record = import_staking.TokenizeShareRecord.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryTokenizeShareRecordByIdResponse();
+    message.record = object.record !== void 0 && object.record !== null ? import_staking.TokenizeShareRecord.fromPartial(object.record) : void 0;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryTokenizeShareRecordByIdResponse();
+    if (object.record !== void 0 && object.record !== null) {
+      message.record = import_staking.TokenizeShareRecord.fromAmino(object.record);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.record = message.record ? import_staking.TokenizeShareRecord.toAmino(message.record) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryTokenizeShareRecordByIdResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryTokenizeShareRecordByIdResponse",
+      value: QueryTokenizeShareRecordByIdResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryTokenizeShareRecordByIdResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryTokenizeShareRecordByIdResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareRecordByIdResponse",
+      value: QueryTokenizeShareRecordByIdResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryTokenizeShareRecordByDenomRequest() {
+  return {
+    denom: ""
+  };
+}
+const QueryTokenizeShareRecordByDenomRequest = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareRecordByDenomRequest",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.denom !== "") {
+      writer.uint32(10).string(message.denom);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordByDenomRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.denom = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryTokenizeShareRecordByDenomRequest();
+    message.denom = object.denom ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryTokenizeShareRecordByDenomRequest();
+    if (object.denom !== void 0 && object.denom !== null) {
+      message.denom = object.denom;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.denom = message.denom === "" ? void 0 : message.denom;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryTokenizeShareRecordByDenomRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryTokenizeShareRecordByDenomRequest",
+      value: QueryTokenizeShareRecordByDenomRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryTokenizeShareRecordByDenomRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryTokenizeShareRecordByDenomRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareRecordByDenomRequest",
+      value: QueryTokenizeShareRecordByDenomRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryTokenizeShareRecordByDenomResponse() {
+  return {
+    record: import_staking.TokenizeShareRecord.fromPartial({})
+  };
+}
+const QueryTokenizeShareRecordByDenomResponse = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareRecordByDenomResponse",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.record !== void 0) {
+      import_staking.TokenizeShareRecord.encode(message.record, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordByDenomResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.record = import_staking.TokenizeShareRecord.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryTokenizeShareRecordByDenomResponse();
+    message.record = object.record !== void 0 && object.record !== null ? import_staking.TokenizeShareRecord.fromPartial(object.record) : void 0;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryTokenizeShareRecordByDenomResponse();
+    if (object.record !== void 0 && object.record !== null) {
+      message.record = import_staking.TokenizeShareRecord.fromAmino(object.record);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.record = message.record ? import_staking.TokenizeShareRecord.toAmino(message.record) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryTokenizeShareRecordByDenomResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryTokenizeShareRecordByDenomResponse",
+      value: QueryTokenizeShareRecordByDenomResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryTokenizeShareRecordByDenomResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryTokenizeShareRecordByDenomResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareRecordByDenomResponse",
+      value: QueryTokenizeShareRecordByDenomResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryTokenizeShareRecordsOwnedRequest() {
+  return {
+    owner: ""
+  };
+}
+const QueryTokenizeShareRecordsOwnedRequest = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareRecordsOwnedRequest",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.owner !== "") {
+      writer.uint32(10).string(message.owner);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordsOwnedRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.owner = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryTokenizeShareRecordsOwnedRequest();
+    message.owner = object.owner ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryTokenizeShareRecordsOwnedRequest();
+    if (object.owner !== void 0 && object.owner !== null) {
+      message.owner = object.owner;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.owner = message.owner === "" ? void 0 : message.owner;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryTokenizeShareRecordsOwnedRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryTokenizeShareRecordsOwnedRequest",
+      value: QueryTokenizeShareRecordsOwnedRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryTokenizeShareRecordsOwnedRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryTokenizeShareRecordsOwnedRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareRecordsOwnedRequest",
+      value: QueryTokenizeShareRecordsOwnedRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryTokenizeShareRecordsOwnedResponse() {
+  return {
+    records: []
+  };
+}
+const QueryTokenizeShareRecordsOwnedResponse = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareRecordsOwnedResponse",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    for (const v of message.records) {
+      import_staking.TokenizeShareRecord.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareRecordsOwnedResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.records.push(import_staking.TokenizeShareRecord.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryTokenizeShareRecordsOwnedResponse();
+    message.records = object.records?.map((e) => import_staking.TokenizeShareRecord.fromPartial(e)) || [];
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryTokenizeShareRecordsOwnedResponse();
+    message.records = object.records?.map((e) => import_staking.TokenizeShareRecord.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    if (message.records) {
+      obj.records = message.records.map((e) => e ? import_staking.TokenizeShareRecord.toAmino(e) : void 0);
+    } else {
+      obj.records = message.records;
+    }
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryTokenizeShareRecordsOwnedResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryTokenizeShareRecordsOwnedResponse",
+      value: QueryTokenizeShareRecordsOwnedResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryTokenizeShareRecordsOwnedResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryTokenizeShareRecordsOwnedResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareRecordsOwnedResponse",
+      value: QueryTokenizeShareRecordsOwnedResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryAllTokenizeShareRecordsRequest() {
+  return {
+    pagination: void 0
+  };
+}
+const QueryAllTokenizeShareRecordsRequest = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryAllTokenizeShareRecordsRequest",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.pagination !== void 0) {
+      import_pagination.PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllTokenizeShareRecordsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = import_pagination.PageRequest.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryAllTokenizeShareRecordsRequest();
+    message.pagination = object.pagination !== void 0 && object.pagination !== null ? import_pagination.PageRequest.fromPartial(object.pagination) : void 0;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryAllTokenizeShareRecordsRequest();
+    if (object.pagination !== void 0 && object.pagination !== null) {
+      message.pagination = import_pagination.PageRequest.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.pagination = message.pagination ? import_pagination.PageRequest.toAmino(message.pagination) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryAllTokenizeShareRecordsRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryAllTokenizeShareRecordsRequest",
+      value: QueryAllTokenizeShareRecordsRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryAllTokenizeShareRecordsRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryAllTokenizeShareRecordsRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryAllTokenizeShareRecordsRequest",
+      value: QueryAllTokenizeShareRecordsRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryAllTokenizeShareRecordsResponse() {
+  return {
+    records: [],
+    pagination: void 0
+  };
+}
+const QueryAllTokenizeShareRecordsResponse = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryAllTokenizeShareRecordsResponse",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    for (const v of message.records) {
+      import_staking.TokenizeShareRecord.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== void 0) {
+      import_pagination.PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllTokenizeShareRecordsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.records.push(import_staking.TokenizeShareRecord.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.pagination = import_pagination.PageResponse.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryAllTokenizeShareRecordsResponse();
+    message.records = object.records?.map((e) => import_staking.TokenizeShareRecord.fromPartial(e)) || [];
+    message.pagination = object.pagination !== void 0 && object.pagination !== null ? import_pagination.PageResponse.fromPartial(object.pagination) : void 0;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryAllTokenizeShareRecordsResponse();
+    message.records = object.records?.map((e) => import_staking.TokenizeShareRecord.fromAmino(e)) || [];
+    if (object.pagination !== void 0 && object.pagination !== null) {
+      message.pagination = import_pagination.PageResponse.fromAmino(object.pagination);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    if (message.records) {
+      obj.records = message.records.map((e) => e ? import_staking.TokenizeShareRecord.toAmino(e) : void 0);
+    } else {
+      obj.records = message.records;
+    }
+    obj.pagination = message.pagination ? import_pagination.PageResponse.toAmino(message.pagination) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryAllTokenizeShareRecordsResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryAllTokenizeShareRecordsResponse",
+      value: QueryAllTokenizeShareRecordsResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryAllTokenizeShareRecordsResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryAllTokenizeShareRecordsResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryAllTokenizeShareRecordsResponse",
+      value: QueryAllTokenizeShareRecordsResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryLastTokenizeShareRecordIdRequest() {
+  return {};
+}
+const QueryLastTokenizeShareRecordIdRequest = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryLastTokenizeShareRecordIdRequest",
+  encode(_, writer = import_binary.BinaryWriter.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryLastTokenizeShareRecordIdRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_) {
+    const message = createBaseQueryLastTokenizeShareRecordIdRequest();
+    return message;
+  },
+  fromAmino(_) {
+    const message = createBaseQueryLastTokenizeShareRecordIdRequest();
+    return message;
+  },
+  toAmino(_) {
+    const obj = {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryLastTokenizeShareRecordIdRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryLastTokenizeShareRecordIdRequest",
+      value: QueryLastTokenizeShareRecordIdRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryLastTokenizeShareRecordIdRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryLastTokenizeShareRecordIdRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryLastTokenizeShareRecordIdRequest",
+      value: QueryLastTokenizeShareRecordIdRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryLastTokenizeShareRecordIdResponse() {
+  return {
+    id: BigInt(0)
+  };
+}
+const QueryLastTokenizeShareRecordIdResponse = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryLastTokenizeShareRecordIdResponse",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.id !== BigInt(0)) {
+      writer.uint32(8).uint64(message.id);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryLastTokenizeShareRecordIdResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.id = reader.uint64();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryLastTokenizeShareRecordIdResponse();
+    message.id = object.id !== void 0 && object.id !== null ? BigInt(object.id.toString()) : BigInt(0);
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryLastTokenizeShareRecordIdResponse();
+    if (object.id !== void 0 && object.id !== null) {
+      message.id = BigInt(object.id);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.id = message.id !== BigInt(0) ? message.id.toString() : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryLastTokenizeShareRecordIdResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryLastTokenizeShareRecordIdResponse",
+      value: QueryLastTokenizeShareRecordIdResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryLastTokenizeShareRecordIdResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryLastTokenizeShareRecordIdResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryLastTokenizeShareRecordIdResponse",
+      value: QueryLastTokenizeShareRecordIdResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryTotalTokenizeSharedAssetsRequest() {
+  return {};
+}
+const QueryTotalTokenizeSharedAssetsRequest = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryTotalTokenizeSharedAssetsRequest",
+  encode(_, writer = import_binary.BinaryWriter.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryTotalTokenizeSharedAssetsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_) {
+    const message = createBaseQueryTotalTokenizeSharedAssetsRequest();
+    return message;
+  },
+  fromAmino(_) {
+    const message = createBaseQueryTotalTokenizeSharedAssetsRequest();
+    return message;
+  },
+  toAmino(_) {
+    const obj = {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryTotalTokenizeSharedAssetsRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryTotalTokenizeSharedAssetsRequest",
+      value: QueryTotalTokenizeSharedAssetsRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryTotalTokenizeSharedAssetsRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryTotalTokenizeSharedAssetsRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryTotalTokenizeSharedAssetsRequest",
+      value: QueryTotalTokenizeSharedAssetsRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryTotalTokenizeSharedAssetsResponse() {
+  return {
+    value: import_coin.Coin.fromPartial({})
+  };
+}
+const QueryTotalTokenizeSharedAssetsResponse = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryTotalTokenizeSharedAssetsResponse",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.value !== void 0) {
+      import_coin.Coin.encode(message.value, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryTotalTokenizeSharedAssetsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.value = import_coin.Coin.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryTotalTokenizeSharedAssetsResponse();
+    message.value = object.value !== void 0 && object.value !== null ? import_coin.Coin.fromPartial(object.value) : void 0;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryTotalTokenizeSharedAssetsResponse();
+    if (object.value !== void 0 && object.value !== null) {
+      message.value = import_coin.Coin.fromAmino(object.value);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.value = message.value ? import_coin.Coin.toAmino(message.value) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryTotalTokenizeSharedAssetsResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryTotalTokenizeSharedAssetsResponse",
+      value: QueryTotalTokenizeSharedAssetsResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryTotalTokenizeSharedAssetsResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryTotalTokenizeSharedAssetsResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryTotalTokenizeSharedAssetsResponse",
+      value: QueryTotalTokenizeSharedAssetsResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryTotalLiquidStaked() {
+  return {};
+}
+const QueryTotalLiquidStaked = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryTotalLiquidStaked",
+  encode(_, writer = import_binary.BinaryWriter.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryTotalLiquidStaked();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_) {
+    const message = createBaseQueryTotalLiquidStaked();
+    return message;
+  },
+  fromAmino(_) {
+    const message = createBaseQueryTotalLiquidStaked();
+    return message;
+  },
+  toAmino(_) {
+    const obj = {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryTotalLiquidStaked.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryTotalLiquidStaked",
+      value: QueryTotalLiquidStaked.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryTotalLiquidStaked.decode(message.value);
+  },
+  toProto(message) {
+    return QueryTotalLiquidStaked.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryTotalLiquidStaked",
+      value: QueryTotalLiquidStaked.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryTotalLiquidStakedResponse() {
+  return {
+    tokens: ""
+  };
+}
+const QueryTotalLiquidStakedResponse = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryTotalLiquidStakedResponse",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.tokens !== "") {
+      writer.uint32(10).string(message.tokens);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryTotalLiquidStakedResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.tokens = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryTotalLiquidStakedResponse();
+    message.tokens = object.tokens ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryTotalLiquidStakedResponse();
+    if (object.tokens !== void 0 && object.tokens !== null) {
+      message.tokens = object.tokens;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.tokens = message.tokens === "" ? void 0 : message.tokens;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryTotalLiquidStakedResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryTotalLiquidStakedResponse",
+      value: QueryTotalLiquidStakedResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryTotalLiquidStakedResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryTotalLiquidStakedResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryTotalLiquidStakedResponse",
+      value: QueryTotalLiquidStakedResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryTokenizeShareLockInfo() {
+  return {
+    address: ""
+  };
+}
+const QueryTokenizeShareLockInfo = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareLockInfo",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.address !== "") {
+      writer.uint32(10).string(message.address);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareLockInfo();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.address = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryTokenizeShareLockInfo();
+    message.address = object.address ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryTokenizeShareLockInfo();
+    if (object.address !== void 0 && object.address !== null) {
+      message.address = object.address;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.address = message.address === "" ? void 0 : message.address;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryTokenizeShareLockInfo.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryTokenizeShareLockInfo",
+      value: QueryTokenizeShareLockInfo.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryTokenizeShareLockInfo.decode(message.value);
+  },
+  toProto(message) {
+    return QueryTokenizeShareLockInfo.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareLockInfo",
+      value: QueryTokenizeShareLockInfo.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryTokenizeShareLockInfoResponse() {
+  return {
+    status: "",
+    expirationTime: ""
+  };
+}
+const QueryTokenizeShareLockInfoResponse = {
+  typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareLockInfoResponse",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.status !== "") {
+      writer.uint32(10).string(message.status);
+    }
+    if (message.expirationTime !== "") {
+      writer.uint32(18).string(message.expirationTime);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryTokenizeShareLockInfoResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.status = reader.string();
+          break;
+        case 2:
+          message.expirationTime = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryTokenizeShareLockInfoResponse();
+    message.status = object.status ?? "";
+    message.expirationTime = object.expirationTime ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryTokenizeShareLockInfoResponse();
+    if (object.status !== void 0 && object.status !== null) {
+      message.status = object.status;
+    }
+    if (object.expiration_time !== void 0 && object.expiration_time !== null) {
+      message.expirationTime = object.expiration_time;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.status = message.status === "" ? void 0 : message.status;
+    obj.expiration_time = message.expirationTime === "" ? void 0 : message.expirationTime;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryTokenizeShareLockInfoResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryTokenizeShareLockInfoResponse",
+      value: QueryTokenizeShareLockInfoResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryTokenizeShareLockInfoResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryTokenizeShareLockInfoResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.staking.v1beta1.QueryTokenizeShareLockInfoResponse",
+      value: QueryTokenizeShareLockInfoResponse.encode(message).finish()
+    };
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  QueryAllTokenizeShareRecordsRequest,
+  QueryAllTokenizeShareRecordsResponse,
   QueryDelegationRequest,
   QueryDelegationResponse,
   QueryDelegatorDelegationsRequest,
@@ -2212,12 +3324,26 @@ const QueryParamsResponse = {
   QueryDelegatorValidatorsResponse,
   QueryHistoricalInfoRequest,
   QueryHistoricalInfoResponse,
+  QueryLastTokenizeShareRecordIdRequest,
+  QueryLastTokenizeShareRecordIdResponse,
   QueryParamsRequest,
   QueryParamsResponse,
   QueryPoolRequest,
   QueryPoolResponse,
   QueryRedelegationsRequest,
   QueryRedelegationsResponse,
+  QueryTokenizeShareLockInfo,
+  QueryTokenizeShareLockInfoResponse,
+  QueryTokenizeShareRecordByDenomRequest,
+  QueryTokenizeShareRecordByDenomResponse,
+  QueryTokenizeShareRecordByIdRequest,
+  QueryTokenizeShareRecordByIdResponse,
+  QueryTokenizeShareRecordsOwnedRequest,
+  QueryTokenizeShareRecordsOwnedResponse,
+  QueryTotalLiquidStaked,
+  QueryTotalLiquidStakedResponse,
+  QueryTotalTokenizeSharedAssetsRequest,
+  QueryTotalTokenizeSharedAssetsResponse,
   QueryUnbondingDelegationRequest,
   QueryUnbondingDelegationResponse,
   QueryValidatorDelegationsRequest,

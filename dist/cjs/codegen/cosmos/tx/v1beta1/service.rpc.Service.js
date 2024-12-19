@@ -33,10 +33,6 @@ class ServiceClientImpl {
     this.broadcastTx = this.broadcastTx.bind(this);
     this.getTxsEvent = this.getTxsEvent.bind(this);
     this.getBlockWithTxs = this.getBlockWithTxs.bind(this);
-    this.txDecode = this.txDecode.bind(this);
-    this.txEncode = this.txEncode.bind(this);
-    this.txEncodeAmino = this.txEncodeAmino.bind(this);
-    this.txDecodeAmino = this.txDecodeAmino.bind(this);
   }
   simulate(request) {
     const data = import_service.SimulateRequest.encode(request).finish();
@@ -63,26 +59,6 @@ class ServiceClientImpl {
     const promise = this.rpc.request("cosmos.tx.v1beta1.Service", "GetBlockWithTxs", data);
     return promise.then((data2) => import_service.GetBlockWithTxsResponse.decode(new import_binary.BinaryReader(data2)));
   }
-  txDecode(request) {
-    const data = import_service.TxDecodeRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.tx.v1beta1.Service", "TxDecode", data);
-    return promise.then((data2) => import_service.TxDecodeResponse.decode(new import_binary.BinaryReader(data2)));
-  }
-  txEncode(request) {
-    const data = import_service.TxEncodeRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.tx.v1beta1.Service", "TxEncode", data);
-    return promise.then((data2) => import_service.TxEncodeResponse.decode(new import_binary.BinaryReader(data2)));
-  }
-  txEncodeAmino(request) {
-    const data = import_service.TxEncodeAminoRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.tx.v1beta1.Service", "TxEncodeAmino", data);
-    return promise.then((data2) => import_service.TxEncodeAminoResponse.decode(new import_binary.BinaryReader(data2)));
-  }
-  txDecodeAmino(request) {
-    const data = import_service.TxDecodeAminoRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.tx.v1beta1.Service", "TxDecodeAmino", data);
-    return promise.then((data2) => import_service.TxDecodeAminoResponse.decode(new import_binary.BinaryReader(data2)));
-  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = (0, import_stargate.createProtobufRpcClient)(base);
@@ -102,18 +78,6 @@ const createRpcQueryExtension = (base) => {
     },
     getBlockWithTxs(request) {
       return queryService.getBlockWithTxs(request);
-    },
-    txDecode(request) {
-      return queryService.txDecode(request);
-    },
-    txEncode(request) {
-      return queryService.txEncode(request);
-    },
-    txEncodeAmino(request) {
-      return queryService.txEncodeAmino(request);
-    },
-    txDecodeAmino(request) {
-      return queryService.txDecodeAmino(request);
     }
   };
 };

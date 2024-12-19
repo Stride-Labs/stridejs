@@ -24,7 +24,6 @@ module.exports = __toCommonJS(params_exports);
 var import_binary = require("../../../binary");
 function createBaseParameterChangeProposal() {
   return {
-    $typeUrl: "/cosmos.params.v1beta1.ParameterChangeProposal",
     title: "",
     description: "",
     changes: []

@@ -26,11 +26,6 @@ const AminoConverter = {
     aminoType: "cosmos-sdk/MsgUnjail",
     toAmino: import_tx.MsgUnjail.toAmino,
     fromAmino: import_tx.MsgUnjail.fromAmino
-  },
-  "/cosmos.slashing.v1beta1.MsgUpdateParams": {
-    aminoType: "cosmos-sdk/x/slashing/MsgUpdateParams",
-    toAmino: import_tx.MsgUpdateParams.toAmino,
-    fromAmino: import_tx.MsgUpdateParams.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

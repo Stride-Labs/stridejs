@@ -193,7 +193,7 @@ const Params = {
   },
   toAminoMsg(message) {
     return {
-      type: "cosmos-sdk/x/mint/Params",
+      type: "cosmos-sdk/Params",
       value: Params.toAmino(message)
     };
   },

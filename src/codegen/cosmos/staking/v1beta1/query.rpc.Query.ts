@@ -1,31 +1,16 @@
 import { TxRpc } from "../../../types";
 import { BinaryReader } from "../../../binary";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryValidatorsRequest, QueryValidatorsResponse, QueryValidatorRequest, QueryValidatorResponse, QueryValidatorDelegationsRequest, QueryValidatorDelegationsResponse, QueryValidatorUnbondingDelegationsRequest, QueryValidatorUnbondingDelegationsResponse, QueryDelegationRequest, QueryDelegationResponse, QueryUnbondingDelegationRequest, QueryUnbondingDelegationResponse, QueryDelegatorDelegationsRequest, QueryDelegatorDelegationsResponse, QueryDelegatorUnbondingDelegationsRequest, QueryDelegatorUnbondingDelegationsResponse, QueryRedelegationsRequest, QueryRedelegationsResponse, QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponse, QueryDelegatorValidatorRequest, QueryDelegatorValidatorResponse, QueryHistoricalInfoRequest, QueryHistoricalInfoResponse, QueryPoolRequest, QueryPoolResponse, QueryParamsRequest, QueryParamsResponse } from "./query";
+import { QueryValidatorsRequest, QueryValidatorsResponse, QueryValidatorRequest, QueryValidatorResponse, QueryValidatorDelegationsRequest, QueryValidatorDelegationsResponse, QueryValidatorUnbondingDelegationsRequest, QueryValidatorUnbondingDelegationsResponse, QueryDelegationRequest, QueryDelegationResponse, QueryUnbondingDelegationRequest, QueryUnbondingDelegationResponse, QueryDelegatorDelegationsRequest, QueryDelegatorDelegationsResponse, QueryDelegatorUnbondingDelegationsRequest, QueryDelegatorUnbondingDelegationsResponse, QueryRedelegationsRequest, QueryRedelegationsResponse, QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponse, QueryDelegatorValidatorRequest, QueryDelegatorValidatorResponse, QueryHistoricalInfoRequest, QueryHistoricalInfoResponse, QueryPoolRequest, QueryPoolResponse, QueryParamsRequest, QueryParamsResponse, QueryTokenizeShareRecordByIdRequest, QueryTokenizeShareRecordByIdResponse, QueryTokenizeShareRecordByDenomRequest, QueryTokenizeShareRecordByDenomResponse, QueryTokenizeShareRecordsOwnedRequest, QueryTokenizeShareRecordsOwnedResponse, QueryAllTokenizeShareRecordsRequest, QueryAllTokenizeShareRecordsResponse, QueryLastTokenizeShareRecordIdRequest, QueryLastTokenizeShareRecordIdResponse, QueryTotalTokenizeSharedAssetsRequest, QueryTotalTokenizeSharedAssetsResponse, QueryTotalLiquidStaked, QueryTotalLiquidStakedResponse, QueryTokenizeShareLockInfo, QueryTokenizeShareLockInfoResponse } from "./query";
 /** Query defines the gRPC querier service. */
 export interface Query {
-  /**
-   * Validators queries all validators that match the given status.
-   * 
-   * When called from another module, this query might consume a high amount of
-   * gas if the pagination field is incorrectly set.
-   */
+  /** Validators queries all validators that match the given status. */
   validators(request: QueryValidatorsRequest): Promise<QueryValidatorsResponse>;
   /** Validator queries validator info for given validator address. */
   validator(request: QueryValidatorRequest): Promise<QueryValidatorResponse>;
-  /**
-   * ValidatorDelegations queries delegate info for given validator.
-   * 
-   * When called from another module, this query might consume a high amount of
-   * gas if the pagination field is incorrectly set.
-   */
+  /** ValidatorDelegations queries delegate info for given validator. */
   validatorDelegations(request: QueryValidatorDelegationsRequest): Promise<QueryValidatorDelegationsResponse>;
-  /**
-   * ValidatorUnbondingDelegations queries unbonding delegations of a validator.
-   * 
-   * When called from another module, this query might consume a high amount of
-   * gas if the pagination field is incorrectly set.
-   */
+  /** ValidatorUnbondingDelegations queries unbonding delegations of a validator. */
   validatorUnbondingDelegations(request: QueryValidatorUnbondingDelegationsRequest): Promise<QueryValidatorUnbondingDelegationsResponse>;
   /** Delegation queries delegate info for given validator delegator pair. */
   delegation(request: QueryDelegationRequest): Promise<QueryDelegationResponse>;
@@ -34,34 +19,18 @@ export interface Query {
    * pair.
    */
   unbondingDelegation(request: QueryUnbondingDelegationRequest): Promise<QueryUnbondingDelegationResponse>;
-  /**
-   * DelegatorDelegations queries all delegations of a given delegator address.
-   * 
-   * When called from another module, this query might consume a high amount of
-   * gas if the pagination field is incorrectly set.
-   */
+  /** DelegatorDelegations queries all delegations of a given delegator address. */
   delegatorDelegations(request: QueryDelegatorDelegationsRequest): Promise<QueryDelegatorDelegationsResponse>;
   /**
    * DelegatorUnbondingDelegations queries all unbonding delegations of a given
    * delegator address.
-   * 
-   * When called from another module, this query might consume a high amount of
-   * gas if the pagination field is incorrectly set.
    */
   delegatorUnbondingDelegations(request: QueryDelegatorUnbondingDelegationsRequest): Promise<QueryDelegatorUnbondingDelegationsResponse>;
-  /**
-   * Redelegations queries redelegations of given address.
-   * 
-   * When called from another module, this query might consume a high amount of
-   * gas if the pagination field is incorrectly set.
-   */
+  /** Redelegations queries redelegations of given address. */
   redelegations(request: QueryRedelegationsRequest): Promise<QueryRedelegationsResponse>;
   /**
    * DelegatorValidators queries all validators info for given delegator
    * address.
-   * 
-   * When called from another module, this query might consume a high amount of
-   * gas if the pagination field is incorrectly set.
    */
   delegatorValidators(request: QueryDelegatorValidatorsRequest): Promise<QueryDelegatorValidatorsResponse>;
   /**
@@ -75,6 +44,22 @@ export interface Query {
   pool(request?: QueryPoolRequest): Promise<QueryPoolResponse>;
   /** Parameters queries the staking parameters. */
   params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
+  /** Query for individual tokenize share record information by share by id */
+  tokenizeShareRecordById(request: QueryTokenizeShareRecordByIdRequest): Promise<QueryTokenizeShareRecordByIdResponse>;
+  /** Query for individual tokenize share record information by share denom */
+  tokenizeShareRecordByDenom(request: QueryTokenizeShareRecordByDenomRequest): Promise<QueryTokenizeShareRecordByDenomResponse>;
+  /** Query tokenize share records by address */
+  tokenizeShareRecordsOwned(request: QueryTokenizeShareRecordsOwnedRequest): Promise<QueryTokenizeShareRecordsOwnedResponse>;
+  /** Query for all tokenize share records */
+  allTokenizeShareRecords(request?: QueryAllTokenizeShareRecordsRequest): Promise<QueryAllTokenizeShareRecordsResponse>;
+  /** Query for last tokenize share record id */
+  lastTokenizeShareRecordId(request?: QueryLastTokenizeShareRecordIdRequest): Promise<QueryLastTokenizeShareRecordIdResponse>;
+  /** Query for total tokenized staked assets */
+  totalTokenizeSharedAssets(request?: QueryTotalTokenizeSharedAssetsRequest): Promise<QueryTotalTokenizeSharedAssetsResponse>;
+  /** Query for total liquid staked (including tokenized shares or owned by an liquid staking provider) */
+  totalLiquidStaked(request?: QueryTotalLiquidStaked): Promise<QueryTotalLiquidStakedResponse>;
+  /** Query tokenize share locks */
+  tokenizeShareLockInfo(request: QueryTokenizeShareLockInfo): Promise<QueryTokenizeShareLockInfoResponse>;
 }
 export class QueryClientImpl implements Query {
   private readonly rpc: TxRpc;
@@ -94,6 +79,14 @@ export class QueryClientImpl implements Query {
     this.historicalInfo = this.historicalInfo.bind(this);
     this.pool = this.pool.bind(this);
     this.params = this.params.bind(this);
+    this.tokenizeShareRecordById = this.tokenizeShareRecordById.bind(this);
+    this.tokenizeShareRecordByDenom = this.tokenizeShareRecordByDenom.bind(this);
+    this.tokenizeShareRecordsOwned = this.tokenizeShareRecordsOwned.bind(this);
+    this.allTokenizeShareRecords = this.allTokenizeShareRecords.bind(this);
+    this.lastTokenizeShareRecordId = this.lastTokenizeShareRecordId.bind(this);
+    this.totalTokenizeSharedAssets = this.totalTokenizeSharedAssets.bind(this);
+    this.totalLiquidStaked = this.totalLiquidStaked.bind(this);
+    this.tokenizeShareLockInfo = this.tokenizeShareLockInfo.bind(this);
   }
   validators(request: QueryValidatorsRequest): Promise<QueryValidatorsResponse> {
     const data = QueryValidatorsRequest.encode(request).finish();
@@ -165,6 +158,48 @@ export class QueryClientImpl implements Query {
     const promise = this.rpc.request("cosmos.staking.v1beta1.Query", "Params", data);
     return promise.then(data => QueryParamsResponse.decode(new BinaryReader(data)));
   }
+  tokenizeShareRecordById(request: QueryTokenizeShareRecordByIdRequest): Promise<QueryTokenizeShareRecordByIdResponse> {
+    const data = QueryTokenizeShareRecordByIdRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Query", "TokenizeShareRecordById", data);
+    return promise.then(data => QueryTokenizeShareRecordByIdResponse.decode(new BinaryReader(data)));
+  }
+  tokenizeShareRecordByDenom(request: QueryTokenizeShareRecordByDenomRequest): Promise<QueryTokenizeShareRecordByDenomResponse> {
+    const data = QueryTokenizeShareRecordByDenomRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Query", "TokenizeShareRecordByDenom", data);
+    return promise.then(data => QueryTokenizeShareRecordByDenomResponse.decode(new BinaryReader(data)));
+  }
+  tokenizeShareRecordsOwned(request: QueryTokenizeShareRecordsOwnedRequest): Promise<QueryTokenizeShareRecordsOwnedResponse> {
+    const data = QueryTokenizeShareRecordsOwnedRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Query", "TokenizeShareRecordsOwned", data);
+    return promise.then(data => QueryTokenizeShareRecordsOwnedResponse.decode(new BinaryReader(data)));
+  }
+  allTokenizeShareRecords(request: QueryAllTokenizeShareRecordsRequest = {
+    pagination: undefined
+  }): Promise<QueryAllTokenizeShareRecordsResponse> {
+    const data = QueryAllTokenizeShareRecordsRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Query", "AllTokenizeShareRecords", data);
+    return promise.then(data => QueryAllTokenizeShareRecordsResponse.decode(new BinaryReader(data)));
+  }
+  lastTokenizeShareRecordId(request: QueryLastTokenizeShareRecordIdRequest = {}): Promise<QueryLastTokenizeShareRecordIdResponse> {
+    const data = QueryLastTokenizeShareRecordIdRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Query", "LastTokenizeShareRecordId", data);
+    return promise.then(data => QueryLastTokenizeShareRecordIdResponse.decode(new BinaryReader(data)));
+  }
+  totalTokenizeSharedAssets(request: QueryTotalTokenizeSharedAssetsRequest = {}): Promise<QueryTotalTokenizeSharedAssetsResponse> {
+    const data = QueryTotalTokenizeSharedAssetsRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Query", "TotalTokenizeSharedAssets", data);
+    return promise.then(data => QueryTotalTokenizeSharedAssetsResponse.decode(new BinaryReader(data)));
+  }
+  totalLiquidStaked(request: QueryTotalLiquidStaked = {}): Promise<QueryTotalLiquidStakedResponse> {
+    const data = QueryTotalLiquidStaked.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Query", "TotalLiquidStaked", data);
+    return promise.then(data => QueryTotalLiquidStakedResponse.decode(new BinaryReader(data)));
+  }
+  tokenizeShareLockInfo(request: QueryTokenizeShareLockInfo): Promise<QueryTokenizeShareLockInfoResponse> {
+    const data = QueryTokenizeShareLockInfo.encode(request).finish();
+    const promise = this.rpc.request("cosmos.staking.v1beta1.Query", "TokenizeShareLockInfo", data);
+    return promise.then(data => QueryTokenizeShareLockInfoResponse.decode(new BinaryReader(data)));
+  }
 }
 export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
@@ -211,6 +246,30 @@ export const createRpcQueryExtension = (base: QueryClient) => {
     },
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse> {
       return queryService.params(request);
+    },
+    tokenizeShareRecordById(request: QueryTokenizeShareRecordByIdRequest): Promise<QueryTokenizeShareRecordByIdResponse> {
+      return queryService.tokenizeShareRecordById(request);
+    },
+    tokenizeShareRecordByDenom(request: QueryTokenizeShareRecordByDenomRequest): Promise<QueryTokenizeShareRecordByDenomResponse> {
+      return queryService.tokenizeShareRecordByDenom(request);
+    },
+    tokenizeShareRecordsOwned(request: QueryTokenizeShareRecordsOwnedRequest): Promise<QueryTokenizeShareRecordsOwnedResponse> {
+      return queryService.tokenizeShareRecordsOwned(request);
+    },
+    allTokenizeShareRecords(request?: QueryAllTokenizeShareRecordsRequest): Promise<QueryAllTokenizeShareRecordsResponse> {
+      return queryService.allTokenizeShareRecords(request);
+    },
+    lastTokenizeShareRecordId(request?: QueryLastTokenizeShareRecordIdRequest): Promise<QueryLastTokenizeShareRecordIdResponse> {
+      return queryService.lastTokenizeShareRecordId(request);
+    },
+    totalTokenizeSharedAssets(request?: QueryTotalTokenizeSharedAssetsRequest): Promise<QueryTotalTokenizeSharedAssetsResponse> {
+      return queryService.totalTokenizeSharedAssets(request);
+    },
+    totalLiquidStaked(request?: QueryTotalLiquidStaked): Promise<QueryTotalLiquidStakedResponse> {
+      return queryService.totalLiquidStaked(request);
+    },
+    tokenizeShareLockInfo(request: QueryTokenizeShareLockInfo): Promise<QueryTokenizeShareLockInfoResponse> {
+      return queryService.tokenizeShareLockInfo(request);
     }
   };
 };
