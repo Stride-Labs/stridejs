@@ -24,6 +24,26 @@ export interface SplitDelegationSDKType {
   validator: string;
   amount: string;
 }
+export interface SplitUndelegation {
+  validator: string;
+  nativeTokenAmount: string;
+}
+export interface SplitUndelegationProtoMsg {
+  typeUrl: "/stride.stakeibc.SplitUndelegation";
+  value: Uint8Array;
+}
+export interface SplitUndelegationAmino {
+  validator?: string;
+  native_token_amount?: string;
+}
+export interface SplitUndelegationAminoMsg {
+  type: "/stride.stakeibc.SplitUndelegation";
+  value: SplitUndelegationAmino;
+}
+export interface SplitUndelegationSDKType {
+  validator: string;
+  native_token_amount: string;
+}
 export interface DelegateCallback {
   hostZoneId: string;
   depositRecordId: bigint;
@@ -92,7 +112,7 @@ export interface ReinvestCallbackSDKType {
 }
 export interface UndelegateCallback {
   hostZoneId: string;
-  splitDelegations: SplitDelegation[];
+  splitUndelegations: SplitUndelegation[];
   epochUnbondingRecordIds: bigint[];
 }
 export interface UndelegateCallbackProtoMsg {
@@ -101,7 +121,7 @@ export interface UndelegateCallbackProtoMsg {
 }
 export interface UndelegateCallbackAmino {
   host_zone_id?: string;
-  split_delegations?: SplitDelegationAmino[];
+  split_undelegations?: SplitUndelegationAmino[];
   epoch_unbonding_record_ids?: string[];
 }
 export interface UndelegateCallbackAminoMsg {
@@ -110,7 +130,7 @@ export interface UndelegateCallbackAminoMsg {
 }
 export interface UndelegateCallbackSDKType {
   host_zone_id: string;
-  split_delegations: SplitDelegationSDKType[];
+  split_undelegations: SplitUndelegationSDKType[];
   epoch_unbonding_record_ids: bigint[];
 }
 export interface RedemptionCallback {
@@ -364,6 +384,81 @@ export const SplitDelegation = {
     return {
       typeUrl: "/stride.stakeibc.SplitDelegation",
       value: SplitDelegation.encode(message).finish()
+    };
+  }
+};
+function createBaseSplitUndelegation(): SplitUndelegation {
+  return {
+    validator: "",
+    nativeTokenAmount: ""
+  };
+}
+export const SplitUndelegation = {
+  typeUrl: "/stride.stakeibc.SplitUndelegation",
+  encode(message: SplitUndelegation, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.validator !== "") {
+      writer.uint32(10).string(message.validator);
+    }
+    if (message.nativeTokenAmount !== "") {
+      writer.uint32(18).string(message.nativeTokenAmount);
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): SplitUndelegation {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseSplitUndelegation();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.validator = reader.string();
+          break;
+        case 2:
+          message.nativeTokenAmount = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<SplitUndelegation>): SplitUndelegation {
+    const message = createBaseSplitUndelegation();
+    message.validator = object.validator ?? "";
+    message.nativeTokenAmount = object.nativeTokenAmount ?? "";
+    return message;
+  },
+  fromAmino(object: SplitUndelegationAmino): SplitUndelegation {
+    const message = createBaseSplitUndelegation();
+    if (object.validator !== undefined && object.validator !== null) {
+      message.validator = object.validator;
+    }
+    if (object.native_token_amount !== undefined && object.native_token_amount !== null) {
+      message.nativeTokenAmount = object.native_token_amount;
+    }
+    return message;
+  },
+  toAmino(message: SplitUndelegation): SplitUndelegationAmino {
+    const obj: any = {};
+    obj.validator = message.validator === "" ? undefined : message.validator;
+    obj.native_token_amount = message.nativeTokenAmount === "" ? undefined : message.nativeTokenAmount;
+    return obj;
+  },
+  fromAminoMsg(object: SplitUndelegationAminoMsg): SplitUndelegation {
+    return SplitUndelegation.fromAmino(object.value);
+  },
+  fromProtoMsg(message: SplitUndelegationProtoMsg): SplitUndelegation {
+    return SplitUndelegation.decode(message.value);
+  },
+  toProto(message: SplitUndelegation): Uint8Array {
+    return SplitUndelegation.encode(message).finish();
+  },
+  toProtoMsg(message: SplitUndelegation): SplitUndelegationProtoMsg {
+    return {
+      typeUrl: "/stride.stakeibc.SplitUndelegation",
+      value: SplitUndelegation.encode(message).finish()
     };
   }
 };
@@ -621,7 +716,7 @@ export const ReinvestCallback = {
 function createBaseUndelegateCallback(): UndelegateCallback {
   return {
     hostZoneId: "",
-    splitDelegations: [],
+    splitUndelegations: [],
     epochUnbondingRecordIds: []
   };
 }
@@ -631,8 +726,8 @@ export const UndelegateCallback = {
     if (message.hostZoneId !== "") {
       writer.uint32(10).string(message.hostZoneId);
     }
-    for (const v of message.splitDelegations) {
-      SplitDelegation.encode(v!, writer.uint32(18).fork()).ldelim();
+    for (const v of message.splitUndelegations) {
+      SplitUndelegation.encode(v!, writer.uint32(18).fork()).ldelim();
     }
     writer.uint32(26).fork();
     for (const v of message.epochUnbondingRecordIds) {
@@ -652,7 +747,7 @@ export const UndelegateCallback = {
           message.hostZoneId = reader.string();
           break;
         case 2:
-          message.splitDelegations.push(SplitDelegation.decode(reader, reader.uint32()));
+          message.splitUndelegations.push(SplitUndelegation.decode(reader, reader.uint32()));
           break;
         case 3:
           if ((tag & 7) === 2) {
@@ -674,7 +769,7 @@ export const UndelegateCallback = {
   fromPartial(object: Partial<UndelegateCallback>): UndelegateCallback {
     const message = createBaseUndelegateCallback();
     message.hostZoneId = object.hostZoneId ?? "";
-    message.splitDelegations = object.splitDelegations?.map(e => SplitDelegation.fromPartial(e)) || [];
+    message.splitUndelegations = object.splitUndelegations?.map(e => SplitUndelegation.fromPartial(e)) || [];
     message.epochUnbondingRecordIds = object.epochUnbondingRecordIds?.map(e => BigInt(e.toString())) || [];
     return message;
   },
@@ -683,17 +778,17 @@ export const UndelegateCallback = {
     if (object.host_zone_id !== undefined && object.host_zone_id !== null) {
       message.hostZoneId = object.host_zone_id;
     }
-    message.splitDelegations = object.split_delegations?.map(e => SplitDelegation.fromAmino(e)) || [];
+    message.splitUndelegations = object.split_undelegations?.map(e => SplitUndelegation.fromAmino(e)) || [];
     message.epochUnbondingRecordIds = object.epoch_unbonding_record_ids?.map(e => BigInt(e)) || [];
     return message;
   },
   toAmino(message: UndelegateCallback): UndelegateCallbackAmino {
     const obj: any = {};
     obj.host_zone_id = message.hostZoneId === "" ? undefined : message.hostZoneId;
-    if (message.splitDelegations) {
-      obj.split_delegations = message.splitDelegations.map(e => e ? SplitDelegation.toAmino(e) : undefined);
+    if (message.splitUndelegations) {
+      obj.split_undelegations = message.splitUndelegations.map(e => e ? SplitUndelegation.toAmino(e) : undefined);
     } else {
-      obj.split_delegations = message.splitDelegations;
+      obj.split_undelegations = message.splitUndelegations;
     }
     if (message.epochUnbondingRecordIds) {
       obj.epoch_unbonding_record_ids = message.epochUnbondingRecordIds.map(e => e.toString());

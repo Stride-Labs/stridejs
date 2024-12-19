@@ -5,7 +5,6 @@
   */
  
 export * from "./amino/bundle";
-export * from "./ics23/bundle";
 export * from "./cosmos_proto/bundle";
 export * from "./cosmos/bundle";
 export * from "./cosmos/client";
@@ -13,7 +12,6 @@ export * from "./gogoproto/bundle";
 export * from "./google/bundle";
 export * from "./ibc/bundle";
 export * from "./ibc/client";
-export * from "./osmosis/bundle";
 export * from "./stride/bundle";
 export * from "./stride/client";
 export * from "./tendermint/bundle";

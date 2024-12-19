@@ -8,15 +8,15 @@ export const reposDir = join(__dirname, "repos");
 export const config = [
   {
     repo: "https://github.com/Stride-Labs/stride",
-    rev: "assaf-test", // x/airdrop protos
+    branch: "buyback-and-burn",
   },
   {
-    repo: "https://github.com/cosmos/cosmos-sdk",
-    rev: "v0.45.16-ics-lsm",
+    repo: "https://github.com/Stride-Labs/cosmos-sdk",
+    branch: "v0.47.10-stride-distribution-fix-0-mempool-verbose-error",
   },
   {
     repo: "https://github.com/cosmos/ibc-go",
-    rev: "v7.4.0",
+    branch: "v7.4.0",
   },
 ];
 
@@ -34,13 +34,13 @@ try {
 
 // clone repos into /scripts/proto
 for (const repoConfig of config) {
-  const { repo, rev } = repoConfig;
+  const { repo, branch } = repoConfig;
 
   try {
-    console.log(`git clone ${repo}@${rev}`);
+    console.log(`git clone ${repo}@${branch}`);
 
     execSync(
-      `cd "${reposDir}" && git clone --depth 1 --branch "${rev}" "${repo}" 2> /dev/null`,
+      `cd "${reposDir}" && git clone --depth 1 --branch "${branch}" "${repo}" 2> /dev/null`,
     );
   } catch (error) {
     console.log(`git clone ${repo} failed with '${error.message}'`);

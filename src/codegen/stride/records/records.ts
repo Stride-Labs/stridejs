@@ -83,9 +83,13 @@ export function depositRecord_SourceToJSON(object: DepositRecord_Source): string
 export enum HostZoneUnbonding_Status {
   /** UNBONDING_QUEUE - tokens bonded on delegate account */
   UNBONDING_QUEUE = 0,
+  /** UNBONDING_IN_PROGRESS - unbonding ICA has been submitted */
   UNBONDING_IN_PROGRESS = 3,
+  /** UNBONDING_RETRY_QUEUE - unbonding ICA failed for at least one batch and need to be retried */
+  UNBONDING_RETRY_QUEUE = 5,
   /** EXIT_TRANSFER_QUEUE - unbonding completed on delegate account */
   EXIT_TRANSFER_QUEUE = 1,
+  /** EXIT_TRANSFER_IN_PROGRESS - redemption sweep has been submitted */
   EXIT_TRANSFER_IN_PROGRESS = 4,
   /** CLAIMABLE - transfer success */
   CLAIMABLE = 2,
@@ -101,6 +105,9 @@ export function hostZoneUnbonding_StatusFromJSON(object: any): HostZoneUnbonding
     case 3:
     case "UNBONDING_IN_PROGRESS":
       return HostZoneUnbonding_Status.UNBONDING_IN_PROGRESS;
+    case 5:
+    case "UNBONDING_RETRY_QUEUE":
+      return HostZoneUnbonding_Status.UNBONDING_RETRY_QUEUE;
     case 1:
     case "EXIT_TRANSFER_QUEUE":
       return HostZoneUnbonding_Status.EXIT_TRANSFER_QUEUE;
@@ -122,6 +129,8 @@ export function hostZoneUnbonding_StatusToJSON(object: HostZoneUnbonding_Status)
       return "UNBONDING_QUEUE";
     case HostZoneUnbonding_Status.UNBONDING_IN_PROGRESS:
       return "UNBONDING_IN_PROGRESS";
+    case HostZoneUnbonding_Status.UNBONDING_RETRY_QUEUE:
+      return "UNBONDING_RETRY_QUEUE";
     case HostZoneUnbonding_Status.EXIT_TRANSFER_QUEUE:
       return "EXIT_TRANSFER_QUEUE";
     case HostZoneUnbonding_Status.EXIT_TRANSFER_IN_PROGRESS:
@@ -243,6 +252,7 @@ export interface DepositRecord {
   status: DepositRecord_Status;
   depositEpochNumber: bigint;
   source: DepositRecord_Source;
+  delegationTxsInProgress: bigint;
 }
 export interface DepositRecordProtoMsg {
   typeUrl: "/stride.records.DepositRecord";
@@ -256,6 +266,7 @@ export interface DepositRecordAmino {
   status?: DepositRecord_Status;
   deposit_epoch_number?: string;
   source?: DepositRecord_Source;
+  delegation_txs_in_progress?: string;
 }
 export interface DepositRecordAminoMsg {
   type: "/stride.records.DepositRecord";
@@ -269,10 +280,15 @@ export interface DepositRecordSDKType {
   status: DepositRecord_Status;
   deposit_epoch_number: bigint;
   source: DepositRecord_Source;
+  delegation_txs_in_progress: bigint;
 }
 export interface HostZoneUnbonding {
   stTokenAmount: string;
   nativeTokenAmount: string;
+  stTokensToBurn: string;
+  nativeTokensToUnbond: string;
+  claimableNativeTokens: string;
+  undelegationTxsInProgress: bigint;
   denom: string;
   hostZoneId: string;
   unbondingTime: bigint;
@@ -286,6 +302,10 @@ export interface HostZoneUnbondingProtoMsg {
 export interface HostZoneUnbondingAmino {
   st_token_amount?: string;
   native_token_amount?: string;
+  st_tokens_to_burn?: string;
+  native_tokens_to_unbond?: string;
+  claimable_native_tokens?: string;
+  undelegation_txs_in_progress?: string;
   denom?: string;
   host_zone_id?: string;
   unbonding_time?: string;
@@ -299,6 +319,10 @@ export interface HostZoneUnbondingAminoMsg {
 export interface HostZoneUnbondingSDKType {
   st_token_amount: string;
   native_token_amount: string;
+  st_tokens_to_burn: string;
+  native_tokens_to_unbond: string;
+  claimable_native_tokens: string;
+  undelegation_txs_in_progress: bigint;
   denom: string;
   host_zone_id: string;
   unbonding_time: bigint;
@@ -521,7 +545,8 @@ function createBaseDepositRecord(): DepositRecord {
     hostZoneId: "",
     status: 0,
     depositEpochNumber: BigInt(0),
-    source: 0
+    source: 0,
+    delegationTxsInProgress: BigInt(0)
   };
 }
 export const DepositRecord = {
@@ -547,6 +572,9 @@ export const DepositRecord = {
     }
     if (message.source !== 0) {
       writer.uint32(64).int32(message.source);
+    }
+    if (message.delegationTxsInProgress !== BigInt(0)) {
+      writer.uint32(72).uint64(message.delegationTxsInProgress);
     }
     return writer;
   },
@@ -578,6 +606,9 @@ export const DepositRecord = {
         case 8:
           message.source = reader.int32() as any;
           break;
+        case 9:
+          message.delegationTxsInProgress = reader.uint64();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -594,6 +625,7 @@ export const DepositRecord = {
     message.status = object.status ?? 0;
     message.depositEpochNumber = object.depositEpochNumber !== undefined && object.depositEpochNumber !== null ? BigInt(object.depositEpochNumber.toString()) : BigInt(0);
     message.source = object.source ?? 0;
+    message.delegationTxsInProgress = object.delegationTxsInProgress !== undefined && object.delegationTxsInProgress !== null ? BigInt(object.delegationTxsInProgress.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: DepositRecordAmino): DepositRecord {
@@ -619,6 +651,9 @@ export const DepositRecord = {
     if (object.source !== undefined && object.source !== null) {
       message.source = object.source;
     }
+    if (object.delegation_txs_in_progress !== undefined && object.delegation_txs_in_progress !== null) {
+      message.delegationTxsInProgress = BigInt(object.delegation_txs_in_progress);
+    }
     return message;
   },
   toAmino(message: DepositRecord): DepositRecordAmino {
@@ -630,6 +665,7 @@ export const DepositRecord = {
     obj.status = message.status === 0 ? undefined : message.status;
     obj.deposit_epoch_number = message.depositEpochNumber !== BigInt(0) ? message.depositEpochNumber.toString() : undefined;
     obj.source = message.source === 0 ? undefined : message.source;
+    obj.delegation_txs_in_progress = message.delegationTxsInProgress !== BigInt(0) ? message.delegationTxsInProgress.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: DepositRecordAminoMsg): DepositRecord {
@@ -652,6 +688,10 @@ function createBaseHostZoneUnbonding(): HostZoneUnbonding {
   return {
     stTokenAmount: "",
     nativeTokenAmount: "",
+    stTokensToBurn: "",
+    nativeTokensToUnbond: "",
+    claimableNativeTokens: "",
+    undelegationTxsInProgress: BigInt(0),
     denom: "",
     hostZoneId: "",
     unbondingTime: BigInt(0),
@@ -667,6 +707,18 @@ export const HostZoneUnbonding = {
     }
     if (message.nativeTokenAmount !== "") {
       writer.uint32(18).string(message.nativeTokenAmount);
+    }
+    if (message.stTokensToBurn !== "") {
+      writer.uint32(66).string(message.stTokensToBurn);
+    }
+    if (message.nativeTokensToUnbond !== "") {
+      writer.uint32(74).string(message.nativeTokensToUnbond);
+    }
+    if (message.claimableNativeTokens !== "") {
+      writer.uint32(82).string(message.claimableNativeTokens);
+    }
+    if (message.undelegationTxsInProgress !== BigInt(0)) {
+      writer.uint32(88).uint64(message.undelegationTxsInProgress);
     }
     if (message.denom !== "") {
       writer.uint32(26).string(message.denom);
@@ -698,6 +750,18 @@ export const HostZoneUnbonding = {
         case 2:
           message.nativeTokenAmount = reader.string();
           break;
+        case 8:
+          message.stTokensToBurn = reader.string();
+          break;
+        case 9:
+          message.nativeTokensToUnbond = reader.string();
+          break;
+        case 10:
+          message.claimableNativeTokens = reader.string();
+          break;
+        case 11:
+          message.undelegationTxsInProgress = reader.uint64();
+          break;
         case 3:
           message.denom = reader.string();
           break;
@@ -724,6 +788,10 @@ export const HostZoneUnbonding = {
     const message = createBaseHostZoneUnbonding();
     message.stTokenAmount = object.stTokenAmount ?? "";
     message.nativeTokenAmount = object.nativeTokenAmount ?? "";
+    message.stTokensToBurn = object.stTokensToBurn ?? "";
+    message.nativeTokensToUnbond = object.nativeTokensToUnbond ?? "";
+    message.claimableNativeTokens = object.claimableNativeTokens ?? "";
+    message.undelegationTxsInProgress = object.undelegationTxsInProgress !== undefined && object.undelegationTxsInProgress !== null ? BigInt(object.undelegationTxsInProgress.toString()) : BigInt(0);
     message.denom = object.denom ?? "";
     message.hostZoneId = object.hostZoneId ?? "";
     message.unbondingTime = object.unbondingTime !== undefined && object.unbondingTime !== null ? BigInt(object.unbondingTime.toString()) : BigInt(0);
@@ -738,6 +806,18 @@ export const HostZoneUnbonding = {
     }
     if (object.native_token_amount !== undefined && object.native_token_amount !== null) {
       message.nativeTokenAmount = object.native_token_amount;
+    }
+    if (object.st_tokens_to_burn !== undefined && object.st_tokens_to_burn !== null) {
+      message.stTokensToBurn = object.st_tokens_to_burn;
+    }
+    if (object.native_tokens_to_unbond !== undefined && object.native_tokens_to_unbond !== null) {
+      message.nativeTokensToUnbond = object.native_tokens_to_unbond;
+    }
+    if (object.claimable_native_tokens !== undefined && object.claimable_native_tokens !== null) {
+      message.claimableNativeTokens = object.claimable_native_tokens;
+    }
+    if (object.undelegation_txs_in_progress !== undefined && object.undelegation_txs_in_progress !== null) {
+      message.undelegationTxsInProgress = BigInt(object.undelegation_txs_in_progress);
     }
     if (object.denom !== undefined && object.denom !== null) {
       message.denom = object.denom;
@@ -758,6 +838,10 @@ export const HostZoneUnbonding = {
     const obj: any = {};
     obj.st_token_amount = message.stTokenAmount === "" ? undefined : message.stTokenAmount;
     obj.native_token_amount = message.nativeTokenAmount === "" ? undefined : message.nativeTokenAmount;
+    obj.st_tokens_to_burn = message.stTokensToBurn === "" ? undefined : message.stTokensToBurn;
+    obj.native_tokens_to_unbond = message.nativeTokensToUnbond === "" ? undefined : message.nativeTokensToUnbond;
+    obj.claimable_native_tokens = message.claimableNativeTokens === "" ? undefined : message.claimableNativeTokens;
+    obj.undelegation_txs_in_progress = message.undelegationTxsInProgress !== BigInt(0) ? message.undelegationTxsInProgress.toString() : undefined;
     obj.denom = message.denom === "" ? undefined : message.denom;
     obj.host_zone_id = message.hostZoneId === "" ? undefined : message.hostZoneId;
     obj.unbonding_time = message.unbondingTime !== BigInt(0) ? message.unbondingTime.toString() : undefined;

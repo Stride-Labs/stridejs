@@ -3,14 +3,14 @@ import { Duration, DurationAmino, DurationSDKType } from "../../../google/protob
 import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 /**
- * BasicAllowance implements Allowance with a one-time grant of tokens
+ * BasicAllowance implements Allowance with a one-time grant of coins
  * that optionally expires. The grantee can use up to SpendLimit to cover fees.
  */
 export interface BasicAllowance {
     $typeUrl?: "/cosmos.feegrant.v1beta1.BasicAllowance";
     /**
-     * spend_limit specifies the maximum amount of tokens that can be spent
-     * by this allowance and will be updated as tokens are spent. If it is
+     * spend_limit specifies the maximum amount of coins that can be spent
+     * by this allowance and will be updated as coins are spent. If it is
      * empty, there is no spend limit and any amount of coins can be spent.
      */
     spendLimit: Coin[];
@@ -22,16 +22,16 @@ export interface BasicAllowanceProtoMsg {
     value: Uint8Array;
 }
 /**
- * BasicAllowance implements Allowance with a one-time grant of tokens
+ * BasicAllowance implements Allowance with a one-time grant of coins
  * that optionally expires. The grantee can use up to SpendLimit to cover fees.
  */
 export interface BasicAllowanceAmino {
     /**
-     * spend_limit specifies the maximum amount of tokens that can be spent
-     * by this allowance and will be updated as tokens are spent. If it is
+     * spend_limit specifies the maximum amount of coins that can be spent
+     * by this allowance and will be updated as coins are spent. If it is
      * empty, there is no spend limit and any amount of coins can be spent.
      */
-    spend_limit?: CoinAmino[];
+    spend_limit: CoinAmino[];
     /** expiration specifies an optional time when this allowance expires */
     expiration?: string;
 }
@@ -40,7 +40,7 @@ export interface BasicAllowanceAminoMsg {
     value: BasicAllowanceAmino;
 }
 /**
- * BasicAllowance implements Allowance with a one-time grant of tokens
+ * BasicAllowance implements Allowance with a one-time grant of coins
  * that optionally expires. The grantee can use up to SpendLimit to cover fees.
  */
 export interface BasicAllowanceSDKType {
@@ -85,25 +85,25 @@ export interface PeriodicAllowanceProtoMsg {
  */
 export interface PeriodicAllowanceAmino {
     /** basic specifies a struct of `BasicAllowance` */
-    basic?: BasicAllowanceAmino;
+    basic: BasicAllowanceAmino;
     /**
      * period specifies the time duration in which period_spend_limit coins can
      * be spent before that allowance is reset
      */
-    period?: DurationAmino;
+    period: DurationAmino;
     /**
      * period_spend_limit specifies the maximum number of coins that can be spent
      * in the period
      */
-    period_spend_limit?: CoinAmino[];
+    period_spend_limit: CoinAmino[];
     /** period_can_spend is the number of coins left to be spent before the period_reset time */
-    period_can_spend?: CoinAmino[];
+    period_can_spend: CoinAmino[];
     /**
      * period_reset is the time at which this period resets and a new one begins,
      * it is calculated from the start time of the first transaction after the
      * last period ended
      */
-    period_reset?: string;
+    period_reset: string;
 }
 export interface PeriodicAllowanceAminoMsg {
     type: "cosmos-sdk/PeriodicAllowance";
@@ -124,7 +124,7 @@ export interface PeriodicAllowanceSDKType {
 /** AllowedMsgAllowance creates allowance only for specified message types. */
 export interface AllowedMsgAllowance {
     $typeUrl?: "/cosmos.feegrant.v1beta1.AllowedMsgAllowance";
-    /** allowance can be any of basic and filtered fee allowance. */
+    /** allowance can be any of basic and periodic fee allowance. */
     allowance?: BasicAllowance | PeriodicAllowance | AllowedMsgAllowance | Any | undefined;
     /** allowed_messages are the messages for which the grantee has the access. */
     allowedMessages: string[];
@@ -134,11 +134,11 @@ export interface AllowedMsgAllowanceProtoMsg {
     value: Uint8Array;
 }
 export declare type AllowedMsgAllowanceEncoded = Omit<AllowedMsgAllowance, "allowance"> & {
-    /** allowance can be any of basic and filtered fee allowance. */ allowance?: BasicAllowanceProtoMsg | PeriodicAllowanceProtoMsg | AllowedMsgAllowanceProtoMsg | AnyProtoMsg | undefined;
+    /** allowance can be any of basic and periodic fee allowance. */ allowance?: BasicAllowanceProtoMsg | PeriodicAllowanceProtoMsg | AllowedMsgAllowanceProtoMsg | AnyProtoMsg | undefined;
 };
 /** AllowedMsgAllowance creates allowance only for specified message types. */
 export interface AllowedMsgAllowanceAmino {
-    /** allowance can be any of basic and filtered fee allowance. */
+    /** allowance can be any of basic and periodic fee allowance. */
     allowance?: AnyAmino;
     /** allowed_messages are the messages for which the grantee has the access. */
     allowed_messages?: string[];
@@ -159,7 +159,7 @@ export interface Grant {
     granter: string;
     /** grantee is the address of the user being granted an allowance of another user's funds. */
     grantee: string;
-    /** allowance can be any of basic and filtered fee allowance. */
+    /** allowance can be any of basic, periodic, allowed fee allowance. */
     allowance?: BasicAllowance | PeriodicAllowance | AllowedMsgAllowance | Any | undefined;
 }
 export interface GrantProtoMsg {
@@ -167,7 +167,7 @@ export interface GrantProtoMsg {
     value: Uint8Array;
 }
 export declare type GrantEncoded = Omit<Grant, "allowance"> & {
-    /** allowance can be any of basic and filtered fee allowance. */ allowance?: BasicAllowanceProtoMsg | PeriodicAllowanceProtoMsg | AllowedMsgAllowanceProtoMsg | AnyProtoMsg | undefined;
+    /** allowance can be any of basic, periodic, allowed fee allowance. */ allowance?: BasicAllowanceProtoMsg | PeriodicAllowanceProtoMsg | AllowedMsgAllowanceProtoMsg | AnyProtoMsg | undefined;
 };
 /** Grant is stored in the KVStore to record a grant with full context */
 export interface GrantAmino {
@@ -175,7 +175,7 @@ export interface GrantAmino {
     granter?: string;
     /** grantee is the address of the user being granted an allowance of another user's funds. */
     grantee?: string;
-    /** allowance can be any of basic and filtered fee allowance. */
+    /** allowance can be any of basic, periodic, allowed fee allowance. */
     allowance?: AnyAmino;
 }
 export interface GrantAminoMsg {
@@ -240,6 +240,6 @@ export declare const Grant: {
     toProto(message: Grant): Uint8Array;
     toProtoMsg(message: Grant): GrantProtoMsg;
 };
-export declare const FeeAllowanceI_InterfaceDecoder: (input: BinaryReader | Uint8Array) => BasicAllowance | PeriodicAllowance | AllowedMsgAllowance | Any;
-export declare const FeeAllowanceI_FromAmino: (content: AnyAmino) => Any;
-export declare const FeeAllowanceI_ToAmino: (content: Any) => AnyAmino;
+export declare const Cosmos_feegrantv1beta1FeeAllowanceI_InterfaceDecoder: (input: BinaryReader | Uint8Array) => BasicAllowance | PeriodicAllowance | AllowedMsgAllowance | Any;
+export declare const Cosmos_feegrantv1beta1FeeAllowanceI_FromAmino: (content: AnyAmino) => Any;
+export declare const Cosmos_feegrantv1beta1FeeAllowanceI_ToAmino: (content: Any) => AnyAmino;

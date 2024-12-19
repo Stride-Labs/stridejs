@@ -6,6 +6,7 @@ import { BinaryReader, BinaryWriter } from "../../../../binary";
 export interface CommitInfo {
     version: bigint;
     storeInfos: StoreInfo[];
+    timestamp: Date;
 }
 export interface CommitInfoProtoMsg {
     typeUrl: "/cosmos.base.store.v1beta1.CommitInfo";
@@ -18,6 +19,7 @@ export interface CommitInfoProtoMsg {
 export interface CommitInfoAmino {
     version?: string;
     store_infos?: StoreInfoAmino[];
+    timestamp?: string;
 }
 export interface CommitInfoAminoMsg {
     type: "cosmos-sdk/CommitInfo";
@@ -30,6 +32,7 @@ export interface CommitInfoAminoMsg {
 export interface CommitInfoSDKType {
     version: bigint;
     store_infos: StoreInfoSDKType[];
+    timestamp: Date;
 }
 /**
  * StoreInfo defines store-specific commit information. It contains a reference
@@ -64,7 +67,7 @@ export interface StoreInfoSDKType {
     commit_id: CommitIDSDKType;
 }
 /**
- * CommitID defines the committment information when a specific store is
+ * CommitID defines the commitment information when a specific store is
  * committed.
  */
 export interface CommitID {
@@ -76,7 +79,7 @@ export interface CommitIDProtoMsg {
     value: Uint8Array;
 }
 /**
- * CommitID defines the committment information when a specific store is
+ * CommitID defines the commitment information when a specific store is
  * committed.
  */
 export interface CommitIDAmino {
@@ -88,7 +91,7 @@ export interface CommitIDAminoMsg {
     value: CommitIDAmino;
 }
 /**
- * CommitID defines the committment information when a specific store is
+ * CommitID defines the commitment information when a specific store is
  * committed.
  */
 export interface CommitIDSDKType {

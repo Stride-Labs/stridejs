@@ -275,6 +275,67 @@ export interface QueryModuleVersionsResponseAminoMsg {
 export interface QueryModuleVersionsResponseSDKType {
     module_versions: ModuleVersionSDKType[];
 }
+/**
+ * QueryAuthorityRequest is the request type for Query/Authority
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface QueryAuthorityRequest {
+}
+export interface QueryAuthorityRequestProtoMsg {
+    typeUrl: "/cosmos.upgrade.v1beta1.QueryAuthorityRequest";
+    value: Uint8Array;
+}
+/**
+ * QueryAuthorityRequest is the request type for Query/Authority
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface QueryAuthorityRequestAmino {
+}
+export interface QueryAuthorityRequestAminoMsg {
+    type: "cosmos-sdk/QueryAuthorityRequest";
+    value: QueryAuthorityRequestAmino;
+}
+/**
+ * QueryAuthorityRequest is the request type for Query/Authority
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface QueryAuthorityRequestSDKType {
+}
+/**
+ * QueryAuthorityResponse is the response type for Query/Authority
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface QueryAuthorityResponse {
+    address: string;
+}
+export interface QueryAuthorityResponseProtoMsg {
+    typeUrl: "/cosmos.upgrade.v1beta1.QueryAuthorityResponse";
+    value: Uint8Array;
+}
+/**
+ * QueryAuthorityResponse is the response type for Query/Authority
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface QueryAuthorityResponseAmino {
+    address?: string;
+}
+export interface QueryAuthorityResponseAminoMsg {
+    type: "cosmos-sdk/QueryAuthorityResponse";
+    value: QueryAuthorityResponseAmino;
+}
+/**
+ * QueryAuthorityResponse is the response type for Query/Authority
+ *
+ * Since: cosmos-sdk 0.46
+ */
+export interface QueryAuthorityResponseSDKType {
+    address: string;
+}
 export declare const QueryCurrentPlanRequest: {
     typeUrl: string;
     encode(_: QueryCurrentPlanRequest, writer?: BinaryWriter): BinaryWriter;
@@ -378,4 +439,30 @@ export declare const QueryModuleVersionsResponse: {
     fromProtoMsg(message: QueryModuleVersionsResponseProtoMsg): QueryModuleVersionsResponse;
     toProto(message: QueryModuleVersionsResponse): Uint8Array;
     toProtoMsg(message: QueryModuleVersionsResponse): QueryModuleVersionsResponseProtoMsg;
+};
+export declare const QueryAuthorityRequest: {
+    typeUrl: string;
+    encode(_: QueryAuthorityRequest, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryAuthorityRequest;
+    fromPartial(_: Partial<QueryAuthorityRequest>): QueryAuthorityRequest;
+    fromAmino(_: QueryAuthorityRequestAmino): QueryAuthorityRequest;
+    toAmino(_: QueryAuthorityRequest): QueryAuthorityRequestAmino;
+    fromAminoMsg(object: QueryAuthorityRequestAminoMsg): QueryAuthorityRequest;
+    toAminoMsg(message: QueryAuthorityRequest): QueryAuthorityRequestAminoMsg;
+    fromProtoMsg(message: QueryAuthorityRequestProtoMsg): QueryAuthorityRequest;
+    toProto(message: QueryAuthorityRequest): Uint8Array;
+    toProtoMsg(message: QueryAuthorityRequest): QueryAuthorityRequestProtoMsg;
+};
+export declare const QueryAuthorityResponse: {
+    typeUrl: string;
+    encode(message: QueryAuthorityResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryAuthorityResponse;
+    fromPartial(object: Partial<QueryAuthorityResponse>): QueryAuthorityResponse;
+    fromAmino(object: QueryAuthorityResponseAmino): QueryAuthorityResponse;
+    toAmino(message: QueryAuthorityResponse): QueryAuthorityResponseAmino;
+    fromAminoMsg(object: QueryAuthorityResponseAminoMsg): QueryAuthorityResponse;
+    toAminoMsg(message: QueryAuthorityResponse): QueryAuthorityResponseAminoMsg;
+    fromProtoMsg(message: QueryAuthorityResponseProtoMsg): QueryAuthorityResponse;
+    toProto(message: QueryAuthorityResponse): Uint8Array;
+    toProtoMsg(message: QueryAuthorityResponse): QueryAuthorityResponseProtoMsg;
 };

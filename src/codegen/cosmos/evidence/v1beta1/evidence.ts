@@ -6,9 +6,13 @@ import { toTimestamp, fromTimestamp } from "../../../helpers";
  * signing misbehavior.
  */
 export interface Equivocation {
+  /** height is the equivocation height. */
   height: bigint;
+  /** time is the equivocation time. */
   time: Date;
+  /** power is the equivocation validator power. */
   power: bigint;
+  /** consensus_address is the equivocation validator consensus address. */
   consensusAddress: string;
 }
 export interface EquivocationProtoMsg {
@@ -20,9 +24,13 @@ export interface EquivocationProtoMsg {
  * signing misbehavior.
  */
 export interface EquivocationAmino {
+  /** height is the equivocation height. */
   height?: string;
-  time?: string;
+  /** time is the equivocation time. */
+  time: string;
+  /** power is the equivocation validator power. */
   power?: string;
+  /** consensus_address is the equivocation validator consensus address. */
   consensus_address?: string;
 }
 export interface EquivocationAminoMsg {
@@ -117,7 +125,7 @@ export const Equivocation = {
   toAmino(message: Equivocation): EquivocationAmino {
     const obj: any = {};
     obj.height = message.height !== BigInt(0) ? message.height.toString() : undefined;
-    obj.time = message.time ? Timestamp.toAmino(toTimestamp(message.time)) : undefined;
+    obj.time = message.time ? Timestamp.toAmino(toTimestamp(message.time)) : new Date();
     obj.power = message.power !== BigInt(0) ? message.power.toString() : undefined;
     obj.consensus_address = message.consensusAddress === "" ? undefined : message.consensusAddress;
     return obj;
