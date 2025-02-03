@@ -9,6 +9,10 @@ export interface MsgRegisterTokenPriceQuery {
     baseDenom: string;
     /** Quote denom on Stride */
     quoteDenom: string;
+    /** Decimals of base token, used for normalizing price feed from Osmosis */
+    baseDenomDecimals: bigint;
+    /** Decimals of quote token, used for normalizing price feed from Osmosis */
+    quoteDenomDecimals: bigint;
     /** Token denom on Osmosis */
     osmosisBaseDenom: string;
     /** Quote denom on Osmosis */
@@ -30,6 +34,10 @@ export interface MsgRegisterTokenPriceQueryAmino {
     base_denom?: string;
     /** Quote denom on Stride */
     quote_denom?: string;
+    /** Decimals of base token, used for normalizing price feed from Osmosis */
+    base_denom_decimals?: string;
+    /** Decimals of quote token, used for normalizing price feed from Osmosis */
+    quote_denom_decimals?: string;
     /** Token denom on Osmosis */
     osmosis_base_denom?: string;
     /** Quote denom on Osmosis */
@@ -49,6 +57,8 @@ export interface MsgRegisterTokenPriceQuerySDKType {
     admin: string;
     base_denom: string;
     quote_denom: string;
+    base_denom_decimals: bigint;
+    quote_denom_decimals: bigint;
     osmosis_base_denom: string;
     osmosis_quote_denom: string;
     osmosis_pool_id: string;

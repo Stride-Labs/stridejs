@@ -2,14 +2,6 @@ import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 /** Params defines the parameters for the bank module. */
 export interface Params {
-    /**
-     * Deprecated: Use of SendEnabled in params is deprecated.
-     * For genesis, use the newly added send_enabled field in the genesis object.
-     * Storage, lookup, and manipulation of this information is now in the keeper.
-     *
-     * As of cosmos-sdk 0.47, this only exists for backwards compatibility of genesis files.
-     */
-    /** @deprecated */
     sendEnabled: SendEnabled[];
     defaultSendEnabled: boolean;
 }
@@ -19,24 +11,15 @@ export interface ParamsProtoMsg {
 }
 /** Params defines the parameters for the bank module. */
 export interface ParamsAmino {
-    /**
-     * Deprecated: Use of SendEnabled in params is deprecated.
-     * For genesis, use the newly added send_enabled field in the genesis object.
-     * Storage, lookup, and manipulation of this information is now in the keeper.
-     *
-     * As of cosmos-sdk 0.47, this only exists for backwards compatibility of genesis files.
-     */
-    /** @deprecated */
     send_enabled?: SendEnabledAmino[];
     default_send_enabled?: boolean;
 }
 export interface ParamsAminoMsg {
-    type: "cosmos-sdk/x/bank/Params";
+    type: "cosmos-sdk/Params";
     value: ParamsAmino;
 }
 /** Params defines the parameters for the bank module. */
 export interface ParamsSDKType {
-    /** @deprecated */
     send_enabled: SendEnabledSDKType[];
     default_send_enabled: boolean;
 }
@@ -84,7 +67,7 @@ export interface InputProtoMsg {
 /** Input models transaction input. */
 export interface InputAmino {
     address?: string;
-    coins: CoinAmino[];
+    coins?: CoinAmino[];
 }
 export interface InputAminoMsg {
     type: "cosmos-sdk/Input";
@@ -107,7 +90,7 @@ export interface OutputProtoMsg {
 /** Output models transaction outputs. */
 export interface OutputAmino {
     address?: string;
-    coins: CoinAmino[];
+    coins?: CoinAmino[];
 }
 export interface OutputAminoMsg {
     type: "cosmos-sdk/Output";
@@ -139,7 +122,7 @@ export interface SupplyProtoMsg {
  */
 /** @deprecated */
 export interface SupplyAmino {
-    total: CoinAmino[];
+    total?: CoinAmino[];
 }
 export interface SupplyAminoMsg {
     type: "cosmos-sdk/Supply";
@@ -165,7 +148,7 @@ export interface DenomUnit {
     /**
      * exponent represents power of 10 exponent that one must
      * raise the base_denom to in order to equal the given DenomUnit's denom
-     * 1 denom = 10^exponent base_denom
+     * 1 denom = 1^exponent base_denom
      * (e.g. with a base_denom of uatom, one can create a DenomUnit of 'atom' with
      * exponent = 6, thus: 1 atom = 10^6 uatom).
      */
@@ -187,7 +170,7 @@ export interface DenomUnitAmino {
     /**
      * exponent represents power of 10 exponent that one must
      * raise the base_denom to in order to equal the given DenomUnit's denom
-     * 1 denom = 10^exponent base_denom
+     * 1 denom = 1^exponent base_denom
      * (e.g. with a base_denom of uatom, one can create a DenomUnit of 'atom' with
      * exponent = 6, thus: 1 atom = 10^6 uatom).
      */
@@ -236,19 +219,6 @@ export interface Metadata {
      * Since: cosmos-sdk 0.43
      */
     symbol: string;
-    /**
-     * URI to a document (on or off-chain) that contains additional information. Optional.
-     *
-     * Since: cosmos-sdk 0.46
-     */
-    uri: string;
-    /**
-     * URIHash is a sha256 hash of a document pointed by URI. It's used to verify that
-     * the document didn't change. Optional.
-     *
-     * Since: cosmos-sdk 0.46
-     */
-    uriHash: string;
 }
 export interface MetadataProtoMsg {
     typeUrl: "/cosmos.bank.v1beta1.Metadata";
@@ -282,19 +252,6 @@ export interface MetadataAmino {
      * Since: cosmos-sdk 0.43
      */
     symbol?: string;
-    /**
-     * URI to a document (on or off-chain) that contains additional information. Optional.
-     *
-     * Since: cosmos-sdk 0.46
-     */
-    uri?: string;
-    /**
-     * URIHash is a sha256 hash of a document pointed by URI. It's used to verify that
-     * the document didn't change. Optional.
-     *
-     * Since: cosmos-sdk 0.46
-     */
-    uri_hash?: string;
 }
 export interface MetadataAminoMsg {
     type: "cosmos-sdk/Metadata";
@@ -311,8 +268,6 @@ export interface MetadataSDKType {
     display: string;
     name: string;
     symbol: string;
-    uri: string;
-    uri_hash: string;
 }
 export declare const Params: {
     typeUrl: string;

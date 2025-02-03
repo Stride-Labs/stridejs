@@ -240,7 +240,8 @@ const MsgLiquidStakeResponse = {
 function createBaseMsgRedeemStake() {
   return {
     redeemer: "",
-    stTokenAmount: ""
+    stTokenAmount: "",
+    receiver: ""
   };
 }
 const MsgRedeemStake = {
@@ -251,6 +252,9 @@ const MsgRedeemStake = {
     }
     if (message.stTokenAmount !== "") {
       writer.uint32(18).string(message.stTokenAmount);
+    }
+    if (message.receiver !== "") {
+      writer.uint32(26).string(message.receiver);
     }
     return writer;
   },
@@ -267,6 +271,9 @@ const MsgRedeemStake = {
         case 2:
           message.stTokenAmount = reader.string();
           break;
+        case 3:
+          message.receiver = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -278,6 +285,7 @@ const MsgRedeemStake = {
     const message = createBaseMsgRedeemStake();
     message.redeemer = object.redeemer ?? "";
     message.stTokenAmount = object.stTokenAmount ?? "";
+    message.receiver = object.receiver ?? "";
     return message;
   },
   fromAmino(object) {
@@ -288,12 +296,16 @@ const MsgRedeemStake = {
     if (object.st_token_amount !== void 0 && object.st_token_amount !== null) {
       message.stTokenAmount = object.st_token_amount;
     }
+    if (object.receiver !== void 0 && object.receiver !== null) {
+      message.receiver = object.receiver;
+    }
     return message;
   },
   toAmino(message) {
     const obj = {};
     obj.redeemer = message.redeemer === "" ? void 0 : message.redeemer;
     obj.st_token_amount = message.stTokenAmount === "" ? void 0 : message.stTokenAmount;
+    obj.receiver = message.receiver === "" ? void 0 : message.receiver;
     return obj;
   },
   fromAminoMsg(object) {

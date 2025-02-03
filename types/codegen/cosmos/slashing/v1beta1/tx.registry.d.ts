@@ -1,15 +1,11 @@
 import { TelescopeGeneratedType } from "../../../types";
 import { Registry } from "@cosmjs/proto-signing";
-import { MsgUnjail, MsgUpdateParams } from "./tx";
+import { MsgUnjail } from "./tx";
 export declare const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]>;
 export declare const load: (protoRegistry: Registry) => void;
 export declare const MessageComposer: {
     encoded: {
         unjail(value: MsgUnjail): {
-            typeUrl: string;
-            value: Uint8Array;
-        };
-        updateParams(value: MsgUpdateParams): {
             typeUrl: string;
             value: Uint8Array;
         };
@@ -19,19 +15,11 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgUnjail;
         };
-        updateParams(value: MsgUpdateParams): {
-            typeUrl: string;
-            value: MsgUpdateParams;
-        };
     };
     fromPartial: {
         unjail(value: MsgUnjail): {
             typeUrl: string;
             value: MsgUnjail;
-        };
-        updateParams(value: MsgUpdateParams): {
-            typeUrl: string;
-            value: MsgUpdateParams;
         };
     };
 };

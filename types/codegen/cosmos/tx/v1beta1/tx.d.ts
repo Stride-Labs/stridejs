@@ -176,96 +176,6 @@ export interface SignDocSDKType {
     chain_id: string;
     account_number: bigint;
 }
-/**
- * SignDocDirectAux is the type used for generating sign bytes for
- * SIGN_MODE_DIRECT_AUX.
- *
- * Since: cosmos-sdk 0.46
- */
-export interface SignDocDirectAux {
-    /**
-     * body_bytes is protobuf serialization of a TxBody that matches the
-     * representation in TxRaw.
-     */
-    bodyBytes: Uint8Array;
-    /** public_key is the public key of the signing account. */
-    publicKey?: Any;
-    /**
-     * chain_id is the identifier of the chain this transaction targets.
-     * It prevents signed transactions from being used on another chain by an
-     * attacker.
-     */
-    chainId: string;
-    /** account_number is the account number of the account in state. */
-    accountNumber: bigint;
-    /** sequence is the sequence number of the signing account. */
-    sequence: bigint;
-    /**
-     * Tip is the optional tip used for transactions fees paid in another denom.
-     * It should be left empty if the signer is not the tipper for this
-     * transaction.
-     *
-     * This field is ignored if the chain didn't enable tips, i.e. didn't add the
-     * `TipDecorator` in its posthandler.
-     */
-    tip?: Tip;
-}
-export interface SignDocDirectAuxProtoMsg {
-    typeUrl: "/cosmos.tx.v1beta1.SignDocDirectAux";
-    value: Uint8Array;
-}
-/**
- * SignDocDirectAux is the type used for generating sign bytes for
- * SIGN_MODE_DIRECT_AUX.
- *
- * Since: cosmos-sdk 0.46
- */
-export interface SignDocDirectAuxAmino {
-    /**
-     * body_bytes is protobuf serialization of a TxBody that matches the
-     * representation in TxRaw.
-     */
-    body_bytes?: string;
-    /** public_key is the public key of the signing account. */
-    public_key?: AnyAmino;
-    /**
-     * chain_id is the identifier of the chain this transaction targets.
-     * It prevents signed transactions from being used on another chain by an
-     * attacker.
-     */
-    chain_id?: string;
-    /** account_number is the account number of the account in state. */
-    account_number?: string;
-    /** sequence is the sequence number of the signing account. */
-    sequence?: string;
-    /**
-     * Tip is the optional tip used for transactions fees paid in another denom.
-     * It should be left empty if the signer is not the tipper for this
-     * transaction.
-     *
-     * This field is ignored if the chain didn't enable tips, i.e. didn't add the
-     * `TipDecorator` in its posthandler.
-     */
-    tip?: TipAmino;
-}
-export interface SignDocDirectAuxAminoMsg {
-    type: "cosmos-sdk/SignDocDirectAux";
-    value: SignDocDirectAuxAmino;
-}
-/**
- * SignDocDirectAux is the type used for generating sign bytes for
- * SIGN_MODE_DIRECT_AUX.
- *
- * Since: cosmos-sdk 0.46
- */
-export interface SignDocDirectAuxSDKType {
-    body_bytes: Uint8Array;
-    public_key?: AnySDKType;
-    chain_id: string;
-    account_number: bigint;
-    sequence: bigint;
-    tip?: TipSDKType;
-}
 /** TxBody is the body of a transaction that all signers sign over. */
 export interface TxBody {
     /**
@@ -373,15 +283,6 @@ export interface AuthInfo {
      * of the signers. This can be estimated via simulation.
      */
     fee?: Fee;
-    /**
-     * Tip is the optional tip used for transactions fees paid in another denom.
-     *
-     * This field is ignored if the chain didn't enable tips, i.e. didn't add the
-     * `TipDecorator` in its posthandler.
-     *
-     * Since: cosmos-sdk 0.46
-     */
-    tip?: Tip;
 }
 export interface AuthInfoProtoMsg {
     typeUrl: "/cosmos.tx.v1beta1.AuthInfo";
@@ -406,15 +307,6 @@ export interface AuthInfoAmino {
      * of the signers. This can be estimated via simulation.
      */
     fee?: FeeAmino;
-    /**
-     * Tip is the optional tip used for transactions fees paid in another denom.
-     *
-     * This field is ignored if the chain didn't enable tips, i.e. didn't add the
-     * `TipDecorator` in its posthandler.
-     *
-     * Since: cosmos-sdk 0.46
-     */
-    tip?: TipAmino;
 }
 export interface AuthInfoAminoMsg {
     type: "cosmos-sdk/AuthInfo";
@@ -427,7 +319,6 @@ export interface AuthInfoAminoMsg {
 export interface AuthInfoSDKType {
     signer_infos: SignerInfoSDKType[];
     fee?: FeeSDKType;
-    tip?: TipSDKType;
 }
 /**
  * SignerInfo describes the public key and signing mode of a single top-level
@@ -657,119 +548,6 @@ export interface FeeSDKType {
     payer: string;
     granter: string;
 }
-/**
- * Tip is the tip used for meta-transactions.
- *
- * Since: cosmos-sdk 0.46
- */
-export interface Tip {
-    /** amount is the amount of the tip */
-    amount: Coin[];
-    /** tipper is the address of the account paying for the tip */
-    tipper: string;
-}
-export interface TipProtoMsg {
-    typeUrl: "/cosmos.tx.v1beta1.Tip";
-    value: Uint8Array;
-}
-/**
- * Tip is the tip used for meta-transactions.
- *
- * Since: cosmos-sdk 0.46
- */
-export interface TipAmino {
-    /** amount is the amount of the tip */
-    amount?: CoinAmino[];
-    /** tipper is the address of the account paying for the tip */
-    tipper?: string;
-}
-export interface TipAminoMsg {
-    type: "cosmos-sdk/Tip";
-    value: TipAmino;
-}
-/**
- * Tip is the tip used for meta-transactions.
- *
- * Since: cosmos-sdk 0.46
- */
-export interface TipSDKType {
-    amount: CoinSDKType[];
-    tipper: string;
-}
-/**
- * AuxSignerData is the intermediary format that an auxiliary signer (e.g. a
- * tipper) builds and sends to the fee payer (who will build and broadcast the
- * actual tx). AuxSignerData is not a valid tx in itself, and will be rejected
- * by the node if sent directly as-is.
- *
- * Since: cosmos-sdk 0.46
- */
-export interface AuxSignerData {
-    /**
-     * address is the bech32-encoded address of the auxiliary signer. If using
-     * AuxSignerData across different chains, the bech32 prefix of the target
-     * chain (where the final transaction is broadcasted) should be used.
-     */
-    address: string;
-    /**
-     * sign_doc is the SIGN_MODE_DIRECT_AUX sign doc that the auxiliary signer
-     * signs. Note: we use the same sign doc even if we're signing with
-     * LEGACY_AMINO_JSON.
-     */
-    signDoc?: SignDocDirectAux;
-    /** mode is the signing mode of the single signer. */
-    mode: SignMode;
-    /** sig is the signature of the sign doc. */
-    sig: Uint8Array;
-}
-export interface AuxSignerDataProtoMsg {
-    typeUrl: "/cosmos.tx.v1beta1.AuxSignerData";
-    value: Uint8Array;
-}
-/**
- * AuxSignerData is the intermediary format that an auxiliary signer (e.g. a
- * tipper) builds and sends to the fee payer (who will build and broadcast the
- * actual tx). AuxSignerData is not a valid tx in itself, and will be rejected
- * by the node if sent directly as-is.
- *
- * Since: cosmos-sdk 0.46
- */
-export interface AuxSignerDataAmino {
-    /**
-     * address is the bech32-encoded address of the auxiliary signer. If using
-     * AuxSignerData across different chains, the bech32 prefix of the target
-     * chain (where the final transaction is broadcasted) should be used.
-     */
-    address?: string;
-    /**
-     * sign_doc is the SIGN_MODE_DIRECT_AUX sign doc that the auxiliary signer
-     * signs. Note: we use the same sign doc even if we're signing with
-     * LEGACY_AMINO_JSON.
-     */
-    sign_doc?: SignDocDirectAuxAmino;
-    /** mode is the signing mode of the single signer. */
-    mode?: SignMode;
-    /** sig is the signature of the sign doc. */
-    sig?: string;
-}
-export interface AuxSignerDataAminoMsg {
-    type: "cosmos-sdk/AuxSignerData";
-    value: AuxSignerDataAmino;
-}
-/**
- * AuxSignerData is the intermediary format that an auxiliary signer (e.g. a
- * tipper) builds and sends to the fee payer (who will build and broadcast the
- * actual tx). AuxSignerData is not a valid tx in itself, and will be rejected
- * by the node if sent directly as-is.
- *
- * Since: cosmos-sdk 0.46
- */
-export interface AuxSignerDataSDKType {
-    address: string;
-    sign_doc?: SignDocDirectAuxSDKType;
-    mode: SignMode;
-    sig: Uint8Array;
-}
 export declare const Tx: {
     typeUrl: string;
     encode(message: Tx, writer?: BinaryWriter): BinaryWriter;
@@ -808,19 +586,6 @@ export declare const SignDoc: {
     fromProtoMsg(message: SignDocProtoMsg): SignDoc;
     toProto(message: SignDoc): Uint8Array;
     toProtoMsg(message: SignDoc): SignDocProtoMsg;
-};
-export declare const SignDocDirectAux: {
-    typeUrl: string;
-    encode(message: SignDocDirectAux, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): SignDocDirectAux;
-    fromPartial(object: Partial<SignDocDirectAux>): SignDocDirectAux;
-    fromAmino(object: SignDocDirectAuxAmino): SignDocDirectAux;
-    toAmino(message: SignDocDirectAux): SignDocDirectAuxAmino;
-    fromAminoMsg(object: SignDocDirectAuxAminoMsg): SignDocDirectAux;
-    toAminoMsg(message: SignDocDirectAux): SignDocDirectAuxAminoMsg;
-    fromProtoMsg(message: SignDocDirectAuxProtoMsg): SignDocDirectAux;
-    toProto(message: SignDocDirectAux): Uint8Array;
-    toProtoMsg(message: SignDocDirectAux): SignDocDirectAuxProtoMsg;
 };
 export declare const TxBody: {
     typeUrl: string;
@@ -912,30 +677,4 @@ export declare const Fee: {
     fromProtoMsg(message: FeeProtoMsg): Fee;
     toProto(message: Fee): Uint8Array;
     toProtoMsg(message: Fee): FeeProtoMsg;
-};
-export declare const Tip: {
-    typeUrl: string;
-    encode(message: Tip, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): Tip;
-    fromPartial(object: Partial<Tip>): Tip;
-    fromAmino(object: TipAmino): Tip;
-    toAmino(message: Tip): TipAmino;
-    fromAminoMsg(object: TipAminoMsg): Tip;
-    toAminoMsg(message: Tip): TipAminoMsg;
-    fromProtoMsg(message: TipProtoMsg): Tip;
-    toProto(message: Tip): Uint8Array;
-    toProtoMsg(message: Tip): TipProtoMsg;
-};
-export declare const AuxSignerData: {
-    typeUrl: string;
-    encode(message: AuxSignerData, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): AuxSignerData;
-    fromPartial(object: Partial<AuxSignerData>): AuxSignerData;
-    fromAmino(object: AuxSignerDataAmino): AuxSignerData;
-    toAmino(message: AuxSignerData): AuxSignerDataAmino;
-    fromAminoMsg(object: AuxSignerDataAminoMsg): AuxSignerData;
-    toAminoMsg(message: AuxSignerData): AuxSignerDataAminoMsg;
-    fromProtoMsg(message: AuxSignerDataProtoMsg): AuxSignerData;
-    toProto(message: AuxSignerData): Uint8Array;
-    toProtoMsg(message: AuxSignerData): AuxSignerDataProtoMsg;
 };

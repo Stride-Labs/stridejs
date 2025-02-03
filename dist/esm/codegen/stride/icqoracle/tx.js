@@ -4,6 +4,8 @@ function createBaseMsgRegisterTokenPriceQuery() {
     admin: "",
     baseDenom: "",
     quoteDenom: "",
+    baseDenomDecimals: BigInt(0),
+    quoteDenomDecimals: BigInt(0),
     osmosisBaseDenom: "",
     osmosisQuoteDenom: "",
     osmosisPoolId: ""
@@ -21,14 +23,20 @@ const MsgRegisterTokenPriceQuery = {
     if (message.quoteDenom !== "") {
       writer.uint32(26).string(message.quoteDenom);
     }
+    if (message.baseDenomDecimals !== BigInt(0)) {
+      writer.uint32(32).int64(message.baseDenomDecimals);
+    }
+    if (message.quoteDenomDecimals !== BigInt(0)) {
+      writer.uint32(40).int64(message.quoteDenomDecimals);
+    }
     if (message.osmosisBaseDenom !== "") {
-      writer.uint32(34).string(message.osmosisBaseDenom);
+      writer.uint32(50).string(message.osmosisBaseDenom);
     }
     if (message.osmosisQuoteDenom !== "") {
-      writer.uint32(42).string(message.osmosisQuoteDenom);
+      writer.uint32(58).string(message.osmosisQuoteDenom);
     }
     if (message.osmosisPoolId !== "") {
-      writer.uint32(50).string(message.osmosisPoolId);
+      writer.uint32(66).string(message.osmosisPoolId);
     }
     return writer;
   },
@@ -49,12 +57,18 @@ const MsgRegisterTokenPriceQuery = {
           message.quoteDenom = reader.string();
           break;
         case 4:
-          message.osmosisBaseDenom = reader.string();
+          message.baseDenomDecimals = reader.int64();
           break;
         case 5:
-          message.osmosisQuoteDenom = reader.string();
+          message.quoteDenomDecimals = reader.int64();
           break;
         case 6:
+          message.osmosisBaseDenom = reader.string();
+          break;
+        case 7:
+          message.osmosisQuoteDenom = reader.string();
+          break;
+        case 8:
           message.osmosisPoolId = reader.string();
           break;
         default:
@@ -69,6 +83,8 @@ const MsgRegisterTokenPriceQuery = {
     message.admin = object.admin ?? "";
     message.baseDenom = object.baseDenom ?? "";
     message.quoteDenom = object.quoteDenom ?? "";
+    message.baseDenomDecimals = object.baseDenomDecimals !== void 0 && object.baseDenomDecimals !== null ? BigInt(object.baseDenomDecimals.toString()) : BigInt(0);
+    message.quoteDenomDecimals = object.quoteDenomDecimals !== void 0 && object.quoteDenomDecimals !== null ? BigInt(object.quoteDenomDecimals.toString()) : BigInt(0);
     message.osmosisBaseDenom = object.osmosisBaseDenom ?? "";
     message.osmosisQuoteDenom = object.osmosisQuoteDenom ?? "";
     message.osmosisPoolId = object.osmosisPoolId ?? "";
@@ -84,6 +100,12 @@ const MsgRegisterTokenPriceQuery = {
     }
     if (object.quote_denom !== void 0 && object.quote_denom !== null) {
       message.quoteDenom = object.quote_denom;
+    }
+    if (object.base_denom_decimals !== void 0 && object.base_denom_decimals !== null) {
+      message.baseDenomDecimals = BigInt(object.base_denom_decimals);
+    }
+    if (object.quote_denom_decimals !== void 0 && object.quote_denom_decimals !== null) {
+      message.quoteDenomDecimals = BigInt(object.quote_denom_decimals);
     }
     if (object.osmosis_base_denom !== void 0 && object.osmosis_base_denom !== null) {
       message.osmosisBaseDenom = object.osmosis_base_denom;
@@ -101,6 +123,8 @@ const MsgRegisterTokenPriceQuery = {
     obj.admin = message.admin === "" ? void 0 : message.admin;
     obj.base_denom = message.baseDenom === "" ? void 0 : message.baseDenom;
     obj.quote_denom = message.quoteDenom === "" ? void 0 : message.quoteDenom;
+    obj.base_denom_decimals = message.baseDenomDecimals !== BigInt(0) ? message.baseDenomDecimals.toString() : void 0;
+    obj.quote_denom_decimals = message.quoteDenomDecimals !== BigInt(0) ? message.quoteDenomDecimals.toString() : void 0;
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? void 0 : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? void 0 : message.osmosisQuoteDenom;
     obj.osmosis_pool_id = message.osmosisPoolId === "" ? void 0 : message.osmosisPoolId;

@@ -35,7 +35,6 @@ __export(staketia_exports, {
 });
 module.exports = __toCommonJS(staketia_exports);
 var import_binary = require("../../binary");
-var import_math = require("@cosmjs/math");
 var DelegationRecordStatus = /* @__PURE__ */ ((DelegationRecordStatus2) => {
   DelegationRecordStatus2[DelegationRecordStatus2["TRANSFER_IN_PROGRESS"] = 0] = "TRANSFER_IN_PROGRESS";
   DelegationRecordStatus2[DelegationRecordStatus2["TRANSFER_FAILED"] = 1] = "TRANSFER_FAILED";
@@ -151,13 +150,7 @@ function createBaseHostZone() {
     claimAddress: "",
     operatorAddressOnStride: "",
     safeAddressOnStride: "",
-    lastRedemptionRate: "",
-    redemptionRate: "",
-    minRedemptionRate: "",
-    maxRedemptionRate: "",
-    minInnerRedemptionRate: "",
-    maxInnerRedemptionRate: "",
-    delegatedBalance: "",
+    remainingDelegatedBalance: "",
     unbondingPeriodSeconds: BigInt(0),
     halted: false
   };
@@ -198,26 +191,8 @@ const HostZone = {
     if (message.safeAddressOnStride !== "") {
       writer.uint32(90).string(message.safeAddressOnStride);
     }
-    if (message.lastRedemptionRate !== "") {
-      writer.uint32(98).string(import_math.Decimal.fromUserInput(message.lastRedemptionRate, 18).atomics);
-    }
-    if (message.redemptionRate !== "") {
-      writer.uint32(106).string(import_math.Decimal.fromUserInput(message.redemptionRate, 18).atomics);
-    }
-    if (message.minRedemptionRate !== "") {
-      writer.uint32(114).string(import_math.Decimal.fromUserInput(message.minRedemptionRate, 18).atomics);
-    }
-    if (message.maxRedemptionRate !== "") {
-      writer.uint32(122).string(import_math.Decimal.fromUserInput(message.maxRedemptionRate, 18).atomics);
-    }
-    if (message.minInnerRedemptionRate !== "") {
-      writer.uint32(130).string(import_math.Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics);
-    }
-    if (message.maxInnerRedemptionRate !== "") {
-      writer.uint32(138).string(import_math.Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics);
-    }
-    if (message.delegatedBalance !== "") {
-      writer.uint32(146).string(message.delegatedBalance);
+    if (message.remainingDelegatedBalance !== "") {
+      writer.uint32(146).string(message.remainingDelegatedBalance);
     }
     if (message.unbondingPeriodSeconds !== BigInt(0)) {
       writer.uint32(152).uint64(message.unbondingPeriodSeconds);
@@ -267,26 +242,8 @@ const HostZone = {
         case 11:
           message.safeAddressOnStride = reader.string();
           break;
-        case 12:
-          message.lastRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
-        case 13:
-          message.redemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
-        case 14:
-          message.minRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
-        case 15:
-          message.maxRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
-        case 16:
-          message.minInnerRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
-        case 17:
-          message.maxInnerRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
         case 18:
-          message.delegatedBalance = reader.string();
+          message.remainingDelegatedBalance = reader.string();
           break;
         case 19:
           message.unbondingPeriodSeconds = reader.uint64();
@@ -314,13 +271,7 @@ const HostZone = {
     message.claimAddress = object.claimAddress ?? "";
     message.operatorAddressOnStride = object.operatorAddressOnStride ?? "";
     message.safeAddressOnStride = object.safeAddressOnStride ?? "";
-    message.lastRedemptionRate = object.lastRedemptionRate ?? "";
-    message.redemptionRate = object.redemptionRate ?? "";
-    message.minRedemptionRate = object.minRedemptionRate ?? "";
-    message.maxRedemptionRate = object.maxRedemptionRate ?? "";
-    message.minInnerRedemptionRate = object.minInnerRedemptionRate ?? "";
-    message.maxInnerRedemptionRate = object.maxInnerRedemptionRate ?? "";
-    message.delegatedBalance = object.delegatedBalance ?? "";
+    message.remainingDelegatedBalance = object.remainingDelegatedBalance ?? "";
     message.unbondingPeriodSeconds = object.unbondingPeriodSeconds !== void 0 && object.unbondingPeriodSeconds !== null ? BigInt(object.unbondingPeriodSeconds.toString()) : BigInt(0);
     message.halted = object.halted ?? false;
     return message;
@@ -360,26 +311,8 @@ const HostZone = {
     if (object.safe_address_on_stride !== void 0 && object.safe_address_on_stride !== null) {
       message.safeAddressOnStride = object.safe_address_on_stride;
     }
-    if (object.last_redemption_rate !== void 0 && object.last_redemption_rate !== null) {
-      message.lastRedemptionRate = object.last_redemption_rate;
-    }
-    if (object.redemption_rate !== void 0 && object.redemption_rate !== null) {
-      message.redemptionRate = object.redemption_rate;
-    }
-    if (object.min_redemption_rate !== void 0 && object.min_redemption_rate !== null) {
-      message.minRedemptionRate = object.min_redemption_rate;
-    }
-    if (object.max_redemption_rate !== void 0 && object.max_redemption_rate !== null) {
-      message.maxRedemptionRate = object.max_redemption_rate;
-    }
-    if (object.min_inner_redemption_rate !== void 0 && object.min_inner_redemption_rate !== null) {
-      message.minInnerRedemptionRate = object.min_inner_redemption_rate;
-    }
-    if (object.max_inner_redemption_rate !== void 0 && object.max_inner_redemption_rate !== null) {
-      message.maxInnerRedemptionRate = object.max_inner_redemption_rate;
-    }
-    if (object.delegated_balance !== void 0 && object.delegated_balance !== null) {
-      message.delegatedBalance = object.delegated_balance;
+    if (object.remaining_delegated_balance !== void 0 && object.remaining_delegated_balance !== null) {
+      message.remainingDelegatedBalance = object.remaining_delegated_balance;
     }
     if (object.unbonding_period_seconds !== void 0 && object.unbonding_period_seconds !== null) {
       message.unbondingPeriodSeconds = BigInt(object.unbonding_period_seconds);
@@ -402,13 +335,7 @@ const HostZone = {
     obj.claim_address = message.claimAddress === "" ? void 0 : message.claimAddress;
     obj.operator_address_on_stride = message.operatorAddressOnStride === "" ? void 0 : message.operatorAddressOnStride;
     obj.safe_address_on_stride = message.safeAddressOnStride === "" ? void 0 : message.safeAddressOnStride;
-    obj.last_redemption_rate = message.lastRedemptionRate === "" ? void 0 : message.lastRedemptionRate;
-    obj.redemption_rate = message.redemptionRate === "" ? void 0 : message.redemptionRate;
-    obj.min_redemption_rate = message.minRedemptionRate === "" ? void 0 : message.minRedemptionRate;
-    obj.max_redemption_rate = message.maxRedemptionRate === "" ? void 0 : message.maxRedemptionRate;
-    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? void 0 : message.minInnerRedemptionRate;
-    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? void 0 : message.maxInnerRedemptionRate;
-    obj.delegated_balance = message.delegatedBalance === "" ? void 0 : message.delegatedBalance;
+    obj.remaining_delegated_balance = message.remainingDelegatedBalance === "" ? void 0 : message.remainingDelegatedBalance;
     obj.unbonding_period_seconds = message.unbondingPeriodSeconds !== BigInt(0) ? message.unbondingPeriodSeconds.toString() : void 0;
     obj.halted = message.halted === false ? void 0 : message.halted;
     return obj;

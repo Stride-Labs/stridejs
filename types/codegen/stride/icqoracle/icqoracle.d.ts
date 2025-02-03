@@ -1,11 +1,15 @@
 import { BinaryReader, BinaryWriter } from "../../binary";
 /** TokenPrice stores latest price data for a token */
 export interface TokenPrice {
-    /** Token denom on Stride */
+    /** Base denom on Stride */
     baseDenom: string;
     /** Quote denom on Stride */
     quoteDenom: string;
-    /** Token denom on Osmosis */
+    /** Decimals of base token, used for normalizing price feed from Osmosis */
+    baseDenomDecimals: bigint;
+    /** Decimals of quote token, used for normalizing price feed from Osmosis */
+    quoteDenomDecimals: bigint;
+    /** Base denom on Osmosis */
     osmosisBaseDenom: string;
     /** Quote denom on Osmosis */
     osmosisQuoteDenom: string;
@@ -24,11 +28,15 @@ export interface TokenPriceProtoMsg {
 }
 /** TokenPrice stores latest price data for a token */
 export interface TokenPriceAmino {
-    /** Token denom on Stride */
+    /** Base denom on Stride */
     base_denom?: string;
     /** Quote denom on Stride */
     quote_denom?: string;
-    /** Token denom on Osmosis */
+    /** Decimals of base token, used for normalizing price feed from Osmosis */
+    base_denom_decimals?: string;
+    /** Decimals of quote token, used for normalizing price feed from Osmosis */
+    quote_denom_decimals?: string;
+    /** Base denom on Osmosis */
     osmosis_base_denom?: string;
     /** Quote denom on Osmosis */
     osmosis_quote_denom?: string;
@@ -49,6 +57,8 @@ export interface TokenPriceAminoMsg {
 export interface TokenPriceSDKType {
     base_denom: string;
     quote_denom: string;
+    base_denom_decimals: bigint;
+    quote_denom_decimals: bigint;
     osmosis_base_denom: string;
     osmosis_quote_denom: string;
     osmosis_pool_id: string;

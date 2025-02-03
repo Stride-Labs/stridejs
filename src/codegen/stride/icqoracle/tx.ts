@@ -9,6 +9,10 @@ export interface MsgRegisterTokenPriceQuery {
   baseDenom: string;
   /** Quote denom on Stride */
   quoteDenom: string;
+  /** Decimals of base token, used for normalizing price feed from Osmosis */
+  baseDenomDecimals: bigint;
+  /** Decimals of quote token, used for normalizing price feed from Osmosis */
+  quoteDenomDecimals: bigint;
   /** Token denom on Osmosis */
   osmosisBaseDenom: string;
   /** Quote denom on Osmosis */
@@ -30,6 +34,10 @@ export interface MsgRegisterTokenPriceQueryAmino {
   base_denom?: string;
   /** Quote denom on Stride */
   quote_denom?: string;
+  /** Decimals of base token, used for normalizing price feed from Osmosis */
+  base_denom_decimals?: string;
+  /** Decimals of quote token, used for normalizing price feed from Osmosis */
+  quote_denom_decimals?: string;
   /** Token denom on Osmosis */
   osmosis_base_denom?: string;
   /** Quote denom on Osmosis */
@@ -49,6 +57,8 @@ export interface MsgRegisterTokenPriceQuerySDKType {
   admin: string;
   base_denom: string;
   quote_denom: string;
+  base_denom_decimals: bigint;
+  quote_denom_decimals: bigint;
   osmosis_base_denom: string;
   osmosis_quote_denom: string;
   osmosis_pool_id: string;
@@ -124,6 +134,8 @@ function createBaseMsgRegisterTokenPriceQuery(): MsgRegisterTokenPriceQuery {
     admin: "",
     baseDenom: "",
     quoteDenom: "",
+    baseDenomDecimals: BigInt(0),
+    quoteDenomDecimals: BigInt(0),
     osmosisBaseDenom: "",
     osmosisQuoteDenom: "",
     osmosisPoolId: ""
@@ -141,14 +153,20 @@ export const MsgRegisterTokenPriceQuery = {
     if (message.quoteDenom !== "") {
       writer.uint32(26).string(message.quoteDenom);
     }
+    if (message.baseDenomDecimals !== BigInt(0)) {
+      writer.uint32(32).int64(message.baseDenomDecimals);
+    }
+    if (message.quoteDenomDecimals !== BigInt(0)) {
+      writer.uint32(40).int64(message.quoteDenomDecimals);
+    }
     if (message.osmosisBaseDenom !== "") {
-      writer.uint32(34).string(message.osmosisBaseDenom);
+      writer.uint32(50).string(message.osmosisBaseDenom);
     }
     if (message.osmosisQuoteDenom !== "") {
-      writer.uint32(42).string(message.osmosisQuoteDenom);
+      writer.uint32(58).string(message.osmosisQuoteDenom);
     }
     if (message.osmosisPoolId !== "") {
-      writer.uint32(50).string(message.osmosisPoolId);
+      writer.uint32(66).string(message.osmosisPoolId);
     }
     return writer;
   },
@@ -169,12 +187,18 @@ export const MsgRegisterTokenPriceQuery = {
           message.quoteDenom = reader.string();
           break;
         case 4:
-          message.osmosisBaseDenom = reader.string();
+          message.baseDenomDecimals = reader.int64();
           break;
         case 5:
-          message.osmosisQuoteDenom = reader.string();
+          message.quoteDenomDecimals = reader.int64();
           break;
         case 6:
+          message.osmosisBaseDenom = reader.string();
+          break;
+        case 7:
+          message.osmosisQuoteDenom = reader.string();
+          break;
+        case 8:
           message.osmosisPoolId = reader.string();
           break;
         default:
@@ -189,6 +213,8 @@ export const MsgRegisterTokenPriceQuery = {
     message.admin = object.admin ?? "";
     message.baseDenom = object.baseDenom ?? "";
     message.quoteDenom = object.quoteDenom ?? "";
+    message.baseDenomDecimals = object.baseDenomDecimals !== undefined && object.baseDenomDecimals !== null ? BigInt(object.baseDenomDecimals.toString()) : BigInt(0);
+    message.quoteDenomDecimals = object.quoteDenomDecimals !== undefined && object.quoteDenomDecimals !== null ? BigInt(object.quoteDenomDecimals.toString()) : BigInt(0);
     message.osmosisBaseDenom = object.osmosisBaseDenom ?? "";
     message.osmosisQuoteDenom = object.osmosisQuoteDenom ?? "";
     message.osmosisPoolId = object.osmosisPoolId ?? "";
@@ -204,6 +230,12 @@ export const MsgRegisterTokenPriceQuery = {
     }
     if (object.quote_denom !== undefined && object.quote_denom !== null) {
       message.quoteDenom = object.quote_denom;
+    }
+    if (object.base_denom_decimals !== undefined && object.base_denom_decimals !== null) {
+      message.baseDenomDecimals = BigInt(object.base_denom_decimals);
+    }
+    if (object.quote_denom_decimals !== undefined && object.quote_denom_decimals !== null) {
+      message.quoteDenomDecimals = BigInt(object.quote_denom_decimals);
     }
     if (object.osmosis_base_denom !== undefined && object.osmosis_base_denom !== null) {
       message.osmosisBaseDenom = object.osmosis_base_denom;
@@ -221,6 +253,8 @@ export const MsgRegisterTokenPriceQuery = {
     obj.admin = message.admin === "" ? undefined : message.admin;
     obj.base_denom = message.baseDenom === "" ? undefined : message.baseDenom;
     obj.quote_denom = message.quoteDenom === "" ? undefined : message.quoteDenom;
+    obj.base_denom_decimals = message.baseDenomDecimals !== BigInt(0) ? message.baseDenomDecimals.toString() : undefined;
+    obj.quote_denom_decimals = message.quoteDenomDecimals !== BigInt(0) ? message.quoteDenomDecimals.toString() : undefined;
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? undefined : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? undefined : message.osmosisQuoteDenom;
     obj.osmosis_pool_id = message.osmosisPoolId === "" ? undefined : message.osmosisPoolId;

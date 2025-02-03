@@ -1,5 +1,4 @@
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
 /**
  * Status fields for a delegation record
  * Note: There is an important assumption here that tokens in the deposit
@@ -167,20 +166,8 @@ export interface HostZone {
   operatorAddressOnStride: string;
   /** admin address set upon host zone creation,  on stride */
   safeAddressOnStride: string;
-  /** Previous redemption rate */
-  lastRedemptionRate: string;
-  /** Current redemption rate */
-  redemptionRate: string;
-  /** Min outer redemption rate - adjusted by governance */
-  minRedemptionRate: string;
-  /** Max outer redemption rate - adjusted by governance */
-  maxRedemptionRate: string;
-  /** Min inner redemption rate - adjusted by controller */
-  minInnerRedemptionRate: string;
-  /** Max inner redemption rate - adjusted by controller */
-  maxInnerRedemptionRate: string;
   /** Total delegated balance on the host zone delegation account */
-  delegatedBalance: string;
+  remainingDelegatedBalance: string;
   /** The undelegation period for Celestia in days */
   unbondingPeriodSeconds: bigint;
   /** Indicates whether the host zone has been halted */
@@ -213,20 +200,8 @@ export interface HostZoneAmino {
   operator_address_on_stride?: string;
   /** admin address set upon host zone creation,  on stride */
   safe_address_on_stride?: string;
-  /** Previous redemption rate */
-  last_redemption_rate?: string;
-  /** Current redemption rate */
-  redemption_rate?: string;
-  /** Min outer redemption rate - adjusted by governance */
-  min_redemption_rate?: string;
-  /** Max outer redemption rate - adjusted by governance */
-  max_redemption_rate?: string;
-  /** Min inner redemption rate - adjusted by controller */
-  min_inner_redemption_rate?: string;
-  /** Max inner redemption rate - adjusted by controller */
-  max_inner_redemption_rate?: string;
   /** Total delegated balance on the host zone delegation account */
-  delegated_balance?: string;
+  remaining_delegated_balance?: string;
   /** The undelegation period for Celestia in days */
   unbonding_period_seconds?: string;
   /** Indicates whether the host zone has been halted */
@@ -248,13 +223,7 @@ export interface HostZoneSDKType {
   claim_address: string;
   operator_address_on_stride: string;
   safe_address_on_stride: string;
-  last_redemption_rate: string;
-  redemption_rate: string;
-  min_redemption_rate: string;
-  max_redemption_rate: string;
-  min_inner_redemption_rate: string;
-  max_inner_redemption_rate: string;
-  delegated_balance: string;
+  remaining_delegated_balance: string;
   unbonding_period_seconds: bigint;
   halted: boolean;
 }
@@ -458,13 +427,7 @@ function createBaseHostZone(): HostZone {
     claimAddress: "",
     operatorAddressOnStride: "",
     safeAddressOnStride: "",
-    lastRedemptionRate: "",
-    redemptionRate: "",
-    minRedemptionRate: "",
-    maxRedemptionRate: "",
-    minInnerRedemptionRate: "",
-    maxInnerRedemptionRate: "",
-    delegatedBalance: "",
+    remainingDelegatedBalance: "",
     unbondingPeriodSeconds: BigInt(0),
     halted: false
   };
@@ -505,26 +468,8 @@ export const HostZone = {
     if (message.safeAddressOnStride !== "") {
       writer.uint32(90).string(message.safeAddressOnStride);
     }
-    if (message.lastRedemptionRate !== "") {
-      writer.uint32(98).string(Decimal.fromUserInput(message.lastRedemptionRate, 18).atomics);
-    }
-    if (message.redemptionRate !== "") {
-      writer.uint32(106).string(Decimal.fromUserInput(message.redemptionRate, 18).atomics);
-    }
-    if (message.minRedemptionRate !== "") {
-      writer.uint32(114).string(Decimal.fromUserInput(message.minRedemptionRate, 18).atomics);
-    }
-    if (message.maxRedemptionRate !== "") {
-      writer.uint32(122).string(Decimal.fromUserInput(message.maxRedemptionRate, 18).atomics);
-    }
-    if (message.minInnerRedemptionRate !== "") {
-      writer.uint32(130).string(Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics);
-    }
-    if (message.maxInnerRedemptionRate !== "") {
-      writer.uint32(138).string(Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics);
-    }
-    if (message.delegatedBalance !== "") {
-      writer.uint32(146).string(message.delegatedBalance);
+    if (message.remainingDelegatedBalance !== "") {
+      writer.uint32(146).string(message.remainingDelegatedBalance);
     }
     if (message.unbondingPeriodSeconds !== BigInt(0)) {
       writer.uint32(152).uint64(message.unbondingPeriodSeconds);
@@ -574,26 +519,8 @@ export const HostZone = {
         case 11:
           message.safeAddressOnStride = reader.string();
           break;
-        case 12:
-          message.lastRedemptionRate = Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
-        case 13:
-          message.redemptionRate = Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
-        case 14:
-          message.minRedemptionRate = Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
-        case 15:
-          message.maxRedemptionRate = Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
-        case 16:
-          message.minInnerRedemptionRate = Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
-        case 17:
-          message.maxInnerRedemptionRate = Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
         case 18:
-          message.delegatedBalance = reader.string();
+          message.remainingDelegatedBalance = reader.string();
           break;
         case 19:
           message.unbondingPeriodSeconds = reader.uint64();
@@ -621,13 +548,7 @@ export const HostZone = {
     message.claimAddress = object.claimAddress ?? "";
     message.operatorAddressOnStride = object.operatorAddressOnStride ?? "";
     message.safeAddressOnStride = object.safeAddressOnStride ?? "";
-    message.lastRedemptionRate = object.lastRedemptionRate ?? "";
-    message.redemptionRate = object.redemptionRate ?? "";
-    message.minRedemptionRate = object.minRedemptionRate ?? "";
-    message.maxRedemptionRate = object.maxRedemptionRate ?? "";
-    message.minInnerRedemptionRate = object.minInnerRedemptionRate ?? "";
-    message.maxInnerRedemptionRate = object.maxInnerRedemptionRate ?? "";
-    message.delegatedBalance = object.delegatedBalance ?? "";
+    message.remainingDelegatedBalance = object.remainingDelegatedBalance ?? "";
     message.unbondingPeriodSeconds = object.unbondingPeriodSeconds !== undefined && object.unbondingPeriodSeconds !== null ? BigInt(object.unbondingPeriodSeconds.toString()) : BigInt(0);
     message.halted = object.halted ?? false;
     return message;
@@ -667,26 +588,8 @@ export const HostZone = {
     if (object.safe_address_on_stride !== undefined && object.safe_address_on_stride !== null) {
       message.safeAddressOnStride = object.safe_address_on_stride;
     }
-    if (object.last_redemption_rate !== undefined && object.last_redemption_rate !== null) {
-      message.lastRedemptionRate = object.last_redemption_rate;
-    }
-    if (object.redemption_rate !== undefined && object.redemption_rate !== null) {
-      message.redemptionRate = object.redemption_rate;
-    }
-    if (object.min_redemption_rate !== undefined && object.min_redemption_rate !== null) {
-      message.minRedemptionRate = object.min_redemption_rate;
-    }
-    if (object.max_redemption_rate !== undefined && object.max_redemption_rate !== null) {
-      message.maxRedemptionRate = object.max_redemption_rate;
-    }
-    if (object.min_inner_redemption_rate !== undefined && object.min_inner_redemption_rate !== null) {
-      message.minInnerRedemptionRate = object.min_inner_redemption_rate;
-    }
-    if (object.max_inner_redemption_rate !== undefined && object.max_inner_redemption_rate !== null) {
-      message.maxInnerRedemptionRate = object.max_inner_redemption_rate;
-    }
-    if (object.delegated_balance !== undefined && object.delegated_balance !== null) {
-      message.delegatedBalance = object.delegated_balance;
+    if (object.remaining_delegated_balance !== undefined && object.remaining_delegated_balance !== null) {
+      message.remainingDelegatedBalance = object.remaining_delegated_balance;
     }
     if (object.unbonding_period_seconds !== undefined && object.unbonding_period_seconds !== null) {
       message.unbondingPeriodSeconds = BigInt(object.unbonding_period_seconds);
@@ -709,13 +612,7 @@ export const HostZone = {
     obj.claim_address = message.claimAddress === "" ? undefined : message.claimAddress;
     obj.operator_address_on_stride = message.operatorAddressOnStride === "" ? undefined : message.operatorAddressOnStride;
     obj.safe_address_on_stride = message.safeAddressOnStride === "" ? undefined : message.safeAddressOnStride;
-    obj.last_redemption_rate = message.lastRedemptionRate === "" ? undefined : message.lastRedemptionRate;
-    obj.redemption_rate = message.redemptionRate === "" ? undefined : message.redemptionRate;
-    obj.min_redemption_rate = message.minRedemptionRate === "" ? undefined : message.minRedemptionRate;
-    obj.max_redemption_rate = message.maxRedemptionRate === "" ? undefined : message.maxRedemptionRate;
-    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? undefined : message.minInnerRedemptionRate;
-    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? undefined : message.maxInnerRedemptionRate;
-    obj.delegated_balance = message.delegatedBalance === "" ? undefined : message.delegatedBalance;
+    obj.remaining_delegated_balance = message.remainingDelegatedBalance === "" ? undefined : message.remainingDelegatedBalance;
     obj.unbonding_period_seconds = message.unbondingPeriodSeconds !== BigInt(0) ? message.unbondingPeriodSeconds.toString() : undefined;
     obj.halted = message.halted === false ? undefined : message.halted;
     return obj;
