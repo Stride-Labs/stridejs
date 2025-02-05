@@ -723,8 +723,8 @@ const QueryConnectionConsensusStateRequest = {
   toAmino(message) {
     const obj = {};
     obj.connection_id = message.connectionId === "" ? void 0 : message.connectionId;
-    obj.revision_number = message.revisionNumber !== BigInt(0) ? message.revisionNumber.toString() : void 0;
-    obj.revision_height = message.revisionHeight !== BigInt(0) ? message.revisionHeight.toString() : void 0;
+    obj.revision_number = message.revisionNumber !== BigInt(0) ? message.revisionNumber?.toString() : void 0;
+    obj.revision_height = message.revisionHeight !== BigInt(0) ? message.revisionHeight?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

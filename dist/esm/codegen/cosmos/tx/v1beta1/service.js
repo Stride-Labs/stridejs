@@ -798,7 +798,7 @@ const GetBlockWithTxsRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : void 0;
     return obj;
   },

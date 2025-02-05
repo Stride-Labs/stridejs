@@ -2833,8 +2833,8 @@ const UninterpretedOption = {
       obj.name = message.name;
     }
     obj.identifier_value = message.identifierValue === "" ? void 0 : message.identifierValue;
-    obj.positive_int_value = message.positiveIntValue !== BigInt(0) ? message.positiveIntValue.toString() : void 0;
-    obj.negative_int_value = message.negativeIntValue !== BigInt(0) ? message.negativeIntValue.toString() : void 0;
+    obj.positive_int_value = message.positiveIntValue !== BigInt(0) ? message.positiveIntValue?.toString() : void 0;
+    obj.negative_int_value = message.negativeIntValue !== BigInt(0) ? message.negativeIntValue?.toString() : void 0;
     obj.double_value = message.doubleValue === 0 ? void 0 : message.doubleValue;
     obj.string_value = message.stringValue ? base64FromBytes(message.stringValue) : void 0;
     obj.aggregate_value = message.aggregateValue === "" ? void 0 : message.aggregateValue;

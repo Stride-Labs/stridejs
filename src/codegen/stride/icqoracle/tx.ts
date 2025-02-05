@@ -253,8 +253,8 @@ export const MsgRegisterTokenPriceQuery = {
     obj.admin = message.admin === "" ? undefined : message.admin;
     obj.base_denom = message.baseDenom === "" ? undefined : message.baseDenom;
     obj.quote_denom = message.quoteDenom === "" ? undefined : message.quoteDenom;
-    obj.base_denom_decimals = message.baseDenomDecimals !== BigInt(0) ? message.baseDenomDecimals.toString() : undefined;
-    obj.quote_denom_decimals = message.quoteDenomDecimals !== BigInt(0) ? message.quoteDenomDecimals.toString() : undefined;
+    obj.base_denom_decimals = message.baseDenomDecimals !== BigInt(0) ? message.baseDenomDecimals?.toString() : undefined;
+    obj.quote_denom_decimals = message.quoteDenomDecimals !== BigInt(0) ? message.quoteDenomDecimals?.toString() : undefined;
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? undefined : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? undefined : message.osmosisQuoteDenom;
     obj.osmosis_pool_id = message.osmosisPoolId === "" ? undefined : message.osmosisPoolId;

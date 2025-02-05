@@ -317,8 +317,8 @@ export const MsgPostMetric = {
     obj.key = message.key === "" ? undefined : message.key;
     obj.value = message.value === "" ? undefined : message.value;
     obj.metric_type = message.metricType === "" ? undefined : message.metricType;
-    obj.update_time = message.updateTime !== BigInt(0) ? message.updateTime.toString() : undefined;
-    obj.block_height = message.blockHeight !== BigInt(0) ? message.blockHeight.toString() : undefined;
+    obj.update_time = message.updateTime !== BigInt(0) ? message.updateTime?.toString() : undefined;
+    obj.block_height = message.blockHeight !== BigInt(0) ? message.blockHeight?.toString() : undefined;
     obj.attributes = message.attributes === "" ? undefined : message.attributes;
     return obj;
   },

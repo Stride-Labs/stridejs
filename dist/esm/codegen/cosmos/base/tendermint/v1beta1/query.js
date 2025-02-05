@@ -59,7 +59,7 @@ const GetValidatorSetByHeightRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : void 0;
     return obj;
   },
@@ -149,7 +149,7 @@ const GetValidatorSetByHeightResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.block_height = message.blockHeight !== BigInt(0) ? message.blockHeight.toString() : void 0;
+    obj.block_height = message.blockHeight !== BigInt(0) ? message.blockHeight?.toString() : void 0;
     if (message.validators) {
       obj.validators = message.validators.map((e) => e ? Validator.toAmino(e) : void 0);
     } else {
@@ -313,7 +313,7 @@ const GetLatestValidatorSetResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.block_height = message.blockHeight !== BigInt(0) ? message.blockHeight.toString() : void 0;
+    obj.block_height = message.blockHeight !== BigInt(0) ? message.blockHeight?.toString() : void 0;
     if (message.validators) {
       obj.validators = message.validators.map((e) => e ? Validator.toAmino(e) : void 0);
     } else {
@@ -423,8 +423,8 @@ const Validator = {
     const obj = {};
     obj.address = message.address === "" ? void 0 : message.address;
     obj.pub_key = message.pubKey ? Any.toAmino(message.pubKey) : void 0;
-    obj.voting_power = message.votingPower !== BigInt(0) ? message.votingPower.toString() : void 0;
-    obj.proposer_priority = message.proposerPriority !== BigInt(0) ? message.proposerPriority.toString() : void 0;
+    obj.voting_power = message.votingPower !== BigInt(0) ? message.votingPower?.toString() : void 0;
+    obj.proposer_priority = message.proposerPriority !== BigInt(0) ? message.proposerPriority?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -493,7 +493,7 @@ const GetBlockByHeightRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

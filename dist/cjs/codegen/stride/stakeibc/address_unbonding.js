@@ -137,7 +137,7 @@ const AddressUnbonding = {
     obj.amount = message.amount === "" ? void 0 : message.amount;
     obj.denom = message.denom === "" ? void 0 : message.denom;
     obj.claim_is_pending = message.claimIsPending === false ? void 0 : message.claimIsPending;
-    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber.toString() : void 0;
+    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

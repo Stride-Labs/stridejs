@@ -402,8 +402,8 @@ const MsgCreateAirdrop = {
     obj.identifier = message.identifier === "" ? void 0 : message.identifier;
     obj.chain_id = message.chainId === "" ? void 0 : message.chainId;
     obj.denom = message.denom === "" ? void 0 : message.denom;
-    obj.start_time = message.startTime !== BigInt(0) ? message.startTime.toString() : void 0;
-    obj.duration = message.duration !== BigInt(0) ? message.duration.toString() : void 0;
+    obj.start_time = message.startTime !== BigInt(0) ? message.startTime?.toString() : void 0;
+    obj.duration = message.duration !== BigInt(0) ? message.duration?.toString() : void 0;
     obj.autopilot_enabled = message.autopilotEnabled === false ? void 0 : message.autopilotEnabled;
     return obj;
   },

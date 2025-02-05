@@ -383,7 +383,7 @@ const Deposit = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId.toString() : void 0;
+    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId?.toString() : void 0;
     obj.depositor = message.depositor === "" ? void 0 : message.depositor;
     if (message.amount) {
       obj.amount = message.amount.map((e) => e ? import_coin.Coin.toAmino(e) : void 0);
@@ -544,7 +544,7 @@ const Proposal = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId ? message.proposalId.toString() : "0";
+    obj.proposal_id = message.proposalId ? message.proposalId?.toString() : "0";
     obj.content = message.content ? Content_ToAmino(message.content) : void 0;
     obj.status = message.status === 0 ? void 0 : message.status;
     obj.final_tally_result = message.finalTallyResult ? TallyResult.toAmino(message.finalTallyResult) : void 0;
@@ -761,7 +761,7 @@ const Vote = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId.toString() : void 0;
+    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId?.toString() : void 0;
     obj.voter = message.voter === "" ? void 0 : message.voter;
     obj.option = message.option === 0 ? void 0 : message.option;
     if (message.options) {

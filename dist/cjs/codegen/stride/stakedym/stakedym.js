@@ -409,7 +409,7 @@ const HostZone = {
     obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? void 0 : message.minInnerRedemptionRate;
     obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? void 0 : message.maxInnerRedemptionRate;
     obj.delegated_balance = message.delegatedBalance === "" ? void 0 : message.delegatedBalance;
-    obj.unbonding_period_seconds = message.unbondingPeriodSeconds !== BigInt(0) ? message.unbondingPeriodSeconds.toString() : void 0;
+    obj.unbonding_period_seconds = message.unbondingPeriodSeconds !== BigInt(0) ? message.unbondingPeriodSeconds?.toString() : void 0;
     obj.halted = message.halted === false ? void 0 : message.halted;
     return obj;
   },
@@ -506,7 +506,7 @@ const DelegationRecord = {
   },
   toAmino(message) {
     const obj = {};
-    obj.id = message.id !== BigInt(0) ? message.id.toString() : void 0;
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : void 0;
     obj.native_amount = message.nativeAmount === "" ? void 0 : message.nativeAmount;
     obj.status = message.status === 0 ? void 0 : message.status;
     obj.tx_hash = message.txHash === "" ? void 0 : message.txHash;
@@ -638,11 +638,11 @@ const UnbondingRecord = {
   },
   toAmino(message) {
     const obj = {};
-    obj.id = message.id !== BigInt(0) ? message.id.toString() : void 0;
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : void 0;
     obj.status = message.status === 0 ? void 0 : message.status;
     obj.st_token_amount = message.stTokenAmount === "" ? void 0 : message.stTokenAmount;
     obj.native_amount = message.nativeAmount === "" ? void 0 : message.nativeAmount;
-    obj.unbonding_completion_time_seconds = message.unbondingCompletionTimeSeconds !== BigInt(0) ? message.unbondingCompletionTimeSeconds.toString() : void 0;
+    obj.unbonding_completion_time_seconds = message.unbondingCompletionTimeSeconds !== BigInt(0) ? message.unbondingCompletionTimeSeconds?.toString() : void 0;
     obj.undelegation_tx_hash = message.undelegationTxHash === "" ? void 0 : message.undelegationTxHash;
     obj.unbonded_token_sweep_tx_hash = message.unbondedTokenSweepTxHash === "" ? void 0 : message.unbondedTokenSweepTxHash;
     return obj;
@@ -740,7 +740,7 @@ const RedemptionRecord = {
   },
   toAmino(message) {
     const obj = {};
-    obj.unbonding_record_id = message.unbondingRecordId !== BigInt(0) ? message.unbondingRecordId.toString() : void 0;
+    obj.unbonding_record_id = message.unbondingRecordId !== BigInt(0) ? message.unbondingRecordId?.toString() : void 0;
     obj.redeemer = message.redeemer === "" ? void 0 : message.redeemer;
     obj.st_token_amount = message.stTokenAmount === "" ? void 0 : message.stTokenAmount;
     obj.native_amount = message.nativeAmount === "" ? void 0 : message.nativeAmount;
@@ -839,8 +839,8 @@ const SlashRecord = {
   },
   toAmino(message) {
     const obj = {};
-    obj.id = message.id !== BigInt(0) ? message.id.toString() : void 0;
-    obj.time = message.time !== BigInt(0) ? message.time.toString() : void 0;
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : void 0;
+    obj.time = message.time !== BigInt(0) ? message.time?.toString() : void 0;
     obj.native_amount = message.nativeAmount === "" ? void 0 : message.nativeAmount;
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
     return obj;

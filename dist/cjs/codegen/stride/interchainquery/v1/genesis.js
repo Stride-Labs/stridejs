@@ -255,9 +255,9 @@ const Query = {
     obj.callback_data = message.callbackData ? (0, import_helpers.base64FromBytes)(message.callbackData) : void 0;
     obj.timeout_policy = message.timeoutPolicy === 0 ? void 0 : message.timeoutPolicy;
     obj.timeout_duration = message.timeoutDuration ? import_duration.Duration.toAmino(message.timeoutDuration) : void 0;
-    obj.timeout_timestamp = message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp.toString() : void 0;
+    obj.timeout_timestamp = message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp?.toString() : void 0;
     obj.request_sent = message.requestSent === false ? void 0 : message.requestSent;
-    obj.submission_height = message.submissionHeight !== BigInt(0) ? message.submissionHeight.toString() : void 0;
+    obj.submission_height = message.submissionHeight !== BigInt(0) ? message.submissionHeight?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

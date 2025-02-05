@@ -102,11 +102,11 @@ const ValidatorSigningInfo = {
   toAmino(message) {
     const obj = {};
     obj.address = message.address === "" ? void 0 : message.address;
-    obj.start_height = message.startHeight !== BigInt(0) ? message.startHeight.toString() : void 0;
-    obj.index_offset = message.indexOffset !== BigInt(0) ? message.indexOffset.toString() : void 0;
+    obj.start_height = message.startHeight !== BigInt(0) ? message.startHeight?.toString() : void 0;
+    obj.index_offset = message.indexOffset !== BigInt(0) ? message.indexOffset?.toString() : void 0;
     obj.jailed_until = message.jailedUntil ? Timestamp.toAmino(toTimestamp(message.jailedUntil)) : void 0;
     obj.tombstoned = message.tombstoned === false ? void 0 : message.tombstoned;
-    obj.missed_blocks_counter = message.missedBlocksCounter !== BigInt(0) ? message.missedBlocksCounter.toString() : void 0;
+    obj.missed_blocks_counter = message.missedBlocksCounter !== BigInt(0) ? message.missedBlocksCounter?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -219,7 +219,7 @@ const Params = {
   },
   toAmino(message) {
     const obj = {};
-    obj.signed_blocks_window = message.signedBlocksWindow !== BigInt(0) ? message.signedBlocksWindow.toString() : void 0;
+    obj.signed_blocks_window = message.signedBlocksWindow !== BigInt(0) ? message.signedBlocksWindow?.toString() : void 0;
     obj.min_signed_per_window = message.minSignedPerWindow ? base64FromBytes(message.minSignedPerWindow) : void 0;
     obj.downtime_jail_duration = message.downtimeJailDuration ? Duration.toAmino(message.downtimeJailDuration) : void 0;
     obj.slash_fraction_double_sign = message.slashFractionDoubleSign ? base64FromBytes(message.slashFractionDoubleSign) : void 0;

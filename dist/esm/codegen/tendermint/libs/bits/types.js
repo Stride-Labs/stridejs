@@ -61,7 +61,7 @@ const BitArray = {
   },
   toAmino(message) {
     const obj = {};
-    obj.bits = message.bits !== BigInt(0) ? message.bits.toString() : void 0;
+    obj.bits = message.bits !== BigInt(0) ? message.bits?.toString() : void 0;
     if (message.elems) {
       obj.elems = message.elems.map((e) => e.toString());
     } else {

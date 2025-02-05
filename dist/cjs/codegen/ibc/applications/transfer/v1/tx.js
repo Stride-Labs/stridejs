@@ -151,7 +151,7 @@ const MsgTransfer = {
     obj.sender = message.sender === "" ? void 0 : message.sender;
     obj.receiver = message.receiver === "" ? void 0 : message.receiver;
     obj.timeout_height = message.timeoutHeight ? import_client.Height.toAmino(message.timeoutHeight) : {};
-    obj.timeout_timestamp = message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp.toString() : void 0;
+    obj.timeout_timestamp = message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp?.toString() : void 0;
     obj.memo = message.memo === "" ? void 0 : message.memo;
     return obj;
   },
@@ -221,7 +221,7 @@ const MsgTransferResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

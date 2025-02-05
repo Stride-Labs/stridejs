@@ -67,7 +67,7 @@ const ClientState = {
   },
   toAmino(message) {
     const obj = {};
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     obj.is_frozen = message.isFrozen === false ? void 0 : message.isFrozen;
     obj.consensus_state = message.consensusState ? ConsensusState.toAmino(message.consensusState) : void 0;
     return obj;
@@ -162,7 +162,7 @@ const ConsensusState = {
     const obj = {};
     obj.public_key = message.publicKey ? Any.toAmino(message.publicKey) : void 0;
     obj.diversifier = message.diversifier === "" ? void 0 : message.diversifier;
-    obj.timestamp = message.timestamp !== BigInt(0) ? message.timestamp.toString() : void 0;
+    obj.timestamp = message.timestamp !== BigInt(0) ? message.timestamp?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -264,7 +264,7 @@ const Header = {
   },
   toAmino(message) {
     const obj = {};
-    obj.timestamp = message.timestamp !== BigInt(0) ? message.timestamp.toString() : void 0;
+    obj.timestamp = message.timestamp !== BigInt(0) ? message.timestamp?.toString() : void 0;
     obj.signature = message.signature ? base64FromBytes(message.signature) : void 0;
     obj.new_public_key = message.newPublicKey ? Any.toAmino(message.newPublicKey) : void 0;
     obj.new_diversifier = message.newDiversifier === "" ? void 0 : message.newDiversifier;
@@ -358,7 +358,7 @@ const Misbehaviour = {
   },
   toAmino(message) {
     const obj = {};
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     obj.signature_one = message.signatureOne ? SignatureAndData.toAmino(message.signatureOne) : void 0;
     obj.signature_two = message.signatureTwo ? SignatureAndData.toAmino(message.signatureTwo) : void 0;
     return obj;
@@ -465,7 +465,7 @@ const SignatureAndData = {
     obj.signature = message.signature ? base64FromBytes(message.signature) : void 0;
     obj.path = message.path ? base64FromBytes(message.path) : void 0;
     obj.data = message.data ? base64FromBytes(message.data) : void 0;
-    obj.timestamp = message.timestamp !== BigInt(0) ? message.timestamp.toString() : void 0;
+    obj.timestamp = message.timestamp !== BigInt(0) ? message.timestamp?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -546,7 +546,7 @@ const TimestampedSignatureData = {
   toAmino(message) {
     const obj = {};
     obj.signature_data = message.signatureData ? base64FromBytes(message.signatureData) : void 0;
-    obj.timestamp = message.timestamp !== BigInt(0) ? message.timestamp.toString() : void 0;
+    obj.timestamp = message.timestamp !== BigInt(0) ? message.timestamp?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -659,8 +659,8 @@ const SignBytes = {
   },
   toAmino(message) {
     const obj = {};
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
-    obj.timestamp = message.timestamp !== BigInt(0) ? message.timestamp.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
+    obj.timestamp = message.timestamp !== BigInt(0) ? message.timestamp?.toString() : void 0;
     obj.diversifier = message.diversifier === "" ? void 0 : message.diversifier;
     obj.path = message.path ? base64FromBytes(message.path) : void 0;
     obj.data = message.data ? base64FromBytes(message.data) : void 0;

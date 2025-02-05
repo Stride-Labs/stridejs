@@ -2110,12 +2110,12 @@ export const MsgRegisterHostZone = {
     obj.ibc_denom = message.ibcDenom === "" ? undefined : message.ibcDenom;
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.transfer_channel_id = message.transferChannelId === "" ? undefined : message.transferChannelId;
-    obj.unbonding_period = message.unbondingPeriod !== BigInt(0) ? message.unbondingPeriod.toString() : undefined;
+    obj.unbonding_period = message.unbondingPeriod !== BigInt(0) ? message.unbondingPeriod?.toString() : undefined;
     obj.min_redemption_rate = message.minRedemptionRate === "" ? undefined : message.minRedemptionRate;
     obj.max_redemption_rate = message.maxRedemptionRate === "" ? undefined : message.maxRedemptionRate;
     obj.lsm_liquid_stake_enabled = message.lsmLiquidStakeEnabled === false ? undefined : message.lsmLiquidStakeEnabled;
     obj.community_pool_treasury_address = message.communityPoolTreasuryAddress === "" ? undefined : message.communityPoolTreasuryAddress;
-    obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx.toString() : undefined;
+    obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgRegisterHostZoneAminoMsg): MsgRegisterHostZone {
@@ -2269,7 +2269,7 @@ export const MsgClaimUndelegatedTokens = {
     const obj: any = {};
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.host_zone_id = message.hostZoneId === "" ? undefined : message.hostZoneId;
-    obj.epoch = message.epoch !== BigInt(0) ? message.epoch.toString() : undefined;
+    obj.epoch = message.epoch !== BigInt(0) ? message.epoch?.toString() : undefined;
     obj.receiver = message.receiver === "" ? undefined : message.receiver;
     return obj;
   },
@@ -2413,7 +2413,7 @@ export const MsgRebalanceValidators = {
     const obj: any = {};
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.host_zone = message.hostZone === "" ? undefined : message.hostZone;
-    obj.num_rebalance = message.numRebalance !== BigInt(0) ? message.numRebalance.toString() : undefined;
+    obj.num_rebalance = message.numRebalance !== BigInt(0) ? message.numRebalance?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgRebalanceValidatorsAminoMsg): MsgRebalanceValidators {
@@ -2683,7 +2683,7 @@ export const ValidatorWeight = {
   toAmino(message: ValidatorWeight): ValidatorWeightAmino {
     const obj: any = {};
     obj.address = message.address === "" ? undefined : message.address;
-    obj.weight = message.weight !== BigInt(0) ? message.weight.toString() : undefined;
+    obj.weight = message.weight !== BigInt(0) ? message.weight?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ValidatorWeightAminoMsg): ValidatorWeight {
@@ -3901,7 +3901,7 @@ export const MsgCreateTradeRoute = {
     obj.reward_denom_on_trade = message.rewardDenomOnTrade === "" ? undefined : message.rewardDenomOnTrade;
     obj.host_denom_on_trade = message.hostDenomOnTrade === "" ? undefined : message.hostDenomOnTrade;
     obj.host_denom_on_host = message.hostDenomOnHost === "" ? undefined : message.hostDenomOnHost;
-    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId?.toString() : undefined;
     obj.max_allowed_swap_loss_rate = message.maxAllowedSwapLossRate === "" ? undefined : message.maxAllowedSwapLossRate;
     obj.min_swap_amount = message.minSwapAmount === "" ? undefined : message.minSwapAmount;
     obj.max_swap_amount = message.maxSwapAmount === "" ? undefined : message.maxSwapAmount;
@@ -4247,7 +4247,7 @@ export const MsgUpdateTradeRoute = {
     obj.authority = message.authority === "" ? undefined : message.authority;
     obj.reward_denom = message.rewardDenom === "" ? undefined : message.rewardDenom;
     obj.host_denom = message.hostDenom === "" ? undefined : message.hostDenom;
-    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId?.toString() : undefined;
     obj.max_allowed_swap_loss_rate = message.maxAllowedSwapLossRate === "" ? undefined : message.maxAllowedSwapLossRate;
     obj.min_swap_amount = message.minSwapAmount === "" ? undefined : message.minSwapAmount;
     obj.max_swap_amount = message.maxSwapAmount === "" ? undefined : message.maxSwapAmount;
@@ -4716,7 +4716,7 @@ export const MsgUpdateHostZoneParams = {
     const obj: any = {};
     obj.authority = message.authority === "" ? undefined : message.authority;
     obj.chain_id = message.chainId === "" ? undefined : message.chainId;
-    obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx.toString() : undefined;
+    obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgUpdateHostZoneParamsAminoMsg): MsgUpdateHostZoneParams {

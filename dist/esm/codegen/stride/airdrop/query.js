@@ -242,8 +242,8 @@ const QueryAirdropResponse = {
     obj.distributor_address = message.distributorAddress === "" ? void 0 : message.distributorAddress;
     obj.allocator_address = message.allocatorAddress === "" ? void 0 : message.allocatorAddress;
     obj.linker_address = message.linkerAddress === "" ? void 0 : message.linkerAddress;
-    obj.current_date_index = message.currentDateIndex !== BigInt(0) ? message.currentDateIndex.toString() : void 0;
-    obj.airdrop_length = message.airdropLength !== BigInt(0) ? message.airdropLength.toString() : void 0;
+    obj.current_date_index = message.currentDateIndex !== BigInt(0) ? message.currentDateIndex?.toString() : void 0;
+    obj.airdrop_length = message.airdropLength !== BigInt(0) ? message.airdropLength?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

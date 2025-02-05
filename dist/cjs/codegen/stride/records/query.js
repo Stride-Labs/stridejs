@@ -202,7 +202,7 @@ const QueryGetDepositRecordRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.id = message.id !== BigInt(0) ? message.id.toString() : void 0;
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -907,9 +907,9 @@ const QueryAllUserRedemptionRecordForUserRequest = {
   toAmino(message) {
     const obj = {};
     obj.chain_id = message.chainId === "" ? void 0 : message.chainId;
-    obj.day = message.day !== BigInt(0) ? message.day.toString() : void 0;
+    obj.day = message.day !== BigInt(0) ? message.day?.toString() : void 0;
     obj.address = message.address === "" ? void 0 : message.address;
-    obj.limit = message.limit !== BigInt(0) ? message.limit.toString() : void 0;
+    obj.limit = message.limit !== BigInt(0) ? message.limit?.toString() : void 0;
     obj.pagination = message.pagination ? import_pagination.PageRequest.toAmino(message.pagination) : void 0;
     return obj;
   },
@@ -1050,7 +1050,7 @@ const QueryGetEpochUnbondingRecordRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber.toString() : void 0;
+    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

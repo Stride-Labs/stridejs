@@ -139,7 +139,7 @@ const ConnectionEnd = {
     }
     obj.state = message.state === 0 ? void 0 : message.state;
     obj.counterparty = message.counterparty ? Counterparty.toAmino(message.counterparty) : void 0;
-    obj.delay_period = message.delayPeriod !== BigInt(0) ? message.delayPeriod.toString() : void 0;
+    obj.delay_period = message.delayPeriod !== BigInt(0) ? message.delayPeriod?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -270,7 +270,7 @@ const IdentifiedConnection = {
     }
     obj.state = message.state === 0 ? void 0 : message.state;
     obj.counterparty = message.counterparty ? Counterparty.toAmino(message.counterparty) : void 0;
-    obj.delay_period = message.delayPeriod !== BigInt(0) ? message.delayPeriod.toString() : void 0;
+    obj.delay_period = message.delayPeriod !== BigInt(0) ? message.delayPeriod?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -669,7 +669,7 @@ const Params = {
   },
   toAmino(message) {
     const obj = {};
-    obj.max_expected_time_per_block = message.maxExpectedTimePerBlock !== BigInt(0) ? message.maxExpectedTimePerBlock.toString() : void 0;
+    obj.max_expected_time_per_block = message.maxExpectedTimePerBlock !== BigInt(0) ? message.maxExpectedTimePerBlock?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

@@ -178,9 +178,9 @@ const ProtocolVersion = {
   },
   toAmino(message) {
     const obj = {};
-    obj.p2p = message.p2p !== BigInt(0) ? message.p2p.toString() : void 0;
-    obj.block = message.block !== BigInt(0) ? message.block.toString() : void 0;
-    obj.app = message.app !== BigInt(0) ? message.app.toString() : void 0;
+    obj.p2p = message.p2p !== BigInt(0) ? message.p2p?.toString() : void 0;
+    obj.block = message.block !== BigInt(0) ? message.block?.toString() : void 0;
+    obj.app = message.app !== BigInt(0) ? message.app?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

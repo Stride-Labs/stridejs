@@ -141,8 +141,8 @@ const TransferInProgressRecordIds = {
   toAmino(message) {
     const obj = {};
     obj.channel_id = message.channelId === "" ? void 0 : message.channelId;
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
+    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

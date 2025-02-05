@@ -143,7 +143,7 @@ const GenesisState = {
     } else {
       obj.user_redemption_record_list = message.userRedemptionRecordList;
     }
-    obj.user_redemption_record_count = message.userRedemptionRecordCount !== BigInt(0) ? message.userRedemptionRecordCount.toString() : void 0;
+    obj.user_redemption_record_count = message.userRedemptionRecordCount !== BigInt(0) ? message.userRedemptionRecordCount?.toString() : void 0;
     if (message.epochUnbondingRecordList) {
       obj.epoch_unbonding_record_list = message.epochUnbondingRecordList.map((e) => e ? import_records.EpochUnbondingRecord.toAmino(e) : void 0);
     } else {
@@ -154,7 +154,7 @@ const GenesisState = {
     } else {
       obj.deposit_record_list = message.depositRecordList;
     }
-    obj.deposit_record_count = message.depositRecordCount !== BigInt(0) ? message.depositRecordCount.toString() : void 0;
+    obj.deposit_record_count = message.depositRecordCount !== BigInt(0) ? message.depositRecordCount?.toString() : void 0;
     if (message.lsmTokenDepositList) {
       obj.lsm_token_deposit_list = message.lsmTokenDepositList.map((e) => e ? import_records.LSMTokenDeposit.toAmino(e) : void 0);
     } else {

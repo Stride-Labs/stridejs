@@ -572,8 +572,8 @@ const Fraction = {
   },
   toAmino(message) {
     const obj = {};
-    obj.numerator = message.numerator !== BigInt(0) ? message.numerator.toString() : void 0;
-    obj.denominator = message.denominator !== BigInt(0) ? message.denominator.toString() : void 0;
+    obj.numerator = message.numerator !== BigInt(0) ? message.numerator?.toString() : void 0;
+    obj.denominator = message.denominator !== BigInt(0) ? message.denominator?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

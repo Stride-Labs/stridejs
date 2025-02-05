@@ -67,7 +67,7 @@ const TransferCallback = {
   },
   toAmino(message) {
     const obj = {};
-    obj.deposit_record_id = message.depositRecordId !== BigInt(0) ? message.depositRecordId.toString() : void 0;
+    obj.deposit_record_id = message.depositRecordId !== BigInt(0) ? message.depositRecordId?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

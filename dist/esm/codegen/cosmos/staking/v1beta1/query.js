@@ -1806,7 +1806,7 @@ const QueryHistoricalInfoRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -2194,7 +2194,7 @@ const QueryTokenizeShareRecordByIdRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.id = message.id !== BigInt(0) ? message.id.toString() : void 0;
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -2818,7 +2818,7 @@ const QueryLastTokenizeShareRecordIdResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.id = message.id !== BigInt(0) ? message.id.toString() : void 0;
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

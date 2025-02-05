@@ -723,11 +723,11 @@ const Validator = {
     obj.tokens = message.tokens === "" ? void 0 : message.tokens;
     obj.delegator_shares = message.delegatorShares === "" ? void 0 : message.delegatorShares;
     obj.description = message.description ? Description.toAmino(message.description) : void 0;
-    obj.unbonding_height = message.unbondingHeight !== BigInt(0) ? message.unbondingHeight.toString() : void 0;
+    obj.unbonding_height = message.unbondingHeight !== BigInt(0) ? message.unbondingHeight?.toString() : void 0;
     obj.unbonding_time = message.unbondingTime ? Timestamp.toAmino(toTimestamp(message.unbondingTime)) : void 0;
     obj.commission = message.commission ? Commission.toAmino(message.commission) : void 0;
     obj.min_self_delegation = message.minSelfDelegation === "" ? void 0 : message.minSelfDelegation;
-    obj.unbonding_on_hold_ref_count = message.unbondingOnHoldRefCount !== BigInt(0) ? message.unbondingOnHoldRefCount.toString() : void 0;
+    obj.unbonding_on_hold_ref_count = message.unbondingOnHoldRefCount !== BigInt(0) ? message.unbondingOnHoldRefCount?.toString() : void 0;
     if (message.unbondingIds) {
       obj.unbonding_ids = message.unbondingIds.map((e) => e.toString());
     } else {
@@ -1445,12 +1445,12 @@ const UnbondingDelegationEntry = {
   },
   toAmino(message) {
     const obj = {};
-    obj.creation_height = message.creationHeight !== BigInt(0) ? message.creationHeight.toString() : void 0;
+    obj.creation_height = message.creationHeight !== BigInt(0) ? message.creationHeight?.toString() : void 0;
     obj.completion_time = message.completionTime ? Timestamp.toAmino(toTimestamp(message.completionTime)) : void 0;
     obj.initial_balance = message.initialBalance === "" ? void 0 : message.initialBalance;
     obj.balance = message.balance === "" ? void 0 : message.balance;
-    obj.unbonding_id = message.unbondingId !== BigInt(0) ? message.unbondingId.toString() : void 0;
-    obj.unbonding_on_hold_ref_count = message.unbondingOnHoldRefCount !== BigInt(0) ? message.unbondingOnHoldRefCount.toString() : void 0;
+    obj.unbonding_id = message.unbondingId !== BigInt(0) ? message.unbondingId?.toString() : void 0;
+    obj.unbonding_on_hold_ref_count = message.unbondingOnHoldRefCount !== BigInt(0) ? message.unbondingOnHoldRefCount?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1574,12 +1574,12 @@ const RedelegationEntry = {
   },
   toAmino(message) {
     const obj = {};
-    obj.creation_height = message.creationHeight !== BigInt(0) ? message.creationHeight.toString() : void 0;
+    obj.creation_height = message.creationHeight !== BigInt(0) ? message.creationHeight?.toString() : void 0;
     obj.completion_time = message.completionTime ? Timestamp.toAmino(toTimestamp(message.completionTime)) : void 0;
     obj.initial_balance = message.initialBalance === "" ? void 0 : message.initialBalance;
     obj.shares_dst = message.sharesDst === "" ? void 0 : message.sharesDst;
-    obj.unbonding_id = message.unbondingId !== BigInt(0) ? message.unbondingId.toString() : void 0;
-    obj.unbonding_on_hold_ref_count = message.unbondingOnHoldRefCount !== BigInt(0) ? message.unbondingOnHoldRefCount.toString() : void 0;
+    obj.unbonding_id = message.unbondingId !== BigInt(0) ? message.unbondingId?.toString() : void 0;
+    obj.unbonding_on_hold_ref_count = message.unbondingOnHoldRefCount !== BigInt(0) ? message.unbondingOnHoldRefCount?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -2338,7 +2338,7 @@ const TokenizeShareRecord = {
   },
   toAmino(message) {
     const obj = {};
-    obj.id = message.id !== BigInt(0) ? message.id.toString() : void 0;
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : void 0;
     obj.owner = message.owner === "" ? void 0 : message.owner;
     obj.module_account = message.moduleAccount === "" ? void 0 : message.moduleAccount;
     obj.validator = message.validator === "" ? void 0 : message.validator;

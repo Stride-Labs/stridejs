@@ -126,7 +126,7 @@ const BaseVestingAccount = {
     } else {
       obj.delegated_vesting = message.delegatedVesting;
     }
-    obj.end_time = message.endTime !== BigInt(0) ? message.endTime.toString() : void 0;
+    obj.end_time = message.endTime !== BigInt(0) ? message.endTime?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -207,7 +207,7 @@ const ContinuousVestingAccount = {
   toAmino(message) {
     const obj = {};
     obj.base_vesting_account = message.baseVestingAccount ? BaseVestingAccount.toAmino(message.baseVestingAccount) : void 0;
-    obj.start_time = message.startTime !== BigInt(0) ? message.startTime.toString() : void 0;
+    obj.start_time = message.startTime !== BigInt(0) ? message.startTime?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -354,7 +354,7 @@ const Period = {
   },
   toAmino(message) {
     const obj = {};
-    obj.length = message.length !== BigInt(0) ? message.length.toString() : void 0;
+    obj.length = message.length !== BigInt(0) ? message.length?.toString() : void 0;
     if (message.amount) {
       obj.amount = message.amount.map((e) => e ? import_coin.Coin.toAmino(e) : void 0);
     } else {
@@ -449,7 +449,7 @@ const PeriodicVestingAccount = {
   toAmino(message) {
     const obj = {};
     obj.base_vesting_account = message.baseVestingAccount ? BaseVestingAccount.toAmino(message.baseVestingAccount) : void 0;
-    obj.start_time = message.startTime !== BigInt(0) ? message.startTime.toString() : void 0;
+    obj.start_time = message.startTime !== BigInt(0) ? message.startTime?.toString() : void 0;
     if (message.vestingPeriods) {
       obj.vesting_periods = message.vestingPeriods.map((e) => e ? Period.toAmino(e) : void 0);
     } else {

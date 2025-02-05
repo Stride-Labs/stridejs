@@ -89,8 +89,8 @@ const PageRequest = {
   toAmino(message) {
     const obj = {};
     obj.key = message.key ? base64FromBytes(message.key) : void 0;
-    obj.offset = message.offset !== BigInt(0) ? message.offset.toString() : void 0;
-    obj.limit = message.limit !== BigInt(0) ? message.limit.toString() : void 0;
+    obj.offset = message.offset !== BigInt(0) ? message.offset?.toString() : void 0;
+    obj.limit = message.limit !== BigInt(0) ? message.limit?.toString() : void 0;
     obj.count_total = message.countTotal === false ? void 0 : message.countTotal;
     obj.reverse = message.reverse === false ? void 0 : message.reverse;
     return obj;
@@ -173,7 +173,7 @@ const PageResponse = {
   toAmino(message) {
     const obj = {};
     obj.next_key = message.nextKey ? base64FromBytes(message.nextKey) : void 0;
-    obj.total = message.total !== BigInt(0) ? message.total.toString() : void 0;
+    obj.total = message.total !== BigInt(0) ? message.total?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

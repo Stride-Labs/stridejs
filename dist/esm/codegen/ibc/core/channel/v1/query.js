@@ -771,8 +771,8 @@ const QueryChannelConsensusStateRequest = {
     const obj = {};
     obj.port_id = message.portId === "" ? void 0 : message.portId;
     obj.channel_id = message.channelId === "" ? void 0 : message.channelId;
-    obj.revision_number = message.revisionNumber !== BigInt(0) ? message.revisionNumber.toString() : void 0;
-    obj.revision_height = message.revisionHeight !== BigInt(0) ? message.revisionHeight.toString() : void 0;
+    obj.revision_number = message.revisionNumber !== BigInt(0) ? message.revisionNumber?.toString() : void 0;
+    obj.revision_height = message.revisionHeight !== BigInt(0) ? message.revisionHeight?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -970,7 +970,7 @@ const QueryPacketCommitmentRequest = {
     const obj = {};
     obj.port_id = message.portId === "" ? void 0 : message.portId;
     obj.channel_id = message.channelId === "" ? void 0 : message.channelId;
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1344,7 +1344,7 @@ const QueryPacketReceiptRequest = {
     const obj = {};
     obj.port_id = message.portId === "" ? void 0 : message.portId;
     obj.channel_id = message.channelId === "" ? void 0 : message.channelId;
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1530,7 +1530,7 @@ const QueryPacketAcknowledgementRequest = {
     const obj = {};
     obj.port_id = message.portId === "" ? void 0 : message.portId;
     obj.channel_id = message.channelId === "" ? void 0 : message.channelId;
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -2398,7 +2398,7 @@ const QueryNextSequenceReceiveResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.next_sequence_receive = message.nextSequenceReceive !== BigInt(0) ? message.nextSequenceReceive.toString() : void 0;
+    obj.next_sequence_receive = message.nextSequenceReceive !== BigInt(0) ? message.nextSequenceReceive?.toString() : void 0;
     obj.proof = message.proof ? base64FromBytes(message.proof) : void 0;
     obj.proof_height = message.proofHeight ? Height.toAmino(message.proofHeight) : {};
     return obj;

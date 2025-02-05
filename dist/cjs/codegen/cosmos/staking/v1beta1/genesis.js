@@ -210,7 +210,7 @@ const GenesisState = {
     } else {
       obj.tokenize_share_records = message.tokenizeShareRecords;
     }
-    obj.last_tokenize_share_record_id = message.lastTokenizeShareRecordId !== BigInt(0) ? message.lastTokenizeShareRecordId.toString() : void 0;
+    obj.last_tokenize_share_record_id = message.lastTokenizeShareRecordId !== BigInt(0) ? message.lastTokenizeShareRecordId?.toString() : void 0;
     obj.total_liquid_staked_tokens = message.totalLiquidStakedTokens ? (0, import_helpers.base64FromBytes)(message.totalLiquidStakedTokens) : void 0;
     if (message.tokenizeShareLocks) {
       obj.tokenize_share_locks = message.tokenizeShareLocks.map((e) => e ? TokenizeShareLock.toAmino(e) : void 0);
@@ -390,7 +390,7 @@ const LastValidatorPower = {
   toAmino(message) {
     const obj = {};
     obj.address = message.address === "" ? void 0 : message.address;
-    obj.power = message.power !== BigInt(0) ? message.power.toString() : void 0;
+    obj.power = message.power !== BigInt(0) ? message.power?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

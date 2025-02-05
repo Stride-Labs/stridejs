@@ -77,7 +77,7 @@ const App = {
   },
   toAmino(message) {
     const obj = {};
-    obj.protocol = message.protocol !== BigInt(0) ? message.protocol.toString() : void 0;
+    obj.protocol = message.protocol !== BigInt(0) ? message.protocol?.toString() : void 0;
     obj.software = message.software === "" ? void 0 : message.software;
     return obj;
   },
@@ -152,8 +152,8 @@ const Consensus = {
   },
   toAmino(message) {
     const obj = {};
-    obj.block = message.block !== BigInt(0) ? message.block.toString() : void 0;
-    obj.app = message.app !== BigInt(0) ? message.app.toString() : void 0;
+    obj.block = message.block !== BigInt(0) ? message.block?.toString() : void 0;
+    obj.app = message.app !== BigInt(0) ? message.app?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

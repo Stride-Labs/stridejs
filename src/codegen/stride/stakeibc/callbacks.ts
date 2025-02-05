@@ -527,7 +527,7 @@ export const DelegateCallback = {
   toAmino(message: DelegateCallback): DelegateCallbackAmino {
     const obj: any = {};
     obj.host_zone_id = message.hostZoneId === "" ? undefined : message.hostZoneId;
-    obj.deposit_record_id = message.depositRecordId !== BigInt(0) ? message.depositRecordId.toString() : undefined;
+    obj.deposit_record_id = message.depositRecordId !== BigInt(0) ? message.depositRecordId?.toString() : undefined;
     if (message.splitDelegations) {
       obj.split_delegations = message.splitDelegations.map(e => e ? SplitDelegation.toAmino(e) : undefined);
     } else {
@@ -619,7 +619,7 @@ export const ClaimCallback = {
     const obj: any = {};
     obj.user_redemption_record_id = message.userRedemptionRecordId === "" ? undefined : message.userRedemptionRecordId;
     obj.chain_id = message.chainId === "" ? undefined : message.chainId;
-    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber.toString() : undefined;
+    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ClaimCallbackAminoMsg): ClaimCallback {

@@ -168,8 +168,8 @@ const DuplicateVoteEvidence = {
     const obj = {};
     obj.vote_a = message.voteA ? Vote.toAmino(message.voteA) : void 0;
     obj.vote_b = message.voteB ? Vote.toAmino(message.voteB) : void 0;
-    obj.total_voting_power = message.totalVotingPower !== BigInt(0) ? message.totalVotingPower.toString() : void 0;
-    obj.validator_power = message.validatorPower !== BigInt(0) ? message.validatorPower.toString() : void 0;
+    obj.total_voting_power = message.totalVotingPower !== BigInt(0) ? message.totalVotingPower?.toString() : void 0;
+    obj.validator_power = message.validatorPower !== BigInt(0) ? message.validatorPower?.toString() : void 0;
     obj.timestamp = message.timestamp ? Timestamp.toAmino(toTimestamp(message.timestamp)) : void 0;
     return obj;
   },
@@ -276,13 +276,13 @@ const LightClientAttackEvidence = {
   toAmino(message) {
     const obj = {};
     obj.conflicting_block = message.conflictingBlock ? LightBlock.toAmino(message.conflictingBlock) : void 0;
-    obj.common_height = message.commonHeight !== BigInt(0) ? message.commonHeight.toString() : void 0;
+    obj.common_height = message.commonHeight !== BigInt(0) ? message.commonHeight?.toString() : void 0;
     if (message.byzantineValidators) {
       obj.byzantine_validators = message.byzantineValidators.map((e) => e ? Validator.toAmino(e) : void 0);
     } else {
       obj.byzantine_validators = message.byzantineValidators;
     }
-    obj.total_voting_power = message.totalVotingPower !== BigInt(0) ? message.totalVotingPower.toString() : void 0;
+    obj.total_voting_power = message.totalVotingPower !== BigInt(0) ? message.totalVotingPower?.toString() : void 0;
     obj.timestamp = message.timestamp ? Timestamp.toAmino(toTimestamp(message.timestamp)) : void 0;
     return obj;
   },

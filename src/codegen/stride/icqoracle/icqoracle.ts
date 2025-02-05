@@ -256,8 +256,8 @@ export const TokenPrice = {
     const obj: any = {};
     obj.base_denom = message.baseDenom === "" ? undefined : message.baseDenom;
     obj.quote_denom = message.quoteDenom === "" ? undefined : message.quoteDenom;
-    obj.base_denom_decimals = message.baseDenomDecimals !== BigInt(0) ? message.baseDenomDecimals.toString() : undefined;
-    obj.quote_denom_decimals = message.quoteDenomDecimals !== BigInt(0) ? message.quoteDenomDecimals.toString() : undefined;
+    obj.base_denom_decimals = message.baseDenomDecimals !== BigInt(0) ? message.baseDenomDecimals?.toString() : undefined;
+    obj.quote_denom_decimals = message.quoteDenomDecimals !== BigInt(0) ? message.quoteDenomDecimals?.toString() : undefined;
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? undefined : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? undefined : message.osmosisQuoteDenom;
     obj.osmosis_pool_id = message.osmosisPoolId === "" ? undefined : message.osmosisPoolId;
@@ -372,9 +372,9 @@ export const Params = {
     const obj: any = {};
     obj.osmosis_chain_id = message.osmosisChainId ?? "";
     obj.osmosis_connection_id = message.osmosisConnectionId ?? "";
-    obj.update_interval_sec = message.updateIntervalSec ? message.updateIntervalSec.toString() : "0";
-    obj.price_expiration_timeout_sec = message.priceExpirationTimeoutSec ? message.priceExpirationTimeoutSec.toString() : "0";
-    obj.icq_timeout_sec = message.icqTimeoutSec ? message.icqTimeoutSec.toString() : "0";
+    obj.update_interval_sec = message.updateIntervalSec ? message.updateIntervalSec?.toString() : "0";
+    obj.price_expiration_timeout_sec = message.priceExpirationTimeoutSec ? message.priceExpirationTimeoutSec?.toString() : "0";
+    obj.icq_timeout_sec = message.icqTimeoutSec ? message.icqTimeoutSec?.toString() : "0";
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {

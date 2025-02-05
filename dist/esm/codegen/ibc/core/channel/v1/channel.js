@@ -555,14 +555,14 @@ const Packet = {
   },
   toAmino(message) {
     const obj = {};
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     obj.source_port = message.sourcePort === "" ? void 0 : message.sourcePort;
     obj.source_channel = message.sourceChannel === "" ? void 0 : message.sourceChannel;
     obj.destination_port = message.destinationPort === "" ? void 0 : message.destinationPort;
     obj.destination_channel = message.destinationChannel === "" ? void 0 : message.destinationChannel;
     obj.data = message.data ? base64FromBytes(message.data) : void 0;
     obj.timeout_height = message.timeoutHeight ? Height.toAmino(message.timeoutHeight) : {};
-    obj.timeout_timestamp = message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp.toString() : void 0;
+    obj.timeout_timestamp = message.timeoutTimestamp !== BigInt(0) ? message.timeoutTimestamp?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -666,7 +666,7 @@ const PacketState = {
     const obj = {};
     obj.port_id = message.portId === "" ? void 0 : message.portId;
     obj.channel_id = message.channelId === "" ? void 0 : message.channelId;
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     obj.data = message.data ? base64FromBytes(message.data) : void 0;
     return obj;
   },
@@ -760,7 +760,7 @@ const PacketId = {
     const obj = {};
     obj.port_id = message.portId === "" ? void 0 : message.portId;
     obj.channel_id = message.channelId === "" ? void 0 : message.channelId;
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

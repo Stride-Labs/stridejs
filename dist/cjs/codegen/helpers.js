@@ -23,6 +23,7 @@ __export(helpers_exports, {
   fromJsonTimestamp: () => fromJsonTimestamp,
   fromTimestamp: () => fromTimestamp,
   isObject: () => isObject,
+  isRpc: () => isRpc,
   isSet: () => isSet,
   omitDefault: () => omitDefault,
   setPaginationParams: () => setPaginationParams,
@@ -107,6 +108,9 @@ const setPaginationParams = (options, pagination) => {
   }
   return options;
 };
+function isRpc(rpc) {
+  return rpc !== null && rpc !== void 0 && typeof rpc.request === "function";
+}
 function toTimestamp(date) {
   const seconds = numberToLong(date.getTime() / 1e3);
   const nanos = date.getTime() % 1e3 * 1e6;
@@ -146,6 +150,7 @@ function numberToLong(number) {
   fromJsonTimestamp,
   fromTimestamp,
   isObject,
+  isRpc,
   isSet,
   omitDefault,
   setPaginationParams,

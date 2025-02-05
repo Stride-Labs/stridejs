@@ -90,7 +90,7 @@ const GenesisState = {
     const obj = {};
     obj.minter = message.minter ? import_mint.Minter.toAmino(message.minter) : void 0;
     obj.params = message.params ? import_mint.Params.toAmino(message.params) : void 0;
-    obj.reduction_started_epoch = message.reductionStartedEpoch !== BigInt(0) ? message.reductionStartedEpoch.toString() : void 0;
+    obj.reduction_started_epoch = message.reductionStartedEpoch !== BigInt(0) ? message.reductionStartedEpoch?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

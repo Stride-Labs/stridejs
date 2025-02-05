@@ -126,7 +126,7 @@ const GenesisState = {
   },
   toAmino(message) {
     const obj = {};
-    obj.starting_proposal_id = message.startingProposalId !== BigInt(0) ? message.startingProposalId.toString() : void 0;
+    obj.starting_proposal_id = message.startingProposalId !== BigInt(0) ? message.startingProposalId?.toString() : void 0;
     if (message.deposits) {
       obj.deposits = message.deposits.map((e) => e ? import_gov.Deposit.toAmino(e) : void 0);
     } else {

@@ -77,9 +77,9 @@ const EpochTracker = {
   toAmino(message) {
     const obj = {};
     obj.epoch_identifier = message.epochIdentifier === "" ? void 0 : message.epochIdentifier;
-    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber.toString() : void 0;
-    obj.next_epoch_start_time = message.nextEpochStartTime !== BigInt(0) ? message.nextEpochStartTime.toString() : void 0;
-    obj.duration = message.duration !== BigInt(0) ? message.duration.toString() : void 0;
+    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber?.toString() : void 0;
+    obj.next_epoch_start_time = message.nextEpochStartTime !== BigInt(0) ? message.nextEpochStartTime?.toString() : void 0;
+    obj.duration = message.duration !== BigInt(0) ? message.duration?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

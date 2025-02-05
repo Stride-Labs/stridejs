@@ -313,7 +313,7 @@ const ValidatorHistoricalRewardsRecord = {
   toAmino(message) {
     const obj = {};
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
-    obj.period = message.period !== BigInt(0) ? message.period.toString() : void 0;
+    obj.period = message.period !== BigInt(0) ? message.period?.toString() : void 0;
     obj.rewards = message.rewards ? ValidatorHistoricalRewards.toAmino(message.rewards) : void 0;
     return obj;
   },
@@ -591,8 +591,8 @@ const ValidatorSlashEventRecord = {
   toAmino(message) {
     const obj = {};
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
-    obj.period = message.period !== BigInt(0) ? message.period.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
+    obj.period = message.period !== BigInt(0) ? message.period?.toString() : void 0;
     obj.validator_slash_event = message.validatorSlashEvent ? ValidatorSlashEvent.toAmino(message.validatorSlashEvent) : void 0;
     return obj;
   },

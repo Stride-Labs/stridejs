@@ -1440,7 +1440,7 @@ const MsgTimeout = {
     obj.packet = message.packet ? import_channel.Packet.toAmino(message.packet) : void 0;
     obj.proof_unreceived = message.proofUnreceived ? (0, import_helpers.base64FromBytes)(message.proofUnreceived) : void 0;
     obj.proof_height = message.proofHeight ? import_client.Height.toAmino(message.proofHeight) : {};
-    obj.next_sequence_recv = message.nextSequenceRecv !== BigInt(0) ? message.nextSequenceRecv.toString() : void 0;
+    obj.next_sequence_recv = message.nextSequenceRecv !== BigInt(0) ? message.nextSequenceRecv?.toString() : void 0;
     obj.signer = message.signer === "" ? void 0 : message.signer;
     return obj;
   },
@@ -1638,7 +1638,7 @@ const MsgTimeoutOnClose = {
     obj.proof_unreceived = message.proofUnreceived ? (0, import_helpers.base64FromBytes)(message.proofUnreceived) : void 0;
     obj.proof_close = message.proofClose ? (0, import_helpers.base64FromBytes)(message.proofClose) : void 0;
     obj.proof_height = message.proofHeight ? import_client.Height.toAmino(message.proofHeight) : {};
-    obj.next_sequence_recv = message.nextSequenceRecv !== BigInt(0) ? message.nextSequenceRecv.toString() : void 0;
+    obj.next_sequence_recv = message.nextSequenceRecv !== BigInt(0) ? message.nextSequenceRecv?.toString() : void 0;
     obj.signer = message.signer === "" ? void 0 : message.signer;
     return obj;
   },

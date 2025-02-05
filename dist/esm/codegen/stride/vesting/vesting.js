@@ -99,7 +99,7 @@ const BaseVestingAccount = {
     } else {
       obj.delegated_vesting = message.delegatedVesting;
     }
-    obj.end_time = message.endTime !== BigInt(0) ? message.endTime.toString() : void 0;
+    obj.end_time = message.endTime !== BigInt(0) ? message.endTime?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -193,8 +193,8 @@ const Period = {
   },
   toAmino(message) {
     const obj = {};
-    obj.start_time = message.startTime !== BigInt(0) ? message.startTime.toString() : void 0;
-    obj.length = message.length !== BigInt(0) ? message.length.toString() : void 0;
+    obj.start_time = message.startTime !== BigInt(0) ? message.startTime?.toString() : void 0;
+    obj.length = message.length !== BigInt(0) ? message.length?.toString() : void 0;
     if (message.amount) {
       obj.amount = message.amount.map((e) => e ? Coin.toAmino(e) : void 0);
     } else {

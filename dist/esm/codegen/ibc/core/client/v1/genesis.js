@@ -111,7 +111,7 @@ const GenesisState = {
     }
     obj.params = message.params ? Params.toAmino(message.params) : void 0;
     obj.create_localhost = message.createLocalhost === false ? void 0 : message.createLocalhost;
-    obj.next_client_sequence = message.nextClientSequence !== BigInt(0) ? message.nextClientSequence.toString() : void 0;
+    obj.next_client_sequence = message.nextClientSequence !== BigInt(0) ? message.nextClientSequence?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

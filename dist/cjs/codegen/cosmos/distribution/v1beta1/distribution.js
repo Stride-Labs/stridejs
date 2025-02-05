@@ -281,7 +281,7 @@ const ValidatorCurrentRewards = {
     } else {
       obj.rewards = message.rewards;
     }
-    obj.period = message.period !== BigInt(0) ? message.period.toString() : void 0;
+    obj.period = message.period !== BigInt(0) ? message.period?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -503,7 +503,7 @@ const ValidatorSlashEvent = {
   },
   toAmino(message) {
     const obj = {};
-    obj.validator_period = message.validatorPeriod !== BigInt(0) ? message.validatorPeriod.toString() : void 0;
+    obj.validator_period = message.validatorPeriod !== BigInt(0) ? message.validatorPeriod?.toString() : void 0;
     obj.fraction = message.fraction === "" ? void 0 : message.fraction;
     return obj;
   },
@@ -844,9 +844,9 @@ const DelegatorStartingInfo = {
   },
   toAmino(message) {
     const obj = {};
-    obj.previous_period = message.previousPeriod !== BigInt(0) ? message.previousPeriod.toString() : void 0;
+    obj.previous_period = message.previousPeriod !== BigInt(0) ? message.previousPeriod?.toString() : void 0;
     obj.stake = message.stake === "" ? void 0 : message.stake;
-    obj.height = message.height ? message.height.toString() : "0";
+    obj.height = message.height ? message.height?.toString() : "0";
     return obj;
   },
   fromAminoMsg(object) {
@@ -1007,7 +1007,7 @@ const TokenizeShareRecordReward = {
   },
   toAmino(message) {
     const obj = {};
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId.toString() : void 0;
+    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : void 0;
     if (message.reward) {
       obj.reward = message.reward.map((e) => e ? import_coin.DecCoin.toAmino(e) : void 0);
     } else {

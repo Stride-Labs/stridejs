@@ -123,8 +123,8 @@ const MsgRegisterTokenPriceQuery = {
     obj.admin = message.admin === "" ? void 0 : message.admin;
     obj.base_denom = message.baseDenom === "" ? void 0 : message.baseDenom;
     obj.quote_denom = message.quoteDenom === "" ? void 0 : message.quoteDenom;
-    obj.base_denom_decimals = message.baseDenomDecimals !== BigInt(0) ? message.baseDenomDecimals.toString() : void 0;
-    obj.quote_denom_decimals = message.quoteDenomDecimals !== BigInt(0) ? message.quoteDenomDecimals.toString() : void 0;
+    obj.base_denom_decimals = message.baseDenomDecimals !== BigInt(0) ? message.baseDenomDecimals?.toString() : void 0;
+    obj.quote_denom_decimals = message.quoteDenomDecimals !== BigInt(0) ? message.quoteDenomDecimals?.toString() : void 0;
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? void 0 : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? void 0 : message.osmosisQuoteDenom;
     obj.osmosis_pool_id = message.osmosisPoolId === "" ? void 0 : message.osmosisPoolId;

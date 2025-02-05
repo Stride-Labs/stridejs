@@ -45,7 +45,7 @@ const QueryProposalRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId.toString() : void 0;
+    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -382,7 +382,7 @@ const QueryVoteRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId.toString() : void 0;
+    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId?.toString() : void 0;
     obj.voter = message.voter === "" ? void 0 : message.voter;
     return obj;
   },
@@ -532,7 +532,7 @@ const QueryVotesRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId.toString() : void 0;
+    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId?.toString() : void 0;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : void 0;
     return obj;
   },
@@ -858,7 +858,7 @@ const QueryDepositRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId.toString() : void 0;
+    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId?.toString() : void 0;
     obj.depositor = message.depositor === "" ? void 0 : message.depositor;
     return obj;
   },
@@ -1008,7 +1008,7 @@ const QueryDepositsRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId.toString() : void 0;
+    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId?.toString() : void 0;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : void 0;
     return obj;
   },
@@ -1161,7 +1161,7 @@ const QueryTallyResultRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId.toString() : void 0;
+    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

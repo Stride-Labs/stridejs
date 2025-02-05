@@ -279,7 +279,7 @@ const MsgSendTx = {
     obj.owner = message.owner === "" ? void 0 : message.owner;
     obj.connection_id = message.connectionId === "" ? void 0 : message.connectionId;
     obj.packet_data = message.packetData ? import_packet.InterchainAccountPacketData.toAmino(message.packetData) : void 0;
-    obj.relative_timeout = message.relativeTimeout !== BigInt(0) ? message.relativeTimeout.toString() : void 0;
+    obj.relative_timeout = message.relativeTimeout !== BigInt(0) ? message.relativeTimeout?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -348,7 +348,7 @@ const MsgSendTxResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

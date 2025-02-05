@@ -455,7 +455,7 @@ const MsgWithdrawTokenizeShareRecordReward = {
   toAmino(message) {
     const obj = {};
     obj.owner_address = message.ownerAddress === "" ? void 0 : message.ownerAddress;
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId.toString() : void 0;
+    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

@@ -106,8 +106,8 @@ const BaseAccount = {
     const obj = {};
     obj.address = message.address === "" ? void 0 : message.address;
     obj.pub_key = message.pubKey ? import_any.Any.toAmino(message.pubKey) : void 0;
-    obj.account_number = message.accountNumber !== BigInt(0) ? message.accountNumber.toString() : void 0;
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.account_number = message.accountNumber !== BigInt(0) ? message.accountNumber?.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -399,11 +399,11 @@ const Params = {
   },
   toAmino(message) {
     const obj = {};
-    obj.max_memo_characters = message.maxMemoCharacters !== BigInt(0) ? message.maxMemoCharacters.toString() : void 0;
-    obj.tx_sig_limit = message.txSigLimit !== BigInt(0) ? message.txSigLimit.toString() : void 0;
-    obj.tx_size_cost_per_byte = message.txSizeCostPerByte !== BigInt(0) ? message.txSizeCostPerByte.toString() : void 0;
-    obj.sig_verify_cost_ed25519 = message.sigVerifyCostEd25519 !== BigInt(0) ? message.sigVerifyCostEd25519.toString() : void 0;
-    obj.sig_verify_cost_secp256k1 = message.sigVerifyCostSecp256k1 !== BigInt(0) ? message.sigVerifyCostSecp256k1.toString() : void 0;
+    obj.max_memo_characters = message.maxMemoCharacters !== BigInt(0) ? message.maxMemoCharacters?.toString() : void 0;
+    obj.tx_sig_limit = message.txSigLimit !== BigInt(0) ? message.txSigLimit?.toString() : void 0;
+    obj.tx_size_cost_per_byte = message.txSizeCostPerByte !== BigInt(0) ? message.txSizeCostPerByte?.toString() : void 0;
+    obj.sig_verify_cost_ed25519 = message.sigVerifyCostEd25519 !== BigInt(0) ? message.sigVerifyCostEd25519?.toString() : void 0;
+    obj.sig_verify_cost_secp256k1 = message.sigVerifyCostSecp256k1 !== BigInt(0) ? message.sigVerifyCostSecp256k1?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

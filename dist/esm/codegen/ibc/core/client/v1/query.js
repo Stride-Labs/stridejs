@@ -395,8 +395,8 @@ const QueryConsensusStateRequest = {
   toAmino(message) {
     const obj = {};
     obj.client_id = message.clientId === "" ? void 0 : message.clientId;
-    obj.revision_number = message.revisionNumber !== BigInt(0) ? message.revisionNumber.toString() : void 0;
-    obj.revision_height = message.revisionHeight !== BigInt(0) ? message.revisionHeight.toString() : void 0;
+    obj.revision_number = message.revisionNumber !== BigInt(0) ? message.revisionNumber?.toString() : void 0;
+    obj.revision_height = message.revisionHeight !== BigInt(0) ? message.revisionHeight?.toString() : void 0;
     obj.latest_height = message.latestHeight === false ? void 0 : message.latestHeight;
     return obj;
   },

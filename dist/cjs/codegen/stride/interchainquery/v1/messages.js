@@ -127,7 +127,7 @@ const MsgSubmitQueryResponse = {
     obj.query_id = message.queryId === "" ? void 0 : message.queryId;
     obj.result = message.result ? (0, import_helpers.base64FromBytes)(message.result) : void 0;
     obj.proof_ops = message.proofOps ? import_proof.ProofOps.toAmino(message.proofOps) : void 0;
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.from_address = message.fromAddress === "" ? void 0 : message.fromAddress;
     return obj;
   },

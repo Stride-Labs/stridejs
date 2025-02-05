@@ -687,8 +687,8 @@ const RequestInfo = {
   toAmino(message) {
     const obj = {};
     obj.version = message.version === "" ? void 0 : message.version;
-    obj.block_version = message.blockVersion !== BigInt(0) ? message.blockVersion.toString() : void 0;
-    obj.p2p_version = message.p2pVersion !== BigInt(0) ? message.p2pVersion.toString() : void 0;
+    obj.block_version = message.blockVersion !== BigInt(0) ? message.blockVersion?.toString() : void 0;
+    obj.p2p_version = message.p2pVersion !== BigInt(0) ? message.p2pVersion?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -888,7 +888,7 @@ const RequestInitChain = {
       obj.validators = message.validators;
     }
     obj.app_state_bytes = message.appStateBytes ? (0, import_helpers.base64FromBytes)(message.appStateBytes) : void 0;
-    obj.initial_height = message.initialHeight !== BigInt(0) ? message.initialHeight.toString() : void 0;
+    obj.initial_height = message.initialHeight !== BigInt(0) ? message.initialHeight?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -986,7 +986,7 @@ const RequestQuery = {
     const obj = {};
     obj.data = message.data ? (0, import_helpers.base64FromBytes)(message.data) : void 0;
     obj.path = message.path === "" ? void 0 : message.path;
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.prove = message.prove === false ? void 0 : message.prove;
     return obj;
   },
@@ -1289,7 +1289,7 @@ const RequestEndBlock = {
   },
   toAmino(message) {
     const obj = {};
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1549,7 +1549,7 @@ const RequestLoadSnapshotChunk = {
   },
   toAmino(message) {
     const obj = {};
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.format = message.format === 0 ? void 0 : message.format;
     obj.chunk = message.chunk === 0 ? void 0 : message.chunk;
     return obj;
@@ -2166,8 +2166,8 @@ const ResponseInfo = {
     const obj = {};
     obj.data = message.data === "" ? void 0 : message.data;
     obj.version = message.version === "" ? void 0 : message.version;
-    obj.app_version = message.appVersion !== BigInt(0) ? message.appVersion.toString() : void 0;
-    obj.last_block_height = message.lastBlockHeight !== BigInt(0) ? message.lastBlockHeight.toString() : void 0;
+    obj.app_version = message.appVersion !== BigInt(0) ? message.appVersion?.toString() : void 0;
+    obj.last_block_height = message.lastBlockHeight !== BigInt(0) ? message.lastBlockHeight?.toString() : void 0;
     obj.last_block_app_hash = message.lastBlockAppHash ? (0, import_helpers.base64FromBytes)(message.lastBlockAppHash) : void 0;
     return obj;
   },
@@ -2498,11 +2498,11 @@ const ResponseQuery = {
     obj.code = message.code === 0 ? void 0 : message.code;
     obj.log = message.log === "" ? void 0 : message.log;
     obj.info = message.info === "" ? void 0 : message.info;
-    obj.index = message.index !== BigInt(0) ? message.index.toString() : void 0;
+    obj.index = message.index !== BigInt(0) ? message.index?.toString() : void 0;
     obj.key = message.key ? (0, import_helpers.base64FromBytes)(message.key) : void 0;
     obj.value = message.value ? (0, import_helpers.base64FromBytes)(message.value) : void 0;
     obj.proof_ops = message.proofOps ? import_proof.ProofOps.toAmino(message.proofOps) : void 0;
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.codespace = message.codespace === "" ? void 0 : message.codespace;
     return obj;
   },
@@ -2743,8 +2743,8 @@ const ResponseCheckTx = {
     obj.data = message.data ? (0, import_helpers.base64FromBytes)(message.data) : void 0;
     obj.log = message.log === "" ? void 0 : message.log;
     obj.info = message.info === "" ? void 0 : message.info;
-    obj.gas_wanted = message.gasWanted !== BigInt(0) ? message.gasWanted.toString() : void 0;
-    obj.gas_used = message.gasUsed !== BigInt(0) ? message.gasUsed.toString() : void 0;
+    obj.gas_wanted = message.gasWanted !== BigInt(0) ? message.gasWanted?.toString() : void 0;
+    obj.gas_used = message.gasUsed !== BigInt(0) ? message.gasUsed?.toString() : void 0;
     if (message.events) {
       obj.events = message.events.map((e) => e ? Event.toAmino(e) : void 0);
     } else {
@@ -2752,7 +2752,7 @@ const ResponseCheckTx = {
     }
     obj.codespace = message.codespace === "" ? void 0 : message.codespace;
     obj.sender = message.sender === "" ? void 0 : message.sender;
-    obj.priority = message.priority !== BigInt(0) ? message.priority.toString() : void 0;
+    obj.priority = message.priority !== BigInt(0) ? message.priority?.toString() : void 0;
     obj.mempool_error = message.mempoolError === "" ? void 0 : message.mempoolError;
     return obj;
   },
@@ -2895,8 +2895,8 @@ const ResponseDeliverTx = {
     obj.data = message.data ? (0, import_helpers.base64FromBytes)(message.data) : void 0;
     obj.log = message.log === "" ? void 0 : message.log;
     obj.info = message.info === "" ? void 0 : message.info;
-    obj.gas_wanted = message.gasWanted !== BigInt(0) ? message.gasWanted.toString() : void 0;
-    obj.gas_used = message.gasUsed !== BigInt(0) ? message.gasUsed.toString() : void 0;
+    obj.gas_wanted = message.gasWanted !== BigInt(0) ? message.gasWanted?.toString() : void 0;
+    obj.gas_used = message.gasUsed !== BigInt(0) ? message.gasUsed?.toString() : void 0;
     if (message.events) {
       obj.events = message.events.map((e) => e ? Event.toAmino(e) : void 0);
     } else {
@@ -3068,7 +3068,7 @@ const ResponseCommit = {
   toAmino(message) {
     const obj = {};
     obj.data = message.data ? (0, import_helpers.base64FromBytes)(message.data) : void 0;
-    obj.retain_height = message.retainHeight !== BigInt(0) ? message.retainHeight.toString() : void 0;
+    obj.retain_height = message.retainHeight !== BigInt(0) ? message.retainHeight?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -3532,8 +3532,8 @@ const BlockParams = {
   },
   toAmino(message) {
     const obj = {};
-    obj.max_bytes = message.maxBytes !== BigInt(0) ? message.maxBytes.toString() : void 0;
-    obj.max_gas = message.maxGas !== BigInt(0) ? message.maxGas.toString() : void 0;
+    obj.max_bytes = message.maxBytes !== BigInt(0) ? message.maxBytes?.toString() : void 0;
+    obj.max_gas = message.maxGas !== BigInt(0) ? message.maxGas?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -3870,7 +3870,7 @@ const TxResult = {
   },
   toAmino(message) {
     const obj = {};
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.index = message.index === 0 ? void 0 : message.index;
     obj.tx = message.tx ? (0, import_helpers.base64FromBytes)(message.tx) : void 0;
     obj.result = message.result ? ResponseDeliverTx.toAmino(message.result) : void 0;
@@ -3948,7 +3948,7 @@ const Validator = {
   toAmino(message) {
     const obj = {};
     obj.address = message.address ? (0, import_helpers.base64FromBytes)(message.address) : void 0;
-    obj.power = message.power !== BigInt(0) ? message.power.toString() : void 0;
+    obj.power = message.power !== BigInt(0) ? message.power?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -4023,7 +4023,7 @@ const ValidatorUpdate = {
   toAmino(message) {
     const obj = {};
     obj.pub_key = message.pubKey ? import_keys.PublicKey.toAmino(message.pubKey) : void 0;
-    obj.power = message.power !== BigInt(0) ? message.power.toString() : void 0;
+    obj.power = message.power !== BigInt(0) ? message.power?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -4207,9 +4207,9 @@ const Evidence = {
     const obj = {};
     obj.type = message.type === 0 ? void 0 : message.type;
     obj.validator = message.validator ? Validator.toAmino(message.validator) : void 0;
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.time = message.time ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.time)) : void 0;
-    obj.total_voting_power = message.totalVotingPower !== BigInt(0) ? message.totalVotingPower.toString() : void 0;
+    obj.total_voting_power = message.totalVotingPower !== BigInt(0) ? message.totalVotingPower?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -4316,7 +4316,7 @@ const Snapshot = {
   },
   toAmino(message) {
     const obj = {};
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.format = message.format === 0 ? void 0 : message.format;
     obj.chunks = message.chunks === 0 ? void 0 : message.chunks;
     obj.hash = message.hash ? (0, import_helpers.base64FromBytes)(message.hash) : void 0;

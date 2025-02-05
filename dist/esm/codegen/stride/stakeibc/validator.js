@@ -134,12 +134,12 @@ const Validator = {
     const obj = {};
     obj.name = message.name === "" ? void 0 : message.name;
     obj.address = message.address === "" ? void 0 : message.address;
-    obj.weight = message.weight !== BigInt(0) ? message.weight.toString() : void 0;
+    obj.weight = message.weight !== BigInt(0) ? message.weight?.toString() : void 0;
     obj.delegation = message.delegation === "" ? void 0 : message.delegation;
     obj.slash_query_progress_tracker = message.slashQueryProgressTracker === "" ? void 0 : message.slashQueryProgressTracker;
     obj.slash_query_checkpoint = message.slashQueryCheckpoint === "" ? void 0 : message.slashQueryCheckpoint;
     obj.shares_to_tokens_rate = message.sharesToTokensRate === "" ? void 0 : message.sharesToTokensRate;
-    obj.delegation_changes_in_progress = message.delegationChangesInProgress !== BigInt(0) ? message.delegationChangesInProgress.toString() : void 0;
+    obj.delegation_changes_in_progress = message.delegationChangesInProgress !== BigInt(0) ? message.delegationChangesInProgress?.toString() : void 0;
     obj.slash_query_in_progress = message.slashQueryInProgress === false ? void 0 : message.slashQueryInProgress;
     return obj;
   },

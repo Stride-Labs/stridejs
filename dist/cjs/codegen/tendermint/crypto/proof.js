@@ -101,8 +101,8 @@ const Proof = {
   },
   toAmino(message) {
     const obj = {};
-    obj.total = message.total !== BigInt(0) ? message.total.toString() : void 0;
-    obj.index = message.index !== BigInt(0) ? message.index.toString() : void 0;
+    obj.total = message.total !== BigInt(0) ? message.total?.toString() : void 0;
+    obj.index = message.index !== BigInt(0) ? message.index?.toString() : void 0;
     obj.leaf_hash = message.leafHash ? (0, import_helpers.base64FromBytes)(message.leafHash) : void 0;
     if (message.aunts) {
       obj.aunts = message.aunts.map((e) => (0, import_helpers.base64FromBytes)(e));

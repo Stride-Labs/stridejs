@@ -275,10 +275,10 @@ const Params = {
     obj.mint_denom = message.mintDenom === "" ? void 0 : message.mintDenom;
     obj.genesis_epoch_provisions = message.genesisEpochProvisions === "" ? void 0 : message.genesisEpochProvisions;
     obj.epoch_identifier = message.epochIdentifier === "" ? void 0 : message.epochIdentifier;
-    obj.reduction_period_in_epochs = message.reductionPeriodInEpochs !== BigInt(0) ? message.reductionPeriodInEpochs.toString() : void 0;
+    obj.reduction_period_in_epochs = message.reductionPeriodInEpochs !== BigInt(0) ? message.reductionPeriodInEpochs?.toString() : void 0;
     obj.reduction_factor = message.reductionFactor === "" ? void 0 : message.reductionFactor;
     obj.distribution_proportions = message.distributionProportions ? DistributionProportions.toAmino(message.distributionProportions) : void 0;
-    obj.minting_rewards_distribution_start_epoch = message.mintingRewardsDistributionStartEpoch !== BigInt(0) ? message.mintingRewardsDistributionStartEpoch.toString() : void 0;
+    obj.minting_rewards_distribution_start_epoch = message.mintingRewardsDistributionStartEpoch !== BigInt(0) ? message.mintingRewardsDistributionStartEpoch?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

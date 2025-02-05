@@ -93,7 +93,7 @@ const MsgCreateVestingAccount = {
     } else {
       obj.amount = message.amount;
     }
-    obj.end_time = message.endTime !== BigInt(0) ? message.endTime.toString() : void 0;
+    obj.end_time = message.endTime !== BigInt(0) ? message.endTime?.toString() : void 0;
     obj.delayed = message.delayed === false ? void 0 : message.delayed;
     return obj;
   },

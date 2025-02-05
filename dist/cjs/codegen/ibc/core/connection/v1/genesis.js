@@ -105,7 +105,7 @@ const GenesisState = {
     } else {
       obj.client_connection_paths = message.clientConnectionPaths;
     }
-    obj.next_connection_sequence = message.nextConnectionSequence !== BigInt(0) ? message.nextConnectionSequence.toString() : void 0;
+    obj.next_connection_sequence = message.nextConnectionSequence !== BigInt(0) ? message.nextConnectionSequence?.toString() : void 0;
     obj.params = message.params ? import_connection.Params.toAmino(message.params) : void 0;
     return obj;
   },

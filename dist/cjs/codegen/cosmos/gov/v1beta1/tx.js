@@ -173,7 +173,7 @@ const MsgSubmitProposalResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId ? message.proposalId.toString() : "0";
+    obj.proposal_id = message.proposalId ? message.proposalId?.toString() : "0";
     return obj;
   },
   fromAminoMsg(object) {
@@ -264,7 +264,7 @@ const MsgVote = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId ? message.proposalId.toString() : "0";
+    obj.proposal_id = message.proposalId ? message.proposalId?.toString() : "0";
     obj.voter = message.voter === "" ? void 0 : message.voter;
     obj.option = message.option === 0 ? void 0 : message.option;
     return obj;
@@ -411,7 +411,7 @@ const MsgVoteWeighted = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId.toString() : void 0;
+    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId?.toString() : void 0;
     obj.voter = message.voter === "" ? void 0 : message.voter;
     if (message.options) {
       obj.options = message.options.map((e) => e ? import_gov.WeightedVoteOption.toAmino(e) : void 0);
@@ -562,7 +562,7 @@ const MsgDeposit = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId ? message.proposalId.toString() : "0";
+    obj.proposal_id = message.proposalId ? message.proposalId?.toString() : "0";
     obj.depositor = message.depositor === "" ? void 0 : message.depositor;
     if (message.amount) {
       obj.amount = message.amount.map((e) => e ? import_coin.Coin.toAmino(e) : void 0);

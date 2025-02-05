@@ -165,9 +165,9 @@ const BlockParams = {
   },
   toAmino(message) {
     const obj = {};
-    obj.max_bytes = message.maxBytes !== BigInt(0) ? message.maxBytes.toString() : void 0;
-    obj.max_gas = message.maxGas !== BigInt(0) ? message.maxGas.toString() : void 0;
-    obj.time_iota_ms = message.timeIotaMs !== BigInt(0) ? message.timeIotaMs.toString() : void 0;
+    obj.max_bytes = message.maxBytes !== BigInt(0) ? message.maxBytes?.toString() : void 0;
+    obj.max_gas = message.maxGas !== BigInt(0) ? message.maxGas?.toString() : void 0;
+    obj.time_iota_ms = message.timeIotaMs !== BigInt(0) ? message.timeIotaMs?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -252,9 +252,9 @@ const EvidenceParams = {
   },
   toAmino(message) {
     const obj = {};
-    obj.max_age_num_blocks = message.maxAgeNumBlocks !== BigInt(0) ? message.maxAgeNumBlocks.toString() : void 0;
+    obj.max_age_num_blocks = message.maxAgeNumBlocks !== BigInt(0) ? message.maxAgeNumBlocks?.toString() : void 0;
     obj.max_age_duration = message.maxAgeDuration ? Duration.toAmino(message.maxAgeDuration) : void 0;
-    obj.max_bytes = message.maxBytes !== BigInt(0) ? message.maxBytes.toString() : void 0;
+    obj.max_bytes = message.maxBytes !== BigInt(0) ? message.maxBytes?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -382,7 +382,7 @@ const VersionParams = {
   },
   toAmino(message) {
     const obj = {};
-    obj.app_version = message.appVersion !== BigInt(0) ? message.appVersion.toString() : void 0;
+    obj.app_version = message.appVersion !== BigInt(0) ? message.appVersion?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -456,8 +456,8 @@ const HashedParams = {
   },
   toAmino(message) {
     const obj = {};
-    obj.block_max_bytes = message.blockMaxBytes !== BigInt(0) ? message.blockMaxBytes.toString() : void 0;
-    obj.block_max_gas = message.blockMaxGas !== BigInt(0) ? message.blockMaxGas.toString() : void 0;
+    obj.block_max_bytes = message.blockMaxBytes !== BigInt(0) ? message.blockMaxBytes?.toString() : void 0;
+    obj.block_max_gas = message.blockMaxGas !== BigInt(0) ? message.blockMaxGas?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

@@ -138,10 +138,10 @@ const EpochInfo = {
     obj.identifier = message.identifier === "" ? void 0 : message.identifier;
     obj.start_time = message.startTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.startTime)) : void 0;
     obj.duration = message.duration ? import_duration.Duration.toAmino(message.duration) : void 0;
-    obj.current_epoch = message.currentEpoch !== BigInt(0) ? message.currentEpoch.toString() : void 0;
+    obj.current_epoch = message.currentEpoch !== BigInt(0) ? message.currentEpoch?.toString() : void 0;
     obj.current_epoch_start_time = message.currentEpochStartTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.currentEpochStartTime)) : void 0;
     obj.epoch_counting_started = message.epochCountingStarted === false ? void 0 : message.epochCountingStarted;
-    obj.current_epoch_start_height = message.currentEpochStartHeight !== BigInt(0) ? message.currentEpochStartHeight.toString() : void 0;
+    obj.current_epoch_start_height = message.currentEpochStartHeight !== BigInt(0) ? message.currentEpochStartHeight?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

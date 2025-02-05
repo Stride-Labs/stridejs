@@ -268,7 +268,7 @@ const QueryAppliedPlanResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -337,7 +337,7 @@ const QueryUpgradedConsensusStateRequest = {
   },
   toAmino(message) {
     const obj = {};
-    obj.last_height = message.lastHeight !== BigInt(0) ? message.lastHeight.toString() : void 0;
+    obj.last_height = message.lastHeight !== BigInt(0) ? message.lastHeight?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

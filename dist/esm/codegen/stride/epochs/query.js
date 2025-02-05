@@ -248,7 +248,7 @@ const QueryCurrentEpochResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.current_epoch = message.currentEpoch !== BigInt(0) ? message.currentEpoch.toString() : void 0;
+    obj.current_epoch = message.currentEpoch !== BigInt(0) ? message.currentEpoch?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

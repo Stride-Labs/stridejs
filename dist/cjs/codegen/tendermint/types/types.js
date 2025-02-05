@@ -564,7 +564,7 @@ const Header = {
     const obj = {};
     obj.version = message.version ? import_types.Consensus.toAmino(message.version) : void 0;
     obj.chain_id = message.chainId === "" ? void 0 : message.chainId;
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.time = message.time ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.time)) : void 0;
     obj.last_block_id = message.lastBlockId ? BlockID.toAmino(message.lastBlockId) : void 0;
     obj.last_commit_hash = message.lastCommitHash ? (0, import_helpers.base64FromBytes)(message.lastCommitHash) : void 0;
@@ -781,7 +781,7 @@ const Vote = {
   toAmino(message) {
     const obj = {};
     obj.type = message.type === 0 ? void 0 : message.type;
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.round = message.round === 0 ? void 0 : message.round;
     obj.block_id = message.blockId ? BlockID.toAmino(message.blockId) : void 0;
     obj.timestamp = message.timestamp ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.timestamp)) : void 0;
@@ -881,7 +881,7 @@ const Commit = {
   },
   toAmino(message) {
     const obj = {};
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.round = message.round === 0 ? void 0 : message.round;
     obj.block_id = message.blockId ? BlockID.toAmino(message.blockId) : void 0;
     if (message.signatures) {
@@ -1117,7 +1117,7 @@ const Proposal = {
   toAmino(message) {
     const obj = {};
     obj.type = message.type === 0 ? void 0 : message.type;
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.round = message.round === 0 ? void 0 : message.round;
     obj.pol_round = message.polRound === 0 ? void 0 : message.polRound;
     obj.block_id = message.blockId ? BlockID.toAmino(message.blockId) : void 0;
@@ -1369,9 +1369,9 @@ const BlockMeta = {
   toAmino(message) {
     const obj = {};
     obj.block_id = message.blockId ? BlockID.toAmino(message.blockId) : void 0;
-    obj.block_size = message.blockSize !== BigInt(0) ? message.blockSize.toString() : void 0;
+    obj.block_size = message.blockSize !== BigInt(0) ? message.blockSize?.toString() : void 0;
     obj.header = message.header ? Header.toAmino(message.header) : void 0;
-    obj.num_txs = message.numTxs !== BigInt(0) ? message.numTxs.toString() : void 0;
+    obj.num_txs = message.numTxs !== BigInt(0) ? message.numTxs?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

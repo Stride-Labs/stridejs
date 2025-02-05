@@ -94,7 +94,7 @@ const MsgConnectionOpenInit = {
     obj.client_id = message.clientId === "" ? void 0 : message.clientId;
     obj.counterparty = message.counterparty ? Counterparty.toAmino(message.counterparty) : void 0;
     obj.version = message.version ? Version.toAmino(message.version) : void 0;
-    obj.delay_period = message.delayPeriod !== BigInt(0) ? message.delayPeriod.toString() : void 0;
+    obj.delay_period = message.delayPeriod !== BigInt(0) ? message.delayPeriod?.toString() : void 0;
     obj.signer = message.signer === "" ? void 0 : message.signer;
     return obj;
   },
@@ -354,7 +354,7 @@ const MsgConnectionOpenTry = {
     obj.previous_connection_id = message.previousConnectionId === "" ? void 0 : message.previousConnectionId;
     obj.client_state = message.clientState ? Any.toAmino(message.clientState) : void 0;
     obj.counterparty = message.counterparty ? Counterparty.toAmino(message.counterparty) : void 0;
-    obj.delay_period = message.delayPeriod !== BigInt(0) ? message.delayPeriod.toString() : void 0;
+    obj.delay_period = message.delayPeriod !== BigInt(0) ? message.delayPeriod?.toString() : void 0;
     if (message.counterpartyVersions) {
       obj.counterparty_versions = message.counterpartyVersions.map((e) => e ? Version.toAmino(e) : void 0);
     } else {

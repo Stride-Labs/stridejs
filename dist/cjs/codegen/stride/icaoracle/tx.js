@@ -240,7 +240,7 @@ const MsgInstantiateOracle = {
     const obj = {};
     obj.creator = message.creator === "" ? void 0 : message.creator;
     obj.oracle_chain_id = message.oracleChainId === "" ? void 0 : message.oracleChainId;
-    obj.contract_code_id = message.contractCodeId !== BigInt(0) ? message.contractCodeId.toString() : void 0;
+    obj.contract_code_id = message.contractCodeId !== BigInt(0) ? message.contractCodeId?.toString() : void 0;
     obj.transfer_channel_on_oracle = message.transferChannelOnOracle === "" ? void 0 : message.transferChannelOnOracle;
     return obj;
   },

@@ -116,7 +116,7 @@ const Snapshot = {
   },
   toAmino(message) {
     const obj = {};
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.format = message.format === 0 ? void 0 : message.format;
     obj.chunks = message.chunks === 0 ? void 0 : message.chunks;
     obj.hash = message.hash ? (0, import_helpers.base64FromBytes)(message.hash) : void 0;
@@ -469,7 +469,7 @@ const SnapshotIAVLItem = {
     const obj = {};
     obj.key = message.key ? (0, import_helpers.base64FromBytes)(message.key) : void 0;
     obj.value = message.value ? (0, import_helpers.base64FromBytes)(message.value) : void 0;
-    obj.version = message.version !== BigInt(0) ? message.version.toString() : void 0;
+    obj.version = message.version !== BigInt(0) ? message.version?.toString() : void 0;
     obj.height = message.height === 0 ? void 0 : message.height;
     return obj;
   },

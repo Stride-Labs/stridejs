@@ -304,7 +304,7 @@ const SignDoc = {
     obj.body_bytes = message.bodyBytes ? (0, import_helpers.base64FromBytes)(message.bodyBytes) : void 0;
     obj.auth_info_bytes = message.authInfoBytes ? (0, import_helpers.base64FromBytes)(message.authInfoBytes) : void 0;
     obj.chain_id = message.chainId === "" ? void 0 : message.chainId;
-    obj.account_number = message.accountNumber !== BigInt(0) ? message.accountNumber.toString() : void 0;
+    obj.account_number = message.accountNumber !== BigInt(0) ? message.accountNumber?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -417,7 +417,7 @@ const TxBody = {
       obj.messages = message.messages;
     }
     obj.memo = message.memo === "" ? void 0 : message.memo;
-    obj.timeout_height = message.timeoutHeight !== BigInt(0) ? message.timeoutHeight.toString() : void 0;
+    obj.timeout_height = message.timeoutHeight !== BigInt(0) ? message.timeoutHeight?.toString() : void 0;
     if (message.extensionOptions) {
       obj.extension_options = message.extensionOptions.map((e) => e ? import_any.Any.toAmino(e) : void 0);
     } else {
@@ -603,7 +603,7 @@ const SignerInfo = {
     const obj = {};
     obj.public_key = message.publicKey ? import_any.Any.toAmino(message.publicKey) : void 0;
     obj.mode_info = message.modeInfo ? ModeInfo.toAmino(message.modeInfo) : void 0;
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -941,7 +941,7 @@ const Fee = {
     } else {
       obj.amount = message.amount;
     }
-    obj.gas_limit = message.gasLimit !== BigInt(0) ? message.gasLimit.toString() : void 0;
+    obj.gas_limit = message.gasLimit !== BigInt(0) ? message.gasLimit?.toString() : void 0;
     obj.payer = message.payer === "" ? void 0 : message.payer;
     obj.granter = message.granter === "" ? void 0 : message.granter;
     return obj;

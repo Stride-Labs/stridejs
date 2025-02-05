@@ -1180,7 +1180,7 @@ const QueryGetNextPacketSequenceResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

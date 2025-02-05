@@ -174,7 +174,7 @@ const TxResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.txhash = message.txhash === "" ? void 0 : message.txhash;
     obj.codespace = message.codespace === "" ? void 0 : message.codespace;
     obj.code = message.code === 0 ? void 0 : message.code;
@@ -186,8 +186,8 @@ const TxResponse = {
       obj.logs = message.logs;
     }
     obj.info = message.info === "" ? void 0 : message.info;
-    obj.gas_wanted = message.gasWanted !== BigInt(0) ? message.gasWanted.toString() : void 0;
-    obj.gas_used = message.gasUsed !== BigInt(0) ? message.gasUsed.toString() : void 0;
+    obj.gas_wanted = message.gasWanted !== BigInt(0) ? message.gasWanted?.toString() : void 0;
+    obj.gas_used = message.gasUsed !== BigInt(0) ? message.gasUsed?.toString() : void 0;
     obj.tx = message.tx ? Any.toAmino(message.tx) : void 0;
     obj.timestamp = message.timestamp === "" ? void 0 : message.timestamp;
     if (message.events) {
@@ -533,8 +533,8 @@ const GasInfo = {
   },
   toAmino(message) {
     const obj = {};
-    obj.gas_wanted = message.gasWanted !== BigInt(0) ? message.gasWanted.toString() : void 0;
-    obj.gas_used = message.gasUsed !== BigInt(0) ? message.gasUsed.toString() : void 0;
+    obj.gas_wanted = message.gasWanted !== BigInt(0) ? message.gasWanted?.toString() : void 0;
+    obj.gas_used = message.gasUsed !== BigInt(0) ? message.gasUsed?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -984,11 +984,11 @@ const SearchTxsResult = {
   },
   toAmino(message) {
     const obj = {};
-    obj.total_count = message.totalCount ? message.totalCount.toString() : "0";
-    obj.count = message.count !== BigInt(0) ? message.count.toString() : void 0;
-    obj.page_number = message.pageNumber ? message.pageNumber.toString() : "0";
-    obj.page_total = message.pageTotal ? message.pageTotal.toString() : "0";
-    obj.limit = message.limit !== BigInt(0) ? message.limit.toString() : void 0;
+    obj.total_count = message.totalCount ? message.totalCount?.toString() : "0";
+    obj.count = message.count !== BigInt(0) ? message.count?.toString() : void 0;
+    obj.page_number = message.pageNumber ? message.pageNumber?.toString() : "0";
+    obj.page_total = message.pageTotal ? message.pageTotal?.toString() : "0";
+    obj.limit = message.limit !== BigInt(0) ? message.limit?.toString() : void 0;
     if (message.txs) {
       obj.txs = message.txs.map((e) => e ? TxResponse.toAmino(e) : void 0);
     } else {

@@ -448,7 +448,7 @@ const MsgConfirmDelegation = {
   toAmino(message) {
     const obj = {};
     obj.operator = message.operator === "" ? void 0 : message.operator;
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId.toString() : void 0;
+    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : void 0;
     obj.tx_hash = message.txHash === "" ? void 0 : message.txHash;
     return obj;
   },
@@ -591,7 +591,7 @@ const MsgConfirmUndelegation = {
   toAmino(message) {
     const obj = {};
     obj.operator = message.operator === "" ? void 0 : message.operator;
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId.toString() : void 0;
+    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : void 0;
     obj.tx_hash = message.txHash === "" ? void 0 : message.txHash;
     return obj;
   },
@@ -734,7 +734,7 @@ const MsgConfirmUnbondedTokenSweep = {
   toAmino(message) {
     const obj = {};
     obj.operator = message.operator === "" ? void 0 : message.operator;
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId.toString() : void 0;
+    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : void 0;
     obj.tx_hash = message.txHash === "" ? void 0 : message.txHash;
     return obj;
   },

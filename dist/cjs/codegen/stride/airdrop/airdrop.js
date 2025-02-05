@@ -108,7 +108,7 @@ const Params = {
   },
   toAmino(message) {
     const obj = {};
-    obj.period_length_seconds = message.periodLengthSeconds !== BigInt(0) ? message.periodLengthSeconds.toString() : void 0;
+    obj.period_length_seconds = message.periodLengthSeconds !== BigInt(0) ? message.periodLengthSeconds?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

@@ -370,7 +370,7 @@ const UserRedemptionRecord = {
     obj.native_token_amount = message.nativeTokenAmount === "" ? void 0 : message.nativeTokenAmount;
     obj.denom = message.denom === "" ? void 0 : message.denom;
     obj.host_zone_id = message.hostZoneId === "" ? void 0 : message.hostZoneId;
-    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber.toString() : void 0;
+    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber?.toString() : void 0;
     obj.claim_is_pending = message.claimIsPending === false ? void 0 : message.claimIsPending;
     obj.st_token_amount = message.stTokenAmount === "" ? void 0 : message.stTokenAmount;
     return obj;
@@ -512,14 +512,14 @@ const DepositRecord = {
   },
   toAmino(message) {
     const obj = {};
-    obj.id = message.id !== BigInt(0) ? message.id.toString() : void 0;
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : void 0;
     obj.amount = message.amount === "" ? void 0 : message.amount;
     obj.denom = message.denom === "" ? void 0 : message.denom;
     obj.host_zone_id = message.hostZoneId === "" ? void 0 : message.hostZoneId;
     obj.status = message.status === 0 ? void 0 : message.status;
-    obj.deposit_epoch_number = message.depositEpochNumber !== BigInt(0) ? message.depositEpochNumber.toString() : void 0;
+    obj.deposit_epoch_number = message.depositEpochNumber !== BigInt(0) ? message.depositEpochNumber?.toString() : void 0;
     obj.source = message.source === 0 ? void 0 : message.source;
-    obj.delegation_txs_in_progress = message.delegationTxsInProgress !== BigInt(0) ? message.delegationTxsInProgress.toString() : void 0;
+    obj.delegation_txs_in_progress = message.delegationTxsInProgress !== BigInt(0) ? message.delegationTxsInProgress?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -695,10 +695,10 @@ const HostZoneUnbonding = {
     obj.st_tokens_to_burn = message.stTokensToBurn === "" ? void 0 : message.stTokensToBurn;
     obj.native_tokens_to_unbond = message.nativeTokensToUnbond === "" ? void 0 : message.nativeTokensToUnbond;
     obj.claimable_native_tokens = message.claimableNativeTokens === "" ? void 0 : message.claimableNativeTokens;
-    obj.undelegation_txs_in_progress = message.undelegationTxsInProgress !== BigInt(0) ? message.undelegationTxsInProgress.toString() : void 0;
+    obj.undelegation_txs_in_progress = message.undelegationTxsInProgress !== BigInt(0) ? message.undelegationTxsInProgress?.toString() : void 0;
     obj.denom = message.denom === "" ? void 0 : message.denom;
     obj.host_zone_id = message.hostZoneId === "" ? void 0 : message.hostZoneId;
-    obj.unbonding_time = message.unbondingTime !== BigInt(0) ? message.unbondingTime.toString() : void 0;
+    obj.unbonding_time = message.unbondingTime !== BigInt(0) ? message.unbondingTime?.toString() : void 0;
     obj.status = message.status === 0 ? void 0 : message.status;
     if (message.userRedemptionRecords) {
       obj.user_redemption_records = message.userRedemptionRecords.map((e) => e);
@@ -776,7 +776,7 @@ const EpochUnbondingRecord = {
   },
   toAmino(message) {
     const obj = {};
-    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber.toString() : void 0;
+    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber?.toString() : void 0;
     if (message.hostZoneUnbondings) {
       obj.host_zone_unbondings = message.hostZoneUnbondings.map((e) => e ? HostZoneUnbonding.toAmino(e) : void 0);
     } else {

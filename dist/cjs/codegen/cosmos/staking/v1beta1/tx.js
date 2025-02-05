@@ -1104,7 +1104,7 @@ const MsgCancelUnbondingDelegation = {
     obj.delegator_address = message.delegatorAddress === "" ? void 0 : message.delegatorAddress;
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
     obj.amount = message.amount ? import_coin.Coin.toAmino(message.amount) : void 0;
-    obj.creation_height = message.creationHeight !== BigInt(0) ? message.creationHeight.toString() : void 0;
+    obj.creation_height = message.creationHeight !== BigInt(0) ? message.creationHeight?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1575,7 +1575,7 @@ const MsgTransferTokenizeShareRecord = {
   },
   toAmino(message) {
     const obj = {};
-    obj.tokenize_share_record_id = message.tokenizeShareRecordId !== BigInt(0) ? message.tokenizeShareRecordId.toString() : void 0;
+    obj.tokenize_share_record_id = message.tokenizeShareRecordId !== BigInt(0) ? message.tokenizeShareRecordId?.toString() : void 0;
     obj.sender = message.sender === "" ? void 0 : message.sender;
     obj.new_owner = message.newOwner === "" ? void 0 : message.newOwner;
     return obj;

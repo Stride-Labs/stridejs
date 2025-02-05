@@ -522,8 +522,8 @@ const QueryValidatorSlashesRequest = {
   toAmino(message) {
     const obj = {};
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
-    obj.starting_height = message.startingHeight !== BigInt(0) ? message.startingHeight.toString() : void 0;
-    obj.ending_height = message.endingHeight !== BigInt(0) ? message.endingHeight.toString() : void 0;
+    obj.starting_height = message.startingHeight !== BigInt(0) ? message.startingHeight?.toString() : void 0;
+    obj.ending_height = message.endingHeight !== BigInt(0) ? message.endingHeight?.toString() : void 0;
     obj.pagination = message.pagination ? import_pagination.PageRequest.toAmino(message.pagination) : void 0;
     return obj;
   },

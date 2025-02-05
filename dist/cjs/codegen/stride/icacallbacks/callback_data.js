@@ -124,7 +124,7 @@ const CallbackData = {
     obj.callback_key = message.callbackKey === "" ? void 0 : message.callbackKey;
     obj.port_id = message.portId === "" ? void 0 : message.portId;
     obj.channel_id = message.channelId === "" ? void 0 : message.channelId;
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     obj.callback_id = message.callbackId === "" ? void 0 : message.callbackId;
     obj.callback_args = message.callbackArgs ? (0, import_helpers.base64FromBytes)(message.callbackArgs) : void 0;
     return obj;

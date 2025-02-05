@@ -71,7 +71,7 @@ const ValidatorSet = {
       obj.validators = message.validators;
     }
     obj.proposer = message.proposer ? Validator.toAmino(message.proposer) : void 0;
-    obj.total_voting_power = message.totalVotingPower !== BigInt(0) ? message.totalVotingPower.toString() : void 0;
+    obj.total_voting_power = message.totalVotingPower !== BigInt(0) ? message.totalVotingPower?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -169,8 +169,8 @@ const Validator = {
     const obj = {};
     obj.address = message.address ? base64FromBytes(message.address) : void 0;
     obj.pub_key = message.pubKey ? PublicKey.toAmino(message.pubKey) : void 0;
-    obj.voting_power = message.votingPower !== BigInt(0) ? message.votingPower.toString() : void 0;
-    obj.proposer_priority = message.proposerPriority !== BigInt(0) ? message.proposerPriority.toString() : void 0;
+    obj.voting_power = message.votingPower !== BigInt(0) ? message.votingPower?.toString() : void 0;
+    obj.proposer_priority = message.proposerPriority !== BigInt(0) ? message.proposerPriority?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -245,7 +245,7 @@ const SimpleValidator = {
   toAmino(message) {
     const obj = {};
     obj.pub_key = message.pubKey ? PublicKey.toAmino(message.pubKey) : void 0;
-    obj.voting_power = message.votingPower !== BigInt(0) ? message.votingPower.toString() : void 0;
+    obj.voting_power = message.votingPower !== BigInt(0) ? message.votingPower?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

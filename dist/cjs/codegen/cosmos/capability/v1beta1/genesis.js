@@ -78,7 +78,7 @@ const GenesisOwners = {
   },
   toAmino(message) {
     const obj = {};
-    obj.index = message.index !== BigInt(0) ? message.index.toString() : void 0;
+    obj.index = message.index !== BigInt(0) ? message.index?.toString() : void 0;
     obj.index_owners = message.indexOwners ? import_capability.CapabilityOwners.toAmino(message.indexOwners) : void 0;
     return obj;
   },
@@ -157,7 +157,7 @@ const GenesisState = {
   },
   toAmino(message) {
     const obj = {};
-    obj.index = message.index !== BigInt(0) ? message.index.toString() : void 0;
+    obj.index = message.index !== BigInt(0) ? message.index?.toString() : void 0;
     if (message.owners) {
       obj.owners = message.owners.map((e) => e ? GenesisOwners.toAmino(e) : void 0);
     } else {

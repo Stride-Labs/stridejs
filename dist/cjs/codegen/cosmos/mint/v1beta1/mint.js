@@ -208,7 +208,7 @@ const Params = {
     obj.inflation_max = message.inflationMax === "" ? void 0 : message.inflationMax;
     obj.inflation_min = message.inflationMin === "" ? void 0 : message.inflationMin;
     obj.goal_bonded = message.goalBonded === "" ? void 0 : message.goalBonded;
-    obj.blocks_per_year = message.blocksPerYear !== BigInt(0) ? message.blocksPerYear.toString() : void 0;
+    obj.blocks_per_year = message.blocksPerYear !== BigInt(0) ? message.blocksPerYear?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

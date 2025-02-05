@@ -192,7 +192,7 @@ const SignatureDescriptor = {
     const obj = {};
     obj.public_key = message.publicKey ? Any.toAmino(message.publicKey) : void 0;
     obj.data = message.data ? SignatureDescriptor_Data.toAmino(message.data) : void 0;
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : void 0;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {

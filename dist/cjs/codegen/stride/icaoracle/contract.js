@@ -263,8 +263,8 @@ const MsgPostMetric = {
     obj.key = message.key === "" ? void 0 : message.key;
     obj.value = message.value === "" ? void 0 : message.value;
     obj.metric_type = message.metricType === "" ? void 0 : message.metricType;
-    obj.update_time = message.updateTime !== BigInt(0) ? message.updateTime.toString() : void 0;
-    obj.block_height = message.blockHeight !== BigInt(0) ? message.blockHeight.toString() : void 0;
+    obj.update_time = message.updateTime !== BigInt(0) ? message.updateTime?.toString() : void 0;
+    obj.block_height = message.blockHeight !== BigInt(0) ? message.blockHeight?.toString() : void 0;
     obj.attributes = message.attributes === "" ? void 0 : message.attributes;
     return obj;
   },

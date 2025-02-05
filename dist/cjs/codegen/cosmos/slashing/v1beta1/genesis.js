@@ -341,7 +341,7 @@ const MissedBlock = {
   },
   toAmino(message) {
     const obj = {};
-    obj.index = message.index !== BigInt(0) ? message.index.toString() : void 0;
+    obj.index = message.index !== BigInt(0) ? message.index?.toString() : void 0;
     obj.missed = message.missed === false ? void 0 : message.missed;
     return obj;
   },

@@ -67,7 +67,7 @@ const Capability = {
   },
   toAmino(message) {
     const obj = {};
-    obj.index = message.index !== BigInt(0) ? message.index.toString() : void 0;
+    obj.index = message.index !== BigInt(0) ? message.index?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
