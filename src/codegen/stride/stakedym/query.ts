@@ -680,7 +680,7 @@ export const QueryRedemptionRecordRequest = {
   },
   toAmino(message: QueryRedemptionRecordRequest): QueryRedemptionRecordRequestAmino {
     const obj: any = {};
-    obj.unbonding_record_id = message.unbondingRecordId !== BigInt(0) ? message.unbondingRecordId.toString() : undefined;
+    obj.unbonding_record_id = message.unbondingRecordId !== BigInt(0) ? message.unbondingRecordId?.toString() : undefined;
     obj.address = message.address === "" ? undefined : message.address;
     return obj;
   },
@@ -830,7 +830,7 @@ export const QueryRedemptionRecordsRequest = {
   toAmino(message: QueryRedemptionRecordsRequest): QueryRedemptionRecordsRequestAmino {
     const obj: any = {};
     obj.address = message.address === "" ? undefined : message.address;
-    obj.unbonding_record_id = message.unbondingRecordId !== BigInt(0) ? message.unbondingRecordId.toString() : undefined;
+    obj.unbonding_record_id = message.unbondingRecordId !== BigInt(0) ? message.unbondingRecordId?.toString() : undefined;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
   },
@@ -1098,7 +1098,7 @@ export const RedemptionRecordResponse = {
   toAmino(message: RedemptionRecordResponse): RedemptionRecordResponseAmino {
     const obj: any = {};
     obj.redemption_record = message.redemptionRecord ? RedemptionRecord.toAmino(message.redemptionRecord) : undefined;
-    obj.unbonding_completion_time_seconds = message.unbondingCompletionTimeSeconds !== BigInt(0) ? message.unbondingCompletionTimeSeconds.toString() : undefined;
+    obj.unbonding_completion_time_seconds = message.unbondingCompletionTimeSeconds !== BigInt(0) ? message.unbondingCompletionTimeSeconds?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: RedemptionRecordResponseAminoMsg): RedemptionRecordResponse {

@@ -24,6 +24,26 @@ export interface SplitDelegationSDKType {
     validator: string;
     amount: string;
 }
+export interface SplitUndelegation {
+    validator: string;
+    nativeTokenAmount: string;
+}
+export interface SplitUndelegationProtoMsg {
+    typeUrl: "/stride.stakeibc.SplitUndelegation";
+    value: Uint8Array;
+}
+export interface SplitUndelegationAmino {
+    validator?: string;
+    native_token_amount?: string;
+}
+export interface SplitUndelegationAminoMsg {
+    type: "/stride.stakeibc.SplitUndelegation";
+    value: SplitUndelegationAmino;
+}
+export interface SplitUndelegationSDKType {
+    validator: string;
+    native_token_amount: string;
+}
 export interface DelegateCallback {
     hostZoneId: string;
     depositRecordId: bigint;
@@ -92,7 +112,7 @@ export interface ReinvestCallbackSDKType {
 }
 export interface UndelegateCallback {
     hostZoneId: string;
-    splitDelegations: SplitDelegation[];
+    splitUndelegations: SplitUndelegation[];
     epochUnbondingRecordIds: bigint[];
 }
 export interface UndelegateCallbackProtoMsg {
@@ -101,7 +121,7 @@ export interface UndelegateCallbackProtoMsg {
 }
 export interface UndelegateCallbackAmino {
     host_zone_id?: string;
-    split_delegations?: SplitDelegationAmino[];
+    split_undelegations?: SplitUndelegationAmino[];
     epoch_unbonding_record_ids?: string[];
 }
 export interface UndelegateCallbackAminoMsg {
@@ -110,7 +130,7 @@ export interface UndelegateCallbackAminoMsg {
 }
 export interface UndelegateCallbackSDKType {
     host_zone_id: string;
-    split_delegations: SplitDelegationSDKType[];
+    split_undelegations: SplitUndelegationSDKType[];
     epoch_unbonding_record_ids: bigint[];
 }
 export interface RedemptionCallback {
@@ -303,6 +323,18 @@ export declare const SplitDelegation: {
     fromProtoMsg(message: SplitDelegationProtoMsg): SplitDelegation;
     toProto(message: SplitDelegation): Uint8Array;
     toProtoMsg(message: SplitDelegation): SplitDelegationProtoMsg;
+};
+export declare const SplitUndelegation: {
+    typeUrl: string;
+    encode(message: SplitUndelegation, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): SplitUndelegation;
+    fromPartial(object: Partial<SplitUndelegation>): SplitUndelegation;
+    fromAmino(object: SplitUndelegationAmino): SplitUndelegation;
+    toAmino(message: SplitUndelegation): SplitUndelegationAmino;
+    fromAminoMsg(object: SplitUndelegationAminoMsg): SplitUndelegation;
+    fromProtoMsg(message: SplitUndelegationProtoMsg): SplitUndelegation;
+    toProto(message: SplitUndelegation): Uint8Array;
+    toProtoMsg(message: SplitUndelegation): SplitUndelegationProtoMsg;
 };
 export declare const DelegateCallback: {
     typeUrl: string;

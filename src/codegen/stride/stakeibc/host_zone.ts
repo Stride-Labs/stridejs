@@ -125,6 +125,8 @@ export interface HostZone {
    * or undelegation ICA tx
    */
   maxMessagesPerIcaTx: bigint;
+  /** Indicates whether redemptions are allowed through this module */
+  redemptionsEnabled: boolean;
   /**
    * An optional fee rebate
    * If there is no rebate for the host zone, this will be nil
@@ -227,6 +229,8 @@ export interface HostZoneAmino {
    * or undelegation ICA tx
    */
   max_messages_per_ica_tx?: string;
+  /** Indicates whether redemptions are allowed through this module */
+  redemptions_enabled?: boolean;
   /**
    * An optional fee rebate
    * If there is no rebate for the host zone, this will be nil
@@ -269,6 +273,7 @@ export interface HostZoneSDKType {
   min_inner_redemption_rate: string;
   max_inner_redemption_rate: string;
   max_messages_per_ica_tx: bigint;
+  redemptions_enabled: boolean;
   community_pool_rebate?: CommunityPoolRebateSDKType;
   lsm_liquid_stake_enabled: boolean;
   halted: boolean;
@@ -376,6 +381,7 @@ function createBaseHostZone(): HostZone {
     minInnerRedemptionRate: "",
     maxInnerRedemptionRate: "",
     maxMessagesPerIcaTx: BigInt(0),
+    redemptionsEnabled: false,
     communityPoolRebate: undefined,
     lsmLiquidStakeEnabled: false,
     halted: false
@@ -461,6 +467,9 @@ export const HostZone = {
     }
     if (message.maxMessagesPerIcaTx !== BigInt(0)) {
       writer.uint32(288).uint64(message.maxMessagesPerIcaTx);
+    }
+    if (message.redemptionsEnabled === true) {
+      writer.uint32(296).bool(message.redemptionsEnabled);
     }
     if (message.communityPoolRebate !== undefined) {
       CommunityPoolRebate.encode(message.communityPoolRebate, writer.uint32(274).fork()).ldelim();
@@ -558,6 +567,9 @@ export const HostZone = {
         case 36:
           message.maxMessagesPerIcaTx = reader.uint64();
           break;
+        case 37:
+          message.redemptionsEnabled = reader.bool();
+          break;
         case 34:
           message.communityPoolRebate = CommunityPoolRebate.decode(reader, reader.uint32());
           break;
@@ -602,6 +614,7 @@ export const HostZone = {
     message.minInnerRedemptionRate = object.minInnerRedemptionRate ?? "";
     message.maxInnerRedemptionRate = object.maxInnerRedemptionRate ?? "";
     message.maxMessagesPerIcaTx = object.maxMessagesPerIcaTx !== undefined && object.maxMessagesPerIcaTx !== null ? BigInt(object.maxMessagesPerIcaTx.toString()) : BigInt(0);
+    message.redemptionsEnabled = object.redemptionsEnabled ?? false;
     message.communityPoolRebate = object.communityPoolRebate !== undefined && object.communityPoolRebate !== null ? CommunityPoolRebate.fromPartial(object.communityPoolRebate) : undefined;
     message.lsmLiquidStakeEnabled = object.lsmLiquidStakeEnabled ?? false;
     message.halted = object.halted ?? false;
@@ -685,6 +698,9 @@ export const HostZone = {
     if (object.max_messages_per_ica_tx !== undefined && object.max_messages_per_ica_tx !== null) {
       message.maxMessagesPerIcaTx = BigInt(object.max_messages_per_ica_tx);
     }
+    if (object.redemptions_enabled !== undefined && object.redemptions_enabled !== null) {
+      message.redemptionsEnabled = object.redemptions_enabled;
+    }
     if (object.community_pool_rebate !== undefined && object.community_pool_rebate !== null) {
       message.communityPoolRebate = CommunityPoolRebate.fromAmino(object.community_pool_rebate);
     }
@@ -704,7 +720,7 @@ export const HostZone = {
     obj.transfer_channel_id = message.transferChannelId === "" ? undefined : message.transferChannelId;
     obj.ibc_denom = message.ibcDenom === "" ? undefined : message.ibcDenom;
     obj.host_denom = message.hostDenom === "" ? undefined : message.hostDenom;
-    obj.unbonding_period = message.unbondingPeriod !== BigInt(0) ? message.unbondingPeriod.toString() : undefined;
+    obj.unbonding_period = message.unbondingPeriod !== BigInt(0) ? message.unbondingPeriod?.toString() : undefined;
     if (message.validators) {
       obj.validators = message.validators.map(e => e ? Validator.toAmino(e) : undefined);
     } else {
@@ -727,7 +743,8 @@ export const HostZone = {
     obj.max_redemption_rate = message.maxRedemptionRate === "" ? undefined : message.maxRedemptionRate;
     obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? undefined : message.minInnerRedemptionRate;
     obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? undefined : message.maxInnerRedemptionRate;
-    obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx.toString() : undefined;
+    obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx?.toString() : undefined;
+    obj.redemptions_enabled = message.redemptionsEnabled === false ? undefined : message.redemptionsEnabled;
     obj.community_pool_rebate = message.communityPoolRebate ? CommunityPoolRebate.toAmino(message.communityPoolRebate) : undefined;
     obj.lsm_liquid_stake_enabled = message.lsmLiquidStakeEnabled === false ? undefined : message.lsmLiquidStakeEnabled;
     obj.halted = message.halted === false ? undefined : message.halted;

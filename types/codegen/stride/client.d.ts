@@ -117,6 +117,11 @@ export declare const strideAminoConverters: {
         toAmino: (message: import("./stakeibc/tx").MsgRestoreInterchainAccount) => import("./stakeibc/tx").MsgRestoreInterchainAccountAmino;
         fromAmino: (object: import("./stakeibc/tx").MsgRestoreInterchainAccountAmino) => import("./stakeibc/tx").MsgRestoreInterchainAccount;
     };
+    "/stride.stakeibc.MsgCloseDelegationChannel": {
+        aminoType: string;
+        toAmino: (message: import("./stakeibc/tx").MsgCloseDelegationChannel) => import("./stakeibc/tx").MsgCloseDelegationChannelAmino;
+        fromAmino: (object: import("./stakeibc/tx").MsgCloseDelegationChannelAmino) => import("./stakeibc/tx").MsgCloseDelegationChannel;
+    };
     "/stride.stakeibc.MsgUpdateValidatorSharesExchRate": {
         aminoType: string;
         toAmino: (message: import("./stakeibc/tx").MsgUpdateValidatorSharesExchRate) => import("./stakeibc/tx").MsgUpdateValidatorSharesExchRateAmino;
@@ -242,6 +247,16 @@ export declare const strideAminoConverters: {
         toAmino: (message: import("./interchainquery/v1/messages").MsgSubmitQueryResponse) => import("./interchainquery/v1/messages").MsgSubmitQueryResponseAmino;
         fromAmino: (object: import("./interchainquery/v1/messages").MsgSubmitQueryResponseAmino) => import("./interchainquery/v1/messages").MsgSubmitQueryResponse;
     };
+    "/stride.icqoracle.MsgRegisterTokenPriceQuery": {
+        aminoType: string;
+        toAmino: (message: import("./icqoracle/tx").MsgRegisterTokenPriceQuery) => import("./icqoracle/tx").MsgRegisterTokenPriceQueryAmino;
+        fromAmino: (object: import("./icqoracle/tx").MsgRegisterTokenPriceQueryAmino) => import("./icqoracle/tx").MsgRegisterTokenPriceQuery;
+    };
+    "/stride.icqoracle.MsgRemoveTokenPriceQuery": {
+        aminoType: string;
+        toAmino: (message: import("./icqoracle/tx").MsgRemoveTokenPriceQuery) => import("./icqoracle/tx").MsgRemoveTokenPriceQueryAmino;
+        fromAmino: (object: import("./icqoracle/tx").MsgRemoveTokenPriceQueryAmino) => import("./icqoracle/tx").MsgRemoveTokenPriceQuery;
+    };
     "/stride.icaoracle.MsgAddOracle": {
         aminoType: string;
         toAmino: (message: import("./icaoracle/tx").MsgAddOracle) => import("./icaoracle/tx").MsgAddOracleAmino;
@@ -286,6 +301,21 @@ export declare const strideAminoConverters: {
         aminoType: string;
         toAmino: (message: import("./claim/tx").MsgDeleteAirdrop) => import("./claim/tx").MsgDeleteAirdropAmino;
         fromAmino: (object: import("./claim/tx").MsgDeleteAirdropAmino) => import("./claim/tx").MsgDeleteAirdrop;
+    };
+    "/stride.auction.MsgPlaceBid": {
+        aminoType: string;
+        toAmino: (message: import("./auction/tx").MsgPlaceBid) => import("./auction/tx").MsgPlaceBidAmino;
+        fromAmino: (object: import("./auction/tx").MsgPlaceBidAmino) => import("./auction/tx").MsgPlaceBid;
+    };
+    "/stride.auction.MsgCreateAuction": {
+        aminoType: string;
+        toAmino: (message: import("./auction/tx").MsgCreateAuction) => import("./auction/tx").MsgCreateAuctionAmino;
+        fromAmino: (object: import("./auction/tx").MsgCreateAuctionAmino) => import("./auction/tx").MsgCreateAuction;
+    };
+    "/stride.auction.MsgUpdateAuction": {
+        aminoType: string;
+        toAmino: (message: import("./auction/tx").MsgUpdateAuction) => import("./auction/tx").MsgUpdateAuctionAmino;
+        fromAmino: (object: import("./auction/tx").MsgUpdateAuctionAmino) => import("./auction/tx").MsgUpdateAuction;
     };
     "/stride.airdrop.MsgClaimDaily": {
         aminoType: string;

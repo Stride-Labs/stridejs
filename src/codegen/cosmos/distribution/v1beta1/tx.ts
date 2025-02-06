@@ -716,7 +716,7 @@ export const MsgWithdrawTokenizeShareRecordReward = {
   toAmino(message: MsgWithdrawTokenizeShareRecordReward): MsgWithdrawTokenizeShareRecordRewardAmino {
     const obj: any = {};
     obj.owner_address = message.ownerAddress === "" ? undefined : message.ownerAddress;
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId.toString() : undefined;
+    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgWithdrawTokenizeShareRecordRewardAminoMsg): MsgWithdrawTokenizeShareRecordReward {

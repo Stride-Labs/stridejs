@@ -59,18 +59,21 @@ export const createRPCQueryClient = async ({
     },
     stride: {
       airdrop: (await import("./airdrop/query.rpc.Query")).createRpcQueryExtension(client),
+      auction: (await import("./auction/query.rpc.Query")).createRpcQueryExtension(client),
       autopilot: (await import("./autopilot/query.rpc.Query")).createRpcQueryExtension(client),
       claim: (await import("./claim/query.rpc.Query")).createRpcQueryExtension(client),
       epochs: (await import("./epochs/query.rpc.Query")).createRpcQueryExtension(client),
       icacallbacks: (await import("./icacallbacks/query.rpc.Query")).createRpcQueryExtension(client),
       icaoracle: (await import("./icaoracle/query.rpc.Query")).createRpcQueryExtension(client),
+      icqoracle: (await import("./icqoracle/query.rpc.Query")).createRpcQueryExtension(client),
       mint: {
         v1beta1: (await import("./mint/v1beta1/query.rpc.Query")).createRpcQueryExtension(client)
       },
       records: (await import("./records/query.rpc.Query")).createRpcQueryExtension(client),
       stakedym: (await import("./stakedym/query.rpc.Query")).createRpcQueryExtension(client),
       stakeibc: (await import("./stakeibc/query.rpc.Query")).createRpcQueryExtension(client),
-      staketia: (await import("./staketia/query.rpc.Query")).createRpcQueryExtension(client)
+      staketia: (await import("./staketia/query.rpc.Query")).createRpcQueryExtension(client),
+      strdburner: (await import("./strdburner/query.rpc.Query")).createRpcQueryExtension(client)
     }
   };
 };

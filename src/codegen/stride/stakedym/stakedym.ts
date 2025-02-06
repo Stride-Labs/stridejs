@@ -716,7 +716,7 @@ export const HostZone = {
     obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? undefined : message.minInnerRedemptionRate;
     obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? undefined : message.maxInnerRedemptionRate;
     obj.delegated_balance = message.delegatedBalance === "" ? undefined : message.delegatedBalance;
-    obj.unbonding_period_seconds = message.unbondingPeriodSeconds !== BigInt(0) ? message.unbondingPeriodSeconds.toString() : undefined;
+    obj.unbonding_period_seconds = message.unbondingPeriodSeconds !== BigInt(0) ? message.unbondingPeriodSeconds?.toString() : undefined;
     obj.halted = message.halted === false ? undefined : message.halted;
     return obj;
   },
@@ -813,7 +813,7 @@ export const DelegationRecord = {
   },
   toAmino(message: DelegationRecord): DelegationRecordAmino {
     const obj: any = {};
-    obj.id = message.id !== BigInt(0) ? message.id.toString() : undefined;
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : undefined;
     obj.native_amount = message.nativeAmount === "" ? undefined : message.nativeAmount;
     obj.status = message.status === 0 ? undefined : message.status;
     obj.tx_hash = message.txHash === "" ? undefined : message.txHash;
@@ -945,11 +945,11 @@ export const UnbondingRecord = {
   },
   toAmino(message: UnbondingRecord): UnbondingRecordAmino {
     const obj: any = {};
-    obj.id = message.id !== BigInt(0) ? message.id.toString() : undefined;
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : undefined;
     obj.status = message.status === 0 ? undefined : message.status;
     obj.st_token_amount = message.stTokenAmount === "" ? undefined : message.stTokenAmount;
     obj.native_amount = message.nativeAmount === "" ? undefined : message.nativeAmount;
-    obj.unbonding_completion_time_seconds = message.unbondingCompletionTimeSeconds !== BigInt(0) ? message.unbondingCompletionTimeSeconds.toString() : undefined;
+    obj.unbonding_completion_time_seconds = message.unbondingCompletionTimeSeconds !== BigInt(0) ? message.unbondingCompletionTimeSeconds?.toString() : undefined;
     obj.undelegation_tx_hash = message.undelegationTxHash === "" ? undefined : message.undelegationTxHash;
     obj.unbonded_token_sweep_tx_hash = message.unbondedTokenSweepTxHash === "" ? undefined : message.unbondedTokenSweepTxHash;
     return obj;
@@ -1047,7 +1047,7 @@ export const RedemptionRecord = {
   },
   toAmino(message: RedemptionRecord): RedemptionRecordAmino {
     const obj: any = {};
-    obj.unbonding_record_id = message.unbondingRecordId !== BigInt(0) ? message.unbondingRecordId.toString() : undefined;
+    obj.unbonding_record_id = message.unbondingRecordId !== BigInt(0) ? message.unbondingRecordId?.toString() : undefined;
     obj.redeemer = message.redeemer === "" ? undefined : message.redeemer;
     obj.st_token_amount = message.stTokenAmount === "" ? undefined : message.stTokenAmount;
     obj.native_amount = message.nativeAmount === "" ? undefined : message.nativeAmount;
@@ -1146,8 +1146,8 @@ export const SlashRecord = {
   },
   toAmino(message: SlashRecord): SlashRecordAmino {
     const obj: any = {};
-    obj.id = message.id !== BigInt(0) ? message.id.toString() : undefined;
-    obj.time = message.time !== BigInt(0) ? message.time.toString() : undefined;
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : undefined;
+    obj.time = message.time !== BigInt(0) ? message.time?.toString() : undefined;
     obj.native_amount = message.nativeAmount === "" ? undefined : message.nativeAmount;
     obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
     return obj;

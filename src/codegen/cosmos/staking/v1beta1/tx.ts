@@ -1701,7 +1701,7 @@ export const MsgCancelUnbondingDelegation = {
     obj.delegator_address = message.delegatorAddress === "" ? undefined : message.delegatorAddress;
     obj.validator_address = message.validatorAddress === "" ? undefined : message.validatorAddress;
     obj.amount = message.amount ? Coin.toAmino(message.amount) : undefined;
-    obj.creation_height = message.creationHeight !== BigInt(0) ? message.creationHeight.toString() : undefined;
+    obj.creation_height = message.creationHeight !== BigInt(0) ? message.creationHeight?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgCancelUnbondingDelegationAminoMsg): MsgCancelUnbondingDelegation {
@@ -2172,7 +2172,7 @@ export const MsgTransferTokenizeShareRecord = {
   },
   toAmino(message: MsgTransferTokenizeShareRecord): MsgTransferTokenizeShareRecordAmino {
     const obj: any = {};
-    obj.tokenize_share_record_id = message.tokenizeShareRecordId !== BigInt(0) ? message.tokenizeShareRecordId.toString() : undefined;
+    obj.tokenize_share_record_id = message.tokenizeShareRecordId !== BigInt(0) ? message.tokenizeShareRecordId?.toString() : undefined;
     obj.sender = message.sender === "" ? undefined : message.sender;
     obj.new_owner = message.newOwner === "" ? undefined : message.newOwner;
     return obj;

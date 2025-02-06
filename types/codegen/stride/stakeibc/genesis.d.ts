@@ -1,14 +1,15 @@
 import { Params, ParamsAmino, ParamsSDKType } from "./params";
 import { HostZone, HostZoneAmino, HostZoneSDKType } from "./host_zone";
 import { EpochTracker, EpochTrackerAmino, EpochTrackerSDKType } from "./epoch_tracker";
+import { TradeRoute, TradeRouteAmino, TradeRouteSDKType } from "./trade_route";
 import { BinaryReader, BinaryWriter } from "../../binary";
 /** GenesisState defines the stakeibc module's genesis state. */
 export interface GenesisState {
     params: Params;
     portId: string;
-    /** list of zones that are registered by the protocol */
     hostZoneList: HostZone[];
     epochTrackerList: EpochTracker[];
+    tradeRoutes: TradeRoute[];
 }
 export interface GenesisStateProtoMsg {
     typeUrl: "/stride.stakeibc.GenesisState";
@@ -18,9 +19,9 @@ export interface GenesisStateProtoMsg {
 export interface GenesisStateAmino {
     params?: ParamsAmino;
     port_id?: string;
-    /** list of zones that are registered by the protocol */
     host_zone_list?: HostZoneAmino[];
     epoch_tracker_list?: EpochTrackerAmino[];
+    trade_routes?: TradeRouteAmino[];
 }
 export interface GenesisStateAminoMsg {
     type: "/stride.stakeibc.GenesisState";
@@ -32,6 +33,7 @@ export interface GenesisStateSDKType {
     port_id: string;
     host_zone_list: HostZoneSDKType[];
     epoch_tracker_list: EpochTrackerSDKType[];
+    trade_routes: TradeRouteSDKType[];
 }
 export declare const GenesisState: {
     typeUrl: string;

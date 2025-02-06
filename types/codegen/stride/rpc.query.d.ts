@@ -158,6 +158,10 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
             allAllocations(request: import("./airdrop/query").QueryAllAllocationsRequest): Promise<import("./airdrop/query").QueryAllAllocationsResponse>;
             userSummary(request: import("./airdrop/query").QueryUserSummaryRequest): Promise<import("./airdrop/query").QueryUserSummaryResponse>;
         };
+        auction: {
+            auction(request: import("./auction/query").QueryAuctionRequest): Promise<import("./auction/query").QueryAuctionResponse>;
+            auctions(request?: import("./auction/query").QueryAuctionsRequest): Promise<import("./auction/query").QueryAuctionsResponse>;
+        };
         autopilot: {
             params(request?: import("./autopilot/query").QueryParamsRequest): Promise<import("./autopilot/query").QueryParamsResponse>;
         };
@@ -186,6 +190,12 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
             allOracles(request?: import("./icaoracle/query").QueryAllOraclesRequest): Promise<import("./icaoracle/query").QueryAllOraclesResponse>;
             activeOracles(request: import("./icaoracle/query").QueryActiveOraclesRequest): Promise<import("./icaoracle/query").QueryActiveOraclesResponse>;
             metrics(request: import("./icaoracle/query").QueryMetricsRequest): Promise<import("./icaoracle/query").QueryMetricsResponse>;
+        };
+        icqoracle: {
+            tokenPrice(request: import("./icqoracle/query").QueryTokenPriceRequest): Promise<import("./icqoracle/query").QueryTokenPriceResponse>;
+            tokenPrices(request?: import("./icqoracle/query").QueryTokenPricesRequest): Promise<import("./icqoracle/query").QueryTokenPricesResponse>;
+            params(request?: import("./icqoracle/query").QueryParamsRequest): Promise<import("./icqoracle/query").QueryParamsResponse>;
+            tokenPriceForQuoteDenom(request: import("./icqoracle/query").QueryTokenPriceForQuoteDenomRequest): Promise<import("./icqoracle/query").QueryTokenPriceForQuoteDenomResponse>;
         };
         mint: {
             v1beta1: {
@@ -234,6 +244,10 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
             redemptionRecord(request: import("./staketia/query").QueryRedemptionRecordRequest): Promise<import("./staketia/query").QueryRedemptionRecordResponse>;
             redemptionRecords(request: import("./staketia/query").QueryRedemptionRecordsRequest): Promise<import("./staketia/query").QueryRedemptionRecordsResponse>;
             slashRecords(request?: import("./staketia/query").QuerySlashRecordsRequest): Promise<import("./staketia/query").QuerySlashRecordsResponse>;
+        };
+        strdburner: {
+            strdBurnerAddress(request?: import("./strdburner/query").QueryStrdBurnerAddressRequest): Promise<import("./strdburner/query").QueryStrdBurnerAddressResponse>;
+            totalStrdBurned(request?: import("./strdburner/query").QueryTotalStrdBurnedRequest): Promise<import("./strdburner/query").QueryTotalStrdBurnedResponse>;
         };
     };
 }>;

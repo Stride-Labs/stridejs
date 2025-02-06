@@ -27,9 +27,13 @@ export declare function depositRecord_SourceToJSON(object: DepositRecord_Source)
 export declare enum HostZoneUnbonding_Status {
     /** UNBONDING_QUEUE - tokens bonded on delegate account */
     UNBONDING_QUEUE = 0,
+    /** UNBONDING_IN_PROGRESS - unbonding ICA has been submitted */
     UNBONDING_IN_PROGRESS = 3,
+    /** UNBONDING_RETRY_QUEUE - unbonding ICA failed for at least one batch and need to be retried */
+    UNBONDING_RETRY_QUEUE = 5,
     /** EXIT_TRANSFER_QUEUE - unbonding completed on delegate account */
     EXIT_TRANSFER_QUEUE = 1,
+    /** EXIT_TRANSFER_IN_PROGRESS - redemption sweep has been submitted */
     EXIT_TRANSFER_IN_PROGRESS = 4,
     /** CLAIMABLE - transfer success */
     CLAIMABLE = 2,
@@ -101,6 +105,7 @@ export interface DepositRecord {
     status: DepositRecord_Status;
     depositEpochNumber: bigint;
     source: DepositRecord_Source;
+    delegationTxsInProgress: bigint;
 }
 export interface DepositRecordProtoMsg {
     typeUrl: "/stride.records.DepositRecord";
@@ -114,6 +119,7 @@ export interface DepositRecordAmino {
     status?: DepositRecord_Status;
     deposit_epoch_number?: string;
     source?: DepositRecord_Source;
+    delegation_txs_in_progress?: string;
 }
 export interface DepositRecordAminoMsg {
     type: "/stride.records.DepositRecord";
@@ -127,10 +133,15 @@ export interface DepositRecordSDKType {
     status: DepositRecord_Status;
     deposit_epoch_number: bigint;
     source: DepositRecord_Source;
+    delegation_txs_in_progress: bigint;
 }
 export interface HostZoneUnbonding {
     stTokenAmount: string;
     nativeTokenAmount: string;
+    stTokensToBurn: string;
+    nativeTokensToUnbond: string;
+    claimableNativeTokens: string;
+    undelegationTxsInProgress: bigint;
     denom: string;
     hostZoneId: string;
     unbondingTime: bigint;
@@ -144,6 +155,10 @@ export interface HostZoneUnbondingProtoMsg {
 export interface HostZoneUnbondingAmino {
     st_token_amount?: string;
     native_token_amount?: string;
+    st_tokens_to_burn?: string;
+    native_tokens_to_unbond?: string;
+    claimable_native_tokens?: string;
+    undelegation_txs_in_progress?: string;
     denom?: string;
     host_zone_id?: string;
     unbonding_time?: string;
@@ -157,6 +172,10 @@ export interface HostZoneUnbondingAminoMsg {
 export interface HostZoneUnbondingSDKType {
     st_token_amount: string;
     native_token_amount: string;
+    st_tokens_to_burn: string;
+    native_tokens_to_unbond: string;
+    claimable_native_tokens: string;
+    undelegation_txs_in_progress: bigint;
     denom: string;
     host_zone_id: string;
     unbonding_time: bigint;

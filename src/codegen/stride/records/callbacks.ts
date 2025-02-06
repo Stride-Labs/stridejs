@@ -78,7 +78,7 @@ export const TransferCallback = {
   },
   toAmino(message: TransferCallback): TransferCallbackAmino {
     const obj: any = {};
-    obj.deposit_record_id = message.depositRecordId !== BigInt(0) ? message.depositRecordId.toString() : undefined;
+    obj.deposit_record_id = message.depositRecordId !== BigInt(0) ? message.depositRecordId?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: TransferCallbackAminoMsg): TransferCallback {

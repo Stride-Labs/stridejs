@@ -124,6 +124,8 @@ export interface HostZone {
      * or undelegation ICA tx
      */
     maxMessagesPerIcaTx: bigint;
+    /** Indicates whether redemptions are allowed through this module */
+    redemptionsEnabled: boolean;
     /**
      * An optional fee rebate
      * If there is no rebate for the host zone, this will be nil
@@ -226,6 +228,8 @@ export interface HostZoneAmino {
      * or undelegation ICA tx
      */
     max_messages_per_ica_tx?: string;
+    /** Indicates whether redemptions are allowed through this module */
+    redemptions_enabled?: boolean;
     /**
      * An optional fee rebate
      * If there is no rebate for the host zone, this will be nil
@@ -268,6 +272,7 @@ export interface HostZoneSDKType {
     min_inner_redemption_rate: string;
     max_inner_redemption_rate: string;
     max_messages_per_ica_tx: bigint;
+    redemptions_enabled: boolean;
     community_pool_rebate?: CommunityPoolRebateSDKType;
     lsm_liquid_stake_enabled: boolean;
     halted: boolean;

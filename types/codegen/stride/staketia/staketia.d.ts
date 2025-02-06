@@ -90,20 +90,8 @@ export interface HostZone {
     operatorAddressOnStride: string;
     /** admin address set upon host zone creation,  on stride */
     safeAddressOnStride: string;
-    /** Previous redemption rate */
-    lastRedemptionRate: string;
-    /** Current redemption rate */
-    redemptionRate: string;
-    /** Min outer redemption rate - adjusted by governance */
-    minRedemptionRate: string;
-    /** Max outer redemption rate - adjusted by governance */
-    maxRedemptionRate: string;
-    /** Min inner redemption rate - adjusted by controller */
-    minInnerRedemptionRate: string;
-    /** Max inner redemption rate - adjusted by controller */
-    maxInnerRedemptionRate: string;
     /** Total delegated balance on the host zone delegation account */
-    delegatedBalance: string;
+    remainingDelegatedBalance: string;
     /** The undelegation period for Celestia in days */
     unbondingPeriodSeconds: bigint;
     /** Indicates whether the host zone has been halted */
@@ -136,20 +124,8 @@ export interface HostZoneAmino {
     operator_address_on_stride?: string;
     /** admin address set upon host zone creation,  on stride */
     safe_address_on_stride?: string;
-    /** Previous redemption rate */
-    last_redemption_rate?: string;
-    /** Current redemption rate */
-    redemption_rate?: string;
-    /** Min outer redemption rate - adjusted by governance */
-    min_redemption_rate?: string;
-    /** Max outer redemption rate - adjusted by governance */
-    max_redemption_rate?: string;
-    /** Min inner redemption rate - adjusted by controller */
-    min_inner_redemption_rate?: string;
-    /** Max inner redemption rate - adjusted by controller */
-    max_inner_redemption_rate?: string;
     /** Total delegated balance on the host zone delegation account */
-    delegated_balance?: string;
+    remaining_delegated_balance?: string;
     /** The undelegation period for Celestia in days */
     unbonding_period_seconds?: string;
     /** Indicates whether the host zone has been halted */
@@ -171,13 +147,7 @@ export interface HostZoneSDKType {
     claim_address: string;
     operator_address_on_stride: string;
     safe_address_on_stride: string;
-    last_redemption_rate: string;
-    redemption_rate: string;
-    min_redemption_rate: string;
-    max_redemption_rate: string;
-    min_inner_redemption_rate: string;
-    max_inner_redemption_rate: string;
-    delegated_balance: string;
+    remaining_delegated_balance: string;
     unbonding_period_seconds: bigint;
     halted: boolean;
 }

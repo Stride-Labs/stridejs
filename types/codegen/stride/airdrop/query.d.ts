@@ -22,21 +22,98 @@ export interface QueryAirdropRequestSDKType {
     id: string;
 }
 export interface QueryAirdropResponse {
-    airdrop?: Airdrop;
+    /** Airdrop ID */
+    id: string;
+    /** Denom used when distributing rewards */
+    rewardDenom: string;
+    /** The first date that claiming begins and rewards are distributed */
+    distributionStartDate?: Date;
+    /**
+     * The last date for rewards to be distributed. Immediately after this date
+     * the rewards can no longer be claimed, but rewards have not been clawed back
+     * yet
+     */
+    distributionEndDate?: Date;
+    /**
+     * Date with which the rewards are clawed back (occurs after the distribution
+     * end date)
+     */
+    clawbackDate?: Date;
+    /** Deadline for the user to make a decision on their claim type */
+    claimTypeDeadlineDate?: Date;
+    /**
+     * Penalty for claiming rewards early - e.g. 0.5 means claiming early will
+     * result in losing 50% of rewards
+     */
+    earlyClaimPenalty: string;
+    /** Account that holds the total reward balance and distributes to users */
+    distributorAddress: string;
+    /** Admin account with permissions to add or update allocations */
+    allocatorAddress: string;
+    /** Admin account with permissions to link addresseses */
+    linkerAddress: string;
+    /** The current date index into the airdrop array */
+    currentDateIndex: bigint;
+    /** The length of the airdrop (i.e. number of periods in the airdrop array) */
+    airdropLength: bigint;
 }
 export interface QueryAirdropResponseProtoMsg {
     typeUrl: "/stride.airdrop.QueryAirdropResponse";
     value: Uint8Array;
 }
 export interface QueryAirdropResponseAmino {
-    airdrop?: AirdropAmino;
+    /** Airdrop ID */
+    id?: string;
+    /** Denom used when distributing rewards */
+    reward_denom?: string;
+    /** The first date that claiming begins and rewards are distributed */
+    distribution_start_date?: string;
+    /**
+     * The last date for rewards to be distributed. Immediately after this date
+     * the rewards can no longer be claimed, but rewards have not been clawed back
+     * yet
+     */
+    distribution_end_date?: string;
+    /**
+     * Date with which the rewards are clawed back (occurs after the distribution
+     * end date)
+     */
+    clawback_date?: string;
+    /** Deadline for the user to make a decision on their claim type */
+    claim_type_deadline_date?: string;
+    /**
+     * Penalty for claiming rewards early - e.g. 0.5 means claiming early will
+     * result in losing 50% of rewards
+     */
+    early_claim_penalty?: string;
+    /** Account that holds the total reward balance and distributes to users */
+    distributor_address?: string;
+    /** Admin account with permissions to add or update allocations */
+    allocator_address?: string;
+    /** Admin account with permissions to link addresseses */
+    linker_address?: string;
+    /** The current date index into the airdrop array */
+    current_date_index?: string;
+    /** The length of the airdrop (i.e. number of periods in the airdrop array) */
+    airdrop_length?: string;
 }
 export interface QueryAirdropResponseAminoMsg {
     type: "/stride.airdrop.QueryAirdropResponse";
     value: QueryAirdropResponseAmino;
 }
 export interface QueryAirdropResponseSDKType {
-    airdrop?: AirdropSDKType;
+    id: string;
+    reward_denom: string;
+    distribution_start_date?: Date;
+    distribution_end_date?: Date;
+    clawback_date?: Date;
+    claim_type_deadline_date?: Date;
+    early_claim_penalty: string;
+    distributor_address: string;
+    allocator_address: string;
+    linker_address: string;
+    current_date_index: bigint;
+    airdrop_length: bigint;
 }
 /** Airdrops */
 export interface QueryAllAirdropsRequest {
@@ -226,8 +303,6 @@ export interface QueryUserSummaryResponse {
     remaining: string;
     /** The total rewards that can be claimed right now */
     claimable: string;
-    /** The current date index into the airdrop array */
-    currentDateIndex: bigint;
 }
 export interface QueryUserSummaryResponseProtoMsg {
     typeUrl: "/stride.airdrop.QueryUserSummaryResponse";
@@ -244,8 +319,6 @@ export interface QueryUserSummaryResponseAmino {
     remaining?: string;
     /** The total rewards that can be claimed right now */
     claimable?: string;
-    /** The current date index into the airdrop array */
-    current_date_index?: string;
 }
 export interface QueryUserSummaryResponseAminoMsg {
     type: "/stride.airdrop.QueryUserSummaryResponse";
@@ -257,7 +330,6 @@ export interface QueryUserSummaryResponseSDKType {
     forfeited: string;
     remaining: string;
     claimable: string;
-    current_date_index: bigint;
 }
 export declare const QueryAirdropRequest: {
     typeUrl: string;

@@ -1,4 +1,4 @@
-import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeights, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgCalibrateDelegation, MsgClearBalance, MsgUpdateInnerRedemptionRateBounds, MsgResumeHostZone, MsgCreateTradeRoute, MsgDeleteTradeRoute, MsgUpdateTradeRoute, MsgSetCommunityPoolRebate, MsgToggleTradeController, MsgUpdateHostZoneParams } from "./tx";
+import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeights, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgCloseDelegationChannel, MsgUpdateValidatorSharesExchRate, MsgCalibrateDelegation, MsgClearBalance, MsgUpdateInnerRedemptionRateBounds, MsgResumeHostZone, MsgCreateTradeRoute, MsgDeleteTradeRoute, MsgUpdateTradeRoute, MsgSetCommunityPoolRebate, MsgToggleTradeController, MsgUpdateHostZoneParams } from "./tx";
 export const AminoConverter = {
   "/stride.stakeibc.MsgLiquidStake": {
     aminoType: "stakeibc/LiquidStake",
@@ -49,6 +49,11 @@ export const AminoConverter = {
     aminoType: "stakeibc/RestoreInterchainAccount",
     toAmino: MsgRestoreInterchainAccount.toAmino,
     fromAmino: MsgRestoreInterchainAccount.fromAmino
+  },
+  "/stride.stakeibc.MsgCloseDelegationChannel": {
+    aminoType: "/stride.stakeibc.MsgCloseDelegationChannel",
+    toAmino: MsgCloseDelegationChannel.toAmino,
+    fromAmino: MsgCloseDelegationChannel.fromAmino
   },
   "/stride.stakeibc.MsgUpdateValidatorSharesExchRate": {
     aminoType: "stakeibc/UpdateValidatorSharesExchRate",
