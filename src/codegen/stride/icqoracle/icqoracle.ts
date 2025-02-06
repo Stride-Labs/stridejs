@@ -17,11 +17,13 @@ export interface TokenPrice {
   /** Quote denom on Osmosis */
   osmosisQuoteDenom: string;
   /** Pool ID on Osmosis */
-  osmosisPoolId: string;
+  osmosisPoolId: bigint;
   /** Spot price of base_denom denominated in quote_denom */
   spotPrice: string;
-  /** Last update timestamp */
-  updatedAt: Date;
+  /** Last time a query request was submitted */
+  lastRequestTime: Date;
+  /** Last time a query response was received */
+  lastResponseTime: Date;
   /** Whether there is a spot price query currently in progress */
   queryInProgress: boolean;
 }
@@ -47,8 +49,10 @@ export interface TokenPriceAmino {
   osmosis_pool_id?: string;
   /** Spot price of base_denom denominated in quote_denom */
   spot_price?: string;
-  /** Last update timestamp */
-  updated_at?: string;
+  /** Last time a query request was submitted */
+  last_request_time?: string;
+  /** Last time a query response was received */
+  last_response_time?: string;
   /** Whether there is a spot price query currently in progress */
   query_in_progress?: boolean;
 }
@@ -64,9 +68,10 @@ export interface TokenPriceSDKType {
   quote_denom_decimals: bigint;
   osmosis_base_denom: string;
   osmosis_quote_denom: string;
-  osmosis_pool_id: string;
+  osmosis_pool_id: bigint;
   spot_price: string;
-  updated_at: Date;
+  last_request_time: Date;
+  last_response_time: Date;
   query_in_progress: boolean;
 }
 /** OracleParams stores global oracle parameters */
@@ -75,12 +80,13 @@ export interface Params {
   osmosisChainId: string;
   /** Osmosis IBC connection identifier */
   osmosisConnectionId: string;
-  /** Time between price updates */
+  /**
+   * Time between price updates
+   * Also used to timeout icq requests
+   */
   updateIntervalSec: bigint;
   /** Max time before price is considered stale/expired */
   priceExpirationTimeoutSec: bigint;
-  /** ICQ timeout */
-  icqTimeoutSec: bigint;
 }
 export interface ParamsProtoMsg {
   typeUrl: "/stride.icqoracle.Params";
@@ -92,12 +98,13 @@ export interface ParamsAmino {
   osmosis_chain_id: string;
   /** Osmosis IBC connection identifier */
   osmosis_connection_id: string;
-  /** Time between price updates */
+  /**
+   * Time between price updates
+   * Also used to timeout icq requests
+   */
   update_interval_sec: string;
   /** Max time before price is considered stale/expired */
   price_expiration_timeout_sec: string;
-  /** ICQ timeout */
-  icq_timeout_sec: string;
 }
 export interface ParamsAminoMsg {
   type: "/stride.icqoracle.Params";
@@ -109,7 +116,6 @@ export interface ParamsSDKType {
   osmosis_connection_id: string;
   update_interval_sec: bigint;
   price_expiration_timeout_sec: bigint;
-  icq_timeout_sec: bigint;
 }
 function createBaseTokenPrice(): TokenPrice {
   return {
@@ -119,9 +125,10 @@ function createBaseTokenPrice(): TokenPrice {
     quoteDenomDecimals: BigInt(0),
     osmosisBaseDenom: "",
     osmosisQuoteDenom: "",
-    osmosisPoolId: "",
+    osmosisPoolId: BigInt(0),
     spotPrice: "",
-    updatedAt: new Date(),
+    lastRequestTime: new Date(),
+    lastResponseTime: new Date(),
     queryInProgress: false
   };
 }
@@ -146,17 +153,20 @@ export const TokenPrice = {
     if (message.osmosisQuoteDenom !== "") {
       writer.uint32(50).string(message.osmosisQuoteDenom);
     }
-    if (message.osmosisPoolId !== "") {
-      writer.uint32(58).string(message.osmosisPoolId);
+    if (message.osmosisPoolId !== BigInt(0)) {
+      writer.uint32(56).uint64(message.osmosisPoolId);
     }
     if (message.spotPrice !== "") {
       writer.uint32(66).string(Decimal.fromUserInput(message.spotPrice, 18).atomics);
     }
-    if (message.updatedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(74).fork()).ldelim();
+    if (message.lastRequestTime !== undefined) {
+      Timestamp.encode(toTimestamp(message.lastRequestTime), writer.uint32(74).fork()).ldelim();
+    }
+    if (message.lastResponseTime !== undefined) {
+      Timestamp.encode(toTimestamp(message.lastResponseTime), writer.uint32(82).fork()).ldelim();
     }
     if (message.queryInProgress === true) {
-      writer.uint32(80).bool(message.queryInProgress);
+      writer.uint32(88).bool(message.queryInProgress);
     }
     return writer;
   },
@@ -186,15 +196,18 @@ export const TokenPrice = {
           message.osmosisQuoteDenom = reader.string();
           break;
         case 7:
-          message.osmosisPoolId = reader.string();
+          message.osmosisPoolId = reader.uint64();
           break;
         case 8:
           message.spotPrice = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 9:
-          message.updatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.lastRequestTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         case 10:
+          message.lastResponseTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 11:
           message.queryInProgress = reader.bool();
           break;
         default:
@@ -212,9 +225,10 @@ export const TokenPrice = {
     message.quoteDenomDecimals = object.quoteDenomDecimals !== undefined && object.quoteDenomDecimals !== null ? BigInt(object.quoteDenomDecimals.toString()) : BigInt(0);
     message.osmosisBaseDenom = object.osmosisBaseDenom ?? "";
     message.osmosisQuoteDenom = object.osmosisQuoteDenom ?? "";
-    message.osmosisPoolId = object.osmosisPoolId ?? "";
+    message.osmosisPoolId = object.osmosisPoolId !== undefined && object.osmosisPoolId !== null ? BigInt(object.osmosisPoolId.toString()) : BigInt(0);
     message.spotPrice = object.spotPrice ?? "";
-    message.updatedAt = object.updatedAt ?? undefined;
+    message.lastRequestTime = object.lastRequestTime ?? undefined;
+    message.lastResponseTime = object.lastResponseTime ?? undefined;
     message.queryInProgress = object.queryInProgress ?? false;
     return message;
   },
@@ -239,13 +253,16 @@ export const TokenPrice = {
       message.osmosisQuoteDenom = object.osmosis_quote_denom;
     }
     if (object.osmosis_pool_id !== undefined && object.osmosis_pool_id !== null) {
-      message.osmosisPoolId = object.osmosis_pool_id;
+      message.osmosisPoolId = BigInt(object.osmosis_pool_id);
     }
     if (object.spot_price !== undefined && object.spot_price !== null) {
       message.spotPrice = object.spot_price;
     }
-    if (object.updated_at !== undefined && object.updated_at !== null) {
-      message.updatedAt = fromTimestamp(Timestamp.fromAmino(object.updated_at));
+    if (object.last_request_time !== undefined && object.last_request_time !== null) {
+      message.lastRequestTime = fromTimestamp(Timestamp.fromAmino(object.last_request_time));
+    }
+    if (object.last_response_time !== undefined && object.last_response_time !== null) {
+      message.lastResponseTime = fromTimestamp(Timestamp.fromAmino(object.last_response_time));
     }
     if (object.query_in_progress !== undefined && object.query_in_progress !== null) {
       message.queryInProgress = object.query_in_progress;
@@ -260,9 +277,10 @@ export const TokenPrice = {
     obj.quote_denom_decimals = message.quoteDenomDecimals !== BigInt(0) ? message.quoteDenomDecimals?.toString() : undefined;
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? undefined : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? undefined : message.osmosisQuoteDenom;
-    obj.osmosis_pool_id = message.osmosisPoolId === "" ? undefined : message.osmosisPoolId;
+    obj.osmosis_pool_id = message.osmosisPoolId !== BigInt(0) ? message.osmosisPoolId?.toString() : undefined;
     obj.spot_price = message.spotPrice === "" ? undefined : message.spotPrice;
-    obj.updated_at = message.updatedAt ? Timestamp.toAmino(toTimestamp(message.updatedAt)) : undefined;
+    obj.last_request_time = message.lastRequestTime ? Timestamp.toAmino(toTimestamp(message.lastRequestTime)) : undefined;
+    obj.last_response_time = message.lastResponseTime ? Timestamp.toAmino(toTimestamp(message.lastResponseTime)) : undefined;
     obj.query_in_progress = message.queryInProgress === false ? undefined : message.queryInProgress;
     return obj;
   },
@@ -287,8 +305,7 @@ function createBaseParams(): Params {
     osmosisChainId: "",
     osmosisConnectionId: "",
     updateIntervalSec: BigInt(0),
-    priceExpirationTimeoutSec: BigInt(0),
-    icqTimeoutSec: BigInt(0)
+    priceExpirationTimeoutSec: BigInt(0)
   };
 }
 export const Params = {
@@ -305,9 +322,6 @@ export const Params = {
     }
     if (message.priceExpirationTimeoutSec !== BigInt(0)) {
       writer.uint32(32).uint64(message.priceExpirationTimeoutSec);
-    }
-    if (message.icqTimeoutSec !== BigInt(0)) {
-      writer.uint32(40).uint64(message.icqTimeoutSec);
     }
     return writer;
   },
@@ -330,9 +344,6 @@ export const Params = {
         case 4:
           message.priceExpirationTimeoutSec = reader.uint64();
           break;
-        case 5:
-          message.icqTimeoutSec = reader.uint64();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -346,7 +357,6 @@ export const Params = {
     message.osmosisConnectionId = object.osmosisConnectionId ?? "";
     message.updateIntervalSec = object.updateIntervalSec !== undefined && object.updateIntervalSec !== null ? BigInt(object.updateIntervalSec.toString()) : BigInt(0);
     message.priceExpirationTimeoutSec = object.priceExpirationTimeoutSec !== undefined && object.priceExpirationTimeoutSec !== null ? BigInt(object.priceExpirationTimeoutSec.toString()) : BigInt(0);
-    message.icqTimeoutSec = object.icqTimeoutSec !== undefined && object.icqTimeoutSec !== null ? BigInt(object.icqTimeoutSec.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: ParamsAmino): Params {
@@ -363,9 +373,6 @@ export const Params = {
     if (object.price_expiration_timeout_sec !== undefined && object.price_expiration_timeout_sec !== null) {
       message.priceExpirationTimeoutSec = BigInt(object.price_expiration_timeout_sec);
     }
-    if (object.icq_timeout_sec !== undefined && object.icq_timeout_sec !== null) {
-      message.icqTimeoutSec = BigInt(object.icq_timeout_sec);
-    }
     return message;
   },
   toAmino(message: Params): ParamsAmino {
@@ -374,7 +381,6 @@ export const Params = {
     obj.osmosis_connection_id = message.osmosisConnectionId ?? "";
     obj.update_interval_sec = message.updateIntervalSec ? message.updateIntervalSec?.toString() : "0";
     obj.price_expiration_timeout_sec = message.priceExpirationTimeoutSec ? message.priceExpirationTimeoutSec?.toString() : "0";
-    obj.icq_timeout_sec = message.icqTimeoutSec ? message.icqTimeoutSec?.toString() : "0";
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {

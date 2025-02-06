@@ -18,7 +18,7 @@ export interface MsgRegisterTokenPriceQuery {
     /** Quote denom on Osmosis */
     osmosisQuoteDenom: string;
     /** Pool ID on Osmosis */
-    osmosisPoolId: string;
+    osmosisPoolId: bigint;
 }
 export interface MsgRegisterTokenPriceQueryProtoMsg {
     typeUrl: "/stride.icqoracle.MsgRegisterTokenPriceQuery";
@@ -61,7 +61,7 @@ export interface MsgRegisterTokenPriceQuerySDKType {
     quote_denom_decimals: bigint;
     osmosis_base_denom: string;
     osmosis_quote_denom: string;
-    osmosis_pool_id: string;
+    osmosis_pool_id: bigint;
 }
 export interface MsgRegisterTokenPriceQueryResponse {
 }
@@ -88,7 +88,7 @@ export interface MsgRemoveTokenPriceQuery {
     /** Quote denom on Stride */
     quoteDenom: string;
     /** Pool ID on Osmosis */
-    osmosisPoolId: string;
+    osmosisPoolId: bigint;
 }
 export interface MsgRemoveTokenPriceQueryProtoMsg {
     typeUrl: "/stride.icqoracle.MsgRemoveTokenPriceQuery";
@@ -119,7 +119,7 @@ export interface MsgRemoveTokenPriceQuerySDKType {
     admin: string;
     base_denom: string;
     quote_denom: string;
-    osmosis_pool_id: string;
+    osmosis_pool_id: bigint;
 }
 export interface MsgRemoveTokenPriceQueryResponse {
 }

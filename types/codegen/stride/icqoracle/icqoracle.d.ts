@@ -14,11 +14,13 @@ export interface TokenPrice {
     /** Quote denom on Osmosis */
     osmosisQuoteDenom: string;
     /** Pool ID on Osmosis */
-    osmosisPoolId: string;
+    osmosisPoolId: bigint;
     /** Spot price of base_denom denominated in quote_denom */
     spotPrice: string;
-    /** Last update timestamp */
-    updatedAt: Date;
+    /** Last time a query request was submitted */
+    lastRequestTime: Date;
+    /** Last time a query response was received */
+    lastResponseTime: Date;
     /** Whether there is a spot price query currently in progress */
     queryInProgress: boolean;
 }
@@ -44,8 +46,10 @@ export interface TokenPriceAmino {
     osmosis_pool_id?: string;
     /** Spot price of base_denom denominated in quote_denom */
     spot_price?: string;
-    /** Last update timestamp */
-    updated_at?: string;
+    /** Last time a query request was submitted */
+    last_request_time?: string;
+    /** Last time a query response was received */
+    last_response_time?: string;
     /** Whether there is a spot price query currently in progress */
     query_in_progress?: boolean;
 }
@@ -61,9 +65,10 @@ export interface TokenPriceSDKType {
     quote_denom_decimals: bigint;
     osmosis_base_denom: string;
     osmosis_quote_denom: string;
-    osmosis_pool_id: string;
+    osmosis_pool_id: bigint;
     spot_price: string;
-    updated_at: Date;
+    last_request_time: Date;
+    last_response_time: Date;
     query_in_progress: boolean;
 }
 /** OracleParams stores global oracle parameters */
@@ -72,12 +77,13 @@ export interface Params {
     osmosisChainId: string;
     /** Osmosis IBC connection identifier */
     osmosisConnectionId: string;
-    /** Time between price updates */
+    /**
+     * Time between price updates
+     * Also used to timeout icq requests
+     */
     updateIntervalSec: bigint;
     /** Max time before price is considered stale/expired */
     priceExpirationTimeoutSec: bigint;
-    /** ICQ timeout */
-    icqTimeoutSec: bigint;
 }
 export interface ParamsProtoMsg {
     typeUrl: "/stride.icqoracle.Params";
@@ -89,12 +95,13 @@ export interface ParamsAmino {
     osmosis_chain_id: string;
     /** Osmosis IBC connection identifier */
     osmosis_connection_id: string;
-    /** Time between price updates */
+    /**
+     * Time between price updates
+     * Also used to timeout icq requests
+     */
     update_interval_sec: string;
     /** Max time before price is considered stale/expired */
     price_expiration_timeout_sec: string;
-    /** ICQ timeout */
-    icq_timeout_sec: string;
 }
 export interface ParamsAminoMsg {
     type: "/stride.icqoracle.Params";
@@ -106,7 +113,6 @@ export interface ParamsSDKType {
     osmosis_connection_id: string;
     update_interval_sec: bigint;
     price_expiration_timeout_sec: bigint;
-    icq_timeout_sec: bigint;
 }
 export declare const TokenPrice: {
     typeUrl: string;

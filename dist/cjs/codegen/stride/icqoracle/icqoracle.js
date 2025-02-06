@@ -33,9 +33,10 @@ function createBaseTokenPrice() {
     quoteDenomDecimals: BigInt(0),
     osmosisBaseDenom: "",
     osmosisQuoteDenom: "",
-    osmosisPoolId: "",
+    osmosisPoolId: BigInt(0),
     spotPrice: "",
-    updatedAt: /* @__PURE__ */ new Date(),
+    lastRequestTime: /* @__PURE__ */ new Date(),
+    lastResponseTime: /* @__PURE__ */ new Date(),
     queryInProgress: false
   };
 }
@@ -60,17 +61,20 @@ const TokenPrice = {
     if (message.osmosisQuoteDenom !== "") {
       writer.uint32(50).string(message.osmosisQuoteDenom);
     }
-    if (message.osmosisPoolId !== "") {
-      writer.uint32(58).string(message.osmosisPoolId);
+    if (message.osmosisPoolId !== BigInt(0)) {
+      writer.uint32(56).uint64(message.osmosisPoolId);
     }
     if (message.spotPrice !== "") {
       writer.uint32(66).string(import_math.Decimal.fromUserInput(message.spotPrice, 18).atomics);
     }
-    if (message.updatedAt !== void 0) {
-      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.updatedAt), writer.uint32(74).fork()).ldelim();
+    if (message.lastRequestTime !== void 0) {
+      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastRequestTime), writer.uint32(74).fork()).ldelim();
+    }
+    if (message.lastResponseTime !== void 0) {
+      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastResponseTime), writer.uint32(82).fork()).ldelim();
     }
     if (message.queryInProgress === true) {
-      writer.uint32(80).bool(message.queryInProgress);
+      writer.uint32(88).bool(message.queryInProgress);
     }
     return writer;
   },
@@ -100,15 +104,18 @@ const TokenPrice = {
           message.osmosisQuoteDenom = reader.string();
           break;
         case 7:
-          message.osmosisPoolId = reader.string();
+          message.osmosisPoolId = reader.uint64();
           break;
         case 8:
           message.spotPrice = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 9:
-          message.updatedAt = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
+          message.lastRequestTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
           break;
         case 10:
+          message.lastResponseTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 11:
           message.queryInProgress = reader.bool();
           break;
         default:
@@ -126,9 +133,10 @@ const TokenPrice = {
     message.quoteDenomDecimals = object.quoteDenomDecimals !== void 0 && object.quoteDenomDecimals !== null ? BigInt(object.quoteDenomDecimals.toString()) : BigInt(0);
     message.osmosisBaseDenom = object.osmosisBaseDenom ?? "";
     message.osmosisQuoteDenom = object.osmosisQuoteDenom ?? "";
-    message.osmosisPoolId = object.osmosisPoolId ?? "";
+    message.osmosisPoolId = object.osmosisPoolId !== void 0 && object.osmosisPoolId !== null ? BigInt(object.osmosisPoolId.toString()) : BigInt(0);
     message.spotPrice = object.spotPrice ?? "";
-    message.updatedAt = object.updatedAt ?? void 0;
+    message.lastRequestTime = object.lastRequestTime ?? void 0;
+    message.lastResponseTime = object.lastResponseTime ?? void 0;
     message.queryInProgress = object.queryInProgress ?? false;
     return message;
   },
@@ -153,13 +161,16 @@ const TokenPrice = {
       message.osmosisQuoteDenom = object.osmosis_quote_denom;
     }
     if (object.osmosis_pool_id !== void 0 && object.osmosis_pool_id !== null) {
-      message.osmosisPoolId = object.osmosis_pool_id;
+      message.osmosisPoolId = BigInt(object.osmosis_pool_id);
     }
     if (object.spot_price !== void 0 && object.spot_price !== null) {
       message.spotPrice = object.spot_price;
     }
-    if (object.updated_at !== void 0 && object.updated_at !== null) {
-      message.updatedAt = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.fromAmino(object.updated_at));
+    if (object.last_request_time !== void 0 && object.last_request_time !== null) {
+      message.lastRequestTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.fromAmino(object.last_request_time));
+    }
+    if (object.last_response_time !== void 0 && object.last_response_time !== null) {
+      message.lastResponseTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.fromAmino(object.last_response_time));
     }
     if (object.query_in_progress !== void 0 && object.query_in_progress !== null) {
       message.queryInProgress = object.query_in_progress;
@@ -174,9 +185,10 @@ const TokenPrice = {
     obj.quote_denom_decimals = message.quoteDenomDecimals !== BigInt(0) ? message.quoteDenomDecimals?.toString() : void 0;
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? void 0 : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? void 0 : message.osmosisQuoteDenom;
-    obj.osmosis_pool_id = message.osmosisPoolId === "" ? void 0 : message.osmosisPoolId;
+    obj.osmosis_pool_id = message.osmosisPoolId !== BigInt(0) ? message.osmosisPoolId?.toString() : void 0;
     obj.spot_price = message.spotPrice === "" ? void 0 : message.spotPrice;
-    obj.updated_at = message.updatedAt ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.updatedAt)) : void 0;
+    obj.last_request_time = message.lastRequestTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.lastRequestTime)) : void 0;
+    obj.last_response_time = message.lastResponseTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.lastResponseTime)) : void 0;
     obj.query_in_progress = message.queryInProgress === false ? void 0 : message.queryInProgress;
     return obj;
   },
@@ -201,8 +213,7 @@ function createBaseParams() {
     osmosisChainId: "",
     osmosisConnectionId: "",
     updateIntervalSec: BigInt(0),
-    priceExpirationTimeoutSec: BigInt(0),
-    icqTimeoutSec: BigInt(0)
+    priceExpirationTimeoutSec: BigInt(0)
   };
 }
 const Params = {
@@ -219,9 +230,6 @@ const Params = {
     }
     if (message.priceExpirationTimeoutSec !== BigInt(0)) {
       writer.uint32(32).uint64(message.priceExpirationTimeoutSec);
-    }
-    if (message.icqTimeoutSec !== BigInt(0)) {
-      writer.uint32(40).uint64(message.icqTimeoutSec);
     }
     return writer;
   },
@@ -244,9 +252,6 @@ const Params = {
         case 4:
           message.priceExpirationTimeoutSec = reader.uint64();
           break;
-        case 5:
-          message.icqTimeoutSec = reader.uint64();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -260,7 +265,6 @@ const Params = {
     message.osmosisConnectionId = object.osmosisConnectionId ?? "";
     message.updateIntervalSec = object.updateIntervalSec !== void 0 && object.updateIntervalSec !== null ? BigInt(object.updateIntervalSec.toString()) : BigInt(0);
     message.priceExpirationTimeoutSec = object.priceExpirationTimeoutSec !== void 0 && object.priceExpirationTimeoutSec !== null ? BigInt(object.priceExpirationTimeoutSec.toString()) : BigInt(0);
-    message.icqTimeoutSec = object.icqTimeoutSec !== void 0 && object.icqTimeoutSec !== null ? BigInt(object.icqTimeoutSec.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object) {
@@ -277,9 +281,6 @@ const Params = {
     if (object.price_expiration_timeout_sec !== void 0 && object.price_expiration_timeout_sec !== null) {
       message.priceExpirationTimeoutSec = BigInt(object.price_expiration_timeout_sec);
     }
-    if (object.icq_timeout_sec !== void 0 && object.icq_timeout_sec !== null) {
-      message.icqTimeoutSec = BigInt(object.icq_timeout_sec);
-    }
     return message;
   },
   toAmino(message) {
@@ -288,7 +289,6 @@ const Params = {
     obj.osmosis_connection_id = message.osmosisConnectionId ?? "";
     obj.update_interval_sec = message.updateIntervalSec ? message.updateIntervalSec?.toString() : "0";
     obj.price_expiration_timeout_sec = message.priceExpirationTimeoutSec ? message.priceExpirationTimeoutSec?.toString() : "0";
-    obj.icq_timeout_sec = message.icqTimeoutSec ? message.icqTimeoutSec?.toString() : "0";
     return obj;
   },
   fromAminoMsg(object) {

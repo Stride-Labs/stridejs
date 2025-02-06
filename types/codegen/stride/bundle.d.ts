@@ -2264,6 +2264,18 @@ export declare namespace stride {
             toProto(message: _155.QueryTokenPriceForQuoteDenomResponse): Uint8Array;
             toProtoMsg(message: _155.QueryTokenPriceForQuoteDenomResponse): _155.QueryTokenPriceForQuoteDenomResponseProtoMsg;
         };
+        TokenPriceResponse: {
+            typeUrl: string;
+            encode(message: _155.TokenPriceResponse, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
+            decode(input: Uint8Array | import("..").BinaryReader, length?: number): _155.TokenPriceResponse;
+            fromPartial(object: Partial<_155.TokenPriceResponse>): _155.TokenPriceResponse;
+            fromAmino(object: _155.TokenPriceResponseAmino): _155.TokenPriceResponse;
+            toAmino(message: _155.TokenPriceResponse): _155.TokenPriceResponseAmino;
+            fromAminoMsg(object: _155.TokenPriceResponseAminoMsg): _155.TokenPriceResponse;
+            fromProtoMsg(message: _155.TokenPriceResponseProtoMsg): _155.TokenPriceResponse;
+            toProto(message: _155.TokenPriceResponse): Uint8Array;
+            toProtoMsg(message: _155.TokenPriceResponse): _155.TokenPriceResponseProtoMsg;
+        };
         TokenPrice: {
             typeUrl: string;
             encode(message: _154.TokenPrice, writer?: import("..").BinaryWriter): import("..").BinaryWriter;

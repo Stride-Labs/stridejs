@@ -24,18 +24,21 @@ __export(query_exports, {
   QueryTokenPriceRequest: () => QueryTokenPriceRequest,
   QueryTokenPriceResponse: () => QueryTokenPriceResponse,
   QueryTokenPricesRequest: () => QueryTokenPricesRequest,
-  QueryTokenPricesResponse: () => QueryTokenPricesResponse
+  QueryTokenPricesResponse: () => QueryTokenPricesResponse,
+  TokenPriceResponse: () => TokenPriceResponse
 });
 module.exports = __toCommonJS(query_exports);
 var import_pagination = require("../../cosmos/base/query/v1beta1/pagination");
 var import_icqoracle = require("./icqoracle");
+var import_timestamp = require("../../google/protobuf/timestamp");
 var import_binary = require("../../binary");
 var import_math = require("@cosmjs/math");
+var import_helpers = require("../../helpers");
 function createBaseQueryTokenPriceRequest() {
   return {
     baseDenom: "",
     quoteDenom: "",
-    poolId: ""
+    poolId: BigInt(0)
   };
 }
 const QueryTokenPriceRequest = {
@@ -47,8 +50,8 @@ const QueryTokenPriceRequest = {
     if (message.quoteDenom !== "") {
       writer.uint32(18).string(message.quoteDenom);
     }
-    if (message.poolId !== "") {
-      writer.uint32(26).string(message.poolId);
+    if (message.poolId !== BigInt(0)) {
+      writer.uint32(24).uint64(message.poolId);
     }
     return writer;
   },
@@ -66,7 +69,7 @@ const QueryTokenPriceRequest = {
           message.quoteDenom = reader.string();
           break;
         case 3:
-          message.poolId = reader.string();
+          message.poolId = reader.uint64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -79,7 +82,7 @@ const QueryTokenPriceRequest = {
     const message = createBaseQueryTokenPriceRequest();
     message.baseDenom = object.baseDenom ?? "";
     message.quoteDenom = object.quoteDenom ?? "";
-    message.poolId = object.poolId ?? "";
+    message.poolId = object.poolId !== void 0 && object.poolId !== null ? BigInt(object.poolId.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object) {
@@ -91,7 +94,7 @@ const QueryTokenPriceRequest = {
       message.quoteDenom = object.quote_denom;
     }
     if (object.pool_id !== void 0 && object.pool_id !== null) {
-      message.poolId = object.pool_id;
+      message.poolId = BigInt(object.pool_id);
     }
     return message;
   },
@@ -99,7 +102,7 @@ const QueryTokenPriceRequest = {
     const obj = {};
     obj.base_denom = message.baseDenom === "" ? void 0 : message.baseDenom;
     obj.quote_denom = message.quoteDenom === "" ? void 0 : message.quoteDenom;
-    obj.pool_id = message.poolId === "" ? void 0 : message.poolId;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -120,14 +123,14 @@ const QueryTokenPriceRequest = {
 };
 function createBaseQueryTokenPriceResponse() {
   return {
-    tokenPrice: import_icqoracle.TokenPrice.fromPartial({})
+    tokenPrice: TokenPriceResponse.fromPartial({})
   };
 }
 const QueryTokenPriceResponse = {
   typeUrl: "/stride.icqoracle.QueryTokenPriceResponse",
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.tokenPrice !== void 0) {
-      import_icqoracle.TokenPrice.encode(message.tokenPrice, writer.uint32(10).fork()).ldelim();
+      TokenPriceResponse.encode(message.tokenPrice, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -139,7 +142,7 @@ const QueryTokenPriceResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.tokenPrice = import_icqoracle.TokenPrice.decode(reader, reader.uint32());
+          message.tokenPrice = TokenPriceResponse.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -150,19 +153,19 @@ const QueryTokenPriceResponse = {
   },
   fromPartial(object) {
     const message = createBaseQueryTokenPriceResponse();
-    message.tokenPrice = object.tokenPrice !== void 0 && object.tokenPrice !== null ? import_icqoracle.TokenPrice.fromPartial(object.tokenPrice) : void 0;
+    message.tokenPrice = object.tokenPrice !== void 0 && object.tokenPrice !== null ? TokenPriceResponse.fromPartial(object.tokenPrice) : void 0;
     return message;
   },
   fromAmino(object) {
     const message = createBaseQueryTokenPriceResponse();
     if (object.token_price !== void 0 && object.token_price !== null) {
-      message.tokenPrice = import_icqoracle.TokenPrice.fromAmino(object.token_price);
+      message.tokenPrice = TokenPriceResponse.fromAmino(object.token_price);
     }
     return message;
   },
   toAmino(message) {
     const obj = {};
-    obj.token_price = message.tokenPrice ? import_icqoracle.TokenPrice.toAmino(message.tokenPrice) : void 0;
+    obj.token_price = message.tokenPrice ? TokenPriceResponse.toAmino(message.tokenPrice) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -254,7 +257,7 @@ const QueryTokenPricesResponse = {
   typeUrl: "/stride.icqoracle.QueryTokenPricesResponse",
   encode(message, writer = import_binary.BinaryWriter.create()) {
     for (const v of message.tokenPrices) {
-      import_icqoracle.TokenPrice.encode(v, writer.uint32(10).fork()).ldelim();
+      TokenPriceResponse.encode(v, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== void 0) {
       import_pagination.PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
@@ -269,7 +272,7 @@ const QueryTokenPricesResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.tokenPrices.push(import_icqoracle.TokenPrice.decode(reader, reader.uint32()));
+          message.tokenPrices.push(TokenPriceResponse.decode(reader, reader.uint32()));
           break;
         case 2:
           message.pagination = import_pagination.PageResponse.decode(reader, reader.uint32());
@@ -283,13 +286,13 @@ const QueryTokenPricesResponse = {
   },
   fromPartial(object) {
     const message = createBaseQueryTokenPricesResponse();
-    message.tokenPrices = object.tokenPrices?.map((e) => import_icqoracle.TokenPrice.fromPartial(e)) || [];
+    message.tokenPrices = object.tokenPrices?.map((e) => TokenPriceResponse.fromPartial(e)) || [];
     message.pagination = object.pagination !== void 0 && object.pagination !== null ? import_pagination.PageResponse.fromPartial(object.pagination) : void 0;
     return message;
   },
   fromAmino(object) {
     const message = createBaseQueryTokenPricesResponse();
-    message.tokenPrices = object.token_prices?.map((e) => import_icqoracle.TokenPrice.fromAmino(e)) || [];
+    message.tokenPrices = object.token_prices?.map((e) => TokenPriceResponse.fromAmino(e)) || [];
     if (object.pagination !== void 0 && object.pagination !== null) {
       message.pagination = import_pagination.PageResponse.fromAmino(object.pagination);
     }
@@ -298,7 +301,7 @@ const QueryTokenPricesResponse = {
   toAmino(message) {
     const obj = {};
     if (message.tokenPrices) {
-      obj.token_prices = message.tokenPrices.map((e) => e ? import_icqoracle.TokenPrice.toAmino(e) : void 0);
+      obj.token_prices = message.tokenPrices.map((e) => e ? TokenPriceResponse.toAmino(e) : void 0);
     } else {
       obj.token_prices = message.tokenPrices;
     }
@@ -572,6 +575,213 @@ const QueryTokenPriceForQuoteDenomResponse = {
     };
   }
 };
+function createBaseTokenPriceResponse() {
+  return {
+    baseDenomUnwrapped: "",
+    quoteDenomUnwrapped: "",
+    baseDenom: "",
+    quoteDenom: "",
+    baseDenomDecimals: BigInt(0),
+    quoteDenomDecimals: BigInt(0),
+    osmosisBaseDenom: "",
+    osmosisQuoteDenom: "",
+    osmosisPoolId: BigInt(0),
+    spotPrice: "",
+    lastRequestTime: /* @__PURE__ */ new Date(),
+    lastResponseTime: /* @__PURE__ */ new Date(),
+    queryInProgress: false
+  };
+}
+const TokenPriceResponse = {
+  typeUrl: "/stride.icqoracle.TokenPriceResponse",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.baseDenomUnwrapped !== "") {
+      writer.uint32(10).string(message.baseDenomUnwrapped);
+    }
+    if (message.quoteDenomUnwrapped !== "") {
+      writer.uint32(18).string(message.quoteDenomUnwrapped);
+    }
+    if (message.baseDenom !== "") {
+      writer.uint32(26).string(message.baseDenom);
+    }
+    if (message.quoteDenom !== "") {
+      writer.uint32(34).string(message.quoteDenom);
+    }
+    if (message.baseDenomDecimals !== BigInt(0)) {
+      writer.uint32(40).int64(message.baseDenomDecimals);
+    }
+    if (message.quoteDenomDecimals !== BigInt(0)) {
+      writer.uint32(48).int64(message.quoteDenomDecimals);
+    }
+    if (message.osmosisBaseDenom !== "") {
+      writer.uint32(58).string(message.osmosisBaseDenom);
+    }
+    if (message.osmosisQuoteDenom !== "") {
+      writer.uint32(66).string(message.osmosisQuoteDenom);
+    }
+    if (message.osmosisPoolId !== BigInt(0)) {
+      writer.uint32(72).uint64(message.osmosisPoolId);
+    }
+    if (message.spotPrice !== "") {
+      writer.uint32(82).string(import_math.Decimal.fromUserInput(message.spotPrice, 18).atomics);
+    }
+    if (message.lastRequestTime !== void 0) {
+      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastRequestTime), writer.uint32(90).fork()).ldelim();
+    }
+    if (message.lastResponseTime !== void 0) {
+      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastResponseTime), writer.uint32(98).fork()).ldelim();
+    }
+    if (message.queryInProgress === true) {
+      writer.uint32(104).bool(message.queryInProgress);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseTokenPriceResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.baseDenomUnwrapped = reader.string();
+          break;
+        case 2:
+          message.quoteDenomUnwrapped = reader.string();
+          break;
+        case 3:
+          message.baseDenom = reader.string();
+          break;
+        case 4:
+          message.quoteDenom = reader.string();
+          break;
+        case 5:
+          message.baseDenomDecimals = reader.int64();
+          break;
+        case 6:
+          message.quoteDenomDecimals = reader.int64();
+          break;
+        case 7:
+          message.osmosisBaseDenom = reader.string();
+          break;
+        case 8:
+          message.osmosisQuoteDenom = reader.string();
+          break;
+        case 9:
+          message.osmosisPoolId = reader.uint64();
+          break;
+        case 10:
+          message.spotPrice = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          break;
+        case 11:
+          message.lastRequestTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 12:
+          message.lastResponseTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 13:
+          message.queryInProgress = reader.bool();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseTokenPriceResponse();
+    message.baseDenomUnwrapped = object.baseDenomUnwrapped ?? "";
+    message.quoteDenomUnwrapped = object.quoteDenomUnwrapped ?? "";
+    message.baseDenom = object.baseDenom ?? "";
+    message.quoteDenom = object.quoteDenom ?? "";
+    message.baseDenomDecimals = object.baseDenomDecimals !== void 0 && object.baseDenomDecimals !== null ? BigInt(object.baseDenomDecimals.toString()) : BigInt(0);
+    message.quoteDenomDecimals = object.quoteDenomDecimals !== void 0 && object.quoteDenomDecimals !== null ? BigInt(object.quoteDenomDecimals.toString()) : BigInt(0);
+    message.osmosisBaseDenom = object.osmosisBaseDenom ?? "";
+    message.osmosisQuoteDenom = object.osmosisQuoteDenom ?? "";
+    message.osmosisPoolId = object.osmosisPoolId !== void 0 && object.osmosisPoolId !== null ? BigInt(object.osmosisPoolId.toString()) : BigInt(0);
+    message.spotPrice = object.spotPrice ?? "";
+    message.lastRequestTime = object.lastRequestTime ?? void 0;
+    message.lastResponseTime = object.lastResponseTime ?? void 0;
+    message.queryInProgress = object.queryInProgress ?? false;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseTokenPriceResponse();
+    if (object.base_denom_unwrapped !== void 0 && object.base_denom_unwrapped !== null) {
+      message.baseDenomUnwrapped = object.base_denom_unwrapped;
+    }
+    if (object.quote_denom_unwrapped !== void 0 && object.quote_denom_unwrapped !== null) {
+      message.quoteDenomUnwrapped = object.quote_denom_unwrapped;
+    }
+    if (object.base_denom !== void 0 && object.base_denom !== null) {
+      message.baseDenom = object.base_denom;
+    }
+    if (object.quote_denom !== void 0 && object.quote_denom !== null) {
+      message.quoteDenom = object.quote_denom;
+    }
+    if (object.base_denom_decimals !== void 0 && object.base_denom_decimals !== null) {
+      message.baseDenomDecimals = BigInt(object.base_denom_decimals);
+    }
+    if (object.quote_denom_decimals !== void 0 && object.quote_denom_decimals !== null) {
+      message.quoteDenomDecimals = BigInt(object.quote_denom_decimals);
+    }
+    if (object.osmosis_base_denom !== void 0 && object.osmosis_base_denom !== null) {
+      message.osmosisBaseDenom = object.osmosis_base_denom;
+    }
+    if (object.osmosis_quote_denom !== void 0 && object.osmosis_quote_denom !== null) {
+      message.osmosisQuoteDenom = object.osmosis_quote_denom;
+    }
+    if (object.osmosis_pool_id !== void 0 && object.osmosis_pool_id !== null) {
+      message.osmosisPoolId = BigInt(object.osmosis_pool_id);
+    }
+    if (object.spot_price !== void 0 && object.spot_price !== null) {
+      message.spotPrice = object.spot_price;
+    }
+    if (object.last_request_time !== void 0 && object.last_request_time !== null) {
+      message.lastRequestTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.fromAmino(object.last_request_time));
+    }
+    if (object.last_response_time !== void 0 && object.last_response_time !== null) {
+      message.lastResponseTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.fromAmino(object.last_response_time));
+    }
+    if (object.query_in_progress !== void 0 && object.query_in_progress !== null) {
+      message.queryInProgress = object.query_in_progress;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.base_denom_unwrapped = message.baseDenomUnwrapped === "" ? void 0 : message.baseDenomUnwrapped;
+    obj.quote_denom_unwrapped = message.quoteDenomUnwrapped === "" ? void 0 : message.quoteDenomUnwrapped;
+    obj.base_denom = message.baseDenom === "" ? void 0 : message.baseDenom;
+    obj.quote_denom = message.quoteDenom === "" ? void 0 : message.quoteDenom;
+    obj.base_denom_decimals = message.baseDenomDecimals !== BigInt(0) ? message.baseDenomDecimals?.toString() : void 0;
+    obj.quote_denom_decimals = message.quoteDenomDecimals !== BigInt(0) ? message.quoteDenomDecimals?.toString() : void 0;
+    obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? void 0 : message.osmosisBaseDenom;
+    obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? void 0 : message.osmosisQuoteDenom;
+    obj.osmosis_pool_id = message.osmosisPoolId !== BigInt(0) ? message.osmosisPoolId?.toString() : void 0;
+    obj.spot_price = message.spotPrice === "" ? void 0 : message.spotPrice;
+    obj.last_request_time = message.lastRequestTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.lastRequestTime)) : void 0;
+    obj.last_response_time = message.lastResponseTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.lastResponseTime)) : void 0;
+    obj.query_in_progress = message.queryInProgress === false ? void 0 : message.queryInProgress;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return TokenPriceResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return TokenPriceResponse.decode(message.value);
+  },
+  toProto(message) {
+    return TokenPriceResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/stride.icqoracle.TokenPriceResponse",
+      value: TokenPriceResponse.encode(message).finish()
+    };
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   QueryParamsRequest,
@@ -581,5 +791,6 @@ const QueryTokenPriceForQuoteDenomResponse = {
   QueryTokenPriceRequest,
   QueryTokenPriceResponse,
   QueryTokenPricesRequest,
-  QueryTokenPricesResponse
+  QueryTokenPricesResponse,
+  TokenPriceResponse
 });

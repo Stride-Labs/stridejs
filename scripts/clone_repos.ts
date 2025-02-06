@@ -8,7 +8,7 @@ export const reposDir = join(__dirname, "repos");
 export const config = [
   {
     repo: "https://github.com/Stride-Labs/stride",
-    branch: "fix-dec-messages-in-stridejs",
+    branch: "buyback-and-burn",
   },
   {
     repo: "https://github.com/cosmos/cosmos-sdk",
