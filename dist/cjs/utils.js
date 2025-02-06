@@ -39,7 +39,9 @@ var import_ripemd160 = require("@noble/hashes/ripemd160");
 var import_sha256 = require("@noble/hashes/sha256");
 var import_bech32 = require("bech32");
 function coinFromString(coinAsString) {
-  const regexMatch = coinAsString.match(/^([\d\.]+)([a-z]+)$/);
+  const regexMatch = coinAsString.match(
+    /^([\d\.]+)([a-z]+|ibc\/[0-9A-F]{64})$/
+  );
   if (regexMatch === null) {
     throw new Error(`cannot extract denom & amount from '${coinAsString}'`);
   }

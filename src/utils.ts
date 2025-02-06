@@ -55,7 +55,9 @@ import { bech32 } from "bech32";
  * @returns {Coin} A Coin object with the extracted amount and denom.
  */
 export function coinFromString(coinAsString: string): Coin {
-  const regexMatch = coinAsString.match(/^([\d\.]+)([a-z]+)$/);
+  const regexMatch = coinAsString.match(
+    /^([\d\.]+)([a-z]+|ibc\/[0-9A-F]{64})$/,
+  );
 
   if (regexMatch === null) {
     throw new Error(`cannot extract denom & amount from '${coinAsString}'`);
