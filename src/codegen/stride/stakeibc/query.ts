@@ -1534,7 +1534,7 @@ export const QueryGetNextPacketSequenceResponse = {
   },
   toAmino(message: QueryGetNextPacketSequenceResponse): QueryGetNextPacketSequenceResponseAmino {
     const obj: any = {};
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : undefined;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryGetNextPacketSequenceResponseAminoMsg): QueryGetNextPacketSequenceResponse {

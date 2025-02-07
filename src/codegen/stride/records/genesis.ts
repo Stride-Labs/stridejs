@@ -162,7 +162,7 @@ export const GenesisState = {
     } else {
       obj.user_redemption_record_list = message.userRedemptionRecordList;
     }
-    obj.user_redemption_record_count = message.userRedemptionRecordCount !== BigInt(0) ? message.userRedemptionRecordCount?.toString() : undefined;
+    obj.user_redemption_record_count = message.userRedemptionRecordCount !== BigInt(0) ? message.userRedemptionRecordCount.toString() : undefined;
     if (message.epochUnbondingRecordList) {
       obj.epoch_unbonding_record_list = message.epochUnbondingRecordList.map(e => e ? EpochUnbondingRecord.toAmino(e) : undefined);
     } else {
@@ -173,7 +173,7 @@ export const GenesisState = {
     } else {
       obj.deposit_record_list = message.depositRecordList;
     }
-    obj.deposit_record_count = message.depositRecordCount !== BigInt(0) ? message.depositRecordCount?.toString() : undefined;
+    obj.deposit_record_count = message.depositRecordCount !== BigInt(0) ? message.depositRecordCount.toString() : undefined;
     if (message.lsmTokenDepositList) {
       obj.lsm_token_deposit_list = message.lsmTokenDepositList.map(e => e ? LSMTokenDeposit.toAmino(e) : undefined);
     } else {

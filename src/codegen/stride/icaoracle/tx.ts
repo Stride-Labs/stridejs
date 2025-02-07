@@ -404,7 +404,7 @@ export const MsgInstantiateOracle = {
     const obj: any = {};
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.oracle_chain_id = message.oracleChainId === "" ? undefined : message.oracleChainId;
-    obj.contract_code_id = message.contractCodeId !== BigInt(0) ? message.contractCodeId?.toString() : undefined;
+    obj.contract_code_id = message.contractCodeId !== BigInt(0) ? message.contractCodeId.toString() : undefined;
     obj.transfer_channel_on_oracle = message.transferChannelOnOracle === "" ? undefined : message.transferChannelOnOracle;
     return obj;
   },

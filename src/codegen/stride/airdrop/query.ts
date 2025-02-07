@@ -569,8 +569,8 @@ export const QueryAirdropResponse = {
     obj.distributor_address = message.distributorAddress === "" ? undefined : message.distributorAddress;
     obj.allocator_address = message.allocatorAddress === "" ? undefined : message.allocatorAddress;
     obj.linker_address = message.linkerAddress === "" ? undefined : message.linkerAddress;
-    obj.current_date_index = message.currentDateIndex !== BigInt(0) ? message.currentDateIndex?.toString() : undefined;
-    obj.airdrop_length = message.airdropLength !== BigInt(0) ? message.airdropLength?.toString() : undefined;
+    obj.current_date_index = message.currentDateIndex !== BigInt(0) ? message.currentDateIndex.toString() : undefined;
+    obj.airdrop_length = message.airdropLength !== BigInt(0) ? message.airdropLength.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryAirdropResponseAminoMsg): QueryAirdropResponse {

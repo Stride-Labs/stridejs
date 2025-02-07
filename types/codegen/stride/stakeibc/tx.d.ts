@@ -529,6 +529,40 @@ export interface MsgRestoreInterchainAccountResponseAminoMsg {
 }
 export interface MsgRestoreInterchainAccountResponseSDKType {
 }
+export interface MsgCloseDelegationChannel {
+    creator: string;
+    chainId: string;
+}
+export interface MsgCloseDelegationChannelProtoMsg {
+    typeUrl: "/stride.stakeibc.MsgCloseDelegationChannel";
+    value: Uint8Array;
+}
+export interface MsgCloseDelegationChannelAmino {
+    creator?: string;
+    chain_id?: string;
+}
+export interface MsgCloseDelegationChannelAminoMsg {
+    type: "/stride.stakeibc.MsgCloseDelegationChannel";
+    value: MsgCloseDelegationChannelAmino;
+}
+export interface MsgCloseDelegationChannelSDKType {
+    creator: string;
+    chain_id: string;
+}
+export interface MsgCloseDelegationChannelResponse {
+}
+export interface MsgCloseDelegationChannelResponseProtoMsg {
+    typeUrl: "/stride.stakeibc.MsgCloseDelegationChannelResponse";
+    value: Uint8Array;
+}
+export interface MsgCloseDelegationChannelResponseAmino {
+}
+export interface MsgCloseDelegationChannelResponseAminoMsg {
+    type: "/stride.stakeibc.MsgCloseDelegationChannelResponse";
+    value: MsgCloseDelegationChannelResponseAmino;
+}
+export interface MsgCloseDelegationChannelResponseSDKType {
+}
 export interface MsgUpdateValidatorSharesExchRate {
     creator: string;
     chainId: string;
@@ -1072,6 +1106,8 @@ export interface MsgToggleTradeController {
     permissionChange: AuthzPermissionChange;
     /** Address of trade operator */
     address: string;
+    /** Option to grant/revoke the legacy osmosis swap message */
+    legacy: boolean;
 }
 export interface MsgToggleTradeControllerProtoMsg {
     typeUrl: "/stride.stakeibc.MsgToggleTradeController";
@@ -1087,6 +1123,8 @@ export interface MsgToggleTradeControllerAmino {
     permission_change?: AuthzPermissionChange;
     /** Address of trade operator */
     address?: string;
+    /** Option to grant/revoke the legacy osmosis swap message */
+    legacy?: boolean;
 }
 export interface MsgToggleTradeControllerAminoMsg {
     type: "stride/x/stakeibc/MsgToggleTradeController";
@@ -1098,6 +1136,7 @@ export interface MsgToggleTradeControllerSDKType {
     chain_id: string;
     permission_change: AuthzPermissionChange;
     address: string;
+    legacy: boolean;
 }
 export interface MsgToggleTradeControllerResponse {
 }
@@ -1473,6 +1512,30 @@ export declare const MsgRestoreInterchainAccountResponse: {
     fromProtoMsg(message: MsgRestoreInterchainAccountResponseProtoMsg): MsgRestoreInterchainAccountResponse;
     toProto(message: MsgRestoreInterchainAccountResponse): Uint8Array;
     toProtoMsg(message: MsgRestoreInterchainAccountResponse): MsgRestoreInterchainAccountResponseProtoMsg;
+};
+export declare const MsgCloseDelegationChannel: {
+    typeUrl: string;
+    encode(message: MsgCloseDelegationChannel, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgCloseDelegationChannel;
+    fromPartial(object: Partial<MsgCloseDelegationChannel>): MsgCloseDelegationChannel;
+    fromAmino(object: MsgCloseDelegationChannelAmino): MsgCloseDelegationChannel;
+    toAmino(message: MsgCloseDelegationChannel): MsgCloseDelegationChannelAmino;
+    fromAminoMsg(object: MsgCloseDelegationChannelAminoMsg): MsgCloseDelegationChannel;
+    fromProtoMsg(message: MsgCloseDelegationChannelProtoMsg): MsgCloseDelegationChannel;
+    toProto(message: MsgCloseDelegationChannel): Uint8Array;
+    toProtoMsg(message: MsgCloseDelegationChannel): MsgCloseDelegationChannelProtoMsg;
+};
+export declare const MsgCloseDelegationChannelResponse: {
+    typeUrl: string;
+    encode(_: MsgCloseDelegationChannelResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgCloseDelegationChannelResponse;
+    fromPartial(_: Partial<MsgCloseDelegationChannelResponse>): MsgCloseDelegationChannelResponse;
+    fromAmino(_: MsgCloseDelegationChannelResponseAmino): MsgCloseDelegationChannelResponse;
+    toAmino(_: MsgCloseDelegationChannelResponse): MsgCloseDelegationChannelResponseAmino;
+    fromAminoMsg(object: MsgCloseDelegationChannelResponseAminoMsg): MsgCloseDelegationChannelResponse;
+    fromProtoMsg(message: MsgCloseDelegationChannelResponseProtoMsg): MsgCloseDelegationChannelResponse;
+    toProto(message: MsgCloseDelegationChannelResponse): Uint8Array;
+    toProtoMsg(message: MsgCloseDelegationChannelResponse): MsgCloseDelegationChannelResponseProtoMsg;
 };
 export declare const MsgUpdateValidatorSharesExchRate: {
     typeUrl: string;

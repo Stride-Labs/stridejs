@@ -284,22 +284,22 @@ export const Params = {
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.rewards_interval = message.rewardsInterval !== BigInt(0) ? message.rewardsInterval?.toString() : undefined;
-    obj.delegate_interval = message.delegateInterval !== BigInt(0) ? message.delegateInterval?.toString() : undefined;
-    obj.deposit_interval = message.depositInterval !== BigInt(0) ? message.depositInterval?.toString() : undefined;
-    obj.redemption_rate_interval = message.redemptionRateInterval !== BigInt(0) ? message.redemptionRateInterval?.toString() : undefined;
-    obj.stride_commission = message.strideCommission !== BigInt(0) ? message.strideCommission?.toString() : undefined;
-    obj.reinvest_interval = message.reinvestInterval !== BigInt(0) ? message.reinvestInterval?.toString() : undefined;
-    obj.ica_timeout_nanos = message.icaTimeoutNanos !== BigInt(0) ? message.icaTimeoutNanos?.toString() : undefined;
-    obj.buffer_size = message.bufferSize !== BigInt(0) ? message.bufferSize?.toString() : undefined;
-    obj.ibc_timeout_blocks = message.ibcTimeoutBlocks !== BigInt(0) ? message.ibcTimeoutBlocks?.toString() : undefined;
-    obj.fee_transfer_timeout_nanos = message.feeTransferTimeoutNanos !== BigInt(0) ? message.feeTransferTimeoutNanos?.toString() : undefined;
-    obj.max_stake_ica_calls_per_epoch = message.maxStakeIcaCallsPerEpoch !== BigInt(0) ? message.maxStakeIcaCallsPerEpoch?.toString() : undefined;
-    obj.default_min_redemption_rate_threshold = message.defaultMinRedemptionRateThreshold !== BigInt(0) ? message.defaultMinRedemptionRateThreshold?.toString() : undefined;
-    obj.default_max_redemption_rate_threshold = message.defaultMaxRedemptionRateThreshold !== BigInt(0) ? message.defaultMaxRedemptionRateThreshold?.toString() : undefined;
-    obj.ibc_transfer_timeout_nanos = message.ibcTransferTimeoutNanos !== BigInt(0) ? message.ibcTransferTimeoutNanos?.toString() : undefined;
-    obj.validator_slash_query_threshold = message.validatorSlashQueryThreshold !== BigInt(0) ? message.validatorSlashQueryThreshold?.toString() : undefined;
-    obj.validator_weight_cap = message.validatorWeightCap !== BigInt(0) ? message.validatorWeightCap?.toString() : undefined;
+    obj.rewards_interval = message.rewardsInterval !== BigInt(0) ? message.rewardsInterval.toString() : undefined;
+    obj.delegate_interval = message.delegateInterval !== BigInt(0) ? message.delegateInterval.toString() : undefined;
+    obj.deposit_interval = message.depositInterval !== BigInt(0) ? message.depositInterval.toString() : undefined;
+    obj.redemption_rate_interval = message.redemptionRateInterval !== BigInt(0) ? message.redemptionRateInterval.toString() : undefined;
+    obj.stride_commission = message.strideCommission !== BigInt(0) ? message.strideCommission.toString() : undefined;
+    obj.reinvest_interval = message.reinvestInterval !== BigInt(0) ? message.reinvestInterval.toString() : undefined;
+    obj.ica_timeout_nanos = message.icaTimeoutNanos !== BigInt(0) ? message.icaTimeoutNanos.toString() : undefined;
+    obj.buffer_size = message.bufferSize !== BigInt(0) ? message.bufferSize.toString() : undefined;
+    obj.ibc_timeout_blocks = message.ibcTimeoutBlocks !== BigInt(0) ? message.ibcTimeoutBlocks.toString() : undefined;
+    obj.fee_transfer_timeout_nanos = message.feeTransferTimeoutNanos !== BigInt(0) ? message.feeTransferTimeoutNanos.toString() : undefined;
+    obj.max_stake_ica_calls_per_epoch = message.maxStakeIcaCallsPerEpoch !== BigInt(0) ? message.maxStakeIcaCallsPerEpoch.toString() : undefined;
+    obj.default_min_redemption_rate_threshold = message.defaultMinRedemptionRateThreshold !== BigInt(0) ? message.defaultMinRedemptionRateThreshold.toString() : undefined;
+    obj.default_max_redemption_rate_threshold = message.defaultMaxRedemptionRateThreshold !== BigInt(0) ? message.defaultMaxRedemptionRateThreshold.toString() : undefined;
+    obj.ibc_transfer_timeout_nanos = message.ibcTransferTimeoutNanos !== BigInt(0) ? message.ibcTransferTimeoutNanos.toString() : undefined;
+    obj.validator_slash_query_threshold = message.validatorSlashQueryThreshold !== BigInt(0) ? message.validatorSlashQueryThreshold.toString() : undefined;
+    obj.validator_weight_cap = message.validatorWeightCap !== BigInt(0) ? message.validatorWeightCap.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {

@@ -1,6 +1,6 @@
 {
   "name": "stridejs",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "description": "The JavaScript SDK for Stride",
   "contributors": [
     "Dan Lynch <pyramation@gmail.com>",
@@ -24,7 +24,7 @@
   "scripts": {
     "build:bundle": "ts-node scripts/build.ts",
     "build:types": "tsc",
-    "build": "pnpm build:bundle",
+    "build": "pnpm build:bundle && pnpm build:types",
     "codegen": "pnpm run codegen:cleanup && pnpm run codegen:clone && pnpm run codegen:build-stride && pnpm run codegen:build-cosmos-sdk && pnpm run codegen:build-ibc-go && pnpm run codegen:run",
     "codegen:cleanup": "cross-env rm -rf src/codegen scripts/proto scripts/repos",
     "codegen:clone": "cross-env NODE_ENV=development ts-node scripts/clone_repos.ts",

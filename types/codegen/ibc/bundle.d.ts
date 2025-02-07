@@ -37,25 +37,25 @@ import * as _119 from "./lightclients/localhost/v2/localhost";
 import * as _120 from "./lightclients/solomachine/v2/solomachine";
 import * as _121 from "./lightclients/solomachine/v3/solomachine";
 import * as _122 from "./lightclients/tendermint/v1/tendermint";
-import * as _252 from "./applications/fee/v1/query.rpc.Query";
-import * as _253 from "./applications/interchain_accounts/controller/v1/query.rpc.Query";
-import * as _254 from "./applications/interchain_accounts/host/v1/query.rpc.Query";
-import * as _255 from "./applications/transfer/v1/query.rpc.Query";
-import * as _256 from "./core/channel/v1/query.rpc.Query";
-import * as _257 from "./core/client/v1/query.rpc.Query";
-import * as _258 from "./core/connection/v1/query.rpc.Query";
-import * as _259 from "./applications/fee/v1/tx.rpc.msg";
-import * as _260 from "./applications/interchain_accounts/controller/v1/tx.rpc.msg";
-import * as _261 from "./applications/transfer/v1/tx.rpc.msg";
-import * as _262 from "./core/channel/v1/tx.rpc.msg";
-import * as _263 from "./core/client/v1/tx.rpc.msg";
-import * as _264 from "./core/connection/v1/tx.rpc.msg";
+import * as _251 from "./applications/fee/v1/query.rpc.Query";
+import * as _252 from "./applications/interchain_accounts/controller/v1/query.rpc.Query";
+import * as _253 from "./applications/interchain_accounts/host/v1/query.rpc.Query";
+import * as _254 from "./applications/transfer/v1/query.rpc.Query";
+import * as _255 from "./core/channel/v1/query.rpc.Query";
+import * as _256 from "./core/client/v1/query.rpc.Query";
+import * as _257 from "./core/connection/v1/query.rpc.Query";
+import * as _258 from "./applications/fee/v1/tx.rpc.msg";
+import * as _259 from "./applications/interchain_accounts/controller/v1/tx.rpc.msg";
+import * as _260 from "./applications/transfer/v1/tx.rpc.msg";
+import * as _261 from "./core/channel/v1/tx.rpc.msg";
+import * as _262 from "./core/client/v1/tx.rpc.msg";
+import * as _263 from "./core/connection/v1/tx.rpc.msg";
 export declare namespace ibc {
     namespace applications {
         namespace fee {
             const v1: {
-                MsgClientImpl: typeof _259.MsgClientImpl;
-                QueryClientImpl: typeof _252.QueryClientImpl;
+                MsgClientImpl: typeof _258.MsgClientImpl;
+                QueryClientImpl: typeof _251.QueryClientImpl;
                 createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
                     incentivizedPackets(request: _88.QueryIncentivizedPacketsRequest): Promise<_88.QueryIncentivizedPacketsResponse>;
                     incentivizedPacket(request: _88.QueryIncentivizedPacketRequest): Promise<_88.QueryIncentivizedPacketResponse>;
@@ -660,8 +660,8 @@ export declare namespace ibc {
         namespace interchain_accounts {
             namespace controller {
                 const v1: {
-                    MsgClientImpl: typeof _260.MsgClientImpl;
-                    QueryClientImpl: typeof _253.QueryClientImpl;
+                    MsgClientImpl: typeof _259.MsgClientImpl;
+                    QueryClientImpl: typeof _252.QueryClientImpl;
                     createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
                         interchainAccount(request: _91.QueryInterchainAccountRequest): Promise<_91.QueryInterchainAccountResponse>;
                         params(request?: _91.QueryParamsRequest): Promise<_91.QueryParamsResponse>;
@@ -902,7 +902,7 @@ export declare namespace ibc {
             }
             namespace host {
                 const v1: {
-                    QueryClientImpl: typeof _254.QueryClientImpl;
+                    QueryClientImpl: typeof _253.QueryClientImpl;
                     createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
                         params(request?: _95.QueryParamsRequest): Promise<_95.QueryParamsResponse>;
                     };
@@ -1009,8 +1009,8 @@ export declare namespace ibc {
         }
         namespace transfer {
             const v1: {
-                MsgClientImpl: typeof _261.MsgClientImpl;
-                QueryClientImpl: typeof _255.QueryClientImpl;
+                MsgClientImpl: typeof _260.MsgClientImpl;
+                QueryClientImpl: typeof _254.QueryClientImpl;
                 createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
                     denomTraces(request?: _101.QueryDenomTracesRequest): Promise<_101.QueryDenomTracesResponse>;
                     denomTrace(request: _101.QueryDenomTraceRequest): Promise<_101.QueryDenomTraceResponse>;
@@ -1316,8 +1316,8 @@ export declare namespace ibc {
     namespace core {
         namespace channel {
             const v1: {
-                MsgClientImpl: typeof _262.MsgClientImpl;
-                QueryClientImpl: typeof _256.QueryClientImpl;
+                MsgClientImpl: typeof _261.MsgClientImpl;
+                QueryClientImpl: typeof _255.QueryClientImpl;
                 createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
                     channel(request: _107.QueryChannelRequest): Promise<_107.QueryChannelResponse>;
                     channels(request?: _107.QueryChannelsRequest): Promise<_107.QueryChannelsResponse>;
@@ -2249,8 +2249,8 @@ export declare namespace ibc {
         }
         namespace client {
             const v1: {
-                MsgClientImpl: typeof _263.MsgClientImpl;
-                QueryClientImpl: typeof _257.QueryClientImpl;
+                MsgClientImpl: typeof _262.MsgClientImpl;
+                QueryClientImpl: typeof _256.QueryClientImpl;
                 createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
                     clientState(request: _111.QueryClientStateRequest): Promise<_111.QueryClientStateResponse>;
                     clientStates(request?: _111.QueryClientStatesRequest): Promise<_111.QueryClientStatesResponse>;
@@ -2870,8 +2870,8 @@ export declare namespace ibc {
         }
         namespace connection {
             const v1: {
-                MsgClientImpl: typeof _264.MsgClientImpl;
-                QueryClientImpl: typeof _258.QueryClientImpl;
+                MsgClientImpl: typeof _263.MsgClientImpl;
+                QueryClientImpl: typeof _257.QueryClientImpl;
                 createRpcQueryExtension: (base: import("@cosmjs/stargate").QueryClient) => {
                     connection(request: _116.QueryConnectionRequest): Promise<_116.QueryConnectionResponse>;
                     connections(request?: _116.QueryConnectionsRequest): Promise<_116.QueryConnectionsResponse>;
@@ -3799,26 +3799,26 @@ export declare namespace ibc {
             ibc: {
                 applications: {
                     fee: {
-                        v1: _259.MsgClientImpl;
+                        v1: _258.MsgClientImpl;
                     };
                     interchain_accounts: {
                         controller: {
-                            v1: _260.MsgClientImpl;
+                            v1: _259.MsgClientImpl;
                         };
                     };
                     transfer: {
-                        v1: _261.MsgClientImpl;
+                        v1: _260.MsgClientImpl;
                     };
                 };
                 core: {
                     channel: {
-                        v1: _262.MsgClientImpl;
+                        v1: _261.MsgClientImpl;
                     };
                     client: {
-                        v1: _263.MsgClientImpl;
+                        v1: _262.MsgClientImpl;
                     };
                     connection: {
-                        v1: _264.MsgClientImpl;
+                        v1: _263.MsgClientImpl;
                     };
                 };
             };
