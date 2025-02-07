@@ -130,56 +130,17 @@ const { transfer } =
 
 ## Developing & Publishing
 
-When first cloning the repo:
-
 ```bash
-git submodule sync --recursive
-git submodule update --init --recursive
 pnpm install
 ```
 
-### Checkout Relevant Branches
+### Checkout Relevant Branches (Optional)
 
 We currently bundle in a specific version of cosmos-sdk because of LSM. And sometimes we do the same for Stride too.
 
-Open up `.gitmodules` to update the specified branches, then sync:
+Open up `scripts/clone_repos.ts`, and find the `rev` (which corresponds to the branch to be used) field. Adjust as you see fit.
 
-```bash
-git submodule sync --recursive
-git submodule update --init --recursive
-```
-
-Check if the submodules were updated:
-
-```bash
-# Check if the specified branch for Stride is correct
-cd stride
-git branch
-
-cd ../
-
-# Check if the specified branch for Cosmos is correct
-cd cosmos
-git branch
-```
-
-If the branches were not updated, that's ok. Sometimes things get stuck, so we have to manually check out and update branches despite the previous step covering those.
-
-```bash
-cd stride
-git checkout <branch>
-git pull origin <branch>
-git log # Confirm if the latest commit is the same on the repository
-
-cd ../
-
-cd cosmos
-git checkout <branch>
-git pull origin <branch>
-git log # Confirm if the latest commit is the same on the repository
-```
-
-### Codegen
+### New Transaction Types (Optional)
 
 If there are new public-facing transaction types on the Stride side, make sure to manually adjust its `aminoType` by opening `scripts/codegen.js`. Under `options.aminoEncoding.exceptions`, you'll find stuff like:
 
@@ -220,7 +181,7 @@ If you haven't logged to npm cli, run:
 npm login
 ```
 
-Afterwards, update package.json version.
+Update package.json version, then publish:
 
 ```bash
 # Example: <version> = v0.4.1
