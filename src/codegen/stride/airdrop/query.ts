@@ -1094,7 +1094,7 @@ export const QueryUserSummaryResponse = {
     obj.forfeited = message.forfeited === "" ? undefined : message.forfeited;
     obj.remaining = message.remaining === "" ? undefined : message.remaining;
     obj.claimable = message.claimable === "" ? undefined : message.claimable;
-    obj.current_date_index = message.currentDateIndex !== BigInt(0) ? message.currentDateIndex.toString() : undefined;
+    obj.current_date_index = message.currentDateIndex !== BigInt(0) ? message.currentDateIndex?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryUserSummaryResponseAminoMsg): QueryUserSummaryResponse {

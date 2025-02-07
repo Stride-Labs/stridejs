@@ -704,7 +704,7 @@ export const HostZone = {
     obj.transfer_channel_id = message.transferChannelId === "" ? undefined : message.transferChannelId;
     obj.ibc_denom = message.ibcDenom === "" ? undefined : message.ibcDenom;
     obj.host_denom = message.hostDenom === "" ? undefined : message.hostDenom;
-    obj.unbonding_period = message.unbondingPeriod !== BigInt(0) ? message.unbondingPeriod.toString() : undefined;
+    obj.unbonding_period = message.unbondingPeriod !== BigInt(0) ? message.unbondingPeriod?.toString() : undefined;
     if (message.validators) {
       obj.validators = message.validators.map(e => e ? Validator.toAmino(e) : undefined);
     } else {
@@ -727,7 +727,7 @@ export const HostZone = {
     obj.max_redemption_rate = message.maxRedemptionRate === "" ? undefined : message.maxRedemptionRate;
     obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? undefined : message.minInnerRedemptionRate;
     obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? undefined : message.maxInnerRedemptionRate;
-    obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx.toString() : undefined;
+    obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx?.toString() : undefined;
     obj.community_pool_rebate = message.communityPoolRebate ? CommunityPoolRebate.toAmino(message.communityPoolRebate) : undefined;
     obj.lsm_liquid_stake_enabled = message.lsmLiquidStakeEnabled === false ? undefined : message.lsmLiquidStakeEnabled;
     obj.halted = message.halted === false ? undefined : message.halted;
