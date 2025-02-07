@@ -1,14 +1,15 @@
 import { Params, ParamsAmino, ParamsSDKType } from "./params";
 import { HostZone, HostZoneAmino, HostZoneSDKType } from "./host_zone";
 import { EpochTracker, EpochTrackerAmino, EpochTrackerSDKType } from "./epoch_tracker";
+import { TradeRoute, TradeRouteAmino, TradeRouteSDKType } from "./trade_route";
 import { BinaryReader, BinaryWriter } from "../../binary";
 /** GenesisState defines the stakeibc module's genesis state. */
 export interface GenesisState {
   params: Params;
   portId: string;
-  /** list of zones that are registered by the protocol */
   hostZoneList: HostZone[];
   epochTrackerList: EpochTracker[];
+  tradeRoutes: TradeRoute[];
 }
 export interface GenesisStateProtoMsg {
   typeUrl: "/stride.stakeibc.GenesisState";
@@ -18,9 +19,9 @@ export interface GenesisStateProtoMsg {
 export interface GenesisStateAmino {
   params?: ParamsAmino;
   port_id?: string;
-  /** list of zones that are registered by the protocol */
   host_zone_list?: HostZoneAmino[];
   epoch_tracker_list?: EpochTrackerAmino[];
+  trade_routes?: TradeRouteAmino[];
 }
 export interface GenesisStateAminoMsg {
   type: "/stride.stakeibc.GenesisState";
@@ -32,13 +33,15 @@ export interface GenesisStateSDKType {
   port_id: string;
   host_zone_list: HostZoneSDKType[];
   epoch_tracker_list: EpochTrackerSDKType[];
+  trade_routes: TradeRouteSDKType[];
 }
 function createBaseGenesisState(): GenesisState {
   return {
     params: Params.fromPartial({}),
     portId: "",
     hostZoneList: [],
-    epochTrackerList: []
+    epochTrackerList: [],
+    tradeRoutes: []
   };
 }
 export const GenesisState = {
@@ -55,6 +58,9 @@ export const GenesisState = {
     }
     for (const v of message.epochTrackerList) {
       EpochTracker.encode(v!, writer.uint32(82).fork()).ldelim();
+    }
+    for (const v of message.tradeRoutes) {
+      TradeRoute.encode(v!, writer.uint32(98).fork()).ldelim();
     }
     return writer;
   },
@@ -77,6 +83,9 @@ export const GenesisState = {
         case 10:
           message.epochTrackerList.push(EpochTracker.decode(reader, reader.uint32()));
           break;
+        case 12:
+          message.tradeRoutes.push(TradeRoute.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -90,6 +99,7 @@ export const GenesisState = {
     message.portId = object.portId ?? "";
     message.hostZoneList = object.hostZoneList?.map(e => HostZone.fromPartial(e)) || [];
     message.epochTrackerList = object.epochTrackerList?.map(e => EpochTracker.fromPartial(e)) || [];
+    message.tradeRoutes = object.tradeRoutes?.map(e => TradeRoute.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
@@ -102,6 +112,7 @@ export const GenesisState = {
     }
     message.hostZoneList = object.host_zone_list?.map(e => HostZone.fromAmino(e)) || [];
     message.epochTrackerList = object.epoch_tracker_list?.map(e => EpochTracker.fromAmino(e)) || [];
+    message.tradeRoutes = object.trade_routes?.map(e => TradeRoute.fromAmino(e)) || [];
     return message;
   },
   toAmino(message: GenesisState): GenesisStateAmino {
@@ -117,6 +128,11 @@ export const GenesisState = {
       obj.epoch_tracker_list = message.epochTrackerList.map(e => e ? EpochTracker.toAmino(e) : undefined);
     } else {
       obj.epoch_tracker_list = message.epochTrackerList;
+    }
+    if (message.tradeRoutes) {
+      obj.trade_routes = message.tradeRoutes.map(e => e ? TradeRoute.toAmino(e) : undefined);
+    } else {
+      obj.trade_routes = message.tradeRoutes;
     }
     return obj;
   },

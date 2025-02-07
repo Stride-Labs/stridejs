@@ -134,7 +134,7 @@ export const CallbackData = {
     obj.callback_key = message.callbackKey === "" ? undefined : message.callbackKey;
     obj.port_id = message.portId === "" ? undefined : message.portId;
     obj.channel_id = message.channelId === "" ? undefined : message.channelId;
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : undefined;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : undefined;
     obj.callback_id = message.callbackId === "" ? undefined : message.callbackId;
     obj.callback_args = message.callbackArgs ? base64FromBytes(message.callbackArgs) : undefined;
     return obj;

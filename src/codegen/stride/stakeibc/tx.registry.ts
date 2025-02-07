@@ -1,7 +1,7 @@
 import { TelescopeGeneratedType } from "../../types";
 import { Registry } from "@cosmjs/proto-signing";
-import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeights, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgCalibrateDelegation, MsgClearBalance, MsgUpdateInnerRedemptionRateBounds, MsgResumeHostZone, MsgCreateTradeRoute, MsgDeleteTradeRoute, MsgUpdateTradeRoute, MsgSetCommunityPoolRebate, MsgToggleTradeController, MsgUpdateHostZoneParams } from "./tx";
-export const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]> = [["/stride.stakeibc.MsgLiquidStake", MsgLiquidStake], ["/stride.stakeibc.MsgLSMLiquidStake", MsgLSMLiquidStake], ["/stride.stakeibc.MsgRedeemStake", MsgRedeemStake], ["/stride.stakeibc.MsgRegisterHostZone", MsgRegisterHostZone], ["/stride.stakeibc.MsgClaimUndelegatedTokens", MsgClaimUndelegatedTokens], ["/stride.stakeibc.MsgRebalanceValidators", MsgRebalanceValidators], ["/stride.stakeibc.MsgAddValidators", MsgAddValidators], ["/stride.stakeibc.MsgChangeValidatorWeights", MsgChangeValidatorWeights], ["/stride.stakeibc.MsgDeleteValidator", MsgDeleteValidator], ["/stride.stakeibc.MsgRestoreInterchainAccount", MsgRestoreInterchainAccount], ["/stride.stakeibc.MsgUpdateValidatorSharesExchRate", MsgUpdateValidatorSharesExchRate], ["/stride.stakeibc.MsgCalibrateDelegation", MsgCalibrateDelegation], ["/stride.stakeibc.MsgClearBalance", MsgClearBalance], ["/stride.stakeibc.MsgUpdateInnerRedemptionRateBounds", MsgUpdateInnerRedemptionRateBounds], ["/stride.stakeibc.MsgResumeHostZone", MsgResumeHostZone], ["/stride.stakeibc.MsgCreateTradeRoute", MsgCreateTradeRoute], ["/stride.stakeibc.MsgDeleteTradeRoute", MsgDeleteTradeRoute], ["/stride.stakeibc.MsgUpdateTradeRoute", MsgUpdateTradeRoute], ["/stride.stakeibc.MsgSetCommunityPoolRebate", MsgSetCommunityPoolRebate], ["/stride.stakeibc.MsgToggleTradeController", MsgToggleTradeController], ["/stride.stakeibc.MsgUpdateHostZoneParams", MsgUpdateHostZoneParams]];
+import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeights, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgCloseDelegationChannel, MsgUpdateValidatorSharesExchRate, MsgCalibrateDelegation, MsgClearBalance, MsgUpdateInnerRedemptionRateBounds, MsgResumeHostZone, MsgCreateTradeRoute, MsgDeleteTradeRoute, MsgUpdateTradeRoute, MsgSetCommunityPoolRebate, MsgToggleTradeController, MsgUpdateHostZoneParams } from "./tx";
+export const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]> = [["/stride.stakeibc.MsgLiquidStake", MsgLiquidStake], ["/stride.stakeibc.MsgLSMLiquidStake", MsgLSMLiquidStake], ["/stride.stakeibc.MsgRedeemStake", MsgRedeemStake], ["/stride.stakeibc.MsgRegisterHostZone", MsgRegisterHostZone], ["/stride.stakeibc.MsgClaimUndelegatedTokens", MsgClaimUndelegatedTokens], ["/stride.stakeibc.MsgRebalanceValidators", MsgRebalanceValidators], ["/stride.stakeibc.MsgAddValidators", MsgAddValidators], ["/stride.stakeibc.MsgChangeValidatorWeights", MsgChangeValidatorWeights], ["/stride.stakeibc.MsgDeleteValidator", MsgDeleteValidator], ["/stride.stakeibc.MsgRestoreInterchainAccount", MsgRestoreInterchainAccount], ["/stride.stakeibc.MsgCloseDelegationChannel", MsgCloseDelegationChannel], ["/stride.stakeibc.MsgUpdateValidatorSharesExchRate", MsgUpdateValidatorSharesExchRate], ["/stride.stakeibc.MsgCalibrateDelegation", MsgCalibrateDelegation], ["/stride.stakeibc.MsgClearBalance", MsgClearBalance], ["/stride.stakeibc.MsgUpdateInnerRedemptionRateBounds", MsgUpdateInnerRedemptionRateBounds], ["/stride.stakeibc.MsgResumeHostZone", MsgResumeHostZone], ["/stride.stakeibc.MsgCreateTradeRoute", MsgCreateTradeRoute], ["/stride.stakeibc.MsgDeleteTradeRoute", MsgDeleteTradeRoute], ["/stride.stakeibc.MsgUpdateTradeRoute", MsgUpdateTradeRoute], ["/stride.stakeibc.MsgSetCommunityPoolRebate", MsgSetCommunityPoolRebate], ["/stride.stakeibc.MsgToggleTradeController", MsgToggleTradeController], ["/stride.stakeibc.MsgUpdateHostZoneParams", MsgUpdateHostZoneParams]];
 export const load = (protoRegistry: Registry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -67,6 +67,12 @@ export const MessageComposer = {
       return {
         typeUrl: "/stride.stakeibc.MsgRestoreInterchainAccount",
         value: MsgRestoreInterchainAccount.encode(value).finish()
+      };
+    },
+    closeDelegationChannel(value: MsgCloseDelegationChannel) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgCloseDelegationChannel",
+        value: MsgCloseDelegationChannel.encode(value).finish()
       };
     },
     updateValidatorSharesExchRate(value: MsgUpdateValidatorSharesExchRate) {
@@ -197,6 +203,12 @@ export const MessageComposer = {
         value
       };
     },
+    closeDelegationChannel(value: MsgCloseDelegationChannel) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgCloseDelegationChannel",
+        value
+      };
+    },
     updateValidatorSharesExchRate(value: MsgUpdateValidatorSharesExchRate) {
       return {
         typeUrl: "/stride.stakeibc.MsgUpdateValidatorSharesExchRate",
@@ -323,6 +335,12 @@ export const MessageComposer = {
       return {
         typeUrl: "/stride.stakeibc.MsgRestoreInterchainAccount",
         value: MsgRestoreInterchainAccount.fromPartial(value)
+      };
+    },
+    closeDelegationChannel(value: MsgCloseDelegationChannel) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgCloseDelegationChannel",
+        value: MsgCloseDelegationChannel.fromPartial(value)
       };
     },
     updateValidatorSharesExchRate(value: MsgUpdateValidatorSharesExchRate) {

@@ -693,7 +693,7 @@ export const ValidatorCurrentRewards = {
     } else {
       obj.rewards = message.rewards;
     }
-    obj.period = message.period !== BigInt(0) ? message.period.toString() : undefined;
+    obj.period = message.period !== BigInt(0) ? message.period?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ValidatorCurrentRewardsAminoMsg): ValidatorCurrentRewards {
@@ -915,7 +915,7 @@ export const ValidatorSlashEvent = {
   },
   toAmino(message: ValidatorSlashEvent): ValidatorSlashEventAmino {
     const obj: any = {};
-    obj.validator_period = message.validatorPeriod !== BigInt(0) ? message.validatorPeriod.toString() : undefined;
+    obj.validator_period = message.validatorPeriod !== BigInt(0) ? message.validatorPeriod?.toString() : undefined;
     obj.fraction = message.fraction === "" ? undefined : message.fraction;
     return obj;
   },
@@ -1256,9 +1256,9 @@ export const DelegatorStartingInfo = {
   },
   toAmino(message: DelegatorStartingInfo): DelegatorStartingInfoAmino {
     const obj: any = {};
-    obj.previous_period = message.previousPeriod !== BigInt(0) ? message.previousPeriod.toString() : undefined;
+    obj.previous_period = message.previousPeriod !== BigInt(0) ? message.previousPeriod?.toString() : undefined;
     obj.stake = message.stake === "" ? undefined : message.stake;
-    obj.height = message.height ? message.height.toString() : "0";
+    obj.height = message.height ? message.height?.toString() : "0";
     return obj;
   },
   fromAminoMsg(object: DelegatorStartingInfoAminoMsg): DelegatorStartingInfo {
@@ -1419,7 +1419,7 @@ export const TokenizeShareRecordReward = {
   },
   toAmino(message: TokenizeShareRecordReward): TokenizeShareRecordRewardAmino {
     const obj: any = {};
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId.toString() : undefined;
+    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : undefined;
     if (message.reward) {
       obj.reward = message.reward.map(e => e ? DecCoin.toAmino(e) : undefined);
     } else {

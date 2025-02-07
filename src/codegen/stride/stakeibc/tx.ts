@@ -523,6 +523,37 @@ export interface MsgRestoreInterchainAccountResponseAminoMsg {
   value: MsgRestoreInterchainAccountResponseAmino;
 }
 export interface MsgRestoreInterchainAccountResponseSDKType {}
+export interface MsgCloseDelegationChannel {
+  creator: string;
+  chainId: string;
+}
+export interface MsgCloseDelegationChannelProtoMsg {
+  typeUrl: "/stride.stakeibc.MsgCloseDelegationChannel";
+  value: Uint8Array;
+}
+export interface MsgCloseDelegationChannelAmino {
+  creator?: string;
+  chain_id?: string;
+}
+export interface MsgCloseDelegationChannelAminoMsg {
+  type: "/stride.stakeibc.MsgCloseDelegationChannel";
+  value: MsgCloseDelegationChannelAmino;
+}
+export interface MsgCloseDelegationChannelSDKType {
+  creator: string;
+  chain_id: string;
+}
+export interface MsgCloseDelegationChannelResponse {}
+export interface MsgCloseDelegationChannelResponseProtoMsg {
+  typeUrl: "/stride.stakeibc.MsgCloseDelegationChannelResponse";
+  value: Uint8Array;
+}
+export interface MsgCloseDelegationChannelResponseAmino {}
+export interface MsgCloseDelegationChannelResponseAminoMsg {
+  type: "/stride.stakeibc.MsgCloseDelegationChannelResponse";
+  value: MsgCloseDelegationChannelResponseAmino;
+}
+export interface MsgCloseDelegationChannelResponseSDKType {}
 export interface MsgUpdateValidatorSharesExchRate {
   creator: string;
   chainId: string;
@@ -1045,6 +1076,8 @@ export interface MsgToggleTradeController {
   permissionChange: AuthzPermissionChange;
   /** Address of trade operator */
   address: string;
+  /** Option to grant/revoke the legacy osmosis swap message */
+  legacy: boolean;
 }
 export interface MsgToggleTradeControllerProtoMsg {
   typeUrl: "/stride.stakeibc.MsgToggleTradeController";
@@ -1060,6 +1093,8 @@ export interface MsgToggleTradeControllerAmino {
   permission_change?: AuthzPermissionChange;
   /** Address of trade operator */
   address?: string;
+  /** Option to grant/revoke the legacy osmosis swap message */
+  legacy?: boolean;
 }
 export interface MsgToggleTradeControllerAminoMsg {
   type: "stride/x/stakeibc/MsgToggleTradeController";
@@ -1071,6 +1106,7 @@ export interface MsgToggleTradeControllerSDKType {
   chain_id: string;
   permission_change: AuthzPermissionChange;
   address: string;
+  legacy: boolean;
 }
 export interface MsgToggleTradeControllerResponse {}
 export interface MsgToggleTradeControllerResponseProtoMsg {
@@ -2074,12 +2110,12 @@ export const MsgRegisterHostZone = {
     obj.ibc_denom = message.ibcDenom === "" ? undefined : message.ibcDenom;
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.transfer_channel_id = message.transferChannelId === "" ? undefined : message.transferChannelId;
-    obj.unbonding_period = message.unbondingPeriod !== BigInt(0) ? message.unbondingPeriod.toString() : undefined;
+    obj.unbonding_period = message.unbondingPeriod !== BigInt(0) ? message.unbondingPeriod?.toString() : undefined;
     obj.min_redemption_rate = message.minRedemptionRate === "" ? undefined : message.minRedemptionRate;
     obj.max_redemption_rate = message.maxRedemptionRate === "" ? undefined : message.maxRedemptionRate;
     obj.lsm_liquid_stake_enabled = message.lsmLiquidStakeEnabled === false ? undefined : message.lsmLiquidStakeEnabled;
     obj.community_pool_treasury_address = message.communityPoolTreasuryAddress === "" ? undefined : message.communityPoolTreasuryAddress;
-    obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx.toString() : undefined;
+    obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgRegisterHostZoneAminoMsg): MsgRegisterHostZone {
@@ -2233,7 +2269,7 @@ export const MsgClaimUndelegatedTokens = {
     const obj: any = {};
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.host_zone_id = message.hostZoneId === "" ? undefined : message.hostZoneId;
-    obj.epoch = message.epoch !== BigInt(0) ? message.epoch.toString() : undefined;
+    obj.epoch = message.epoch !== BigInt(0) ? message.epoch?.toString() : undefined;
     obj.receiver = message.receiver === "" ? undefined : message.receiver;
     return obj;
   },
@@ -2377,7 +2413,7 @@ export const MsgRebalanceValidators = {
     const obj: any = {};
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.host_zone = message.hostZone === "" ? undefined : message.hostZone;
-    obj.num_rebalance = message.numRebalance !== BigInt(0) ? message.numRebalance.toString() : undefined;
+    obj.num_rebalance = message.numRebalance !== BigInt(0) ? message.numRebalance?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgRebalanceValidatorsAminoMsg): MsgRebalanceValidators {
@@ -2647,7 +2683,7 @@ export const ValidatorWeight = {
   toAmino(message: ValidatorWeight): ValidatorWeightAmino {
     const obj: any = {};
     obj.address = message.address === "" ? undefined : message.address;
-    obj.weight = message.weight !== BigInt(0) ? message.weight.toString() : undefined;
+    obj.weight = message.weight !== BigInt(0) ? message.weight?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ValidatorWeightAminoMsg): ValidatorWeight {
@@ -3100,6 +3136,131 @@ export const MsgRestoreInterchainAccountResponse = {
     return {
       typeUrl: "/stride.stakeibc.MsgRestoreInterchainAccountResponse",
       value: MsgRestoreInterchainAccountResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgCloseDelegationChannel(): MsgCloseDelegationChannel {
+  return {
+    creator: "",
+    chainId: ""
+  };
+}
+export const MsgCloseDelegationChannel = {
+  typeUrl: "/stride.stakeibc.MsgCloseDelegationChannel",
+  encode(message: MsgCloseDelegationChannel, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.chainId !== "") {
+      writer.uint32(18).string(message.chainId);
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): MsgCloseDelegationChannel {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCloseDelegationChannel();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.chainId = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<MsgCloseDelegationChannel>): MsgCloseDelegationChannel {
+    const message = createBaseMsgCloseDelegationChannel();
+    message.creator = object.creator ?? "";
+    message.chainId = object.chainId ?? "";
+    return message;
+  },
+  fromAmino(object: MsgCloseDelegationChannelAmino): MsgCloseDelegationChannel {
+    const message = createBaseMsgCloseDelegationChannel();
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    }
+    if (object.chain_id !== undefined && object.chain_id !== null) {
+      message.chainId = object.chain_id;
+    }
+    return message;
+  },
+  toAmino(message: MsgCloseDelegationChannel): MsgCloseDelegationChannelAmino {
+    const obj: any = {};
+    obj.creator = message.creator === "" ? undefined : message.creator;
+    obj.chain_id = message.chainId === "" ? undefined : message.chainId;
+    return obj;
+  },
+  fromAminoMsg(object: MsgCloseDelegationChannelAminoMsg): MsgCloseDelegationChannel {
+    return MsgCloseDelegationChannel.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgCloseDelegationChannelProtoMsg): MsgCloseDelegationChannel {
+    return MsgCloseDelegationChannel.decode(message.value);
+  },
+  toProto(message: MsgCloseDelegationChannel): Uint8Array {
+    return MsgCloseDelegationChannel.encode(message).finish();
+  },
+  toProtoMsg(message: MsgCloseDelegationChannel): MsgCloseDelegationChannelProtoMsg {
+    return {
+      typeUrl: "/stride.stakeibc.MsgCloseDelegationChannel",
+      value: MsgCloseDelegationChannel.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgCloseDelegationChannelResponse(): MsgCloseDelegationChannelResponse {
+  return {};
+}
+export const MsgCloseDelegationChannelResponse = {
+  typeUrl: "/stride.stakeibc.MsgCloseDelegationChannelResponse",
+  encode(_: MsgCloseDelegationChannelResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): MsgCloseDelegationChannelResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCloseDelegationChannelResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_: Partial<MsgCloseDelegationChannelResponse>): MsgCloseDelegationChannelResponse {
+    const message = createBaseMsgCloseDelegationChannelResponse();
+    return message;
+  },
+  fromAmino(_: MsgCloseDelegationChannelResponseAmino): MsgCloseDelegationChannelResponse {
+    const message = createBaseMsgCloseDelegationChannelResponse();
+    return message;
+  },
+  toAmino(_: MsgCloseDelegationChannelResponse): MsgCloseDelegationChannelResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgCloseDelegationChannelResponseAminoMsg): MsgCloseDelegationChannelResponse {
+    return MsgCloseDelegationChannelResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgCloseDelegationChannelResponseProtoMsg): MsgCloseDelegationChannelResponse {
+    return MsgCloseDelegationChannelResponse.decode(message.value);
+  },
+  toProto(message: MsgCloseDelegationChannelResponse): Uint8Array {
+    return MsgCloseDelegationChannelResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgCloseDelegationChannelResponse): MsgCloseDelegationChannelResponseProtoMsg {
+    return {
+      typeUrl: "/stride.stakeibc.MsgCloseDelegationChannelResponse",
+      value: MsgCloseDelegationChannelResponse.encode(message).finish()
     };
   }
 };
@@ -3740,7 +3901,7 @@ export const MsgCreateTradeRoute = {
     obj.reward_denom_on_trade = message.rewardDenomOnTrade === "" ? undefined : message.rewardDenomOnTrade;
     obj.host_denom_on_trade = message.hostDenomOnTrade === "" ? undefined : message.hostDenomOnTrade;
     obj.host_denom_on_host = message.hostDenomOnHost === "" ? undefined : message.hostDenomOnHost;
-    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId?.toString() : undefined;
     obj.max_allowed_swap_loss_rate = message.maxAllowedSwapLossRate === "" ? undefined : message.maxAllowedSwapLossRate;
     obj.min_swap_amount = message.minSwapAmount === "" ? undefined : message.minSwapAmount;
     obj.max_swap_amount = message.maxSwapAmount === "" ? undefined : message.maxSwapAmount;
@@ -4086,7 +4247,7 @@ export const MsgUpdateTradeRoute = {
     obj.authority = message.authority === "" ? undefined : message.authority;
     obj.reward_denom = message.rewardDenom === "" ? undefined : message.rewardDenom;
     obj.host_denom = message.hostDenom === "" ? undefined : message.hostDenom;
-    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId.toString() : undefined;
+    obj.pool_id = message.poolId !== BigInt(0) ? message.poolId?.toString() : undefined;
     obj.max_allowed_swap_loss_rate = message.maxAllowedSwapLossRate === "" ? undefined : message.maxAllowedSwapLossRate;
     obj.min_swap_amount = message.minSwapAmount === "" ? undefined : message.minSwapAmount;
     obj.max_swap_amount = message.maxSwapAmount === "" ? undefined : message.maxSwapAmount;
@@ -4325,7 +4486,8 @@ function createBaseMsgToggleTradeController(): MsgToggleTradeController {
     creator: "",
     chainId: "",
     permissionChange: 0,
-    address: ""
+    address: "",
+    legacy: false
   };
 }
 export const MsgToggleTradeController = {
@@ -4342,6 +4504,9 @@ export const MsgToggleTradeController = {
     }
     if (message.address !== "") {
       writer.uint32(34).string(message.address);
+    }
+    if (message.legacy === true) {
+      writer.uint32(40).bool(message.legacy);
     }
     return writer;
   },
@@ -4364,6 +4529,9 @@ export const MsgToggleTradeController = {
         case 4:
           message.address = reader.string();
           break;
+        case 5:
+          message.legacy = reader.bool();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -4377,6 +4545,7 @@ export const MsgToggleTradeController = {
     message.chainId = object.chainId ?? "";
     message.permissionChange = object.permissionChange ?? 0;
     message.address = object.address ?? "";
+    message.legacy = object.legacy ?? false;
     return message;
   },
   fromAmino(object: MsgToggleTradeControllerAmino): MsgToggleTradeController {
@@ -4393,6 +4562,9 @@ export const MsgToggleTradeController = {
     if (object.address !== undefined && object.address !== null) {
       message.address = object.address;
     }
+    if (object.legacy !== undefined && object.legacy !== null) {
+      message.legacy = object.legacy;
+    }
     return message;
   },
   toAmino(message: MsgToggleTradeController): MsgToggleTradeControllerAmino {
@@ -4401,6 +4573,7 @@ export const MsgToggleTradeController = {
     obj.chain_id = message.chainId === "" ? undefined : message.chainId;
     obj.permission_change = message.permissionChange === 0 ? undefined : message.permissionChange;
     obj.address = message.address === "" ? undefined : message.address;
+    obj.legacy = message.legacy === false ? undefined : message.legacy;
     return obj;
   },
   fromAminoMsg(object: MsgToggleTradeControllerAminoMsg): MsgToggleTradeController {
@@ -4543,7 +4716,7 @@ export const MsgUpdateHostZoneParams = {
     const obj: any = {};
     obj.authority = message.authority === "" ? undefined : message.authority;
     obj.chain_id = message.chainId === "" ? undefined : message.chainId;
-    obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx.toString() : undefined;
+    obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: MsgUpdateHostZoneParamsAminoMsg): MsgUpdateHostZoneParams {

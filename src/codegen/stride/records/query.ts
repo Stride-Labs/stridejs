@@ -571,7 +571,7 @@ export const QueryGetDepositRecordRequest = {
   },
   toAmino(message: QueryGetDepositRecordRequest): QueryGetDepositRecordRequestAmino {
     const obj: any = {};
-    obj.id = message.id !== BigInt(0) ? message.id.toString() : undefined;
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryGetDepositRecordRequestAminoMsg): QueryGetDepositRecordRequest {
@@ -1276,9 +1276,9 @@ export const QueryAllUserRedemptionRecordForUserRequest = {
   toAmino(message: QueryAllUserRedemptionRecordForUserRequest): QueryAllUserRedemptionRecordForUserRequestAmino {
     const obj: any = {};
     obj.chain_id = message.chainId === "" ? undefined : message.chainId;
-    obj.day = message.day !== BigInt(0) ? message.day.toString() : undefined;
+    obj.day = message.day !== BigInt(0) ? message.day?.toString() : undefined;
     obj.address = message.address === "" ? undefined : message.address;
-    obj.limit = message.limit !== BigInt(0) ? message.limit.toString() : undefined;
+    obj.limit = message.limit !== BigInt(0) ? message.limit?.toString() : undefined;
     obj.pagination = message.pagination ? PageRequest.toAmino(message.pagination) : undefined;
     return obj;
   },
@@ -1419,7 +1419,7 @@ export const QueryGetEpochUnbondingRecordRequest = {
   },
   toAmino(message: QueryGetEpochUnbondingRecordRequest): QueryGetEpochUnbondingRecordRequestAmino {
     const obj: any = {};
-    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber.toString() : undefined;
+    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryGetEpochUnbondingRecordRequestAminoMsg): QueryGetEpochUnbondingRecordRequest {

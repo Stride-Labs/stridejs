@@ -162,7 +162,7 @@ export const MsgSubmitQueryResponse = {
     obj.query_id = message.queryId === "" ? undefined : message.queryId;
     obj.result = message.result ? base64FromBytes(message.result) : undefined;
     obj.proof_ops = message.proofOps ? ProofOps.toAmino(message.proofOps) : undefined;
-    obj.height = message.height !== BigInt(0) ? message.height.toString() : undefined;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : undefined;
     obj.from_address = message.fromAddress === "" ? undefined : message.fromAddress;
     return obj;
   },

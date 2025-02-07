@@ -858,7 +858,7 @@ export const MsgConfirmDelegation = {
   toAmino(message: MsgConfirmDelegation): MsgConfirmDelegationAmino {
     const obj: any = {};
     obj.operator = message.operator === "" ? undefined : message.operator;
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId.toString() : undefined;
+    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : undefined;
     obj.tx_hash = message.txHash === "" ? undefined : message.txHash;
     return obj;
   },
@@ -1001,7 +1001,7 @@ export const MsgConfirmUndelegation = {
   toAmino(message: MsgConfirmUndelegation): MsgConfirmUndelegationAmino {
     const obj: any = {};
     obj.operator = message.operator === "" ? undefined : message.operator;
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId.toString() : undefined;
+    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : undefined;
     obj.tx_hash = message.txHash === "" ? undefined : message.txHash;
     return obj;
   },
@@ -1144,7 +1144,7 @@ export const MsgConfirmUnbondedTokenSweep = {
   toAmino(message: MsgConfirmUnbondedTokenSweep): MsgConfirmUnbondedTokenSweepAmino {
     const obj: any = {};
     obj.operator = message.operator === "" ? undefined : message.operator;
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId.toString() : undefined;
+    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : undefined;
     obj.tx_hash = message.txHash === "" ? undefined : message.txHash;
     return obj;
   },

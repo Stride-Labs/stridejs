@@ -301,7 +301,7 @@ export const Params = {
   },
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
-    obj.period_length_seconds = message.periodLengthSeconds !== BigInt(0) ? message.periodLengthSeconds.toString() : undefined;
+    obj.period_length_seconds = message.periodLengthSeconds !== BigInt(0) ? message.periodLengthSeconds?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
