@@ -523,6 +523,37 @@ export interface MsgRestoreInterchainAccountResponseAminoMsg {
   value: MsgRestoreInterchainAccountResponseAmino;
 }
 export interface MsgRestoreInterchainAccountResponseSDKType {}
+export interface MsgCloseDelegationChannel {
+  creator: string;
+  chainId: string;
+}
+export interface MsgCloseDelegationChannelProtoMsg {
+  typeUrl: "/stride.stakeibc.MsgCloseDelegationChannel";
+  value: Uint8Array;
+}
+export interface MsgCloseDelegationChannelAmino {
+  creator?: string;
+  chain_id?: string;
+}
+export interface MsgCloseDelegationChannelAminoMsg {
+  type: "/stride.stakeibc.MsgCloseDelegationChannel";
+  value: MsgCloseDelegationChannelAmino;
+}
+export interface MsgCloseDelegationChannelSDKType {
+  creator: string;
+  chain_id: string;
+}
+export interface MsgCloseDelegationChannelResponse {}
+export interface MsgCloseDelegationChannelResponseProtoMsg {
+  typeUrl: "/stride.stakeibc.MsgCloseDelegationChannelResponse";
+  value: Uint8Array;
+}
+export interface MsgCloseDelegationChannelResponseAmino {}
+export interface MsgCloseDelegationChannelResponseAminoMsg {
+  type: "/stride.stakeibc.MsgCloseDelegationChannelResponse";
+  value: MsgCloseDelegationChannelResponseAmino;
+}
+export interface MsgCloseDelegationChannelResponseSDKType {}
 export interface MsgUpdateValidatorSharesExchRate {
   creator: string;
   chainId: string;
@@ -1045,6 +1076,8 @@ export interface MsgToggleTradeController {
   permissionChange: AuthzPermissionChange;
   /** Address of trade operator */
   address: string;
+  /** Option to grant/revoke the legacy osmosis swap message */
+  legacy: boolean;
 }
 export interface MsgToggleTradeControllerProtoMsg {
   typeUrl: "/stride.stakeibc.MsgToggleTradeController";
@@ -1060,6 +1093,8 @@ export interface MsgToggleTradeControllerAmino {
   permission_change?: AuthzPermissionChange;
   /** Address of trade operator */
   address?: string;
+  /** Option to grant/revoke the legacy osmosis swap message */
+  legacy?: boolean;
 }
 export interface MsgToggleTradeControllerAminoMsg {
   type: "stride/x/stakeibc/MsgToggleTradeController";
@@ -1071,6 +1106,7 @@ export interface MsgToggleTradeControllerSDKType {
   chain_id: string;
   permission_change: AuthzPermissionChange;
   address: string;
+  legacy: boolean;
 }
 export interface MsgToggleTradeControllerResponse {}
 export interface MsgToggleTradeControllerResponseProtoMsg {
@@ -3103,6 +3139,131 @@ export const MsgRestoreInterchainAccountResponse = {
     };
   }
 };
+function createBaseMsgCloseDelegationChannel(): MsgCloseDelegationChannel {
+  return {
+    creator: "",
+    chainId: ""
+  };
+}
+export const MsgCloseDelegationChannel = {
+  typeUrl: "/stride.stakeibc.MsgCloseDelegationChannel",
+  encode(message: MsgCloseDelegationChannel, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.chainId !== "") {
+      writer.uint32(18).string(message.chainId);
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): MsgCloseDelegationChannel {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCloseDelegationChannel();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.creator = reader.string();
+          break;
+        case 2:
+          message.chainId = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<MsgCloseDelegationChannel>): MsgCloseDelegationChannel {
+    const message = createBaseMsgCloseDelegationChannel();
+    message.creator = object.creator ?? "";
+    message.chainId = object.chainId ?? "";
+    return message;
+  },
+  fromAmino(object: MsgCloseDelegationChannelAmino): MsgCloseDelegationChannel {
+    const message = createBaseMsgCloseDelegationChannel();
+    if (object.creator !== undefined && object.creator !== null) {
+      message.creator = object.creator;
+    }
+    if (object.chain_id !== undefined && object.chain_id !== null) {
+      message.chainId = object.chain_id;
+    }
+    return message;
+  },
+  toAmino(message: MsgCloseDelegationChannel): MsgCloseDelegationChannelAmino {
+    const obj: any = {};
+    obj.creator = message.creator === "" ? undefined : message.creator;
+    obj.chain_id = message.chainId === "" ? undefined : message.chainId;
+    return obj;
+  },
+  fromAminoMsg(object: MsgCloseDelegationChannelAminoMsg): MsgCloseDelegationChannel {
+    return MsgCloseDelegationChannel.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgCloseDelegationChannelProtoMsg): MsgCloseDelegationChannel {
+    return MsgCloseDelegationChannel.decode(message.value);
+  },
+  toProto(message: MsgCloseDelegationChannel): Uint8Array {
+    return MsgCloseDelegationChannel.encode(message).finish();
+  },
+  toProtoMsg(message: MsgCloseDelegationChannel): MsgCloseDelegationChannelProtoMsg {
+    return {
+      typeUrl: "/stride.stakeibc.MsgCloseDelegationChannel",
+      value: MsgCloseDelegationChannel.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgCloseDelegationChannelResponse(): MsgCloseDelegationChannelResponse {
+  return {};
+}
+export const MsgCloseDelegationChannelResponse = {
+  typeUrl: "/stride.stakeibc.MsgCloseDelegationChannelResponse",
+  encode(_: MsgCloseDelegationChannelResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): MsgCloseDelegationChannelResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCloseDelegationChannelResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_: Partial<MsgCloseDelegationChannelResponse>): MsgCloseDelegationChannelResponse {
+    const message = createBaseMsgCloseDelegationChannelResponse();
+    return message;
+  },
+  fromAmino(_: MsgCloseDelegationChannelResponseAmino): MsgCloseDelegationChannelResponse {
+    const message = createBaseMsgCloseDelegationChannelResponse();
+    return message;
+  },
+  toAmino(_: MsgCloseDelegationChannelResponse): MsgCloseDelegationChannelResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgCloseDelegationChannelResponseAminoMsg): MsgCloseDelegationChannelResponse {
+    return MsgCloseDelegationChannelResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgCloseDelegationChannelResponseProtoMsg): MsgCloseDelegationChannelResponse {
+    return MsgCloseDelegationChannelResponse.decode(message.value);
+  },
+  toProto(message: MsgCloseDelegationChannelResponse): Uint8Array {
+    return MsgCloseDelegationChannelResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgCloseDelegationChannelResponse): MsgCloseDelegationChannelResponseProtoMsg {
+    return {
+      typeUrl: "/stride.stakeibc.MsgCloseDelegationChannelResponse",
+      value: MsgCloseDelegationChannelResponse.encode(message).finish()
+    };
+  }
+};
 function createBaseMsgUpdateValidatorSharesExchRate(): MsgUpdateValidatorSharesExchRate {
   return {
     creator: "",
@@ -4325,7 +4486,8 @@ function createBaseMsgToggleTradeController(): MsgToggleTradeController {
     creator: "",
     chainId: "",
     permissionChange: 0,
-    address: ""
+    address: "",
+    legacy: false
   };
 }
 export const MsgToggleTradeController = {
@@ -4342,6 +4504,9 @@ export const MsgToggleTradeController = {
     }
     if (message.address !== "") {
       writer.uint32(34).string(message.address);
+    }
+    if (message.legacy === true) {
+      writer.uint32(40).bool(message.legacy);
     }
     return writer;
   },
@@ -4364,6 +4529,9 @@ export const MsgToggleTradeController = {
         case 4:
           message.address = reader.string();
           break;
+        case 5:
+          message.legacy = reader.bool();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -4377,6 +4545,7 @@ export const MsgToggleTradeController = {
     message.chainId = object.chainId ?? "";
     message.permissionChange = object.permissionChange ?? 0;
     message.address = object.address ?? "";
+    message.legacy = object.legacy ?? false;
     return message;
   },
   fromAmino(object: MsgToggleTradeControllerAmino): MsgToggleTradeController {
@@ -4393,6 +4562,9 @@ export const MsgToggleTradeController = {
     if (object.address !== undefined && object.address !== null) {
       message.address = object.address;
     }
+    if (object.legacy !== undefined && object.legacy !== null) {
+      message.legacy = object.legacy;
+    }
     return message;
   },
   toAmino(message: MsgToggleTradeController): MsgToggleTradeControllerAmino {
@@ -4401,6 +4573,7 @@ export const MsgToggleTradeController = {
     obj.chain_id = message.chainId === "" ? undefined : message.chainId;
     obj.permission_change = message.permissionChange === 0 ? undefined : message.permissionChange;
     obj.address = message.address === "" ? undefined : message.address;
+    obj.legacy = message.legacy === false ? undefined : message.legacy;
     return obj;
   },
   fromAminoMsg(object: MsgToggleTradeControllerAminoMsg): MsgToggleTradeController {

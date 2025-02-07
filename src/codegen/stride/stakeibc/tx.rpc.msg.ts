@@ -1,6 +1,6 @@
 import { TxRpc } from "../../types";
 import { BinaryReader } from "../../binary";
-import { MsgLiquidStake, MsgLiquidStakeResponse, MsgLSMLiquidStake, MsgLSMLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidators, MsgAddValidatorsResponse, MsgChangeValidatorWeights, MsgChangeValidatorWeightsResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgCalibrateDelegation, MsgCalibrateDelegationResponse, MsgClearBalance, MsgClearBalanceResponse, MsgUpdateInnerRedemptionRateBounds, MsgUpdateInnerRedemptionRateBoundsResponse, MsgResumeHostZone, MsgResumeHostZoneResponse, MsgCreateTradeRoute, MsgCreateTradeRouteResponse, MsgDeleteTradeRoute, MsgDeleteTradeRouteResponse, MsgUpdateTradeRoute, MsgUpdateTradeRouteResponse, MsgSetCommunityPoolRebate, MsgSetCommunityPoolRebateResponse, MsgToggleTradeController, MsgToggleTradeControllerResponse, MsgUpdateHostZoneParams, MsgUpdateHostZoneParamsResponse } from "./tx";
+import { MsgLiquidStake, MsgLiquidStakeResponse, MsgLSMLiquidStake, MsgLSMLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidators, MsgAddValidatorsResponse, MsgChangeValidatorWeights, MsgChangeValidatorWeightsResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgCloseDelegationChannel, MsgCloseDelegationChannelResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgCalibrateDelegation, MsgCalibrateDelegationResponse, MsgClearBalance, MsgClearBalanceResponse, MsgUpdateInnerRedemptionRateBounds, MsgUpdateInnerRedemptionRateBoundsResponse, MsgResumeHostZone, MsgResumeHostZoneResponse, MsgCreateTradeRoute, MsgCreateTradeRouteResponse, MsgDeleteTradeRoute, MsgDeleteTradeRouteResponse, MsgUpdateTradeRoute, MsgUpdateTradeRouteResponse, MsgSetCommunityPoolRebate, MsgSetCommunityPoolRebateResponse, MsgToggleTradeController, MsgToggleTradeControllerResponse, MsgUpdateHostZoneParams, MsgUpdateHostZoneParamsResponse } from "./tx";
 /** Msg defines the Msg service. */
 export interface Msg {
   liquidStake(request: MsgLiquidStake): Promise<MsgLiquidStakeResponse>;
@@ -13,6 +13,7 @@ export interface Msg {
   changeValidatorWeight(request: MsgChangeValidatorWeights): Promise<MsgChangeValidatorWeightsResponse>;
   deleteValidator(request: MsgDeleteValidator): Promise<MsgDeleteValidatorResponse>;
   restoreInterchainAccount(request: MsgRestoreInterchainAccount): Promise<MsgRestoreInterchainAccountResponse>;
+  closeDelegationChannel(request: MsgCloseDelegationChannel): Promise<MsgCloseDelegationChannelResponse>;
   updateValidatorSharesExchRate(request: MsgUpdateValidatorSharesExchRate): Promise<MsgUpdateValidatorSharesExchRateResponse>;
   calibrateDelegation(request: MsgCalibrateDelegation): Promise<MsgCalibrateDelegationResponse>;
   clearBalance(request: MsgClearBalance): Promise<MsgClearBalanceResponse>;
@@ -39,6 +40,7 @@ export class MsgClientImpl implements Msg {
     this.changeValidatorWeight = this.changeValidatorWeight.bind(this);
     this.deleteValidator = this.deleteValidator.bind(this);
     this.restoreInterchainAccount = this.restoreInterchainAccount.bind(this);
+    this.closeDelegationChannel = this.closeDelegationChannel.bind(this);
     this.updateValidatorSharesExchRate = this.updateValidatorSharesExchRate.bind(this);
     this.calibrateDelegation = this.calibrateDelegation.bind(this);
     this.clearBalance = this.clearBalance.bind(this);
@@ -100,6 +102,11 @@ export class MsgClientImpl implements Msg {
     const data = MsgRestoreInterchainAccount.encode(request).finish();
     const promise = this.rpc.request("stride.stakeibc.Msg", "RestoreInterchainAccount", data);
     return promise.then(data => MsgRestoreInterchainAccountResponse.decode(new BinaryReader(data)));
+  }
+  closeDelegationChannel(request: MsgCloseDelegationChannel): Promise<MsgCloseDelegationChannelResponse> {
+    const data = MsgCloseDelegationChannel.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "CloseDelegationChannel", data);
+    return promise.then(data => MsgCloseDelegationChannelResponse.decode(new BinaryReader(data)));
   }
   updateValidatorSharesExchRate(request: MsgUpdateValidatorSharesExchRate): Promise<MsgUpdateValidatorSharesExchRateResponse> {
     const data = MsgUpdateValidatorSharesExchRate.encode(request).finish();

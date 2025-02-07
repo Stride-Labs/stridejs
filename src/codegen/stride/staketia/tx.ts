@@ -40,7 +40,11 @@ export function overwritableRecordTypeToJSON(object: OverwritableRecordType): st
       return "UNRECOGNIZED";
   }
 }
-/** LiquidStake */
+/**
+ * Deprecated: Liquid stakes should be handled in stakeibc
+ * LiquidStake
+ */
+/** @deprecated */
 export interface MsgLiquidStake {
   staker: string;
   nativeAmount: string;
@@ -49,7 +53,11 @@ export interface MsgLiquidStakeProtoMsg {
   typeUrl: "/stride.staketia.MsgLiquidStake";
   value: Uint8Array;
 }
-/** LiquidStake */
+/**
+ * Deprecated: Liquid stakes should be handled in stakeibc
+ * LiquidStake
+ */
+/** @deprecated */
 export interface MsgLiquidStakeAmino {
   staker?: string;
   native_amount?: string;
@@ -58,11 +66,16 @@ export interface MsgLiquidStakeAminoMsg {
   type: "staketia/MsgLiquidStake";
   value: MsgLiquidStakeAmino;
 }
-/** LiquidStake */
+/**
+ * Deprecated: Liquid stakes should be handled in stakeibc
+ * LiquidStake
+ */
+/** @deprecated */
 export interface MsgLiquidStakeSDKType {
   staker: string;
   native_amount: string;
 }
+/** @deprecated */
 export interface MsgLiquidStakeResponse {
   stToken: Coin;
 }
@@ -70,6 +83,7 @@ export interface MsgLiquidStakeResponseProtoMsg {
   typeUrl: "/stride.staketia.MsgLiquidStakeResponse";
   value: Uint8Array;
 }
+/** @deprecated */
 export interface MsgLiquidStakeResponseAmino {
   st_token?: CoinAmino;
 }
@@ -77,6 +91,7 @@ export interface MsgLiquidStakeResponseAminoMsg {
   type: "/stride.staketia.MsgLiquidStakeResponse";
   value: MsgLiquidStakeResponseAmino;
 }
+/** @deprecated */
 export interface MsgLiquidStakeResponseSDKType {
   st_token: CoinSDKType;
 }
@@ -84,6 +99,11 @@ export interface MsgLiquidStakeResponseSDKType {
 export interface MsgRedeemStake {
   redeemer: string;
   stTokenAmount: string;
+  /**
+   * The receiver field is a celestia address
+   * It is only used in the case where the redemption spills over to stakeibc
+   */
+  receiver: string;
 }
 export interface MsgRedeemStakeProtoMsg {
   typeUrl: "/stride.staketia.MsgRedeemStake";
@@ -93,6 +113,11 @@ export interface MsgRedeemStakeProtoMsg {
 export interface MsgRedeemStakeAmino {
   redeemer?: string;
   st_token_amount?: string;
+  /**
+   * The receiver field is a celestia address
+   * It is only used in the case where the redemption spills over to stakeibc
+   */
+  receiver?: string;
 }
 export interface MsgRedeemStakeAminoMsg {
   type: "staketia/MsgRedeemStake";
@@ -102,6 +127,7 @@ export interface MsgRedeemStakeAminoMsg {
 export interface MsgRedeemStakeSDKType {
   redeemer: string;
   st_token_amount: string;
+  receiver: string;
 }
 export interface MsgRedeemStakeResponse {
   nativeToken: Coin;
@@ -650,7 +676,8 @@ export const MsgLiquidStakeResponse = {
 function createBaseMsgRedeemStake(): MsgRedeemStake {
   return {
     redeemer: "",
-    stTokenAmount: ""
+    stTokenAmount: "",
+    receiver: ""
   };
 }
 export const MsgRedeemStake = {
@@ -661,6 +688,9 @@ export const MsgRedeemStake = {
     }
     if (message.stTokenAmount !== "") {
       writer.uint32(18).string(message.stTokenAmount);
+    }
+    if (message.receiver !== "") {
+      writer.uint32(26).string(message.receiver);
     }
     return writer;
   },
@@ -677,6 +707,9 @@ export const MsgRedeemStake = {
         case 2:
           message.stTokenAmount = reader.string();
           break;
+        case 3:
+          message.receiver = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -688,6 +721,7 @@ export const MsgRedeemStake = {
     const message = createBaseMsgRedeemStake();
     message.redeemer = object.redeemer ?? "";
     message.stTokenAmount = object.stTokenAmount ?? "";
+    message.receiver = object.receiver ?? "";
     return message;
   },
   fromAmino(object: MsgRedeemStakeAmino): MsgRedeemStake {
@@ -698,12 +732,16 @@ export const MsgRedeemStake = {
     if (object.st_token_amount !== undefined && object.st_token_amount !== null) {
       message.stTokenAmount = object.st_token_amount;
     }
+    if (object.receiver !== undefined && object.receiver !== null) {
+      message.receiver = object.receiver;
+    }
     return message;
   },
   toAmino(message: MsgRedeemStake): MsgRedeemStakeAmino {
     const obj: any = {};
     obj.redeemer = message.redeemer === "" ? undefined : message.redeemer;
     obj.st_token_amount = message.stTokenAmount === "" ? undefined : message.stTokenAmount;
+    obj.receiver = message.receiver === "" ? undefined : message.receiver;
     return obj;
   },
   fromAminoMsg(object: MsgRedeemStakeAminoMsg): MsgRedeemStake {

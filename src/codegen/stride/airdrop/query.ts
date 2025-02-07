@@ -1,6 +1,9 @@
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../cosmos/base/query/v1beta1/pagination";
+import { Timestamp } from "../../google/protobuf/timestamp";
 import { Airdrop, AirdropAmino, AirdropSDKType, UserAllocation, UserAllocationAmino, UserAllocationSDKType } from "./airdrop";
 import { BinaryReader, BinaryWriter } from "../../binary";
+import { toTimestamp, fromTimestamp } from "../../helpers";
+import { Decimal } from "@cosmjs/math";
 /** Airdrop */
 export interface QueryAirdropRequest {
   id: string;
@@ -22,21 +25,98 @@ export interface QueryAirdropRequestSDKType {
   id: string;
 }
 export interface QueryAirdropResponse {
-  airdrop?: Airdrop;
+  /** Airdrop ID */
+  id: string;
+  /** Denom used when distributing rewards */
+  rewardDenom: string;
+  /** The first date that claiming begins and rewards are distributed */
+  distributionStartDate?: Date;
+  /**
+   * The last date for rewards to be distributed. Immediately after this date
+   * the rewards can no longer be claimed, but rewards have not been clawed back
+   * yet
+   */
+  distributionEndDate?: Date;
+  /**
+   * Date with which the rewards are clawed back (occurs after the distribution
+   * end date)
+   */
+  clawbackDate?: Date;
+  /** Deadline for the user to make a decision on their claim type */
+  claimTypeDeadlineDate?: Date;
+  /**
+   * Penalty for claiming rewards early - e.g. 0.5 means claiming early will
+   * result in losing 50% of rewards
+   */
+  earlyClaimPenalty: string;
+  /** Account that holds the total reward balance and distributes to users */
+  distributorAddress: string;
+  /** Admin account with permissions to add or update allocations */
+  allocatorAddress: string;
+  /** Admin account with permissions to link addresseses */
+  linkerAddress: string;
+  /** The current date index into the airdrop array */
+  currentDateIndex: bigint;
+  /** The length of the airdrop (i.e. number of periods in the airdrop array) */
+  airdropLength: bigint;
 }
 export interface QueryAirdropResponseProtoMsg {
   typeUrl: "/stride.airdrop.QueryAirdropResponse";
   value: Uint8Array;
 }
 export interface QueryAirdropResponseAmino {
-  airdrop?: AirdropAmino;
+  /** Airdrop ID */
+  id?: string;
+  /** Denom used when distributing rewards */
+  reward_denom?: string;
+  /** The first date that claiming begins and rewards are distributed */
+  distribution_start_date?: string;
+  /**
+   * The last date for rewards to be distributed. Immediately after this date
+   * the rewards can no longer be claimed, but rewards have not been clawed back
+   * yet
+   */
+  distribution_end_date?: string;
+  /**
+   * Date with which the rewards are clawed back (occurs after the distribution
+   * end date)
+   */
+  clawback_date?: string;
+  /** Deadline for the user to make a decision on their claim type */
+  claim_type_deadline_date?: string;
+  /**
+   * Penalty for claiming rewards early - e.g. 0.5 means claiming early will
+   * result in losing 50% of rewards
+   */
+  early_claim_penalty?: string;
+  /** Account that holds the total reward balance and distributes to users */
+  distributor_address?: string;
+  /** Admin account with permissions to add or update allocations */
+  allocator_address?: string;
+  /** Admin account with permissions to link addresseses */
+  linker_address?: string;
+  /** The current date index into the airdrop array */
+  current_date_index?: string;
+  /** The length of the airdrop (i.e. number of periods in the airdrop array) */
+  airdrop_length?: string;
 }
 export interface QueryAirdropResponseAminoMsg {
   type: "/stride.airdrop.QueryAirdropResponse";
   value: QueryAirdropResponseAmino;
 }
 export interface QueryAirdropResponseSDKType {
-  airdrop?: AirdropSDKType;
+  id: string;
+  reward_denom: string;
+  distribution_start_date?: Date;
+  distribution_end_date?: Date;
+  clawback_date?: Date;
+  claim_type_deadline_date?: Date;
+  early_claim_penalty: string;
+  distributor_address: string;
+  allocator_address: string;
+  linker_address: string;
+  current_date_index: bigint;
+  airdrop_length: bigint;
 }
 /** Airdrops */
 export interface QueryAllAirdropsRequest {}
@@ -223,8 +303,6 @@ export interface QueryUserSummaryResponse {
   remaining: string;
   /** The total rewards that can be claimed right now */
   claimable: string;
-  /** The current date index into the airdrop array */
-  currentDateIndex: bigint;
 }
 export interface QueryUserSummaryResponseProtoMsg {
   typeUrl: "/stride.airdrop.QueryUserSummaryResponse";
@@ -241,8 +319,6 @@ export interface QueryUserSummaryResponseAmino {
   remaining?: string;
   /** The total rewards that can be claimed right now */
   claimable?: string;
-  /** The current date index into the airdrop array */
-  current_date_index?: string;
 }
 export interface QueryUserSummaryResponseAminoMsg {
   type: "/stride.airdrop.QueryUserSummaryResponse";
@@ -254,7 +330,6 @@ export interface QueryUserSummaryResponseSDKType {
   forfeited: string;
   remaining: string;
   claimable: string;
-  current_date_index: bigint;
 }
 function createBaseQueryAirdropRequest(): QueryAirdropRequest {
   return {
@@ -321,14 +396,58 @@ export const QueryAirdropRequest = {
 };
 function createBaseQueryAirdropResponse(): QueryAirdropResponse {
   return {
-    airdrop: undefined
+    id: "",
+    rewardDenom: "",
+    distributionStartDate: undefined,
+    distributionEndDate: undefined,
+    clawbackDate: undefined,
+    claimTypeDeadlineDate: undefined,
+    earlyClaimPenalty: "",
+    distributorAddress: "",
+    allocatorAddress: "",
+    linkerAddress: "",
+    currentDateIndex: BigInt(0),
+    airdropLength: BigInt(0)
   };
 }
 export const QueryAirdropResponse = {
   typeUrl: "/stride.airdrop.QueryAirdropResponse",
   encode(message: QueryAirdropResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
-    if (message.airdrop !== undefined) {
-      Airdrop.encode(message.airdrop, writer.uint32(10).fork()).ldelim();
+    if (message.id !== "") {
+      writer.uint32(10).string(message.id);
+    }
+    if (message.rewardDenom !== "") {
+      writer.uint32(18).string(message.rewardDenom);
+    }
+    if (message.distributionStartDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.distributionStartDate), writer.uint32(26).fork()).ldelim();
+    }
+    if (message.distributionEndDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.distributionEndDate), writer.uint32(34).fork()).ldelim();
+    }
+    if (message.clawbackDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.clawbackDate), writer.uint32(42).fork()).ldelim();
+    }
+    if (message.claimTypeDeadlineDate !== undefined) {
+      Timestamp.encode(toTimestamp(message.claimTypeDeadlineDate), writer.uint32(50).fork()).ldelim();
+    }
+    if (message.earlyClaimPenalty !== "") {
+      writer.uint32(58).string(Decimal.fromUserInput(message.earlyClaimPenalty, 18).atomics);
+    }
+    if (message.distributorAddress !== "") {
+      writer.uint32(66).string(message.distributorAddress);
+    }
+    if (message.allocatorAddress !== "") {
+      writer.uint32(74).string(message.allocatorAddress);
+    }
+    if (message.linkerAddress !== "") {
+      writer.uint32(82).string(message.linkerAddress);
+    }
+    if (message.currentDateIndex !== BigInt(0)) {
+      writer.uint32(88).int64(message.currentDateIndex);
+    }
+    if (message.airdropLength !== BigInt(0)) {
+      writer.uint32(96).int64(message.airdropLength);
     }
     return writer;
   },
@@ -340,7 +459,40 @@ export const QueryAirdropResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.airdrop = Airdrop.decode(reader, reader.uint32());
+          message.id = reader.string();
+          break;
+        case 2:
+          message.rewardDenom = reader.string();
+          break;
+        case 3:
+          message.distributionStartDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 4:
+          message.distributionEndDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 5:
+          message.clawbackDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 6:
+          message.claimTypeDeadlineDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 7:
+          message.earlyClaimPenalty = Decimal.fromAtomics(reader.string(), 18).toString();
+          break;
+        case 8:
+          message.distributorAddress = reader.string();
+          break;
+        case 9:
+          message.allocatorAddress = reader.string();
+          break;
+        case 10:
+          message.linkerAddress = reader.string();
+          break;
+        case 11:
+          message.currentDateIndex = reader.int64();
+          break;
+        case 12:
+          message.airdropLength = reader.int64();
           break;
         default:
           reader.skipType(tag & 7);
@@ -351,19 +503,74 @@ export const QueryAirdropResponse = {
   },
   fromPartial(object: Partial<QueryAirdropResponse>): QueryAirdropResponse {
     const message = createBaseQueryAirdropResponse();
-    message.airdrop = object.airdrop !== undefined && object.airdrop !== null ? Airdrop.fromPartial(object.airdrop) : undefined;
+    message.id = object.id ?? "";
+    message.rewardDenom = object.rewardDenom ?? "";
+    message.distributionStartDate = object.distributionStartDate ?? undefined;
+    message.distributionEndDate = object.distributionEndDate ?? undefined;
+    message.clawbackDate = object.clawbackDate ?? undefined;
+    message.claimTypeDeadlineDate = object.claimTypeDeadlineDate ?? undefined;
+    message.earlyClaimPenalty = object.earlyClaimPenalty ?? "";
+    message.distributorAddress = object.distributorAddress ?? "";
+    message.allocatorAddress = object.allocatorAddress ?? "";
+    message.linkerAddress = object.linkerAddress ?? "";
+    message.currentDateIndex = object.currentDateIndex !== undefined && object.currentDateIndex !== null ? BigInt(object.currentDateIndex.toString()) : BigInt(0);
+    message.airdropLength = object.airdropLength !== undefined && object.airdropLength !== null ? BigInt(object.airdropLength.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryAirdropResponseAmino): QueryAirdropResponse {
     const message = createBaseQueryAirdropResponse();
-    if (object.airdrop !== undefined && object.airdrop !== null) {
-      message.airdrop = Airdrop.fromAmino(object.airdrop);
+    if (object.id !== undefined && object.id !== null) {
+      message.id = object.id;
+    }
+    if (object.reward_denom !== undefined && object.reward_denom !== null) {
+      message.rewardDenom = object.reward_denom;
+    }
+    if (object.distribution_start_date !== undefined && object.distribution_start_date !== null) {
+      message.distributionStartDate = fromTimestamp(Timestamp.fromAmino(object.distribution_start_date));
+    }
+    if (object.distribution_end_date !== undefined && object.distribution_end_date !== null) {
+      message.distributionEndDate = fromTimestamp(Timestamp.fromAmino(object.distribution_end_date));
+    }
+    if (object.clawback_date !== undefined && object.clawback_date !== null) {
+      message.clawbackDate = fromTimestamp(Timestamp.fromAmino(object.clawback_date));
+    }
+    if (object.claim_type_deadline_date !== undefined && object.claim_type_deadline_date !== null) {
+      message.claimTypeDeadlineDate = fromTimestamp(Timestamp.fromAmino(object.claim_type_deadline_date));
+    }
+    if (object.early_claim_penalty !== undefined && object.early_claim_penalty !== null) {
+      message.earlyClaimPenalty = object.early_claim_penalty;
+    }
+    if (object.distributor_address !== undefined && object.distributor_address !== null) {
+      message.distributorAddress = object.distributor_address;
+    }
+    if (object.allocator_address !== undefined && object.allocator_address !== null) {
+      message.allocatorAddress = object.allocator_address;
+    }
+    if (object.linker_address !== undefined && object.linker_address !== null) {
+      message.linkerAddress = object.linker_address;
+    }
+    if (object.current_date_index !== undefined && object.current_date_index !== null) {
+      message.currentDateIndex = BigInt(object.current_date_index);
+    }
+    if (object.airdrop_length !== undefined && object.airdrop_length !== null) {
+      message.airdropLength = BigInt(object.airdrop_length);
     }
     return message;
   },
   toAmino(message: QueryAirdropResponse): QueryAirdropResponseAmino {
     const obj: any = {};
-    obj.airdrop = message.airdrop ? Airdrop.toAmino(message.airdrop) : undefined;
+    obj.id = message.id === "" ? undefined : message.id;
+    obj.reward_denom = message.rewardDenom === "" ? undefined : message.rewardDenom;
+    obj.distribution_start_date = message.distributionStartDate ? Timestamp.toAmino(toTimestamp(message.distributionStartDate)) : undefined;
+    obj.distribution_end_date = message.distributionEndDate ? Timestamp.toAmino(toTimestamp(message.distributionEndDate)) : undefined;
+    obj.clawback_date = message.clawbackDate ? Timestamp.toAmino(toTimestamp(message.clawbackDate)) : undefined;
+    obj.claim_type_deadline_date = message.claimTypeDeadlineDate ? Timestamp.toAmino(toTimestamp(message.claimTypeDeadlineDate)) : undefined;
+    obj.early_claim_penalty = message.earlyClaimPenalty === "" ? undefined : message.earlyClaimPenalty;
+    obj.distributor_address = message.distributorAddress === "" ? undefined : message.distributorAddress;
+    obj.allocator_address = message.allocatorAddress === "" ? undefined : message.allocatorAddress;
+    obj.linker_address = message.linkerAddress === "" ? undefined : message.linkerAddress;
+    obj.current_date_index = message.currentDateIndex !== BigInt(0) ? message.currentDateIndex?.toString() : undefined;
+    obj.airdrop_length = message.airdropLength !== BigInt(0) ? message.airdropLength?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryAirdropResponseAminoMsg): QueryAirdropResponse {
@@ -996,8 +1203,7 @@ function createBaseQueryUserSummaryResponse(): QueryUserSummaryResponse {
     claimed: "",
     forfeited: "",
     remaining: "",
-    claimable: "",
-    currentDateIndex: BigInt(0)
+    claimable: ""
   };
 }
 export const QueryUserSummaryResponse = {
@@ -1017,9 +1223,6 @@ export const QueryUserSummaryResponse = {
     }
     if (message.claimable !== "") {
       writer.uint32(42).string(message.claimable);
-    }
-    if (message.currentDateIndex !== BigInt(0)) {
-      writer.uint32(48).int64(message.currentDateIndex);
     }
     return writer;
   },
@@ -1045,9 +1248,6 @@ export const QueryUserSummaryResponse = {
         case 5:
           message.claimable = reader.string();
           break;
-        case 6:
-          message.currentDateIndex = reader.int64();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1062,7 +1262,6 @@ export const QueryUserSummaryResponse = {
     message.forfeited = object.forfeited ?? "";
     message.remaining = object.remaining ?? "";
     message.claimable = object.claimable ?? "";
-    message.currentDateIndex = object.currentDateIndex !== undefined && object.currentDateIndex !== null ? BigInt(object.currentDateIndex.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object: QueryUserSummaryResponseAmino): QueryUserSummaryResponse {
@@ -1082,9 +1281,6 @@ export const QueryUserSummaryResponse = {
     if (object.claimable !== undefined && object.claimable !== null) {
       message.claimable = object.claimable;
     }
-    if (object.current_date_index !== undefined && object.current_date_index !== null) {
-      message.currentDateIndex = BigInt(object.current_date_index);
-    }
     return message;
   },
   toAmino(message: QueryUserSummaryResponse): QueryUserSummaryResponseAmino {
@@ -1094,7 +1290,6 @@ export const QueryUserSummaryResponse = {
     obj.forfeited = message.forfeited === "" ? undefined : message.forfeited;
     obj.remaining = message.remaining === "" ? undefined : message.remaining;
     obj.claimable = message.claimable === "" ? undefined : message.claimable;
-    obj.current_date_index = message.currentDateIndex !== BigInt(0) ? message.currentDateIndex?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: QueryUserSummaryResponseAminoMsg): QueryUserSummaryResponse {
