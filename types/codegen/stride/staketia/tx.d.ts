@@ -11,7 +11,11 @@ export declare const OverwritableRecordTypeSDKType: typeof OverwritableRecordTyp
 export declare const OverwritableRecordTypeAmino: typeof OverwritableRecordType;
 export declare function overwritableRecordTypeFromJSON(object: any): OverwritableRecordType;
 export declare function overwritableRecordTypeToJSON(object: OverwritableRecordType): string;
-/** LiquidStake */
+/**
+ * Deprecated: Liquid stakes should be handled in stakeibc
+ * LiquidStake
+ */
+/** @deprecated */
 export interface MsgLiquidStake {
     staker: string;
     nativeAmount: string;
@@ -20,7 +24,11 @@ export interface MsgLiquidStakeProtoMsg {
     typeUrl: "/stride.staketia.MsgLiquidStake";
     value: Uint8Array;
 }
-/** LiquidStake */
+/**
+ * Deprecated: Liquid stakes should be handled in stakeibc
+ * LiquidStake
+ */
+/** @deprecated */
 export interface MsgLiquidStakeAmino {
     staker?: string;
     native_amount?: string;
@@ -29,11 +37,16 @@ export interface MsgLiquidStakeAminoMsg {
     type: "staketia/MsgLiquidStake";
     value: MsgLiquidStakeAmino;
 }
-/** LiquidStake */
+/**
+ * Deprecated: Liquid stakes should be handled in stakeibc
+ * LiquidStake
+ */
+/** @deprecated */
 export interface MsgLiquidStakeSDKType {
     staker: string;
     native_amount: string;
 }
+/** @deprecated */
 export interface MsgLiquidStakeResponse {
     stToken: Coin;
 }
@@ -41,6 +54,7 @@ export interface MsgLiquidStakeResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgLiquidStakeResponse";
     value: Uint8Array;
 }
+/** @deprecated */
 export interface MsgLiquidStakeResponseAmino {
     st_token?: CoinAmino;
 }
@@ -48,6 +62,7 @@ export interface MsgLiquidStakeResponseAminoMsg {
     type: "/stride.staketia.MsgLiquidStakeResponse";
     value: MsgLiquidStakeResponseAmino;
 }
+/** @deprecated */
 export interface MsgLiquidStakeResponseSDKType {
     st_token: CoinSDKType;
 }
@@ -55,6 +70,11 @@ export interface MsgLiquidStakeResponseSDKType {
 export interface MsgRedeemStake {
     redeemer: string;
     stTokenAmount: string;
+    /**
+     * The receiver field is a celestia address
+     * It is only used in the case where the redemption spills over to stakeibc
+     */
+    receiver: string;
 }
 export interface MsgRedeemStakeProtoMsg {
     typeUrl: "/stride.staketia.MsgRedeemStake";
@@ -64,6 +84,11 @@ export interface MsgRedeemStakeProtoMsg {
 export interface MsgRedeemStakeAmino {
     redeemer?: string;
     st_token_amount?: string;
+    /**
+     * The receiver field is a celestia address
+     * It is only used in the case where the redemption spills over to stakeibc
+     */
+    receiver?: string;
 }
 export interface MsgRedeemStakeAminoMsg {
     type: "staketia/MsgRedeemStake";
@@ -73,6 +98,7 @@ export interface MsgRedeemStakeAminoMsg {
 export interface MsgRedeemStakeSDKType {
     redeemer: string;
     st_token_amount: string;
+    receiver: string;
 }
 export interface MsgRedeemStakeResponse {
     nativeToken: Coin;

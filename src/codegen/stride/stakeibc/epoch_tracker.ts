@@ -103,9 +103,9 @@ export const EpochTracker = {
   toAmino(message: EpochTracker): EpochTrackerAmino {
     const obj: any = {};
     obj.epoch_identifier = message.epochIdentifier === "" ? undefined : message.epochIdentifier;
-    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber?.toString() : undefined;
-    obj.next_epoch_start_time = message.nextEpochStartTime !== BigInt(0) ? message.nextEpochStartTime?.toString() : undefined;
-    obj.duration = message.duration !== BigInt(0) ? message.duration?.toString() : undefined;
+    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber.toString() : undefined;
+    obj.next_epoch_start_time = message.nextEpochStartTime !== BigInt(0) ? message.nextEpochStartTime.toString() : undefined;
+    obj.duration = message.duration !== BigInt(0) ? message.duration.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: EpochTrackerAminoMsg): EpochTracker {

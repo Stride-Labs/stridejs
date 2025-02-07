@@ -150,7 +150,7 @@ export const AddressUnbonding = {
     obj.amount = message.amount === "" ? undefined : message.amount;
     obj.denom = message.denom === "" ? undefined : message.denom;
     obj.claim_is_pending = message.claimIsPending === false ? undefined : message.claimIsPending;
-    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber?.toString() : undefined;
+    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: AddressUnbondingAminoMsg): AddressUnbonding {

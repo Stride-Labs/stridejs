@@ -1,6 +1,6 @@
 import { TelescopeGeneratedType } from "../../types";
 import { Registry } from "@cosmjs/proto-signing";
-import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeights, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgUpdateValidatorSharesExchRate, MsgCalibrateDelegation, MsgClearBalance, MsgUpdateInnerRedemptionRateBounds, MsgResumeHostZone, MsgCreateTradeRoute, MsgDeleteTradeRoute, MsgUpdateTradeRoute, MsgSetCommunityPoolRebate, MsgToggleTradeController, MsgUpdateHostZoneParams } from "./tx";
+import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeights, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgCloseDelegationChannel, MsgUpdateValidatorSharesExchRate, MsgCalibrateDelegation, MsgClearBalance, MsgUpdateInnerRedemptionRateBounds, MsgResumeHostZone, MsgCreateTradeRoute, MsgDeleteTradeRoute, MsgUpdateTradeRoute, MsgSetCommunityPoolRebate, MsgToggleTradeController, MsgUpdateHostZoneParams } from "./tx";
 export declare const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]>;
 export declare const load: (protoRegistry: Registry) => void;
 export declare const MessageComposer: {
@@ -42,6 +42,10 @@ export declare const MessageComposer: {
             value: Uint8Array;
         };
         restoreInterchainAccount(value: MsgRestoreInterchainAccount): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        closeDelegationChannel(value: MsgCloseDelegationChannel): {
             typeUrl: string;
             value: Uint8Array;
         };
@@ -131,6 +135,10 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgRestoreInterchainAccount;
         };
+        closeDelegationChannel(value: MsgCloseDelegationChannel): {
+            typeUrl: string;
+            value: MsgCloseDelegationChannel;
+        };
         updateValidatorSharesExchRate(value: MsgUpdateValidatorSharesExchRate): {
             typeUrl: string;
             value: MsgUpdateValidatorSharesExchRate;
@@ -216,6 +224,10 @@ export declare const MessageComposer: {
         restoreInterchainAccount(value: MsgRestoreInterchainAccount): {
             typeUrl: string;
             value: MsgRestoreInterchainAccount;
+        };
+        closeDelegationChannel(value: MsgCloseDelegationChannel): {
+            typeUrl: string;
+            value: MsgCloseDelegationChannel;
         };
         updateValidatorSharesExchRate(value: MsgUpdateValidatorSharesExchRate): {
             typeUrl: string;
