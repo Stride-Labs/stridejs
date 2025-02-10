@@ -17,18 +17,15 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var tx_exports = {};
 __export(tx_exports, {
-  Authz_Authorization_FromAmino: () => Authz_Authorization_FromAmino,
-  Authz_Authorization_InterfaceDecoder: () => Authz_Authorization_InterfaceDecoder,
-  Authz_Authorization_ToAmino: () => Authz_Authorization_ToAmino,
+  Cosmos_basev1beta1Msg_FromAmino: () => Cosmos_basev1beta1Msg_FromAmino,
+  Cosmos_basev1beta1Msg_InterfaceDecoder: () => Cosmos_basev1beta1Msg_InterfaceDecoder,
+  Cosmos_basev1beta1Msg_ToAmino: () => Cosmos_basev1beta1Msg_ToAmino,
   MsgExec: () => MsgExec,
   MsgExecResponse: () => MsgExecResponse,
   MsgGrant: () => MsgGrant,
   MsgGrantResponse: () => MsgGrantResponse,
   MsgRevoke: () => MsgRevoke,
-  MsgRevokeResponse: () => MsgRevokeResponse,
-  Sdk_Msg_FromAmino: () => Sdk_Msg_FromAmino,
-  Sdk_Msg_InterfaceDecoder: () => Sdk_Msg_InterfaceDecoder,
-  Sdk_Msg_ToAmino: () => Sdk_Msg_ToAmino
+  MsgRevokeResponse: () => MsgRevokeResponse
 });
 module.exports = __toCommonJS(tx_exports);
 var import_authz = require("./authz");
@@ -103,7 +100,7 @@ const MsgGrant = {
     const obj = {};
     obj.granter = message.granter === "" ? void 0 : message.granter;
     obj.grantee = message.grantee === "" ? void 0 : message.grantee;
-    obj.grant = message.grant ? import_authz.Grant.toAmino(message.grant) : void 0;
+    obj.grant = message.grant ? import_authz.Grant.toAmino(message.grant) : import_authz.Grant.toAmino(import_authz.Grant.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -247,14 +244,14 @@ const MsgExec = {
     if (object.grantee !== void 0 && object.grantee !== null) {
       message.grantee = object.grantee;
     }
-    message.msgs = object.msgs?.map((e) => Sdk_Msg_FromAmino(e)) || [];
+    message.msgs = object.msgs?.map((e) => Cosmos_basev1beta1Msg_FromAmino(e)) || [];
     return message;
   },
   toAmino(message) {
     const obj = {};
     obj.grantee = message.grantee === "" ? void 0 : message.grantee;
     if (message.msgs) {
-      obj.msgs = message.msgs.map((e) => e ? Sdk_Msg_ToAmino(e) : void 0);
+      obj.msgs = message.msgs.map((e) => e ? Cosmos_basev1beta1Msg_ToAmino(e) : void 0);
     } else {
       obj.msgs = message.msgs;
     }
@@ -487,7 +484,7 @@ const MsgRevokeResponse = {
     };
   }
 };
-const Sdk_Msg_InterfaceDecoder = (input) => {
+const Cosmos_basev1beta1Msg_InterfaceDecoder = (input) => {
   const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
   const data = import_any.Any.decode(reader, reader.uint32());
   switch (data.typeUrl) {
@@ -495,38 +492,21 @@ const Sdk_Msg_InterfaceDecoder = (input) => {
       return data;
   }
 };
-const Sdk_Msg_FromAmino = (content) => {
+const Cosmos_basev1beta1Msg_FromAmino = (content) => {
   return import_any.Any.fromAmino(content);
 };
-const Sdk_Msg_ToAmino = (content) => {
-  return import_any.Any.toAmino(content);
-};
-const Authz_Authorization_InterfaceDecoder = (input) => {
-  const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
-  const data = import_any.Any.decode(reader, reader.uint32());
-  switch (data.typeUrl) {
-    default:
-      return data;
-  }
-};
-const Authz_Authorization_FromAmino = (content) => {
-  return import_any.Any.fromAmino(content);
-};
-const Authz_Authorization_ToAmino = (content) => {
+const Cosmos_basev1beta1Msg_ToAmino = (content) => {
   return import_any.Any.toAmino(content);
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  Authz_Authorization_FromAmino,
-  Authz_Authorization_InterfaceDecoder,
-  Authz_Authorization_ToAmino,
+  Cosmos_basev1beta1Msg_FromAmino,
+  Cosmos_basev1beta1Msg_InterfaceDecoder,
+  Cosmos_basev1beta1Msg_ToAmino,
   MsgExec,
   MsgExecResponse,
   MsgGrant,
   MsgGrantResponse,
   MsgRevoke,
-  MsgRevokeResponse,
-  Sdk_Msg_FromAmino,
-  Sdk_Msg_InterfaceDecoder,
-  Sdk_Msg_ToAmino
+  MsgRevokeResponse
 });

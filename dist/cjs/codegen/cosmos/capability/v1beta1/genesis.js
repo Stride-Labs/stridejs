@@ -79,7 +79,7 @@ const GenesisOwners = {
   toAmino(message) {
     const obj = {};
     obj.index = message.index !== BigInt(0) ? message.index?.toString() : void 0;
-    obj.index_owners = message.indexOwners ? import_capability.CapabilityOwners.toAmino(message.indexOwners) : void 0;
+    obj.index_owners = message.indexOwners ? import_capability.CapabilityOwners.toAmino(message.indexOwners) : import_capability.CapabilityOwners.toAmino(import_capability.CapabilityOwners.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {

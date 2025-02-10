@@ -79,7 +79,7 @@ const Equivocation = {
   toAmino(message) {
     const obj = {};
     obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
-    obj.time = message.time ? Timestamp.toAmino(toTimestamp(message.time)) : void 0;
+    obj.time = message.time ? Timestamp.toAmino(toTimestamp(message.time)) : /* @__PURE__ */ new Date();
     obj.power = message.power !== BigInt(0) ? message.power?.toString() : void 0;
     obj.consensus_address = message.consensusAddress === "" ? void 0 : message.consensusAddress;
     return obj;

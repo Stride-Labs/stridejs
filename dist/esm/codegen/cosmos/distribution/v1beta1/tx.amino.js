@@ -1,4 +1,4 @@
-import { MsgSetWithdrawAddress, MsgWithdrawDelegatorReward, MsgWithdrawValidatorCommission, MsgWithdrawTokenizeShareRecordReward, MsgWithdrawAllTokenizeShareRecordReward, MsgFundCommunityPool } from "./tx";
+import { MsgSetWithdrawAddress, MsgWithdrawDelegatorReward, MsgWithdrawValidatorCommission, MsgFundCommunityPool, MsgUpdateParams, MsgCommunityPoolSpend } from "./tx";
 const AminoConverter = {
   "/cosmos.distribution.v1beta1.MsgSetWithdrawAddress": {
     aminoType: "cosmos-sdk/MsgModifyWithdrawAddress",
@@ -15,20 +15,20 @@ const AminoConverter = {
     toAmino: MsgWithdrawValidatorCommission.toAmino,
     fromAmino: MsgWithdrawValidatorCommission.fromAmino
   },
-  "/cosmos.distribution.v1beta1.MsgWithdrawTokenizeShareRecordReward": {
-    aminoType: "cosmos-sdk/MsgWithdrawTokenizeShareRecordReward",
-    toAmino: MsgWithdrawTokenizeShareRecordReward.toAmino,
-    fromAmino: MsgWithdrawTokenizeShareRecordReward.fromAmino
-  },
-  "/cosmos.distribution.v1beta1.MsgWithdrawAllTokenizeShareRecordReward": {
-    aminoType: "cosmos-sdk/MsgWithdrawAllTokenizeShareRecordReward",
-    toAmino: MsgWithdrawAllTokenizeShareRecordReward.toAmino,
-    fromAmino: MsgWithdrawAllTokenizeShareRecordReward.fromAmino
-  },
   "/cosmos.distribution.v1beta1.MsgFundCommunityPool": {
     aminoType: "cosmos-sdk/MsgFundCommunityPool",
     toAmino: MsgFundCommunityPool.toAmino,
     fromAmino: MsgFundCommunityPool.fromAmino
+  },
+  "/cosmos.distribution.v1beta1.MsgUpdateParams": {
+    aminoType: "cosmos-sdk/distribution/MsgUpdateParams",
+    toAmino: MsgUpdateParams.toAmino,
+    fromAmino: MsgUpdateParams.fromAmino
+  },
+  "/cosmos.distribution.v1beta1.MsgCommunityPoolSpend": {
+    aminoType: "cosmos-sdk/distr/MsgCommunityPoolSpend",
+    toAmino: MsgCommunityPoolSpend.toAmino,
+    fromAmino: MsgCommunityPoolSpend.fromAmino
   }
 };
 export {

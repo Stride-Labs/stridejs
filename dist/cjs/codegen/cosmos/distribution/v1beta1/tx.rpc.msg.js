@@ -29,9 +29,9 @@ class MsgClientImpl {
     this.setWithdrawAddress = this.setWithdrawAddress.bind(this);
     this.withdrawDelegatorReward = this.withdrawDelegatorReward.bind(this);
     this.withdrawValidatorCommission = this.withdrawValidatorCommission.bind(this);
-    this.withdrawTokenizeShareRecordReward = this.withdrawTokenizeShareRecordReward.bind(this);
-    this.withdrawAllTokenizeShareRecordReward = this.withdrawAllTokenizeShareRecordReward.bind(this);
     this.fundCommunityPool = this.fundCommunityPool.bind(this);
+    this.updateParams = this.updateParams.bind(this);
+    this.communityPoolSpend = this.communityPoolSpend.bind(this);
   }
   setWithdrawAddress(request) {
     const data = import_tx.MsgSetWithdrawAddress.encode(request).finish();
@@ -48,20 +48,20 @@ class MsgClientImpl {
     const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "WithdrawValidatorCommission", data);
     return promise.then((data2) => import_tx.MsgWithdrawValidatorCommissionResponse.decode(new import_binary.BinaryReader(data2)));
   }
-  withdrawTokenizeShareRecordReward(request) {
-    const data = import_tx.MsgWithdrawTokenizeShareRecordReward.encode(request).finish();
-    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "WithdrawTokenizeShareRecordReward", data);
-    return promise.then((data2) => import_tx.MsgWithdrawTokenizeShareRecordRewardResponse.decode(new import_binary.BinaryReader(data2)));
-  }
-  withdrawAllTokenizeShareRecordReward(request) {
-    const data = import_tx.MsgWithdrawAllTokenizeShareRecordReward.encode(request).finish();
-    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "WithdrawAllTokenizeShareRecordReward", data);
-    return promise.then((data2) => import_tx.MsgWithdrawAllTokenizeShareRecordRewardResponse.decode(new import_binary.BinaryReader(data2)));
-  }
   fundCommunityPool(request) {
     const data = import_tx.MsgFundCommunityPool.encode(request).finish();
     const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "FundCommunityPool", data);
     return promise.then((data2) => import_tx.MsgFundCommunityPoolResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  updateParams(request) {
+    const data = import_tx.MsgUpdateParams.encode(request).finish();
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "UpdateParams", data);
+    return promise.then((data2) => import_tx.MsgUpdateParamsResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  communityPoolSpend(request) {
+    const data = import_tx.MsgCommunityPoolSpend.encode(request).finish();
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "CommunityPoolSpend", data);
+    return promise.then((data2) => import_tx.MsgCommunityPoolSpendResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

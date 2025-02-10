@@ -76,7 +76,7 @@ const GenesisState = {
   },
   toAmino(message) {
     const obj = {};
-    obj.params = message.params ? import_auth.Params.toAmino(message.params) : void 0;
+    obj.params = message.params ? import_auth.Params.toAmino(message.params) : import_auth.Params.toAmino(import_auth.Params.fromPartial({}));
     if (message.accounts) {
       obj.accounts = message.accounts.map((e) => e ? import_any.Any.toAmino(e) : void 0);
     } else {

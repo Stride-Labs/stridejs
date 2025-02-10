@@ -23,7 +23,7 @@ __export(tx_registry_exports, {
 });
 module.exports = __toCommonJS(tx_registry_exports);
 var import_tx = require("./tx");
-const registry = [["/cosmos.crisis.v1beta1.MsgVerifyInvariant", import_tx.MsgVerifyInvariant]];
+const registry = [["/cosmos.crisis.v1beta1.MsgVerifyInvariant", import_tx.MsgVerifyInvariant], ["/cosmos.crisis.v1beta1.MsgUpdateParams", import_tx.MsgUpdateParams]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -36,12 +36,24 @@ const MessageComposer = {
         typeUrl: "/cosmos.crisis.v1beta1.MsgVerifyInvariant",
         value: import_tx.MsgVerifyInvariant.encode(value).finish()
       };
+    },
+    updateParams(value) {
+      return {
+        typeUrl: "/cosmos.crisis.v1beta1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.encode(value).finish()
+      };
     }
   },
   withTypeUrl: {
     verifyInvariant(value) {
       return {
         typeUrl: "/cosmos.crisis.v1beta1.MsgVerifyInvariant",
+        value
+      };
+    },
+    updateParams(value) {
+      return {
+        typeUrl: "/cosmos.crisis.v1beta1.MsgUpdateParams",
         value
       };
     }
@@ -51,6 +63,12 @@ const MessageComposer = {
       return {
         typeUrl: "/cosmos.crisis.v1beta1.MsgVerifyInvariant",
         value: import_tx.MsgVerifyInvariant.fromPartial(value)
+      };
+    },
+    updateParams(value) {
+      return {
+        typeUrl: "/cosmos.crisis.v1beta1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.fromPartial(value)
       };
     }
   }

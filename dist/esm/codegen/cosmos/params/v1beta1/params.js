@@ -1,6 +1,7 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 function createBaseParameterChangeProposal() {
   return {
+    $typeUrl: "/cosmos.params.v1beta1.ParameterChangeProposal",
     title: "",
     description: "",
     changes: []

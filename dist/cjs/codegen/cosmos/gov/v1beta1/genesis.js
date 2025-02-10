@@ -142,9 +142,9 @@ const GenesisState = {
     } else {
       obj.proposals = message.proposals;
     }
-    obj.deposit_params = message.depositParams ? import_gov.DepositParams.toAmino(message.depositParams) : void 0;
-    obj.voting_params = message.votingParams ? import_gov.VotingParams.toAmino(message.votingParams) : void 0;
-    obj.tally_params = message.tallyParams ? import_gov.TallyParams.toAmino(message.tallyParams) : void 0;
+    obj.deposit_params = message.depositParams ? import_gov.DepositParams.toAmino(message.depositParams) : import_gov.DepositParams.toAmino(import_gov.DepositParams.fromPartial({}));
+    obj.voting_params = message.votingParams ? import_gov.VotingParams.toAmino(message.votingParams) : import_gov.VotingParams.toAmino(import_gov.VotingParams.fromPartial({}));
+    obj.tally_params = message.tallyParams ? import_gov.TallyParams.toAmino(message.tallyParams) : import_gov.TallyParams.toAmino(import_gov.TallyParams.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {

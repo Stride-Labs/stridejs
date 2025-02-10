@@ -33,20 +33,15 @@ __export(staking_exports, {
   DelegationResponse: () => DelegationResponse,
   Description: () => Description,
   HistoricalInfo: () => HistoricalInfo,
-  InfractionType: () => InfractionType,
-  InfractionTypeAmino: () => InfractionTypeAmino,
-  InfractionTypeSDKType: () => InfractionTypeSDKType,
+  Infraction: () => Infraction,
+  InfractionAmino: () => InfractionAmino,
+  InfractionSDKType: () => InfractionSDKType,
   Params: () => Params,
-  PendingTokenizeShareAuthorizations: () => PendingTokenizeShareAuthorizations,
   Pool: () => Pool,
   Redelegation: () => Redelegation,
   RedelegationEntry: () => RedelegationEntry,
   RedelegationEntryResponse: () => RedelegationEntryResponse,
   RedelegationResponse: () => RedelegationResponse,
-  TokenizeShareLockStatus: () => TokenizeShareLockStatus,
-  TokenizeShareLockStatusAmino: () => TokenizeShareLockStatusAmino,
-  TokenizeShareLockStatusSDKType: () => TokenizeShareLockStatusSDKType,
-  TokenizeShareRecord: () => TokenizeShareRecord,
   UnbondingDelegation: () => UnbondingDelegation,
   UnbondingDelegationEntry: () => UnbondingDelegationEntry,
   ValAddresses: () => ValAddresses,
@@ -54,10 +49,8 @@ __export(staking_exports, {
   ValidatorUpdates: () => ValidatorUpdates,
   bondStatusFromJSON: () => bondStatusFromJSON,
   bondStatusToJSON: () => bondStatusToJSON,
-  infractionTypeFromJSON: () => infractionTypeFromJSON,
-  infractionTypeToJSON: () => infractionTypeToJSON,
-  tokenizeShareLockStatusFromJSON: () => tokenizeShareLockStatusFromJSON,
-  tokenizeShareLockStatusToJSON: () => tokenizeShareLockStatusToJSON
+  infractionFromJSON: () => infractionFromJSON,
+  infractionToJSON: () => infractionToJSON
 });
 module.exports = __toCommonJS(staking_exports);
 var import_types = require("../../../tendermint/types/types");
@@ -115,85 +108,40 @@ function bondStatusToJSON(object) {
       return "UNRECOGNIZED";
   }
 }
-var InfractionType = /* @__PURE__ */ ((InfractionType2) => {
-  InfractionType2[InfractionType2["INFRACTION_TYPE_UNSPECIFIED"] = 0] = "INFRACTION_TYPE_UNSPECIFIED";
-  InfractionType2[InfractionType2["INFRACTION_TYPE_DOUBLE_SIGN"] = 1] = "INFRACTION_TYPE_DOUBLE_SIGN";
-  InfractionType2[InfractionType2["INFRACTION_TYPE_DOWNTIME"] = 2] = "INFRACTION_TYPE_DOWNTIME";
-  InfractionType2[InfractionType2["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-  return InfractionType2;
-})(InfractionType || {});
-const InfractionTypeSDKType = InfractionType;
-const InfractionTypeAmino = InfractionType;
-function infractionTypeFromJSON(object) {
+var Infraction = /* @__PURE__ */ ((Infraction2) => {
+  Infraction2[Infraction2["INFRACTION_UNSPECIFIED"] = 0] = "INFRACTION_UNSPECIFIED";
+  Infraction2[Infraction2["INFRACTION_DOUBLE_SIGN"] = 1] = "INFRACTION_DOUBLE_SIGN";
+  Infraction2[Infraction2["INFRACTION_DOWNTIME"] = 2] = "INFRACTION_DOWNTIME";
+  Infraction2[Infraction2["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
+  return Infraction2;
+})(Infraction || {});
+const InfractionSDKType = Infraction;
+const InfractionAmino = Infraction;
+function infractionFromJSON(object) {
   switch (object) {
     case 0:
-    case "INFRACTION_TYPE_UNSPECIFIED":
-      return 0 /* INFRACTION_TYPE_UNSPECIFIED */;
+    case "INFRACTION_UNSPECIFIED":
+      return 0 /* INFRACTION_UNSPECIFIED */;
     case 1:
-    case "INFRACTION_TYPE_DOUBLE_SIGN":
-      return 1 /* INFRACTION_TYPE_DOUBLE_SIGN */;
+    case "INFRACTION_DOUBLE_SIGN":
+      return 1 /* INFRACTION_DOUBLE_SIGN */;
     case 2:
-    case "INFRACTION_TYPE_DOWNTIME":
-      return 2 /* INFRACTION_TYPE_DOWNTIME */;
+    case "INFRACTION_DOWNTIME":
+      return 2 /* INFRACTION_DOWNTIME */;
     case -1:
     case "UNRECOGNIZED":
     default:
       return -1 /* UNRECOGNIZED */;
   }
 }
-function infractionTypeToJSON(object) {
+function infractionToJSON(object) {
   switch (object) {
-    case 0 /* INFRACTION_TYPE_UNSPECIFIED */:
-      return "INFRACTION_TYPE_UNSPECIFIED";
-    case 1 /* INFRACTION_TYPE_DOUBLE_SIGN */:
-      return "INFRACTION_TYPE_DOUBLE_SIGN";
-    case 2 /* INFRACTION_TYPE_DOWNTIME */:
-      return "INFRACTION_TYPE_DOWNTIME";
-    case -1 /* UNRECOGNIZED */:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
-var TokenizeShareLockStatus = /* @__PURE__ */ ((TokenizeShareLockStatus2) => {
-  TokenizeShareLockStatus2[TokenizeShareLockStatus2["TOKENIZE_SHARE_LOCK_STATUS_UNSPECIFIED"] = 0] = "TOKENIZE_SHARE_LOCK_STATUS_UNSPECIFIED";
-  TokenizeShareLockStatus2[TokenizeShareLockStatus2["TOKENIZE_SHARE_LOCK_STATUS_LOCKED"] = 1] = "TOKENIZE_SHARE_LOCK_STATUS_LOCKED";
-  TokenizeShareLockStatus2[TokenizeShareLockStatus2["TOKENIZE_SHARE_LOCK_STATUS_UNLOCKED"] = 2] = "TOKENIZE_SHARE_LOCK_STATUS_UNLOCKED";
-  TokenizeShareLockStatus2[TokenizeShareLockStatus2["TOKENIZE_SHARE_LOCK_STATUS_LOCK_EXPIRING"] = 3] = "TOKENIZE_SHARE_LOCK_STATUS_LOCK_EXPIRING";
-  TokenizeShareLockStatus2[TokenizeShareLockStatus2["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-  return TokenizeShareLockStatus2;
-})(TokenizeShareLockStatus || {});
-const TokenizeShareLockStatusSDKType = TokenizeShareLockStatus;
-const TokenizeShareLockStatusAmino = TokenizeShareLockStatus;
-function tokenizeShareLockStatusFromJSON(object) {
-  switch (object) {
-    case 0:
-    case "TOKENIZE_SHARE_LOCK_STATUS_UNSPECIFIED":
-      return 0 /* TOKENIZE_SHARE_LOCK_STATUS_UNSPECIFIED */;
-    case 1:
-    case "TOKENIZE_SHARE_LOCK_STATUS_LOCKED":
-      return 1 /* TOKENIZE_SHARE_LOCK_STATUS_LOCKED */;
-    case 2:
-    case "TOKENIZE_SHARE_LOCK_STATUS_UNLOCKED":
-      return 2 /* TOKENIZE_SHARE_LOCK_STATUS_UNLOCKED */;
-    case 3:
-    case "TOKENIZE_SHARE_LOCK_STATUS_LOCK_EXPIRING":
-      return 3 /* TOKENIZE_SHARE_LOCK_STATUS_LOCK_EXPIRING */;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return -1 /* UNRECOGNIZED */;
-  }
-}
-function tokenizeShareLockStatusToJSON(object) {
-  switch (object) {
-    case 0 /* TOKENIZE_SHARE_LOCK_STATUS_UNSPECIFIED */:
-      return "TOKENIZE_SHARE_LOCK_STATUS_UNSPECIFIED";
-    case 1 /* TOKENIZE_SHARE_LOCK_STATUS_LOCKED */:
-      return "TOKENIZE_SHARE_LOCK_STATUS_LOCKED";
-    case 2 /* TOKENIZE_SHARE_LOCK_STATUS_UNLOCKED */:
-      return "TOKENIZE_SHARE_LOCK_STATUS_UNLOCKED";
-    case 3 /* TOKENIZE_SHARE_LOCK_STATUS_LOCK_EXPIRING */:
-      return "TOKENIZE_SHARE_LOCK_STATUS_LOCK_EXPIRING";
+    case 0 /* INFRACTION_UNSPECIFIED */:
+      return "INFRACTION_UNSPECIFIED";
+    case 1 /* INFRACTION_DOUBLE_SIGN */:
+      return "INFRACTION_DOUBLE_SIGN";
+    case 2 /* INFRACTION_DOWNTIME */:
+      return "INFRACTION_DOWNTIME";
     case -1 /* UNRECOGNIZED */:
     default:
       return "UNRECOGNIZED";
@@ -252,7 +200,7 @@ const HistoricalInfo = {
   },
   toAmino(message) {
     const obj = {};
-    obj.header = message.header ? import_types.Header.toAmino(message.header) : void 0;
+    obj.header = message.header ? import_types.Header.toAmino(message.header) : import_types.Header.toAmino(import_types.Header.fromPartial({}));
     if (message.valset) {
       obj.valset = message.valset.map((e) => e ? Validator.toAmino(e) : void 0);
     } else {
@@ -430,8 +378,8 @@ const Commission = {
   },
   toAmino(message) {
     const obj = {};
-    obj.commission_rates = message.commissionRates ? CommissionRates.toAmino(message.commissionRates) : void 0;
-    obj.update_time = message.updateTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.updateTime)) : void 0;
+    obj.commission_rates = message.commissionRates ? CommissionRates.toAmino(message.commissionRates) : CommissionRates.toAmino(CommissionRates.fromPartial({}));
+    obj.update_time = message.updateTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.updateTime)) : /* @__PURE__ */ new Date();
     return obj;
   },
   fromAminoMsg(object) {
@@ -587,9 +535,7 @@ function createBaseValidator() {
     commission: Commission.fromPartial({}),
     minSelfDelegation: "",
     unbondingOnHoldRefCount: BigInt(0),
-    unbondingIds: [],
-    validatorBondShares: "",
-    liquidShares: ""
+    unbondingIds: []
   };
 }
 const Validator = {
@@ -636,12 +582,6 @@ const Validator = {
       writer.uint64(v);
     }
     writer.ldelim();
-    if (message.validatorBondShares !== "") {
-      writer.uint32(114).string(import_math.Decimal.fromUserInput(message.validatorBondShares, 18).atomics);
-    }
-    if (message.liquidShares !== "") {
-      writer.uint32(122).string(import_math.Decimal.fromUserInput(message.liquidShares, 18).atomics);
-    }
     return writer;
   },
   decode(input, length) {
@@ -697,12 +637,6 @@ const Validator = {
             message.unbondingIds.push(reader.uint64());
           }
           break;
-        case 14:
-          message.validatorBondShares = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
-        case 15:
-          message.liquidShares = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -725,8 +659,6 @@ const Validator = {
     message.minSelfDelegation = object.minSelfDelegation ?? "";
     message.unbondingOnHoldRefCount = object.unbondingOnHoldRefCount !== void 0 && object.unbondingOnHoldRefCount !== null ? BigInt(object.unbondingOnHoldRefCount.toString()) : BigInt(0);
     message.unbondingIds = object.unbondingIds?.map((e) => BigInt(e.toString())) || [];
-    message.validatorBondShares = object.validatorBondShares ?? "";
-    message.liquidShares = object.liquidShares ?? "";
     return message;
   },
   fromAmino(object) {
@@ -768,12 +700,6 @@ const Validator = {
       message.unbondingOnHoldRefCount = BigInt(object.unbonding_on_hold_ref_count);
     }
     message.unbondingIds = object.unbonding_ids?.map((e) => BigInt(e)) || [];
-    if (object.validator_bond_shares !== void 0 && object.validator_bond_shares !== null) {
-      message.validatorBondShares = object.validator_bond_shares;
-    }
-    if (object.liquid_shares !== void 0 && object.liquid_shares !== null) {
-      message.liquidShares = object.liquid_shares;
-    }
     return message;
   },
   toAmino(message) {
@@ -784,10 +710,10 @@ const Validator = {
     obj.status = message.status === 0 ? void 0 : message.status;
     obj.tokens = message.tokens === "" ? void 0 : message.tokens;
     obj.delegator_shares = message.delegatorShares === "" ? void 0 : message.delegatorShares;
-    obj.description = message.description ? Description.toAmino(message.description) : void 0;
+    obj.description = message.description ? Description.toAmino(message.description) : Description.toAmino(Description.fromPartial({}));
     obj.unbonding_height = message.unbondingHeight !== BigInt(0) ? message.unbondingHeight?.toString() : void 0;
-    obj.unbonding_time = message.unbondingTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.unbondingTime)) : void 0;
-    obj.commission = message.commission ? Commission.toAmino(message.commission) : void 0;
+    obj.unbonding_time = message.unbondingTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.unbondingTime)) : /* @__PURE__ */ new Date();
+    obj.commission = message.commission ? Commission.toAmino(message.commission) : Commission.toAmino(Commission.fromPartial({}));
     obj.min_self_delegation = message.minSelfDelegation === "" ? void 0 : message.minSelfDelegation;
     obj.unbonding_on_hold_ref_count = message.unbondingOnHoldRefCount !== BigInt(0) ? message.unbondingOnHoldRefCount?.toString() : void 0;
     if (message.unbondingIds) {
@@ -795,8 +721,6 @@ const Validator = {
     } else {
       obj.unbonding_ids = message.unbondingIds;
     }
-    obj.validator_bond_shares = message.validatorBondShares === "" ? void 0 : message.validatorBondShares;
-    obj.liquid_shares = message.liquidShares === "" ? void 0 : message.liquidShares;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1212,8 +1136,7 @@ function createBaseDelegation() {
   return {
     delegatorAddress: "",
     validatorAddress: "",
-    shares: "",
-    validatorBond: false
+    shares: ""
   };
 }
 const Delegation = {
@@ -1227,9 +1150,6 @@ const Delegation = {
     }
     if (message.shares !== "") {
       writer.uint32(26).string(import_math.Decimal.fromUserInput(message.shares, 18).atomics);
-    }
-    if (message.validatorBond === true) {
-      writer.uint32(32).bool(message.validatorBond);
     }
     return writer;
   },
@@ -1249,9 +1169,6 @@ const Delegation = {
         case 3:
           message.shares = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
-        case 4:
-          message.validatorBond = reader.bool();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1264,7 +1181,6 @@ const Delegation = {
     message.delegatorAddress = object.delegatorAddress ?? "";
     message.validatorAddress = object.validatorAddress ?? "";
     message.shares = object.shares ?? "";
-    message.validatorBond = object.validatorBond ?? false;
     return message;
   },
   fromAmino(object) {
@@ -1278,9 +1194,6 @@ const Delegation = {
     if (object.shares !== void 0 && object.shares !== null) {
       message.shares = object.shares;
     }
-    if (object.validator_bond !== void 0 && object.validator_bond !== null) {
-      message.validatorBond = object.validator_bond;
-    }
     return message;
   },
   toAmino(message) {
@@ -1288,7 +1201,6 @@ const Delegation = {
     obj.delegator_address = message.delegatorAddress === "" ? void 0 : message.delegatorAddress;
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
     obj.shares = message.shares === "" ? void 0 : message.shares;
-    obj.validator_bond = message.validatorBond === false ? void 0 : message.validatorBond;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1508,7 +1420,7 @@ const UnbondingDelegationEntry = {
   toAmino(message) {
     const obj = {};
     obj.creation_height = message.creationHeight !== BigInt(0) ? message.creationHeight?.toString() : void 0;
-    obj.completion_time = message.completionTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.completionTime)) : void 0;
+    obj.completion_time = message.completionTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.completionTime)) : /* @__PURE__ */ new Date();
     obj.initial_balance = message.initialBalance === "" ? void 0 : message.initialBalance;
     obj.balance = message.balance === "" ? void 0 : message.balance;
     obj.unbonding_id = message.unbondingId !== BigInt(0) ? message.unbondingId?.toString() : void 0;
@@ -1637,7 +1549,7 @@ const RedelegationEntry = {
   toAmino(message) {
     const obj = {};
     obj.creation_height = message.creationHeight !== BigInt(0) ? message.creationHeight?.toString() : void 0;
-    obj.completion_time = message.completionTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.completionTime)) : void 0;
+    obj.completion_time = message.completionTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.completionTime)) : /* @__PURE__ */ new Date();
     obj.initial_balance = message.initialBalance === "" ? void 0 : message.initialBalance;
     obj.shares_dst = message.sharesDst === "" ? void 0 : message.sharesDst;
     obj.unbonding_id = message.unbondingId !== BigInt(0) ? message.unbondingId?.toString() : void 0;
@@ -1780,9 +1692,7 @@ function createBaseParams() {
     maxEntries: 0,
     historicalEntries: 0,
     bondDenom: "",
-    validatorBondFactor: "",
-    globalLiquidStakingCap: "",
-    validatorLiquidStakingCap: ""
+    minCommissionRate: ""
   };
 }
 const Params = {
@@ -1803,14 +1713,8 @@ const Params = {
     if (message.bondDenom !== "") {
       writer.uint32(42).string(message.bondDenom);
     }
-    if (message.validatorBondFactor !== "") {
-      writer.uint32(58).string(import_math.Decimal.fromUserInput(message.validatorBondFactor, 18).atomics);
-    }
-    if (message.globalLiquidStakingCap !== "") {
-      writer.uint32(66).string(import_math.Decimal.fromUserInput(message.globalLiquidStakingCap, 18).atomics);
-    }
-    if (message.validatorLiquidStakingCap !== "") {
-      writer.uint32(74).string(import_math.Decimal.fromUserInput(message.validatorLiquidStakingCap, 18).atomics);
+    if (message.minCommissionRate !== "") {
+      writer.uint32(50).string(import_math.Decimal.fromUserInput(message.minCommissionRate, 18).atomics);
     }
     return writer;
   },
@@ -1836,14 +1740,8 @@ const Params = {
         case 5:
           message.bondDenom = reader.string();
           break;
-        case 7:
-          message.validatorBondFactor = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
-        case 8:
-          message.globalLiquidStakingCap = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
-          break;
-        case 9:
-          message.validatorLiquidStakingCap = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+        case 6:
+          message.minCommissionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1859,9 +1757,7 @@ const Params = {
     message.maxEntries = object.maxEntries ?? 0;
     message.historicalEntries = object.historicalEntries ?? 0;
     message.bondDenom = object.bondDenom ?? "";
-    message.validatorBondFactor = object.validatorBondFactor ?? "";
-    message.globalLiquidStakingCap = object.globalLiquidStakingCap ?? "";
-    message.validatorLiquidStakingCap = object.validatorLiquidStakingCap ?? "";
+    message.minCommissionRate = object.minCommissionRate ?? "";
     return message;
   },
   fromAmino(object) {
@@ -1881,27 +1777,19 @@ const Params = {
     if (object.bond_denom !== void 0 && object.bond_denom !== null) {
       message.bondDenom = object.bond_denom;
     }
-    if (object.validator_bond_factor !== void 0 && object.validator_bond_factor !== null) {
-      message.validatorBondFactor = object.validator_bond_factor;
-    }
-    if (object.global_liquid_staking_cap !== void 0 && object.global_liquid_staking_cap !== null) {
-      message.globalLiquidStakingCap = object.global_liquid_staking_cap;
-    }
-    if (object.validator_liquid_staking_cap !== void 0 && object.validator_liquid_staking_cap !== null) {
-      message.validatorLiquidStakingCap = object.validator_liquid_staking_cap;
+    if (object.min_commission_rate !== void 0 && object.min_commission_rate !== null) {
+      message.minCommissionRate = object.min_commission_rate;
     }
     return message;
   },
   toAmino(message) {
     const obj = {};
-    obj.unbonding_time = message.unbondingTime ? import_duration.Duration.toAmino(message.unbondingTime) : void 0;
+    obj.unbonding_time = message.unbondingTime ? import_duration.Duration.toAmino(message.unbondingTime) : import_duration.Duration.toAmino(import_duration.Duration.fromPartial({}));
     obj.max_validators = message.maxValidators === 0 ? void 0 : message.maxValidators;
     obj.max_entries = message.maxEntries === 0 ? void 0 : message.maxEntries;
     obj.historical_entries = message.historicalEntries === 0 ? void 0 : message.historicalEntries;
     obj.bond_denom = message.bondDenom === "" ? void 0 : message.bondDenom;
-    obj.validator_bond_factor = message.validatorBondFactor === "" ? void 0 : message.validatorBondFactor;
-    obj.global_liquid_staking_cap = message.globalLiquidStakingCap === "" ? void 0 : message.globalLiquidStakingCap;
-    obj.validator_liquid_staking_cap = message.validatorLiquidStakingCap === "" ? void 0 : message.validatorLiquidStakingCap;
+    obj.min_commission_rate = message.minCommissionRate === "" ? void 0 : message.minCommissionRate;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1909,7 +1797,7 @@ const Params = {
   },
   toAminoMsg(message) {
     return {
-      type: "cosmos-sdk/Params",
+      type: "cosmos-sdk/x/staking/Params",
       value: Params.toAmino(message)
     };
   },
@@ -1981,8 +1869,8 @@ const DelegationResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.delegation = message.delegation ? Delegation.toAmino(message.delegation) : void 0;
-    obj.balance = message.balance ? import_coin.Coin.toAmino(message.balance) : void 0;
+    obj.delegation = message.delegation ? Delegation.toAmino(message.delegation) : Delegation.toAmino(Delegation.fromPartial({}));
+    obj.balance = message.balance ? import_coin.Coin.toAmino(message.balance) : import_coin.Coin.toAmino(import_coin.Coin.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -2062,7 +1950,7 @@ const RedelegationEntryResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.redelegation_entry = message.redelegationEntry ? RedelegationEntry.toAmino(message.redelegationEntry) : void 0;
+    obj.redelegation_entry = message.redelegationEntry ? RedelegationEntry.toAmino(message.redelegationEntry) : RedelegationEntry.toAmino(RedelegationEntry.fromPartial({}));
     obj.balance = message.balance === "" ? void 0 : message.balance;
     return obj;
   },
@@ -2141,7 +2029,7 @@ const RedelegationResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.redelegation = message.redelegation ? Redelegation.toAmino(message.redelegation) : void 0;
+    obj.redelegation = message.redelegation ? Redelegation.toAmino(message.redelegation) : Redelegation.toAmino(Redelegation.fromPartial({}));
     if (message.entries) {
       obj.entries = message.entries.map((e) => e ? RedelegationEntryResponse.toAmino(e) : void 0);
     } else {
@@ -2323,182 +2211,6 @@ const ValidatorUpdates = {
     };
   }
 };
-function createBaseTokenizeShareRecord() {
-  return {
-    id: BigInt(0),
-    owner: "",
-    moduleAccount: "",
-    validator: ""
-  };
-}
-const TokenizeShareRecord = {
-  typeUrl: "/cosmos.staking.v1beta1.TokenizeShareRecord",
-  encode(message, writer = import_binary.BinaryWriter.create()) {
-    if (message.id !== BigInt(0)) {
-      writer.uint32(8).uint64(message.id);
-    }
-    if (message.owner !== "") {
-      writer.uint32(18).string(message.owner);
-    }
-    if (message.moduleAccount !== "") {
-      writer.uint32(26).string(message.moduleAccount);
-    }
-    if (message.validator !== "") {
-      writer.uint32(34).string(message.validator);
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseTokenizeShareRecord();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.id = reader.uint64();
-          break;
-        case 2:
-          message.owner = reader.string();
-          break;
-        case 3:
-          message.moduleAccount = reader.string();
-          break;
-        case 4:
-          message.validator = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseTokenizeShareRecord();
-    message.id = object.id !== void 0 && object.id !== null ? BigInt(object.id.toString()) : BigInt(0);
-    message.owner = object.owner ?? "";
-    message.moduleAccount = object.moduleAccount ?? "";
-    message.validator = object.validator ?? "";
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseTokenizeShareRecord();
-    if (object.id !== void 0 && object.id !== null) {
-      message.id = BigInt(object.id);
-    }
-    if (object.owner !== void 0 && object.owner !== null) {
-      message.owner = object.owner;
-    }
-    if (object.module_account !== void 0 && object.module_account !== null) {
-      message.moduleAccount = object.module_account;
-    }
-    if (object.validator !== void 0 && object.validator !== null) {
-      message.validator = object.validator;
-    }
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    obj.id = message.id !== BigInt(0) ? message.id?.toString() : void 0;
-    obj.owner = message.owner === "" ? void 0 : message.owner;
-    obj.module_account = message.moduleAccount === "" ? void 0 : message.moduleAccount;
-    obj.validator = message.validator === "" ? void 0 : message.validator;
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return TokenizeShareRecord.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/TokenizeShareRecord",
-      value: TokenizeShareRecord.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return TokenizeShareRecord.decode(message.value);
-  },
-  toProto(message) {
-    return TokenizeShareRecord.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/cosmos.staking.v1beta1.TokenizeShareRecord",
-      value: TokenizeShareRecord.encode(message).finish()
-    };
-  }
-};
-function createBasePendingTokenizeShareAuthorizations() {
-  return {
-    addresses: []
-  };
-}
-const PendingTokenizeShareAuthorizations = {
-  typeUrl: "/cosmos.staking.v1beta1.PendingTokenizeShareAuthorizations",
-  encode(message, writer = import_binary.BinaryWriter.create()) {
-    for (const v of message.addresses) {
-      writer.uint32(10).string(v);
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBasePendingTokenizeShareAuthorizations();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.addresses.push(reader.string());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBasePendingTokenizeShareAuthorizations();
-    message.addresses = object.addresses?.map((e) => e) || [];
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBasePendingTokenizeShareAuthorizations();
-    message.addresses = object.addresses?.map((e) => e) || [];
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    if (message.addresses) {
-      obj.addresses = message.addresses.map((e) => e);
-    } else {
-      obj.addresses = message.addresses;
-    }
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return PendingTokenizeShareAuthorizations.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/PendingTokenizeShareAuthorizations",
-      value: PendingTokenizeShareAuthorizations.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return PendingTokenizeShareAuthorizations.decode(message.value);
-  },
-  toProto(message) {
-    return PendingTokenizeShareAuthorizations.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/cosmos.staking.v1beta1.PendingTokenizeShareAuthorizations",
-      value: PendingTokenizeShareAuthorizations.encode(message).finish()
-    };
-  }
-};
 const Cosmos_cryptoPubKey_InterfaceDecoder = (input) => {
   const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
   const data = import_any.Any.decode(reader, reader.uint32());
@@ -2531,20 +2243,15 @@ const Cosmos_cryptoPubKey_ToAmino = (content) => {
   DelegationResponse,
   Description,
   HistoricalInfo,
-  InfractionType,
-  InfractionTypeAmino,
-  InfractionTypeSDKType,
+  Infraction,
+  InfractionAmino,
+  InfractionSDKType,
   Params,
-  PendingTokenizeShareAuthorizations,
   Pool,
   Redelegation,
   RedelegationEntry,
   RedelegationEntryResponse,
   RedelegationResponse,
-  TokenizeShareLockStatus,
-  TokenizeShareLockStatusAmino,
-  TokenizeShareLockStatusSDKType,
-  TokenizeShareRecord,
   UnbondingDelegation,
   UnbondingDelegationEntry,
   ValAddresses,
@@ -2552,8 +2259,6 @@ const Cosmos_cryptoPubKey_ToAmino = (content) => {
   ValidatorUpdates,
   bondStatusFromJSON,
   bondStatusToJSON,
-  infractionTypeFromJSON,
-  infractionTypeToJSON,
-  tokenizeShareLockStatusFromJSON,
-  tokenizeShareLockStatusToJSON
+  infractionFromJSON,
+  infractionToJSON
 });

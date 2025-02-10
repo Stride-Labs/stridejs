@@ -23,7 +23,6 @@ __export(distribution_exports, {
   DelegatorStartingInfo: () => DelegatorStartingInfo,
   FeePool: () => FeePool,
   Params: () => Params,
-  TokenizeShareRecordReward: () => TokenizeShareRecordReward,
   ValidatorAccumulatedCommission: () => ValidatorAccumulatedCommission,
   ValidatorCurrentRewards: () => ValidatorCurrentRewards,
   ValidatorHistoricalRewards: () => ValidatorHistoricalRewards,
@@ -123,7 +122,7 @@ const Params = {
   },
   toAminoMsg(message) {
     return {
-      type: "cosmos-sdk/Params",
+      type: "cosmos-sdk/x/distribution/Params",
       value: Params.toAmino(message)
     };
   },
@@ -673,6 +672,7 @@ const FeePool = {
 };
 function createBaseCommunityPoolSpendProposal() {
   return {
+    $typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal",
     title: "",
     description: "",
     recipient: "",
@@ -954,91 +954,9 @@ const DelegationDelegatorReward = {
     };
   }
 };
-function createBaseTokenizeShareRecordReward() {
-  return {
-    recordId: BigInt(0),
-    reward: []
-  };
-}
-const TokenizeShareRecordReward = {
-  typeUrl: "/cosmos.distribution.v1beta1.TokenizeShareRecordReward",
-  encode(message, writer = import_binary.BinaryWriter.create()) {
-    if (message.recordId !== BigInt(0)) {
-      writer.uint32(8).uint64(message.recordId);
-    }
-    for (const v of message.reward) {
-      import_coin.DecCoin.encode(v, writer.uint32(18).fork()).ldelim();
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseTokenizeShareRecordReward();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.recordId = reader.uint64();
-          break;
-        case 2:
-          message.reward.push(import_coin.DecCoin.decode(reader, reader.uint32()));
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseTokenizeShareRecordReward();
-    message.recordId = object.recordId !== void 0 && object.recordId !== null ? BigInt(object.recordId.toString()) : BigInt(0);
-    message.reward = object.reward?.map((e) => import_coin.DecCoin.fromPartial(e)) || [];
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseTokenizeShareRecordReward();
-    if (object.record_id !== void 0 && object.record_id !== null) {
-      message.recordId = BigInt(object.record_id);
-    }
-    message.reward = object.reward?.map((e) => import_coin.DecCoin.fromAmino(e)) || [];
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : void 0;
-    if (message.reward) {
-      obj.reward = message.reward.map((e) => e ? import_coin.DecCoin.toAmino(e) : void 0);
-    } else {
-      obj.reward = message.reward;
-    }
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return TokenizeShareRecordReward.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/TokenizeShareRecordReward",
-      value: TokenizeShareRecordReward.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return TokenizeShareRecordReward.decode(message.value);
-  },
-  toProto(message) {
-    return TokenizeShareRecordReward.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/cosmos.distribution.v1beta1.TokenizeShareRecordReward",
-      value: TokenizeShareRecordReward.encode(message).finish()
-    };
-  }
-};
 function createBaseCommunityPoolSpendProposalWithDeposit() {
   return {
+    $typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit",
     title: "",
     description: "",
     recipient: "",
@@ -1162,7 +1080,6 @@ const CommunityPoolSpendProposalWithDeposit = {
   DelegatorStartingInfo,
   FeePool,
   Params,
-  TokenizeShareRecordReward,
   ValidatorAccumulatedCommission,
   ValidatorCurrentRewards,
   ValidatorHistoricalRewards,

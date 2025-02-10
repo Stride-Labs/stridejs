@@ -44,7 +44,7 @@ const GenesisState = {
   },
   toAmino(message) {
     const obj = {};
-    obj.constant_fee = message.constantFee ? Coin.toAmino(message.constantFee) : void 0;
+    obj.constant_fee = message.constantFee ? Coin.toAmino(message.constantFee) : Coin.toAmino(Coin.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {

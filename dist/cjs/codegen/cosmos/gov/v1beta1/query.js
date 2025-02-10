@@ -151,7 +151,7 @@ const QueryProposalResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal = message.proposal ? import_gov.Proposal.toAmino(message.proposal) : void 0;
+    obj.proposal = message.proposal ? import_gov.Proposal.toAmino(message.proposal) : import_gov.Proposal.toAmino(import_gov.Proposal.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -489,7 +489,7 @@ const QueryVoteResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.vote = message.vote ? import_gov.Vote.toAmino(message.vote) : void 0;
+    obj.vote = message.vote ? import_gov.Vote.toAmino(message.vote) : import_gov.Vote.toAmino(import_gov.Vote.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -813,9 +813,9 @@ const QueryParamsResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.voting_params = message.votingParams ? import_gov.VotingParams.toAmino(message.votingParams) : void 0;
-    obj.deposit_params = message.depositParams ? import_gov.DepositParams.toAmino(message.depositParams) : void 0;
-    obj.tally_params = message.tallyParams ? import_gov.TallyParams.toAmino(message.tallyParams) : void 0;
+    obj.voting_params = message.votingParams ? import_gov.VotingParams.toAmino(message.votingParams) : import_gov.VotingParams.toAmino(import_gov.VotingParams.fromPartial({}));
+    obj.deposit_params = message.depositParams ? import_gov.DepositParams.toAmino(message.depositParams) : import_gov.DepositParams.toAmino(import_gov.DepositParams.fromPartial({}));
+    obj.tally_params = message.tallyParams ? import_gov.TallyParams.toAmino(message.tallyParams) : import_gov.TallyParams.toAmino(import_gov.TallyParams.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -965,7 +965,7 @@ const QueryDepositResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.deposit = message.deposit ? import_gov.Deposit.toAmino(message.deposit) : void 0;
+    obj.deposit = message.deposit ? import_gov.Deposit.toAmino(message.deposit) : import_gov.Deposit.toAmino(import_gov.Deposit.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -1267,7 +1267,7 @@ const QueryTallyResultResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.tally = message.tally ? import_gov.TallyResult.toAmino(message.tally) : void 0;
+    obj.tally = message.tally ? import_gov.TallyResult.toAmino(message.tally) : import_gov.TallyResult.toAmino(import_gov.TallyResult.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {

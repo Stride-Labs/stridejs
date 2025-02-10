@@ -28,6 +28,8 @@ class MsgClientImpl {
     this.rpc = rpc;
     this.send = this.send.bind(this);
     this.multiSend = this.multiSend.bind(this);
+    this.updateParams = this.updateParams.bind(this);
+    this.setSendEnabled = this.setSendEnabled.bind(this);
   }
   send(request) {
     const data = import_tx.MsgSend.encode(request).finish();
@@ -38,6 +40,16 @@ class MsgClientImpl {
     const data = import_tx.MsgMultiSend.encode(request).finish();
     const promise = this.rpc.request("cosmos.bank.v1beta1.Msg", "MultiSend", data);
     return promise.then((data2) => import_tx.MsgMultiSendResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  updateParams(request) {
+    const data = import_tx.MsgUpdateParams.encode(request).finish();
+    const promise = this.rpc.request("cosmos.bank.v1beta1.Msg", "UpdateParams", data);
+    return promise.then((data2) => import_tx.MsgUpdateParamsResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  setSendEnabled(request) {
+    const data = import_tx.MsgSetSendEnabled.encode(request).finish();
+    const promise = this.rpc.request("cosmos.bank.v1beta1.Msg", "SetSendEnabled", data);
+    return promise.then((data2) => import_tx.MsgSetSendEnabledResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

@@ -27,11 +27,23 @@ class MsgClientImpl {
   constructor(rpc) {
     this.rpc = rpc;
     this.createVestingAccount = this.createVestingAccount.bind(this);
+    this.createPermanentLockedAccount = this.createPermanentLockedAccount.bind(this);
+    this.createPeriodicVestingAccount = this.createPeriodicVestingAccount.bind(this);
   }
   createVestingAccount(request) {
     const data = import_tx.MsgCreateVestingAccount.encode(request).finish();
     const promise = this.rpc.request("cosmos.vesting.v1beta1.Msg", "CreateVestingAccount", data);
     return promise.then((data2) => import_tx.MsgCreateVestingAccountResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  createPermanentLockedAccount(request) {
+    const data = import_tx.MsgCreatePermanentLockedAccount.encode(request).finish();
+    const promise = this.rpc.request("cosmos.vesting.v1beta1.Msg", "CreatePermanentLockedAccount", data);
+    return promise.then((data2) => import_tx.MsgCreatePermanentLockedAccountResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  createPeriodicVestingAccount(request) {
+    const data = import_tx.MsgCreatePeriodicVestingAccount.encode(request).finish();
+    const promise = this.rpc.request("cosmos.vesting.v1beta1.Msg", "CreatePeriodicVestingAccount", data);
+    return promise.then((data2) => import_tx.MsgCreatePeriodicVestingAccountResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

@@ -34,6 +34,7 @@ class ServiceClientImpl {
     this.getBlockByHeight = this.getBlockByHeight.bind(this);
     this.getLatestValidatorSet = this.getLatestValidatorSet.bind(this);
     this.getValidatorSetByHeight = this.getValidatorSetByHeight.bind(this);
+    this.aBCIQuery = this.aBCIQuery.bind(this);
   }
   getNodeInfo(request = {}) {
     const data = import_query.GetNodeInfoRequest.encode(request).finish();
@@ -67,6 +68,11 @@ class ServiceClientImpl {
     const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "GetValidatorSetByHeight", data);
     return promise.then((data2) => import_query.GetValidatorSetByHeightResponse.decode(new import_binary.BinaryReader(data2)));
   }
+  aBCIQuery(request) {
+    const data = import_query.ABCIQueryRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "ABCIQuery", data);
+    return promise.then((data2) => import_query.ABCIQueryResponse.decode(new import_binary.BinaryReader(data2)));
+  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = (0, import_stargate.createProtobufRpcClient)(base);
@@ -89,6 +95,9 @@ const createRpcQueryExtension = (base) => {
     },
     getValidatorSetByHeight(request) {
       return queryService.getValidatorSetByHeight(request);
+    },
+    aBCIQuery(request) {
+      return queryService.aBCIQuery(request);
     }
   };
 };

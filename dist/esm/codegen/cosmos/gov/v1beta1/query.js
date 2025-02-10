@@ -114,7 +114,7 @@ const QueryProposalResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal = message.proposal ? Proposal.toAmino(message.proposal) : void 0;
+    obj.proposal = message.proposal ? Proposal.toAmino(message.proposal) : Proposal.toAmino(Proposal.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -452,7 +452,7 @@ const QueryVoteResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.vote = message.vote ? Vote.toAmino(message.vote) : void 0;
+    obj.vote = message.vote ? Vote.toAmino(message.vote) : Vote.toAmino(Vote.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -776,9 +776,9 @@ const QueryParamsResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.voting_params = message.votingParams ? VotingParams.toAmino(message.votingParams) : void 0;
-    obj.deposit_params = message.depositParams ? DepositParams.toAmino(message.depositParams) : void 0;
-    obj.tally_params = message.tallyParams ? TallyParams.toAmino(message.tallyParams) : void 0;
+    obj.voting_params = message.votingParams ? VotingParams.toAmino(message.votingParams) : VotingParams.toAmino(VotingParams.fromPartial({}));
+    obj.deposit_params = message.depositParams ? DepositParams.toAmino(message.depositParams) : DepositParams.toAmino(DepositParams.fromPartial({}));
+    obj.tally_params = message.tallyParams ? TallyParams.toAmino(message.tallyParams) : TallyParams.toAmino(TallyParams.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -928,7 +928,7 @@ const QueryDepositResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.deposit = message.deposit ? Deposit.toAmino(message.deposit) : void 0;
+    obj.deposit = message.deposit ? Deposit.toAmino(message.deposit) : Deposit.toAmino(Deposit.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -1230,7 +1230,7 @@ const QueryTallyResultResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.tally = message.tally ? TallyResult.toAmino(message.tally) : void 0;
+    obj.tally = message.tally ? TallyResult.toAmino(message.tally) : TallyResult.toAmino(TallyResult.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {

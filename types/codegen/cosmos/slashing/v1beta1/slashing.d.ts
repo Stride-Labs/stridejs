@@ -46,7 +46,7 @@ export interface ValidatorSigningInfoAmino {
      */
     index_offset?: string;
     /** Timestamp until which the validator is jailed due to liveness downtime. */
-    jailed_until?: string;
+    jailed_until: string;
     /**
      * Whether or not a validator has been tombstoned (killed out of validator set). It is set
      * once the validator commits an equivocation or for any other configured misbehiavor.
@@ -89,13 +89,13 @@ export interface ParamsProtoMsg {
 /** Params represents the parameters used for by the slashing module. */
 export interface ParamsAmino {
     signed_blocks_window?: string;
-    min_signed_per_window?: string;
-    downtime_jail_duration?: DurationAmino;
-    slash_fraction_double_sign?: string;
-    slash_fraction_downtime?: string;
+    min_signed_per_window: string;
+    downtime_jail_duration: DurationAmino;
+    slash_fraction_double_sign: string;
+    slash_fraction_downtime: string;
 }
 export interface ParamsAminoMsg {
-    type: "cosmos-sdk/Params";
+    type: "cosmos-sdk/x/slashing/Params";
     value: ParamsAmino;
 }
 /** Params represents the parameters used for by the slashing module. */

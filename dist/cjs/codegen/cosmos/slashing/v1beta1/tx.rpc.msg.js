@@ -27,11 +27,17 @@ class MsgClientImpl {
   constructor(rpc) {
     this.rpc = rpc;
     this.unjail = this.unjail.bind(this);
+    this.updateParams = this.updateParams.bind(this);
   }
   unjail(request) {
     const data = import_tx.MsgUnjail.encode(request).finish();
     const promise = this.rpc.request("cosmos.slashing.v1beta1.Msg", "Unjail", data);
     return promise.then((data2) => import_tx.MsgUnjailResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  updateParams(request) {
+    const data = import_tx.MsgUpdateParams.encode(request).finish();
+    const promise = this.rpc.request("cosmos.slashing.v1beta1.Msg", "UpdateParams", data);
+    return promise.then((data2) => import_tx.MsgUpdateParamsResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

@@ -21,39 +21,20 @@ export declare const BondStatusSDKType: typeof BondStatus;
 export declare const BondStatusAmino: typeof BondStatus;
 export declare function bondStatusFromJSON(object: any): BondStatus;
 export declare function bondStatusToJSON(object: BondStatus): string;
-/** InfractionType indicates the infraction type a validator commited. */
-export declare enum InfractionType {
-    /** INFRACTION_TYPE_UNSPECIFIED - UNSPECIFIED defines an empty infraction type. */
-    INFRACTION_TYPE_UNSPECIFIED = 0,
-    /** INFRACTION_TYPE_DOUBLE_SIGN - DOUBLE_SIGN defines a validator that double-signs a block. */
-    INFRACTION_TYPE_DOUBLE_SIGN = 1,
-    /** INFRACTION_TYPE_DOWNTIME - DOWNTIME defines a validator that missed signing too many blocks. */
-    INFRACTION_TYPE_DOWNTIME = 2,
+/** Infraction indicates the infraction a validator commited. */
+export declare enum Infraction {
+    /** INFRACTION_UNSPECIFIED - UNSPECIFIED defines an empty infraction. */
+    INFRACTION_UNSPECIFIED = 0,
+    /** INFRACTION_DOUBLE_SIGN - DOUBLE_SIGN defines a validator that double-signs a block. */
+    INFRACTION_DOUBLE_SIGN = 1,
+    /** INFRACTION_DOWNTIME - DOWNTIME defines a validator that missed signing too many blocks. */
+    INFRACTION_DOWNTIME = 2,
     UNRECOGNIZED = -1
 }
-export declare const InfractionTypeSDKType: typeof InfractionType;
-export declare const InfractionTypeAmino: typeof InfractionType;
-export declare function infractionTypeFromJSON(object: any): InfractionType;
-export declare function infractionTypeToJSON(object: InfractionType): string;
-/** TokenizeShareLockStatus indicates whether the address is able to tokenize shares */
-export declare enum TokenizeShareLockStatus {
-    /** TOKENIZE_SHARE_LOCK_STATUS_UNSPECIFIED - UNSPECIFIED defines an empty tokenize share lock status */
-    TOKENIZE_SHARE_LOCK_STATUS_UNSPECIFIED = 0,
-    /** TOKENIZE_SHARE_LOCK_STATUS_LOCKED - LOCKED indicates the account is locked and cannot tokenize shares */
-    TOKENIZE_SHARE_LOCK_STATUS_LOCKED = 1,
-    /** TOKENIZE_SHARE_LOCK_STATUS_UNLOCKED - UNLOCKED indicates the account is unlocked and can tokenize shares */
-    TOKENIZE_SHARE_LOCK_STATUS_UNLOCKED = 2,
-    /**
-     * TOKENIZE_SHARE_LOCK_STATUS_LOCK_EXPIRING - LOCK_EXPIRING indicates the account is unable to tokenize shares, but
-     * will be able to tokenize shortly (after 1 unbonding period)
-     */
-    TOKENIZE_SHARE_LOCK_STATUS_LOCK_EXPIRING = 3,
-    UNRECOGNIZED = -1
-}
-export declare const TokenizeShareLockStatusSDKType: typeof TokenizeShareLockStatus;
-export declare const TokenizeShareLockStatusAmino: typeof TokenizeShareLockStatus;
-export declare function tokenizeShareLockStatusFromJSON(object: any): TokenizeShareLockStatus;
-export declare function tokenizeShareLockStatusToJSON(object: TokenizeShareLockStatus): string;
+export declare const InfractionSDKType: typeof Infraction;
+export declare const InfractionAmino: typeof Infraction;
+export declare function infractionFromJSON(object: any): Infraction;
+export declare function infractionToJSON(object: Infraction): string;
 /**
  * HistoricalInfo contains header and validator information for a given block.
  * It is stored as part of staking module's state, which persists the `n` most
@@ -75,8 +56,8 @@ export interface HistoricalInfoProtoMsg {
  * (`n` is set by the staking module's `historical_entries` parameter).
  */
 export interface HistoricalInfoAmino {
-    header?: HeaderAmino;
-    valset?: ValidatorAmino[];
+    header: HeaderAmino;
+    valset: ValidatorAmino[];
 }
 export interface HistoricalInfoAminoMsg {
     type: "cosmos-sdk/HistoricalInfo";
@@ -147,9 +128,9 @@ export interface CommissionProtoMsg {
 /** Commission defines commission parameters for a given validator. */
 export interface CommissionAmino {
     /** commission_rates defines the initial commission rates to be used for creating a validator. */
-    commission_rates?: CommissionRatesAmino;
+    commission_rates: CommissionRatesAmino;
     /** update_time is the last time the commission rate was changed. */
-    update_time?: string;
+    update_time: string;
 }
 export interface CommissionAminoMsg {
     type: "cosmos-sdk/Commission";
@@ -233,17 +214,16 @@ export interface Validator {
     unbondingTime: Date;
     /** commission defines the commission parameters. */
     commission: Commission;
-    /** Deprecated: This field has been deprecated with LSM in favor of the validator bond */
-    /** @deprecated */
+    /**
+     * min_self_delegation is the validator's self declared minimum self delegation.
+     *
+     * Since: cosmos-sdk 0.46
+     */
     minSelfDelegation: string;
     /** strictly positive if this validator's unbonding has been stopped by external modules */
     unbondingOnHoldRefCount: bigint;
     /** list of unbonding ids, each uniquely identifing an unbonding of this validator */
     unbondingIds: bigint[];
-    /** Number of shares self bonded from the validator */
-    validatorBondShares: string;
-    /** Number of shares either tokenized or owned by a liquid staking provider */
-    liquidShares: string;
 }
 export interface ValidatorProtoMsg {
     typeUrl: "/cosmos.staking.v1beta1.Validator";
@@ -276,24 +256,23 @@ export interface ValidatorAmino {
     /** delegator_shares defines total shares issued to a validator's delegators. */
     delegator_shares?: string;
     /** description defines the description terms for the validator. */
-    description?: DescriptionAmino;
+    description: DescriptionAmino;
     /** unbonding_height defines, if unbonding, the height at which this validator has begun unbonding. */
     unbonding_height?: string;
     /** unbonding_time defines, if unbonding, the min time for the validator to complete unbonding. */
-    unbonding_time?: string;
+    unbonding_time: string;
     /** commission defines the commission parameters. */
-    commission?: CommissionAmino;
-    /** Deprecated: This field has been deprecated with LSM in favor of the validator bond */
-    /** @deprecated */
+    commission: CommissionAmino;
+    /**
+     * min_self_delegation is the validator's self declared minimum self delegation.
+     *
+     * Since: cosmos-sdk 0.46
+     */
     min_self_delegation?: string;
     /** strictly positive if this validator's unbonding has been stopped by external modules */
     unbonding_on_hold_ref_count?: string;
     /** list of unbonding ids, each uniquely identifing an unbonding of this validator */
     unbonding_ids?: string[];
-    /** Number of shares self bonded from the validator */
-    validator_bond_shares?: string;
-    /** Number of shares either tokenized or owned by a liquid staking provider */
-    liquid_shares?: string;
 }
 export interface ValidatorAminoMsg {
     type: "cosmos-sdk/Validator";
@@ -320,12 +299,9 @@ export interface ValidatorSDKType {
     unbonding_height: bigint;
     unbonding_time: Date;
     commission: CommissionSDKType;
-    /** @deprecated */
     min_self_delegation: string;
     unbonding_on_hold_ref_count: bigint;
     unbonding_ids: bigint[];
-    validator_bond_shares: string;
-    liquid_shares: string;
 }
 /** ValAddresses defines a repeated set of validator addresses. */
 export interface ValAddresses {
@@ -392,7 +368,7 @@ export interface DVPairsProtoMsg {
 }
 /** DVPairs defines an array of DVPair objects. */
 export interface DVPairsAmino {
-    pairs?: DVPairAmino[];
+    pairs: DVPairAmino[];
 }
 export interface DVPairsAminoMsg {
     type: "cosmos-sdk/DVPairs";
@@ -453,7 +429,7 @@ export interface DVVTripletsProtoMsg {
 }
 /** DVVTriplets defines an array of DVVTriplet objects. */
 export interface DVVTripletsAmino {
-    triplets?: DVVTripletAmino[];
+    triplets: DVVTripletAmino[];
 }
 export interface DVVTripletsAminoMsg {
     type: "cosmos-sdk/DVVTriplets";
@@ -475,8 +451,6 @@ export interface Delegation {
     validatorAddress: string;
     /** shares define the delegation shares received. */
     shares: string;
-    /** has this delegation been marked as a validator self bond. */
-    validatorBond: boolean;
 }
 export interface DelegationProtoMsg {
     typeUrl: "/cosmos.staking.v1beta1.Delegation";
@@ -494,8 +468,6 @@ export interface DelegationAmino {
     validator_address?: string;
     /** shares define the delegation shares received. */
     shares?: string;
-    /** has this delegation been marked as a validator self bond. */
-    validator_bond?: boolean;
 }
 export interface DelegationAminoMsg {
     type: "cosmos-sdk/Delegation";
@@ -510,7 +482,6 @@ export interface DelegationSDKType {
     delegator_address: string;
     validator_address: string;
     shares: string;
-    validator_bond: boolean;
 }
 /**
  * UnbondingDelegation stores all of a single delegator's unbonding bonds
@@ -538,7 +509,7 @@ export interface UnbondingDelegationAmino {
     /** validator_address is the bech32-encoded address of the validator. */
     validator_address?: string;
     /** entries are the unbonding delegation entries. */
-    entries?: UnbondingDelegationEntryAmino[];
+    entries: UnbondingDelegationEntryAmino[];
 }
 export interface UnbondingDelegationAminoMsg {
     type: "cosmos-sdk/UnbondingDelegation";
@@ -577,7 +548,7 @@ export interface UnbondingDelegationEntryAmino {
     /** creation_height is the height which the unbonding took place. */
     creation_height?: string;
     /** completion_time is the unix time for unbonding completion. */
-    completion_time?: string;
+    completion_time: string;
     /** initial_balance defines the tokens initially scheduled to receive at completion. */
     initial_balance?: string;
     /** balance defines the tokens to receive at completion. */
@@ -624,7 +595,7 @@ export interface RedelegationEntryAmino {
     /** creation_height  defines the height which the redelegation took place. */
     creation_height?: string;
     /** completion_time defines the unix time for redelegation completion. */
-    completion_time?: string;
+    completion_time: string;
     /** initial_balance defines the initial balance when redelegation started. */
     initial_balance?: string;
     /** shares_dst is the amount of destination-validator shares created by redelegation. */
@@ -677,7 +648,7 @@ export interface RedelegationAmino {
     /** validator_dst_address is the validator redelegation destination operator address. */
     validator_dst_address?: string;
     /** entries are the redelegation entries. */
-    entries?: RedelegationEntryAmino[];
+    entries: RedelegationEntryAmino[];
 }
 export interface RedelegationAminoMsg {
     type: "cosmos-sdk/Redelegation";
@@ -693,7 +664,7 @@ export interface RedelegationSDKType {
     validator_dst_address: string;
     entries: RedelegationEntrySDKType[];
 }
-/** Params defines the parameters for the staking module. */
+/** Params defines the parameters for the x/staking module. */
 export interface Params {
     /** unbonding_time is the time duration of unbonding. */
     unbondingTime: Duration;
@@ -705,30 +676,17 @@ export interface Params {
     historicalEntries: number;
     /** bond_denom defines the bondable coin denomination. */
     bondDenom: string;
-    /**
-     * validator_bond_factor is required as a safety check for tokenizing shares and
-     * delegations from liquid staking providers
-     */
-    validatorBondFactor: string;
-    /**
-     * global_liquid_staking_cap represents a cap on the portion of stake that
-     * comes from liquid staking providers
-     */
-    globalLiquidStakingCap: string;
-    /**
-     * validator_liquid_staking_cap represents a cap on the portion of stake that
-     * comes from liquid staking providers for a specific validator
-     */
-    validatorLiquidStakingCap: string;
+    /** min_commission_rate is the chain-wide minimum commission rate that a validator can charge their delegators */
+    minCommissionRate: string;
 }
 export interface ParamsProtoMsg {
     typeUrl: "/cosmos.staking.v1beta1.Params";
     value: Uint8Array;
 }
-/** Params defines the parameters for the staking module. */
+/** Params defines the parameters for the x/staking module. */
 export interface ParamsAmino {
     /** unbonding_time is the time duration of unbonding. */
-    unbonding_time?: DurationAmino;
+    unbonding_time: DurationAmino;
     /** max_validators is the maximum number of validators. */
     max_validators?: number;
     /** max_entries is the max entries for either unbonding delegation or redelegation (per pair/trio). */
@@ -737,36 +695,21 @@ export interface ParamsAmino {
     historical_entries?: number;
     /** bond_denom defines the bondable coin denomination. */
     bond_denom?: string;
-    /**
-     * validator_bond_factor is required as a safety check for tokenizing shares and
-     * delegations from liquid staking providers
-     */
-    validator_bond_factor?: string;
-    /**
-     * global_liquid_staking_cap represents a cap on the portion of stake that
-     * comes from liquid staking providers
-     */
-    global_liquid_staking_cap?: string;
-    /**
-     * validator_liquid_staking_cap represents a cap on the portion of stake that
-     * comes from liquid staking providers for a specific validator
-     */
-    validator_liquid_staking_cap?: string;
+    /** min_commission_rate is the chain-wide minimum commission rate that a validator can charge their delegators */
+    min_commission_rate?: string;
 }
 export interface ParamsAminoMsg {
-    type: "cosmos-sdk/Params";
+    type: "cosmos-sdk/x/staking/Params";
     value: ParamsAmino;
 }
-/** Params defines the parameters for the staking module. */
+/** Params defines the parameters for the x/staking module. */
 export interface ParamsSDKType {
     unbonding_time: DurationSDKType;
     max_validators: number;
     max_entries: number;
     historical_entries: number;
     bond_denom: string;
-    validator_bond_factor: string;
-    global_liquid_staking_cap: string;
-    validator_liquid_staking_cap: string;
+    min_commission_rate: string;
 }
 /**
  * DelegationResponse is equivalent to Delegation except that it contains a
@@ -785,8 +728,8 @@ export interface DelegationResponseProtoMsg {
  * balance in addition to shares which is more suitable for client responses.
  */
 export interface DelegationResponseAmino {
-    delegation?: DelegationAmino;
-    balance?: CoinAmino;
+    delegation: DelegationAmino;
+    balance: CoinAmino;
 }
 export interface DelegationResponseAminoMsg {
     type: "cosmos-sdk/DelegationResponse";
@@ -819,7 +762,7 @@ export interface RedelegationEntryResponseProtoMsg {
  * responses.
  */
 export interface RedelegationEntryResponseAmino {
-    redelegation_entry?: RedelegationEntryAmino;
+    redelegation_entry: RedelegationEntryAmino;
     balance?: string;
 }
 export interface RedelegationEntryResponseAminoMsg {
@@ -854,8 +797,8 @@ export interface RedelegationResponseProtoMsg {
  * responses.
  */
 export interface RedelegationResponseAmino {
-    redelegation?: RedelegationAmino;
-    entries?: RedelegationEntryResponseAmino[];
+    redelegation: RedelegationAmino;
+    entries: RedelegationEntryResponseAmino[];
 }
 export interface RedelegationResponseAminoMsg {
     type: "cosmos-sdk/RedelegationResponse";
@@ -902,7 +845,10 @@ export interface PoolSDKType {
     not_bonded_tokens: string;
     bonded_tokens: string;
 }
-/** ValidatorUpdates defines an array of abci.ValidatorUpdate objects. */
+/**
+ * ValidatorUpdates defines an array of abci.ValidatorUpdate objects.
+ * TODO: explore moving this to proto/cosmos/base to separate modules from tendermint dependence
+ */
 export interface ValidatorUpdates {
     updates: ValidatorUpdate[];
 }
@@ -910,79 +856,23 @@ export interface ValidatorUpdatesProtoMsg {
     typeUrl: "/cosmos.staking.v1beta1.ValidatorUpdates";
     value: Uint8Array;
 }
-/** ValidatorUpdates defines an array of abci.ValidatorUpdate objects. */
+/**
+ * ValidatorUpdates defines an array of abci.ValidatorUpdate objects.
+ * TODO: explore moving this to proto/cosmos/base to separate modules from tendermint dependence
+ */
 export interface ValidatorUpdatesAmino {
-    updates?: ValidatorUpdateAmino[];
+    updates: ValidatorUpdateAmino[];
 }
 export interface ValidatorUpdatesAminoMsg {
     type: "cosmos-sdk/ValidatorUpdates";
     value: ValidatorUpdatesAmino;
 }
-/** ValidatorUpdates defines an array of abci.ValidatorUpdate objects. */
+/**
+ * ValidatorUpdates defines an array of abci.ValidatorUpdate objects.
+ * TODO: explore moving this to proto/cosmos/base to separate modules from tendermint dependence
+ */
 export interface ValidatorUpdatesSDKType {
     updates: ValidatorUpdateSDKType[];
-}
-/** TokenizeShareRecord represents a tokenized delegation */
-export interface TokenizeShareRecord {
-    id: bigint;
-    owner: string;
-    /** module account take the role of delegator */
-    moduleAccount: string;
-    /** validator delegated to for tokenize share record creation */
-    validator: string;
-}
-export interface TokenizeShareRecordProtoMsg {
-    typeUrl: "/cosmos.staking.v1beta1.TokenizeShareRecord";
-    value: Uint8Array;
-}
-/** TokenizeShareRecord represents a tokenized delegation */
-export interface TokenizeShareRecordAmino {
-    id?: string;
-    owner?: string;
-    /** module account take the role of delegator */
-    module_account?: string;
-    /** validator delegated to for tokenize share record creation */
-    validator?: string;
-}
-export interface TokenizeShareRecordAminoMsg {
-    type: "cosmos-sdk/TokenizeShareRecord";
-    value: TokenizeShareRecordAmino;
-}
-/** TokenizeShareRecord represents a tokenized delegation */
-export interface TokenizeShareRecordSDKType {
-    id: bigint;
-    owner: string;
-    module_account: string;
-    validator: string;
-}
-/**
- * PendingTokenizeShareAuthorizations stores a list of addresses that have their
- * tokenize share enablement in progress
- */
-export interface PendingTokenizeShareAuthorizations {
-    addresses: string[];
-}
-export interface PendingTokenizeShareAuthorizationsProtoMsg {
-    typeUrl: "/cosmos.staking.v1beta1.PendingTokenizeShareAuthorizations";
-    value: Uint8Array;
-}
-/**
- * PendingTokenizeShareAuthorizations stores a list of addresses that have their
- * tokenize share enablement in progress
- */
-export interface PendingTokenizeShareAuthorizationsAmino {
-    addresses?: string[];
-}
-export interface PendingTokenizeShareAuthorizationsAminoMsg {
-    type: "cosmos-sdk/PendingTokenizeShareAuthorizations";
-    value: PendingTokenizeShareAuthorizationsAmino;
-}
-/**
- * PendingTokenizeShareAuthorizations stores a list of addresses that have their
- * tokenize share enablement in progress
- */
-export interface PendingTokenizeShareAuthorizationsSDKType {
-    addresses: string[];
 }
 export declare const HistoricalInfo: {
     typeUrl: string;
@@ -1256,32 +1146,6 @@ export declare const ValidatorUpdates: {
     fromProtoMsg(message: ValidatorUpdatesProtoMsg): ValidatorUpdates;
     toProto(message: ValidatorUpdates): Uint8Array;
     toProtoMsg(message: ValidatorUpdates): ValidatorUpdatesProtoMsg;
-};
-export declare const TokenizeShareRecord: {
-    typeUrl: string;
-    encode(message: TokenizeShareRecord, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): TokenizeShareRecord;
-    fromPartial(object: Partial<TokenizeShareRecord>): TokenizeShareRecord;
-    fromAmino(object: TokenizeShareRecordAmino): TokenizeShareRecord;
-    toAmino(message: TokenizeShareRecord): TokenizeShareRecordAmino;
-    fromAminoMsg(object: TokenizeShareRecordAminoMsg): TokenizeShareRecord;
-    toAminoMsg(message: TokenizeShareRecord): TokenizeShareRecordAminoMsg;
-    fromProtoMsg(message: TokenizeShareRecordProtoMsg): TokenizeShareRecord;
-    toProto(message: TokenizeShareRecord): Uint8Array;
-    toProtoMsg(message: TokenizeShareRecord): TokenizeShareRecordProtoMsg;
-};
-export declare const PendingTokenizeShareAuthorizations: {
-    typeUrl: string;
-    encode(message: PendingTokenizeShareAuthorizations, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): PendingTokenizeShareAuthorizations;
-    fromPartial(object: Partial<PendingTokenizeShareAuthorizations>): PendingTokenizeShareAuthorizations;
-    fromAmino(object: PendingTokenizeShareAuthorizationsAmino): PendingTokenizeShareAuthorizations;
-    toAmino(message: PendingTokenizeShareAuthorizations): PendingTokenizeShareAuthorizationsAmino;
-    fromAminoMsg(object: PendingTokenizeShareAuthorizationsAminoMsg): PendingTokenizeShareAuthorizations;
-    toAminoMsg(message: PendingTokenizeShareAuthorizations): PendingTokenizeShareAuthorizationsAminoMsg;
-    fromProtoMsg(message: PendingTokenizeShareAuthorizationsProtoMsg): PendingTokenizeShareAuthorizations;
-    toProto(message: PendingTokenizeShareAuthorizations): Uint8Array;
-    toProtoMsg(message: PendingTokenizeShareAuthorizations): PendingTokenizeShareAuthorizationsProtoMsg;
 };
 export declare const Cosmos_cryptoPubKey_InterfaceDecoder: (input: BinaryReader | Uint8Array) => Any;
 export declare const Cosmos_cryptoPubKey_FromAmino: (content: AnyAmino) => Any;

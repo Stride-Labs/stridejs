@@ -1,6 +1,6 @@
-import * as _2 from "./cosmos";
+import * as _1 from "./cosmos";
 const cosmos_proto = {
-  ..._2
+  ..._1
 };
 export {
   cosmos_proto

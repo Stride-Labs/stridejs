@@ -1,11 +1,12 @@
 import { BinaryReader } from "../../../binary";
 import { createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryParamsRequest, QueryParamsResponse, QueryValidatorOutstandingRewardsRequest, QueryValidatorOutstandingRewardsResponse, QueryValidatorCommissionRequest, QueryValidatorCommissionResponse, QueryValidatorSlashesRequest, QueryValidatorSlashesResponse, QueryDelegationRewardsRequest, QueryDelegationRewardsResponse, QueryDelegationTotalRewardsRequest, QueryDelegationTotalRewardsResponse, QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponse, QueryDelegatorWithdrawAddressRequest, QueryDelegatorWithdrawAddressResponse, QueryCommunityPoolRequest, QueryCommunityPoolResponse, QueryTokenizeShareRecordRewardRequest, QueryTokenizeShareRecordRewardResponse } from "./query";
+import { QueryParamsRequest, QueryParamsResponse, QueryValidatorDistributionInfoRequest, QueryValidatorDistributionInfoResponse, QueryValidatorOutstandingRewardsRequest, QueryValidatorOutstandingRewardsResponse, QueryValidatorCommissionRequest, QueryValidatorCommissionResponse, QueryValidatorSlashesRequest, QueryValidatorSlashesResponse, QueryDelegationRewardsRequest, QueryDelegationRewardsResponse, QueryDelegationTotalRewardsRequest, QueryDelegationTotalRewardsResponse, QueryDelegatorValidatorsRequest, QueryDelegatorValidatorsResponse, QueryDelegatorWithdrawAddressRequest, QueryDelegatorWithdrawAddressResponse, QueryCommunityPoolRequest, QueryCommunityPoolResponse } from "./query";
 class QueryClientImpl {
   rpc;
   constructor(rpc) {
     this.rpc = rpc;
     this.params = this.params.bind(this);
+    this.validatorDistributionInfo = this.validatorDistributionInfo.bind(this);
     this.validatorOutstandingRewards = this.validatorOutstandingRewards.bind(this);
     this.validatorCommission = this.validatorCommission.bind(this);
     this.validatorSlashes = this.validatorSlashes.bind(this);
@@ -14,12 +15,16 @@ class QueryClientImpl {
     this.delegatorValidators = this.delegatorValidators.bind(this);
     this.delegatorWithdrawAddress = this.delegatorWithdrawAddress.bind(this);
     this.communityPool = this.communityPool.bind(this);
-    this.tokenizeShareRecordReward = this.tokenizeShareRecordReward.bind(this);
   }
   params(request = {}) {
     const data = QueryParamsRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.distribution.v1beta1.Query", "Params", data);
     return promise.then((data2) => QueryParamsResponse.decode(new BinaryReader(data2)));
+  }
+  validatorDistributionInfo(request) {
+    const data = QueryValidatorDistributionInfoRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Query", "ValidatorDistributionInfo", data);
+    return promise.then((data2) => QueryValidatorDistributionInfoResponse.decode(new BinaryReader(data2)));
   }
   validatorOutstandingRewards(request) {
     const data = QueryValidatorOutstandingRewardsRequest.encode(request).finish();
@@ -61,11 +66,6 @@ class QueryClientImpl {
     const promise = this.rpc.request("cosmos.distribution.v1beta1.Query", "CommunityPool", data);
     return promise.then((data2) => QueryCommunityPoolResponse.decode(new BinaryReader(data2)));
   }
-  tokenizeShareRecordReward(request) {
-    const data = QueryTokenizeShareRecordRewardRequest.encode(request).finish();
-    const promise = this.rpc.request("cosmos.distribution.v1beta1.Query", "TokenizeShareRecordReward", data);
-    return promise.then((data2) => QueryTokenizeShareRecordRewardResponse.decode(new BinaryReader(data2)));
-  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = createProtobufRpcClient(base);
@@ -73,6 +73,9 @@ const createRpcQueryExtension = (base) => {
   return {
     params(request) {
       return queryService.params(request);
+    },
+    validatorDistributionInfo(request) {
+      return queryService.validatorDistributionInfo(request);
     },
     validatorOutstandingRewards(request) {
       return queryService.validatorOutstandingRewards(request);
@@ -97,9 +100,6 @@ const createRpcQueryExtension = (base) => {
     },
     communityPool(request) {
       return queryService.communityPool(request);
-    },
-    tokenizeShareRecordReward(request) {
-      return queryService.tokenizeShareRecordReward(request);
     }
   };
 };

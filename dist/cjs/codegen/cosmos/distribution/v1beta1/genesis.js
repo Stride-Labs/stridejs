@@ -250,7 +250,7 @@ const ValidatorAccumulatedCommissionRecord = {
   toAmino(message) {
     const obj = {};
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
-    obj.accumulated = message.accumulated ? import_distribution.ValidatorAccumulatedCommission.toAmino(message.accumulated) : void 0;
+    obj.accumulated = message.accumulated ? import_distribution.ValidatorAccumulatedCommission.toAmino(message.accumulated) : import_distribution.ValidatorAccumulatedCommission.toAmino(import_distribution.ValidatorAccumulatedCommission.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -343,7 +343,7 @@ const ValidatorHistoricalRewardsRecord = {
     const obj = {};
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
     obj.period = message.period !== BigInt(0) ? message.period?.toString() : void 0;
-    obj.rewards = message.rewards ? import_distribution.ValidatorHistoricalRewards.toAmino(message.rewards) : void 0;
+    obj.rewards = message.rewards ? import_distribution.ValidatorHistoricalRewards.toAmino(message.rewards) : import_distribution.ValidatorHistoricalRewards.toAmino(import_distribution.ValidatorHistoricalRewards.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -424,7 +424,7 @@ const ValidatorCurrentRewardsRecord = {
   toAmino(message) {
     const obj = {};
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
-    obj.rewards = message.rewards ? import_distribution.ValidatorCurrentRewards.toAmino(message.rewards) : void 0;
+    obj.rewards = message.rewards ? import_distribution.ValidatorCurrentRewards.toAmino(message.rewards) : import_distribution.ValidatorCurrentRewards.toAmino(import_distribution.ValidatorCurrentRewards.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -517,7 +517,7 @@ const DelegatorStartingInfoRecord = {
     const obj = {};
     obj.delegator_address = message.delegatorAddress === "" ? void 0 : message.delegatorAddress;
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
-    obj.starting_info = message.startingInfo ? import_distribution.DelegatorStartingInfo.toAmino(message.startingInfo) : void 0;
+    obj.starting_info = message.startingInfo ? import_distribution.DelegatorStartingInfo.toAmino(message.startingInfo) : import_distribution.DelegatorStartingInfo.toAmino(import_distribution.DelegatorStartingInfo.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -622,7 +622,7 @@ const ValidatorSlashEventRecord = {
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
     obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.period = message.period !== BigInt(0) ? message.period?.toString() : void 0;
-    obj.validator_slash_event = message.validatorSlashEvent ? import_distribution.ValidatorSlashEvent.toAmino(message.validatorSlashEvent) : void 0;
+    obj.validator_slash_event = message.validatorSlashEvent ? import_distribution.ValidatorSlashEvent.toAmino(message.validatorSlashEvent) : import_distribution.ValidatorSlashEvent.toAmino(import_distribution.ValidatorSlashEvent.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -776,8 +776,8 @@ const GenesisState = {
   },
   toAmino(message) {
     const obj = {};
-    obj.params = message.params ? import_distribution.Params.toAmino(message.params) : void 0;
-    obj.fee_pool = message.feePool ? import_distribution.FeePool.toAmino(message.feePool) : void 0;
+    obj.params = message.params ? import_distribution.Params.toAmino(message.params) : import_distribution.Params.toAmino(import_distribution.Params.fromPartial({}));
+    obj.fee_pool = message.feePool ? import_distribution.FeePool.toAmino(message.feePool) : import_distribution.FeePool.toAmino(import_distribution.FeePool.fromPartial({}));
     if (message.delegatorWithdrawInfos) {
       obj.delegator_withdraw_infos = message.delegatorWithdrawInfos.map((e) => e ? DelegatorWithdrawInfo.toAmino(e) : void 0);
     } else {

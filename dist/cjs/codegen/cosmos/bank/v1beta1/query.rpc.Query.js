@@ -31,11 +31,14 @@ class QueryClientImpl {
     this.balance = this.balance.bind(this);
     this.allBalances = this.allBalances.bind(this);
     this.spendableBalances = this.spendableBalances.bind(this);
+    this.spendableBalanceByDenom = this.spendableBalanceByDenom.bind(this);
     this.totalSupply = this.totalSupply.bind(this);
     this.supplyOf = this.supplyOf.bind(this);
     this.params = this.params.bind(this);
     this.denomMetadata = this.denomMetadata.bind(this);
     this.denomsMetadata = this.denomsMetadata.bind(this);
+    this.denomOwners = this.denomOwners.bind(this);
+    this.sendEnabled = this.sendEnabled.bind(this);
   }
   balance(request) {
     const data = import_query.QueryBalanceRequest.encode(request).finish();
@@ -51,6 +54,11 @@ class QueryClientImpl {
     const data = import_query.QuerySpendableBalancesRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "SpendableBalances", data);
     return promise.then((data2) => import_query.QuerySpendableBalancesResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  spendableBalanceByDenom(request) {
+    const data = import_query.QuerySpendableBalanceByDenomRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "SpendableBalanceByDenom", data);
+    return promise.then((data2) => import_query.QuerySpendableBalanceByDenomResponse.decode(new import_binary.BinaryReader(data2)));
   }
   totalSupply(request = {
     pagination: void 0
@@ -81,6 +89,16 @@ class QueryClientImpl {
     const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomsMetadata", data);
     return promise.then((data2) => import_query.QueryDenomsMetadataResponse.decode(new import_binary.BinaryReader(data2)));
   }
+  denomOwners(request) {
+    const data = import_query.QueryDenomOwnersRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomOwners", data);
+    return promise.then((data2) => import_query.QueryDenomOwnersResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  sendEnabled(request) {
+    const data = import_query.QuerySendEnabledRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "SendEnabled", data);
+    return promise.then((data2) => import_query.QuerySendEnabledResponse.decode(new import_binary.BinaryReader(data2)));
+  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = (0, import_stargate.createProtobufRpcClient)(base);
@@ -94,6 +112,9 @@ const createRpcQueryExtension = (base) => {
     },
     spendableBalances(request) {
       return queryService.spendableBalances(request);
+    },
+    spendableBalanceByDenom(request) {
+      return queryService.spendableBalanceByDenom(request);
     },
     totalSupply(request) {
       return queryService.totalSupply(request);
@@ -109,6 +130,12 @@ const createRpcQueryExtension = (base) => {
     },
     denomsMetadata(request) {
       return queryService.denomsMetadata(request);
+    },
+    denomOwners(request) {
+      return queryService.denomOwners(request);
+    },
+    sendEnabled(request) {
+      return queryService.sendEnabled(request);
     }
   };
 };

@@ -1,22 +1,20 @@
-import * as _77 from "./api/annotations";
-import * as _78 from "./api/http";
-import * as _79 from "./api/httpbody";
-import * as _80 from "./protobuf/descriptor";
-import * as _81 from "./protobuf/any";
-import * as _82 from "./protobuf/timestamp";
-import * as _83 from "./protobuf/duration";
+import * as _130 from "./api/annotations";
+import * as _131 from "./api/http";
+import * as _132 from "./protobuf/descriptor";
+import * as _133 from "./protobuf/any";
+import * as _134 from "./protobuf/timestamp";
+import * as _135 from "./protobuf/duration";
 var google;
 ((google2) => {
   google2.api = {
-    ..._77,
-    ..._78,
-    ..._79
+    ..._130,
+    ..._131
   };
   google2.protobuf = {
-    ..._80,
-    ..._81,
-    ..._82,
-    ..._83
+    ..._132,
+    ..._133,
+    ..._134,
+    ..._135
   };
 })(google || (google = {}));
 export {

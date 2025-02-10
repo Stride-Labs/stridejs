@@ -1,14 +1,21 @@
 import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import { VoteOption, WeightedVoteOption, WeightedVoteOptionAmino, WeightedVoteOptionSDKType, TextProposal, TextProposalProtoMsg, TextProposalSDKType } from "./gov";
+import { CommunityPoolSpendProposal, CommunityPoolSpendProposalProtoMsg, CommunityPoolSpendProposalSDKType, CommunityPoolSpendProposalWithDeposit, CommunityPoolSpendProposalWithDepositProtoMsg, CommunityPoolSpendProposalWithDepositSDKType } from "../../distribution/v1beta1/distribution";
+import { ParameterChangeProposal, ParameterChangeProposalProtoMsg, ParameterChangeProposalSDKType } from "../../params/v1beta1/params";
+import { SoftwareUpgradeProposal, SoftwareUpgradeProposalProtoMsg, SoftwareUpgradeProposalSDKType, CancelSoftwareUpgradeProposal, CancelSoftwareUpgradeProposalProtoMsg, CancelSoftwareUpgradeProposalSDKType } from "../../upgrade/v1beta1/upgrade";
+import { ClientUpdateProposal, ClientUpdateProposalProtoMsg, ClientUpdateProposalSDKType, UpgradeProposal, UpgradeProposalProtoMsg, UpgradeProposalSDKType } from "../../../ibc/core/client/v1/client";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 /**
  * MsgSubmitProposal defines an sdk.Msg type that supports submitting arbitrary
  * proposal Content.
  */
 export interface MsgSubmitProposal {
-    content?: TextProposal | Any | undefined;
+    /** content is the proposal's content. */
+    content?: CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | TextProposal | ParameterChangeProposal | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | ClientUpdateProposal | UpgradeProposal | Any | undefined;
+    /** initial_deposit is the deposit value that must be paid at proposal submission. */
     initialDeposit: Coin[];
+    /** proposer is the account address of the proposer. */
     proposer: string;
 }
 export interface MsgSubmitProposalProtoMsg {
@@ -16,15 +23,18 @@ export interface MsgSubmitProposalProtoMsg {
     value: Uint8Array;
 }
 export declare type MsgSubmitProposalEncoded = Omit<MsgSubmitProposal, "content"> & {
-    content?: TextProposalProtoMsg | AnyProtoMsg | undefined;
+    /** content is the proposal's content. */ content?: CommunityPoolSpendProposalProtoMsg | CommunityPoolSpendProposalWithDepositProtoMsg | TextProposalProtoMsg | ParameterChangeProposalProtoMsg | SoftwareUpgradeProposalProtoMsg | CancelSoftwareUpgradeProposalProtoMsg | ClientUpdateProposalProtoMsg | UpgradeProposalProtoMsg | AnyProtoMsg | undefined;
 };
 /**
  * MsgSubmitProposal defines an sdk.Msg type that supports submitting arbitrary
  * proposal Content.
  */
 export interface MsgSubmitProposalAmino {
+    /** content is the proposal's content. */
     content?: AnyAmino;
-    initial_deposit?: CoinAmino[];
+    /** initial_deposit is the deposit value that must be paid at proposal submission. */
+    initial_deposit: CoinAmino[];
+    /** proposer is the account address of the proposer. */
     proposer?: string;
 }
 export interface MsgSubmitProposalAminoMsg {
@@ -36,12 +46,13 @@ export interface MsgSubmitProposalAminoMsg {
  * proposal Content.
  */
 export interface MsgSubmitProposalSDKType {
-    content?: TextProposalSDKType | AnySDKType | undefined;
+    content?: CommunityPoolSpendProposalSDKType | CommunityPoolSpendProposalWithDepositSDKType | TextProposalSDKType | ParameterChangeProposalSDKType | SoftwareUpgradeProposalSDKType | CancelSoftwareUpgradeProposalSDKType | ClientUpdateProposalSDKType | UpgradeProposalSDKType | AnySDKType | undefined;
     initial_deposit: CoinSDKType[];
     proposer: string;
 }
 /** MsgSubmitProposalResponse defines the Msg/SubmitProposal response type. */
 export interface MsgSubmitProposalResponse {
+    /** proposal_id defines the unique id of the proposal. */
     proposalId: bigint;
 }
 export interface MsgSubmitProposalResponseProtoMsg {
@@ -50,6 +61,7 @@ export interface MsgSubmitProposalResponseProtoMsg {
 }
 /** MsgSubmitProposalResponse defines the Msg/SubmitProposal response type. */
 export interface MsgSubmitProposalResponseAmino {
+    /** proposal_id defines the unique id of the proposal. */
     proposal_id: string;
 }
 export interface MsgSubmitProposalResponseAminoMsg {
@@ -62,8 +74,11 @@ export interface MsgSubmitProposalResponseSDKType {
 }
 /** MsgVote defines a message to cast a vote. */
 export interface MsgVote {
+    /** proposal_id defines the unique id of the proposal. */
     proposalId: bigint;
+    /** voter is the voter address for the proposal. */
     voter: string;
+    /** option defines the vote option. */
     option: VoteOption;
 }
 export interface MsgVoteProtoMsg {
@@ -72,8 +87,11 @@ export interface MsgVoteProtoMsg {
 }
 /** MsgVote defines a message to cast a vote. */
 export interface MsgVoteAmino {
-    proposal_id: string;
+    /** proposal_id defines the unique id of the proposal. */
+    proposal_id?: string;
+    /** voter is the voter address for the proposal. */
     voter?: string;
+    /** option defines the vote option. */
     option?: VoteOption;
 }
 export interface MsgVoteAminoMsg {
@@ -109,8 +127,11 @@ export interface MsgVoteResponseSDKType {
  * Since: cosmos-sdk 0.43
  */
 export interface MsgVoteWeighted {
+    /** proposal_id defines the unique id of the proposal. */
     proposalId: bigint;
+    /** voter is the voter address for the proposal. */
     voter: string;
+    /** options defines the weighted vote options. */
     options: WeightedVoteOption[];
 }
 export interface MsgVoteWeightedProtoMsg {
@@ -123,9 +144,12 @@ export interface MsgVoteWeightedProtoMsg {
  * Since: cosmos-sdk 0.43
  */
 export interface MsgVoteWeightedAmino {
-    proposal_id?: string;
+    /** proposal_id defines the unique id of the proposal. */
+    proposal_id: string;
+    /** voter is the voter address for the proposal. */
     voter?: string;
-    options?: WeightedVoteOptionAmino[];
+    /** options defines the weighted vote options. */
+    options: WeightedVoteOptionAmino[];
 }
 export interface MsgVoteWeightedAminoMsg {
     type: "cosmos-sdk/MsgVoteWeighted";
@@ -172,8 +196,11 @@ export interface MsgVoteWeightedResponseSDKType {
 }
 /** MsgDeposit defines a message to submit a deposit to an existing proposal. */
 export interface MsgDeposit {
+    /** proposal_id defines the unique id of the proposal. */
     proposalId: bigint;
+    /** depositor defines the deposit addresses from the proposals. */
     depositor: string;
+    /** amount to be deposited by depositor. */
     amount: Coin[];
 }
 export interface MsgDepositProtoMsg {
@@ -182,9 +209,12 @@ export interface MsgDepositProtoMsg {
 }
 /** MsgDeposit defines a message to submit a deposit to an existing proposal. */
 export interface MsgDepositAmino {
+    /** proposal_id defines the unique id of the proposal. */
     proposal_id: string;
+    /** depositor defines the deposit addresses from the proposals. */
     depositor?: string;
-    amount?: CoinAmino[];
+    /** amount to be deposited by depositor. */
+    amount: CoinAmino[];
 }
 export interface MsgDepositAminoMsg {
     type: "cosmos-sdk/MsgDeposit";
@@ -317,6 +347,6 @@ export declare const MsgDepositResponse: {
     toProto(message: MsgDepositResponse): Uint8Array;
     toProtoMsg(message: MsgDepositResponse): MsgDepositResponseProtoMsg;
 };
-export declare const Content_InterfaceDecoder: (input: BinaryReader | Uint8Array) => TextProposal | Any;
-export declare const Content_FromAmino: (content: AnyAmino) => Any;
-export declare const Content_ToAmino: (content: Any) => AnyAmino;
+export declare const Cosmos_govv1beta1Content_InterfaceDecoder: (input: BinaryReader | Uint8Array) => CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | TextProposal | ParameterChangeProposal | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | ClientUpdateProposal | UpgradeProposal | Any;
+export declare const Cosmos_govv1beta1Content_FromAmino: (content: AnyAmino) => Any;
+export declare const Cosmos_govv1beta1Content_ToAmino: (content: Any) => AnyAmino;

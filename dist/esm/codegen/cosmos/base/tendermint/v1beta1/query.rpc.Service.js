@@ -1,6 +1,6 @@
 import { BinaryReader } from "../../../../binary";
 import { createProtobufRpcClient } from "@cosmjs/stargate";
-import { GetNodeInfoRequest, GetNodeInfoResponse, GetSyncingRequest, GetSyncingResponse, GetLatestBlockRequest, GetLatestBlockResponse, GetBlockByHeightRequest, GetBlockByHeightResponse, GetLatestValidatorSetRequest, GetLatestValidatorSetResponse, GetValidatorSetByHeightRequest, GetValidatorSetByHeightResponse } from "./query";
+import { GetNodeInfoRequest, GetNodeInfoResponse, GetSyncingRequest, GetSyncingResponse, GetLatestBlockRequest, GetLatestBlockResponse, GetBlockByHeightRequest, GetBlockByHeightResponse, GetLatestValidatorSetRequest, GetLatestValidatorSetResponse, GetValidatorSetByHeightRequest, GetValidatorSetByHeightResponse, ABCIQueryRequest, ABCIQueryResponse } from "./query";
 class ServiceClientImpl {
   rpc;
   constructor(rpc) {
@@ -11,6 +11,7 @@ class ServiceClientImpl {
     this.getBlockByHeight = this.getBlockByHeight.bind(this);
     this.getLatestValidatorSet = this.getLatestValidatorSet.bind(this);
     this.getValidatorSetByHeight = this.getValidatorSetByHeight.bind(this);
+    this.aBCIQuery = this.aBCIQuery.bind(this);
   }
   getNodeInfo(request = {}) {
     const data = GetNodeInfoRequest.encode(request).finish();
@@ -44,6 +45,11 @@ class ServiceClientImpl {
     const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "GetValidatorSetByHeight", data);
     return promise.then((data2) => GetValidatorSetByHeightResponse.decode(new BinaryReader(data2)));
   }
+  aBCIQuery(request) {
+    const data = ABCIQueryRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.base.tendermint.v1beta1.Service", "ABCIQuery", data);
+    return promise.then((data2) => ABCIQueryResponse.decode(new BinaryReader(data2)));
+  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = createProtobufRpcClient(base);
@@ -66,6 +72,9 @@ const createRpcQueryExtension = (base) => {
     },
     getValidatorSetByHeight(request) {
       return queryService.getValidatorSetByHeight(request);
+    },
+    aBCIQuery(request) {
+      return queryService.aBCIQuery(request);
     }
   };
 };

@@ -1,5 +1,5 @@
 import { PageRequest, PageResponse } from "../../base/query/v1beta1/pagination";
-import { Params, ValidatorOutstandingRewards, ValidatorAccumulatedCommission, ValidatorSlashEvent, DelegationDelegatorReward, TokenizeShareRecordReward } from "./distribution";
+import { Params, ValidatorOutstandingRewards, ValidatorAccumulatedCommission, ValidatorSlashEvent, DelegationDelegatorReward } from "./distribution";
 import { DecCoin } from "../../base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 function createBaseQueryParamsRequest() {
@@ -102,7 +102,7 @@ const QueryParamsResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.params = message.params ? Params.toAmino(message.params) : void 0;
+    obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -124,6 +124,172 @@ const QueryParamsResponse = {
     return {
       typeUrl: "/cosmos.distribution.v1beta1.QueryParamsResponse",
       value: QueryParamsResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryValidatorDistributionInfoRequest() {
+  return {
+    validatorAddress: ""
+  };
+}
+const QueryValidatorDistributionInfoRequest = {
+  typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorDistributionInfoRequest",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.validatorAddress !== "") {
+      writer.uint32(10).string(message.validatorAddress);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryValidatorDistributionInfoRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.validatorAddress = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryValidatorDistributionInfoRequest();
+    message.validatorAddress = object.validatorAddress ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryValidatorDistributionInfoRequest();
+    if (object.validator_address !== void 0 && object.validator_address !== null) {
+      message.validatorAddress = object.validator_address;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryValidatorDistributionInfoRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryValidatorDistributionInfoRequest",
+      value: QueryValidatorDistributionInfoRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryValidatorDistributionInfoRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryValidatorDistributionInfoRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorDistributionInfoRequest",
+      value: QueryValidatorDistributionInfoRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryValidatorDistributionInfoResponse() {
+  return {
+    operatorAddress: "",
+    selfBondRewards: [],
+    commission: []
+  };
+}
+const QueryValidatorDistributionInfoResponse = {
+  typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorDistributionInfoResponse",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.operatorAddress !== "") {
+      writer.uint32(10).string(message.operatorAddress);
+    }
+    for (const v of message.selfBondRewards) {
+      DecCoin.encode(v, writer.uint32(18).fork()).ldelim();
+    }
+    for (const v of message.commission) {
+      DecCoin.encode(v, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryValidatorDistributionInfoResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.operatorAddress = reader.string();
+          break;
+        case 2:
+          message.selfBondRewards.push(DecCoin.decode(reader, reader.uint32()));
+          break;
+        case 3:
+          message.commission.push(DecCoin.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryValidatorDistributionInfoResponse();
+    message.operatorAddress = object.operatorAddress ?? "";
+    message.selfBondRewards = object.selfBondRewards?.map((e) => DecCoin.fromPartial(e)) || [];
+    message.commission = object.commission?.map((e) => DecCoin.fromPartial(e)) || [];
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryValidatorDistributionInfoResponse();
+    if (object.operator_address !== void 0 && object.operator_address !== null) {
+      message.operatorAddress = object.operator_address;
+    }
+    message.selfBondRewards = object.self_bond_rewards?.map((e) => DecCoin.fromAmino(e)) || [];
+    message.commission = object.commission?.map((e) => DecCoin.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.operator_address = message.operatorAddress === "" ? void 0 : message.operatorAddress;
+    if (message.selfBondRewards) {
+      obj.self_bond_rewards = message.selfBondRewards.map((e) => e ? DecCoin.toAmino(e) : void 0);
+    } else {
+      obj.self_bond_rewards = message.selfBondRewards;
+    }
+    if (message.commission) {
+      obj.commission = message.commission.map((e) => e ? DecCoin.toAmino(e) : void 0);
+    } else {
+      obj.commission = message.commission;
+    }
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryValidatorDistributionInfoResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryValidatorDistributionInfoResponse",
+      value: QueryValidatorDistributionInfoResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryValidatorDistributionInfoResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryValidatorDistributionInfoResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorDistributionInfoResponse",
+      value: QueryValidatorDistributionInfoResponse.encode(message).finish()
     };
   }
 };
@@ -240,7 +406,7 @@ const QueryValidatorOutstandingRewardsResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.rewards = message.rewards ? ValidatorOutstandingRewards.toAmino(message.rewards) : void 0;
+    obj.rewards = message.rewards ? ValidatorOutstandingRewards.toAmino(message.rewards) : ValidatorOutstandingRewards.toAmino(ValidatorOutstandingRewards.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -378,7 +544,7 @@ const QueryValidatorCommissionResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.commission = message.commission ? ValidatorAccumulatedCommission.toAmino(message.commission) : void 0;
+    obj.commission = message.commission ? ValidatorAccumulatedCommission.toAmino(message.commission) : ValidatorAccumulatedCommission.toAmino(ValidatorAccumulatedCommission.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -1302,160 +1468,6 @@ const QueryCommunityPoolResponse = {
     };
   }
 };
-function createBaseQueryTokenizeShareRecordRewardRequest() {
-  return {
-    ownerAddress: ""
-  };
-}
-const QueryTokenizeShareRecordRewardRequest = {
-  typeUrl: "/cosmos.distribution.v1beta1.QueryTokenizeShareRecordRewardRequest",
-  encode(message, writer = BinaryWriter.create()) {
-    if (message.ownerAddress !== "") {
-      writer.uint32(10).string(message.ownerAddress);
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseQueryTokenizeShareRecordRewardRequest();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.ownerAddress = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseQueryTokenizeShareRecordRewardRequest();
-    message.ownerAddress = object.ownerAddress ?? "";
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseQueryTokenizeShareRecordRewardRequest();
-    if (object.owner_address !== void 0 && object.owner_address !== null) {
-      message.ownerAddress = object.owner_address;
-    }
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    obj.owner_address = message.ownerAddress === "" ? void 0 : message.ownerAddress;
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return QueryTokenizeShareRecordRewardRequest.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/QueryTokenizeShareRecordRewardRequest",
-      value: QueryTokenizeShareRecordRewardRequest.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return QueryTokenizeShareRecordRewardRequest.decode(message.value);
-  },
-  toProto(message) {
-    return QueryTokenizeShareRecordRewardRequest.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/cosmos.distribution.v1beta1.QueryTokenizeShareRecordRewardRequest",
-      value: QueryTokenizeShareRecordRewardRequest.encode(message).finish()
-    };
-  }
-};
-function createBaseQueryTokenizeShareRecordRewardResponse() {
-  return {
-    rewards: [],
-    total: []
-  };
-}
-const QueryTokenizeShareRecordRewardResponse = {
-  typeUrl: "/cosmos.distribution.v1beta1.QueryTokenizeShareRecordRewardResponse",
-  encode(message, writer = BinaryWriter.create()) {
-    for (const v of message.rewards) {
-      TokenizeShareRecordReward.encode(v, writer.uint32(10).fork()).ldelim();
-    }
-    for (const v of message.total) {
-      DecCoin.encode(v, writer.uint32(18).fork()).ldelim();
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseQueryTokenizeShareRecordRewardResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.rewards.push(TokenizeShareRecordReward.decode(reader, reader.uint32()));
-          break;
-        case 2:
-          message.total.push(DecCoin.decode(reader, reader.uint32()));
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseQueryTokenizeShareRecordRewardResponse();
-    message.rewards = object.rewards?.map((e) => TokenizeShareRecordReward.fromPartial(e)) || [];
-    message.total = object.total?.map((e) => DecCoin.fromPartial(e)) || [];
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseQueryTokenizeShareRecordRewardResponse();
-    message.rewards = object.rewards?.map((e) => TokenizeShareRecordReward.fromAmino(e)) || [];
-    message.total = object.total?.map((e) => DecCoin.fromAmino(e)) || [];
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    if (message.rewards) {
-      obj.rewards = message.rewards.map((e) => e ? TokenizeShareRecordReward.toAmino(e) : void 0);
-    } else {
-      obj.rewards = message.rewards;
-    }
-    if (message.total) {
-      obj.total = message.total.map((e) => e ? DecCoin.toAmino(e) : void 0);
-    } else {
-      obj.total = message.total;
-    }
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return QueryTokenizeShareRecordRewardResponse.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/QueryTokenizeShareRecordRewardResponse",
-      value: QueryTokenizeShareRecordRewardResponse.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return QueryTokenizeShareRecordRewardResponse.decode(message.value);
-  },
-  toProto(message) {
-    return QueryTokenizeShareRecordRewardResponse.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/cosmos.distribution.v1beta1.QueryTokenizeShareRecordRewardResponse",
-      value: QueryTokenizeShareRecordRewardResponse.encode(message).finish()
-    };
-  }
-};
 export {
   QueryCommunityPoolRequest,
   QueryCommunityPoolResponse,
@@ -1469,10 +1481,10 @@ export {
   QueryDelegatorWithdrawAddressResponse,
   QueryParamsRequest,
   QueryParamsResponse,
-  QueryTokenizeShareRecordRewardRequest,
-  QueryTokenizeShareRecordRewardResponse,
   QueryValidatorCommissionRequest,
   QueryValidatorCommissionResponse,
+  QueryValidatorDistributionInfoRequest,
+  QueryValidatorDistributionInfoResponse,
   QueryValidatorOutstandingRewardsRequest,
   QueryValidatorOutstandingRewardsResponse,
   QueryValidatorSlashesRequest,

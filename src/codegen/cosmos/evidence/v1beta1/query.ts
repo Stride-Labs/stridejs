@@ -4,8 +4,18 @@ import { BinaryReader, BinaryWriter } from "../../../binary";
 import { bytesFromBase64, base64FromBytes } from "../../../helpers";
 /** QueryEvidenceRequest is the request type for the Query/Evidence RPC method. */
 export interface QueryEvidenceRequest {
-  /** evidence_hash defines the hash of the requested evidence. */
+  /**
+   * evidence_hash defines the hash of the requested evidence.
+   * Deprecated: Use hash, a HEX encoded string, instead.
+   */
+  /** @deprecated */
   evidenceHash: Uint8Array;
+  /**
+   * hash defines the evidence hash of the requested evidence.
+   * 
+   * Since: cosmos-sdk 0.47
+   */
+  hash: string;
 }
 export interface QueryEvidenceRequestProtoMsg {
   typeUrl: "/cosmos.evidence.v1beta1.QueryEvidenceRequest";
@@ -13,8 +23,18 @@ export interface QueryEvidenceRequestProtoMsg {
 }
 /** QueryEvidenceRequest is the request type for the Query/Evidence RPC method. */
 export interface QueryEvidenceRequestAmino {
-  /** evidence_hash defines the hash of the requested evidence. */
+  /**
+   * evidence_hash defines the hash of the requested evidence.
+   * Deprecated: Use hash, a HEX encoded string, instead.
+   */
+  /** @deprecated */
   evidence_hash?: string;
+  /**
+   * hash defines the evidence hash of the requested evidence.
+   * 
+   * Since: cosmos-sdk 0.47
+   */
+  hash?: string;
 }
 export interface QueryEvidenceRequestAminoMsg {
   type: "cosmos-sdk/QueryEvidenceRequest";
@@ -22,7 +42,9 @@ export interface QueryEvidenceRequestAminoMsg {
 }
 /** QueryEvidenceRequest is the request type for the Query/Evidence RPC method. */
 export interface QueryEvidenceRequestSDKType {
+  /** @deprecated */
   evidence_hash: Uint8Array;
+  hash: string;
 }
 /** QueryEvidenceResponse is the response type for the Query/Evidence RPC method. */
 export interface QueryEvidenceResponse {
@@ -115,7 +137,8 @@ export interface QueryAllEvidenceResponseSDKType {
 }
 function createBaseQueryEvidenceRequest(): QueryEvidenceRequest {
   return {
-    evidenceHash: new Uint8Array()
+    evidenceHash: new Uint8Array(),
+    hash: ""
   };
 }
 export const QueryEvidenceRequest = {
@@ -123,6 +146,9 @@ export const QueryEvidenceRequest = {
   encode(message: QueryEvidenceRequest, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
     if (message.evidenceHash.length !== 0) {
       writer.uint32(10).bytes(message.evidenceHash);
+    }
+    if (message.hash !== "") {
+      writer.uint32(18).string(message.hash);
     }
     return writer;
   },
@@ -136,6 +162,9 @@ export const QueryEvidenceRequest = {
         case 1:
           message.evidenceHash = reader.bytes();
           break;
+        case 2:
+          message.hash = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -146,6 +175,7 @@ export const QueryEvidenceRequest = {
   fromPartial(object: Partial<QueryEvidenceRequest>): QueryEvidenceRequest {
     const message = createBaseQueryEvidenceRequest();
     message.evidenceHash = object.evidenceHash ?? new Uint8Array();
+    message.hash = object.hash ?? "";
     return message;
   },
   fromAmino(object: QueryEvidenceRequestAmino): QueryEvidenceRequest {
@@ -153,11 +183,15 @@ export const QueryEvidenceRequest = {
     if (object.evidence_hash !== undefined && object.evidence_hash !== null) {
       message.evidenceHash = bytesFromBase64(object.evidence_hash);
     }
+    if (object.hash !== undefined && object.hash !== null) {
+      message.hash = object.hash;
+    }
     return message;
   },
   toAmino(message: QueryEvidenceRequest): QueryEvidenceRequestAmino {
     const obj: any = {};
     obj.evidence_hash = message.evidenceHash ? base64FromBytes(message.evidenceHash) : undefined;
+    obj.hash = message.hash === "" ? undefined : message.hash;
     return obj;
   },
   fromAminoMsg(object: QueryEvidenceRequestAminoMsg): QueryEvidenceRequest {

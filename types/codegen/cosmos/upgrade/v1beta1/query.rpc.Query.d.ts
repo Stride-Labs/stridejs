@@ -1,6 +1,6 @@
 import { TxRpc } from "../../../types";
 import { QueryClient } from "@cosmjs/stargate";
-import { QueryCurrentPlanRequest, QueryCurrentPlanResponse, QueryAppliedPlanRequest, QueryAppliedPlanResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse, QueryModuleVersionsRequest, QueryModuleVersionsResponse } from "./query";
+import { QueryCurrentPlanRequest, QueryCurrentPlanResponse, QueryAppliedPlanRequest, QueryAppliedPlanResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse, QueryModuleVersionsRequest, QueryModuleVersionsResponse, QueryAuthorityRequest, QueryAuthorityResponse } from "./query";
 /** Query defines the gRPC upgrade querier service. */
 export interface Query {
     /** CurrentPlan queries the current upgrade plan. */
@@ -22,6 +22,12 @@ export interface Query {
      * Since: cosmos-sdk 0.43
      */
     moduleVersions(request: QueryModuleVersionsRequest): Promise<QueryModuleVersionsResponse>;
+    /**
+     * Returns the account with authority to conduct upgrades
+     *
+     * Since: cosmos-sdk 0.46
+     */
+    authority(request?: QueryAuthorityRequest): Promise<QueryAuthorityResponse>;
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
@@ -30,10 +36,12 @@ export declare class QueryClientImpl implements Query {
     appliedPlan(request: QueryAppliedPlanRequest): Promise<QueryAppliedPlanResponse>;
     upgradedConsensusState(request: QueryUpgradedConsensusStateRequest): Promise<QueryUpgradedConsensusStateResponse>;
     moduleVersions(request: QueryModuleVersionsRequest): Promise<QueryModuleVersionsResponse>;
+    authority(request?: QueryAuthorityRequest): Promise<QueryAuthorityResponse>;
 }
 export declare const createRpcQueryExtension: (base: QueryClient) => {
     currentPlan(request?: QueryCurrentPlanRequest): Promise<QueryCurrentPlanResponse>;
     appliedPlan(request: QueryAppliedPlanRequest): Promise<QueryAppliedPlanResponse>;
     upgradedConsensusState(request: QueryUpgradedConsensusStateRequest): Promise<QueryUpgradedConsensusStateResponse>;
     moduleVersions(request: QueryModuleVersionsRequest): Promise<QueryModuleVersionsResponse>;
+    authority(request?: QueryAuthorityRequest): Promise<QueryAuthorityResponse>;
 };

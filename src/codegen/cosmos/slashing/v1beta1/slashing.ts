@@ -48,7 +48,7 @@ export interface ValidatorSigningInfoAmino {
    */
   index_offset?: string;
   /** Timestamp until which the validator is jailed due to liveness downtime. */
-  jailed_until?: string;
+  jailed_until: string;
   /**
    * Whether or not a validator has been tombstoned (killed out of validator set). It is set
    * once the validator commits an equivocation or for any other configured misbehiavor.
@@ -91,13 +91,13 @@ export interface ParamsProtoMsg {
 /** Params represents the parameters used for by the slashing module. */
 export interface ParamsAmino {
   signed_blocks_window?: string;
-  min_signed_per_window?: string;
-  downtime_jail_duration?: DurationAmino;
-  slash_fraction_double_sign?: string;
-  slash_fraction_downtime?: string;
+  min_signed_per_window: string;
+  downtime_jail_duration: DurationAmino;
+  slash_fraction_double_sign: string;
+  slash_fraction_downtime: string;
 }
 export interface ParamsAminoMsg {
-  type: "cosmos-sdk/Params";
+  type: "cosmos-sdk/x/slashing/Params";
   value: ParamsAmino;
 }
 /** Params represents the parameters used for by the slashing module. */
@@ -210,7 +210,7 @@ export const ValidatorSigningInfo = {
     obj.address = message.address === "" ? undefined : message.address;
     obj.start_height = message.startHeight !== BigInt(0) ? message.startHeight?.toString() : undefined;
     obj.index_offset = message.indexOffset !== BigInt(0) ? message.indexOffset?.toString() : undefined;
-    obj.jailed_until = message.jailedUntil ? Timestamp.toAmino(toTimestamp(message.jailedUntil)) : undefined;
+    obj.jailed_until = message.jailedUntil ? Timestamp.toAmino(toTimestamp(message.jailedUntil)) : new Date();
     obj.tombstoned = message.tombstoned === false ? undefined : message.tombstoned;
     obj.missed_blocks_counter = message.missedBlocksCounter !== BigInt(0) ? message.missedBlocksCounter?.toString() : undefined;
     return obj;
@@ -326,10 +326,10 @@ export const Params = {
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
     obj.signed_blocks_window = message.signedBlocksWindow !== BigInt(0) ? message.signedBlocksWindow?.toString() : undefined;
-    obj.min_signed_per_window = message.minSignedPerWindow ? base64FromBytes(message.minSignedPerWindow) : undefined;
-    obj.downtime_jail_duration = message.downtimeJailDuration ? Duration.toAmino(message.downtimeJailDuration) : undefined;
-    obj.slash_fraction_double_sign = message.slashFractionDoubleSign ? base64FromBytes(message.slashFractionDoubleSign) : undefined;
-    obj.slash_fraction_downtime = message.slashFractionDowntime ? base64FromBytes(message.slashFractionDowntime) : undefined;
+    obj.min_signed_per_window = message.minSignedPerWindow ? base64FromBytes(message.minSignedPerWindow) : "";
+    obj.downtime_jail_duration = message.downtimeJailDuration ? Duration.toAmino(message.downtimeJailDuration) : Duration.toAmino(Duration.fromPartial({}));
+    obj.slash_fraction_double_sign = message.slashFractionDoubleSign ? base64FromBytes(message.slashFractionDoubleSign) : "";
+    obj.slash_fraction_downtime = message.slashFractionDowntime ? base64FromBytes(message.slashFractionDowntime) : "";
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {
@@ -337,7 +337,7 @@ export const Params = {
   },
   toAminoMsg(message: Params): ParamsAminoMsg {
     return {
-      type: "cosmos-sdk/Params",
+      type: "cosmos-sdk/x/slashing/Params",
       value: Params.toAmino(message)
     };
   },

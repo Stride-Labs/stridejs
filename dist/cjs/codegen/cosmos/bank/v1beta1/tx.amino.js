@@ -31,6 +31,16 @@ const AminoConverter = {
     aminoType: "cosmos-sdk/MsgMultiSend",
     toAmino: import_tx.MsgMultiSend.toAmino,
     fromAmino: import_tx.MsgMultiSend.fromAmino
+  },
+  "/cosmos.bank.v1beta1.MsgUpdateParams": {
+    aminoType: "cosmos-sdk/x/bank/MsgUpdateParams",
+    toAmino: import_tx.MsgUpdateParams.toAmino,
+    fromAmino: import_tx.MsgUpdateParams.fromAmino
+  },
+  "/cosmos.bank.v1beta1.MsgSetSendEnabled": {
+    aminoType: "cosmos-sdk/MsgSetSendEnabled",
+    toAmino: import_tx.MsgSetSendEnabled.toAmino,
+    fromAmino: import_tx.MsgSetSendEnabled.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

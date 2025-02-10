@@ -36,7 +36,7 @@ const MsgGrantAllowance = {
           message.grantee = reader.string();
           break;
         case 3:
-          message.allowance = FeeAllowanceI_InterfaceDecoder(reader);
+          message.allowance = Cosmos_feegrantv1beta1FeeAllowanceI_InterfaceDecoder(reader);
           break;
         default:
           reader.skipType(tag & 7);
@@ -61,7 +61,7 @@ const MsgGrantAllowance = {
       message.grantee = object.grantee;
     }
     if (object.allowance !== void 0 && object.allowance !== null) {
-      message.allowance = FeeAllowanceI_FromAmino(object.allowance);
+      message.allowance = Cosmos_feegrantv1beta1FeeAllowanceI_FromAmino(object.allowance);
     }
     return message;
   },
@@ -69,7 +69,7 @@ const MsgGrantAllowance = {
     const obj = {};
     obj.granter = message.granter === "" ? void 0 : message.granter;
     obj.grantee = message.grantee === "" ? void 0 : message.grantee;
-    obj.allowance = message.allowance ? FeeAllowanceI_ToAmino(message.allowance) : void 0;
+    obj.allowance = message.allowance ? Cosmos_feegrantv1beta1FeeAllowanceI_ToAmino(message.allowance) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -287,7 +287,7 @@ const MsgRevokeAllowanceResponse = {
     };
   }
 };
-const FeeAllowanceI_InterfaceDecoder = (input) => {
+const Cosmos_feegrantv1beta1FeeAllowanceI_InterfaceDecoder = (input) => {
   const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
   const data = Any.decode(reader, reader.uint32());
   switch (data.typeUrl) {
@@ -301,7 +301,7 @@ const FeeAllowanceI_InterfaceDecoder = (input) => {
       return data;
   }
 };
-const FeeAllowanceI_FromAmino = (content) => {
+const Cosmos_feegrantv1beta1FeeAllowanceI_FromAmino = (content) => {
   switch (content.type) {
     case "cosmos-sdk/BasicAllowance":
       return Any.fromPartial({
@@ -322,7 +322,7 @@ const FeeAllowanceI_FromAmino = (content) => {
       return Any.fromAmino(content);
   }
 };
-const FeeAllowanceI_ToAmino = (content) => {
+const Cosmos_feegrantv1beta1FeeAllowanceI_ToAmino = (content) => {
   switch (content.typeUrl) {
     case "/cosmos.feegrant.v1beta1.BasicAllowance":
       return {
@@ -344,9 +344,9 @@ const FeeAllowanceI_ToAmino = (content) => {
   }
 };
 export {
-  FeeAllowanceI_FromAmino,
-  FeeAllowanceI_InterfaceDecoder,
-  FeeAllowanceI_ToAmino,
+  Cosmos_feegrantv1beta1FeeAllowanceI_FromAmino,
+  Cosmos_feegrantv1beta1FeeAllowanceI_InterfaceDecoder,
+  Cosmos_feegrantv1beta1FeeAllowanceI_ToAmino,
   MsgGrantAllowance,
   MsgGrantAllowanceResponse,
   MsgRevokeAllowance,

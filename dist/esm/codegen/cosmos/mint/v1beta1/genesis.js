@@ -55,8 +55,8 @@ const GenesisState = {
   },
   toAmino(message) {
     const obj = {};
-    obj.minter = message.minter ? Minter.toAmino(message.minter) : void 0;
-    obj.params = message.params ? Params.toAmino(message.params) : void 0;
+    obj.minter = message.minter ? Minter.toAmino(message.minter) : Minter.toAmino(Minter.fromPartial({}));
+    obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {

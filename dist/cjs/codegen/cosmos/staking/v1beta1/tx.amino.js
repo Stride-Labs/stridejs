@@ -47,45 +47,15 @@ const AminoConverter = {
     toAmino: import_tx.MsgUndelegate.toAmino,
     fromAmino: import_tx.MsgUndelegate.fromAmino
   },
-  "/cosmos.staking.v1beta1.MsgUnbondValidator": {
-    aminoType: "cosmos-sdk/MsgUnbondValidator",
-    toAmino: import_tx.MsgUnbondValidator.toAmino,
-    fromAmino: import_tx.MsgUnbondValidator.fromAmino
-  },
   "/cosmos.staking.v1beta1.MsgCancelUnbondingDelegation": {
     aminoType: "cosmos-sdk/MsgCancelUnbondingDelegation",
     toAmino: import_tx.MsgCancelUnbondingDelegation.toAmino,
     fromAmino: import_tx.MsgCancelUnbondingDelegation.fromAmino
   },
-  "/cosmos.staking.v1beta1.MsgTokenizeShares": {
-    aminoType: "cosmos-sdk/MsgTokenizeShares",
-    toAmino: import_tx.MsgTokenizeShares.toAmino,
-    fromAmino: import_tx.MsgTokenizeShares.fromAmino
-  },
-  "/cosmos.staking.v1beta1.MsgRedeemTokensForShares": {
-    aminoType: "cosmos-sdk/MsgRedeemTokensForShares",
-    toAmino: import_tx.MsgRedeemTokensForShares.toAmino,
-    fromAmino: import_tx.MsgRedeemTokensForShares.fromAmino
-  },
-  "/cosmos.staking.v1beta1.MsgTransferTokenizeShareRecord": {
-    aminoType: "cosmos-sdk/MsgTransferTokenizeShareRecord",
-    toAmino: import_tx.MsgTransferTokenizeShareRecord.toAmino,
-    fromAmino: import_tx.MsgTransferTokenizeShareRecord.fromAmino
-  },
-  "/cosmos.staking.v1beta1.MsgDisableTokenizeShares": {
-    aminoType: "cosmos-sdk/MsgDisableTokenizeShares",
-    toAmino: import_tx.MsgDisableTokenizeShares.toAmino,
-    fromAmino: import_tx.MsgDisableTokenizeShares.fromAmino
-  },
-  "/cosmos.staking.v1beta1.MsgEnableTokenizeShares": {
-    aminoType: "cosmos-sdk/MsgEnableTokenizeShares",
-    toAmino: import_tx.MsgEnableTokenizeShares.toAmino,
-    fromAmino: import_tx.MsgEnableTokenizeShares.fromAmino
-  },
-  "/cosmos.staking.v1beta1.MsgValidatorBond": {
-    aminoType: "cosmos-sdk/MsgValidatorBond",
-    toAmino: import_tx.MsgValidatorBond.toAmino,
-    fromAmino: import_tx.MsgValidatorBond.fromAmino
+  "/cosmos.staking.v1beta1.MsgUpdateParams": {
+    aminoType: "cosmos-sdk/x/staking/MsgUpdateParams",
+    toAmino: import_tx.MsgUpdateParams.toAmino,
+    fromAmino: import_tx.MsgUpdateParams.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

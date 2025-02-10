@@ -1,4 +1,4 @@
-import { Params, Metadata } from "./bank";
+import { Params, Metadata, SendEnabled } from "./bank";
 import { Coin } from "../../base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 function createBaseGenesisState() {
@@ -6,7 +6,8 @@ function createBaseGenesisState() {
     params: Params.fromPartial({}),
     balances: [],
     supply: [],
-    denomMetadata: []
+    denomMetadata: [],
+    sendEnabled: []
   };
 }
 const GenesisState = {
@@ -23,6 +24,9 @@ const GenesisState = {
     }
     for (const v of message.denomMetadata) {
       Metadata.encode(v, writer.uint32(34).fork()).ldelim();
+    }
+    for (const v of message.sendEnabled) {
+      SendEnabled.encode(v, writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -45,6 +49,9 @@ const GenesisState = {
         case 4:
           message.denomMetadata.push(Metadata.decode(reader, reader.uint32()));
           break;
+        case 5:
+          message.sendEnabled.push(SendEnabled.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -58,6 +65,7 @@ const GenesisState = {
     message.balances = object.balances?.map((e) => Balance.fromPartial(e)) || [];
     message.supply = object.supply?.map((e) => Coin.fromPartial(e)) || [];
     message.denomMetadata = object.denomMetadata?.map((e) => Metadata.fromPartial(e)) || [];
+    message.sendEnabled = object.sendEnabled?.map((e) => SendEnabled.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object) {
@@ -68,11 +76,12 @@ const GenesisState = {
     message.balances = object.balances?.map((e) => Balance.fromAmino(e)) || [];
     message.supply = object.supply?.map((e) => Coin.fromAmino(e)) || [];
     message.denomMetadata = object.denom_metadata?.map((e) => Metadata.fromAmino(e)) || [];
+    message.sendEnabled = object.send_enabled?.map((e) => SendEnabled.fromAmino(e)) || [];
     return message;
   },
   toAmino(message) {
     const obj = {};
-    obj.params = message.params ? Params.toAmino(message.params) : void 0;
+    obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
     if (message.balances) {
       obj.balances = message.balances.map((e) => e ? Balance.toAmino(e) : void 0);
     } else {
@@ -87,6 +96,11 @@ const GenesisState = {
       obj.denom_metadata = message.denomMetadata.map((e) => e ? Metadata.toAmino(e) : void 0);
     } else {
       obj.denom_metadata = message.denomMetadata;
+    }
+    if (message.sendEnabled) {
+      obj.send_enabled = message.sendEnabled.map((e) => e ? SendEnabled.toAmino(e) : void 0);
+    } else {
+      obj.send_enabled = message.sendEnabled;
     }
     return obj;
   },

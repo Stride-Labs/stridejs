@@ -29,7 +29,7 @@ const MsgSubmitEvidence = {
           message.submitter = reader.string();
           break;
         case 2:
-          message.evidence = Evidence_InterfaceDecoder(reader);
+          message.evidence = Cosmos_evidencev1beta1Evidence_InterfaceDecoder(reader);
           break;
         default:
           reader.skipType(tag & 7);
@@ -50,14 +50,14 @@ const MsgSubmitEvidence = {
       message.submitter = object.submitter;
     }
     if (object.evidence !== void 0 && object.evidence !== null) {
-      message.evidence = Evidence_FromAmino(object.evidence);
+      message.evidence = Cosmos_evidencev1beta1Evidence_FromAmino(object.evidence);
     }
     return message;
   },
   toAmino(message) {
     const obj = {};
     obj.submitter = message.submitter === "" ? void 0 : message.submitter;
-    obj.evidence = message.evidence ? Evidence_ToAmino(message.evidence) : void 0;
+    obj.evidence = message.evidence ? Cosmos_evidencev1beta1Evidence_ToAmino(message.evidence) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -151,7 +151,7 @@ const MsgSubmitEvidenceResponse = {
     };
   }
 };
-const Evidence_InterfaceDecoder = (input) => {
+const Cosmos_evidencev1beta1Evidence_InterfaceDecoder = (input) => {
   const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
   const data = Any.decode(reader, reader.uint32());
   switch (data.typeUrl) {
@@ -159,16 +159,16 @@ const Evidence_InterfaceDecoder = (input) => {
       return data;
   }
 };
-const Evidence_FromAmino = (content) => {
+const Cosmos_evidencev1beta1Evidence_FromAmino = (content) => {
   return Any.fromAmino(content);
 };
-const Evidence_ToAmino = (content) => {
+const Cosmos_evidencev1beta1Evidence_ToAmino = (content) => {
   return Any.toAmino(content);
 };
 export {
-  Evidence_FromAmino,
-  Evidence_InterfaceDecoder,
-  Evidence_ToAmino,
+  Cosmos_evidencev1beta1Evidence_FromAmino,
+  Cosmos_evidencev1beta1Evidence_InterfaceDecoder,
+  Cosmos_evidencev1beta1Evidence_ToAmino,
   MsgSubmitEvidence,
   MsgSubmitEvidenceResponse
 };

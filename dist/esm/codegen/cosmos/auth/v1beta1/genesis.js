@@ -54,7 +54,7 @@ const GenesisState = {
   },
   toAmino(message) {
     const obj = {};
-    obj.params = message.params ? Params.toAmino(message.params) : void 0;
+    obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
     if (message.accounts) {
       obj.accounts = message.accounts.map((e) => e ? Any.toAmino(e) : void 0);
     } else {

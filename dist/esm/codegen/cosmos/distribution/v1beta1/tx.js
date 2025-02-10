@@ -1,4 +1,5 @@
 import { Coin } from "../../base/v1beta1/coin";
+import { Params } from "./distribution";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 function createBaseMsgSetWithdrawAddress() {
   return {
@@ -219,11 +220,16 @@ const MsgWithdrawDelegatorReward = {
   }
 };
 function createBaseMsgWithdrawDelegatorRewardResponse() {
-  return {};
+  return {
+    amount: []
+  };
 }
 const MsgWithdrawDelegatorRewardResponse = {
   typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse",
-  encode(_, writer = BinaryWriter.create()) {
+  encode(message, writer = BinaryWriter.create()) {
+    for (const v of message.amount) {
+      Coin.encode(v, writer.uint32(10).fork()).ldelim();
+    }
     return writer;
   },
   decode(input, length) {
@@ -233,6 +239,9 @@ const MsgWithdrawDelegatorRewardResponse = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.amount.push(Coin.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -240,16 +249,23 @@ const MsgWithdrawDelegatorRewardResponse = {
     }
     return message;
   },
-  fromPartial(_) {
+  fromPartial(object) {
     const message = createBaseMsgWithdrawDelegatorRewardResponse();
+    message.amount = object.amount?.map((e) => Coin.fromPartial(e)) || [];
     return message;
   },
-  fromAmino(_) {
+  fromAmino(object) {
     const message = createBaseMsgWithdrawDelegatorRewardResponse();
+    message.amount = object.amount?.map((e) => Coin.fromAmino(e)) || [];
     return message;
   },
-  toAmino(_) {
+  toAmino(message) {
     const obj = {};
+    if (message.amount) {
+      obj.amount = message.amount.map((e) => e ? Coin.toAmino(e) : void 0);
+    } else {
+      obj.amount = message.amount;
+    }
     return obj;
   },
   fromAminoMsg(object) {
@@ -344,11 +360,16 @@ const MsgWithdrawValidatorCommission = {
   }
 };
 function createBaseMsgWithdrawValidatorCommissionResponse() {
-  return {};
+  return {
+    amount: []
+  };
 }
 const MsgWithdrawValidatorCommissionResponse = {
   typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse",
-  encode(_, writer = BinaryWriter.create()) {
+  encode(message, writer = BinaryWriter.create()) {
+    for (const v of message.amount) {
+      Coin.encode(v, writer.uint32(10).fork()).ldelim();
+    }
     return writer;
   },
   decode(input, length) {
@@ -358,6 +379,9 @@ const MsgWithdrawValidatorCommissionResponse = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.amount.push(Coin.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -365,16 +389,23 @@ const MsgWithdrawValidatorCommissionResponse = {
     }
     return message;
   },
-  fromPartial(_) {
+  fromPartial(object) {
     const message = createBaseMsgWithdrawValidatorCommissionResponse();
+    message.amount = object.amount?.map((e) => Coin.fromPartial(e)) || [];
     return message;
   },
-  fromAmino(_) {
+  fromAmino(object) {
     const message = createBaseMsgWithdrawValidatorCommissionResponse();
+    message.amount = object.amount?.map((e) => Coin.fromAmino(e)) || [];
     return message;
   },
-  toAmino(_) {
+  toAmino(message) {
     const obj = {};
+    if (message.amount) {
+      obj.amount = message.amount.map((e) => e ? Coin.toAmino(e) : void 0);
+    } else {
+      obj.amount = message.amount;
+    }
     return obj;
   },
   fromAminoMsg(object) {
@@ -396,268 +427,6 @@ const MsgWithdrawValidatorCommissionResponse = {
     return {
       typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse",
       value: MsgWithdrawValidatorCommissionResponse.encode(message).finish()
-    };
-  }
-};
-function createBaseMsgWithdrawTokenizeShareRecordReward() {
-  return {
-    ownerAddress: "",
-    recordId: BigInt(0)
-  };
-}
-const MsgWithdrawTokenizeShareRecordReward = {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawTokenizeShareRecordReward",
-  encode(message, writer = BinaryWriter.create()) {
-    if (message.ownerAddress !== "") {
-      writer.uint32(10).string(message.ownerAddress);
-    }
-    if (message.recordId !== BigInt(0)) {
-      writer.uint32(16).uint64(message.recordId);
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseMsgWithdrawTokenizeShareRecordReward();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.ownerAddress = reader.string();
-          break;
-        case 2:
-          message.recordId = reader.uint64();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseMsgWithdrawTokenizeShareRecordReward();
-    message.ownerAddress = object.ownerAddress ?? "";
-    message.recordId = object.recordId !== void 0 && object.recordId !== null ? BigInt(object.recordId.toString()) : BigInt(0);
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseMsgWithdrawTokenizeShareRecordReward();
-    if (object.owner_address !== void 0 && object.owner_address !== null) {
-      message.ownerAddress = object.owner_address;
-    }
-    if (object.record_id !== void 0 && object.record_id !== null) {
-      message.recordId = BigInt(object.record_id);
-    }
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    obj.owner_address = message.ownerAddress === "" ? void 0 : message.ownerAddress;
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : void 0;
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return MsgWithdrawTokenizeShareRecordReward.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/MsgWithdrawTokenizeShareRecordReward",
-      value: MsgWithdrawTokenizeShareRecordReward.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return MsgWithdrawTokenizeShareRecordReward.decode(message.value);
-  },
-  toProto(message) {
-    return MsgWithdrawTokenizeShareRecordReward.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawTokenizeShareRecordReward",
-      value: MsgWithdrawTokenizeShareRecordReward.encode(message).finish()
-    };
-  }
-};
-function createBaseMsgWithdrawTokenizeShareRecordRewardResponse() {
-  return {};
-}
-const MsgWithdrawTokenizeShareRecordRewardResponse = {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawTokenizeShareRecordRewardResponse",
-  encode(_, writer = BinaryWriter.create()) {
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseMsgWithdrawTokenizeShareRecordRewardResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(_) {
-    const message = createBaseMsgWithdrawTokenizeShareRecordRewardResponse();
-    return message;
-  },
-  fromAmino(_) {
-    const message = createBaseMsgWithdrawTokenizeShareRecordRewardResponse();
-    return message;
-  },
-  toAmino(_) {
-    const obj = {};
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return MsgWithdrawTokenizeShareRecordRewardResponse.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/MsgWithdrawTokenizeShareRecordRewardResponse",
-      value: MsgWithdrawTokenizeShareRecordRewardResponse.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return MsgWithdrawTokenizeShareRecordRewardResponse.decode(message.value);
-  },
-  toProto(message) {
-    return MsgWithdrawTokenizeShareRecordRewardResponse.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawTokenizeShareRecordRewardResponse",
-      value: MsgWithdrawTokenizeShareRecordRewardResponse.encode(message).finish()
-    };
-  }
-};
-function createBaseMsgWithdrawAllTokenizeShareRecordReward() {
-  return {
-    ownerAddress: ""
-  };
-}
-const MsgWithdrawAllTokenizeShareRecordReward = {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawAllTokenizeShareRecordReward",
-  encode(message, writer = BinaryWriter.create()) {
-    if (message.ownerAddress !== "") {
-      writer.uint32(10).string(message.ownerAddress);
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseMsgWithdrawAllTokenizeShareRecordReward();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.ownerAddress = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseMsgWithdrawAllTokenizeShareRecordReward();
-    message.ownerAddress = object.ownerAddress ?? "";
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseMsgWithdrawAllTokenizeShareRecordReward();
-    if (object.owner_address !== void 0 && object.owner_address !== null) {
-      message.ownerAddress = object.owner_address;
-    }
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    obj.owner_address = message.ownerAddress === "" ? void 0 : message.ownerAddress;
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return MsgWithdrawAllTokenizeShareRecordReward.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/MsgWithdrawAllTokenizeShareRecordReward",
-      value: MsgWithdrawAllTokenizeShareRecordReward.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return MsgWithdrawAllTokenizeShareRecordReward.decode(message.value);
-  },
-  toProto(message) {
-    return MsgWithdrawAllTokenizeShareRecordReward.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawAllTokenizeShareRecordReward",
-      value: MsgWithdrawAllTokenizeShareRecordReward.encode(message).finish()
-    };
-  }
-};
-function createBaseMsgWithdrawAllTokenizeShareRecordRewardResponse() {
-  return {};
-}
-const MsgWithdrawAllTokenizeShareRecordRewardResponse = {
-  typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawAllTokenizeShareRecordRewardResponse",
-  encode(_, writer = BinaryWriter.create()) {
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseMsgWithdrawAllTokenizeShareRecordRewardResponse();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(_) {
-    const message = createBaseMsgWithdrawAllTokenizeShareRecordRewardResponse();
-    return message;
-  },
-  fromAmino(_) {
-    const message = createBaseMsgWithdrawAllTokenizeShareRecordRewardResponse();
-    return message;
-  },
-  toAmino(_) {
-    const obj = {};
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return MsgWithdrawAllTokenizeShareRecordRewardResponse.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/MsgWithdrawAllTokenizeShareRecordRewardResponse",
-      value: MsgWithdrawAllTokenizeShareRecordRewardResponse.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return MsgWithdrawAllTokenizeShareRecordRewardResponse.decode(message.value);
-  },
-  toProto(message) {
-    return MsgWithdrawAllTokenizeShareRecordRewardResponse.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawAllTokenizeShareRecordRewardResponse",
-      value: MsgWithdrawAllTokenizeShareRecordRewardResponse.encode(message).finish()
     };
   }
 };
@@ -800,17 +569,305 @@ const MsgFundCommunityPoolResponse = {
     };
   }
 };
+function createBaseMsgUpdateParams() {
+  return {
+    authority: "",
+    params: Params.fromPartial({})
+  };
+}
+const MsgUpdateParams = {
+  typeUrl: "/cosmos.distribution.v1beta1.MsgUpdateParams",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.authority !== "") {
+      writer.uint32(10).string(message.authority);
+    }
+    if (message.params !== void 0) {
+      Params.encode(message.params, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateParams();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.authority = reader.string();
+          break;
+        case 2:
+          message.params = Params.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseMsgUpdateParams();
+    message.authority = object.authority ?? "";
+    message.params = object.params !== void 0 && object.params !== null ? Params.fromPartial(object.params) : void 0;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseMsgUpdateParams();
+    if (object.authority !== void 0 && object.authority !== null) {
+      message.authority = object.authority;
+    }
+    if (object.params !== void 0 && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.authority = message.authority === "" ? void 0 : message.authority;
+    obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return MsgUpdateParams.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/distribution/MsgUpdateParams",
+      value: MsgUpdateParams.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return MsgUpdateParams.decode(message.value);
+  },
+  toProto(message) {
+    return MsgUpdateParams.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.MsgUpdateParams",
+      value: MsgUpdateParams.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgUpdateParamsResponse() {
+  return {};
+}
+const MsgUpdateParamsResponse = {
+  typeUrl: "/cosmos.distribution.v1beta1.MsgUpdateParamsResponse",
+  encode(_, writer = BinaryWriter.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateParamsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_) {
+    const message = createBaseMsgUpdateParamsResponse();
+    return message;
+  },
+  fromAmino(_) {
+    const message = createBaseMsgUpdateParamsResponse();
+    return message;
+  },
+  toAmino(_) {
+    const obj = {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return MsgUpdateParamsResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/MsgUpdateParamsResponse",
+      value: MsgUpdateParamsResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return MsgUpdateParamsResponse.decode(message.value);
+  },
+  toProto(message) {
+    return MsgUpdateParamsResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.MsgUpdateParamsResponse",
+      value: MsgUpdateParamsResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgCommunityPoolSpend() {
+  return {
+    authority: "",
+    recipient: "",
+    amount: []
+  };
+}
+const MsgCommunityPoolSpend = {
+  typeUrl: "/cosmos.distribution.v1beta1.MsgCommunityPoolSpend",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.authority !== "") {
+      writer.uint32(10).string(message.authority);
+    }
+    if (message.recipient !== "") {
+      writer.uint32(18).string(message.recipient);
+    }
+    for (const v of message.amount) {
+      Coin.encode(v, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseMsgCommunityPoolSpend();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.authority = reader.string();
+          break;
+        case 2:
+          message.recipient = reader.string();
+          break;
+        case 3:
+          message.amount.push(Coin.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseMsgCommunityPoolSpend();
+    message.authority = object.authority ?? "";
+    message.recipient = object.recipient ?? "";
+    message.amount = object.amount?.map((e) => Coin.fromPartial(e)) || [];
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseMsgCommunityPoolSpend();
+    if (object.authority !== void 0 && object.authority !== null) {
+      message.authority = object.authority;
+    }
+    if (object.recipient !== void 0 && object.recipient !== null) {
+      message.recipient = object.recipient;
+    }
+    message.amount = object.amount?.map((e) => Coin.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.authority = message.authority === "" ? void 0 : message.authority;
+    obj.recipient = message.recipient === "" ? void 0 : message.recipient;
+    if (message.amount) {
+      obj.amount = message.amount.map((e) => e ? Coin.toAmino(e) : void 0);
+    } else {
+      obj.amount = message.amount;
+    }
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return MsgCommunityPoolSpend.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/distr/MsgCommunityPoolSpend",
+      value: MsgCommunityPoolSpend.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return MsgCommunityPoolSpend.decode(message.value);
+  },
+  toProto(message) {
+    return MsgCommunityPoolSpend.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.MsgCommunityPoolSpend",
+      value: MsgCommunityPoolSpend.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgCommunityPoolSpendResponse() {
+  return {};
+}
+const MsgCommunityPoolSpendResponse = {
+  typeUrl: "/cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse",
+  encode(_, writer = BinaryWriter.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseMsgCommunityPoolSpendResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_) {
+    const message = createBaseMsgCommunityPoolSpendResponse();
+    return message;
+  },
+  fromAmino(_) {
+    const message = createBaseMsgCommunityPoolSpendResponse();
+    return message;
+  },
+  toAmino(_) {
+    const obj = {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return MsgCommunityPoolSpendResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/MsgCommunityPoolSpendResponse",
+      value: MsgCommunityPoolSpendResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return MsgCommunityPoolSpendResponse.decode(message.value);
+  },
+  toProto(message) {
+    return MsgCommunityPoolSpendResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse",
+      value: MsgCommunityPoolSpendResponse.encode(message).finish()
+    };
+  }
+};
 export {
+  MsgCommunityPoolSpend,
+  MsgCommunityPoolSpendResponse,
   MsgFundCommunityPool,
   MsgFundCommunityPoolResponse,
   MsgSetWithdrawAddress,
   MsgSetWithdrawAddressResponse,
-  MsgWithdrawAllTokenizeShareRecordReward,
-  MsgWithdrawAllTokenizeShareRecordRewardResponse,
+  MsgUpdateParams,
+  MsgUpdateParamsResponse,
   MsgWithdrawDelegatorReward,
   MsgWithdrawDelegatorRewardResponse,
-  MsgWithdrawTokenizeShareRecordReward,
-  MsgWithdrawTokenizeShareRecordRewardResponse,
   MsgWithdrawValidatorCommission,
   MsgWithdrawValidatorCommissionResponse
 };

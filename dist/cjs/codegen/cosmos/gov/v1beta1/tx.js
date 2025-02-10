@@ -17,9 +17,9 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var tx_exports = {};
 __export(tx_exports, {
-  Content_FromAmino: () => Content_FromAmino,
-  Content_InterfaceDecoder: () => Content_InterfaceDecoder,
-  Content_ToAmino: () => Content_ToAmino,
+  Cosmos_govv1beta1Content_FromAmino: () => Cosmos_govv1beta1Content_FromAmino,
+  Cosmos_govv1beta1Content_InterfaceDecoder: () => Cosmos_govv1beta1Content_InterfaceDecoder,
+  Cosmos_govv1beta1Content_ToAmino: () => Cosmos_govv1beta1Content_ToAmino,
   MsgDeposit: () => MsgDeposit,
   MsgDepositResponse: () => MsgDepositResponse,
   MsgSubmitProposal: () => MsgSubmitProposal,
@@ -33,6 +33,10 @@ module.exports = __toCommonJS(tx_exports);
 var import_any = require("../../../google/protobuf/any");
 var import_coin = require("../../base/v1beta1/coin");
 var import_gov = require("./gov");
+var import_distribution = require("../../distribution/v1beta1/distribution");
+var import_params = require("../../params/v1beta1/params");
+var import_upgrade = require("../../upgrade/v1beta1/upgrade");
+var import_client = require("../../../ibc/core/client/v1/client");
 var import_binary = require("../../../binary");
 function createBaseMsgSubmitProposal() {
   return {
@@ -63,7 +67,7 @@ const MsgSubmitProposal = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.content = Content_InterfaceDecoder(reader);
+          message.content = Cosmos_govv1beta1Content_InterfaceDecoder(reader);
           break;
         case 2:
           message.initialDeposit.push(import_coin.Coin.decode(reader, reader.uint32()));
@@ -88,7 +92,7 @@ const MsgSubmitProposal = {
   fromAmino(object) {
     const message = createBaseMsgSubmitProposal();
     if (object.content !== void 0 && object.content !== null) {
-      message.content = Content_FromAmino(object.content);
+      message.content = Cosmos_govv1beta1Content_FromAmino(object.content);
     }
     message.initialDeposit = object.initial_deposit?.map((e) => import_coin.Coin.fromAmino(e)) || [];
     if (object.proposer !== void 0 && object.proposer !== null) {
@@ -98,7 +102,7 @@ const MsgSubmitProposal = {
   },
   toAmino(message) {
     const obj = {};
-    obj.content = message.content ? Content_ToAmino(message.content) : void 0;
+    obj.content = message.content ? Cosmos_govv1beta1Content_ToAmino(message.content) : void 0;
     if (message.initialDeposit) {
       obj.initial_deposit = message.initialDeposit.map((e) => e ? import_coin.Coin.toAmino(e) : void 0);
     } else {
@@ -264,7 +268,7 @@ const MsgVote = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId ? message.proposalId?.toString() : "0";
+    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId?.toString() : void 0;
     obj.voter = message.voter === "" ? void 0 : message.voter;
     obj.option = message.option === 0 ? void 0 : message.option;
     return obj;
@@ -411,7 +415,7 @@ const MsgVoteWeighted = {
   },
   toAmino(message) {
     const obj = {};
-    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId?.toString() : void 0;
+    obj.proposal_id = message.proposalId ? message.proposalId?.toString() : "0";
     obj.voter = message.voter === "" ? void 0 : message.voter;
     if (message.options) {
       obj.options = message.options.map((e) => e ? import_gov.WeightedVoteOption.toAmino(e) : void 0);
@@ -649,33 +653,117 @@ const MsgDepositResponse = {
     };
   }
 };
-const Content_InterfaceDecoder = (input) => {
+const Cosmos_govv1beta1Content_InterfaceDecoder = (input) => {
   const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
   const data = import_any.Any.decode(reader, reader.uint32());
   switch (data.typeUrl) {
+    case "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal":
+      return import_distribution.CommunityPoolSpendProposal.decode(data.value);
+    case "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit":
+      return import_distribution.CommunityPoolSpendProposalWithDeposit.decode(data.value);
     case "/cosmos.gov.v1beta1.TextProposal":
       return import_gov.TextProposal.decode(data.value);
+    case "/cosmos.params.v1beta1.ParameterChangeProposal":
+      return import_params.ParameterChangeProposal.decode(data.value);
+    case "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal":
+      return import_upgrade.SoftwareUpgradeProposal.decode(data.value);
+    case "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal":
+      return import_upgrade.CancelSoftwareUpgradeProposal.decode(data.value);
+    case "/ibc.core.client.v1.ClientUpdateProposal":
+      return import_client.ClientUpdateProposal.decode(data.value);
+    case "/ibc.core.client.v1.UpgradeProposal":
+      return import_client.UpgradeProposal.decode(data.value);
     default:
       return data;
   }
 };
-const Content_FromAmino = (content) => {
+const Cosmos_govv1beta1Content_FromAmino = (content) => {
   switch (content.type) {
+    case "cosmos-sdk/CommunityPoolSpendProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal",
+        value: import_distribution.CommunityPoolSpendProposal.encode(import_distribution.CommunityPoolSpendProposal.fromPartial(import_distribution.CommunityPoolSpendProposal.fromAmino(content.value))).finish()
+      });
+    case "cosmos-sdk/CommunityPoolSpendProposalWithDeposit":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit",
+        value: import_distribution.CommunityPoolSpendProposalWithDeposit.encode(import_distribution.CommunityPoolSpendProposalWithDeposit.fromPartial(import_distribution.CommunityPoolSpendProposalWithDeposit.fromAmino(content.value))).finish()
+      });
     case "cosmos-sdk/TextProposal":
       return import_any.Any.fromPartial({
         typeUrl: "/cosmos.gov.v1beta1.TextProposal",
         value: import_gov.TextProposal.encode(import_gov.TextProposal.fromPartial(import_gov.TextProposal.fromAmino(content.value))).finish()
       });
+    case "cosmos-sdk/ParameterChangeProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmos.params.v1beta1.ParameterChangeProposal",
+        value: import_params.ParameterChangeProposal.encode(import_params.ParameterChangeProposal.fromPartial(import_params.ParameterChangeProposal.fromAmino(content.value))).finish()
+      });
+    case "cosmos-sdk/SoftwareUpgradeProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal",
+        value: import_upgrade.SoftwareUpgradeProposal.encode(import_upgrade.SoftwareUpgradeProposal.fromPartial(import_upgrade.SoftwareUpgradeProposal.fromAmino(content.value))).finish()
+      });
+    case "cosmos-sdk/CancelSoftwareUpgradeProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal",
+        value: import_upgrade.CancelSoftwareUpgradeProposal.encode(import_upgrade.CancelSoftwareUpgradeProposal.fromPartial(import_upgrade.CancelSoftwareUpgradeProposal.fromAmino(content.value))).finish()
+      });
+    case "cosmos-sdk/ClientUpdateProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/ibc.core.client.v1.ClientUpdateProposal",
+        value: import_client.ClientUpdateProposal.encode(import_client.ClientUpdateProposal.fromPartial(import_client.ClientUpdateProposal.fromAmino(content.value))).finish()
+      });
+    case "cosmos-sdk/UpgradeProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/ibc.core.client.v1.UpgradeProposal",
+        value: import_client.UpgradeProposal.encode(import_client.UpgradeProposal.fromPartial(import_client.UpgradeProposal.fromAmino(content.value))).finish()
+      });
     default:
       return import_any.Any.fromAmino(content);
   }
 };
-const Content_ToAmino = (content) => {
+const Cosmos_govv1beta1Content_ToAmino = (content) => {
   switch (content.typeUrl) {
+    case "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal":
+      return {
+        type: "cosmos-sdk/CommunityPoolSpendProposal",
+        value: import_distribution.CommunityPoolSpendProposal.toAmino(import_distribution.CommunityPoolSpendProposal.decode(content.value, void 0))
+      };
+    case "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit":
+      return {
+        type: "cosmos-sdk/CommunityPoolSpendProposalWithDeposit",
+        value: import_distribution.CommunityPoolSpendProposalWithDeposit.toAmino(import_distribution.CommunityPoolSpendProposalWithDeposit.decode(content.value, void 0))
+      };
     case "/cosmos.gov.v1beta1.TextProposal":
       return {
         type: "cosmos-sdk/TextProposal",
         value: import_gov.TextProposal.toAmino(import_gov.TextProposal.decode(content.value, void 0))
+      };
+    case "/cosmos.params.v1beta1.ParameterChangeProposal":
+      return {
+        type: "cosmos-sdk/ParameterChangeProposal",
+        value: import_params.ParameterChangeProposal.toAmino(import_params.ParameterChangeProposal.decode(content.value, void 0))
+      };
+    case "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal":
+      return {
+        type: "cosmos-sdk/SoftwareUpgradeProposal",
+        value: import_upgrade.SoftwareUpgradeProposal.toAmino(import_upgrade.SoftwareUpgradeProposal.decode(content.value, void 0))
+      };
+    case "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal":
+      return {
+        type: "cosmos-sdk/CancelSoftwareUpgradeProposal",
+        value: import_upgrade.CancelSoftwareUpgradeProposal.toAmino(import_upgrade.CancelSoftwareUpgradeProposal.decode(content.value, void 0))
+      };
+    case "/ibc.core.client.v1.ClientUpdateProposal":
+      return {
+        type: "cosmos-sdk/ClientUpdateProposal",
+        value: import_client.ClientUpdateProposal.toAmino(import_client.ClientUpdateProposal.decode(content.value, void 0))
+      };
+    case "/ibc.core.client.v1.UpgradeProposal":
+      return {
+        type: "cosmos-sdk/UpgradeProposal",
+        value: import_client.UpgradeProposal.toAmino(import_client.UpgradeProposal.decode(content.value, void 0))
       };
     default:
       return import_any.Any.toAmino(content);
@@ -683,9 +771,9 @@ const Content_ToAmino = (content) => {
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  Content_FromAmino,
-  Content_InterfaceDecoder,
-  Content_ToAmino,
+  Cosmos_govv1beta1Content_FromAmino,
+  Cosmos_govv1beta1Content_InterfaceDecoder,
+  Cosmos_govv1beta1Content_ToAmino,
   MsgDeposit,
   MsgDepositResponse,
   MsgSubmitProposal,

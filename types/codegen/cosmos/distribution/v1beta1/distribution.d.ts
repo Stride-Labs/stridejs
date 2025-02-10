@@ -3,7 +3,17 @@ import { BinaryReader, BinaryWriter } from "../../../binary";
 /** Params defines the set of params for the distribution module. */
 export interface Params {
     communityTax: string;
+    /**
+     * Deprecated: The base_proposer_reward field is deprecated and is no longer used
+     * in the x/distribution module's reward mechanism.
+     */
+    /** @deprecated */
     baseProposerReward: string;
+    /**
+     * Deprecated: The bonus_proposer_reward field is deprecated and is no longer used
+     * in the x/distribution module's reward mechanism.
+     */
+    /** @deprecated */
     bonusProposerReward: string;
     withdrawAddrEnabled: boolean;
 }
@@ -14,18 +24,30 @@ export interface ParamsProtoMsg {
 /** Params defines the set of params for the distribution module. */
 export interface ParamsAmino {
     community_tax?: string;
+    /**
+     * Deprecated: The base_proposer_reward field is deprecated and is no longer used
+     * in the x/distribution module's reward mechanism.
+     */
+    /** @deprecated */
     base_proposer_reward?: string;
+    /**
+     * Deprecated: The bonus_proposer_reward field is deprecated and is no longer used
+     * in the x/distribution module's reward mechanism.
+     */
+    /** @deprecated */
     bonus_proposer_reward?: string;
     withdraw_addr_enabled?: boolean;
 }
 export interface ParamsAminoMsg {
-    type: "cosmos-sdk/Params";
+    type: "cosmos-sdk/x/distribution/Params";
     value: ParamsAmino;
 }
 /** Params defines the set of params for the distribution module. */
 export interface ParamsSDKType {
     community_tax: string;
+    /** @deprecated */
     base_proposer_reward: string;
+    /** @deprecated */
     bonus_proposer_reward: string;
     withdraw_addr_enabled: boolean;
 }
@@ -66,7 +88,7 @@ export interface ValidatorHistoricalRewardsProtoMsg {
  *  + one per validator for the zeroeth period, set on initialization
  */
 export interface ValidatorHistoricalRewardsAmino {
-    cumulative_reward_ratio?: DecCoinAmino[];
+    cumulative_reward_ratio: DecCoinAmino[];
     reference_count?: number;
 }
 export interface ValidatorHistoricalRewardsAminoMsg {
@@ -110,7 +132,7 @@ export interface ValidatorCurrentRewardsProtoMsg {
  * each block as long as the validator's tokens remain constant.
  */
 export interface ValidatorCurrentRewardsAmino {
-    rewards?: DecCoinAmino[];
+    rewards: DecCoinAmino[];
     period?: string;
 }
 export interface ValidatorCurrentRewardsAminoMsg {
@@ -142,7 +164,7 @@ export interface ValidatorAccumulatedCommissionProtoMsg {
  * for a validator kept as a running counter, can be withdrawn at any time.
  */
 export interface ValidatorAccumulatedCommissionAmino {
-    commission?: DecCoinAmino[];
+    commission: DecCoinAmino[];
 }
 export interface ValidatorAccumulatedCommissionAminoMsg {
     type: "cosmos-sdk/ValidatorAccumulatedCommission";
@@ -171,7 +193,7 @@ export interface ValidatorOutstandingRewardsProtoMsg {
  * for a validator inexpensive to track, allows simple sanity checks.
  */
 export interface ValidatorOutstandingRewardsAmino {
-    rewards?: DecCoinAmino[];
+    rewards: DecCoinAmino[];
 }
 export interface ValidatorOutstandingRewardsAminoMsg {
     type: "cosmos-sdk/ValidatorOutstandingRewards";
@@ -232,7 +254,7 @@ export interface ValidatorSlashEventsProtoMsg {
 }
 /** ValidatorSlashEvents is a collection of ValidatorSlashEvent messages. */
 export interface ValidatorSlashEventsAmino {
-    validator_slash_events?: ValidatorSlashEventAmino[];
+    validator_slash_events: ValidatorSlashEventAmino[];
 }
 export interface ValidatorSlashEventsAminoMsg {
     type: "cosmos-sdk/ValidatorSlashEvents";
@@ -252,7 +274,7 @@ export interface FeePoolProtoMsg {
 }
 /** FeePool is the global fee pool for distribution. */
 export interface FeePoolAmino {
-    community_pool?: DecCoinAmino[];
+    community_pool: DecCoinAmino[];
 }
 export interface FeePoolAminoMsg {
     type: "cosmos-sdk/FeePool";
@@ -266,8 +288,15 @@ export interface FeePoolSDKType {
  * CommunityPoolSpendProposal details a proposal for use of community funds,
  * together with how many coins are proposed to be spent, and to which
  * recipient account.
+ *
+ * Deprecated: Do not use. As of the Cosmos SDK release v0.47.x, there is no
+ * longer a need for an explicit CommunityPoolSpendProposal. To spend community
+ * pool funds, a simple MsgCommunityPoolSpend can be invoked from the x/gov
+ * module via a v1 governance proposal.
  */
+/** @deprecated */
 export interface CommunityPoolSpendProposal {
+    $typeUrl?: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal";
     title: string;
     description: string;
     recipient: string;
@@ -281,12 +310,18 @@ export interface CommunityPoolSpendProposalProtoMsg {
  * CommunityPoolSpendProposal details a proposal for use of community funds,
  * together with how many coins are proposed to be spent, and to which
  * recipient account.
+ *
+ * Deprecated: Do not use. As of the Cosmos SDK release v0.47.x, there is no
+ * longer a need for an explicit CommunityPoolSpendProposal. To spend community
+ * pool funds, a simple MsgCommunityPoolSpend can be invoked from the x/gov
+ * module via a v1 governance proposal.
  */
+/** @deprecated */
 export interface CommunityPoolSpendProposalAmino {
     title?: string;
     description?: string;
     recipient?: string;
-    amount?: CoinAmino[];
+    amount: CoinAmino[];
 }
 export interface CommunityPoolSpendProposalAminoMsg {
     type: "cosmos-sdk/CommunityPoolSpendProposal";
@@ -296,8 +331,15 @@ export interface CommunityPoolSpendProposalAminoMsg {
  * CommunityPoolSpendProposal details a proposal for use of community funds,
  * together with how many coins are proposed to be spent, and to which
  * recipient account.
+ *
+ * Deprecated: Do not use. As of the Cosmos SDK release v0.47.x, there is no
+ * longer a need for an explicit CommunityPoolSpendProposal. To spend community
+ * pool funds, a simple MsgCommunityPoolSpend can be invoked from the x/gov
+ * module via a v1 governance proposal.
  */
+/** @deprecated */
 export interface CommunityPoolSpendProposalSDKType {
+    $typeUrl?: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal";
     title: string;
     description: string;
     recipient: string;
@@ -368,7 +410,7 @@ export interface DelegationDelegatorRewardProtoMsg {
  */
 export interface DelegationDelegatorRewardAmino {
     validator_address?: string;
-    reward?: DecCoinAmino[];
+    reward: DecCoinAmino[];
 }
 export interface DelegationDelegatorRewardAminoMsg {
     type: "cosmos-sdk/DelegationDelegatorReward";
@@ -382,34 +424,12 @@ export interface DelegationDelegatorRewardSDKType {
     validator_address: string;
     reward: DecCoinSDKType[];
 }
-/** TokenizeShareRecordReward represents the properties of tokenize share */
-export interface TokenizeShareRecordReward {
-    recordId: bigint;
-    reward: DecCoin[];
-}
-export interface TokenizeShareRecordRewardProtoMsg {
-    typeUrl: "/cosmos.distribution.v1beta1.TokenizeShareRecordReward";
-    value: Uint8Array;
-}
-/** TokenizeShareRecordReward represents the properties of tokenize share */
-export interface TokenizeShareRecordRewardAmino {
-    record_id?: string;
-    reward?: DecCoinAmino[];
-}
-export interface TokenizeShareRecordRewardAminoMsg {
-    type: "cosmos-sdk/TokenizeShareRecordReward";
-    value: TokenizeShareRecordRewardAmino;
-}
-/** TokenizeShareRecordReward represents the properties of tokenize share */
-export interface TokenizeShareRecordRewardSDKType {
-    record_id: bigint;
-    reward: DecCoinSDKType[];
-}
 /**
  * CommunityPoolSpendProposalWithDeposit defines a CommunityPoolSpendProposal
  * with a deposit
  */
 export interface CommunityPoolSpendProposalWithDeposit {
+    $typeUrl?: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit";
     title: string;
     description: string;
     recipient: string;
@@ -440,6 +460,7 @@ export interface CommunityPoolSpendProposalWithDepositAminoMsg {
  * with a deposit
  */
 export interface CommunityPoolSpendProposalWithDepositSDKType {
+    $typeUrl?: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit";
     title: string;
     description: string;
     recipient: string;
@@ -588,19 +609,6 @@ export declare const DelegationDelegatorReward: {
     fromProtoMsg(message: DelegationDelegatorRewardProtoMsg): DelegationDelegatorReward;
     toProto(message: DelegationDelegatorReward): Uint8Array;
     toProtoMsg(message: DelegationDelegatorReward): DelegationDelegatorRewardProtoMsg;
-};
-export declare const TokenizeShareRecordReward: {
-    typeUrl: string;
-    encode(message: TokenizeShareRecordReward, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): TokenizeShareRecordReward;
-    fromPartial(object: Partial<TokenizeShareRecordReward>): TokenizeShareRecordReward;
-    fromAmino(object: TokenizeShareRecordRewardAmino): TokenizeShareRecordReward;
-    toAmino(message: TokenizeShareRecordReward): TokenizeShareRecordRewardAmino;
-    fromAminoMsg(object: TokenizeShareRecordRewardAminoMsg): TokenizeShareRecordReward;
-    toAminoMsg(message: TokenizeShareRecordReward): TokenizeShareRecordRewardAminoMsg;
-    fromProtoMsg(message: TokenizeShareRecordRewardProtoMsg): TokenizeShareRecordReward;
-    toProto(message: TokenizeShareRecordReward): Uint8Array;
-    toProtoMsg(message: TokenizeShareRecordReward): TokenizeShareRecordRewardProtoMsg;
 };
 export declare const CommunityPoolSpendProposalWithDeposit: {
     typeUrl: string;

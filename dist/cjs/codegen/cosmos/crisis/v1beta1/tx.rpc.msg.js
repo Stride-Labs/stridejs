@@ -27,11 +27,17 @@ class MsgClientImpl {
   constructor(rpc) {
     this.rpc = rpc;
     this.verifyInvariant = this.verifyInvariant.bind(this);
+    this.updateParams = this.updateParams.bind(this);
   }
   verifyInvariant(request) {
     const data = import_tx.MsgVerifyInvariant.encode(request).finish();
     const promise = this.rpc.request("cosmos.crisis.v1beta1.Msg", "VerifyInvariant", data);
     return promise.then((data2) => import_tx.MsgVerifyInvariantResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  updateParams(request) {
+    const data = import_tx.MsgUpdateParams.encode(request).finish();
+    const promise = this.rpc.request("cosmos.crisis.v1beta1.Msg", "UpdateParams", data);
+    return promise.then((data2) => import_tx.MsgUpdateParamsResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

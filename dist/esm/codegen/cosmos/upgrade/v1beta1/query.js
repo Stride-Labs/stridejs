@@ -542,9 +542,136 @@ const QueryModuleVersionsResponse = {
     };
   }
 };
+function createBaseQueryAuthorityRequest() {
+  return {};
+}
+const QueryAuthorityRequest = {
+  typeUrl: "/cosmos.upgrade.v1beta1.QueryAuthorityRequest",
+  encode(_, writer = BinaryWriter.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryAuthorityRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_) {
+    const message = createBaseQueryAuthorityRequest();
+    return message;
+  },
+  fromAmino(_) {
+    const message = createBaseQueryAuthorityRequest();
+    return message;
+  },
+  toAmino(_) {
+    const obj = {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryAuthorityRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryAuthorityRequest",
+      value: QueryAuthorityRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryAuthorityRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryAuthorityRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.upgrade.v1beta1.QueryAuthorityRequest",
+      value: QueryAuthorityRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryAuthorityResponse() {
+  return {
+    address: ""
+  };
+}
+const QueryAuthorityResponse = {
+  typeUrl: "/cosmos.upgrade.v1beta1.QueryAuthorityResponse",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.address !== "") {
+      writer.uint32(10).string(message.address);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryAuthorityResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.address = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryAuthorityResponse();
+    message.address = object.address ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryAuthorityResponse();
+    if (object.address !== void 0 && object.address !== null) {
+      message.address = object.address;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.address = message.address === "" ? void 0 : message.address;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryAuthorityResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryAuthorityResponse",
+      value: QueryAuthorityResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryAuthorityResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryAuthorityResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.upgrade.v1beta1.QueryAuthorityResponse",
+      value: QueryAuthorityResponse.encode(message).finish()
+    };
+  }
+};
 export {
   QueryAppliedPlanRequest,
   QueryAppliedPlanResponse,
+  QueryAuthorityRequest,
+  QueryAuthorityResponse,
   QueryCurrentPlanRequest,
   QueryCurrentPlanResponse,
   QueryModuleVersionsRequest,

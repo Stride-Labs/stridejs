@@ -101,7 +101,7 @@ const QueryParamsResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.params = message.params ? Params.toAmino(message.params) : void 0;
+    obj.params = message.params ? Params.toAmino(message.params) : Params.toAmino(Params.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {
@@ -226,7 +226,7 @@ const QueryInflationResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.inflation = message.inflation ? base64FromBytes(message.inflation) : void 0;
+    obj.inflation = message.inflation ? base64FromBytes(message.inflation) : "";
     return obj;
   },
   fromAminoMsg(object) {
@@ -351,7 +351,7 @@ const QueryAnnualProvisionsResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.annual_provisions = message.annualProvisions ? base64FromBytes(message.annualProvisions) : void 0;
+    obj.annual_provisions = message.annualProvisions ? base64FromBytes(message.annualProvisions) : "";
     return obj;
   },
   fromAminoMsg(object) {

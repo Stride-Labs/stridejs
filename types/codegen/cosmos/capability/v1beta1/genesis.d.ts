@@ -16,7 +16,7 @@ export interface GenesisOwnersAmino {
     /** index is the index of the capability owner. */
     index?: string;
     /** index_owners are the owners at the given index. */
-    index_owners?: CapabilityOwnersAmino;
+    index_owners: CapabilityOwnersAmino;
 }
 export interface GenesisOwnersAminoMsg {
     type: "cosmos-sdk/GenesisOwners";
@@ -49,7 +49,7 @@ export interface GenesisStateAmino {
      * owners represents a map from index to owners of the capability index
      * index key is string to allow amino marshalling.
      */
-    owners?: GenesisOwnersAmino[];
+    owners: GenesisOwnersAmino[];
 }
 export interface GenesisStateAminoMsg {
     type: "cosmos-sdk/GenesisState";

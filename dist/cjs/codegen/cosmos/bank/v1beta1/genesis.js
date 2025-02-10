@@ -29,7 +29,8 @@ function createBaseGenesisState() {
     params: import_bank.Params.fromPartial({}),
     balances: [],
     supply: [],
-    denomMetadata: []
+    denomMetadata: [],
+    sendEnabled: []
   };
 }
 const GenesisState = {
@@ -46,6 +47,9 @@ const GenesisState = {
     }
     for (const v of message.denomMetadata) {
       import_bank.Metadata.encode(v, writer.uint32(34).fork()).ldelim();
+    }
+    for (const v of message.sendEnabled) {
+      import_bank.SendEnabled.encode(v, writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -68,6 +72,9 @@ const GenesisState = {
         case 4:
           message.denomMetadata.push(import_bank.Metadata.decode(reader, reader.uint32()));
           break;
+        case 5:
+          message.sendEnabled.push(import_bank.SendEnabled.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -81,6 +88,7 @@ const GenesisState = {
     message.balances = object.balances?.map((e) => Balance.fromPartial(e)) || [];
     message.supply = object.supply?.map((e) => import_coin.Coin.fromPartial(e)) || [];
     message.denomMetadata = object.denomMetadata?.map((e) => import_bank.Metadata.fromPartial(e)) || [];
+    message.sendEnabled = object.sendEnabled?.map((e) => import_bank.SendEnabled.fromPartial(e)) || [];
     return message;
   },
   fromAmino(object) {
@@ -91,11 +99,12 @@ const GenesisState = {
     message.balances = object.balances?.map((e) => Balance.fromAmino(e)) || [];
     message.supply = object.supply?.map((e) => import_coin.Coin.fromAmino(e)) || [];
     message.denomMetadata = object.denom_metadata?.map((e) => import_bank.Metadata.fromAmino(e)) || [];
+    message.sendEnabled = object.send_enabled?.map((e) => import_bank.SendEnabled.fromAmino(e)) || [];
     return message;
   },
   toAmino(message) {
     const obj = {};
-    obj.params = message.params ? import_bank.Params.toAmino(message.params) : void 0;
+    obj.params = message.params ? import_bank.Params.toAmino(message.params) : import_bank.Params.toAmino(import_bank.Params.fromPartial({}));
     if (message.balances) {
       obj.balances = message.balances.map((e) => e ? Balance.toAmino(e) : void 0);
     } else {
@@ -110,6 +119,11 @@ const GenesisState = {
       obj.denom_metadata = message.denomMetadata.map((e) => e ? import_bank.Metadata.toAmino(e) : void 0);
     } else {
       obj.denom_metadata = message.denomMetadata;
+    }
+    if (message.sendEnabled) {
+      obj.send_enabled = message.sendEnabled.map((e) => e ? import_bank.SendEnabled.toAmino(e) : void 0);
+    } else {
+      obj.send_enabled = message.sendEnabled;
     }
     return obj;
   },

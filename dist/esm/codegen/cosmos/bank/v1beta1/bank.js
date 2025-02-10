@@ -66,7 +66,7 @@ const Params = {
   },
   toAminoMsg(message) {
     return {
-      type: "cosmos-sdk/Params",
+      type: "cosmos-sdk/x/bank/Params",
       value: Params.toAmino(message)
     };
   },
@@ -504,7 +504,9 @@ function createBaseMetadata() {
     base: "",
     display: "",
     name: "",
-    symbol: ""
+    symbol: "",
+    uri: "",
+    uriHash: ""
   };
 }
 const Metadata = {
@@ -527,6 +529,12 @@ const Metadata = {
     }
     if (message.symbol !== "") {
       writer.uint32(50).string(message.symbol);
+    }
+    if (message.uri !== "") {
+      writer.uint32(58).string(message.uri);
+    }
+    if (message.uriHash !== "") {
+      writer.uint32(66).string(message.uriHash);
     }
     return writer;
   },
@@ -555,6 +563,12 @@ const Metadata = {
         case 6:
           message.symbol = reader.string();
           break;
+        case 7:
+          message.uri = reader.string();
+          break;
+        case 8:
+          message.uriHash = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -570,6 +584,8 @@ const Metadata = {
     message.display = object.display ?? "";
     message.name = object.name ?? "";
     message.symbol = object.symbol ?? "";
+    message.uri = object.uri ?? "";
+    message.uriHash = object.uriHash ?? "";
     return message;
   },
   fromAmino(object) {
@@ -590,6 +606,12 @@ const Metadata = {
     if (object.symbol !== void 0 && object.symbol !== null) {
       message.symbol = object.symbol;
     }
+    if (object.uri !== void 0 && object.uri !== null) {
+      message.uri = object.uri;
+    }
+    if (object.uri_hash !== void 0 && object.uri_hash !== null) {
+      message.uriHash = object.uri_hash;
+    }
     return message;
   },
   toAmino(message) {
@@ -604,6 +626,8 @@ const Metadata = {
     obj.display = message.display === "" ? void 0 : message.display;
     obj.name = message.name === "" ? void 0 : message.name;
     obj.symbol = message.symbol === "" ? void 0 : message.symbol;
+    obj.uri = message.uri === "" ? void 0 : message.uri;
+    obj.uri_hash = message.uriHash === "" ? void 0 : message.uriHash;
     return obj;
   },
   fromAminoMsg(object) {

@@ -15,7 +15,6 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var codegen_exports = {};
 module.exports = __toCommonJS(codegen_exports);
 __reExport(codegen_exports, require("./amino/bundle"), module.exports);
-__reExport(codegen_exports, require("./ics23/bundle"), module.exports);
 __reExport(codegen_exports, require("./cosmos_proto/bundle"), module.exports);
 __reExport(codegen_exports, require("./cosmos/bundle"), module.exports);
 __reExport(codegen_exports, require("./cosmos/client"), module.exports);
@@ -33,7 +32,6 @@ __reExport(codegen_exports, require("./types"), module.exports);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   ...require("./amino/bundle"),
-  ...require("./ics23/bundle"),
   ...require("./cosmos_proto/bundle"),
   ...require("./cosmos/bundle"),
   ...require("./cosmos/client"),

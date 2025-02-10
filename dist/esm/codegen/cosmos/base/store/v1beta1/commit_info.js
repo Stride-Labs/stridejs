@@ -1,9 +1,11 @@
+import { Timestamp } from "../../../../google/protobuf/timestamp";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
-import { bytesFromBase64, base64FromBytes } from "../../../../helpers";
+import { toTimestamp, fromTimestamp, bytesFromBase64, base64FromBytes } from "../../../../helpers";
 function createBaseCommitInfo() {
   return {
     version: BigInt(0),
-    storeInfos: []
+    storeInfos: [],
+    timestamp: /* @__PURE__ */ new Date()
   };
 }
 const CommitInfo = {
@@ -14,6 +16,9 @@ const CommitInfo = {
     }
     for (const v of message.storeInfos) {
       StoreInfo.encode(v, writer.uint32(18).fork()).ldelim();
+    }
+    if (message.timestamp !== void 0) {
+      Timestamp.encode(toTimestamp(message.timestamp), writer.uint32(26).fork()).ldelim();
     }
     return writer;
   },
@@ -30,6 +35,9 @@ const CommitInfo = {
         case 2:
           message.storeInfos.push(StoreInfo.decode(reader, reader.uint32()));
           break;
+        case 3:
+          message.timestamp = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -41,6 +49,7 @@ const CommitInfo = {
     const message = createBaseCommitInfo();
     message.version = object.version !== void 0 && object.version !== null ? BigInt(object.version.toString()) : BigInt(0);
     message.storeInfos = object.storeInfos?.map((e) => StoreInfo.fromPartial(e)) || [];
+    message.timestamp = object.timestamp ?? void 0;
     return message;
   },
   fromAmino(object) {
@@ -49,6 +58,9 @@ const CommitInfo = {
       message.version = BigInt(object.version);
     }
     message.storeInfos = object.store_infos?.map((e) => StoreInfo.fromAmino(e)) || [];
+    if (object.timestamp !== void 0 && object.timestamp !== null) {
+      message.timestamp = fromTimestamp(Timestamp.fromAmino(object.timestamp));
+    }
     return message;
   },
   toAmino(message) {
@@ -59,6 +71,7 @@ const CommitInfo = {
     } else {
       obj.store_infos = message.storeInfos;
     }
+    obj.timestamp = message.timestamp ? Timestamp.toAmino(toTimestamp(message.timestamp)) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
