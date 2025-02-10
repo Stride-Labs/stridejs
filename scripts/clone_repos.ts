@@ -11,8 +11,8 @@ export const config = [
     branch: "buyback-and-burn",
   },
   {
-    repo: "https://github.com/cosmos/cosmos-sdk",
-    branch: "v0.45.16-ics-lsm",
+    repo: "https://github.com/Stride-Labs/cosmos-sdk",
+    branch: "v0.47.15-stride-distribution-fix-0-mempool-verbose-error",
   },
   {
     repo: "https://github.com/cosmos/ibc-go",
