@@ -28,6 +28,7 @@ class MsgClientImpl {
     this.rpc = rpc;
     this.registerTokenPriceQuery = this.registerTokenPriceQuery.bind(this);
     this.removeTokenPriceQuery = this.removeTokenPriceQuery.bind(this);
+    this.updateParams = this.updateParams.bind(this);
   }
   registerTokenPriceQuery(request) {
     const data = import_tx.MsgRegisterTokenPriceQuery.encode(request).finish();
@@ -38,6 +39,11 @@ class MsgClientImpl {
     const data = import_tx.MsgRemoveTokenPriceQuery.encode(request).finish();
     const promise = this.rpc.request("stride.icqoracle.Msg", "RemoveTokenPriceQuery", data);
     return promise.then((data2) => import_tx.MsgRemoveTokenPriceQueryResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  updateParams(request) {
+    const data = import_tx.MsgUpdateParams.encode(request).finish();
+    const promise = this.rpc.request("stride.icqoracle.Msg", "UpdateParams", data);
+    return promise.then((data2) => import_tx.MsgUpdateParamsResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

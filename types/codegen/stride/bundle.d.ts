@@ -2084,6 +2084,10 @@ export declare namespace stride {
                     typeUrl: string;
                     value: Uint8Array;
                 };
+                updateParams(value: _208.MsgUpdateParams): {
+                    typeUrl: string;
+                    value: Uint8Array;
+                };
             };
             withTypeUrl: {
                 registerTokenPriceQuery(value: _208.MsgRegisterTokenPriceQuery): {
@@ -2094,6 +2098,10 @@ export declare namespace stride {
                     typeUrl: string;
                     value: _208.MsgRemoveTokenPriceQuery;
                 };
+                updateParams(value: _208.MsgUpdateParams): {
+                    typeUrl: string;
+                    value: _208.MsgUpdateParams;
+                };
             };
             fromPartial: {
                 registerTokenPriceQuery(value: _208.MsgRegisterTokenPriceQuery): {
@@ -2103,6 +2111,10 @@ export declare namespace stride {
                 removeTokenPriceQuery(value: _208.MsgRemoveTokenPriceQuery): {
                     typeUrl: string;
                     value: _208.MsgRemoveTokenPriceQuery;
+                };
+                updateParams(value: _208.MsgUpdateParams): {
+                    typeUrl: string;
+                    value: _208.MsgUpdateParams;
                 };
             };
         };
@@ -2116,6 +2128,11 @@ export declare namespace stride {
                 aminoType: string;
                 toAmino: (message: _208.MsgRemoveTokenPriceQuery) => _208.MsgRemoveTokenPriceQueryAmino;
                 fromAmino: (object: _208.MsgRemoveTokenPriceQueryAmino) => _208.MsgRemoveTokenPriceQuery;
+            };
+            "/stride.icqoracle.MsgUpdateParams": {
+                aminoType: string;
+                toAmino: (message: _208.MsgUpdateParams) => _208.MsgUpdateParamsAmino;
+                fromAmino: (object: _208.MsgUpdateParamsAmino) => _208.MsgUpdateParams;
             };
         };
         MsgRegisterTokenPriceQuery: {
@@ -2167,6 +2184,31 @@ export declare namespace stride {
             fromProtoMsg(message: _208.MsgRemoveTokenPriceQueryResponseProtoMsg): _208.MsgRemoveTokenPriceQueryResponse;
             toProto(message: _208.MsgRemoveTokenPriceQueryResponse): Uint8Array;
             toProtoMsg(message: _208.MsgRemoveTokenPriceQueryResponse): _208.MsgRemoveTokenPriceQueryResponseProtoMsg;
+        };
+        MsgUpdateParams: {
+            typeUrl: string;
+            encode(message: _208.MsgUpdateParams, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
+            decode(input: Uint8Array | import("..").BinaryReader, length?: number): _208.MsgUpdateParams;
+            fromPartial(object: Partial<_208.MsgUpdateParams>): _208.MsgUpdateParams;
+            fromAmino(object: _208.MsgUpdateParamsAmino): _208.MsgUpdateParams;
+            toAmino(message: _208.MsgUpdateParams): _208.MsgUpdateParamsAmino;
+            fromAminoMsg(object: _208.MsgUpdateParamsAminoMsg): _208.MsgUpdateParams;
+            toAminoMsg(message: _208.MsgUpdateParams): _208.MsgUpdateParamsAminoMsg;
+            fromProtoMsg(message: _208.MsgUpdateParamsProtoMsg): _208.MsgUpdateParams;
+            toProto(message: _208.MsgUpdateParams): Uint8Array;
+            toProtoMsg(message: _208.MsgUpdateParams): _208.MsgUpdateParamsProtoMsg;
+        };
+        MsgUpdateParamsResponse: {
+            typeUrl: string;
+            encode(_: _208.MsgUpdateParamsResponse, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
+            decode(input: Uint8Array | import("..").BinaryReader, length?: number): _208.MsgUpdateParamsResponse;
+            fromPartial(_: Partial<_208.MsgUpdateParamsResponse>): _208.MsgUpdateParamsResponse;
+            fromAmino(_: _208.MsgUpdateParamsResponseAmino): _208.MsgUpdateParamsResponse;
+            toAmino(_: _208.MsgUpdateParamsResponse): _208.MsgUpdateParamsResponseAmino;
+            fromAminoMsg(object: _208.MsgUpdateParamsResponseAminoMsg): _208.MsgUpdateParamsResponse;
+            fromProtoMsg(message: _208.MsgUpdateParamsResponseProtoMsg): _208.MsgUpdateParamsResponse;
+            toProto(message: _208.MsgUpdateParamsResponse): Uint8Array;
+            toProtoMsg(message: _208.MsgUpdateParamsResponse): _208.MsgUpdateParamsResponseProtoMsg;
         };
         QueryTokenPriceRequest: {
             typeUrl: string;

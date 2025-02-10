@@ -1,4 +1,4 @@
-import { MsgRegisterTokenPriceQuery, MsgRemoveTokenPriceQuery } from "./tx";
+import { MsgRegisterTokenPriceQuery, MsgRemoveTokenPriceQuery, MsgUpdateParams } from "./tx";
 const AminoConverter = {
   "/stride.icqoracle.MsgRegisterTokenPriceQuery": {
     aminoType: "icqoracle/MsgRegisterTokenPriceQuery",
@@ -9,6 +9,11 @@ const AminoConverter = {
     aminoType: "icqoracle/MsgRemoveTokenPriceQuery",
     toAmino: MsgRemoveTokenPriceQuery.toAmino,
     fromAmino: MsgRemoveTokenPriceQuery.fromAmino
+  },
+  "/stride.icqoracle.MsgUpdateParams": {
+    aminoType: "icqoracle/MsgUpdateParams",
+    toAmino: MsgUpdateParams.toAmino,
+    fromAmino: MsgUpdateParams.fromAmino
   }
 };
 export {

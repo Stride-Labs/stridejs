@@ -257,6 +257,11 @@ export declare const strideAminoConverters: {
         toAmino: (message: import("./icqoracle/tx").MsgRemoveTokenPriceQuery) => import("./icqoracle/tx").MsgRemoveTokenPriceQueryAmino;
         fromAmino: (object: import("./icqoracle/tx").MsgRemoveTokenPriceQueryAmino) => import("./icqoracle/tx").MsgRemoveTokenPriceQuery;
     };
+    "/stride.icqoracle.MsgUpdateParams": {
+        aminoType: string;
+        toAmino: (message: import("./icqoracle/tx").MsgUpdateParams) => import("./icqoracle/tx").MsgUpdateParamsAmino;
+        fromAmino: (object: import("./icqoracle/tx").MsgUpdateParamsAmino) => import("./icqoracle/tx").MsgUpdateParams;
+    };
     "/stride.icaoracle.MsgAddOracle": {
         aminoType: string;
         toAmino: (message: import("./icaoracle/tx").MsgAddOracle) => import("./icaoracle/tx").MsgAddOracleAmino;

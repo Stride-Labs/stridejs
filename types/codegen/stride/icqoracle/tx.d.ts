@@ -1,3 +1,4 @@
+import { Params, ParamsAmino, ParamsSDKType } from "./icqoracle";
 import { BinaryReader, BinaryWriter } from "../../binary";
 /**
  * MsgRegisterTokenPriceQuery defines the message for adding a new token to
@@ -135,6 +136,73 @@ export interface MsgRemoveTokenPriceQueryResponseAminoMsg {
 }
 export interface MsgRemoveTokenPriceQueryResponseSDKType {
 }
+/** MsgUpdateParams is the Msg/UpdateParams request type. */
+export interface MsgUpdateParams {
+    /**
+     * authority is the address that controls the module (defaults to x/gov unless
+     * overwritten).
+     */
+    authority: string;
+    /**
+     * params defines the x/icqoracle parameters to update.
+     *
+     * NOTE: All parameters must be supplied.
+     */
+    params: Params;
+}
+export interface MsgUpdateParamsProtoMsg {
+    typeUrl: "/stride.icqoracle.MsgUpdateParams";
+    value: Uint8Array;
+}
+/** MsgUpdateParams is the Msg/UpdateParams request type. */
+export interface MsgUpdateParamsAmino {
+    /**
+     * authority is the address that controls the module (defaults to x/gov unless
+     * overwritten).
+     */
+    authority?: string;
+    /**
+     * params defines the x/icqoracle parameters to update.
+     *
+     * NOTE: All parameters must be supplied.
+     */
+    params: ParamsAmino;
+}
+export interface MsgUpdateParamsAminoMsg {
+    type: "icqoracle/MsgUpdateParams";
+    value: MsgUpdateParamsAmino;
+}
+/** MsgUpdateParams is the Msg/UpdateParams request type. */
+export interface MsgUpdateParamsSDKType {
+    authority: string;
+    params: ParamsSDKType;
+}
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ */
+export interface MsgUpdateParamsResponse {
+}
+export interface MsgUpdateParamsResponseProtoMsg {
+    typeUrl: "/stride.icqoracle.MsgUpdateParamsResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ */
+export interface MsgUpdateParamsResponseAmino {
+}
+export interface MsgUpdateParamsResponseAminoMsg {
+    type: "/stride.icqoracle.MsgUpdateParamsResponse";
+    value: MsgUpdateParamsResponseAmino;
+}
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ */
+export interface MsgUpdateParamsResponseSDKType {
+}
 export declare const MsgRegisterTokenPriceQuery: {
     typeUrl: string;
     encode(message: MsgRegisterTokenPriceQuery, writer?: BinaryWriter): BinaryWriter;
@@ -184,4 +252,29 @@ export declare const MsgRemoveTokenPriceQueryResponse: {
     fromProtoMsg(message: MsgRemoveTokenPriceQueryResponseProtoMsg): MsgRemoveTokenPriceQueryResponse;
     toProto(message: MsgRemoveTokenPriceQueryResponse): Uint8Array;
     toProtoMsg(message: MsgRemoveTokenPriceQueryResponse): MsgRemoveTokenPriceQueryResponseProtoMsg;
+};
+export declare const MsgUpdateParams: {
+    typeUrl: string;
+    encode(message: MsgUpdateParams, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParams;
+    fromPartial(object: Partial<MsgUpdateParams>): MsgUpdateParams;
+    fromAmino(object: MsgUpdateParamsAmino): MsgUpdateParams;
+    toAmino(message: MsgUpdateParams): MsgUpdateParamsAmino;
+    fromAminoMsg(object: MsgUpdateParamsAminoMsg): MsgUpdateParams;
+    toAminoMsg(message: MsgUpdateParams): MsgUpdateParamsAminoMsg;
+    fromProtoMsg(message: MsgUpdateParamsProtoMsg): MsgUpdateParams;
+    toProto(message: MsgUpdateParams): Uint8Array;
+    toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg;
+};
+export declare const MsgUpdateParamsResponse: {
+    typeUrl: string;
+    encode(_: MsgUpdateParamsResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParamsResponse;
+    fromPartial(_: Partial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse;
+    fromAmino(_: MsgUpdateParamsResponseAmino): MsgUpdateParamsResponse;
+    toAmino(_: MsgUpdateParamsResponse): MsgUpdateParamsResponseAmino;
+    fromAminoMsg(object: MsgUpdateParamsResponseAminoMsg): MsgUpdateParamsResponse;
+    fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse;
+    toProto(message: MsgUpdateParamsResponse): Uint8Array;
+    toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg;
 };

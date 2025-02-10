@@ -23,7 +23,7 @@ __export(tx_registry_exports, {
 });
 module.exports = __toCommonJS(tx_registry_exports);
 var import_tx = require("./tx");
-const registry = [["/stride.icqoracle.MsgRegisterTokenPriceQuery", import_tx.MsgRegisterTokenPriceQuery], ["/stride.icqoracle.MsgRemoveTokenPriceQuery", import_tx.MsgRemoveTokenPriceQuery]];
+const registry = [["/stride.icqoracle.MsgRegisterTokenPriceQuery", import_tx.MsgRegisterTokenPriceQuery], ["/stride.icqoracle.MsgRemoveTokenPriceQuery", import_tx.MsgRemoveTokenPriceQuery], ["/stride.icqoracle.MsgUpdateParams", import_tx.MsgUpdateParams]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -42,6 +42,12 @@ const MessageComposer = {
         typeUrl: "/stride.icqoracle.MsgRemoveTokenPriceQuery",
         value: import_tx.MsgRemoveTokenPriceQuery.encode(value).finish()
       };
+    },
+    updateParams(value) {
+      return {
+        typeUrl: "/stride.icqoracle.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.encode(value).finish()
+      };
     }
   },
   withTypeUrl: {
@@ -54,6 +60,12 @@ const MessageComposer = {
     removeTokenPriceQuery(value) {
       return {
         typeUrl: "/stride.icqoracle.MsgRemoveTokenPriceQuery",
+        value
+      };
+    },
+    updateParams(value) {
+      return {
+        typeUrl: "/stride.icqoracle.MsgUpdateParams",
         value
       };
     }
@@ -69,6 +81,12 @@ const MessageComposer = {
       return {
         typeUrl: "/stride.icqoracle.MsgRemoveTokenPriceQuery",
         value: import_tx.MsgRemoveTokenPriceQuery.fromPartial(value)
+      };
+    },
+    updateParams(value) {
+      return {
+        typeUrl: "/stride.icqoracle.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.fromPartial(value)
       };
     }
   }

@@ -1,6 +1,6 @@
 import { TelescopeGeneratedType } from "../../types";
 import { Registry } from "@cosmjs/proto-signing";
-import { MsgRegisterTokenPriceQuery, MsgRemoveTokenPriceQuery } from "./tx";
+import { MsgRegisterTokenPriceQuery, MsgRemoveTokenPriceQuery, MsgUpdateParams } from "./tx";
 export declare const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]>;
 export declare const load: (protoRegistry: Registry) => void;
 export declare const MessageComposer: {
@@ -10,6 +10,10 @@ export declare const MessageComposer: {
             value: Uint8Array;
         };
         removeTokenPriceQuery(value: MsgRemoveTokenPriceQuery): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        updateParams(value: MsgUpdateParams): {
             typeUrl: string;
             value: Uint8Array;
         };
@@ -23,6 +27,10 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgRemoveTokenPriceQuery;
         };
+        updateParams(value: MsgUpdateParams): {
+            typeUrl: string;
+            value: MsgUpdateParams;
+        };
     };
     fromPartial: {
         registerTokenPriceQuery(value: MsgRegisterTokenPriceQuery): {
@@ -32,6 +40,10 @@ export declare const MessageComposer: {
         removeTokenPriceQuery(value: MsgRemoveTokenPriceQuery): {
             typeUrl: string;
             value: MsgRemoveTokenPriceQuery;
+        };
+        updateParams(value: MsgUpdateParams): {
+            typeUrl: string;
+            value: MsgUpdateParams;
         };
     };
 };

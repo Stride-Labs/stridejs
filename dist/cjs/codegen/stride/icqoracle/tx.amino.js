@@ -31,6 +31,11 @@ const AminoConverter = {
     aminoType: "icqoracle/MsgRemoveTokenPriceQuery",
     toAmino: import_tx.MsgRemoveTokenPriceQuery.toAmino,
     fromAmino: import_tx.MsgRemoveTokenPriceQuery.fromAmino
+  },
+  "/stride.icqoracle.MsgUpdateParams": {
+    aminoType: "icqoracle/MsgUpdateParams",
+    toAmino: import_tx.MsgUpdateParams.toAmino,
+    fromAmino: import_tx.MsgUpdateParams.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:
