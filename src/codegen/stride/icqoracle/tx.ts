@@ -1,4 +1,4 @@
-import { Params, ParamsAmino, ParamsSDKType } from "./icqoracle";
+import { OsmosisPoolType, Params, ParamsAmino, ParamsSDKType } from "./icqoracle";
 import { BinaryReader, BinaryWriter } from "../../binary";
 /**
  * MsgRegisterTokenPriceQuery defines the message for adding a new token to
@@ -20,6 +20,8 @@ export interface MsgRegisterTokenPriceQuery {
   osmosisQuoteDenom: string;
   /** Pool ID on Osmosis */
   osmosisPoolId: bigint;
+  /** Pool type on Osmosis (GAMM or CL) */
+  osmosisPoolType: OsmosisPoolType;
 }
 export interface MsgRegisterTokenPriceQueryProtoMsg {
   typeUrl: "/stride.icqoracle.MsgRegisterTokenPriceQuery";
@@ -45,6 +47,8 @@ export interface MsgRegisterTokenPriceQueryAmino {
   osmosis_quote_denom?: string;
   /** Pool ID on Osmosis */
   osmosis_pool_id?: string;
+  /** Pool type on Osmosis (GAMM or CL) */
+  osmosis_pool_type?: OsmosisPoolType;
 }
 export interface MsgRegisterTokenPriceQueryAminoMsg {
   type: "icqoracle/MsgRegisterTokenPriceQuery";
@@ -63,6 +67,7 @@ export interface MsgRegisterTokenPriceQuerySDKType {
   osmosis_base_denom: string;
   osmosis_quote_denom: string;
   osmosis_pool_id: bigint;
+  osmosis_pool_type: OsmosisPoolType;
 }
 export interface MsgRegisterTokenPriceQueryResponse {}
 export interface MsgRegisterTokenPriceQueryResponseProtoMsg {
@@ -203,7 +208,8 @@ function createBaseMsgRegisterTokenPriceQuery(): MsgRegisterTokenPriceQuery {
     quoteDenomDecimals: BigInt(0),
     osmosisBaseDenom: "",
     osmosisQuoteDenom: "",
-    osmosisPoolId: BigInt(0)
+    osmosisPoolId: BigInt(0),
+    osmosisPoolType: 0
   };
 }
 export const MsgRegisterTokenPriceQuery = {
@@ -232,6 +238,9 @@ export const MsgRegisterTokenPriceQuery = {
     }
     if (message.osmosisPoolId !== BigInt(0)) {
       writer.uint32(64).uint64(message.osmosisPoolId);
+    }
+    if (message.osmosisPoolType !== 0) {
+      writer.uint32(72).int32(message.osmosisPoolType);
     }
     return writer;
   },
@@ -266,6 +275,9 @@ export const MsgRegisterTokenPriceQuery = {
         case 8:
           message.osmosisPoolId = reader.uint64();
           break;
+        case 9:
+          message.osmosisPoolType = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -283,6 +295,7 @@ export const MsgRegisterTokenPriceQuery = {
     message.osmosisBaseDenom = object.osmosisBaseDenom ?? "";
     message.osmosisQuoteDenom = object.osmosisQuoteDenom ?? "";
     message.osmosisPoolId = object.osmosisPoolId !== undefined && object.osmosisPoolId !== null ? BigInt(object.osmosisPoolId.toString()) : BigInt(0);
+    message.osmosisPoolType = object.osmosisPoolType ?? 0;
     return message;
   },
   fromAmino(object: MsgRegisterTokenPriceQueryAmino): MsgRegisterTokenPriceQuery {
@@ -311,6 +324,9 @@ export const MsgRegisterTokenPriceQuery = {
     if (object.osmosis_pool_id !== undefined && object.osmosis_pool_id !== null) {
       message.osmosisPoolId = BigInt(object.osmosis_pool_id);
     }
+    if (object.osmosis_pool_type !== undefined && object.osmosis_pool_type !== null) {
+      message.osmosisPoolType = object.osmosis_pool_type;
+    }
     return message;
   },
   toAmino(message: MsgRegisterTokenPriceQuery): MsgRegisterTokenPriceQueryAmino {
@@ -323,6 +339,7 @@ export const MsgRegisterTokenPriceQuery = {
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? undefined : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? undefined : message.osmosisQuoteDenom;
     obj.osmosis_pool_id = message.osmosisPoolId !== BigInt(0) ? message.osmosisPoolId?.toString() : undefined;
+    obj.osmosis_pool_type = message.osmosisPoolType === 0 ? undefined : message.osmosisPoolType;
     return obj;
   },
   fromAminoMsg(object: MsgRegisterTokenPriceQueryAminoMsg): MsgRegisterTokenPriceQuery {

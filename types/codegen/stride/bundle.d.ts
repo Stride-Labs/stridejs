@@ -2318,6 +2318,11 @@ export declare namespace stride {
             toProto(message: _207.TokenPriceResponse): Uint8Array;
             toProtoMsg(message: _207.TokenPriceResponse): _207.TokenPriceResponseProtoMsg;
         };
+        osmosisPoolTypeFromJSON(object: any): _206.OsmosisPoolType;
+        osmosisPoolTypeToJSON(object: _206.OsmosisPoolType): string;
+        OsmosisPoolType: typeof _206.OsmosisPoolType;
+        OsmosisPoolTypeSDKType: typeof _206.OsmosisPoolType;
+        OsmosisPoolTypeAmino: typeof _206.OsmosisPoolType;
         TokenPrice: {
             typeUrl: string;
             encode(message: _206.TokenPrice, writer?: import("..").BinaryWriter): import("..").BinaryWriter;

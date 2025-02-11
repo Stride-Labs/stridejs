@@ -556,6 +556,7 @@ function createBaseTokenPriceResponse() {
     osmosisBaseDenom: "",
     osmosisQuoteDenom: "",
     osmosisPoolId: BigInt(0),
+    osmosisPoolType: 0,
     spotPrice: "",
     lastRequestTime: /* @__PURE__ */ new Date(),
     lastResponseTime: /* @__PURE__ */ new Date(),
@@ -592,17 +593,20 @@ const TokenPriceResponse = {
     if (message.osmosisPoolId !== BigInt(0)) {
       writer.uint32(72).uint64(message.osmosisPoolId);
     }
+    if (message.osmosisPoolType !== 0) {
+      writer.uint32(80).int32(message.osmosisPoolType);
+    }
     if (message.spotPrice !== "") {
-      writer.uint32(82).string(Decimal.fromUserInput(message.spotPrice, 18).atomics);
+      writer.uint32(90).string(Decimal.fromUserInput(message.spotPrice, 18).atomics);
     }
     if (message.lastRequestTime !== void 0) {
-      Timestamp.encode(toTimestamp(message.lastRequestTime), writer.uint32(90).fork()).ldelim();
+      Timestamp.encode(toTimestamp(message.lastRequestTime), writer.uint32(98).fork()).ldelim();
     }
     if (message.lastResponseTime !== void 0) {
-      Timestamp.encode(toTimestamp(message.lastResponseTime), writer.uint32(98).fork()).ldelim();
+      Timestamp.encode(toTimestamp(message.lastResponseTime), writer.uint32(106).fork()).ldelim();
     }
     if (message.queryInProgress === true) {
-      writer.uint32(104).bool(message.queryInProgress);
+      writer.uint32(112).bool(message.queryInProgress);
     }
     return writer;
   },
@@ -641,15 +645,18 @@ const TokenPriceResponse = {
           message.osmosisPoolId = reader.uint64();
           break;
         case 10:
-          message.spotPrice = Decimal.fromAtomics(reader.string(), 18).toString();
+          message.osmosisPoolType = reader.int32();
           break;
         case 11:
-          message.lastRequestTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.spotPrice = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 12:
-          message.lastResponseTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.lastRequestTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
         case 13:
+          message.lastResponseTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 14:
           message.queryInProgress = reader.bool();
           break;
         default:
@@ -670,6 +677,7 @@ const TokenPriceResponse = {
     message.osmosisBaseDenom = object.osmosisBaseDenom ?? "";
     message.osmosisQuoteDenom = object.osmosisQuoteDenom ?? "";
     message.osmosisPoolId = object.osmosisPoolId !== void 0 && object.osmosisPoolId !== null ? BigInt(object.osmosisPoolId.toString()) : BigInt(0);
+    message.osmosisPoolType = object.osmosisPoolType ?? 0;
     message.spotPrice = object.spotPrice ?? "";
     message.lastRequestTime = object.lastRequestTime ?? void 0;
     message.lastResponseTime = object.lastResponseTime ?? void 0;
@@ -705,6 +713,9 @@ const TokenPriceResponse = {
     if (object.osmosis_pool_id !== void 0 && object.osmosis_pool_id !== null) {
       message.osmosisPoolId = BigInt(object.osmosis_pool_id);
     }
+    if (object.osmosis_pool_type !== void 0 && object.osmosis_pool_type !== null) {
+      message.osmosisPoolType = object.osmosis_pool_type;
+    }
     if (object.spot_price !== void 0 && object.spot_price !== null) {
       message.spotPrice = object.spot_price;
     }
@@ -730,6 +741,7 @@ const TokenPriceResponse = {
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? void 0 : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? void 0 : message.osmosisQuoteDenom;
     obj.osmosis_pool_id = message.osmosisPoolId !== BigInt(0) ? message.osmosisPoolId?.toString() : void 0;
+    obj.osmosis_pool_type = message.osmosisPoolType === 0 ? void 0 : message.osmosisPoolType;
     obj.spot_price = message.spotPrice === "" ? void 0 : message.spotPrice;
     obj.last_request_time = message.lastRequestTime ? Timestamp.toAmino(toTimestamp(message.lastRequestTime)) : void 0;
     obj.last_response_time = message.lastResponseTime ? Timestamp.toAmino(toTimestamp(message.lastResponseTime)) : void 0;

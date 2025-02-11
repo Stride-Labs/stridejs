@@ -1,4 +1,16 @@
 import { BinaryReader, BinaryWriter } from "../../binary";
+/** The type of the Osmosis pool (gamm or CL), needed to determine the ICQ format */
+export declare enum OsmosisPoolType {
+    /** GAMM - Gamm (Balancer) pool */
+    GAMM = 0,
+    /** CONCENTRATED_LIQUIDITY - Concentrated liquidity pool */
+    CONCENTRATED_LIQUIDITY = 1,
+    UNRECOGNIZED = -1
+}
+export declare const OsmosisPoolTypeSDKType: typeof OsmosisPoolType;
+export declare const OsmosisPoolTypeAmino: typeof OsmosisPoolType;
+export declare function osmosisPoolTypeFromJSON(object: any): OsmosisPoolType;
+export declare function osmosisPoolTypeToJSON(object: OsmosisPoolType): string;
 /** TokenPrice stores latest price data for a token */
 export interface TokenPrice {
     /** Base denom on Stride */
@@ -15,6 +27,8 @@ export interface TokenPrice {
     osmosisQuoteDenom: string;
     /** Pool ID on Osmosis */
     osmosisPoolId: bigint;
+    /** Osmosis pool type (gamm or CL) */
+    osmosisPoolType: OsmosisPoolType;
     /** Spot price of base_denom denominated in quote_denom */
     spotPrice: string;
     /** Last time a query request was submitted */
@@ -44,6 +58,8 @@ export interface TokenPriceAmino {
     osmosis_quote_denom?: string;
     /** Pool ID on Osmosis */
     osmosis_pool_id?: string;
+    /** Osmosis pool type (gamm or CL) */
+    osmosis_pool_type?: OsmosisPoolType;
     /** Spot price of base_denom denominated in quote_denom */
     spot_price?: string;
     /** Last time a query request was submitted */
@@ -66,6 +82,7 @@ export interface TokenPriceSDKType {
     osmosis_base_denom: string;
     osmosis_quote_denom: string;
     osmosis_pool_id: bigint;
+    osmosis_pool_type: OsmosisPoolType;
     spot_price: string;
     last_request_time: Date;
     last_response_time: Date;

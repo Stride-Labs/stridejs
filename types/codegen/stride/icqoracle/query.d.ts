@@ -1,5 +1,5 @@
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../cosmos/base/query/v1beta1/pagination";
-import { Params, ParamsAmino, ParamsSDKType } from "./icqoracle";
+import { Params, ParamsAmino, ParamsSDKType, OsmosisPoolType } from "./icqoracle";
 import { BinaryReader, BinaryWriter } from "../../binary";
 /**
  * QueryTokenPriceRequest is the request type for the Query/TokenPrice RPC
@@ -244,6 +244,8 @@ export interface TokenPriceResponse {
     osmosisQuoteDenom: string;
     /** Pool ID on Osmosis */
     osmosisPoolId: bigint;
+    /** Osmosis pool type (gamm or CL) */
+    osmosisPoolType: OsmosisPoolType;
     /** Spot price of base_denom denominated in quote_denom */
     spotPrice: string;
     /** Last time a query request was submitted */
@@ -277,6 +279,8 @@ export interface TokenPriceResponseAmino {
     osmosis_quote_denom?: string;
     /** Pool ID on Osmosis */
     osmosis_pool_id?: string;
+    /** Osmosis pool type (gamm or CL) */
+    osmosis_pool_type?: OsmosisPoolType;
     /** Spot price of base_denom denominated in quote_denom */
     spot_price?: string;
     /** Last time a query request was submitted */
@@ -301,6 +305,7 @@ export interface TokenPriceResponseSDKType {
     osmosis_base_denom: string;
     osmosis_quote_denom: string;
     osmosis_pool_id: bigint;
+    osmosis_pool_type: OsmosisPoolType;
     spot_price: string;
     last_request_time: Date;
     last_response_time: Date;
