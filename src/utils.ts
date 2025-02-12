@@ -295,47 +295,25 @@ export function getTxIbcResponses(
     return [];
   }
 
-  // pasrse output event to extract ibc channels and sequences
-  let rawLog: string = txResponse.rawLog!;
-  let arrayLog: Array<{
-    msg: number;
-    type: string;
-    key: string;
-    value: string;
-  }>;
-  const jsonLog: Array<{
-    msg_index: number;
-    events: Array<{
-      type: string;
-      attributes: Array<{ key: string; value: string }>;
-    }>;
-  }> = JSON.parse(rawLog);
+  const packetSequences: string[] = [];
+  const packetSrcChannels: string[] = [];
 
-  arrayLog = [];
-  for (let msgIndex = 0; msgIndex < jsonLog.length; msgIndex++) {
-    const log = jsonLog[msgIndex];
-    for (const event of log.events) {
-      for (const attr of event.attributes) {
-        arrayLog.push({
-          msg: msgIndex,
-          type: event.type,
-          key: attr.key,
-          value: attr.value,
-        });
+  for (const e of txResponse.events) {
+    if (e.type !== "send_packet") {
+      continue;
+    }
+
+    for (const a of e.attributes) {
+      if (a.key === "packet_sequence") {
+        packetSequences.push(a.value);
+      }
+      if (a.key === "packet_src_channel") {
+        packetSrcChannels.push(a.value);
       }
     }
   }
 
-  let ibcResponses: Array<Promise<IbcResponse>> = [];
-  const packetSequences =
-    arrayLog.filter(
-      (x) => x.type === "send_packet" && x.key === "packet_sequence",
-    ) || [];
-
-  const packetSrcChannels =
-    arrayLog.filter(
-      (x) => x.type === "send_packet" && x.key === "packet_src_channel",
-    ) || [];
+  const ibcResponses: Array<Promise<IbcResponse>> = [];
 
   for (let msgIndex = 0; msgIndex < packetSequences?.length; msgIndex++) {
     // isDoneObject is used to cancel the second promise if the first one is resolved
@@ -347,8 +325,8 @@ export function getTxIbcResponses(
       Promise.race([
         findIbcResponse(
           stargateClient,
-          packetSequences[msgIndex].value,
-          packetSrcChannels[msgIndex].value,
+          packetSequences[msgIndex],
+          packetSrcChannels[msgIndex],
           "ack",
           resolveResponsesTimeoutMs,
           resolveResponsesCheckIntervalMs,
@@ -356,8 +334,8 @@ export function getTxIbcResponses(
         ),
         findIbcResponse(
           stargateClient,
-          packetSequences[msgIndex].value,
-          packetSrcChannels[msgIndex].value,
+          packetSequences[msgIndex],
+          packetSrcChannels[msgIndex],
           "timeout",
           resolveResponsesTimeoutMs,
           resolveResponsesCheckIntervalMs,

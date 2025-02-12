@@ -63,30 +63,22 @@ function getTxIbcResponses(stargateClient, txResponse, resolveResponsesTimeoutMs
   if (txResponse.code !== 0) {
     return [];
   }
-  let rawLog = txResponse.rawLog;
-  let arrayLog;
-  const jsonLog = JSON.parse(rawLog);
-  arrayLog = [];
-  for (let msgIndex = 0; msgIndex < jsonLog.length; msgIndex++) {
-    const log = jsonLog[msgIndex];
-    for (const event of log.events) {
-      for (const attr of event.attributes) {
-        arrayLog.push({
-          msg: msgIndex,
-          type: event.type,
-          key: attr.key,
-          value: attr.value
-        });
+  const packetSequences = [];
+  const packetSrcChannels = [];
+  for (const e of txResponse.events) {
+    if (e.type !== "send_packet") {
+      continue;
+    }
+    for (const a of e.attributes) {
+      if (a.key === "packet_sequence") {
+        packetSequences.push(a.value);
+      }
+      if (a.key === "packet_src_channel") {
+        packetSrcChannels.push(a.value);
       }
     }
   }
-  let ibcResponses = [];
-  const packetSequences = arrayLog.filter(
-    (x) => x.type === "send_packet" && x.key === "packet_sequence"
-  ) || [];
-  const packetSrcChannels = arrayLog.filter(
-    (x) => x.type === "send_packet" && x.key === "packet_src_channel"
-  ) || [];
+  const ibcResponses = [];
   for (let msgIndex = 0; msgIndex < packetSequences?.length; msgIndex++) {
     const isDoneObject = {
       isDone: false
@@ -95,8 +87,8 @@ function getTxIbcResponses(stargateClient, txResponse, resolveResponsesTimeoutMs
       Promise.race([
         findIbcResponse(
           stargateClient,
-          packetSequences[msgIndex].value,
-          packetSrcChannels[msgIndex].value,
+          packetSequences[msgIndex],
+          packetSrcChannels[msgIndex],
           "ack",
           resolveResponsesTimeoutMs,
           resolveResponsesCheckIntervalMs,
@@ -104,8 +96,8 @@ function getTxIbcResponses(stargateClient, txResponse, resolveResponsesTimeoutMs
         ),
         findIbcResponse(
           stargateClient,
-          packetSequences[msgIndex].value,
-          packetSrcChannels[msgIndex].value,
+          packetSequences[msgIndex],
+          packetSrcChannels[msgIndex],
           "timeout",
           resolveResponsesTimeoutMs,
           resolveResponsesCheckIntervalMs,
