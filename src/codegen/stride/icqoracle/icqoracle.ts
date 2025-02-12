@@ -2,41 +2,6 @@ import { Timestamp } from "../../google/protobuf/timestamp";
 import { BinaryReader, BinaryWriter } from "../../binary";
 import { Decimal } from "@cosmjs/math";
 import { toTimestamp, fromTimestamp } from "../../helpers";
-/** The type of the Osmosis pool (gamm or CL), needed to determine the ICQ format */
-export enum OsmosisPoolType {
-  /** GAMM - Gamm (Balancer) pool */
-  GAMM = 0,
-  /** CONCENTRATED_LIQUIDITY - Concentrated liquidity pool */
-  CONCENTRATED_LIQUIDITY = 1,
-  UNRECOGNIZED = -1,
-}
-export const OsmosisPoolTypeSDKType = OsmosisPoolType;
-export const OsmosisPoolTypeAmino = OsmosisPoolType;
-export function osmosisPoolTypeFromJSON(object: any): OsmosisPoolType {
-  switch (object) {
-    case 0:
-    case "GAMM":
-      return OsmosisPoolType.GAMM;
-    case 1:
-    case "CONCENTRATED_LIQUIDITY":
-      return OsmosisPoolType.CONCENTRATED_LIQUIDITY;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return OsmosisPoolType.UNRECOGNIZED;
-  }
-}
-export function osmosisPoolTypeToJSON(object: OsmosisPoolType): string {
-  switch (object) {
-    case OsmosisPoolType.GAMM:
-      return "GAMM";
-    case OsmosisPoolType.CONCENTRATED_LIQUIDITY:
-      return "CONCENTRATED_LIQUIDITY";
-    case OsmosisPoolType.UNRECOGNIZED:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
 /** TokenPrice stores latest price data for a token */
 export interface TokenPrice {
   /** Base denom on Stride */
@@ -53,8 +18,6 @@ export interface TokenPrice {
   osmosisQuoteDenom: string;
   /** Pool ID on Osmosis */
   osmosisPoolId: bigint;
-  /** Osmosis pool type (gamm or CL) */
-  osmosisPoolType: OsmosisPoolType;
   /** Spot price of base_denom denominated in quote_denom */
   spotPrice: string;
   /** Last time a query request was submitted */
@@ -84,8 +47,6 @@ export interface TokenPriceAmino {
   osmosis_quote_denom?: string;
   /** Pool ID on Osmosis */
   osmosis_pool_id?: string;
-  /** Osmosis pool type (gamm or CL) */
-  osmosis_pool_type?: OsmosisPoolType;
   /** Spot price of base_denom denominated in quote_denom */
   spot_price?: string;
   /** Last time a query request was submitted */
@@ -108,7 +69,6 @@ export interface TokenPriceSDKType {
   osmosis_base_denom: string;
   osmosis_quote_denom: string;
   osmosis_pool_id: bigint;
-  osmosis_pool_type: OsmosisPoolType;
   spot_price: string;
   last_request_time: Date;
   last_response_time: Date;
@@ -166,7 +126,6 @@ function createBaseTokenPrice(): TokenPrice {
     osmosisBaseDenom: "",
     osmosisQuoteDenom: "",
     osmosisPoolId: BigInt(0),
-    osmosisPoolType: 0,
     spotPrice: "",
     lastRequestTime: new Date(),
     lastResponseTime: new Date(),
@@ -197,20 +156,17 @@ export const TokenPrice = {
     if (message.osmosisPoolId !== BigInt(0)) {
       writer.uint32(56).uint64(message.osmosisPoolId);
     }
-    if (message.osmosisPoolType !== 0) {
-      writer.uint32(64).int32(message.osmosisPoolType);
-    }
     if (message.spotPrice !== "") {
-      writer.uint32(74).string(Decimal.fromUserInput(message.spotPrice, 18).atomics);
+      writer.uint32(66).string(Decimal.fromUserInput(message.spotPrice, 18).atomics);
     }
     if (message.lastRequestTime !== undefined) {
-      Timestamp.encode(toTimestamp(message.lastRequestTime), writer.uint32(82).fork()).ldelim();
+      Timestamp.encode(toTimestamp(message.lastRequestTime), writer.uint32(74).fork()).ldelim();
     }
     if (message.lastResponseTime !== undefined) {
-      Timestamp.encode(toTimestamp(message.lastResponseTime), writer.uint32(90).fork()).ldelim();
+      Timestamp.encode(toTimestamp(message.lastResponseTime), writer.uint32(82).fork()).ldelim();
     }
     if (message.queryInProgress === true) {
-      writer.uint32(96).bool(message.queryInProgress);
+      writer.uint32(88).bool(message.queryInProgress);
     }
     return writer;
   },
@@ -243,18 +199,15 @@ export const TokenPrice = {
           message.osmosisPoolId = reader.uint64();
           break;
         case 8:
-          message.osmosisPoolType = reader.int32() as any;
-          break;
-        case 9:
           message.spotPrice = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
-        case 10:
+        case 9:
           message.lastRequestTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
-        case 11:
+        case 10:
           message.lastResponseTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
-        case 12:
+        case 11:
           message.queryInProgress = reader.bool();
           break;
         default:
@@ -273,7 +226,6 @@ export const TokenPrice = {
     message.osmosisBaseDenom = object.osmosisBaseDenom ?? "";
     message.osmosisQuoteDenom = object.osmosisQuoteDenom ?? "";
     message.osmosisPoolId = object.osmosisPoolId !== undefined && object.osmosisPoolId !== null ? BigInt(object.osmosisPoolId.toString()) : BigInt(0);
-    message.osmosisPoolType = object.osmosisPoolType ?? 0;
     message.spotPrice = object.spotPrice ?? "";
     message.lastRequestTime = object.lastRequestTime ?? undefined;
     message.lastResponseTime = object.lastResponseTime ?? undefined;
@@ -303,9 +255,6 @@ export const TokenPrice = {
     if (object.osmosis_pool_id !== undefined && object.osmosis_pool_id !== null) {
       message.osmosisPoolId = BigInt(object.osmosis_pool_id);
     }
-    if (object.osmosis_pool_type !== undefined && object.osmosis_pool_type !== null) {
-      message.osmosisPoolType = object.osmosis_pool_type;
-    }
     if (object.spot_price !== undefined && object.spot_price !== null) {
       message.spotPrice = object.spot_price;
     }
@@ -329,7 +278,6 @@ export const TokenPrice = {
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? undefined : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? undefined : message.osmosisQuoteDenom;
     obj.osmosis_pool_id = message.osmosisPoolId !== BigInt(0) ? message.osmosisPoolId?.toString() : undefined;
-    obj.osmosis_pool_type = message.osmosisPoolType === 0 ? undefined : message.osmosisPoolType;
     obj.spot_price = message.spotPrice === "" ? undefined : message.spotPrice;
     obj.last_request_time = message.lastRequestTime ? Timestamp.toAmino(toTimestamp(message.lastRequestTime)) : undefined;
     obj.last_response_time = message.lastResponseTime ? Timestamp.toAmino(toTimestamp(message.lastResponseTime)) : undefined;

@@ -22,6 +22,7 @@ __reExport(codegen_exports, require("./gogoproto/bundle"), module.exports);
 __reExport(codegen_exports, require("./google/bundle"), module.exports);
 __reExport(codegen_exports, require("./ibc/bundle"), module.exports);
 __reExport(codegen_exports, require("./ibc/client"), module.exports);
+__reExport(codegen_exports, require("./osmosis/bundle"), module.exports);
 __reExport(codegen_exports, require("./stride/bundle"), module.exports);
 __reExport(codegen_exports, require("./stride/client"), module.exports);
 __reExport(codegen_exports, require("./tendermint/bundle"), module.exports);
@@ -39,6 +40,7 @@ __reExport(codegen_exports, require("./types"), module.exports);
   ...require("./google/bundle"),
   ...require("./ibc/bundle"),
   ...require("./ibc/client"),
+  ...require("./osmosis/bundle"),
   ...require("./stride/bundle"),
   ...require("./stride/client"),
   ...require("./tendermint/bundle"),

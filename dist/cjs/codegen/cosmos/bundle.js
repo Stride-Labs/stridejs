@@ -157,81 +157,81 @@ var _125 = __toESM(require("./upgrade/v1beta1/upgrade"));
 var _126 = __toESM(require("./vesting/module/v1/module"));
 var _127 = __toESM(require("./vesting/v1beta1/tx"));
 var _128 = __toESM(require("./vesting/v1beta1/vesting"));
-var _256 = __toESM(require("./auth/v1beta1/tx.amino"));
-var _257 = __toESM(require("./authz/v1beta1/tx.amino"));
-var _258 = __toESM(require("./bank/v1beta1/tx.amino"));
-var _259 = __toESM(require("./consensus/v1/tx.amino"));
-var _260 = __toESM(require("./crisis/v1beta1/tx.amino"));
-var _261 = __toESM(require("./distribution/v1beta1/tx.amino"));
-var _262 = __toESM(require("./evidence/v1beta1/tx.amino"));
-var _263 = __toESM(require("./feegrant/v1beta1/tx.amino"));
-var _264 = __toESM(require("./gov/v1/tx.amino"));
-var _265 = __toESM(require("./gov/v1beta1/tx.amino"));
-var _266 = __toESM(require("./group/v1/tx.amino"));
-var _267 = __toESM(require("./mint/v1beta1/tx.amino"));
-var _268 = __toESM(require("./nft/v1beta1/tx.amino"));
-var _269 = __toESM(require("./slashing/v1beta1/tx.amino"));
-var _270 = __toESM(require("./staking/v1beta1/tx.amino"));
-var _271 = __toESM(require("./upgrade/v1beta1/tx.amino"));
-var _272 = __toESM(require("./vesting/v1beta1/tx.amino"));
-var _273 = __toESM(require("./auth/v1beta1/tx.registry"));
-var _274 = __toESM(require("./authz/v1beta1/tx.registry"));
-var _275 = __toESM(require("./bank/v1beta1/tx.registry"));
-var _276 = __toESM(require("./consensus/v1/tx.registry"));
-var _277 = __toESM(require("./crisis/v1beta1/tx.registry"));
-var _278 = __toESM(require("./distribution/v1beta1/tx.registry"));
-var _279 = __toESM(require("./evidence/v1beta1/tx.registry"));
-var _280 = __toESM(require("./feegrant/v1beta1/tx.registry"));
-var _281 = __toESM(require("./gov/v1/tx.registry"));
-var _282 = __toESM(require("./gov/v1beta1/tx.registry"));
-var _283 = __toESM(require("./group/v1/tx.registry"));
-var _284 = __toESM(require("./mint/v1beta1/tx.registry"));
-var _285 = __toESM(require("./nft/v1beta1/tx.registry"));
-var _286 = __toESM(require("./slashing/v1beta1/tx.registry"));
-var _287 = __toESM(require("./staking/v1beta1/tx.registry"));
-var _288 = __toESM(require("./upgrade/v1beta1/tx.registry"));
-var _289 = __toESM(require("./vesting/v1beta1/tx.registry"));
-var _290 = __toESM(require("./app/v1alpha1/query.rpc.Query"));
-var _291 = __toESM(require("./auth/v1beta1/query.rpc.Query"));
-var _292 = __toESM(require("./authz/v1beta1/query.rpc.Query"));
-var _293 = __toESM(require("./autocli/v1/query.rpc.Query"));
-var _294 = __toESM(require("./bank/v1beta1/query.rpc.Query"));
-var _295 = __toESM(require("./base/node/v1beta1/query.rpc.Service"));
-var _296 = __toESM(require("./base/tendermint/v1beta1/query.rpc.Service"));
-var _297 = __toESM(require("./consensus/v1/query.rpc.Query"));
-var _298 = __toESM(require("./distribution/v1beta1/query.rpc.Query"));
-var _299 = __toESM(require("./evidence/v1beta1/query.rpc.Query"));
-var _300 = __toESM(require("./feegrant/v1beta1/query.rpc.Query"));
-var _301 = __toESM(require("./gov/v1/query.rpc.Query"));
-var _302 = __toESM(require("./gov/v1beta1/query.rpc.Query"));
-var _303 = __toESM(require("./group/v1/query.rpc.Query"));
-var _304 = __toESM(require("./mint/v1beta1/query.rpc.Query"));
-var _305 = __toESM(require("./nft/v1beta1/query.rpc.Query"));
-var _306 = __toESM(require("./orm/query/v1alpha1/query.rpc.Query"));
-var _307 = __toESM(require("./params/v1beta1/query.rpc.Query"));
-var _308 = __toESM(require("./slashing/v1beta1/query.rpc.Query"));
-var _309 = __toESM(require("./staking/v1beta1/query.rpc.Query"));
-var _310 = __toESM(require("./tx/v1beta1/service.rpc.Service"));
-var _311 = __toESM(require("./upgrade/v1beta1/query.rpc.Query"));
-var _312 = __toESM(require("./auth/v1beta1/tx.rpc.msg"));
-var _313 = __toESM(require("./authz/v1beta1/tx.rpc.msg"));
-var _314 = __toESM(require("./bank/v1beta1/tx.rpc.msg"));
-var _315 = __toESM(require("./consensus/v1/tx.rpc.msg"));
-var _316 = __toESM(require("./crisis/v1beta1/tx.rpc.msg"));
-var _317 = __toESM(require("./distribution/v1beta1/tx.rpc.msg"));
-var _318 = __toESM(require("./evidence/v1beta1/tx.rpc.msg"));
-var _319 = __toESM(require("./feegrant/v1beta1/tx.rpc.msg"));
-var _320 = __toESM(require("./gov/v1/tx.rpc.msg"));
-var _321 = __toESM(require("./gov/v1beta1/tx.rpc.msg"));
-var _322 = __toESM(require("./group/v1/tx.rpc.msg"));
-var _323 = __toESM(require("./mint/v1beta1/tx.rpc.msg"));
-var _324 = __toESM(require("./nft/v1beta1/tx.rpc.msg"));
-var _325 = __toESM(require("./slashing/v1beta1/tx.rpc.msg"));
-var _326 = __toESM(require("./staking/v1beta1/tx.rpc.msg"));
-var _327 = __toESM(require("./upgrade/v1beta1/tx.rpc.msg"));
-var _328 = __toESM(require("./vesting/v1beta1/tx.rpc.msg"));
-var _395 = __toESM(require("./rpc.query"));
-var _396 = __toESM(require("./rpc.tx"));
+var _257 = __toESM(require("./auth/v1beta1/tx.amino"));
+var _258 = __toESM(require("./authz/v1beta1/tx.amino"));
+var _259 = __toESM(require("./bank/v1beta1/tx.amino"));
+var _260 = __toESM(require("./consensus/v1/tx.amino"));
+var _261 = __toESM(require("./crisis/v1beta1/tx.amino"));
+var _262 = __toESM(require("./distribution/v1beta1/tx.amino"));
+var _263 = __toESM(require("./evidence/v1beta1/tx.amino"));
+var _264 = __toESM(require("./feegrant/v1beta1/tx.amino"));
+var _265 = __toESM(require("./gov/v1/tx.amino"));
+var _266 = __toESM(require("./gov/v1beta1/tx.amino"));
+var _267 = __toESM(require("./group/v1/tx.amino"));
+var _268 = __toESM(require("./mint/v1beta1/tx.amino"));
+var _269 = __toESM(require("./nft/v1beta1/tx.amino"));
+var _270 = __toESM(require("./slashing/v1beta1/tx.amino"));
+var _271 = __toESM(require("./staking/v1beta1/tx.amino"));
+var _272 = __toESM(require("./upgrade/v1beta1/tx.amino"));
+var _273 = __toESM(require("./vesting/v1beta1/tx.amino"));
+var _274 = __toESM(require("./auth/v1beta1/tx.registry"));
+var _275 = __toESM(require("./authz/v1beta1/tx.registry"));
+var _276 = __toESM(require("./bank/v1beta1/tx.registry"));
+var _277 = __toESM(require("./consensus/v1/tx.registry"));
+var _278 = __toESM(require("./crisis/v1beta1/tx.registry"));
+var _279 = __toESM(require("./distribution/v1beta1/tx.registry"));
+var _280 = __toESM(require("./evidence/v1beta1/tx.registry"));
+var _281 = __toESM(require("./feegrant/v1beta1/tx.registry"));
+var _282 = __toESM(require("./gov/v1/tx.registry"));
+var _283 = __toESM(require("./gov/v1beta1/tx.registry"));
+var _284 = __toESM(require("./group/v1/tx.registry"));
+var _285 = __toESM(require("./mint/v1beta1/tx.registry"));
+var _286 = __toESM(require("./nft/v1beta1/tx.registry"));
+var _287 = __toESM(require("./slashing/v1beta1/tx.registry"));
+var _288 = __toESM(require("./staking/v1beta1/tx.registry"));
+var _289 = __toESM(require("./upgrade/v1beta1/tx.registry"));
+var _290 = __toESM(require("./vesting/v1beta1/tx.registry"));
+var _291 = __toESM(require("./app/v1alpha1/query.rpc.Query"));
+var _292 = __toESM(require("./auth/v1beta1/query.rpc.Query"));
+var _293 = __toESM(require("./authz/v1beta1/query.rpc.Query"));
+var _294 = __toESM(require("./autocli/v1/query.rpc.Query"));
+var _295 = __toESM(require("./bank/v1beta1/query.rpc.Query"));
+var _296 = __toESM(require("./base/node/v1beta1/query.rpc.Service"));
+var _297 = __toESM(require("./base/tendermint/v1beta1/query.rpc.Service"));
+var _298 = __toESM(require("./consensus/v1/query.rpc.Query"));
+var _299 = __toESM(require("./distribution/v1beta1/query.rpc.Query"));
+var _300 = __toESM(require("./evidence/v1beta1/query.rpc.Query"));
+var _301 = __toESM(require("./feegrant/v1beta1/query.rpc.Query"));
+var _302 = __toESM(require("./gov/v1/query.rpc.Query"));
+var _303 = __toESM(require("./gov/v1beta1/query.rpc.Query"));
+var _304 = __toESM(require("./group/v1/query.rpc.Query"));
+var _305 = __toESM(require("./mint/v1beta1/query.rpc.Query"));
+var _306 = __toESM(require("./nft/v1beta1/query.rpc.Query"));
+var _307 = __toESM(require("./orm/query/v1alpha1/query.rpc.Query"));
+var _308 = __toESM(require("./params/v1beta1/query.rpc.Query"));
+var _309 = __toESM(require("./slashing/v1beta1/query.rpc.Query"));
+var _310 = __toESM(require("./staking/v1beta1/query.rpc.Query"));
+var _311 = __toESM(require("./tx/v1beta1/service.rpc.Service"));
+var _312 = __toESM(require("./upgrade/v1beta1/query.rpc.Query"));
+var _313 = __toESM(require("./auth/v1beta1/tx.rpc.msg"));
+var _314 = __toESM(require("./authz/v1beta1/tx.rpc.msg"));
+var _315 = __toESM(require("./bank/v1beta1/tx.rpc.msg"));
+var _316 = __toESM(require("./consensus/v1/tx.rpc.msg"));
+var _317 = __toESM(require("./crisis/v1beta1/tx.rpc.msg"));
+var _318 = __toESM(require("./distribution/v1beta1/tx.rpc.msg"));
+var _319 = __toESM(require("./evidence/v1beta1/tx.rpc.msg"));
+var _320 = __toESM(require("./feegrant/v1beta1/tx.rpc.msg"));
+var _321 = __toESM(require("./gov/v1/tx.rpc.msg"));
+var _322 = __toESM(require("./gov/v1beta1/tx.rpc.msg"));
+var _323 = __toESM(require("./group/v1/tx.rpc.msg"));
+var _324 = __toESM(require("./mint/v1beta1/tx.rpc.msg"));
+var _325 = __toESM(require("./nft/v1beta1/tx.rpc.msg"));
+var _326 = __toESM(require("./slashing/v1beta1/tx.rpc.msg"));
+var _327 = __toESM(require("./staking/v1beta1/tx.rpc.msg"));
+var _328 = __toESM(require("./upgrade/v1beta1/tx.rpc.msg"));
+var _329 = __toESM(require("./vesting/v1beta1/tx.rpc.msg"));
+var _396 = __toESM(require("./rpc.query"));
+var _397 = __toESM(require("./rpc.tx"));
 var cosmos;
 ((cosmos2) => {
   let app;
@@ -246,7 +246,7 @@ var cosmos;
       ..._3,
       ..._4,
       ..._5,
-      ..._290
+      ..._291
     };
   })(app = cosmos2.app || (cosmos2.app = {}));
   let auth;
@@ -262,10 +262,10 @@ var cosmos;
       ..._8,
       ..._9,
       ..._10,
-      ..._256,
-      ..._273,
-      ..._291,
-      ..._312
+      ..._257,
+      ..._274,
+      ..._292,
+      ..._313
     };
   })(auth = cosmos2.auth || (cosmos2.auth = {}));
   let authz;
@@ -282,10 +282,10 @@ var cosmos;
       ..._14,
       ..._15,
       ..._16,
-      ..._257,
-      ..._274,
-      ..._292,
-      ..._313
+      ..._258,
+      ..._275,
+      ..._293,
+      ..._314
     };
   })(authz = cosmos2.authz || (cosmos2.authz = {}));
   let autocli;
@@ -293,7 +293,7 @@ var cosmos;
     autocli2.v1 = {
       ..._17,
       ..._18,
-      ..._293
+      ..._294
     };
   })(autocli = cosmos2.autocli || (cosmos2.autocli = {}));
   let bank;
@@ -310,10 +310,10 @@ var cosmos;
       ..._22,
       ..._23,
       ..._24,
-      ..._258,
-      ..._275,
-      ..._294,
-      ..._314
+      ..._259,
+      ..._276,
+      ..._295,
+      ..._315
     };
   })(bank = cosmos2.bank || (cosmos2.bank = {}));
   let base;
@@ -334,7 +334,7 @@ var cosmos;
     ((node2) => {
       node2.v1beta1 = {
         ..._27,
-        ..._295
+        ..._296
       };
     })(node = base2.node || (base2.node = {}));
     let query2;
@@ -370,7 +370,7 @@ var cosmos;
       tendermint2.v1beta1 = {
         ..._34,
         ..._35,
-        ..._296
+        ..._297
       };
     })(tendermint = base2.tendermint || (base2.tendermint = {}));
     base2.v1beta1 = {
@@ -401,10 +401,10 @@ var cosmos;
     consensus2.v1 = {
       ..._41,
       ..._42,
-      ..._259,
-      ..._276,
-      ..._297,
-      ..._315
+      ..._260,
+      ..._277,
+      ..._298,
+      ..._316
     };
   })(consensus = cosmos2.consensus || (cosmos2.consensus = {}));
   let crisis;
@@ -418,9 +418,9 @@ var cosmos;
     crisis2.v1beta1 = {
       ..._44,
       ..._45,
-      ..._260,
-      ..._277,
-      ..._316
+      ..._261,
+      ..._278,
+      ..._317
     };
   })(crisis = cosmos2.crisis || (cosmos2.crisis = {}));
   let crypto;
@@ -463,10 +463,10 @@ var cosmos;
       ..._54,
       ..._55,
       ..._56,
-      ..._261,
-      ..._278,
-      ..._298,
-      ..._317
+      ..._262,
+      ..._279,
+      ..._299,
+      ..._318
     };
   })(distribution = cosmos2.distribution || (cosmos2.distribution = {}));
   let evidence;
@@ -482,10 +482,10 @@ var cosmos;
       ..._59,
       ..._60,
       ..._61,
-      ..._262,
-      ..._279,
-      ..._299,
-      ..._318
+      ..._263,
+      ..._280,
+      ..._300,
+      ..._319
     };
   })(evidence = cosmos2.evidence || (cosmos2.evidence = {}));
   let feegrant;
@@ -501,10 +501,10 @@ var cosmos;
       ..._64,
       ..._65,
       ..._66,
-      ..._263,
-      ..._280,
-      ..._300,
-      ..._319
+      ..._264,
+      ..._281,
+      ..._301,
+      ..._320
     };
   })(feegrant = cosmos2.feegrant || (cosmos2.feegrant = {}));
   let genutil;
@@ -532,20 +532,20 @@ var cosmos;
       ..._71,
       ..._72,
       ..._73,
-      ..._264,
-      ..._281,
-      ..._301,
-      ..._320
+      ..._265,
+      ..._282,
+      ..._302,
+      ..._321
     };
     gov2.v1beta1 = {
       ..._74,
       ..._75,
       ..._76,
       ..._77,
-      ..._265,
-      ..._282,
-      ..._302,
-      ..._321
+      ..._266,
+      ..._283,
+      ..._303,
+      ..._322
     };
   })(gov = cosmos2.gov || (cosmos2.gov = {}));
   let group;
@@ -562,10 +562,10 @@ var cosmos;
       ..._81,
       ..._82,
       ..._83,
-      ..._266,
-      ..._283,
-      ..._303,
-      ..._322
+      ..._267,
+      ..._284,
+      ..._304,
+      ..._323
     };
   })(group = cosmos2.group || (cosmos2.group = {}));
   let ics23;
@@ -587,10 +587,10 @@ var cosmos;
       ..._87,
       ..._88,
       ..._89,
-      ..._267,
-      ..._284,
-      ..._304,
-      ..._323
+      ..._268,
+      ..._285,
+      ..._305,
+      ..._324
     };
   })(mint = cosmos2.mint || (cosmos2.mint = {}));
   let msg;
@@ -613,10 +613,10 @@ var cosmos;
       ..._94,
       ..._95,
       ..._96,
-      ..._268,
-      ..._285,
-      ..._305,
-      ..._324
+      ..._269,
+      ..._286,
+      ..._306,
+      ..._325
     };
   })(nft = cosmos2.nft || (cosmos2.nft = {}));
   let orm;
@@ -631,7 +631,7 @@ var cosmos;
     ((query3) => {
       query3.v1alpha1 = {
         ..._98,
-        ..._306
+        ..._307
       };
     })(query2 = orm2.query || (orm2.query = {}));
     orm2.v1 = {
@@ -652,7 +652,7 @@ var cosmos;
     params2.v1beta1 = {
       ..._102,
       ..._103,
-      ..._307
+      ..._308
     };
   })(params = cosmos2.params || (cosmos2.params = {}));
   let query;
@@ -680,10 +680,10 @@ var cosmos;
       ..._108,
       ..._109,
       ..._110,
-      ..._269,
-      ..._286,
-      ..._308,
-      ..._325
+      ..._270,
+      ..._287,
+      ..._309,
+      ..._326
     };
   })(slashing = cosmos2.slashing || (cosmos2.slashing = {}));
   let staking;
@@ -701,10 +701,10 @@ var cosmos;
       ..._115,
       ..._116,
       ..._117,
-      ..._270,
-      ..._287,
-      ..._309,
-      ..._326
+      ..._271,
+      ..._288,
+      ..._310,
+      ..._327
     };
   })(staking = cosmos2.staking || (cosmos2.staking = {}));
   let tx;
@@ -724,7 +724,7 @@ var cosmos;
     tx2.v1beta1 = {
       ..._120,
       ..._121,
-      ..._310
+      ..._311
     };
   })(tx = cosmos2.tx || (cosmos2.tx = {}));
   let upgrade;
@@ -739,10 +739,10 @@ var cosmos;
       ..._123,
       ..._124,
       ..._125,
-      ..._271,
-      ..._288,
-      ..._311,
-      ..._327
+      ..._272,
+      ..._289,
+      ..._312,
+      ..._328
     };
   })(upgrade = cosmos2.upgrade || (cosmos2.upgrade = {}));
   let vesting;
@@ -756,14 +756,14 @@ var cosmos;
     vesting2.v1beta1 = {
       ..._127,
       ..._128,
-      ..._272,
-      ..._289,
-      ..._328
+      ..._273,
+      ..._290,
+      ..._329
     };
   })(vesting = cosmos2.vesting || (cosmos2.vesting = {}));
   cosmos2.ClientFactory = {
-    ..._395,
-    ..._396
+    ..._396,
+    ..._397
   };
 })(cosmos || (cosmos = {}));
 // Annotate the CommonJS export names for ESM import in node:

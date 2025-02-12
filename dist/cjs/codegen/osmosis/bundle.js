@@ -27,50 +27,14 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var bundle_exports = {};
 __export(bundle_exports, {
-  tendermint: () => tendermint
+  osmosis: () => osmosis
 });
 module.exports = __toCommonJS(bundle_exports);
-var _246 = __toESM(require("./abci/types"));
-var _247 = __toESM(require("./crypto/keys"));
-var _248 = __toESM(require("./crypto/proof"));
-var _249 = __toESM(require("./libs/bits/types"));
-var _250 = __toESM(require("./p2p/types"));
-var _251 = __toESM(require("./types/block"));
-var _252 = __toESM(require("./types/evidence"));
-var _253 = __toESM(require("./types/params"));
-var _254 = __toESM(require("./types/types"));
-var _255 = __toESM(require("./types/validator"));
-var _256 = __toESM(require("./version/types"));
-var tendermint;
-((tendermint2) => {
-  tendermint2.abci = {
-    ..._246
-  };
-  tendermint2.crypto = {
-    ..._247,
-    ..._248
-  };
-  let libs;
-  ((libs2) => {
-    libs2.bits = {
-      ..._249
-    };
-  })(libs = tendermint2.libs || (tendermint2.libs = {}));
-  tendermint2.p2p = {
-    ..._250
-  };
-  tendermint2.types = {
-    ..._251,
-    ..._252,
-    ..._253,
-    ..._254,
-    ..._255
-  };
-  tendermint2.version = {
-    ..._256
-  };
-})(tendermint || (tendermint = {}));
+var _175 = __toESM(require("./osmosis"));
+const osmosis = {
+  ..._175
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  tendermint
+  osmosis
 });

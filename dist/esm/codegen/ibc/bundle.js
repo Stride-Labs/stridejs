@@ -37,33 +37,33 @@ import * as _171 from "./lightclients/localhost/v2/localhost";
 import * as _172 from "./lightclients/solomachine/v2/solomachine";
 import * as _173 from "./lightclients/solomachine/v3/solomachine";
 import * as _174 from "./lightclients/tendermint/v1/tendermint";
-import * as _329 from "./applications/fee/v1/tx.amino";
-import * as _330 from "./applications/interchain_accounts/controller/v1/tx.amino";
-import * as _331 from "./applications/transfer/v1/tx.amino";
-import * as _332 from "./core/channel/v1/tx.amino";
-import * as _333 from "./core/client/v1/tx.amino";
-import * as _334 from "./core/connection/v1/tx.amino";
-import * as _335 from "./applications/fee/v1/tx.registry";
-import * as _336 from "./applications/interchain_accounts/controller/v1/tx.registry";
-import * as _337 from "./applications/transfer/v1/tx.registry";
-import * as _338 from "./core/channel/v1/tx.registry";
-import * as _339 from "./core/client/v1/tx.registry";
-import * as _340 from "./core/connection/v1/tx.registry";
-import * as _341 from "./applications/fee/v1/query.rpc.Query";
-import * as _342 from "./applications/interchain_accounts/controller/v1/query.rpc.Query";
-import * as _343 from "./applications/interchain_accounts/host/v1/query.rpc.Query";
-import * as _344 from "./applications/transfer/v1/query.rpc.Query";
-import * as _345 from "./core/channel/v1/query.rpc.Query";
-import * as _346 from "./core/client/v1/query.rpc.Query";
-import * as _347 from "./core/connection/v1/query.rpc.Query";
-import * as _348 from "./applications/fee/v1/tx.rpc.msg";
-import * as _349 from "./applications/interchain_accounts/controller/v1/tx.rpc.msg";
-import * as _350 from "./applications/transfer/v1/tx.rpc.msg";
-import * as _351 from "./core/channel/v1/tx.rpc.msg";
-import * as _352 from "./core/client/v1/tx.rpc.msg";
-import * as _353 from "./core/connection/v1/tx.rpc.msg";
-import * as _397 from "./rpc.query";
-import * as _398 from "./rpc.tx";
+import * as _330 from "./applications/fee/v1/tx.amino";
+import * as _331 from "./applications/interchain_accounts/controller/v1/tx.amino";
+import * as _332 from "./applications/transfer/v1/tx.amino";
+import * as _333 from "./core/channel/v1/tx.amino";
+import * as _334 from "./core/client/v1/tx.amino";
+import * as _335 from "./core/connection/v1/tx.amino";
+import * as _336 from "./applications/fee/v1/tx.registry";
+import * as _337 from "./applications/interchain_accounts/controller/v1/tx.registry";
+import * as _338 from "./applications/transfer/v1/tx.registry";
+import * as _339 from "./core/channel/v1/tx.registry";
+import * as _340 from "./core/client/v1/tx.registry";
+import * as _341 from "./core/connection/v1/tx.registry";
+import * as _342 from "./applications/fee/v1/query.rpc.Query";
+import * as _343 from "./applications/interchain_accounts/controller/v1/query.rpc.Query";
+import * as _344 from "./applications/interchain_accounts/host/v1/query.rpc.Query";
+import * as _345 from "./applications/transfer/v1/query.rpc.Query";
+import * as _346 from "./core/channel/v1/query.rpc.Query";
+import * as _347 from "./core/client/v1/query.rpc.Query";
+import * as _348 from "./core/connection/v1/query.rpc.Query";
+import * as _349 from "./applications/fee/v1/tx.rpc.msg";
+import * as _350 from "./applications/interchain_accounts/controller/v1/tx.rpc.msg";
+import * as _351 from "./applications/transfer/v1/tx.rpc.msg";
+import * as _352 from "./core/channel/v1/tx.rpc.msg";
+import * as _353 from "./core/client/v1/tx.rpc.msg";
+import * as _354 from "./core/connection/v1/tx.rpc.msg";
+import * as _398 from "./rpc.query";
+import * as _399 from "./rpc.tx";
 var ibc;
 ((ibc2) => {
   let applications;
@@ -77,10 +77,10 @@ var ibc;
         ..._139,
         ..._140,
         ..._141,
-        ..._329,
-        ..._335,
-        ..._341,
-        ..._348
+        ..._330,
+        ..._336,
+        ..._342,
+        ..._349
       };
     })(fee = applications2.fee || (applications2.fee = {}));
     let interchain_accounts;
@@ -91,10 +91,10 @@ var ibc;
           ..._142,
           ..._143,
           ..._144,
-          ..._330,
-          ..._336,
-          ..._342,
-          ..._349
+          ..._331,
+          ..._337,
+          ..._343,
+          ..._350
         };
       })(controller = interchain_accounts2.controller || (interchain_accounts2.controller = {}));
       let genesis;
@@ -108,7 +108,7 @@ var ibc;
         host2.v1 = {
           ..._146,
           ..._147,
-          ..._343
+          ..._344
         };
       })(host = interchain_accounts2.host || (interchain_accounts2.host = {}));
       interchain_accounts2.v1 = {
@@ -125,10 +125,10 @@ var ibc;
         ..._153,
         ..._154,
         ..._155,
-        ..._331,
-        ..._337,
-        ..._344,
-        ..._350
+        ..._332,
+        ..._338,
+        ..._345,
+        ..._351
       };
       transfer2.v2 = {
         ..._156
@@ -144,10 +144,10 @@ var ibc;
         ..._158,
         ..._159,
         ..._160,
-        ..._332,
-        ..._338,
-        ..._345,
-        ..._351
+        ..._333,
+        ..._339,
+        ..._346,
+        ..._352
       };
     })(channel = core2.channel || (core2.channel = {}));
     let client;
@@ -157,10 +157,10 @@ var ibc;
         ..._162,
         ..._163,
         ..._164,
-        ..._333,
-        ..._339,
-        ..._346,
-        ..._352
+        ..._334,
+        ..._340,
+        ..._347,
+        ..._353
       };
     })(client = core2.client || (core2.client = {}));
     let commitment;
@@ -176,10 +176,10 @@ var ibc;
         ..._167,
         ..._168,
         ..._169,
-        ..._334,
-        ..._340,
-        ..._347,
-        ..._353
+        ..._335,
+        ..._341,
+        ..._348,
+        ..._354
       };
     })(connection = core2.connection || (core2.connection = {}));
     let types;
@@ -214,8 +214,8 @@ var ibc;
     })(tendermint = lightclients2.tendermint || (lightclients2.tendermint = {}));
   })(lightclients = ibc2.lightclients || (ibc2.lightclients = {}));
   ibc2.ClientFactory = {
-    ..._397,
-    ..._398
+    ..._398,
+    ..._399
   };
 })(ibc || (ibc = {}));
 export {

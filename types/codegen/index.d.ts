@@ -11,6 +11,7 @@ export * from "./gogoproto/bundle";
 export * from "./google/bundle";
 export * from "./ibc/bundle";
 export * from "./ibc/client";
+export * from "./osmosis/bundle";
 export * from "./stride/bundle";
 export * from "./stride/client";
 export * from "./tendermint/bundle";

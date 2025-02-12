@@ -17,52 +17,14 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var icqoracle_exports = {};
 __export(icqoracle_exports, {
-  OsmosisPoolType: () => OsmosisPoolType,
-  OsmosisPoolTypeAmino: () => OsmosisPoolTypeAmino,
-  OsmosisPoolTypeSDKType: () => OsmosisPoolTypeSDKType,
   Params: () => Params,
-  TokenPrice: () => TokenPrice,
-  osmosisPoolTypeFromJSON: () => osmosisPoolTypeFromJSON,
-  osmosisPoolTypeToJSON: () => osmosisPoolTypeToJSON
+  TokenPrice: () => TokenPrice
 });
 module.exports = __toCommonJS(icqoracle_exports);
 var import_timestamp = require("../../google/protobuf/timestamp");
 var import_binary = require("../../binary");
 var import_math = require("@cosmjs/math");
 var import_helpers = require("../../helpers");
-var OsmosisPoolType = /* @__PURE__ */ ((OsmosisPoolType2) => {
-  OsmosisPoolType2[OsmosisPoolType2["GAMM"] = 0] = "GAMM";
-  OsmosisPoolType2[OsmosisPoolType2["CONCENTRATED_LIQUIDITY"] = 1] = "CONCENTRATED_LIQUIDITY";
-  OsmosisPoolType2[OsmosisPoolType2["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
-  return OsmosisPoolType2;
-})(OsmosisPoolType || {});
-const OsmosisPoolTypeSDKType = OsmosisPoolType;
-const OsmosisPoolTypeAmino = OsmosisPoolType;
-function osmosisPoolTypeFromJSON(object) {
-  switch (object) {
-    case 0:
-    case "GAMM":
-      return 0 /* GAMM */;
-    case 1:
-    case "CONCENTRATED_LIQUIDITY":
-      return 1 /* CONCENTRATED_LIQUIDITY */;
-    case -1:
-    case "UNRECOGNIZED":
-    default:
-      return -1 /* UNRECOGNIZED */;
-  }
-}
-function osmosisPoolTypeToJSON(object) {
-  switch (object) {
-    case 0 /* GAMM */:
-      return "GAMM";
-    case 1 /* CONCENTRATED_LIQUIDITY */:
-      return "CONCENTRATED_LIQUIDITY";
-    case -1 /* UNRECOGNIZED */:
-    default:
-      return "UNRECOGNIZED";
-  }
-}
 function createBaseTokenPrice() {
   return {
     baseDenom: "",
@@ -72,7 +34,6 @@ function createBaseTokenPrice() {
     osmosisBaseDenom: "",
     osmosisQuoteDenom: "",
     osmosisPoolId: BigInt(0),
-    osmosisPoolType: 0,
     spotPrice: "",
     lastRequestTime: /* @__PURE__ */ new Date(),
     lastResponseTime: /* @__PURE__ */ new Date(),
@@ -103,20 +64,17 @@ const TokenPrice = {
     if (message.osmosisPoolId !== BigInt(0)) {
       writer.uint32(56).uint64(message.osmosisPoolId);
     }
-    if (message.osmosisPoolType !== 0) {
-      writer.uint32(64).int32(message.osmosisPoolType);
-    }
     if (message.spotPrice !== "") {
-      writer.uint32(74).string(import_math.Decimal.fromUserInput(message.spotPrice, 18).atomics);
+      writer.uint32(66).string(import_math.Decimal.fromUserInput(message.spotPrice, 18).atomics);
     }
     if (message.lastRequestTime !== void 0) {
-      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastRequestTime), writer.uint32(82).fork()).ldelim();
+      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastRequestTime), writer.uint32(74).fork()).ldelim();
     }
     if (message.lastResponseTime !== void 0) {
-      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastResponseTime), writer.uint32(90).fork()).ldelim();
+      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastResponseTime), writer.uint32(82).fork()).ldelim();
     }
     if (message.queryInProgress === true) {
-      writer.uint32(96).bool(message.queryInProgress);
+      writer.uint32(88).bool(message.queryInProgress);
     }
     return writer;
   },
@@ -149,18 +107,15 @@ const TokenPrice = {
           message.osmosisPoolId = reader.uint64();
           break;
         case 8:
-          message.osmosisPoolType = reader.int32();
-          break;
-        case 9:
           message.spotPrice = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
-        case 10:
+        case 9:
           message.lastRequestTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
           break;
-        case 11:
+        case 10:
           message.lastResponseTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
           break;
-        case 12:
+        case 11:
           message.queryInProgress = reader.bool();
           break;
         default:
@@ -179,7 +134,6 @@ const TokenPrice = {
     message.osmosisBaseDenom = object.osmosisBaseDenom ?? "";
     message.osmosisQuoteDenom = object.osmosisQuoteDenom ?? "";
     message.osmosisPoolId = object.osmosisPoolId !== void 0 && object.osmosisPoolId !== null ? BigInt(object.osmosisPoolId.toString()) : BigInt(0);
-    message.osmosisPoolType = object.osmosisPoolType ?? 0;
     message.spotPrice = object.spotPrice ?? "";
     message.lastRequestTime = object.lastRequestTime ?? void 0;
     message.lastResponseTime = object.lastResponseTime ?? void 0;
@@ -209,9 +163,6 @@ const TokenPrice = {
     if (object.osmosis_pool_id !== void 0 && object.osmosis_pool_id !== null) {
       message.osmosisPoolId = BigInt(object.osmosis_pool_id);
     }
-    if (object.osmosis_pool_type !== void 0 && object.osmosis_pool_type !== null) {
-      message.osmosisPoolType = object.osmosis_pool_type;
-    }
     if (object.spot_price !== void 0 && object.spot_price !== null) {
       message.spotPrice = object.spot_price;
     }
@@ -235,7 +186,6 @@ const TokenPrice = {
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? void 0 : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? void 0 : message.osmosisQuoteDenom;
     obj.osmosis_pool_id = message.osmosisPoolId !== BigInt(0) ? message.osmosisPoolId?.toString() : void 0;
-    obj.osmosis_pool_type = message.osmosisPoolType === 0 ? void 0 : message.osmosisPoolType;
     obj.spot_price = message.spotPrice === "" ? void 0 : message.spotPrice;
     obj.last_request_time = message.lastRequestTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.lastRequestTime)) : void 0;
     obj.last_response_time = message.lastResponseTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.lastResponseTime)) : void 0;
@@ -359,11 +309,6 @@ const Params = {
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  OsmosisPoolType,
-  OsmosisPoolTypeAmino,
-  OsmosisPoolTypeSDKType,
   Params,
-  TokenPrice,
-  osmosisPoolTypeFromJSON,
-  osmosisPoolTypeToJSON
+  TokenPrice
 });

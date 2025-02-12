@@ -1,11 +1,11 @@
 import { TxRpc } from "../../types";
 import { BinaryReader } from "../../binary";
 import { QueryClient, createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryTokenPriceRequest, QueryTokenPriceResponse, QueryTokenPricesRequest, QueryTokenPricesResponse, QueryParamsRequest, QueryParamsResponse, QueryTokenPriceForQuoteDenomRequest, QueryTokenPriceForQuoteDenomResponse } from "./query";
+import { QueryTokenPriceRequest, TokenPriceResponse, QueryTokenPricesRequest, QueryTokenPricesResponse, QueryParamsRequest, QueryParamsResponse, QueryTokenPriceForQuoteDenomRequest, QueryTokenPriceForQuoteDenomResponse } from "./query";
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** TokenPrice queries the current price for a specific token */
-  tokenPrice(request: QueryTokenPriceRequest): Promise<QueryTokenPriceResponse>;
+  tokenPrice(request: QueryTokenPriceRequest): Promise<TokenPriceResponse>;
   /** TokenPrices queries all token prices */
   tokenPrices(request?: QueryTokenPricesRequest): Promise<QueryTokenPricesResponse>;
   /** Params queries the oracle parameters */
@@ -22,10 +22,10 @@ export class QueryClientImpl implements Query {
     this.params = this.params.bind(this);
     this.tokenPriceForQuoteDenom = this.tokenPriceForQuoteDenom.bind(this);
   }
-  tokenPrice(request: QueryTokenPriceRequest): Promise<QueryTokenPriceResponse> {
+  tokenPrice(request: QueryTokenPriceRequest): Promise<TokenPriceResponse> {
     const data = QueryTokenPriceRequest.encode(request).finish();
     const promise = this.rpc.request("stride.icqoracle.Query", "TokenPrice", data);
-    return promise.then(data => QueryTokenPriceResponse.decode(new BinaryReader(data)));
+    return promise.then(data => TokenPriceResponse.decode(new BinaryReader(data)));
   }
   tokenPrices(request: QueryTokenPricesRequest = {
     pagination: undefined
@@ -49,7 +49,7 @@ export const createRpcQueryExtension = (base: QueryClient) => {
   const rpc = createProtobufRpcClient(base);
   const queryService = new QueryClientImpl(rpc);
   return {
-    tokenPrice(request: QueryTokenPriceRequest): Promise<QueryTokenPriceResponse> {
+    tokenPrice(request: QueryTokenPriceRequest): Promise<TokenPriceResponse> {
       return queryService.tokenPrice(request);
     },
     tokenPrices(request?: QueryTokenPricesRequest): Promise<QueryTokenPricesResponse> {

@@ -262,7 +262,7 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
             metrics(request: import("./icaoracle/query").QueryMetricsRequest): Promise<import("./icaoracle/query").QueryMetricsResponse>;
         };
         icqoracle: {
-            tokenPrice(request: import("./icqoracle/query").QueryTokenPriceRequest): Promise<import("./icqoracle/query").QueryTokenPriceResponse>;
+            tokenPrice(request: import("./icqoracle/query").QueryTokenPriceRequest): Promise<import("./icqoracle/query").TokenPriceResponse>;
             tokenPrices(request?: import("./icqoracle/query").QueryTokenPricesRequest): Promise<import("./icqoracle/query").QueryTokenPricesResponse>;
             params(request?: import("./icqoracle/query").QueryParamsRequest): Promise<import("./icqoracle/query").QueryParamsResponse>;
             tokenPriceForQuoteDenom(request: import("./icqoracle/query").QueryTokenPriceForQuoteDenomRequest): Promise<import("./icqoracle/query").QueryTokenPriceForQuoteDenomResponse>;

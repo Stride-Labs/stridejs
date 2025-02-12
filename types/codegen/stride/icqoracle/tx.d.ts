@@ -1,4 +1,4 @@
-import { OsmosisPoolType, Params, ParamsAmino, ParamsSDKType } from "./icqoracle";
+import { Params, ParamsAmino, ParamsSDKType } from "./icqoracle";
 import { BinaryReader, BinaryWriter } from "../../binary";
 /**
  * MsgRegisterTokenPriceQuery defines the message for adding a new token to
@@ -20,8 +20,6 @@ export interface MsgRegisterTokenPriceQuery {
     osmosisQuoteDenom: string;
     /** Pool ID on Osmosis */
     osmosisPoolId: bigint;
-    /** Pool type on Osmosis (GAMM or CL) */
-    osmosisPoolType: OsmosisPoolType;
 }
 export interface MsgRegisterTokenPriceQueryProtoMsg {
     typeUrl: "/stride.icqoracle.MsgRegisterTokenPriceQuery";
@@ -47,8 +45,6 @@ export interface MsgRegisterTokenPriceQueryAmino {
     osmosis_quote_denom?: string;
     /** Pool ID on Osmosis */
     osmosis_pool_id?: string;
-    /** Pool type on Osmosis (GAMM or CL) */
-    osmosis_pool_type?: OsmosisPoolType;
 }
 export interface MsgRegisterTokenPriceQueryAminoMsg {
     type: "icqoracle/MsgRegisterTokenPriceQuery";
@@ -67,7 +63,6 @@ export interface MsgRegisterTokenPriceQuerySDKType {
     osmosis_base_denom: string;
     osmosis_quote_denom: string;
     osmosis_pool_id: bigint;
-    osmosis_pool_type: OsmosisPoolType;
 }
 export interface MsgRegisterTokenPriceQueryResponse {
 }

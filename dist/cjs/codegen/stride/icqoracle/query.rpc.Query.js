@@ -36,7 +36,7 @@ class QueryClientImpl {
   tokenPrice(request) {
     const data = import_query.QueryTokenPriceRequest.encode(request).finish();
     const promise = this.rpc.request("stride.icqoracle.Query", "TokenPrice", data);
-    return promise.then((data2) => import_query.QueryTokenPriceResponse.decode(new import_binary.BinaryReader(data2)));
+    return promise.then((data2) => import_query.TokenPriceResponse.decode(new import_binary.BinaryReader(data2)));
   }
   tokenPrices(request = {
     pagination: void 0

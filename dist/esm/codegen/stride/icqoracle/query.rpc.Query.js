@@ -1,6 +1,6 @@
 import { BinaryReader } from "../../binary";
 import { createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryTokenPriceRequest, QueryTokenPriceResponse, QueryTokenPricesRequest, QueryTokenPricesResponse, QueryParamsRequest, QueryParamsResponse, QueryTokenPriceForQuoteDenomRequest, QueryTokenPriceForQuoteDenomResponse } from "./query";
+import { QueryTokenPriceRequest, TokenPriceResponse, QueryTokenPricesRequest, QueryTokenPricesResponse, QueryParamsRequest, QueryParamsResponse, QueryTokenPriceForQuoteDenomRequest, QueryTokenPriceForQuoteDenomResponse } from "./query";
 class QueryClientImpl {
   rpc;
   constructor(rpc) {
@@ -13,7 +13,7 @@ class QueryClientImpl {
   tokenPrice(request) {
     const data = QueryTokenPriceRequest.encode(request).finish();
     const promise = this.rpc.request("stride.icqoracle.Query", "TokenPrice", data);
-    return promise.then((data2) => QueryTokenPriceResponse.decode(new BinaryReader(data2)));
+    return promise.then((data2) => TokenPriceResponse.decode(new BinaryReader(data2)));
   }
   tokenPrices(request = {
     pagination: void 0

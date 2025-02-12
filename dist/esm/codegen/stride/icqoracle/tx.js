@@ -9,8 +9,7 @@ function createBaseMsgRegisterTokenPriceQuery() {
     quoteDenomDecimals: BigInt(0),
     osmosisBaseDenom: "",
     osmosisQuoteDenom: "",
-    osmosisPoolId: BigInt(0),
-    osmosisPoolType: 0
+    osmosisPoolId: BigInt(0)
   };
 }
 const MsgRegisterTokenPriceQuery = {
@@ -39,9 +38,6 @@ const MsgRegisterTokenPriceQuery = {
     }
     if (message.osmosisPoolId !== BigInt(0)) {
       writer.uint32(64).uint64(message.osmosisPoolId);
-    }
-    if (message.osmosisPoolType !== 0) {
-      writer.uint32(72).int32(message.osmosisPoolType);
     }
     return writer;
   },
@@ -76,9 +72,6 @@ const MsgRegisterTokenPriceQuery = {
         case 8:
           message.osmosisPoolId = reader.uint64();
           break;
-        case 9:
-          message.osmosisPoolType = reader.int32();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -96,7 +89,6 @@ const MsgRegisterTokenPriceQuery = {
     message.osmosisBaseDenom = object.osmosisBaseDenom ?? "";
     message.osmosisQuoteDenom = object.osmosisQuoteDenom ?? "";
     message.osmosisPoolId = object.osmosisPoolId !== void 0 && object.osmosisPoolId !== null ? BigInt(object.osmosisPoolId.toString()) : BigInt(0);
-    message.osmosisPoolType = object.osmosisPoolType ?? 0;
     return message;
   },
   fromAmino(object) {
@@ -125,9 +117,6 @@ const MsgRegisterTokenPriceQuery = {
     if (object.osmosis_pool_id !== void 0 && object.osmosis_pool_id !== null) {
       message.osmosisPoolId = BigInt(object.osmosis_pool_id);
     }
-    if (object.osmosis_pool_type !== void 0 && object.osmosis_pool_type !== null) {
-      message.osmosisPoolType = object.osmosis_pool_type;
-    }
     return message;
   },
   toAmino(message) {
@@ -140,7 +129,6 @@ const MsgRegisterTokenPriceQuery = {
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? void 0 : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? void 0 : message.osmosisQuoteDenom;
     obj.osmosis_pool_id = message.osmosisPoolId !== BigInt(0) ? message.osmosisPoolId?.toString() : void 0;
-    obj.osmosis_pool_type = message.osmosisPoolType === 0 ? void 0 : message.osmosisPoolType;
     return obj;
   },
   fromAminoMsg(object) {
