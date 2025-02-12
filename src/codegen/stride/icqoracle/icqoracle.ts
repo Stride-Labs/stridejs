@@ -8,10 +8,6 @@ export interface TokenPrice {
   baseDenom: string;
   /** Quote denom on Stride */
   quoteDenom: string;
-  /** Decimals of base token, used for normalizing price feed from Osmosis */
-  baseDenomDecimals: bigint;
-  /** Decimals of quote token, used for normalizing price feed from Osmosis */
-  quoteDenomDecimals: bigint;
   /** Base denom on Osmosis */
   osmosisBaseDenom: string;
   /** Quote denom on Osmosis */
@@ -37,10 +33,6 @@ export interface TokenPriceAmino {
   base_denom?: string;
   /** Quote denom on Stride */
   quote_denom?: string;
-  /** Decimals of base token, used for normalizing price feed from Osmosis */
-  base_denom_decimals?: string;
-  /** Decimals of quote token, used for normalizing price feed from Osmosis */
-  quote_denom_decimals?: string;
   /** Base denom on Osmosis */
   osmosis_base_denom?: string;
   /** Quote denom on Osmosis */
@@ -64,8 +56,6 @@ export interface TokenPriceAminoMsg {
 export interface TokenPriceSDKType {
   base_denom: string;
   quote_denom: string;
-  base_denom_decimals: bigint;
-  quote_denom_decimals: bigint;
   osmosis_base_denom: string;
   osmosis_quote_denom: string;
   osmosis_pool_id: bigint;
@@ -121,8 +111,6 @@ function createBaseTokenPrice(): TokenPrice {
   return {
     baseDenom: "",
     quoteDenom: "",
-    baseDenomDecimals: BigInt(0),
-    quoteDenomDecimals: BigInt(0),
     osmosisBaseDenom: "",
     osmosisQuoteDenom: "",
     osmosisPoolId: BigInt(0),
@@ -141,32 +129,26 @@ export const TokenPrice = {
     if (message.quoteDenom !== "") {
       writer.uint32(18).string(message.quoteDenom);
     }
-    if (message.baseDenomDecimals !== BigInt(0)) {
-      writer.uint32(24).int64(message.baseDenomDecimals);
-    }
-    if (message.quoteDenomDecimals !== BigInt(0)) {
-      writer.uint32(32).int64(message.quoteDenomDecimals);
-    }
     if (message.osmosisBaseDenom !== "") {
-      writer.uint32(42).string(message.osmosisBaseDenom);
+      writer.uint32(26).string(message.osmosisBaseDenom);
     }
     if (message.osmosisQuoteDenom !== "") {
-      writer.uint32(50).string(message.osmosisQuoteDenom);
+      writer.uint32(34).string(message.osmosisQuoteDenom);
     }
     if (message.osmosisPoolId !== BigInt(0)) {
-      writer.uint32(56).uint64(message.osmosisPoolId);
+      writer.uint32(40).uint64(message.osmosisPoolId);
     }
     if (message.spotPrice !== "") {
-      writer.uint32(66).string(Decimal.fromUserInput(message.spotPrice, 18).atomics);
+      writer.uint32(50).string(Decimal.fromUserInput(message.spotPrice, 18).atomics);
     }
     if (message.lastRequestTime !== undefined) {
-      Timestamp.encode(toTimestamp(message.lastRequestTime), writer.uint32(74).fork()).ldelim();
+      Timestamp.encode(toTimestamp(message.lastRequestTime), writer.uint32(58).fork()).ldelim();
     }
     if (message.lastResponseTime !== undefined) {
-      Timestamp.encode(toTimestamp(message.lastResponseTime), writer.uint32(82).fork()).ldelim();
+      Timestamp.encode(toTimestamp(message.lastResponseTime), writer.uint32(66).fork()).ldelim();
     }
     if (message.queryInProgress === true) {
-      writer.uint32(88).bool(message.queryInProgress);
+      writer.uint32(72).bool(message.queryInProgress);
     }
     return writer;
   },
@@ -184,30 +166,24 @@ export const TokenPrice = {
           message.quoteDenom = reader.string();
           break;
         case 3:
-          message.baseDenomDecimals = reader.int64();
-          break;
-        case 4:
-          message.quoteDenomDecimals = reader.int64();
-          break;
-        case 5:
           message.osmosisBaseDenom = reader.string();
           break;
-        case 6:
+        case 4:
           message.osmosisQuoteDenom = reader.string();
           break;
-        case 7:
+        case 5:
           message.osmosisPoolId = reader.uint64();
           break;
-        case 8:
+        case 6:
           message.spotPrice = Decimal.fromAtomics(reader.string(), 18).toString();
           break;
-        case 9:
+        case 7:
           message.lastRequestTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
-        case 10:
+        case 8:
           message.lastResponseTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
-        case 11:
+        case 9:
           message.queryInProgress = reader.bool();
           break;
         default:
@@ -221,8 +197,6 @@ export const TokenPrice = {
     const message = createBaseTokenPrice();
     message.baseDenom = object.baseDenom ?? "";
     message.quoteDenom = object.quoteDenom ?? "";
-    message.baseDenomDecimals = object.baseDenomDecimals !== undefined && object.baseDenomDecimals !== null ? BigInt(object.baseDenomDecimals.toString()) : BigInt(0);
-    message.quoteDenomDecimals = object.quoteDenomDecimals !== undefined && object.quoteDenomDecimals !== null ? BigInt(object.quoteDenomDecimals.toString()) : BigInt(0);
     message.osmosisBaseDenom = object.osmosisBaseDenom ?? "";
     message.osmosisQuoteDenom = object.osmosisQuoteDenom ?? "";
     message.osmosisPoolId = object.osmosisPoolId !== undefined && object.osmosisPoolId !== null ? BigInt(object.osmosisPoolId.toString()) : BigInt(0);
@@ -239,12 +213,6 @@ export const TokenPrice = {
     }
     if (object.quote_denom !== undefined && object.quote_denom !== null) {
       message.quoteDenom = object.quote_denom;
-    }
-    if (object.base_denom_decimals !== undefined && object.base_denom_decimals !== null) {
-      message.baseDenomDecimals = BigInt(object.base_denom_decimals);
-    }
-    if (object.quote_denom_decimals !== undefined && object.quote_denom_decimals !== null) {
-      message.quoteDenomDecimals = BigInt(object.quote_denom_decimals);
     }
     if (object.osmosis_base_denom !== undefined && object.osmosis_base_denom !== null) {
       message.osmosisBaseDenom = object.osmosis_base_denom;
@@ -273,8 +241,6 @@ export const TokenPrice = {
     const obj: any = {};
     obj.base_denom = message.baseDenom === "" ? undefined : message.baseDenom;
     obj.quote_denom = message.quoteDenom === "" ? undefined : message.quoteDenom;
-    obj.base_denom_decimals = message.baseDenomDecimals !== BigInt(0) ? message.baseDenomDecimals?.toString() : undefined;
-    obj.quote_denom_decimals = message.quoteDenomDecimals !== BigInt(0) ? message.quoteDenomDecimals?.toString() : undefined;
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? undefined : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? undefined : message.osmosisQuoteDenom;
     obj.osmosis_pool_id = message.osmosisPoolId !== BigInt(0) ? message.osmosisPoolId?.toString() : undefined;

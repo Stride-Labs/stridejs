@@ -29,8 +29,6 @@ function createBaseTokenPrice() {
   return {
     baseDenom: "",
     quoteDenom: "",
-    baseDenomDecimals: BigInt(0),
-    quoteDenomDecimals: BigInt(0),
     osmosisBaseDenom: "",
     osmosisQuoteDenom: "",
     osmosisPoolId: BigInt(0),
@@ -49,32 +47,26 @@ const TokenPrice = {
     if (message.quoteDenom !== "") {
       writer.uint32(18).string(message.quoteDenom);
     }
-    if (message.baseDenomDecimals !== BigInt(0)) {
-      writer.uint32(24).int64(message.baseDenomDecimals);
-    }
-    if (message.quoteDenomDecimals !== BigInt(0)) {
-      writer.uint32(32).int64(message.quoteDenomDecimals);
-    }
     if (message.osmosisBaseDenom !== "") {
-      writer.uint32(42).string(message.osmosisBaseDenom);
+      writer.uint32(26).string(message.osmosisBaseDenom);
     }
     if (message.osmosisQuoteDenom !== "") {
-      writer.uint32(50).string(message.osmosisQuoteDenom);
+      writer.uint32(34).string(message.osmosisQuoteDenom);
     }
     if (message.osmosisPoolId !== BigInt(0)) {
-      writer.uint32(56).uint64(message.osmosisPoolId);
+      writer.uint32(40).uint64(message.osmosisPoolId);
     }
     if (message.spotPrice !== "") {
-      writer.uint32(66).string(import_math.Decimal.fromUserInput(message.spotPrice, 18).atomics);
+      writer.uint32(50).string(import_math.Decimal.fromUserInput(message.spotPrice, 18).atomics);
     }
     if (message.lastRequestTime !== void 0) {
-      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastRequestTime), writer.uint32(74).fork()).ldelim();
+      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastRequestTime), writer.uint32(58).fork()).ldelim();
     }
     if (message.lastResponseTime !== void 0) {
-      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastResponseTime), writer.uint32(82).fork()).ldelim();
+      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastResponseTime), writer.uint32(66).fork()).ldelim();
     }
     if (message.queryInProgress === true) {
-      writer.uint32(88).bool(message.queryInProgress);
+      writer.uint32(72).bool(message.queryInProgress);
     }
     return writer;
   },
@@ -92,30 +84,24 @@ const TokenPrice = {
           message.quoteDenom = reader.string();
           break;
         case 3:
-          message.baseDenomDecimals = reader.int64();
-          break;
-        case 4:
-          message.quoteDenomDecimals = reader.int64();
-          break;
-        case 5:
           message.osmosisBaseDenom = reader.string();
           break;
-        case 6:
+        case 4:
           message.osmosisQuoteDenom = reader.string();
           break;
-        case 7:
+        case 5:
           message.osmosisPoolId = reader.uint64();
           break;
-        case 8:
+        case 6:
           message.spotPrice = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
-        case 9:
+        case 7:
           message.lastRequestTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
           break;
-        case 10:
+        case 8:
           message.lastResponseTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
           break;
-        case 11:
+        case 9:
           message.queryInProgress = reader.bool();
           break;
         default:
@@ -129,8 +115,6 @@ const TokenPrice = {
     const message = createBaseTokenPrice();
     message.baseDenom = object.baseDenom ?? "";
     message.quoteDenom = object.quoteDenom ?? "";
-    message.baseDenomDecimals = object.baseDenomDecimals !== void 0 && object.baseDenomDecimals !== null ? BigInt(object.baseDenomDecimals.toString()) : BigInt(0);
-    message.quoteDenomDecimals = object.quoteDenomDecimals !== void 0 && object.quoteDenomDecimals !== null ? BigInt(object.quoteDenomDecimals.toString()) : BigInt(0);
     message.osmosisBaseDenom = object.osmosisBaseDenom ?? "";
     message.osmosisQuoteDenom = object.osmosisQuoteDenom ?? "";
     message.osmosisPoolId = object.osmosisPoolId !== void 0 && object.osmosisPoolId !== null ? BigInt(object.osmosisPoolId.toString()) : BigInt(0);
@@ -147,12 +131,6 @@ const TokenPrice = {
     }
     if (object.quote_denom !== void 0 && object.quote_denom !== null) {
       message.quoteDenom = object.quote_denom;
-    }
-    if (object.base_denom_decimals !== void 0 && object.base_denom_decimals !== null) {
-      message.baseDenomDecimals = BigInt(object.base_denom_decimals);
-    }
-    if (object.quote_denom_decimals !== void 0 && object.quote_denom_decimals !== null) {
-      message.quoteDenomDecimals = BigInt(object.quote_denom_decimals);
     }
     if (object.osmosis_base_denom !== void 0 && object.osmosis_base_denom !== null) {
       message.osmosisBaseDenom = object.osmosis_base_denom;
@@ -181,8 +159,6 @@ const TokenPrice = {
     const obj = {};
     obj.base_denom = message.baseDenom === "" ? void 0 : message.baseDenom;
     obj.quote_denom = message.quoteDenom === "" ? void 0 : message.quoteDenom;
-    obj.base_denom_decimals = message.baseDenomDecimals !== BigInt(0) ? message.baseDenomDecimals?.toString() : void 0;
-    obj.quote_denom_decimals = message.quoteDenomDecimals !== BigInt(0) ? message.quoteDenomDecimals?.toString() : void 0;
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? void 0 : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? void 0 : message.osmosisQuoteDenom;
     obj.osmosis_pool_id = message.osmosisPoolId !== BigInt(0) ? message.osmosisPoolId?.toString() : void 0;
