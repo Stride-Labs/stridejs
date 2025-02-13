@@ -1,5 +1,5 @@
 import { Coin, StdFee } from "@cosmjs/amino";
-import { DeliverTxResponse, IndexedTx, StargateClient } from "@cosmjs/stargate";
+import { DeliverTxResponse, Event, IndexedTx, StargateClient } from "@cosmjs/stargate";
 /**
  * This file is adapted from https://github.com/scrtlabs/secret.js, specifically these functions:
  * - coinFromString
@@ -47,6 +47,8 @@ import { DeliverTxResponse, IndexedTx, StargateClient } from "@cosmjs/stargate";
  * ```
  * @param {string} coinAsString A string representation of a coin in the format `"{amount}{denom}"`.
  * @returns {Coin} A Coin object with the extracted amount and denom.
+ * @throws {Error} If cannot extract a denom and an amount from the input.
+ *
  */
 export declare function coinFromString(coinAsString: string): Coin;
 /**
@@ -210,3 +212,24 @@ export declare function getTxIbcResponses(stargateClient: StargateClient, txResp
 export declare function findIbcResponse(stargateClient: StargateClient, packetSequence: string, packetSrcChannel: string, type?: "ack" | "timeout", resolveResponsesTimeoutMs?: number, resolveResponsesCheckIntervalMs?: number, isDoneObject?: {
     isDone: boolean;
 }): Promise<IbcResponse>;
+/**
+ * Searches through a list of events and their attributes to find a specific value based on a key.
+ * The key should be in the format "eventType.attributeKey".
+ *
+ * @example
+ * ```
+ * const events = [
+ *   {
+ *     type: "transfer",
+ *     attributes: [{ key: "amount", value: "100" }]
+ *   }
+ * ];
+ * getValueFromEvents(events, "transfer.amount") // returns "100"
+ * ```
+ *
+ * @param {readonly Event[]} events - An array of Event objects to search through.
+ * @param {string} key - The key to search for in the format "eventType.attributeKey".
+ * @returns {string} The value associated with the specified key.
+ * @throws {Error} If the specified key is not found in any of the events.
+ */
+export declare function getValueFromEvents(events: readonly Event[], key: string): string;

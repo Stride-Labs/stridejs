@@ -26,6 +26,7 @@ __export(utils_exports, {
   feeFromGas: () => feeFromGas,
   findIbcResponse: () => findIbcResponse,
   getTxIbcResponses: () => getTxIbcResponses,
+  getValueFromEvents: () => getValueFromEvents,
   ibcDenom: () => ibcDenom,
   pubkeyToAddress: () => pubkeyToAddress,
   selfDelegatorAddressToValidatorAddress: () => selfDelegatorAddressToValidatorAddress,
@@ -173,6 +174,16 @@ async function findIbcResponse(stargateClient, packetSequence, packetSrcChannel,
     );
   });
 }
+function getValueFromEvents(events, key) {
+  for (const e of events) {
+    for (const a of e.attributes) {
+      if (`${e.type}.${a.key}` === key) {
+        return String(a.value);
+      }
+    }
+  }
+  throw new Error(`Event ${key} isn't in ${JSON.stringify(events)}`);
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   base64PubkeyToAddress,
@@ -184,6 +195,7 @@ async function findIbcResponse(stargateClient, packetSequence, packetSrcChannel,
   feeFromGas,
   findIbcResponse,
   getTxIbcResponses,
+  getValueFromEvents,
   ibcDenom,
   pubkeyToAddress,
   selfDelegatorAddressToValidatorAddress,

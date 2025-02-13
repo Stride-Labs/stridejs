@@ -137,6 +137,16 @@ async function findIbcResponse(stargateClient, packetSequence, packetSrcChannel,
     );
   });
 }
+function getValueFromEvents(events, key) {
+  for (const e of events) {
+    for (const a of e.attributes) {
+      if (`${e.type}.${a.key}` === key) {
+        return String(a.value);
+      }
+    }
+  }
+  throw new Error(`Event ${key} isn't in ${JSON.stringify(events)}`);
+}
 export {
   base64PubkeyToAddress,
   base64TendermintPubkeyToValconsAddress,
@@ -147,6 +157,7 @@ export {
   feeFromGas,
   findIbcResponse,
   getTxIbcResponses,
+  getValueFromEvents,
   ibcDenom,
   pubkeyToAddress,
   selfDelegatorAddressToValidatorAddress,
