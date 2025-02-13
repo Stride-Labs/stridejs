@@ -1,6 +1,11 @@
 import { Coin, StdFee } from "@cosmjs/amino";
 import { fromBase64, toHex, toUtf8 } from "@cosmjs/encoding";
-import { DeliverTxResponse, IndexedTx, StargateClient } from "@cosmjs/stargate";
+import {
+  DeliverTxResponse,
+  Event,
+  IndexedTx,
+  StargateClient,
+} from "@cosmjs/stargate";
 import { ripemd160 } from "@noble/hashes/ripemd160";
 import { sha256 } from "@noble/hashes/sha256";
 import { bech32 } from "bech32";
@@ -53,6 +58,8 @@ import { bech32 } from "bech32";
  * ```
  * @param {string} coinAsString A string representation of a coin in the format `"{amount}{denom}"`.
  * @returns {Coin} A Coin object with the extracted amount and denom.
+ * @throws {Error} If cannot extract a denom and an amount from the input.
+ *
  */
 export function coinFromString(coinAsString: string): Coin {
   const regexMatch = coinAsString.match(
@@ -403,4 +410,39 @@ export async function findIbcResponse(
       `timed-out while trying to resolve IBC ${type} tx for packet_src_channel='${packetSrcChannel}' and packet_sequence='${packetSequence}'`,
     );
   });
+}
+
+/**
+ * Searches through a list of events and their attributes to find a specific value based on a key.
+ * The key should be in the format "eventType.attributeKey".
+ *
+ * @example
+ * ```
+ * const events = [
+ *   {
+ *     type: "transfer",
+ *     attributes: [{ key: "amount", value: "100" }]
+ *   }
+ * ];
+ * getValueFromEvents(events, "transfer.amount") // returns "100"
+ * ```
+ *
+ * @param {readonly Event[]} events - An array of Event objects to search through.
+ * @param {string} key - The key to search for in the format "eventType.attributeKey".
+ * @returns {string} The value associated with the specified key.
+ * @throws {Error} If the specified key is not found in any of the events.
+ */
+export function getValueFromEvents(
+  events: readonly Event[],
+  key: string,
+): string {
+  for (const e of events) {
+    for (const a of e.attributes) {
+      if (`${e.type}.${a.key}` === key) {
+        return String(a.value);
+      }
+    }
+  }
+
+  throw new Error(`Event ${key} isn't in ${JSON.stringify(events)}`);
 }
