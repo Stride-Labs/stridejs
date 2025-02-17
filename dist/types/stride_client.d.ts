@@ -1,6 +1,6 @@
 import { EncodeObject, OfflineSigner } from "@cosmjs/proto-signing";
 import { DeliverTxResponse, SigningStargateClient, SigningStargateClientOptions, StdFee } from "@cosmjs/stargate";
-import { cosmos, ibc, stride } from "./codegen";
+import { cosmos, cosmwasm, ibc, stride } from "./codegen";
 import { IbcResponse } from "./utils";
 export declare type StrideClientOptions = SigningStargateClientOptions & {
     /**
@@ -24,14 +24,7 @@ export declare class StrideClient {
     readonly signer: OfflineSigner;
     readonly address: string;
     readonly signingStargateClient: Awaited<ReturnType<typeof SigningStargateClient.connectWithSigner>>;
-    readonly query: Awaited<ReturnType<typeof stride.ClientFactory.createRPCQueryClient>> & Awaited<ReturnType<typeof ibc.ClientFactory.createRPCQueryClient>>;
-    readonly types: {
-        stride: typeof stride;
-    } & {
-        cosmos: typeof cosmos;
-    } & {
-        ibc: typeof ibc;
-    };
+    readonly query: Awaited<ReturnType<typeof stride.ClientFactory.createRPCQueryClient>> & Awaited<ReturnType<typeof cosmos.ClientFactory.createRPCQueryClient>> & Awaited<ReturnType<typeof cosmwasm.ClientFactory.createRPCQueryClient>> & Awaited<ReturnType<typeof ibc.ClientFactory.createRPCQueryClient>>;
     readonly options?: StrideClientOptions;
     private constructor();
     /**
@@ -41,6 +34,8 @@ export declare class StrideClient {
      * @param {OfflineSigner} signer - A signer for signing transactions.
      * @param {string} address - The account address inside the `signer` that is permitted to sign transactions.
      * @param {StrideClientOptions} [options] - Optional. Configurations for the signing client, including gas price, gas limit, and other parameters.
+     * @param {StrideClientOptions.resolveIbcResponsesTimeoutMs} [options.resolveIbcResponsesTimeoutMs] - Optional. How much time (in milliseconds) to wait for IBC response txs (acknowledge/timeout). Defaults to `180_000` (3 minutes).
+     * @param {StrideClientOptions.resolveIbcResponsesCheckIntervalMs} [options.resolveIbcResponsesCheckIntervalMs] - Optional. When waiting for IBC response txs, interval between checks in milliseconds. Defaults to `12_000` (12 seconds).
      */
     static create(rpcUrl: string, signer: OfflineSigner, address: string, options?: StrideClientOptions): Promise<StrideClient>;
     /**

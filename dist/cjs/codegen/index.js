@@ -18,6 +18,8 @@ __reExport(codegen_exports, require("./amino/bundle"), module.exports);
 __reExport(codegen_exports, require("./cosmos_proto/bundle"), module.exports);
 __reExport(codegen_exports, require("./cosmos/bundle"), module.exports);
 __reExport(codegen_exports, require("./cosmos/client"), module.exports);
+__reExport(codegen_exports, require("./cosmwasm/bundle"), module.exports);
+__reExport(codegen_exports, require("./cosmwasm/client"), module.exports);
 __reExport(codegen_exports, require("./gogoproto/bundle"), module.exports);
 __reExport(codegen_exports, require("./google/bundle"), module.exports);
 __reExport(codegen_exports, require("./ibc/bundle"), module.exports);
@@ -36,6 +38,8 @@ __reExport(codegen_exports, require("./types"), module.exports);
   ...require("./cosmos_proto/bundle"),
   ...require("./cosmos/bundle"),
   ...require("./cosmos/client"),
+  ...require("./cosmwasm/bundle"),
+  ...require("./cosmwasm/client"),
   ...require("./gogoproto/bundle"),
   ...require("./google/bundle"),
   ...require("./ibc/bundle"),

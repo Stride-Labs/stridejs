@@ -48,6 +48,7 @@ var import_duration = require("../../../google/protobuf/duration");
 var import_distribution = require("../../distribution/v1beta1/distribution");
 var import_params = require("../../params/v1beta1/params");
 var import_upgrade = require("../../upgrade/v1beta1/upgrade");
+var import_proposal_legacy = require("../../../cosmwasm/wasm/v1/proposal_legacy");
 var import_client = require("../../../ibc/core/client/v1/client");
 var import_binary = require("../../../binary");
 var import_math = require("@cosmjs/math");
@@ -1058,6 +1059,30 @@ const Cosmos_govv1beta1Content_InterfaceDecoder = (input) => {
       return import_upgrade.SoftwareUpgradeProposal.decode(data.value);
     case "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal":
       return import_upgrade.CancelSoftwareUpgradeProposal.decode(data.value);
+    case "/cosmwasm.wasm.v1.StoreCodeProposal":
+      return import_proposal_legacy.StoreCodeProposal.decode(data.value);
+    case "/cosmwasm.wasm.v1.InstantiateContractProposal":
+      return import_proposal_legacy.InstantiateContractProposal.decode(data.value);
+    case "/cosmwasm.wasm.v1.InstantiateContract2Proposal":
+      return import_proposal_legacy.InstantiateContract2Proposal.decode(data.value);
+    case "/cosmwasm.wasm.v1.MigrateContractProposal":
+      return import_proposal_legacy.MigrateContractProposal.decode(data.value);
+    case "/cosmwasm.wasm.v1.SudoContractProposal":
+      return import_proposal_legacy.SudoContractProposal.decode(data.value);
+    case "/cosmwasm.wasm.v1.ExecuteContractProposal":
+      return import_proposal_legacy.ExecuteContractProposal.decode(data.value);
+    case "/cosmwasm.wasm.v1.UpdateAdminProposal":
+      return import_proposal_legacy.UpdateAdminProposal.decode(data.value);
+    case "/cosmwasm.wasm.v1.ClearAdminProposal":
+      return import_proposal_legacy.ClearAdminProposal.decode(data.value);
+    case "/cosmwasm.wasm.v1.PinCodesProposal":
+      return import_proposal_legacy.PinCodesProposal.decode(data.value);
+    case "/cosmwasm.wasm.v1.UnpinCodesProposal":
+      return import_proposal_legacy.UnpinCodesProposal.decode(data.value);
+    case "/cosmwasm.wasm.v1.UpdateInstantiateConfigProposal":
+      return import_proposal_legacy.UpdateInstantiateConfigProposal.decode(data.value);
+    case "/cosmwasm.wasm.v1.StoreAndInstantiateContractProposal":
+      return import_proposal_legacy.StoreAndInstantiateContractProposal.decode(data.value);
     case "/ibc.core.client.v1.ClientUpdateProposal":
       return import_client.ClientUpdateProposal.decode(data.value);
     case "/ibc.core.client.v1.UpgradeProposal":
@@ -1097,6 +1122,66 @@ const Cosmos_govv1beta1Content_FromAmino = (content) => {
       return import_any.Any.fromPartial({
         typeUrl: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal",
         value: import_upgrade.CancelSoftwareUpgradeProposal.encode(import_upgrade.CancelSoftwareUpgradeProposal.fromPartial(import_upgrade.CancelSoftwareUpgradeProposal.fromAmino(content.value))).finish()
+      });
+    case "wasm/StoreCodeProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.StoreCodeProposal",
+        value: import_proposal_legacy.StoreCodeProposal.encode(import_proposal_legacy.StoreCodeProposal.fromPartial(import_proposal_legacy.StoreCodeProposal.fromAmino(content.value))).finish()
+      });
+    case "wasm/InstantiateContractProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.InstantiateContractProposal",
+        value: import_proposal_legacy.InstantiateContractProposal.encode(import_proposal_legacy.InstantiateContractProposal.fromPartial(import_proposal_legacy.InstantiateContractProposal.fromAmino(content.value))).finish()
+      });
+    case "wasm/InstantiateContract2Proposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.InstantiateContract2Proposal",
+        value: import_proposal_legacy.InstantiateContract2Proposal.encode(import_proposal_legacy.InstantiateContract2Proposal.fromPartial(import_proposal_legacy.InstantiateContract2Proposal.fromAmino(content.value))).finish()
+      });
+    case "wasm/MigrateContractProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.MigrateContractProposal",
+        value: import_proposal_legacy.MigrateContractProposal.encode(import_proposal_legacy.MigrateContractProposal.fromPartial(import_proposal_legacy.MigrateContractProposal.fromAmino(content.value))).finish()
+      });
+    case "wasm/SudoContractProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.SudoContractProposal",
+        value: import_proposal_legacy.SudoContractProposal.encode(import_proposal_legacy.SudoContractProposal.fromPartial(import_proposal_legacy.SudoContractProposal.fromAmino(content.value))).finish()
+      });
+    case "wasm/ExecuteContractProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.ExecuteContractProposal",
+        value: import_proposal_legacy.ExecuteContractProposal.encode(import_proposal_legacy.ExecuteContractProposal.fromPartial(import_proposal_legacy.ExecuteContractProposal.fromAmino(content.value))).finish()
+      });
+    case "wasm/UpdateAdminProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.UpdateAdminProposal",
+        value: import_proposal_legacy.UpdateAdminProposal.encode(import_proposal_legacy.UpdateAdminProposal.fromPartial(import_proposal_legacy.UpdateAdminProposal.fromAmino(content.value))).finish()
+      });
+    case "wasm/ClearAdminProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.ClearAdminProposal",
+        value: import_proposal_legacy.ClearAdminProposal.encode(import_proposal_legacy.ClearAdminProposal.fromPartial(import_proposal_legacy.ClearAdminProposal.fromAmino(content.value))).finish()
+      });
+    case "wasm/PinCodesProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.PinCodesProposal",
+        value: import_proposal_legacy.PinCodesProposal.encode(import_proposal_legacy.PinCodesProposal.fromPartial(import_proposal_legacy.PinCodesProposal.fromAmino(content.value))).finish()
+      });
+    case "wasm/UnpinCodesProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.UnpinCodesProposal",
+        value: import_proposal_legacy.UnpinCodesProposal.encode(import_proposal_legacy.UnpinCodesProposal.fromPartial(import_proposal_legacy.UnpinCodesProposal.fromAmino(content.value))).finish()
+      });
+    case "wasm/UpdateInstantiateConfigProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.UpdateInstantiateConfigProposal",
+        value: import_proposal_legacy.UpdateInstantiateConfigProposal.encode(import_proposal_legacy.UpdateInstantiateConfigProposal.fromPartial(import_proposal_legacy.UpdateInstantiateConfigProposal.fromAmino(content.value))).finish()
+      });
+    case "wasm/StoreAndInstantiateContractProposal":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.StoreAndInstantiateContractProposal",
+        value: import_proposal_legacy.StoreAndInstantiateContractProposal.encode(import_proposal_legacy.StoreAndInstantiateContractProposal.fromPartial(import_proposal_legacy.StoreAndInstantiateContractProposal.fromAmino(content.value))).finish()
       });
     case "cosmos-sdk/ClientUpdateProposal":
       return import_any.Any.fromPartial({
@@ -1143,6 +1228,66 @@ const Cosmos_govv1beta1Content_ToAmino = (content) => {
       return {
         type: "cosmos-sdk/CancelSoftwareUpgradeProposal",
         value: import_upgrade.CancelSoftwareUpgradeProposal.toAmino(import_upgrade.CancelSoftwareUpgradeProposal.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.StoreCodeProposal":
+      return {
+        type: "wasm/StoreCodeProposal",
+        value: import_proposal_legacy.StoreCodeProposal.toAmino(import_proposal_legacy.StoreCodeProposal.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.InstantiateContractProposal":
+      return {
+        type: "wasm/InstantiateContractProposal",
+        value: import_proposal_legacy.InstantiateContractProposal.toAmino(import_proposal_legacy.InstantiateContractProposal.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.InstantiateContract2Proposal":
+      return {
+        type: "wasm/InstantiateContract2Proposal",
+        value: import_proposal_legacy.InstantiateContract2Proposal.toAmino(import_proposal_legacy.InstantiateContract2Proposal.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.MigrateContractProposal":
+      return {
+        type: "wasm/MigrateContractProposal",
+        value: import_proposal_legacy.MigrateContractProposal.toAmino(import_proposal_legacy.MigrateContractProposal.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.SudoContractProposal":
+      return {
+        type: "wasm/SudoContractProposal",
+        value: import_proposal_legacy.SudoContractProposal.toAmino(import_proposal_legacy.SudoContractProposal.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.ExecuteContractProposal":
+      return {
+        type: "wasm/ExecuteContractProposal",
+        value: import_proposal_legacy.ExecuteContractProposal.toAmino(import_proposal_legacy.ExecuteContractProposal.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.UpdateAdminProposal":
+      return {
+        type: "wasm/UpdateAdminProposal",
+        value: import_proposal_legacy.UpdateAdminProposal.toAmino(import_proposal_legacy.UpdateAdminProposal.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.ClearAdminProposal":
+      return {
+        type: "wasm/ClearAdminProposal",
+        value: import_proposal_legacy.ClearAdminProposal.toAmino(import_proposal_legacy.ClearAdminProposal.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.PinCodesProposal":
+      return {
+        type: "wasm/PinCodesProposal",
+        value: import_proposal_legacy.PinCodesProposal.toAmino(import_proposal_legacy.PinCodesProposal.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.UnpinCodesProposal":
+      return {
+        type: "wasm/UnpinCodesProposal",
+        value: import_proposal_legacy.UnpinCodesProposal.toAmino(import_proposal_legacy.UnpinCodesProposal.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.UpdateInstantiateConfigProposal":
+      return {
+        type: "wasm/UpdateInstantiateConfigProposal",
+        value: import_proposal_legacy.UpdateInstantiateConfigProposal.toAmino(import_proposal_legacy.UpdateInstantiateConfigProposal.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.StoreAndInstantiateContractProposal":
+      return {
+        type: "wasm/StoreAndInstantiateContractProposal",
+        value: import_proposal_legacy.StoreAndInstantiateContractProposal.toAmino(import_proposal_legacy.StoreAndInstantiateContractProposal.decode(content.value, void 0))
       };
     case "/ibc.core.client.v1.ClientUpdateProposal":
       return {

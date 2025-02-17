@@ -30,7 +30,8 @@ var import_any = require("../../../google/protobuf/any");
 var import_timestamp = require("../../../google/protobuf/timestamp");
 var import_authz = require("../../bank/v1beta1/authz");
 var import_authz2 = require("../../staking/v1beta1/authz");
-var import_authz3 = require("../../../ibc/applications/transfer/v1/authz");
+var import_authz3 = require("../../../cosmwasm/wasm/v1/authz");
+var import_authz4 = require("../../../ibc/applications/transfer/v1/authz");
 var import_binary = require("../../../binary");
 var import_helpers = require("../../../helpers");
 function createBaseGenericAuthorization() {
@@ -370,8 +371,14 @@ const Cosmos_authzv1beta1Authorization_InterfaceDecoder = (input) => {
       return import_authz.SendAuthorization.decode(data.value);
     case "/cosmos.staking.v1beta1.StakeAuthorization":
       return import_authz2.StakeAuthorization.decode(data.value);
+    case "/cosmwasm.wasm.v1.StoreCodeAuthorization":
+      return import_authz3.StoreCodeAuthorization.decode(data.value);
+    case "/cosmwasm.wasm.v1.ContractExecutionAuthorization":
+      return import_authz3.ContractExecutionAuthorization.decode(data.value);
+    case "/cosmwasm.wasm.v1.ContractMigrationAuthorization":
+      return import_authz3.ContractMigrationAuthorization.decode(data.value);
     case "/ibc.applications.transfer.v1.TransferAuthorization":
-      return import_authz3.TransferAuthorization.decode(data.value);
+      return import_authz4.TransferAuthorization.decode(data.value);
     default:
       return data;
   }
@@ -393,10 +400,25 @@ const Cosmos_authzv1beta1Authorization_FromAmino = (content) => {
         typeUrl: "/cosmos.staking.v1beta1.StakeAuthorization",
         value: import_authz2.StakeAuthorization.encode(import_authz2.StakeAuthorization.fromPartial(import_authz2.StakeAuthorization.fromAmino(content.value))).finish()
       });
+    case "wasm/StoreCodeAuthorization":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.StoreCodeAuthorization",
+        value: import_authz3.StoreCodeAuthorization.encode(import_authz3.StoreCodeAuthorization.fromPartial(import_authz3.StoreCodeAuthorization.fromAmino(content.value))).finish()
+      });
+    case "wasm/ContractExecutionAuthorization":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.ContractExecutionAuthorization",
+        value: import_authz3.ContractExecutionAuthorization.encode(import_authz3.ContractExecutionAuthorization.fromPartial(import_authz3.ContractExecutionAuthorization.fromAmino(content.value))).finish()
+      });
+    case "wasm/ContractMigrationAuthorization":
+      return import_any.Any.fromPartial({
+        typeUrl: "/cosmwasm.wasm.v1.ContractMigrationAuthorization",
+        value: import_authz3.ContractMigrationAuthorization.encode(import_authz3.ContractMigrationAuthorization.fromPartial(import_authz3.ContractMigrationAuthorization.fromAmino(content.value))).finish()
+      });
     case "cosmos-sdk/TransferAuthorization":
       return import_any.Any.fromPartial({
         typeUrl: "/ibc.applications.transfer.v1.TransferAuthorization",
-        value: import_authz3.TransferAuthorization.encode(import_authz3.TransferAuthorization.fromPartial(import_authz3.TransferAuthorization.fromAmino(content.value))).finish()
+        value: import_authz4.TransferAuthorization.encode(import_authz4.TransferAuthorization.fromPartial(import_authz4.TransferAuthorization.fromAmino(content.value))).finish()
       });
     default:
       return import_any.Any.fromAmino(content);
@@ -419,10 +441,25 @@ const Cosmos_authzv1beta1Authorization_ToAmino = (content) => {
         type: "cosmos-sdk/StakeAuthorization",
         value: import_authz2.StakeAuthorization.toAmino(import_authz2.StakeAuthorization.decode(content.value, void 0))
       };
+    case "/cosmwasm.wasm.v1.StoreCodeAuthorization":
+      return {
+        type: "wasm/StoreCodeAuthorization",
+        value: import_authz3.StoreCodeAuthorization.toAmino(import_authz3.StoreCodeAuthorization.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.ContractExecutionAuthorization":
+      return {
+        type: "wasm/ContractExecutionAuthorization",
+        value: import_authz3.ContractExecutionAuthorization.toAmino(import_authz3.ContractExecutionAuthorization.decode(content.value, void 0))
+      };
+    case "/cosmwasm.wasm.v1.ContractMigrationAuthorization":
+      return {
+        type: "wasm/ContractMigrationAuthorization",
+        value: import_authz3.ContractMigrationAuthorization.toAmino(import_authz3.ContractMigrationAuthorization.decode(content.value, void 0))
+      };
     case "/ibc.applications.transfer.v1.TransferAuthorization":
       return {
         type: "cosmos-sdk/TransferAuthorization",
-        value: import_authz3.TransferAuthorization.toAmino(import_authz3.TransferAuthorization.decode(content.value, void 0))
+        value: import_authz4.TransferAuthorization.toAmino(import_authz4.TransferAuthorization.decode(content.value, void 0))
       };
     default:
       return import_any.Any.toAmino(content);
