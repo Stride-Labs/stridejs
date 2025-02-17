@@ -10,6 +10,9 @@ import {
   cosmos,
   cosmosAminoConverters,
   cosmosProtoRegistry,
+  cosmwasm,
+  cosmwasmAminoConverters,
+  cosmwasmProtoRegistry,
   ibc,
   ibcAminoConverters,
   ibcProtoRegistry,
@@ -48,6 +51,8 @@ export class StrideClient {
     public readonly query: Awaited<
       ReturnType<typeof stride.ClientFactory.createRPCQueryClient>
     > &
+      Awaited<ReturnType<typeof cosmos.ClientFactory.createRPCQueryClient>> &
+      Awaited<ReturnType<typeof cosmwasm.ClientFactory.createRPCQueryClient>> &
       Awaited<ReturnType<typeof ibc.ClientFactory.createRPCQueryClient>>,
     public readonly types: { stride: typeof stride } & {
       cosmos: typeof cosmos;
@@ -76,11 +81,13 @@ export class StrideClient {
       ...strideProtoRegistry,
       ...cosmosProtoRegistry,
       ...ibcProtoRegistry,
+      ...cosmwasmProtoRegistry,
     ]);
     const aminoTypes = new AminoTypes({
       ...strideAminoConverters,
       ...cosmosAminoConverters,
       ...ibcAminoConverters,
+      ...cosmwasmAminoConverters,
     });
 
     options = Object.assign(
@@ -101,6 +108,12 @@ export class StrideClient {
     // setup query client
     const query = Object.assign(
       await ibc.ClientFactory.createRPCQueryClient({
+        rpcEndpoint: rpcUrl,
+      }),
+      await cosmwasm.ClientFactory.createRPCQueryClient({
+        rpcEndpoint: rpcUrl,
+      }),
+      await cosmos.ClientFactory.createRPCQueryClient({
         rpcEndpoint: rpcUrl,
       }),
       await stride.ClientFactory.createRPCQueryClient({

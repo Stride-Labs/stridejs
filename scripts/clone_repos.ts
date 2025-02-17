@@ -18,6 +18,10 @@ export const config = [
     repo: "https://github.com/cosmos/ibc-go",
     branch: "v7.4.0",
   },
+  {
+    repo: "https://github.com/CosmWasm/wasmd",
+    branch: "v0.46.0",
+  },
 ];
 
 // create the /scripts/proto dir
