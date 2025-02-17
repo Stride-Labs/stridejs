@@ -62,6 +62,8 @@ export class StrideClient {
    * @param {OfflineSigner} signer - A signer for signing transactions.
    * @param {string} address - The account address inside the `signer` that is permitted to sign transactions.
    * @param {StrideClientOptions} [options] - Optional. Configurations for the signing client, including gas price, gas limit, and other parameters.
+   * @param {StrideClientOptions.resolveIbcResponsesTimeoutMs} [options.resolveIbcResponsesTimeoutMs] - Optional. How much time (in milliseconds) to wait for IBC response txs (acknowledge/timeout). Defaults to `180_000` (3 minutes).
+   * @param {StrideClientOptions.resolveIbcResponsesCheckIntervalMs} [options.resolveIbcResponsesCheckIntervalMs] - Optional. When waiting for IBC response txs, interval between checks in milliseconds. Defaults to `12_000` (12 seconds).
    */
   public static async create(
     rpcUrl: string,
