@@ -54,9 +54,6 @@ export class StrideClient {
       Awaited<ReturnType<typeof cosmos.ClientFactory.createRPCQueryClient>> &
       Awaited<ReturnType<typeof cosmwasm.ClientFactory.createRPCQueryClient>> &
       Awaited<ReturnType<typeof ibc.ClientFactory.createRPCQueryClient>>,
-    public readonly types: { stride: typeof stride } & {
-      cosmos: typeof cosmos;
-    } & { ibc: typeof ibc },
     public readonly options?: StrideClientOptions,
   ) {}
 
@@ -121,20 +118,12 @@ export class StrideClient {
       }),
     );
 
-    // setup types directory
-    const types = Object.assign(
-      { stride: stride },
-      { cosmos: cosmos },
-      { ibc: ibc },
-    );
-
     return new StrideClient(
       rpcUrl,
       signer,
       address,
       signingStargateClient,
       query,
-      types,
       options,
     );
   }
