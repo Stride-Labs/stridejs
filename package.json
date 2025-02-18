@@ -8,6 +8,13 @@
   ],
   "homepage": "https://github.com/Stride-Labs/stridejs#readme",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Stride-Labs/stridejs"
+  },
+  "bugs": {
+    "url": "https://github.com/Stride-Labs/stridejs/issues"
+  },
   "source": "src/index.ts",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -17,9 +24,12 @@
     "test": "__tests__"
   },
   "files": [
-    "dist/types",
-    "dist/cjs",
-    "dist/esm"
+    "dist",
+    "src",
+    "package.json",
+    "pnpm-lock.yaml",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "pnpm run codegen && pnpm run bundle && pnpm run types",
@@ -36,14 +46,6 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Stride-Labs/stridejs"
-  },
-  "keywords": [],
-  "bugs": {
-    "url": "https://github.com/Stride-Labs/stridejs/issues"
   },
   "dependencies": {
     "@cosmjs/amino": "0.32.4",
