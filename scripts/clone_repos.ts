@@ -37,7 +37,7 @@ for (const repoConfig of config) {
   const { repo, rev } = repoConfig;
 
   try {
-    console.log(`git clone ${repo}@${rev}`);
+    console.log(`git clone --branch ${rev} ${repo}`);
 
     execSync(
       `cd "${reposDir}" && git clone --depth 1 --branch "${rev}" "${repo}" 2> /dev/null`,
