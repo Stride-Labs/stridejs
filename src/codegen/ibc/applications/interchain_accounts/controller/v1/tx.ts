@@ -1,3 +1,4 @@
+import { Order } from "../../../../core/channel/v1/channel";
 import { InterchainAccountPacketData, InterchainAccountPacketDataAmino, InterchainAccountPacketDataSDKType } from "../../v1/packet";
 import { BinaryReader, BinaryWriter } from "../../../../../binary";
 /** MsgRegisterInterchainAccount defines the payload for Msg/RegisterAccount */
@@ -5,6 +6,7 @@ export interface MsgRegisterInterchainAccount {
   owner: string;
   connectionId: string;
   version: string;
+  ordering: Order;
 }
 export interface MsgRegisterInterchainAccountProtoMsg {
   typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccount";
@@ -15,6 +17,7 @@ export interface MsgRegisterInterchainAccountAmino {
   owner?: string;
   connection_id?: string;
   version?: string;
+  ordering?: Order;
 }
 export interface MsgRegisterInterchainAccountAminoMsg {
   type: "cosmos-sdk/MsgRegisterInterchainAccount";
@@ -25,6 +28,7 @@ export interface MsgRegisterInterchainAccountSDKType {
   owner: string;
   connection_id: string;
   version: string;
+  ordering: Order;
 }
 /** MsgRegisterInterchainAccountResponse defines the response for Msg/RegisterAccount */
 export interface MsgRegisterInterchainAccountResponse {
@@ -110,7 +114,8 @@ function createBaseMsgRegisterInterchainAccount(): MsgRegisterInterchainAccount 
   return {
     owner: "",
     connectionId: "",
-    version: ""
+    version: "",
+    ordering: 0
   };
 }
 export const MsgRegisterInterchainAccount = {
@@ -124,6 +129,9 @@ export const MsgRegisterInterchainAccount = {
     }
     if (message.version !== "") {
       writer.uint32(26).string(message.version);
+    }
+    if (message.ordering !== 0) {
+      writer.uint32(32).int32(message.ordering);
     }
     return writer;
   },
@@ -143,6 +151,9 @@ export const MsgRegisterInterchainAccount = {
         case 3:
           message.version = reader.string();
           break;
+        case 4:
+          message.ordering = reader.int32() as any;
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -155,6 +166,7 @@ export const MsgRegisterInterchainAccount = {
     message.owner = object.owner ?? "";
     message.connectionId = object.connectionId ?? "";
     message.version = object.version ?? "";
+    message.ordering = object.ordering ?? 0;
     return message;
   },
   fromAmino(object: MsgRegisterInterchainAccountAmino): MsgRegisterInterchainAccount {
@@ -168,6 +180,9 @@ export const MsgRegisterInterchainAccount = {
     if (object.version !== undefined && object.version !== null) {
       message.version = object.version;
     }
+    if (object.ordering !== undefined && object.ordering !== null) {
+      message.ordering = object.ordering;
+    }
     return message;
   },
   toAmino(message: MsgRegisterInterchainAccount): MsgRegisterInterchainAccountAmino {
@@ -175,6 +190,7 @@ export const MsgRegisterInterchainAccount = {
     obj.owner = message.owner === "" ? undefined : message.owner;
     obj.connection_id = message.connectionId === "" ? undefined : message.connectionId;
     obj.version = message.version === "" ? undefined : message.version;
+    obj.ordering = message.ordering === 0 ? undefined : message.ordering;
     return obj;
   },
   fromAminoMsg(object: MsgRegisterInterchainAccountAminoMsg): MsgRegisterInterchainAccount {

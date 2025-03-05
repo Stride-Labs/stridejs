@@ -1,8 +1,6 @@
-var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
-var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
 var __export = (target, all) => {
   for (var name in all)
@@ -16,25 +14,27 @@ var __copyProps = (to, from, except, desc) => {
   }
   return to;
 };
-var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-  // If the importer is in node compatibility mode or this is not an ESM
-  // file that has been converted to a CommonJS file using a Babel-
-  // compatible transform (i.e. "__esModule" has not been set), then set
-  // "default" to the CommonJS "module.exports" for node compatibility.
-  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-  mod
-));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var bundle_exports = {};
-__export(bundle_exports, {
-  osmosis: () => osmosis
+var tx_rpc_msg_exports = {};
+__export(tx_rpc_msg_exports, {
+  MsgClientImpl: () => MsgClientImpl
 });
-module.exports = __toCommonJS(bundle_exports);
-var _183 = __toESM(require("./osmosis"));
-const osmosis = {
-  ..._183
-};
+module.exports = __toCommonJS(tx_rpc_msg_exports);
+var import_binary = require("../../../../../binary");
+var import_tx = require("./tx");
+class MsgClientImpl {
+  rpc;
+  constructor(rpc) {
+    this.rpc = rpc;
+    this.moduleQuerySafe = this.moduleQuerySafe.bind(this);
+  }
+  moduleQuerySafe(request) {
+    const data = import_tx.MsgModuleQuerySafe.encode(request).finish();
+    const promise = this.rpc.request("ibc.applications.interchain_accounts.host.v1.Msg", "ModuleQuerySafe", data);
+    return promise.then((data2) => import_tx.MsgModuleQuerySafeResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  osmosis
+  MsgClientImpl
 });

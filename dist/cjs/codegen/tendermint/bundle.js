@@ -30,44 +30,44 @@ __export(bundle_exports, {
   tendermint: () => tendermint
 });
 module.exports = __toCommonJS(bundle_exports);
-var _253 = __toESM(require("./abci/types"));
-var _254 = __toESM(require("./crypto/keys"));
-var _255 = __toESM(require("./crypto/proof"));
-var _256 = __toESM(require("./libs/bits/types"));
-var _257 = __toESM(require("./p2p/types"));
-var _258 = __toESM(require("./types/block"));
-var _259 = __toESM(require("./types/evidence"));
-var _260 = __toESM(require("./types/params"));
-var _261 = __toESM(require("./types/types"));
-var _262 = __toESM(require("./types/validator"));
-var _263 = __toESM(require("./version/types"));
+var _254 = __toESM(require("./abci/types"));
+var _255 = __toESM(require("./crypto/keys"));
+var _256 = __toESM(require("./crypto/proof"));
+var _257 = __toESM(require("./libs/bits/types"));
+var _258 = __toESM(require("./p2p/types"));
+var _259 = __toESM(require("./types/block"));
+var _260 = __toESM(require("./types/evidence"));
+var _261 = __toESM(require("./types/params"));
+var _262 = __toESM(require("./types/types"));
+var _263 = __toESM(require("./types/validator"));
+var _264 = __toESM(require("./version/types"));
 var tendermint;
 ((tendermint2) => {
   tendermint2.abci = {
-    ..._253
+    ..._254
   };
   tendermint2.crypto = {
-    ..._254,
-    ..._255
+    ..._255,
+    ..._256
   };
   let libs;
   ((libs2) => {
     libs2.bits = {
-      ..._256
+      ..._257
     };
   })(libs = tendermint2.libs || (tendermint2.libs = {}));
   tendermint2.p2p = {
-    ..._257
+    ..._258
   };
   tendermint2.types = {
-    ..._258,
     ..._259,
     ..._260,
     ..._261,
-    ..._262
+    ..._262,
+    ..._263
   };
   tendermint2.version = {
-    ..._263
+    ..._264
   };
 })(tendermint || (tendermint = {}));
 // Annotate the CommonJS export names for ESM import in node:

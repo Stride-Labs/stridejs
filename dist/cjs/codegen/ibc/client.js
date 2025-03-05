@@ -37,12 +37,14 @@ var import_proto_signing = require("@cosmjs/proto-signing");
 var import_stargate = require("@cosmjs/stargate");
 var ibcApplicationsFeeV1TxRegistry = __toESM(require("./applications/fee/v1/tx.registry"));
 var ibcApplicationsInterchainAccountsControllerV1TxRegistry = __toESM(require("./applications/interchain_accounts/controller/v1/tx.registry"));
+var ibcApplicationsInterchainAccountsHostV1TxRegistry = __toESM(require("./applications/interchain_accounts/host/v1/tx.registry"));
 var ibcApplicationsTransferV1TxRegistry = __toESM(require("./applications/transfer/v1/tx.registry"));
 var ibcCoreChannelV1TxRegistry = __toESM(require("./core/channel/v1/tx.registry"));
 var ibcCoreClientV1TxRegistry = __toESM(require("./core/client/v1/tx.registry"));
 var ibcCoreConnectionV1TxRegistry = __toESM(require("./core/connection/v1/tx.registry"));
 var ibcApplicationsFeeV1TxAmino = __toESM(require("./applications/fee/v1/tx.amino"));
 var ibcApplicationsInterchainAccountsControllerV1TxAmino = __toESM(require("./applications/interchain_accounts/controller/v1/tx.amino"));
+var ibcApplicationsInterchainAccountsHostV1TxAmino = __toESM(require("./applications/interchain_accounts/host/v1/tx.amino"));
 var ibcApplicationsTransferV1TxAmino = __toESM(require("./applications/transfer/v1/tx.amino"));
 var ibcCoreChannelV1TxAmino = __toESM(require("./core/channel/v1/tx.amino"));
 var ibcCoreClientV1TxAmino = __toESM(require("./core/client/v1/tx.amino"));
@@ -50,12 +52,13 @@ var ibcCoreConnectionV1TxAmino = __toESM(require("./core/connection/v1/tx.amino"
 const ibcAminoConverters = {
   ...ibcApplicationsFeeV1TxAmino.AminoConverter,
   ...ibcApplicationsInterchainAccountsControllerV1TxAmino.AminoConverter,
+  ...ibcApplicationsInterchainAccountsHostV1TxAmino.AminoConverter,
   ...ibcApplicationsTransferV1TxAmino.AminoConverter,
   ...ibcCoreChannelV1TxAmino.AminoConverter,
   ...ibcCoreClientV1TxAmino.AminoConverter,
   ...ibcCoreConnectionV1TxAmino.AminoConverter
 };
-const ibcProtoRegistry = [...ibcApplicationsFeeV1TxRegistry.registry, ...ibcApplicationsInterchainAccountsControllerV1TxRegistry.registry, ...ibcApplicationsTransferV1TxRegistry.registry, ...ibcCoreChannelV1TxRegistry.registry, ...ibcCoreClientV1TxRegistry.registry, ...ibcCoreConnectionV1TxRegistry.registry];
+const ibcProtoRegistry = [...ibcApplicationsFeeV1TxRegistry.registry, ...ibcApplicationsInterchainAccountsControllerV1TxRegistry.registry, ...ibcApplicationsInterchainAccountsHostV1TxRegistry.registry, ...ibcApplicationsTransferV1TxRegistry.registry, ...ibcCoreChannelV1TxRegistry.registry, ...ibcCoreClientV1TxRegistry.registry, ...ibcCoreConnectionV1TxRegistry.registry];
 const getSigningIbcClientOptions = ({
   defaultTypes = import_stargate.defaultRegistryTypes
 } = {}) => {

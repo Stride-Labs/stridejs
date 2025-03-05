@@ -78,6 +78,7 @@ export interface MsgConnectionOpenTry {
     /** Deprecated: this field is unused. Crossing hellos are no longer supported in core IBC. */
     /** @deprecated */
     previousConnectionId: string;
+    /** @deprecated */
     clientState?: Any;
     counterparty: Counterparty;
     delayPeriod: bigint;
@@ -89,12 +90,16 @@ export interface MsgConnectionOpenTry {
      */
     proofInit: Uint8Array;
     /** proof of client state included in message */
+    /** @deprecated */
     proofClient: Uint8Array;
     /** proof of client consensus state */
+    /** @deprecated */
     proofConsensus: Uint8Array;
+    /** @deprecated */
     consensusHeight: Height;
     signer: string;
     /** optional proof data for host state machines that are unable to introspect their own consensus state */
+    /** @deprecated */
     hostConsensusStateProof: Uint8Array;
 }
 export interface MsgConnectionOpenTryProtoMsg {
@@ -110,6 +115,7 @@ export interface MsgConnectionOpenTryAmino {
     /** Deprecated: this field is unused. Crossing hellos are no longer supported in core IBC. */
     /** @deprecated */
     previous_connection_id?: string;
+    /** @deprecated */
     client_state?: AnyAmino;
     counterparty?: CounterpartyAmino;
     delay_period?: string;
@@ -121,12 +127,16 @@ export interface MsgConnectionOpenTryAmino {
      */
     proof_init?: string;
     /** proof of client state included in message */
+    /** @deprecated */
     proof_client?: string;
     /** proof of client consensus state */
+    /** @deprecated */
     proof_consensus?: string;
+    /** @deprecated */
     consensus_height?: HeightAmino;
     signer?: string;
     /** optional proof data for host state machines that are unable to introspect their own consensus state */
+    /** @deprecated */
     host_consensus_state_proof?: string;
 }
 export interface MsgConnectionOpenTryAminoMsg {
@@ -141,16 +151,21 @@ export interface MsgConnectionOpenTrySDKType {
     client_id: string;
     /** @deprecated */
     previous_connection_id: string;
+    /** @deprecated */
     client_state?: AnySDKType;
     counterparty: CounterpartySDKType;
     delay_period: bigint;
     counterparty_versions: VersionSDKType[];
     proof_height: HeightSDKType;
     proof_init: Uint8Array;
+    /** @deprecated */
     proof_client: Uint8Array;
+    /** @deprecated */
     proof_consensus: Uint8Array;
+    /** @deprecated */
     consensus_height: HeightSDKType;
     signer: string;
+    /** @deprecated */
     host_consensus_state_proof: Uint8Array;
 }
 /** MsgConnectionOpenTryResponse defines the Msg/ConnectionOpenTry response type. */

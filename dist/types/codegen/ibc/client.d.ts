@@ -97,6 +97,11 @@ export declare const ibcAminoConverters: {
         toAmino: (message: import("./applications/transfer/v1/tx").MsgTransfer) => import("./applications/transfer/v1/tx").MsgTransferAmino;
         fromAmino: (object: import("./applications/transfer/v1/tx").MsgTransferAmino) => import("./applications/transfer/v1/tx").MsgTransfer;
     };
+    "/ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafe": {
+        aminoType: string;
+        toAmino: (message: import("./applications/interchain_accounts/host/v1/tx").MsgModuleQuerySafe) => import("./applications/interchain_accounts/host/v1/tx").MsgModuleQuerySafeAmino;
+        fromAmino: (object: import("./applications/interchain_accounts/host/v1/tx").MsgModuleQuerySafeAmino) => import("./applications/interchain_accounts/host/v1/tx").MsgModuleQuerySafe;
+    };
     "/ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccount": {
         aminoType: string;
         toAmino: (message: import("./applications/interchain_accounts/controller/v1/tx").MsgRegisterInterchainAccount) => import("./applications/interchain_accounts/controller/v1/tx").MsgRegisterInterchainAccountAmino;

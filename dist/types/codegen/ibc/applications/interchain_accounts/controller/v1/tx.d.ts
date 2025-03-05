@@ -1,3 +1,4 @@
+import { Order } from "../../../../core/channel/v1/channel";
 import { InterchainAccountPacketData, InterchainAccountPacketDataAmino, InterchainAccountPacketDataSDKType } from "../../v1/packet";
 import { BinaryReader, BinaryWriter } from "../../../../../binary";
 /** MsgRegisterInterchainAccount defines the payload for Msg/RegisterAccount */
@@ -5,6 +6,7 @@ export interface MsgRegisterInterchainAccount {
     owner: string;
     connectionId: string;
     version: string;
+    ordering: Order;
 }
 export interface MsgRegisterInterchainAccountProtoMsg {
     typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccount";
@@ -15,6 +17,7 @@ export interface MsgRegisterInterchainAccountAmino {
     owner?: string;
     connection_id?: string;
     version?: string;
+    ordering?: Order;
 }
 export interface MsgRegisterInterchainAccountAminoMsg {
     type: "cosmos-sdk/MsgRegisterInterchainAccount";
@@ -25,6 +28,7 @@ export interface MsgRegisterInterchainAccountSDKType {
     owner: string;
     connection_id: string;
     version: string;
+    ordering: Order;
 }
 /** MsgRegisterInterchainAccountResponse defines the response for Msg/RegisterAccount */
 export interface MsgRegisterInterchainAccountResponse {

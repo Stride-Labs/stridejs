@@ -4,7 +4,8 @@ function createBaseMsgRegisterInterchainAccount() {
   return {
     owner: "",
     connectionId: "",
-    version: ""
+    version: "",
+    ordering: 0
   };
 }
 const MsgRegisterInterchainAccount = {
@@ -18,6 +19,9 @@ const MsgRegisterInterchainAccount = {
     }
     if (message.version !== "") {
       writer.uint32(26).string(message.version);
+    }
+    if (message.ordering !== 0) {
+      writer.uint32(32).int32(message.ordering);
     }
     return writer;
   },
@@ -37,6 +41,9 @@ const MsgRegisterInterchainAccount = {
         case 3:
           message.version = reader.string();
           break;
+        case 4:
+          message.ordering = reader.int32();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -49,6 +56,7 @@ const MsgRegisterInterchainAccount = {
     message.owner = object.owner ?? "";
     message.connectionId = object.connectionId ?? "";
     message.version = object.version ?? "";
+    message.ordering = object.ordering ?? 0;
     return message;
   },
   fromAmino(object) {
@@ -62,6 +70,9 @@ const MsgRegisterInterchainAccount = {
     if (object.version !== void 0 && object.version !== null) {
       message.version = object.version;
     }
+    if (object.ordering !== void 0 && object.ordering !== null) {
+      message.ordering = object.ordering;
+    }
     return message;
   },
   toAmino(message) {
@@ -69,6 +80,7 @@ const MsgRegisterInterchainAccount = {
     obj.owner = message.owner === "" ? void 0 : message.owner;
     obj.connection_id = message.connectionId === "" ? void 0 : message.connectionId;
     obj.version = message.version === "" ? void 0 : message.version;
+    obj.ordering = message.ordering === 0 ? void 0 : message.ordering;
     return obj;
   },
   fromAminoMsg(object) {

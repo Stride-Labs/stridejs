@@ -10,6 +10,11 @@ export interface Allocation {
     spendLimit: Coin[];
     /** allow list of receivers, an empty allow list permits any receiver address */
     allowList: string[];
+    /**
+     * allow list of memo strings, an empty list prohibits all memo strings;
+     * a list only with "*" permits any memo string
+     */
+    allowedPacketData: string[];
 }
 export interface AllocationProtoMsg {
     typeUrl: "/ibc.applications.transfer.v1.Allocation";
@@ -25,6 +30,11 @@ export interface AllocationAmino {
     spend_limit?: CoinAmino[];
     /** allow list of receivers, an empty allow list permits any receiver address */
     allow_list?: string[];
+    /**
+     * allow list of memo strings, an empty list prohibits all memo strings;
+     * a list only with "*" permits any memo string
+     */
+    allowed_packet_data?: string[];
 }
 export interface AllocationAminoMsg {
     type: "cosmos-sdk/Allocation";
@@ -36,6 +46,7 @@ export interface AllocationSDKType {
     source_channel: string;
     spend_limit: CoinSDKType[];
     allow_list: string[];
+    allowed_packet_data: string[];
 }
 /**
  * TransferAuthorization allows the grantee to spend up to spend_limit coins from

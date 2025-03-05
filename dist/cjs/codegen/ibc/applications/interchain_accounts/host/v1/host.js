@@ -17,10 +17,12 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var host_exports = {};
 __export(host_exports, {
-  Params: () => Params
+  Params: () => Params,
+  QueryRequest: () => QueryRequest
 });
 module.exports = __toCommonJS(host_exports);
 var import_binary = require("../../../../../binary");
+var import_helpers = require("../../../../../helpers");
 function createBaseParams() {
   return {
     hostEnabled: false,
@@ -104,7 +106,89 @@ const Params = {
     };
   }
 };
+function createBaseQueryRequest() {
+  return {
+    path: "",
+    data: new Uint8Array()
+  };
+}
+const QueryRequest = {
+  typeUrl: "/ibc.applications.interchain_accounts.host.v1.QueryRequest",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.path !== "") {
+      writer.uint32(10).string(message.path);
+    }
+    if (message.data.length !== 0) {
+      writer.uint32(18).bytes(message.data);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.path = reader.string();
+          break;
+        case 2:
+          message.data = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryRequest();
+    message.path = object.path ?? "";
+    message.data = object.data ?? new Uint8Array();
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryRequest();
+    if (object.path !== void 0 && object.path !== null) {
+      message.path = object.path;
+    }
+    if (object.data !== void 0 && object.data !== null) {
+      message.data = (0, import_helpers.bytesFromBase64)(object.data);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.path = message.path === "" ? void 0 : message.path;
+    obj.data = message.data ? (0, import_helpers.base64FromBytes)(message.data) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryRequest",
+      value: QueryRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.applications.interchain_accounts.host.v1.QueryRequest",
+      value: QueryRequest.encode(message).finish()
+    };
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  Params
+  Params,
+  QueryRequest
 });

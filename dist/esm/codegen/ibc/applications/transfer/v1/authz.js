@@ -5,7 +5,8 @@ function createBaseAllocation() {
     sourcePort: "",
     sourceChannel: "",
     spendLimit: [],
-    allowList: []
+    allowList: [],
+    allowedPacketData: []
   };
 }
 const Allocation = {
@@ -22,6 +23,9 @@ const Allocation = {
     }
     for (const v of message.allowList) {
       writer.uint32(34).string(v);
+    }
+    for (const v of message.allowedPacketData) {
+      writer.uint32(42).string(v);
     }
     return writer;
   },
@@ -44,6 +48,9 @@ const Allocation = {
         case 4:
           message.allowList.push(reader.string());
           break;
+        case 5:
+          message.allowedPacketData.push(reader.string());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -57,6 +64,7 @@ const Allocation = {
     message.sourceChannel = object.sourceChannel ?? "";
     message.spendLimit = object.spendLimit?.map((e) => Coin.fromPartial(e)) || [];
     message.allowList = object.allowList?.map((e) => e) || [];
+    message.allowedPacketData = object.allowedPacketData?.map((e) => e) || [];
     return message;
   },
   fromAmino(object) {
@@ -69,6 +77,7 @@ const Allocation = {
     }
     message.spendLimit = object.spend_limit?.map((e) => Coin.fromAmino(e)) || [];
     message.allowList = object.allow_list?.map((e) => e) || [];
+    message.allowedPacketData = object.allowed_packet_data?.map((e) => e) || [];
     return message;
   },
   toAmino(message) {
@@ -84,6 +93,11 @@ const Allocation = {
       obj.allow_list = message.allowList.map((e) => e);
     } else {
       obj.allow_list = message.allowList;
+    }
+    if (message.allowedPacketData) {
+      obj.allowed_packet_data = message.allowedPacketData.map((e) => e);
+    } else {
+      obj.allowed_packet_data = message.allowedPacketData;
     }
     return obj;
   },
