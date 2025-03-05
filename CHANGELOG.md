@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.13.0
+
+- Add types for buyback and burn (x/icqoracle, x/auction, x/strdburner)
+- Add CosmWasm types
+- Update cosmos-sdk types to v0.47.15
+- Update ibc-go types to v7.9.2
+- Rewrite docs
+- Remove `StrideClient.types` field in favor of directly importing the necessary namespace
+
 ## 0.11.4
 
 - [BUILD] Fix missing emitted types

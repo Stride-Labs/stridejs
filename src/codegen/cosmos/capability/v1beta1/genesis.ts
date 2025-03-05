@@ -16,7 +16,7 @@ export interface GenesisOwnersAmino {
   /** index is the index of the capability owner. */
   index?: string;
   /** index_owners are the owners at the given index. */
-  index_owners?: CapabilityOwnersAmino;
+  index_owners: CapabilityOwnersAmino;
 }
 export interface GenesisOwnersAminoMsg {
   type: "cosmos-sdk/GenesisOwners";
@@ -49,7 +49,7 @@ export interface GenesisStateAmino {
    * owners represents a map from index to owners of the capability index
    * index key is string to allow amino marshalling.
    */
-  owners?: GenesisOwnersAmino[];
+  owners: GenesisOwnersAmino[];
 }
 export interface GenesisStateAminoMsg {
   type: "cosmos-sdk/GenesisState";
@@ -115,8 +115,8 @@ export const GenesisOwners = {
   },
   toAmino(message: GenesisOwners): GenesisOwnersAmino {
     const obj: any = {};
-    obj.index = message.index !== BigInt(0) ? message.index.toString() : undefined;
-    obj.index_owners = message.indexOwners ? CapabilityOwners.toAmino(message.indexOwners) : undefined;
+    obj.index = message.index !== BigInt(0) ? message.index?.toString() : undefined;
+    obj.index_owners = message.indexOwners ? CapabilityOwners.toAmino(message.indexOwners) : CapabilityOwners.toAmino(CapabilityOwners.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object: GenesisOwnersAminoMsg): GenesisOwners {
@@ -194,7 +194,7 @@ export const GenesisState = {
   },
   toAmino(message: GenesisState): GenesisStateAmino {
     const obj: any = {};
-    obj.index = message.index !== BigInt(0) ? message.index.toString() : undefined;
+    obj.index = message.index !== BigInt(0) ? message.index?.toString() : undefined;
     if (message.owners) {
       obj.owners = message.owners.map(e => e ? GenesisOwners.toAmino(e) : undefined);
     } else {

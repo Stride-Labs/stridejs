@@ -10,6 +10,7 @@ export interface BaseVestingAccount {
   originalVesting: Coin[];
   delegatedFree: Coin[];
   delegatedVesting: Coin[];
+  /** Vesting end time, as unix timestamp (in seconds). */
   endTime: bigint;
 }
 export interface BaseVestingAccountProtoMsg {
@@ -22,9 +23,10 @@ export interface BaseVestingAccountProtoMsg {
  */
 export interface BaseVestingAccountAmino {
   base_account?: BaseAccountAmino;
-  original_vesting?: CoinAmino[];
-  delegated_free?: CoinAmino[];
-  delegated_vesting?: CoinAmino[];
+  original_vesting: CoinAmino[];
+  delegated_free: CoinAmino[];
+  delegated_vesting: CoinAmino[];
+  /** Vesting end time, as unix timestamp (in seconds). */
   end_time?: string;
 }
 export interface BaseVestingAccountAminoMsg {
@@ -48,6 +50,7 @@ export interface BaseVestingAccountSDKType {
  */
 export interface ContinuousVestingAccount {
   baseVestingAccount?: BaseVestingAccount;
+  /** Vesting start time, as unix timestamp (in seconds). */
   startTime: bigint;
 }
 export interface ContinuousVestingAccountProtoMsg {
@@ -60,6 +63,7 @@ export interface ContinuousVestingAccountProtoMsg {
  */
 export interface ContinuousVestingAccountAmino {
   base_vesting_account?: BaseVestingAccountAmino;
+  /** Vesting start time, as unix timestamp (in seconds). */
   start_time?: string;
 }
 export interface ContinuousVestingAccountAminoMsg {
@@ -108,6 +112,7 @@ export interface DelayedVestingAccountSDKType {
 }
 /** Period defines a length of time and amount of coins that will vest. */
 export interface Period {
+  /** Period duration in seconds. */
   length: bigint;
   amount: Coin[];
 }
@@ -117,8 +122,9 @@ export interface PeriodProtoMsg {
 }
 /** Period defines a length of time and amount of coins that will vest. */
 export interface PeriodAmino {
+  /** Period duration in seconds. */
   length?: string;
-  amount?: CoinAmino[];
+  amount: CoinAmino[];
 }
 export interface PeriodAminoMsg {
   type: "cosmos-sdk/Period";
@@ -149,7 +155,7 @@ export interface PeriodicVestingAccountProtoMsg {
 export interface PeriodicVestingAccountAmino {
   base_vesting_account?: BaseVestingAccountAmino;
   start_time?: string;
-  vesting_periods?: PeriodAmino[];
+  vesting_periods: PeriodAmino[];
 }
 export interface PeriodicVestingAccountAminoMsg {
   type: "cosmos-sdk/PeriodicVestingAccount";
@@ -300,7 +306,7 @@ export const BaseVestingAccount = {
     } else {
       obj.delegated_vesting = message.delegatedVesting;
     }
-    obj.end_time = message.endTime !== BigInt(0) ? message.endTime.toString() : undefined;
+    obj.end_time = message.endTime !== BigInt(0) ? message.endTime?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: BaseVestingAccountAminoMsg): BaseVestingAccount {
@@ -381,7 +387,7 @@ export const ContinuousVestingAccount = {
   toAmino(message: ContinuousVestingAccount): ContinuousVestingAccountAmino {
     const obj: any = {};
     obj.base_vesting_account = message.baseVestingAccount ? BaseVestingAccount.toAmino(message.baseVestingAccount) : undefined;
-    obj.start_time = message.startTime !== BigInt(0) ? message.startTime.toString() : undefined;
+    obj.start_time = message.startTime !== BigInt(0) ? message.startTime?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: ContinuousVestingAccountAminoMsg): ContinuousVestingAccount {
@@ -528,7 +534,7 @@ export const Period = {
   },
   toAmino(message: Period): PeriodAmino {
     const obj: any = {};
-    obj.length = message.length !== BigInt(0) ? message.length.toString() : undefined;
+    obj.length = message.length !== BigInt(0) ? message.length?.toString() : undefined;
     if (message.amount) {
       obj.amount = message.amount.map(e => e ? Coin.toAmino(e) : undefined);
     } else {
@@ -623,7 +629,7 @@ export const PeriodicVestingAccount = {
   toAmino(message: PeriodicVestingAccount): PeriodicVestingAccountAmino {
     const obj: any = {};
     obj.base_vesting_account = message.baseVestingAccount ? BaseVestingAccount.toAmino(message.baseVestingAccount) : undefined;
-    obj.start_time = message.startTime !== BigInt(0) ? message.startTime.toString() : undefined;
+    obj.start_time = message.startTime !== BigInt(0) ? message.startTime?.toString() : undefined;
     if (message.vestingPeriods) {
       obj.vesting_periods = message.vestingPeriods.map(e => e ? Period.toAmino(e) : undefined);
     } else {

@@ -516,7 +516,7 @@ export const UserRedemptionRecord = {
     obj.native_token_amount = message.nativeTokenAmount === "" ? undefined : message.nativeTokenAmount;
     obj.denom = message.denom === "" ? undefined : message.denom;
     obj.host_zone_id = message.hostZoneId === "" ? undefined : message.hostZoneId;
-    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber.toString() : undefined;
+    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber?.toString() : undefined;
     obj.claim_is_pending = message.claimIsPending === false ? undefined : message.claimIsPending;
     obj.st_token_amount = message.stTokenAmount === "" ? undefined : message.stTokenAmount;
     return obj;
@@ -658,14 +658,14 @@ export const DepositRecord = {
   },
   toAmino(message: DepositRecord): DepositRecordAmino {
     const obj: any = {};
-    obj.id = message.id !== BigInt(0) ? message.id.toString() : undefined;
+    obj.id = message.id !== BigInt(0) ? message.id?.toString() : undefined;
     obj.amount = message.amount === "" ? undefined : message.amount;
     obj.denom = message.denom === "" ? undefined : message.denom;
     obj.host_zone_id = message.hostZoneId === "" ? undefined : message.hostZoneId;
     obj.status = message.status === 0 ? undefined : message.status;
-    obj.deposit_epoch_number = message.depositEpochNumber !== BigInt(0) ? message.depositEpochNumber.toString() : undefined;
+    obj.deposit_epoch_number = message.depositEpochNumber !== BigInt(0) ? message.depositEpochNumber?.toString() : undefined;
     obj.source = message.source === 0 ? undefined : message.source;
-    obj.delegation_txs_in_progress = message.delegationTxsInProgress !== BigInt(0) ? message.delegationTxsInProgress.toString() : undefined;
+    obj.delegation_txs_in_progress = message.delegationTxsInProgress !== BigInt(0) ? message.delegationTxsInProgress?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: DepositRecordAminoMsg): DepositRecord {
@@ -841,10 +841,10 @@ export const HostZoneUnbonding = {
     obj.st_tokens_to_burn = message.stTokensToBurn === "" ? undefined : message.stTokensToBurn;
     obj.native_tokens_to_unbond = message.nativeTokensToUnbond === "" ? undefined : message.nativeTokensToUnbond;
     obj.claimable_native_tokens = message.claimableNativeTokens === "" ? undefined : message.claimableNativeTokens;
-    obj.undelegation_txs_in_progress = message.undelegationTxsInProgress !== BigInt(0) ? message.undelegationTxsInProgress.toString() : undefined;
+    obj.undelegation_txs_in_progress = message.undelegationTxsInProgress !== BigInt(0) ? message.undelegationTxsInProgress?.toString() : undefined;
     obj.denom = message.denom === "" ? undefined : message.denom;
     obj.host_zone_id = message.hostZoneId === "" ? undefined : message.hostZoneId;
-    obj.unbonding_time = message.unbondingTime !== BigInt(0) ? message.unbondingTime.toString() : undefined;
+    obj.unbonding_time = message.unbondingTime !== BigInt(0) ? message.unbondingTime?.toString() : undefined;
     obj.status = message.status === 0 ? undefined : message.status;
     if (message.userRedemptionRecords) {
       obj.user_redemption_records = message.userRedemptionRecords.map(e => e);
@@ -922,7 +922,7 @@ export const EpochUnbondingRecord = {
   },
   toAmino(message: EpochUnbondingRecord): EpochUnbondingRecordAmino {
     const obj: any = {};
-    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber.toString() : undefined;
+    obj.epoch_number = message.epochNumber !== BigInt(0) ? message.epochNumber?.toString() : undefined;
     if (message.hostZoneUnbondings) {
       obj.host_zone_unbondings = message.hostZoneUnbondings.map(e => e ? HostZoneUnbonding.toAmino(e) : undefined);
     } else {

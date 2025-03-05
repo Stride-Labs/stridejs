@@ -8,52 +8,54 @@
   ],
   "homepage": "https://github.com/Stride-Labs/stridejs#readme",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Stride-Labs/stridejs"
+  },
+  "bugs": {
+    "url": "https://github.com/Stride-Labs/stridejs/issues"
+  },
   "source": "src/index.ts",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "types": "types/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "directories": {
     "lib": "src",
     "test": "__tests__"
   },
   "files": [
-    "types",
-    "dist/cjs",
-    "dist/esm"
+    "dist",
+    "src",
+    "package.json",
+    "pnpm-lock.yaml",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
-    "build:bundle": "ts-node scripts/build.ts",
-    "build:types": "tsc",
-    "build": "pnpm build:bundle && pnpm build:types",
-    "codegen": "pnpm run codegen:cleanup && pnpm run codegen:clone && pnpm run codegen:build-stride && pnpm run codegen:build-cosmos-sdk && pnpm run codegen:build-ibc-go && pnpm run codegen:run",
+    "build": "pnpm run codegen && pnpm run bundle && pnpm run types",
+    "bundle": "ts-node scripts/build.ts",
+    "types": "tsc",
+    "codegen": "pnpm run codegen:cleanup && pnpm run codegen:clone && pnpm run codegen:build-stride && pnpm run codegen:build-cosmos-sdk && pnpm run codegen:build-ibc-go && pnpm run codegen:build-cosmwasm && pnpm run codegen:run",
     "codegen:cleanup": "cross-env rm -rf src/codegen scripts/proto scripts/repos",
     "codegen:clone": "cross-env NODE_ENV=development ts-node scripts/clone_repos.ts",
     "codegen:build-stride": "buf export scripts/repos/stride --output=scripts/proto",
     "codegen:build-cosmos-sdk": "buf export scripts/repos/cosmos-sdk --output=scripts/proto",
     "codegen:build-ibc-go": "buf export scripts/repos/ibc-go --output=scripts/proto",
-    "codegen:run": "cross-env NODE_ENV=development ts-node scripts/codegen.ts",
-    "prepare": "pnpm run codegen && pnpm run build:bundle",
-    "ts:watch": "tsc -w"
+    "codegen:build-cosmwasm": "buf export scripts/repos/wasmd --output=scripts/proto",
+    "codegen:run": "cross-env NODE_ENV=development ts-node scripts/codegen.ts"
   },
   "publishConfig": {
     "access": "public"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Stride-Labs/stridejs"
-  },
-  "keywords": [],
-  "bugs": {
-    "url": "https://github.com/Stride-Labs/stridejs/issues"
-  },
   "dependencies": {
-    "@cosmjs/amino": "0.32.4",
-    "@cosmjs/encoding": "0.32.4",
-    "@cosmjs/math": "0.32.4",
-    "@cosmjs/proto-signing": "0.32.4",
-    "@cosmjs/stargate": "0.32.4",
-    "@cosmjs/tendermint-rpc": "0.32.4",
-    "@cosmjs/utils": "0.32.4",
+    "@cosmjs/amino": "0.33.0",
+    "@cosmjs/encoding": "0.33.0",
+    "@cosmjs/ledger-amino": "0.33.0",
+    "@cosmjs/math": "0.33.0",
+    "@cosmjs/proto-signing": "0.33.0",
+    "@cosmjs/stargate": "0.33.0",
+    "@cosmjs/tendermint-rpc": "0.33.0",
+    "@cosmjs/utils": "0.33.0",
     "@cosmology/lcd": "0.13.4",
     "@noble/hashes": "1.4.0",
     "bech32": "2.0.0",
@@ -61,7 +63,7 @@
   },
   "devDependencies": {
     "@bufbuild/buf": "1.34.0",
-    "@cosmology/telescope": "1.8.3",
+    "@cosmology/telescope": "1.11.18",
     "@types/node": "20.14.11",
     "cross-env": "7.0.2",
     "esbuild": "0.23.0",

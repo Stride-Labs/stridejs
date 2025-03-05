@@ -10,6 +10,9 @@ import {
   cosmos,
   cosmosAminoConverters,
   cosmosProtoRegistry,
+  cosmwasm,
+  cosmwasmAminoConverters,
+  cosmwasmProtoRegistry,
   ibc,
   ibcAminoConverters,
   ibcProtoRegistry,
@@ -48,10 +51,9 @@ export class StrideClient {
     public readonly query: Awaited<
       ReturnType<typeof stride.ClientFactory.createRPCQueryClient>
     > &
+      Awaited<ReturnType<typeof cosmos.ClientFactory.createRPCQueryClient>> &
+      Awaited<ReturnType<typeof cosmwasm.ClientFactory.createRPCQueryClient>> &
       Awaited<ReturnType<typeof ibc.ClientFactory.createRPCQueryClient>>,
-    public readonly types: { stride: typeof stride } & {
-      cosmos: typeof cosmos;
-    } & { ibc: typeof ibc },
     public readonly options?: StrideClientOptions,
   ) {}
 
@@ -62,6 +64,8 @@ export class StrideClient {
    * @param {OfflineSigner} signer - A signer for signing transactions.
    * @param {string} address - The account address inside the `signer` that is permitted to sign transactions.
    * @param {StrideClientOptions} [options] - Optional. Configurations for the signing client, including gas price, gas limit, and other parameters.
+   * @param {StrideClientOptions.resolveIbcResponsesTimeoutMs} [options.resolveIbcResponsesTimeoutMs] - Optional. How much time (in milliseconds) to wait for IBC response txs (acknowledge/timeout). Defaults to `180_000` (3 minutes).
+   * @param {StrideClientOptions.resolveIbcResponsesCheckIntervalMs} [options.resolveIbcResponsesCheckIntervalMs] - Optional. When waiting for IBC response txs, interval between checks in milliseconds. Defaults to `12_000` (12 seconds).
    */
   public static async create(
     rpcUrl: string,
@@ -74,11 +78,13 @@ export class StrideClient {
       ...strideProtoRegistry,
       ...cosmosProtoRegistry,
       ...ibcProtoRegistry,
+      ...cosmwasmProtoRegistry,
     ]);
     const aminoTypes = new AminoTypes({
       ...strideAminoConverters,
       ...cosmosAminoConverters,
       ...ibcAminoConverters,
+      ...cosmwasmAminoConverters,
     });
 
     options = Object.assign(
@@ -101,16 +107,15 @@ export class StrideClient {
       await ibc.ClientFactory.createRPCQueryClient({
         rpcEndpoint: rpcUrl,
       }),
+      await cosmwasm.ClientFactory.createRPCQueryClient({
+        rpcEndpoint: rpcUrl,
+      }),
+      await cosmos.ClientFactory.createRPCQueryClient({
+        rpcEndpoint: rpcUrl,
+      }),
       await stride.ClientFactory.createRPCQueryClient({
         rpcEndpoint: rpcUrl,
       }),
-    );
-
-    // setup types directory
-    const types = Object.assign(
-      { stride: stride },
-      { cosmos: cosmos },
-      { ibc: ibc },
     );
 
     return new StrideClient(
@@ -119,7 +124,6 @@ export class StrideClient {
       address,
       signingStargateClient,
       query,
-      types,
       options,
     );
   }

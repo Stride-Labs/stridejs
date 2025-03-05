@@ -1,6 +1,11 @@
 import { Coin, StdFee } from "@cosmjs/amino";
 import { fromBase64, toHex, toUtf8 } from "@cosmjs/encoding";
-import { DeliverTxResponse, IndexedTx, StargateClient } from "@cosmjs/stargate";
+import {
+  DeliverTxResponse,
+  Event,
+  IndexedTx,
+  StargateClient,
+} from "@cosmjs/stargate";
 import { ripemd160 } from "@noble/hashes/ripemd160";
 import { sha256 } from "@noble/hashes/sha256";
 import { bech32 } from "bech32";
@@ -53,9 +58,13 @@ import { bech32 } from "bech32";
  * ```
  * @param {string} coinAsString A string representation of a coin in the format `"{amount}{denom}"`.
  * @returns {Coin} A Coin object with the extracted amount and denom.
+ * @throws {Error} If cannot extract a denom and an amount from the input.
+ *
  */
 export function coinFromString(coinAsString: string): Coin {
-  const regexMatch = coinAsString.match(/^([\d\.]+)([a-z]+)$/);
+  const regexMatch = coinAsString.match(
+    /^([\d\.]+)([a-z]+|ibc\/[0-9A-F]{64})$/,
+  );
 
   if (regexMatch === null) {
     throw new Error(`cannot extract denom & amount from '${coinAsString}'`);
@@ -293,47 +302,25 @@ export function getTxIbcResponses(
     return [];
   }
 
-  // pasrse output event to extract ibc channels and sequences
-  let rawLog: string = txResponse.rawLog!;
-  let arrayLog: Array<{
-    msg: number;
-    type: string;
-    key: string;
-    value: string;
-  }>;
-  const jsonLog: Array<{
-    msg_index: number;
-    events: Array<{
-      type: string;
-      attributes: Array<{ key: string; value: string }>;
-    }>;
-  }> = JSON.parse(rawLog);
+  const packetSequences: string[] = [];
+  const packetSrcChannels: string[] = [];
 
-  arrayLog = [];
-  for (let msgIndex = 0; msgIndex < jsonLog.length; msgIndex++) {
-    const log = jsonLog[msgIndex];
-    for (const event of log.events) {
-      for (const attr of event.attributes) {
-        arrayLog.push({
-          msg: msgIndex,
-          type: event.type,
-          key: attr.key,
-          value: attr.value,
-        });
+  for (const e of txResponse.events) {
+    if (e.type !== "send_packet") {
+      continue;
+    }
+
+    for (const a of e.attributes) {
+      if (a.key === "packet_sequence") {
+        packetSequences.push(a.value);
+      }
+      if (a.key === "packet_src_channel") {
+        packetSrcChannels.push(a.value);
       }
     }
   }
 
-  let ibcResponses: Array<Promise<IbcResponse>> = [];
-  const packetSequences =
-    arrayLog.filter(
-      (x) => x.type === "send_packet" && x.key === "packet_sequence",
-    ) || [];
-
-  const packetSrcChannels =
-    arrayLog.filter(
-      (x) => x.type === "send_packet" && x.key === "packet_src_channel",
-    ) || [];
+  const ibcResponses: Array<Promise<IbcResponse>> = [];
 
   for (let msgIndex = 0; msgIndex < packetSequences?.length; msgIndex++) {
     // isDoneObject is used to cancel the second promise if the first one is resolved
@@ -345,8 +332,8 @@ export function getTxIbcResponses(
       Promise.race([
         findIbcResponse(
           stargateClient,
-          packetSequences[msgIndex].value,
-          packetSrcChannels[msgIndex].value,
+          packetSequences[msgIndex],
+          packetSrcChannels[msgIndex],
           "ack",
           resolveResponsesTimeoutMs,
           resolveResponsesCheckIntervalMs,
@@ -354,8 +341,8 @@ export function getTxIbcResponses(
         ),
         findIbcResponse(
           stargateClient,
-          packetSequences[msgIndex].value,
-          packetSrcChannels[msgIndex].value,
+          packetSequences[msgIndex],
+          packetSrcChannels[msgIndex],
           "timeout",
           resolveResponsesTimeoutMs,
           resolveResponsesCheckIntervalMs,
@@ -423,4 +410,39 @@ export async function findIbcResponse(
       `timed-out while trying to resolve IBC ${type} tx for packet_src_channel='${packetSrcChannel}' and packet_sequence='${packetSequence}'`,
     );
   });
+}
+
+/**
+ * Searches through a list of events and their attributes to find a specific value based on a key.
+ * The key should be in the format "eventType.attributeKey".
+ *
+ * @example
+ * ```
+ * const events = [
+ *   {
+ *     type: "transfer",
+ *     attributes: [{ key: "amount", value: "100" }]
+ *   }
+ * ];
+ * getValueFromEvents(events, "transfer.amount") // returns "100"
+ * ```
+ *
+ * @param {readonly Event[]} events - An array of Event objects to search through.
+ * @param {string} key - The key to search for in the format "eventType.attributeKey".
+ * @returns {string} The value associated with the specified key.
+ * @throws {Error} If the specified key is not found in any of the events.
+ */
+export function getValueFromEvents(
+  events: readonly Event[],
+  key: string,
+): string {
+  for (const e of events) {
+    for (const a of e.attributes) {
+      if (`${e.type}.${a.key}` === key) {
+        return String(a.value);
+      }
+    }
+  }
+
+  throw new Error(`Event ${key} isn't in ${JSON.stringify(events)}`);
 }

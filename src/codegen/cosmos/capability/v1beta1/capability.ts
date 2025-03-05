@@ -76,7 +76,7 @@ export interface CapabilityOwnersProtoMsg {
  * owners must be unique.
  */
 export interface CapabilityOwnersAmino {
-  owners?: OwnerAmino[];
+  owners: OwnerAmino[];
 }
 export interface CapabilityOwnersAminoMsg {
   type: "cosmos-sdk/CapabilityOwners";
@@ -133,7 +133,7 @@ export const Capability = {
   },
   toAmino(message: Capability): CapabilityAmino {
     const obj: any = {};
-    obj.index = message.index !== BigInt(0) ? message.index.toString() : undefined;
+    obj.index = message.index !== BigInt(0) ? message.index?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: CapabilityAminoMsg): Capability {

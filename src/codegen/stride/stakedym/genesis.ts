@@ -204,8 +204,8 @@ export const TransferInProgressRecordIds = {
   toAmino(message: TransferInProgressRecordIds): TransferInProgressRecordIdsAmino {
     const obj: any = {};
     obj.channel_id = message.channelId === "" ? undefined : message.channelId;
-    obj.sequence = message.sequence !== BigInt(0) ? message.sequence.toString() : undefined;
-    obj.record_id = message.recordId !== BigInt(0) ? message.recordId.toString() : undefined;
+    obj.sequence = message.sequence !== BigInt(0) ? message.sequence?.toString() : undefined;
+    obj.record_id = message.recordId !== BigInt(0) ? message.recordId?.toString() : undefined;
     return obj;
   },
   fromAminoMsg(object: TransferInProgressRecordIdsAminoMsg): TransferInProgressRecordIds {

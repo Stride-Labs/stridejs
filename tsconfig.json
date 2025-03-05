@@ -2,13 +2,14 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "declaration": true,
-    "declarationDir": "./types",
+    "declarationDir": "./dist/types",
     "emitDeclarationOnly": true,
     "isolatedModules": true,
     "allowJs": true,
     "lib": ["es2015"],
     "useUnknownInCatchVariables": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "noEmitOnError": false
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "scripts"]
