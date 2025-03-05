@@ -29,7 +29,8 @@
     "package.json",
     "pnpm-lock.yaml",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "scripts": {
     "build": "pnpm run codegen && pnpm run bundle && pnpm run types",
