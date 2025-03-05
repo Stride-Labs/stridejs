@@ -90,7 +90,7 @@ export declare const cosmwasmAminoConverters: {
 };
 export declare const cosmwasmProtoRegistry: ReadonlyArray<[string, GeneratedType]>;
 export declare const getSigningCosmwasmClientOptions: ({ defaultTypes }?: {
-    defaultTypes?: readonly [string, GeneratedType][];
+    defaultTypes?: ReadonlyArray<[string, GeneratedType]>;
 }) => {
     registry: Registry;
     aminoTypes: AminoTypes;

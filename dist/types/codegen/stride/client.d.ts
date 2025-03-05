@@ -360,7 +360,7 @@ export declare const strideAminoConverters: {
 };
 export declare const strideProtoRegistry: ReadonlyArray<[string, GeneratedType]>;
 export declare const getSigningStrideClientOptions: ({ defaultTypes }?: {
-    defaultTypes?: readonly [string, GeneratedType][];
+    defaultTypes?: ReadonlyArray<[string, GeneratedType]>;
 }) => {
     registry: Registry;
     aminoTypes: AminoTypes;

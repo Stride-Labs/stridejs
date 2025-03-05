@@ -135,7 +135,7 @@ export declare const ibcAminoConverters: {
 };
 export declare const ibcProtoRegistry: ReadonlyArray<[string, GeneratedType]>;
 export declare const getSigningIbcClientOptions: ({ defaultTypes }?: {
-    defaultTypes?: readonly [string, GeneratedType][];
+    defaultTypes?: ReadonlyArray<[string, GeneratedType]>;
 }) => {
     registry: Registry;
     aminoTypes: AminoTypes;

@@ -33,6 +33,8 @@ export const strideAminoConverters = {
 export const strideProtoRegistry: ReadonlyArray<[string, GeneratedType]> = [...strideAirdropTxRegistry.registry, ...strideAuctionTxRegistry.registry, ...strideClaimTxRegistry.registry, ...strideIcaoracleTxRegistry.registry, ...strideIcqoracleTxRegistry.registry, ...strideInterchainqueryV1MessagesRegistry.registry, ...strideStakedymTxRegistry.registry, ...strideStakeibcTxRegistry.registry, ...strideStaketiaTxRegistry.registry];
 export const getSigningStrideClientOptions = ({
   defaultTypes = defaultRegistryTypes
+}: {
+  defaultTypes?: ReadonlyArray<[string, GeneratedType]>;
 } = {}): {
   registry: Registry;
   aminoTypes: AminoTypes;
