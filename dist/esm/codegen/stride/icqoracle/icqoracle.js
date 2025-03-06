@@ -139,7 +139,7 @@ const TokenPrice = {
     obj.osmosis_base_denom = message.osmosisBaseDenom === "" ? void 0 : message.osmosisBaseDenom;
     obj.osmosis_quote_denom = message.osmosisQuoteDenom === "" ? void 0 : message.osmosisQuoteDenom;
     obj.osmosis_pool_id = message.osmosisPoolId !== BigInt(0) ? message.osmosisPoolId?.toString() : void 0;
-    obj.spot_price = message.spotPrice === "" ? void 0 : message.spotPrice;
+    obj.spot_price = message.spotPrice === "" ? void 0 : Decimal.fromUserInput(message.spotPrice, 18).atomics;
     obj.last_request_time = message.lastRequestTime ? Timestamp.toAmino(toTimestamp(message.lastRequestTime)) : void 0;
     obj.last_response_time = message.lastResponseTime ? Timestamp.toAmino(toTimestamp(message.lastResponseTime)) : void 0;
     obj.query_in_progress = message.queryInProgress === false ? void 0 : message.queryInProgress;

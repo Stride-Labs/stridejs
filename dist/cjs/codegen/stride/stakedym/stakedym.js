@@ -402,12 +402,12 @@ const HostZone = {
     obj.claim_address = message.claimAddress === "" ? void 0 : message.claimAddress;
     obj.operator_address_on_stride = message.operatorAddressOnStride === "" ? void 0 : message.operatorAddressOnStride;
     obj.safe_address_on_stride = message.safeAddressOnStride === "" ? void 0 : message.safeAddressOnStride;
-    obj.last_redemption_rate = message.lastRedemptionRate === "" ? void 0 : message.lastRedemptionRate;
-    obj.redemption_rate = message.redemptionRate === "" ? void 0 : message.redemptionRate;
-    obj.min_redemption_rate = message.minRedemptionRate === "" ? void 0 : message.minRedemptionRate;
-    obj.max_redemption_rate = message.maxRedemptionRate === "" ? void 0 : message.maxRedemptionRate;
-    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? void 0 : message.minInnerRedemptionRate;
-    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? void 0 : message.maxInnerRedemptionRate;
+    obj.last_redemption_rate = message.lastRedemptionRate === "" ? void 0 : import_math.Decimal.fromUserInput(message.lastRedemptionRate, 18).atomics;
+    obj.redemption_rate = message.redemptionRate === "" ? void 0 : import_math.Decimal.fromUserInput(message.redemptionRate, 18).atomics;
+    obj.min_redemption_rate = message.minRedemptionRate === "" ? void 0 : import_math.Decimal.fromUserInput(message.minRedemptionRate, 18).atomics;
+    obj.max_redemption_rate = message.maxRedemptionRate === "" ? void 0 : import_math.Decimal.fromUserInput(message.maxRedemptionRate, 18).atomics;
+    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? void 0 : import_math.Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics;
+    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? void 0 : import_math.Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics;
     obj.delegated_balance = message.delegatedBalance === "" ? void 0 : message.delegatedBalance;
     obj.unbonding_period_seconds = message.unbondingPeriodSeconds !== BigInt(0) ? message.unbondingPeriodSeconds?.toString() : void 0;
     obj.halted = message.halted === false ? void 0 : message.halted;

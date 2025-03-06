@@ -68,7 +68,7 @@ const Minter = {
   },
   toAmino(message) {
     const obj = {};
-    obj.epoch_provisions = message.epochProvisions === "" ? void 0 : message.epochProvisions;
+    obj.epoch_provisions = message.epochProvisions === "" ? void 0 : import_math.Decimal.fromUserInput(message.epochProvisions, 18).atomics;
     return obj;
   },
   fromAminoMsg(object) {
@@ -164,10 +164,10 @@ const DistributionProportions = {
   },
   toAmino(message) {
     const obj = {};
-    obj.staking = message.staking === "" ? void 0 : message.staking;
-    obj.community_pool_growth = message.communityPoolGrowth === "" ? void 0 : message.communityPoolGrowth;
-    obj.community_pool_security_budget = message.communityPoolSecurityBudget === "" ? void 0 : message.communityPoolSecurityBudget;
-    obj.strategic_reserve = message.strategicReserve === "" ? void 0 : message.strategicReserve;
+    obj.staking = message.staking === "" ? void 0 : import_math.Decimal.fromUserInput(message.staking, 18).atomics;
+    obj.community_pool_growth = message.communityPoolGrowth === "" ? void 0 : import_math.Decimal.fromUserInput(message.communityPoolGrowth, 18).atomics;
+    obj.community_pool_security_budget = message.communityPoolSecurityBudget === "" ? void 0 : import_math.Decimal.fromUserInput(message.communityPoolSecurityBudget, 18).atomics;
+    obj.strategic_reserve = message.strategicReserve === "" ? void 0 : import_math.Decimal.fromUserInput(message.strategicReserve, 18).atomics;
     return obj;
   },
   fromAminoMsg(object) {
@@ -297,10 +297,10 @@ const Params = {
   toAmino(message) {
     const obj = {};
     obj.mint_denom = message.mintDenom === "" ? void 0 : message.mintDenom;
-    obj.genesis_epoch_provisions = message.genesisEpochProvisions === "" ? void 0 : message.genesisEpochProvisions;
+    obj.genesis_epoch_provisions = message.genesisEpochProvisions === "" ? void 0 : import_math.Decimal.fromUserInput(message.genesisEpochProvisions, 18).atomics;
     obj.epoch_identifier = message.epochIdentifier === "" ? void 0 : message.epochIdentifier;
     obj.reduction_period_in_epochs = message.reductionPeriodInEpochs !== BigInt(0) ? message.reductionPeriodInEpochs?.toString() : void 0;
-    obj.reduction_factor = message.reductionFactor === "" ? void 0 : message.reductionFactor;
+    obj.reduction_factor = message.reductionFactor === "" ? void 0 : import_math.Decimal.fromUserInput(message.reductionFactor, 18).atomics;
     obj.distribution_proportions = message.distributionProportions ? DistributionProportions.toAmino(message.distributionProportions) : void 0;
     obj.minting_rewards_distribution_start_epoch = message.mintingRewardsDistributionStartEpoch !== BigInt(0) ? message.mintingRewardsDistributionStartEpoch?.toString() : void 0;
     return obj;

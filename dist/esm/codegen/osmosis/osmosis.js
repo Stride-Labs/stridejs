@@ -161,11 +161,11 @@ const OsmosisTwapRecord = {
     obj.asset1_denom = message.asset1Denom === "" ? void 0 : message.asset1Denom;
     obj.height = message.height ? message.height?.toString() : "0";
     obj.time = message.time ? Timestamp.toAmino(toTimestamp(message.time)) : void 0;
-    obj.p0_last_spot_price = message.p0LastSpotPrice === "" ? void 0 : message.p0LastSpotPrice;
-    obj.p1_last_spot_price = message.p1LastSpotPrice === "" ? void 0 : message.p1LastSpotPrice;
-    obj.p0_arithmetic_twap_accumulator = message.p0ArithmeticTwapAccumulator === "" ? void 0 : message.p0ArithmeticTwapAccumulator;
-    obj.p1_arithmetic_twap_accumulator = message.p1ArithmeticTwapAccumulator === "" ? void 0 : message.p1ArithmeticTwapAccumulator;
-    obj.geometric_twap_accumulator = message.geometricTwapAccumulator === "" ? void 0 : message.geometricTwapAccumulator;
+    obj.p0_last_spot_price = message.p0LastSpotPrice === "" ? void 0 : Decimal.fromUserInput(message.p0LastSpotPrice, 18).atomics;
+    obj.p1_last_spot_price = message.p1LastSpotPrice === "" ? void 0 : Decimal.fromUserInput(message.p1LastSpotPrice, 18).atomics;
+    obj.p0_arithmetic_twap_accumulator = message.p0ArithmeticTwapAccumulator === "" ? void 0 : Decimal.fromUserInput(message.p0ArithmeticTwapAccumulator, 18).atomics;
+    obj.p1_arithmetic_twap_accumulator = message.p1ArithmeticTwapAccumulator === "" ? void 0 : Decimal.fromUserInput(message.p1ArithmeticTwapAccumulator, 18).atomics;
+    obj.geometric_twap_accumulator = message.geometricTwapAccumulator === "" ? void 0 : Decimal.fromUserInput(message.geometricTwapAccumulator, 18).atomics;
     obj.last_error_time = message.lastErrorTime ? Timestamp.toAmino(toTimestamp(message.lastErrorTime)) : void 0;
     return obj;
   },

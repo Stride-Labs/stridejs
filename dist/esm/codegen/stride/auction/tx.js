@@ -293,7 +293,7 @@ const MsgCreateAuction = {
     obj.selling_denom = message.sellingDenom === "" ? void 0 : message.sellingDenom;
     obj.payment_denom = message.paymentDenom === "" ? void 0 : message.paymentDenom;
     obj.enabled = message.enabled === false ? void 0 : message.enabled;
-    obj.min_price_multiplier = message.minPriceMultiplier === "" ? void 0 : message.minPriceMultiplier;
+    obj.min_price_multiplier = message.minPriceMultiplier === "" ? void 0 : Decimal.fromUserInput(message.minPriceMultiplier, 18).atomics;
     obj.min_bid_amount = message.minBidAmount === "" ? void 0 : message.minBidAmount;
     obj.beneficiary = message.beneficiary === "" ? void 0 : message.beneficiary;
     return obj;
@@ -484,7 +484,7 @@ const MsgUpdateAuction = {
     obj.auction_name = message.auctionName === "" ? void 0 : message.auctionName;
     obj.auction_type = message.auctionType === 0 ? void 0 : message.auctionType;
     obj.enabled = message.enabled === false ? void 0 : message.enabled;
-    obj.min_price_multiplier = message.minPriceMultiplier === "" ? void 0 : message.minPriceMultiplier;
+    obj.min_price_multiplier = message.minPriceMultiplier === "" ? void 0 : Decimal.fromUserInput(message.minPriceMultiplier, 18).atomics;
     obj.min_bid_amount = message.minBidAmount === "" ? void 0 : message.minBidAmount;
     obj.beneficiary = message.beneficiary === "" ? void 0 : message.beneficiary;
     return obj;

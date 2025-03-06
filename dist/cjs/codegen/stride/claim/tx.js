@@ -111,7 +111,7 @@ const MsgSetAirdropAllocations = {
       obj.users = message.users;
     }
     if (message.weights) {
-      obj.weights = message.weights.map((e) => e);
+      obj.weights = message.weights.map((e) => import_math.Decimal.fromUserInput(e, 18).atomics);
     } else {
       obj.weights = message.weights;
     }

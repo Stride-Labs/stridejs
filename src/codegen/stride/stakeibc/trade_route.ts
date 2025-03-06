@@ -351,9 +351,9 @@ export const TradeConfig = {
   toAmino(message: TradeConfig): TradeConfigAmino {
     const obj: any = {};
     obj.pool_id = message.poolId !== BigInt(0) ? message.poolId?.toString() : undefined;
-    obj.swap_price = message.swapPrice === "" ? undefined : message.swapPrice;
+    obj.swap_price = message.swapPrice === "" ? undefined : Decimal.fromUserInput(message.swapPrice, 18).atomics;
     obj.price_update_timestamp = message.priceUpdateTimestamp !== BigInt(0) ? message.priceUpdateTimestamp?.toString() : undefined;
-    obj.max_allowed_swap_loss_rate = message.maxAllowedSwapLossRate === "" ? undefined : message.maxAllowedSwapLossRate;
+    obj.max_allowed_swap_loss_rate = message.maxAllowedSwapLossRate === "" ? undefined : Decimal.fromUserInput(message.maxAllowedSwapLossRate, 18).atomics;
     obj.min_swap_amount = message.minSwapAmount === "" ? undefined : message.minSwapAmount;
     obj.max_swap_amount = message.maxSwapAmount === "" ? undefined : message.maxSwapAmount;
     return obj;

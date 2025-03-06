@@ -486,7 +486,7 @@ export const MsgCreateAuction = {
     obj.selling_denom = message.sellingDenom === "" ? undefined : message.sellingDenom;
     obj.payment_denom = message.paymentDenom === "" ? undefined : message.paymentDenom;
     obj.enabled = message.enabled === false ? undefined : message.enabled;
-    obj.min_price_multiplier = message.minPriceMultiplier === "" ? undefined : message.minPriceMultiplier;
+    obj.min_price_multiplier = message.minPriceMultiplier === "" ? undefined : Decimal.fromUserInput(message.minPriceMultiplier, 18).atomics;
     obj.min_bid_amount = message.minBidAmount === "" ? undefined : message.minBidAmount;
     obj.beneficiary = message.beneficiary === "" ? undefined : message.beneficiary;
     return obj;
@@ -677,7 +677,7 @@ export const MsgUpdateAuction = {
     obj.auction_name = message.auctionName === "" ? undefined : message.auctionName;
     obj.auction_type = message.auctionType === 0 ? undefined : message.auctionType;
     obj.enabled = message.enabled === false ? undefined : message.enabled;
-    obj.min_price_multiplier = message.minPriceMultiplier === "" ? undefined : message.minPriceMultiplier;
+    obj.min_price_multiplier = message.minPriceMultiplier === "" ? undefined : Decimal.fromUserInput(message.minPriceMultiplier, 18).atomics;
     obj.min_bid_amount = message.minBidAmount === "" ? undefined : message.minBidAmount;
     obj.beneficiary = message.beneficiary === "" ? undefined : message.beneficiary;
     return obj;

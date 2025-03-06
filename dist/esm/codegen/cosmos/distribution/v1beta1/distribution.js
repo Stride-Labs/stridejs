@@ -78,9 +78,9 @@ const Params = {
   },
   toAmino(message) {
     const obj = {};
-    obj.community_tax = message.communityTax === "" ? void 0 : message.communityTax;
-    obj.base_proposer_reward = message.baseProposerReward === "" ? void 0 : message.baseProposerReward;
-    obj.bonus_proposer_reward = message.bonusProposerReward === "" ? void 0 : message.bonusProposerReward;
+    obj.community_tax = message.communityTax === "" ? void 0 : Decimal.fromUserInput(message.communityTax, 18).atomics;
+    obj.base_proposer_reward = message.baseProposerReward === "" ? void 0 : Decimal.fromUserInput(message.baseProposerReward, 18).atomics;
+    obj.bonus_proposer_reward = message.bonusProposerReward === "" ? void 0 : Decimal.fromUserInput(message.bonusProposerReward, 18).atomics;
     obj.withdraw_addr_enabled = message.withdrawAddrEnabled === false ? void 0 : message.withdrawAddrEnabled;
     return obj;
   },
@@ -470,7 +470,7 @@ const ValidatorSlashEvent = {
   toAmino(message) {
     const obj = {};
     obj.validator_period = message.validatorPeriod !== BigInt(0) ? message.validatorPeriod?.toString() : void 0;
-    obj.fraction = message.fraction === "" ? void 0 : message.fraction;
+    obj.fraction = message.fraction === "" ? void 0 : Decimal.fromUserInput(message.fraction, 18).atomics;
     return obj;
   },
   fromAminoMsg(object) {
@@ -812,7 +812,7 @@ const DelegatorStartingInfo = {
   toAmino(message) {
     const obj = {};
     obj.previous_period = message.previousPeriod !== BigInt(0) ? message.previousPeriod?.toString() : void 0;
-    obj.stake = message.stake === "" ? void 0 : message.stake;
+    obj.stake = message.stake === "" ? void 0 : Decimal.fromUserInput(message.stake, 18).atomics;
     obj.height = message.height ? message.height?.toString() : "0";
     return obj;
   },

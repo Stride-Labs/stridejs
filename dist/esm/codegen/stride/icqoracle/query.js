@@ -548,7 +548,7 @@ const QueryTokenPriceForQuoteDenomResponse = {
   },
   toAmino(message) {
     const obj = {};
-    obj.price = message.price === "" ? void 0 : message.price;
+    obj.price = message.price === "" ? void 0 : Decimal.fromUserInput(message.price, 18).atomics;
     return obj;
   },
   fromAminoMsg(object) {

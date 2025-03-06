@@ -152,7 +152,7 @@ const ClaimRecord = {
     const obj = {};
     obj.airdrop_identifier = message.airdropIdentifier === "" ? void 0 : message.airdropIdentifier;
     obj.address = message.address === "" ? void 0 : message.address;
-    obj.weight = message.weight === "" ? void 0 : message.weight;
+    obj.weight = message.weight === "" ? void 0 : import_math.Decimal.fromUserInput(message.weight, 18).atomics;
     if (message.actionCompleted) {
       obj.action_completed = message.actionCompleted.map((e) => e);
     } else {

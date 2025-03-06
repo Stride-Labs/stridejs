@@ -313,7 +313,7 @@ export const Auction = {
     obj.selling_denom = message.sellingDenom === "" ? undefined : message.sellingDenom;
     obj.payment_denom = message.paymentDenom === "" ? undefined : message.paymentDenom;
     obj.enabled = message.enabled === false ? undefined : message.enabled;
-    obj.min_price_multiplier = message.minPriceMultiplier === "" ? undefined : message.minPriceMultiplier;
+    obj.min_price_multiplier = message.minPriceMultiplier === "" ? undefined : Decimal.fromUserInput(message.minPriceMultiplier, 18).atomics;
     obj.min_bid_amount = message.minBidAmount === "" ? undefined : message.minBidAmount;
     obj.beneficiary = message.beneficiary === "" ? undefined : message.beneficiary;
     obj.total_payment_token_received = message.totalPaymentTokenReceived === "" ? undefined : message.totalPaymentTokenReceived;

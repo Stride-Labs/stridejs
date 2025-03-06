@@ -771,7 +771,7 @@ export const QueryTokenPriceForQuoteDenomResponse = {
   },
   toAmino(message: QueryTokenPriceForQuoteDenomResponse): QueryTokenPriceForQuoteDenomResponseAmino {
     const obj: any = {};
-    obj.price = message.price === "" ? undefined : message.price;
+    obj.price = message.price === "" ? undefined : Decimal.fromUserInput(message.price, 18).atomics;
     return obj;
   },
   fromAminoMsg(object: QueryTokenPriceForQuoteDenomResponseAminoMsg): QueryTokenPriceForQuoteDenomResponse {

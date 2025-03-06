@@ -78,8 +78,8 @@ const Minter = {
   },
   toAmino(message) {
     const obj = {};
-    obj.inflation = message.inflation === "" ? void 0 : message.inflation;
-    obj.annual_provisions = message.annualProvisions === "" ? void 0 : message.annualProvisions;
+    obj.inflation = message.inflation === "" ? void 0 : import_math.Decimal.fromUserInput(message.inflation, 18).atomics;
+    obj.annual_provisions = message.annualProvisions === "" ? void 0 : import_math.Decimal.fromUserInput(message.annualProvisions, 18).atomics;
     return obj;
   },
   fromAminoMsg(object) {
@@ -204,10 +204,10 @@ const Params = {
   toAmino(message) {
     const obj = {};
     obj.mint_denom = message.mintDenom === "" ? void 0 : message.mintDenom;
-    obj.inflation_rate_change = message.inflationRateChange === "" ? void 0 : message.inflationRateChange;
-    obj.inflation_max = message.inflationMax === "" ? void 0 : message.inflationMax;
-    obj.inflation_min = message.inflationMin === "" ? void 0 : message.inflationMin;
-    obj.goal_bonded = message.goalBonded === "" ? void 0 : message.goalBonded;
+    obj.inflation_rate_change = message.inflationRateChange === "" ? void 0 : import_math.Decimal.fromUserInput(message.inflationRateChange, 18).atomics;
+    obj.inflation_max = message.inflationMax === "" ? void 0 : import_math.Decimal.fromUserInput(message.inflationMax, 18).atomics;
+    obj.inflation_min = message.inflationMin === "" ? void 0 : import_math.Decimal.fromUserInput(message.inflationMin, 18).atomics;
+    obj.goal_bonded = message.goalBonded === "" ? void 0 : import_math.Decimal.fromUserInput(message.goalBonded, 18).atomics;
     obj.blocks_per_year = message.blocksPerYear !== BigInt(0) ? message.blocksPerYear?.toString() : void 0;
     return obj;
   },

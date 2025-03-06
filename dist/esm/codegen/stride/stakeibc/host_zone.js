@@ -56,7 +56,7 @@ const CommunityPoolRebate = {
   },
   toAmino(message) {
     const obj = {};
-    obj.rebate_rate = message.rebateRate === "" ? void 0 : message.rebateRate;
+    obj.rebate_rate = message.rebateRate === "" ? void 0 : Decimal.fromUserInput(message.rebateRate, 18).atomics;
     obj.liquid_staked_st_token_amount = message.liquidStakedStTokenAmount === "" ? void 0 : message.liquidStakedStTokenAmount;
     return obj;
   },
@@ -460,12 +460,12 @@ const HostZone = {
     obj.community_pool_redeem_holding_address = message.communityPoolRedeemHoldingAddress === "" ? void 0 : message.communityPoolRedeemHoldingAddress;
     obj.community_pool_treasury_address = message.communityPoolTreasuryAddress === "" ? void 0 : message.communityPoolTreasuryAddress;
     obj.total_delegations = message.totalDelegations === "" ? void 0 : message.totalDelegations;
-    obj.last_redemption_rate = message.lastRedemptionRate === "" ? void 0 : message.lastRedemptionRate;
-    obj.redemption_rate = message.redemptionRate === "" ? void 0 : message.redemptionRate;
-    obj.min_redemption_rate = message.minRedemptionRate === "" ? void 0 : message.minRedemptionRate;
-    obj.max_redemption_rate = message.maxRedemptionRate === "" ? void 0 : message.maxRedemptionRate;
-    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? void 0 : message.minInnerRedemptionRate;
-    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? void 0 : message.maxInnerRedemptionRate;
+    obj.last_redemption_rate = message.lastRedemptionRate === "" ? void 0 : Decimal.fromUserInput(message.lastRedemptionRate, 18).atomics;
+    obj.redemption_rate = message.redemptionRate === "" ? void 0 : Decimal.fromUserInput(message.redemptionRate, 18).atomics;
+    obj.min_redemption_rate = message.minRedemptionRate === "" ? void 0 : Decimal.fromUserInput(message.minRedemptionRate, 18).atomics;
+    obj.max_redemption_rate = message.maxRedemptionRate === "" ? void 0 : Decimal.fromUserInput(message.maxRedemptionRate, 18).atomics;
+    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? void 0 : Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics;
+    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? void 0 : Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics;
     obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx?.toString() : void 0;
     obj.redemptions_enabled = message.redemptionsEnabled === false ? void 0 : message.redemptionsEnabled;
     obj.community_pool_rebate = message.communityPoolRebate ? CommunityPoolRebate.toAmino(message.communityPoolRebate) : void 0;

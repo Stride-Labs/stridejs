@@ -167,7 +167,7 @@ export const ClaimRecord = {
     const obj: any = {};
     obj.airdrop_identifier = message.airdropIdentifier === "" ? undefined : message.airdropIdentifier;
     obj.address = message.address === "" ? undefined : message.address;
-    obj.weight = message.weight === "" ? undefined : message.weight;
+    obj.weight = message.weight === "" ? undefined : Decimal.fromUserInput(message.weight, 18).atomics;
     if (message.actionCompleted) {
       obj.action_completed = message.actionCompleted.map(e => e);
     } else {

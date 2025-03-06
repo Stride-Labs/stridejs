@@ -296,9 +296,9 @@ const CommissionRates = {
   },
   toAmino(message) {
     const obj = {};
-    obj.rate = message.rate === "" ? void 0 : message.rate;
-    obj.max_rate = message.maxRate === "" ? void 0 : message.maxRate;
-    obj.max_change_rate = message.maxChangeRate === "" ? void 0 : message.maxChangeRate;
+    obj.rate = message.rate === "" ? void 0 : import_math.Decimal.fromUserInput(message.rate, 18).atomics;
+    obj.max_rate = message.maxRate === "" ? void 0 : import_math.Decimal.fromUserInput(message.maxRate, 18).atomics;
+    obj.max_change_rate = message.maxChangeRate === "" ? void 0 : import_math.Decimal.fromUserInput(message.maxChangeRate, 18).atomics;
     return obj;
   },
   fromAminoMsg(object) {
@@ -709,7 +709,7 @@ const Validator = {
     obj.jailed = message.jailed === false ? void 0 : message.jailed;
     obj.status = message.status === 0 ? void 0 : message.status;
     obj.tokens = message.tokens === "" ? void 0 : message.tokens;
-    obj.delegator_shares = message.delegatorShares === "" ? void 0 : message.delegatorShares;
+    obj.delegator_shares = message.delegatorShares === "" ? void 0 : import_math.Decimal.fromUserInput(message.delegatorShares, 18).atomics;
     obj.description = message.description ? Description.toAmino(message.description) : Description.toAmino(Description.fromPartial({}));
     obj.unbonding_height = message.unbondingHeight !== BigInt(0) ? message.unbondingHeight?.toString() : void 0;
     obj.unbonding_time = message.unbondingTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.unbondingTime)) : /* @__PURE__ */ new Date();
@@ -1200,7 +1200,7 @@ const Delegation = {
     const obj = {};
     obj.delegator_address = message.delegatorAddress === "" ? void 0 : message.delegatorAddress;
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
-    obj.shares = message.shares === "" ? void 0 : message.shares;
+    obj.shares = message.shares === "" ? void 0 : import_math.Decimal.fromUserInput(message.shares, 18).atomics;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1551,7 +1551,7 @@ const RedelegationEntry = {
     obj.creation_height = message.creationHeight !== BigInt(0) ? message.creationHeight?.toString() : void 0;
     obj.completion_time = message.completionTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.completionTime)) : /* @__PURE__ */ new Date();
     obj.initial_balance = message.initialBalance === "" ? void 0 : message.initialBalance;
-    obj.shares_dst = message.sharesDst === "" ? void 0 : message.sharesDst;
+    obj.shares_dst = message.sharesDst === "" ? void 0 : import_math.Decimal.fromUserInput(message.sharesDst, 18).atomics;
     obj.unbonding_id = message.unbondingId !== BigInt(0) ? message.unbondingId?.toString() : void 0;
     obj.unbonding_on_hold_ref_count = message.unbondingOnHoldRefCount !== BigInt(0) ? message.unbondingOnHoldRefCount?.toString() : void 0;
     return obj;
@@ -1789,7 +1789,7 @@ const Params = {
     obj.max_entries = message.maxEntries === 0 ? void 0 : message.maxEntries;
     obj.historical_entries = message.historicalEntries === 0 ? void 0 : message.historicalEntries;
     obj.bond_denom = message.bondDenom === "" ? void 0 : message.bondDenom;
-    obj.min_commission_rate = message.minCommissionRate === "" ? void 0 : message.minCommissionRate;
+    obj.min_commission_rate = message.minCommissionRate === "" ? void 0 : import_math.Decimal.fromUserInput(message.minCommissionRate, 18).atomics;
     return obj;
   },
   fromAminoMsg(object) {

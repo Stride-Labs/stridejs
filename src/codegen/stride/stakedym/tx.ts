@@ -1430,8 +1430,8 @@ export const MsgUpdateInnerRedemptionRateBounds = {
   toAmino(message: MsgUpdateInnerRedemptionRateBounds): MsgUpdateInnerRedemptionRateBoundsAmino {
     const obj: any = {};
     obj.creator = message.creator === "" ? undefined : message.creator;
-    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? undefined : message.minInnerRedemptionRate;
-    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? undefined : message.maxInnerRedemptionRate;
+    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? undefined : Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics;
+    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? undefined : Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics;
     return obj;
   },
   fromAminoMsg(object: MsgUpdateInnerRedemptionRateBoundsAminoMsg): MsgUpdateInnerRedemptionRateBounds {

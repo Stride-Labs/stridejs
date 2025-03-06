@@ -217,7 +217,7 @@ const WeightedVoteOption = {
   toAmino(message) {
     const obj = {};
     obj.option = message.option === 0 ? void 0 : message.option;
-    obj.weight = message.weight === "" ? void 0 : message.weight;
+    obj.weight = message.weight === "" ? void 0 : import_math.Decimal.fromUserInput(message.weight, 18).atomics;
     return obj;
   },
   fromAminoMsg(object) {

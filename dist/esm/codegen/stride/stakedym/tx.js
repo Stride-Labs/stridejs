@@ -968,8 +968,8 @@ const MsgUpdateInnerRedemptionRateBounds = {
   toAmino(message) {
     const obj = {};
     obj.creator = message.creator === "" ? void 0 : message.creator;
-    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? void 0 : message.minInnerRedemptionRate;
-    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? void 0 : message.maxInnerRedemptionRate;
+    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? void 0 : Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics;
+    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? void 0 : Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics;
     return obj;
   },
   fromAminoMsg(object) {

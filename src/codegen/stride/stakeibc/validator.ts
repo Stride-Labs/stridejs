@@ -179,7 +179,7 @@ export const Validator = {
     obj.delegation = message.delegation === "" ? undefined : message.delegation;
     obj.slash_query_progress_tracker = message.slashQueryProgressTracker === "" ? undefined : message.slashQueryProgressTracker;
     obj.slash_query_checkpoint = message.slashQueryCheckpoint === "" ? undefined : message.slashQueryCheckpoint;
-    obj.shares_to_tokens_rate = message.sharesToTokensRate === "" ? undefined : message.sharesToTokensRate;
+    obj.shares_to_tokens_rate = message.sharesToTokensRate === "" ? undefined : Decimal.fromUserInput(message.sharesToTokensRate, 18).atomics;
     obj.delegation_changes_in_progress = message.delegationChangesInProgress !== BigInt(0) ? message.delegationChangesInProgress?.toString() : undefined;
     obj.slash_query_in_progress = message.slashQueryInProgress === false ? undefined : message.slashQueryInProgress;
     return obj;

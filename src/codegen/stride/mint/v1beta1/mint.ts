@@ -179,7 +179,7 @@ export const Minter = {
   },
   toAmino(message: Minter): MinterAmino {
     const obj: any = {};
-    obj.epoch_provisions = message.epochProvisions === "" ? undefined : message.epochProvisions;
+    obj.epoch_provisions = message.epochProvisions === "" ? undefined : Decimal.fromUserInput(message.epochProvisions, 18).atomics;
     return obj;
   },
   fromAminoMsg(object: MinterAminoMsg): Minter {
@@ -275,10 +275,10 @@ export const DistributionProportions = {
   },
   toAmino(message: DistributionProportions): DistributionProportionsAmino {
     const obj: any = {};
-    obj.staking = message.staking === "" ? undefined : message.staking;
-    obj.community_pool_growth = message.communityPoolGrowth === "" ? undefined : message.communityPoolGrowth;
-    obj.community_pool_security_budget = message.communityPoolSecurityBudget === "" ? undefined : message.communityPoolSecurityBudget;
-    obj.strategic_reserve = message.strategicReserve === "" ? undefined : message.strategicReserve;
+    obj.staking = message.staking === "" ? undefined : Decimal.fromUserInput(message.staking, 18).atomics;
+    obj.community_pool_growth = message.communityPoolGrowth === "" ? undefined : Decimal.fromUserInput(message.communityPoolGrowth, 18).atomics;
+    obj.community_pool_security_budget = message.communityPoolSecurityBudget === "" ? undefined : Decimal.fromUserInput(message.communityPoolSecurityBudget, 18).atomics;
+    obj.strategic_reserve = message.strategicReserve === "" ? undefined : Decimal.fromUserInput(message.strategicReserve, 18).atomics;
     return obj;
   },
   fromAminoMsg(object: DistributionProportionsAminoMsg): DistributionProportions {
@@ -408,10 +408,10 @@ export const Params = {
   toAmino(message: Params): ParamsAmino {
     const obj: any = {};
     obj.mint_denom = message.mintDenom === "" ? undefined : message.mintDenom;
-    obj.genesis_epoch_provisions = message.genesisEpochProvisions === "" ? undefined : message.genesisEpochProvisions;
+    obj.genesis_epoch_provisions = message.genesisEpochProvisions === "" ? undefined : Decimal.fromUserInput(message.genesisEpochProvisions, 18).atomics;
     obj.epoch_identifier = message.epochIdentifier === "" ? undefined : message.epochIdentifier;
     obj.reduction_period_in_epochs = message.reductionPeriodInEpochs !== BigInt(0) ? message.reductionPeriodInEpochs?.toString() : undefined;
-    obj.reduction_factor = message.reductionFactor === "" ? undefined : message.reductionFactor;
+    obj.reduction_factor = message.reductionFactor === "" ? undefined : Decimal.fromUserInput(message.reductionFactor, 18).atomics;
     obj.distribution_proportions = message.distributionProportions ? DistributionProportions.toAmino(message.distributionProportions) : undefined;
     obj.minting_rewards_distribution_start_epoch = message.mintingRewardsDistributionStartEpoch !== BigInt(0) ? message.mintingRewardsDistributionStartEpoch?.toString() : undefined;
     return obj;

@@ -360,7 +360,7 @@ const Airdrop = {
     obj.distribution_end_date = message.distributionEndDate ? Timestamp.toAmino(toTimestamp(message.distributionEndDate)) : void 0;
     obj.clawback_date = message.clawbackDate ? Timestamp.toAmino(toTimestamp(message.clawbackDate)) : void 0;
     obj.claim_type_deadline_date = message.claimTypeDeadlineDate ? Timestamp.toAmino(toTimestamp(message.claimTypeDeadlineDate)) : void 0;
-    obj.early_claim_penalty = message.earlyClaimPenalty === "" ? void 0 : message.earlyClaimPenalty;
+    obj.early_claim_penalty = message.earlyClaimPenalty === "" ? void 0 : Decimal.fromUserInput(message.earlyClaimPenalty, 18).atomics;
     obj.distributor_address = message.distributorAddress === "" ? void 0 : message.distributorAddress;
     obj.allocator_address = message.allocatorAddress === "" ? void 0 : message.allocatorAddress;
     obj.linker_address = message.linkerAddress === "" ? void 0 : message.linkerAddress;

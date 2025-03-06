@@ -709,12 +709,12 @@ export const HostZone = {
     obj.claim_address = message.claimAddress === "" ? undefined : message.claimAddress;
     obj.operator_address_on_stride = message.operatorAddressOnStride === "" ? undefined : message.operatorAddressOnStride;
     obj.safe_address_on_stride = message.safeAddressOnStride === "" ? undefined : message.safeAddressOnStride;
-    obj.last_redemption_rate = message.lastRedemptionRate === "" ? undefined : message.lastRedemptionRate;
-    obj.redemption_rate = message.redemptionRate === "" ? undefined : message.redemptionRate;
-    obj.min_redemption_rate = message.minRedemptionRate === "" ? undefined : message.minRedemptionRate;
-    obj.max_redemption_rate = message.maxRedemptionRate === "" ? undefined : message.maxRedemptionRate;
-    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? undefined : message.minInnerRedemptionRate;
-    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? undefined : message.maxInnerRedemptionRate;
+    obj.last_redemption_rate = message.lastRedemptionRate === "" ? undefined : Decimal.fromUserInput(message.lastRedemptionRate, 18).atomics;
+    obj.redemption_rate = message.redemptionRate === "" ? undefined : Decimal.fromUserInput(message.redemptionRate, 18).atomics;
+    obj.min_redemption_rate = message.minRedemptionRate === "" ? undefined : Decimal.fromUserInput(message.minRedemptionRate, 18).atomics;
+    obj.max_redemption_rate = message.maxRedemptionRate === "" ? undefined : Decimal.fromUserInput(message.maxRedemptionRate, 18).atomics;
+    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? undefined : Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics;
+    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? undefined : Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics;
     obj.delegated_balance = message.delegatedBalance === "" ? undefined : message.delegatedBalance;
     obj.unbonding_period_seconds = message.unbondingPeriodSeconds !== BigInt(0) ? message.unbondingPeriodSeconds?.toString() : undefined;
     obj.halted = message.halted === false ? undefined : message.halted;

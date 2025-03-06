@@ -320,7 +320,7 @@ const MsgEditValidator = {
     const obj = {};
     obj.description = message.description ? import_staking.Description.toAmino(message.description) : import_staking.Description.toAmino(import_staking.Description.fromPartial({}));
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
-    obj.commission_rate = message.commissionRate === "" ? void 0 : message.commissionRate;
+    obj.commission_rate = message.commissionRate === "" ? void 0 : import_math.Decimal.fromUserInput(message.commissionRate, 18).atomics;
     obj.min_self_delegation = message.minSelfDelegation === "" ? void 0 : message.minSelfDelegation;
     return obj;
   },

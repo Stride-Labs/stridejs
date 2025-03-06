@@ -1247,8 +1247,8 @@ export const MsgUpdateInnerRedemptionRateBounds = {
     const obj: any = {};
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.chain_id = message.chainId === "" ? undefined : message.chainId;
-    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? undefined : message.minInnerRedemptionRate;
-    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? undefined : message.maxInnerRedemptionRate;
+    obj.min_inner_redemption_rate = message.minInnerRedemptionRate === "" ? undefined : Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics;
+    obj.max_inner_redemption_rate = message.maxInnerRedemptionRate === "" ? undefined : Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics;
     return obj;
   },
   fromAminoMsg(object: MsgUpdateInnerRedemptionRateBoundsAminoMsg): MsgUpdateInnerRedemptionRateBounds {
@@ -2111,8 +2111,8 @@ export const MsgRegisterHostZone = {
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.transfer_channel_id = message.transferChannelId === "" ? undefined : message.transferChannelId;
     obj.unbonding_period = message.unbondingPeriod !== BigInt(0) ? message.unbondingPeriod?.toString() : undefined;
-    obj.min_redemption_rate = message.minRedemptionRate === "" ? undefined : message.minRedemptionRate;
-    obj.max_redemption_rate = message.maxRedemptionRate === "" ? undefined : message.maxRedemptionRate;
+    obj.min_redemption_rate = message.minRedemptionRate === "" ? undefined : Decimal.fromUserInput(message.minRedemptionRate, 18).atomics;
+    obj.max_redemption_rate = message.maxRedemptionRate === "" ? undefined : Decimal.fromUserInput(message.maxRedemptionRate, 18).atomics;
     obj.lsm_liquid_stake_enabled = message.lsmLiquidStakeEnabled === false ? undefined : message.lsmLiquidStakeEnabled;
     obj.community_pool_treasury_address = message.communityPoolTreasuryAddress === "" ? undefined : message.communityPoolTreasuryAddress;
     obj.max_messages_per_ica_tx = message.maxMessagesPerIcaTx !== BigInt(0) ? message.maxMessagesPerIcaTx?.toString() : undefined;
@@ -4405,7 +4405,7 @@ export const MsgSetCommunityPoolRebate = {
     const obj: any = {};
     obj.creator = message.creator === "" ? undefined : message.creator;
     obj.chain_id = message.chainId === "" ? undefined : message.chainId;
-    obj.rebate_rate = message.rebateRate === "" ? undefined : message.rebateRate;
+    obj.rebate_rate = message.rebateRate === "" ? undefined : Decimal.fromUserInput(message.rebateRate, 18).atomics;
     obj.liquid_staked_st_token_amount = message.liquidStakedStTokenAmount === "" ? undefined : message.liquidStakedStTokenAmount;
     return obj;
   },
