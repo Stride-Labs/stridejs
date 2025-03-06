@@ -27,10 +27,10 @@ telescope({
       useUnionTypes: true,
     },
     aminoEncoding: {
+      enabled: true,
       customTypes: {
         useCosmosSDKDec: true,
       },
-      enabled: true,
       exceptions: {
         "/stride.stakeibc.MsgLiquidStake": {
           aminoType: "stakeibc/LiquidStake",
