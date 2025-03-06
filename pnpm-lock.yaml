@@ -49,8 +49,8 @@ importers:
         specifier: 1.34.0
         version: 1.34.0
       '@cosmology/telescope':
-        specifier: 1.11.18
-        version: 1.11.18
+        specifier: 1.11.22
+        version: 1.11.22
       '@types/node':
         specifier: 20.14.11
         version: 20.14.11
@@ -768,21 +768,21 @@ packages:
   '@cosmjs/utils@0.33.0':
     resolution: {integrity: sha512-Y6glwHNlNjcOgwPg8YmNr1PSrNm307EhJVytFt8HmA/G7MRcIA+jIzCL0VlOrWGU4TrAOXvshM+oJZbTIldFRA==}
 
-  '@cosmology/ast@1.9.8':
-    resolution: {integrity: sha512-/p9QTO6muZ65JtigwanCrTOypnVuE9RAXFsBEJLPBzd1hp0AiWwuS4l21PWOrBfqqNpR2LpohUWUEye55/aCdw==}
+  '@cosmology/ast@1.9.10':
+    resolution: {integrity: sha512-wa4f3X/6snyccbWEskdeQMQkpOg5ljdnr+SSJSf6ZZJKpgNfdSKnMfIbybtP9KaMe1YWnGhpQp9U5IXqamK1IA==}
 
   '@cosmology/lcd@0.13.4':
     resolution: {integrity: sha512-llClHHHjOCie9PxnXUOxvMcWi0aVjmzkRXM6IBBXluOczRFFog23rPPfrWZPeT30dIX1SGklp0Fek28O76BkvQ==}
 
-  '@cosmology/proto-parser@1.9.6':
-    resolution: {integrity: sha512-PaqCWqwylOoutH5LOdpdfxVUQNX4rBaIabR9uKdG3iczlNTAWEHi7LywnIvNv2L4QwCpxdhoqU+k7Za5uH2GOQ==}
+  '@cosmology/proto-parser@1.9.7':
+    resolution: {integrity: sha512-yOCVMCLOMlKdZYML37CfX8x/5IM0ytAM7HBQY0YdxQhnVuA9T2u57as1sLlkXTHff08YOVve2Ww56+3CWLQNYg==}
 
   '@cosmology/protobufjs@7.3.2':
     resolution: {integrity: sha512-zHf/yqGQ7QSjIYvv7kvGKY9yXNjqj55kWdRyntrXwnte/tY8uMTuCFD/EWC48LGhGu3P7nbzTlhyCGMc3xm9bw==}
     engines: {node: '>=12.0.0'}
 
-  '@cosmology/telescope@1.11.18':
-    resolution: {integrity: sha512-Mbek5okpiP9QyesOdvLKnB4I0Xc9s8RUW+vOLm2wDQVPJG0LRDd9+zfOK0ad8gM1Y7wgEvd828a02aO/07QYGA==}
+  '@cosmology/telescope@1.11.22':
+    resolution: {integrity: sha512-IUFtrDGaKW2lzLOD7H6vwWiY+BUCzSuItwROyuQrHIyXGU8VW+LW62isMdTkQ+OTo8RPGjR/s8qmRfTM/dx3KQ==}
     hasBin: true
 
   '@cosmology/types@1.11.6':
@@ -3205,7 +3205,7 @@ snapshots:
 
   '@cosmjs/utils@0.33.0': {}
 
-  '@cosmology/ast@1.9.8':
+  '@cosmology/ast@1.9.10':
     dependencies:
       '@babel/types': 7.23.6
       '@cosmology/types': 1.11.6
@@ -3219,7 +3219,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@cosmology/proto-parser@1.9.6':
+  '@cosmology/proto-parser@1.9.7':
     dependencies:
       '@cosmology/protobufjs': 7.3.2
       '@cosmology/types': 1.11.6
@@ -3246,14 +3246,14 @@ snapshots:
       '@types/node': 20.14.11
       long: 5.2.4
 
-  '@cosmology/telescope@1.11.18':
+  '@cosmology/telescope@1.11.22':
     dependencies:
       '@babel/generator': 7.26.5
       '@babel/parser': 7.26.7
       '@babel/traverse': 7.23.6
       '@babel/types': 7.23.6
-      '@cosmology/ast': 1.9.8
-      '@cosmology/proto-parser': 1.9.6
+      '@cosmology/ast': 1.9.10
+      '@cosmology/proto-parser': 1.9.7
       '@cosmology/types': 1.11.6
       '@cosmology/utils': 1.9.6
       '@cosmwasm/ts-codegen': 0.35.7
