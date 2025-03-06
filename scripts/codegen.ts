@@ -27,6 +27,9 @@ telescope({
       useUnionTypes: true,
     },
     aminoEncoding: {
+      customTypes: {
+        useCosmosSDKDec: true,
+      },
       enabled: true,
       exceptions: {
         "/stride.stakeibc.MsgLiquidStake": {
