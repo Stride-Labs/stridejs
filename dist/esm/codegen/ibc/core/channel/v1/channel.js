@@ -7,6 +7,8 @@ var State = /* @__PURE__ */ ((State2) => {
   State2[State2["STATE_TRYOPEN"] = 2] = "STATE_TRYOPEN";
   State2[State2["STATE_OPEN"] = 3] = "STATE_OPEN";
   State2[State2["STATE_CLOSED"] = 4] = "STATE_CLOSED";
+  State2[State2["STATE_FLUSHING"] = 5] = "STATE_FLUSHING";
+  State2[State2["STATE_FLUSHCOMPLETE"] = 6] = "STATE_FLUSHCOMPLETE";
   State2[State2["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
   return State2;
 })(State || {});
@@ -29,6 +31,12 @@ function stateFromJSON(object) {
     case 4:
     case "STATE_CLOSED":
       return 4 /* STATE_CLOSED */;
+    case 5:
+    case "STATE_FLUSHING":
+      return 5 /* STATE_FLUSHING */;
+    case 6:
+    case "STATE_FLUSHCOMPLETE":
+      return 6 /* STATE_FLUSHCOMPLETE */;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -47,6 +55,10 @@ function stateToJSON(object) {
       return "STATE_OPEN";
     case 4 /* STATE_CLOSED */:
       return "STATE_CLOSED";
+    case 5 /* STATE_FLUSHING */:
+      return "STATE_FLUSHING";
+    case 6 /* STATE_FLUSHCOMPLETE */:
+      return "STATE_FLUSHCOMPLETE";
     case -1 /* UNRECOGNIZED */:
     default:
       return "UNRECOGNIZED";
@@ -97,7 +109,8 @@ function createBaseChannel() {
     ordering: 0,
     counterparty: Counterparty.fromPartial({}),
     connectionHops: [],
-    version: ""
+    version: "",
+    upgradeSequence: BigInt(0)
   };
 }
 const Channel = {
@@ -117,6 +130,9 @@ const Channel = {
     }
     if (message.version !== "") {
       writer.uint32(42).string(message.version);
+    }
+    if (message.upgradeSequence !== BigInt(0)) {
+      writer.uint32(48).uint64(message.upgradeSequence);
     }
     return writer;
   },
@@ -142,6 +158,9 @@ const Channel = {
         case 5:
           message.version = reader.string();
           break;
+        case 6:
+          message.upgradeSequence = reader.uint64();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -156,6 +175,7 @@ const Channel = {
     message.counterparty = object.counterparty !== void 0 && object.counterparty !== null ? Counterparty.fromPartial(object.counterparty) : void 0;
     message.connectionHops = object.connectionHops?.map((e) => e) || [];
     message.version = object.version ?? "";
+    message.upgradeSequence = object.upgradeSequence !== void 0 && object.upgradeSequence !== null ? BigInt(object.upgradeSequence.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object) {
@@ -173,6 +193,9 @@ const Channel = {
     if (object.version !== void 0 && object.version !== null) {
       message.version = object.version;
     }
+    if (object.upgrade_sequence !== void 0 && object.upgrade_sequence !== null) {
+      message.upgradeSequence = BigInt(object.upgrade_sequence);
+    }
     return message;
   },
   toAmino(message) {
@@ -186,6 +209,7 @@ const Channel = {
       obj.connection_hops = message.connectionHops;
     }
     obj.version = message.version === "" ? void 0 : message.version;
+    obj.upgrade_sequence = message.upgradeSequence !== BigInt(0) ? message.upgradeSequence?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -218,7 +242,8 @@ function createBaseIdentifiedChannel() {
     connectionHops: [],
     version: "",
     portId: "",
-    channelId: ""
+    channelId: "",
+    upgradeSequence: BigInt(0)
   };
 }
 const IdentifiedChannel = {
@@ -244,6 +269,9 @@ const IdentifiedChannel = {
     }
     if (message.channelId !== "") {
       writer.uint32(58).string(message.channelId);
+    }
+    if (message.upgradeSequence !== BigInt(0)) {
+      writer.uint32(64).uint64(message.upgradeSequence);
     }
     return writer;
   },
@@ -275,6 +303,9 @@ const IdentifiedChannel = {
         case 7:
           message.channelId = reader.string();
           break;
+        case 8:
+          message.upgradeSequence = reader.uint64();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -291,6 +322,7 @@ const IdentifiedChannel = {
     message.version = object.version ?? "";
     message.portId = object.portId ?? "";
     message.channelId = object.channelId ?? "";
+    message.upgradeSequence = object.upgradeSequence !== void 0 && object.upgradeSequence !== null ? BigInt(object.upgradeSequence.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object) {
@@ -314,6 +346,9 @@ const IdentifiedChannel = {
     if (object.channel_id !== void 0 && object.channel_id !== null) {
       message.channelId = object.channel_id;
     }
+    if (object.upgrade_sequence !== void 0 && object.upgrade_sequence !== null) {
+      message.upgradeSequence = BigInt(object.upgrade_sequence);
+    }
     return message;
   },
   toAmino(message) {
@@ -329,6 +364,7 @@ const IdentifiedChannel = {
     obj.version = message.version === "" ? void 0 : message.version;
     obj.port_id = message.portId === "" ? void 0 : message.portId;
     obj.channel_id = message.channelId === "" ? void 0 : message.channelId;
+    obj.upgrade_sequence = message.upgradeSequence !== BigInt(0) ? message.upgradeSequence?.toString() : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -866,6 +902,156 @@ const Acknowledgement = {
     };
   }
 };
+function createBaseTimeout() {
+  return {
+    height: Height.fromPartial({}),
+    timestamp: BigInt(0)
+  };
+}
+const Timeout = {
+  typeUrl: "/ibc.core.channel.v1.Timeout",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.height !== void 0) {
+      Height.encode(message.height, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.timestamp !== BigInt(0)) {
+      writer.uint32(16).uint64(message.timestamp);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseTimeout();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.height = Height.decode(reader, reader.uint32());
+          break;
+        case 2:
+          message.timestamp = reader.uint64();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseTimeout();
+    message.height = object.height !== void 0 && object.height !== null ? Height.fromPartial(object.height) : void 0;
+    message.timestamp = object.timestamp !== void 0 && object.timestamp !== null ? BigInt(object.timestamp.toString()) : BigInt(0);
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseTimeout();
+    if (object.height !== void 0 && object.height !== null) {
+      message.height = Height.fromAmino(object.height);
+    }
+    if (object.timestamp !== void 0 && object.timestamp !== null) {
+      message.timestamp = BigInt(object.timestamp);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.height = message.height ? Height.toAmino(message.height) : {};
+    obj.timestamp = message.timestamp !== BigInt(0) ? message.timestamp?.toString() : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return Timeout.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/Timeout",
+      value: Timeout.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return Timeout.decode(message.value);
+  },
+  toProto(message) {
+    return Timeout.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.channel.v1.Timeout",
+      value: Timeout.encode(message).finish()
+    };
+  }
+};
+function createBaseParams() {
+  return {
+    upgradeTimeout: Timeout.fromPartial({})
+  };
+}
+const Params = {
+  typeUrl: "/ibc.core.channel.v1.Params",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.upgradeTimeout !== void 0) {
+      Timeout.encode(message.upgradeTimeout, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseParams();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.upgradeTimeout = Timeout.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseParams();
+    message.upgradeTimeout = object.upgradeTimeout !== void 0 && object.upgradeTimeout !== null ? Timeout.fromPartial(object.upgradeTimeout) : void 0;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseParams();
+    if (object.upgrade_timeout !== void 0 && object.upgrade_timeout !== null) {
+      message.upgradeTimeout = Timeout.fromAmino(object.upgrade_timeout);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.upgrade_timeout = message.upgradeTimeout ? Timeout.toAmino(message.upgradeTimeout) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return Params.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/Params",
+      value: Params.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return Params.decode(message.value);
+  },
+  toProto(message) {
+    return Params.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.channel.v1.Params",
+      value: Params.encode(message).finish()
+    };
+  }
+};
 export {
   Acknowledgement,
   Channel,
@@ -877,9 +1063,11 @@ export {
   Packet,
   PacketId,
   PacketState,
+  Params,
   State,
   StateAmino,
   StateSDKType,
+  Timeout,
   orderFromJSON,
   orderToJSON,
   stateFromJSON,

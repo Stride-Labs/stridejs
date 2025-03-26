@@ -1,9 +1,9 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 /** ModuleOptions describes the CLI options for a Cosmos SDK module. */
 export interface ModuleOptions {
-    /** tx describes the tx command for the module. */
+    /** tx describes the tx commands for the module. */
     tx?: ServiceCommandDescriptor;
-    /** query describes the tx command for the module. */
+    /** query describes the queries commands for the module. */
     query?: ServiceCommandDescriptor;
 }
 export interface ModuleOptionsProtoMsg {
@@ -12,9 +12,9 @@ export interface ModuleOptionsProtoMsg {
 }
 /** ModuleOptions describes the CLI options for a Cosmos SDK module. */
 export interface ModuleOptionsAmino {
-    /** tx describes the tx command for the module. */
+    /** tx describes the tx commands for the module. */
     tx?: ServiceCommandDescriptorAmino;
-    /** query describes the tx command for the module. */
+    /** query describes the queries commands for the module. */
     query?: ServiceCommandDescriptorAmino;
 }
 export interface ModuleOptionsAminoMsg {
@@ -277,8 +277,6 @@ export interface FlagOptions {
     usage: string;
     /** default_value is the default value as text. */
     defaultValue: string;
-    /** default value is the default value as text if the flag is used without any value. */
-    noOptDefaultValue: string;
     /** deprecated is the usage text to show if this flag is deprecated. */
     deprecated: string;
     /** shorthand_deprecated is the usage text to show if the shorthand of this flag is deprecated. */
@@ -305,8 +303,6 @@ export interface FlagOptionsAmino {
     usage?: string;
     /** default_value is the default value as text. */
     default_value?: string;
-    /** default value is the default value as text if the flag is used without any value. */
-    no_opt_default_value?: string;
     /** deprecated is the usage text to show if this flag is deprecated. */
     deprecated?: string;
     /** shorthand_deprecated is the usage text to show if the shorthand of this flag is deprecated. */
@@ -329,7 +325,6 @@ export interface FlagOptionsSDKType {
     shorthand: string;
     usage: string;
     default_value: string;
-    no_opt_default_value: string;
     deprecated: string;
     shorthand_deprecated: string;
     hidden: boolean;

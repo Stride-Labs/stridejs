@@ -274,6 +274,154 @@ const ClientConsensusStates = {
     };
   }
 };
+function createBaseHeight() {
+  return {
+    revisionNumber: BigInt(0),
+    revisionHeight: BigInt(0)
+  };
+}
+const Height = {
+  typeUrl: "/ibc.core.client.v1.Height",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.revisionNumber !== BigInt(0)) {
+      writer.uint32(8).uint64(message.revisionNumber);
+    }
+    if (message.revisionHeight !== BigInt(0)) {
+      writer.uint32(16).uint64(message.revisionHeight);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseHeight();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.revisionNumber = reader.uint64();
+          break;
+        case 2:
+          message.revisionHeight = reader.uint64();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseHeight();
+    message.revisionNumber = object.revisionNumber !== void 0 && object.revisionNumber !== null ? BigInt(object.revisionNumber.toString()) : BigInt(0);
+    message.revisionHeight = object.revisionHeight !== void 0 && object.revisionHeight !== null ? BigInt(object.revisionHeight.toString()) : BigInt(0);
+    return message;
+  },
+  fromAmino(object) {
+    return {
+      revisionNumber: BigInt(object.revision_number || "0"),
+      revisionHeight: BigInt(object.revision_height || "0")
+    };
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.revision_number = message.revisionNumber !== BigInt(0) ? message.revisionNumber?.toString() : void 0;
+    obj.revision_height = message.revisionHeight !== BigInt(0) ? message.revisionHeight?.toString() : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return Height.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/Height",
+      value: Height.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return Height.decode(message.value);
+  },
+  toProto(message) {
+    return Height.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.client.v1.Height",
+      value: Height.encode(message).finish()
+    };
+  }
+};
+function createBaseParams() {
+  return {
+    allowedClients: []
+  };
+}
+const Params = {
+  typeUrl: "/ibc.core.client.v1.Params",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    for (const v of message.allowedClients) {
+      writer.uint32(10).string(v);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseParams();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.allowedClients.push(reader.string());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseParams();
+    message.allowedClients = object.allowedClients?.map((e) => e) || [];
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseParams();
+    message.allowedClients = object.allowed_clients?.map((e) => e) || [];
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    if (message.allowedClients) {
+      obj.allowed_clients = message.allowedClients.map((e) => e);
+    } else {
+      obj.allowed_clients = message.allowedClients;
+    }
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return Params.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/Params",
+      value: Params.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return Params.decode(message.value);
+  },
+  toProto(message) {
+    return Params.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.client.v1.Params",
+      value: Params.encode(message).finish()
+    };
+  }
+};
 function createBaseClientUpdateProposal() {
   return {
     $typeUrl: "/ibc.core.client.v1.ClientUpdateProposal",
@@ -483,154 +631,6 @@ const UpgradeProposal = {
     return {
       typeUrl: "/ibc.core.client.v1.UpgradeProposal",
       value: UpgradeProposal.encode(message).finish()
-    };
-  }
-};
-function createBaseHeight() {
-  return {
-    revisionNumber: BigInt(0),
-    revisionHeight: BigInt(0)
-  };
-}
-const Height = {
-  typeUrl: "/ibc.core.client.v1.Height",
-  encode(message, writer = import_binary.BinaryWriter.create()) {
-    if (message.revisionNumber !== BigInt(0)) {
-      writer.uint32(8).uint64(message.revisionNumber);
-    }
-    if (message.revisionHeight !== BigInt(0)) {
-      writer.uint32(16).uint64(message.revisionHeight);
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseHeight();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.revisionNumber = reader.uint64();
-          break;
-        case 2:
-          message.revisionHeight = reader.uint64();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseHeight();
-    message.revisionNumber = object.revisionNumber !== void 0 && object.revisionNumber !== null ? BigInt(object.revisionNumber.toString()) : BigInt(0);
-    message.revisionHeight = object.revisionHeight !== void 0 && object.revisionHeight !== null ? BigInt(object.revisionHeight.toString()) : BigInt(0);
-    return message;
-  },
-  fromAmino(object) {
-    return {
-      revisionNumber: BigInt(object.revision_number || "0"),
-      revisionHeight: BigInt(object.revision_height || "0")
-    };
-  },
-  toAmino(message) {
-    const obj = {};
-    obj.revision_number = message.revisionNumber !== BigInt(0) ? message.revisionNumber?.toString() : void 0;
-    obj.revision_height = message.revisionHeight !== BigInt(0) ? message.revisionHeight?.toString() : void 0;
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return Height.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/Height",
-      value: Height.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return Height.decode(message.value);
-  },
-  toProto(message) {
-    return Height.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/ibc.core.client.v1.Height",
-      value: Height.encode(message).finish()
-    };
-  }
-};
-function createBaseParams() {
-  return {
-    allowedClients: []
-  };
-}
-const Params = {
-  typeUrl: "/ibc.core.client.v1.Params",
-  encode(message, writer = import_binary.BinaryWriter.create()) {
-    for (const v of message.allowedClients) {
-      writer.uint32(10).string(v);
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseParams();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.allowedClients.push(reader.string());
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseParams();
-    message.allowedClients = object.allowedClients?.map((e) => e) || [];
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseParams();
-    message.allowedClients = object.allowed_clients?.map((e) => e) || [];
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    if (message.allowedClients) {
-      obj.allowed_clients = message.allowedClients.map((e) => e);
-    } else {
-      obj.allowed_clients = message.allowedClients;
-    }
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return Params.fromAmino(object.value);
-  },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/Params",
-      value: Params.toAmino(message)
-    };
-  },
-  fromProtoMsg(message) {
-    return Params.decode(message.value);
-  },
-  toProto(message) {
-    return Params.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/ibc.core.client.v1.Params",
-      value: Params.encode(message).finish()
     };
   }
 };

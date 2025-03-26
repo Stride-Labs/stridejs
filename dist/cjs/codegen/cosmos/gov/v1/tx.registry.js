@@ -23,7 +23,7 @@ __export(tx_registry_exports, {
 });
 module.exports = __toCommonJS(tx_registry_exports);
 var import_tx = require("./tx");
-const registry = [["/cosmos.gov.v1.MsgSubmitProposal", import_tx.MsgSubmitProposal], ["/cosmos.gov.v1.MsgExecLegacyContent", import_tx.MsgExecLegacyContent], ["/cosmos.gov.v1.MsgVote", import_tx.MsgVote], ["/cosmos.gov.v1.MsgVoteWeighted", import_tx.MsgVoteWeighted], ["/cosmos.gov.v1.MsgDeposit", import_tx.MsgDeposit], ["/cosmos.gov.v1.MsgUpdateParams", import_tx.MsgUpdateParams]];
+const registry = [["/cosmos.gov.v1.MsgSubmitProposal", import_tx.MsgSubmitProposal], ["/cosmos.gov.v1.MsgExecLegacyContent", import_tx.MsgExecLegacyContent], ["/cosmos.gov.v1.MsgVote", import_tx.MsgVote], ["/cosmos.gov.v1.MsgVoteWeighted", import_tx.MsgVoteWeighted], ["/cosmos.gov.v1.MsgDeposit", import_tx.MsgDeposit], ["/cosmos.gov.v1.MsgUpdateParams", import_tx.MsgUpdateParams], ["/cosmos.gov.v1.MsgCancelProposal", import_tx.MsgCancelProposal]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -66,6 +66,12 @@ const MessageComposer = {
         typeUrl: "/cosmos.gov.v1.MsgUpdateParams",
         value: import_tx.MsgUpdateParams.encode(value).finish()
       };
+    },
+    cancelProposal(value) {
+      return {
+        typeUrl: "/cosmos.gov.v1.MsgCancelProposal",
+        value: import_tx.MsgCancelProposal.encode(value).finish()
+      };
     }
   },
   withTypeUrl: {
@@ -102,6 +108,12 @@ const MessageComposer = {
     updateParams(value) {
       return {
         typeUrl: "/cosmos.gov.v1.MsgUpdateParams",
+        value
+      };
+    },
+    cancelProposal(value) {
+      return {
+        typeUrl: "/cosmos.gov.v1.MsgCancelProposal",
         value
       };
     }
@@ -141,6 +153,12 @@ const MessageComposer = {
       return {
         typeUrl: "/cosmos.gov.v1.MsgUpdateParams",
         value: import_tx.MsgUpdateParams.fromPartial(value)
+      };
+    },
+    cancelProposal(value) {
+      return {
+        typeUrl: "/cosmos.gov.v1.MsgCancelProposal",
+        value: import_tx.MsgCancelProposal.fromPartial(value)
       };
     }
   }

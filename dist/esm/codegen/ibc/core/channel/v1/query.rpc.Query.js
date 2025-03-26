@@ -1,6 +1,6 @@
 import { BinaryReader } from "../../../../binary";
 import { createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryChannelRequest, QueryChannelResponse, QueryChannelsRequest, QueryChannelsResponse, QueryConnectionChannelsRequest, QueryConnectionChannelsResponse, QueryChannelClientStateRequest, QueryChannelClientStateResponse, QueryChannelConsensusStateRequest, QueryChannelConsensusStateResponse, QueryPacketCommitmentRequest, QueryPacketCommitmentResponse, QueryPacketCommitmentsRequest, QueryPacketCommitmentsResponse, QueryPacketReceiptRequest, QueryPacketReceiptResponse, QueryPacketAcknowledgementRequest, QueryPacketAcknowledgementResponse, QueryPacketAcknowledgementsRequest, QueryPacketAcknowledgementsResponse, QueryUnreceivedPacketsRequest, QueryUnreceivedPacketsResponse, QueryUnreceivedAcksRequest, QueryUnreceivedAcksResponse, QueryNextSequenceReceiveRequest, QueryNextSequenceReceiveResponse } from "./query";
+import { QueryChannelRequest, QueryChannelResponse, QueryChannelsRequest, QueryChannelsResponse, QueryConnectionChannelsRequest, QueryConnectionChannelsResponse, QueryChannelClientStateRequest, QueryChannelClientStateResponse, QueryChannelConsensusStateRequest, QueryChannelConsensusStateResponse, QueryPacketCommitmentRequest, QueryPacketCommitmentResponse, QueryPacketCommitmentsRequest, QueryPacketCommitmentsResponse, QueryPacketReceiptRequest, QueryPacketReceiptResponse, QueryPacketAcknowledgementRequest, QueryPacketAcknowledgementResponse, QueryPacketAcknowledgementsRequest, QueryPacketAcknowledgementsResponse, QueryUnreceivedPacketsRequest, QueryUnreceivedPacketsResponse, QueryUnreceivedAcksRequest, QueryUnreceivedAcksResponse, QueryNextSequenceReceiveRequest, QueryNextSequenceReceiveResponse, QueryNextSequenceSendRequest, QueryNextSequenceSendResponse, QueryUpgradeErrorRequest, QueryUpgradeErrorResponse, QueryUpgradeRequest, QueryUpgradeResponse, QueryChannelParamsRequest, QueryChannelParamsResponse } from "./query";
 class QueryClientImpl {
   rpc;
   constructor(rpc) {
@@ -18,6 +18,10 @@ class QueryClientImpl {
     this.unreceivedPackets = this.unreceivedPackets.bind(this);
     this.unreceivedAcks = this.unreceivedAcks.bind(this);
     this.nextSequenceReceive = this.nextSequenceReceive.bind(this);
+    this.nextSequenceSend = this.nextSequenceSend.bind(this);
+    this.upgradeError = this.upgradeError.bind(this);
+    this.upgrade = this.upgrade.bind(this);
+    this.channelParams = this.channelParams.bind(this);
   }
   channel(request) {
     const data = QueryChannelRequest.encode(request).finish();
@@ -86,6 +90,26 @@ class QueryClientImpl {
     const promise = this.rpc.request("ibc.core.channel.v1.Query", "NextSequenceReceive", data);
     return promise.then((data2) => QueryNextSequenceReceiveResponse.decode(new BinaryReader(data2)));
   }
+  nextSequenceSend(request) {
+    const data = QueryNextSequenceSendRequest.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Query", "NextSequenceSend", data);
+    return promise.then((data2) => QueryNextSequenceSendResponse.decode(new BinaryReader(data2)));
+  }
+  upgradeError(request) {
+    const data = QueryUpgradeErrorRequest.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Query", "UpgradeError", data);
+    return promise.then((data2) => QueryUpgradeErrorResponse.decode(new BinaryReader(data2)));
+  }
+  upgrade(request) {
+    const data = QueryUpgradeRequest.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Query", "Upgrade", data);
+    return promise.then((data2) => QueryUpgradeResponse.decode(new BinaryReader(data2)));
+  }
+  channelParams(request = {}) {
+    const data = QueryChannelParamsRequest.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Query", "ChannelParams", data);
+    return promise.then((data2) => QueryChannelParamsResponse.decode(new BinaryReader(data2)));
+  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = createProtobufRpcClient(base);
@@ -129,6 +153,18 @@ const createRpcQueryExtension = (base) => {
     },
     nextSequenceReceive(request) {
       return queryService.nextSequenceReceive(request);
+    },
+    nextSequenceSend(request) {
+      return queryService.nextSequenceSend(request);
+    },
+    upgradeError(request) {
+      return queryService.upgradeError(request);
+    },
+    upgrade(request) {
+      return queryService.upgrade(request);
+    },
+    channelParams(request) {
+      return queryService.channelParams(request);
     }
   };
 };

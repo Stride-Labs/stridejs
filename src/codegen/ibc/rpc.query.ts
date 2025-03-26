@@ -32,6 +32,9 @@ export const createRPCQueryClient = async ({
           v1beta1: (await import("../cosmos/base/tendermint/v1beta1/query.rpc.Service")).createRpcQueryExtension(client)
         }
       },
+      circuit: {
+        v1: (await import("../cosmos/circuit/v1/query.rpc.Query")).createRpcQueryExtension(client)
+      },
       consensus: {
         v1: (await import("../cosmos/consensus/v1/query.rpc.Query")).createRpcQueryExtension(client)
       },
@@ -104,6 +107,11 @@ export const createRPCQueryClient = async ({
         },
         connection: {
           v1: (await import("./core/connection/v1/query.rpc.Query")).createRpcQueryExtension(client)
+        }
+      },
+      lightclients: {
+        wasm: {
+          v1: (await import("./lightclients/wasm/v1/query.rpc.Query")).createRpcQueryExtension(client)
         }
       }
     }

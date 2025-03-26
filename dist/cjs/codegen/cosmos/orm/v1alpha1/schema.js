@@ -32,8 +32,6 @@ var StorageType = /* @__PURE__ */ ((StorageType2) => {
   StorageType2[StorageType2["STORAGE_TYPE_DEFAULT_UNSPECIFIED"] = 0] = "STORAGE_TYPE_DEFAULT_UNSPECIFIED";
   StorageType2[StorageType2["STORAGE_TYPE_MEMORY"] = 1] = "STORAGE_TYPE_MEMORY";
   StorageType2[StorageType2["STORAGE_TYPE_TRANSIENT"] = 2] = "STORAGE_TYPE_TRANSIENT";
-  StorageType2[StorageType2["STORAGE_TYPE_INDEX"] = 3] = "STORAGE_TYPE_INDEX";
-  StorageType2[StorageType2["STORAGE_TYPE_COMMITMENT"] = 4] = "STORAGE_TYPE_COMMITMENT";
   StorageType2[StorageType2["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
   return StorageType2;
 })(StorageType || {});
@@ -50,12 +48,6 @@ function storageTypeFromJSON(object) {
     case 2:
     case "STORAGE_TYPE_TRANSIENT":
       return 2 /* STORAGE_TYPE_TRANSIENT */;
-    case 3:
-    case "STORAGE_TYPE_INDEX":
-      return 3 /* STORAGE_TYPE_INDEX */;
-    case 4:
-    case "STORAGE_TYPE_COMMITMENT":
-      return 4 /* STORAGE_TYPE_COMMITMENT */;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -70,10 +62,6 @@ function storageTypeToJSON(object) {
       return "STORAGE_TYPE_MEMORY";
     case 2 /* STORAGE_TYPE_TRANSIENT */:
       return "STORAGE_TYPE_TRANSIENT";
-    case 3 /* STORAGE_TYPE_INDEX */:
-      return "STORAGE_TYPE_INDEX";
-    case 4 /* STORAGE_TYPE_COMMITMENT */:
-      return "STORAGE_TYPE_COMMITMENT";
     case -1 /* UNRECOGNIZED */:
     default:
       return "UNRECOGNIZED";

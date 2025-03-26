@@ -32,6 +32,7 @@ class MsgClientImpl {
     this.fundCommunityPool = this.fundCommunityPool.bind(this);
     this.updateParams = this.updateParams.bind(this);
     this.communityPoolSpend = this.communityPoolSpend.bind(this);
+    this.depositValidatorRewardsPool = this.depositValidatorRewardsPool.bind(this);
   }
   setWithdrawAddress(request) {
     const data = import_tx.MsgSetWithdrawAddress.encode(request).finish();
@@ -62,6 +63,11 @@ class MsgClientImpl {
     const data = import_tx.MsgCommunityPoolSpend.encode(request).finish();
     const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "CommunityPoolSpend", data);
     return promise.then((data2) => import_tx.MsgCommunityPoolSpendResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  depositValidatorRewardsPool(request) {
+    const data = import_tx.MsgDepositValidatorRewardsPool.encode(request).finish();
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "DepositValidatorRewardsPool", data);
+    return promise.then((data2) => import_tx.MsgDepositValidatorRewardsPoolResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

@@ -244,8 +244,8 @@ export declare const strideAminoConverters: {
     };
     "/stride.interchainquery.v1.MsgSubmitQueryResponse": {
         aminoType: string;
-        toAmino: (message: import("./interchainquery/v1/messages").MsgSubmitQueryResponse) => import("./interchainquery/v1/messages").MsgSubmitQueryResponseAmino;
-        fromAmino: (object: import("./interchainquery/v1/messages").MsgSubmitQueryResponseAmino) => import("./interchainquery/v1/messages").MsgSubmitQueryResponse;
+        toAmino: (message: import("./interchainquery/v1/tx").MsgSubmitQueryResponse) => import("./interchainquery/v1/tx").MsgSubmitQueryResponseAmino;
+        fromAmino: (object: import("./interchainquery/v1/tx").MsgSubmitQueryResponseAmino) => import("./interchainquery/v1/tx").MsgSubmitQueryResponse;
     };
     "/stride.icqoracle.MsgRegisterTokenPriceQuery": {
         aminoType: string;

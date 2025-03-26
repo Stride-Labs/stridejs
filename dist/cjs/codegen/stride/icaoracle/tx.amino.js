@@ -23,27 +23,27 @@ module.exports = __toCommonJS(tx_amino_exports);
 var import_tx = require("./tx");
 const AminoConverter = {
   "/stride.icaoracle.MsgAddOracle": {
-    aminoType: "stride/x/icaoracle/MsgAddOracle",
+    aminoType: "icaoracle/MsgAddOracle",
     toAmino: import_tx.MsgAddOracle.toAmino,
     fromAmino: import_tx.MsgAddOracle.fromAmino
   },
   "/stride.icaoracle.MsgInstantiateOracle": {
-    aminoType: "stride/x/icaoracle/MsgInstantiateOracle",
+    aminoType: "icaoracle/MsgInstantiateOracle",
     toAmino: import_tx.MsgInstantiateOracle.toAmino,
     fromAmino: import_tx.MsgInstantiateOracle.fromAmino
   },
   "/stride.icaoracle.MsgRestoreOracleICA": {
-    aminoType: "stride/x/icaoracle/MsgRestoreOracleICA",
+    aminoType: "icaoracle/MsgRestoreOracleICA",
     toAmino: import_tx.MsgRestoreOracleICA.toAmino,
     fromAmino: import_tx.MsgRestoreOracleICA.fromAmino
   },
   "/stride.icaoracle.MsgToggleOracle": {
-    aminoType: "stride/x/icaoracle/MsgToggleOracle",
+    aminoType: "icaoracle/MsgToggleOracle",
     toAmino: import_tx.MsgToggleOracle.toAmino,
     fromAmino: import_tx.MsgToggleOracle.fromAmino
   },
   "/stride.icaoracle.MsgRemoveOracle": {
-    aminoType: "stride/x/icaoracle/MsgRemoveOracle",
+    aminoType: "icaoracle/MsgRemoveOracle",
     toAmino: import_tx.MsgRemoveOracle.toAmino,
     fromAmino: import_tx.MsgRemoveOracle.fromAmino
   }

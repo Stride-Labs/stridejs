@@ -409,7 +409,7 @@ const MsgPayPacketFee = {
   },
   toAmino(message) {
     const obj = {};
-    obj.fee = message.fee ? Fee.toAmino(message.fee) : void 0;
+    obj.fee = message.fee ? Fee.toAmino(message.fee) : Fee.toAmino(Fee.fromPartial({}));
     obj.source_port_id = message.sourcePortId === "" ? void 0 : message.sourcePortId;
     obj.source_channel_id = message.sourceChannelId === "" ? void 0 : message.sourceChannelId;
     obj.signer = message.signer === "" ? void 0 : message.signer;
@@ -553,8 +553,8 @@ const MsgPayPacketFeeAsync = {
   },
   toAmino(message) {
     const obj = {};
-    obj.packet_id = message.packetId ? PacketId.toAmino(message.packetId) : void 0;
-    obj.packet_fee = message.packetFee ? PacketFee.toAmino(message.packetFee) : void 0;
+    obj.packet_id = message.packetId ? PacketId.toAmino(message.packetId) : PacketId.toAmino(PacketId.fromPartial({}));
+    obj.packet_fee = message.packetFee ? PacketFee.toAmino(message.packetFee) : PacketFee.toAmino(PacketFee.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {

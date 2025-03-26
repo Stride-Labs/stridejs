@@ -172,6 +172,7 @@ export interface MsgUpdateParamsResponseSDKType {}
  * Since: cosmos-sdk 0.47
  */
 export interface MsgSetSendEnabled {
+  /** authority is the address that controls the module. */
   authority: string;
   /** send_enabled is the list of entries to add or update. */
   sendEnabled: SendEnabled[];
@@ -197,6 +198,7 @@ export interface MsgSetSendEnabledProtoMsg {
  * Since: cosmos-sdk 0.47
  */
 export interface MsgSetSendEnabledAmino {
+  /** authority is the address that controls the module. */
   authority?: string;
   /** send_enabled is the list of entries to add or update. */
   send_enabled?: SendEnabledAmino[];

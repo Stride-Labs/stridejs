@@ -95,7 +95,8 @@ function createBaseGetTxsEventRequest() {
     pagination: void 0,
     orderBy: 0,
     page: BigInt(0),
-    limit: BigInt(0)
+    limit: BigInt(0),
+    query: ""
   };
 }
 const GetTxsEventRequest = {
@@ -115,6 +116,9 @@ const GetTxsEventRequest = {
     }
     if (message.limit !== BigInt(0)) {
       writer.uint32(40).uint64(message.limit);
+    }
+    if (message.query !== "") {
+      writer.uint32(50).string(message.query);
     }
     return writer;
   },
@@ -140,6 +144,9 @@ const GetTxsEventRequest = {
         case 5:
           message.limit = reader.uint64();
           break;
+        case 6:
+          message.query = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -154,6 +161,7 @@ const GetTxsEventRequest = {
     message.orderBy = object.orderBy ?? 0;
     message.page = object.page !== void 0 && object.page !== null ? BigInt(object.page.toString()) : BigInt(0);
     message.limit = object.limit !== void 0 && object.limit !== null ? BigInt(object.limit.toString()) : BigInt(0);
+    message.query = object.query ?? "";
     return message;
   },
   fromAmino(object) {
@@ -171,6 +179,9 @@ const GetTxsEventRequest = {
     if (object.limit !== void 0 && object.limit !== null) {
       message.limit = BigInt(object.limit);
     }
+    if (object.query !== void 0 && object.query !== null) {
+      message.query = object.query;
+    }
     return message;
   },
   toAmino(message) {
@@ -184,6 +195,7 @@ const GetTxsEventRequest = {
     obj.order_by = message.orderBy === 0 ? void 0 : message.orderBy;
     obj.page = message.page !== BigInt(0) ? message.page?.toString() : void 0;
     obj.limit = message.limit !== BigInt(0) ? message.limit?.toString() : void 0;
+    obj.query = message.query === "" ? void 0 : message.query;
     return obj;
   },
   fromAminoMsg(object) {

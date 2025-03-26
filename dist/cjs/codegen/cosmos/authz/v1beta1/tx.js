@@ -125,29 +125,21 @@ const MsgGrant = {
     };
   }
 };
-function createBaseMsgExecResponse() {
-  return {
-    results: []
-  };
+function createBaseMsgGrantResponse() {
+  return {};
 }
-const MsgExecResponse = {
-  typeUrl: "/cosmos.authz.v1beta1.MsgExecResponse",
-  encode(message, writer = import_binary.BinaryWriter.create()) {
-    for (const v of message.results) {
-      writer.uint32(10).bytes(v);
-    }
+const MsgGrantResponse = {
+  typeUrl: "/cosmos.authz.v1beta1.MsgGrantResponse",
+  encode(_, writer = import_binary.BinaryWriter.create()) {
     return writer;
   },
   decode(input, length) {
     const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
     let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseMsgExecResponse();
+    const message = createBaseMsgGrantResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 1:
-          message.results.push(reader.bytes());
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -155,44 +147,37 @@ const MsgExecResponse = {
     }
     return message;
   },
-  fromPartial(object) {
-    const message = createBaseMsgExecResponse();
-    message.results = object.results?.map((e) => e) || [];
+  fromPartial(_) {
+    const message = createBaseMsgGrantResponse();
     return message;
   },
-  fromAmino(object) {
-    const message = createBaseMsgExecResponse();
-    message.results = object.results?.map((e) => (0, import_helpers.bytesFromBase64)(e)) || [];
+  fromAmino(_) {
+    const message = createBaseMsgGrantResponse();
     return message;
   },
-  toAmino(message) {
+  toAmino(_) {
     const obj = {};
-    if (message.results) {
-      obj.results = message.results.map((e) => (0, import_helpers.base64FromBytes)(e));
-    } else {
-      obj.results = message.results;
-    }
     return obj;
   },
   fromAminoMsg(object) {
-    return MsgExecResponse.fromAmino(object.value);
+    return MsgGrantResponse.fromAmino(object.value);
   },
   toAminoMsg(message) {
     return {
-      type: "cosmos-sdk/MsgExecResponse",
-      value: MsgExecResponse.toAmino(message)
+      type: "cosmos-sdk/MsgGrantResponse",
+      value: MsgGrantResponse.toAmino(message)
     };
   },
   fromProtoMsg(message) {
-    return MsgExecResponse.decode(message.value);
+    return MsgGrantResponse.decode(message.value);
   },
   toProto(message) {
-    return MsgExecResponse.encode(message).finish();
+    return MsgGrantResponse.encode(message).finish();
   },
   toProtoMsg(message) {
     return {
-      typeUrl: "/cosmos.authz.v1beta1.MsgExecResponse",
-      value: MsgExecResponse.encode(message).finish()
+      typeUrl: "/cosmos.authz.v1beta1.MsgGrantResponse",
+      value: MsgGrantResponse.encode(message).finish()
     };
   }
 };
@@ -279,21 +264,29 @@ const MsgExec = {
     };
   }
 };
-function createBaseMsgGrantResponse() {
-  return {};
+function createBaseMsgExecResponse() {
+  return {
+    results: []
+  };
 }
-const MsgGrantResponse = {
-  typeUrl: "/cosmos.authz.v1beta1.MsgGrantResponse",
-  encode(_, writer = import_binary.BinaryWriter.create()) {
+const MsgExecResponse = {
+  typeUrl: "/cosmos.authz.v1beta1.MsgExecResponse",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    for (const v of message.results) {
+      writer.uint32(10).bytes(v);
+    }
     return writer;
   },
   decode(input, length) {
     const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
     let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseMsgGrantResponse();
+    const message = createBaseMsgExecResponse();
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
+        case 1:
+          message.results.push(reader.bytes());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -301,37 +294,44 @@ const MsgGrantResponse = {
     }
     return message;
   },
-  fromPartial(_) {
-    const message = createBaseMsgGrantResponse();
+  fromPartial(object) {
+    const message = createBaseMsgExecResponse();
+    message.results = object.results?.map((e) => e) || [];
     return message;
   },
-  fromAmino(_) {
-    const message = createBaseMsgGrantResponse();
+  fromAmino(object) {
+    const message = createBaseMsgExecResponse();
+    message.results = object.results?.map((e) => (0, import_helpers.bytesFromBase64)(e)) || [];
     return message;
   },
-  toAmino(_) {
+  toAmino(message) {
     const obj = {};
+    if (message.results) {
+      obj.results = message.results.map((e) => (0, import_helpers.base64FromBytes)(e));
+    } else {
+      obj.results = message.results;
+    }
     return obj;
   },
   fromAminoMsg(object) {
-    return MsgGrantResponse.fromAmino(object.value);
+    return MsgExecResponse.fromAmino(object.value);
   },
   toAminoMsg(message) {
     return {
-      type: "cosmos-sdk/MsgGrantResponse",
-      value: MsgGrantResponse.toAmino(message)
+      type: "cosmos-sdk/MsgExecResponse",
+      value: MsgExecResponse.toAmino(message)
     };
   },
   fromProtoMsg(message) {
-    return MsgGrantResponse.decode(message.value);
+    return MsgExecResponse.decode(message.value);
   },
   toProto(message) {
-    return MsgGrantResponse.encode(message).finish();
+    return MsgExecResponse.encode(message).finish();
   },
   toProtoMsg(message) {
     return {
-      typeUrl: "/cosmos.authz.v1beta1.MsgGrantResponse",
-      value: MsgGrantResponse.encode(message).finish()
+      typeUrl: "/cosmos.authz.v1beta1.MsgExecResponse",
+      value: MsgExecResponse.encode(message).finish()
     };
   }
 };

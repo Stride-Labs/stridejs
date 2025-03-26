@@ -23,19 +23,19 @@ export interface ParamsProtoMsg {
 }
 /** Params defines the set of params for the distribution module. */
 export interface ParamsAmino {
-    community_tax?: string;
+    community_tax: string;
     /**
      * Deprecated: The base_proposer_reward field is deprecated and is no longer used
      * in the x/distribution module's reward mechanism.
      */
     /** @deprecated */
-    base_proposer_reward?: string;
+    base_proposer_reward: string;
     /**
      * Deprecated: The bonus_proposer_reward field is deprecated and is no longer used
      * in the x/distribution module's reward mechanism.
      */
     /** @deprecated */
-    bonus_proposer_reward?: string;
+    bonus_proposer_reward: string;
     withdraw_addr_enabled?: boolean;
 }
 export interface ParamsAminoMsg {
@@ -372,7 +372,7 @@ export interface DelegatorStartingInfoProtoMsg {
  */
 export interface DelegatorStartingInfoAmino {
     previous_period?: string;
-    stake?: string;
+    stake: string;
     height: string;
 }
 export interface DelegatorStartingInfoAminoMsg {

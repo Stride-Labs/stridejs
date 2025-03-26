@@ -1,4 +1,4 @@
-import { MsgGrantAllowance, MsgRevokeAllowance } from "./tx";
+import { MsgGrantAllowance, MsgRevokeAllowance, MsgPruneAllowances } from "./tx";
 export declare const AminoConverter: {
     "/cosmos.feegrant.v1beta1.MsgGrantAllowance": {
         aminoType: string;
@@ -9,5 +9,10 @@ export declare const AminoConverter: {
         aminoType: string;
         toAmino: (message: MsgRevokeAllowance) => import("./tx").MsgRevokeAllowanceAmino;
         fromAmino: (object: import("./tx").MsgRevokeAllowanceAmino) => MsgRevokeAllowance;
+    };
+    "/cosmos.feegrant.v1beta1.MsgPruneAllowances": {
+        aminoType: string;
+        toAmino: (message: MsgPruneAllowances) => import("./tx").MsgPruneAllowancesAmino;
+        fromAmino: (object: import("./tx").MsgPruneAllowancesAmino) => MsgPruneAllowances;
     };
 };

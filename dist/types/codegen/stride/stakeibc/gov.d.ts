@@ -19,7 +19,7 @@ export interface AddValidatorsProposalAmino {
     deposit?: string;
 }
 export interface AddValidatorsProposalAminoMsg {
-    type: "/stride.stakeibc.AddValidatorsProposal";
+    type: "stakeibc/AddValidatorsProposal";
     value: AddValidatorsProposalAmino;
 }
 export interface AddValidatorsProposalSDKType {
@@ -48,7 +48,7 @@ export interface ToggleLSMProposalAmino {
     deposit?: string;
 }
 export interface ToggleLSMProposalAminoMsg {
-    type: "/stride.stakeibc.ToggleLSMProposal";
+    type: "stakeibc/ToggleLSMProposal";
     value: ToggleLSMProposalAmino;
 }
 export interface ToggleLSMProposalSDKType {
@@ -66,6 +66,7 @@ export declare const AddValidatorsProposal: {
     fromAmino(object: AddValidatorsProposalAmino): AddValidatorsProposal;
     toAmino(message: AddValidatorsProposal): AddValidatorsProposalAmino;
     fromAminoMsg(object: AddValidatorsProposalAminoMsg): AddValidatorsProposal;
+    toAminoMsg(message: AddValidatorsProposal): AddValidatorsProposalAminoMsg;
     fromProtoMsg(message: AddValidatorsProposalProtoMsg): AddValidatorsProposal;
     toProto(message: AddValidatorsProposal): Uint8Array;
     toProtoMsg(message: AddValidatorsProposal): AddValidatorsProposalProtoMsg;
@@ -78,6 +79,7 @@ export declare const ToggleLSMProposal: {
     fromAmino(object: ToggleLSMProposalAmino): ToggleLSMProposal;
     toAmino(message: ToggleLSMProposal): ToggleLSMProposalAmino;
     fromAminoMsg(object: ToggleLSMProposalAminoMsg): ToggleLSMProposal;
+    toAminoMsg(message: ToggleLSMProposal): ToggleLSMProposalAminoMsg;
     fromProtoMsg(message: ToggleLSMProposalProtoMsg): ToggleLSMProposal;
     toProto(message: ToggleLSMProposal): Uint8Array;
     toProtoMsg(message: ToggleLSMProposal): ToggleLSMProposalProtoMsg;

@@ -1,4 +1,4 @@
-import { MsgChannelOpenInit, MsgChannelOpenTry, MsgChannelOpenAck, MsgChannelOpenConfirm, MsgChannelCloseInit, MsgChannelCloseConfirm, MsgRecvPacket, MsgTimeout, MsgTimeoutOnClose, MsgAcknowledgement } from "./tx";
+import { MsgChannelOpenInit, MsgChannelOpenTry, MsgChannelOpenAck, MsgChannelOpenConfirm, MsgChannelCloseInit, MsgChannelCloseConfirm, MsgRecvPacket, MsgTimeout, MsgTimeoutOnClose, MsgAcknowledgement, MsgChannelUpgradeInit, MsgChannelUpgradeTry, MsgChannelUpgradeAck, MsgChannelUpgradeConfirm, MsgChannelUpgradeOpen, MsgChannelUpgradeTimeout, MsgChannelUpgradeCancel, MsgUpdateParams, MsgPruneAcknowledgements } from "./tx";
 export declare const AminoConverter: {
     "/ibc.core.channel.v1.MsgChannelOpenInit": {
         aminoType: string;
@@ -49,5 +49,50 @@ export declare const AminoConverter: {
         aminoType: string;
         toAmino: (message: MsgAcknowledgement) => import("./tx").MsgAcknowledgementAmino;
         fromAmino: (object: import("./tx").MsgAcknowledgementAmino) => MsgAcknowledgement;
+    };
+    "/ibc.core.channel.v1.MsgChannelUpgradeInit": {
+        aminoType: string;
+        toAmino: (message: MsgChannelUpgradeInit) => import("./tx").MsgChannelUpgradeInitAmino;
+        fromAmino: (object: import("./tx").MsgChannelUpgradeInitAmino) => MsgChannelUpgradeInit;
+    };
+    "/ibc.core.channel.v1.MsgChannelUpgradeTry": {
+        aminoType: string;
+        toAmino: (message: MsgChannelUpgradeTry) => import("./tx").MsgChannelUpgradeTryAmino;
+        fromAmino: (object: import("./tx").MsgChannelUpgradeTryAmino) => MsgChannelUpgradeTry;
+    };
+    "/ibc.core.channel.v1.MsgChannelUpgradeAck": {
+        aminoType: string;
+        toAmino: (message: MsgChannelUpgradeAck) => import("./tx").MsgChannelUpgradeAckAmino;
+        fromAmino: (object: import("./tx").MsgChannelUpgradeAckAmino) => MsgChannelUpgradeAck;
+    };
+    "/ibc.core.channel.v1.MsgChannelUpgradeConfirm": {
+        aminoType: string;
+        toAmino: (message: MsgChannelUpgradeConfirm) => import("./tx").MsgChannelUpgradeConfirmAmino;
+        fromAmino: (object: import("./tx").MsgChannelUpgradeConfirmAmino) => MsgChannelUpgradeConfirm;
+    };
+    "/ibc.core.channel.v1.MsgChannelUpgradeOpen": {
+        aminoType: string;
+        toAmino: (message: MsgChannelUpgradeOpen) => import("./tx").MsgChannelUpgradeOpenAmino;
+        fromAmino: (object: import("./tx").MsgChannelUpgradeOpenAmino) => MsgChannelUpgradeOpen;
+    };
+    "/ibc.core.channel.v1.MsgChannelUpgradeTimeout": {
+        aminoType: string;
+        toAmino: (message: MsgChannelUpgradeTimeout) => import("./tx").MsgChannelUpgradeTimeoutAmino;
+        fromAmino: (object: import("./tx").MsgChannelUpgradeTimeoutAmino) => MsgChannelUpgradeTimeout;
+    };
+    "/ibc.core.channel.v1.MsgChannelUpgradeCancel": {
+        aminoType: string;
+        toAmino: (message: MsgChannelUpgradeCancel) => import("./tx").MsgChannelUpgradeCancelAmino;
+        fromAmino: (object: import("./tx").MsgChannelUpgradeCancelAmino) => MsgChannelUpgradeCancel;
+    };
+    "/ibc.core.channel.v1.MsgUpdateParams": {
+        aminoType: string;
+        toAmino: (message: MsgUpdateParams) => import("./tx").MsgUpdateParamsAmino;
+        fromAmino: (object: import("./tx").MsgUpdateParamsAmino) => MsgUpdateParams;
+    };
+    "/ibc.core.channel.v1.MsgPruneAcknowledgements": {
+        aminoType: string;
+        toAmino: (message: MsgPruneAcknowledgements) => import("./tx").MsgPruneAcknowledgementsAmino;
+        fromAmino: (object: import("./tx").MsgPruneAcknowledgementsAmino) => MsgPruneAcknowledgements;
     };
 };

@@ -1,6 +1,6 @@
 import { TelescopeGeneratedType } from "../../../../types";
 import { Registry } from "@cosmjs/proto-signing";
-import { MsgChannelOpenInit, MsgChannelOpenTry, MsgChannelOpenAck, MsgChannelOpenConfirm, MsgChannelCloseInit, MsgChannelCloseConfirm, MsgRecvPacket, MsgTimeout, MsgTimeoutOnClose, MsgAcknowledgement } from "./tx";
+import { MsgChannelOpenInit, MsgChannelOpenTry, MsgChannelOpenAck, MsgChannelOpenConfirm, MsgChannelCloseInit, MsgChannelCloseConfirm, MsgRecvPacket, MsgTimeout, MsgTimeoutOnClose, MsgAcknowledgement, MsgChannelUpgradeInit, MsgChannelUpgradeTry, MsgChannelUpgradeAck, MsgChannelUpgradeConfirm, MsgChannelUpgradeOpen, MsgChannelUpgradeTimeout, MsgChannelUpgradeCancel, MsgUpdateParams, MsgPruneAcknowledgements } from "./tx";
 export declare const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]>;
 export declare const load: (protoRegistry: Registry) => void;
 export declare const MessageComposer: {
@@ -42,6 +42,42 @@ export declare const MessageComposer: {
             value: Uint8Array;
         };
         acknowledgement(value: MsgAcknowledgement): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        channelUpgradeInit(value: MsgChannelUpgradeInit): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        channelUpgradeTry(value: MsgChannelUpgradeTry): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        channelUpgradeAck(value: MsgChannelUpgradeAck): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        channelUpgradeConfirm(value: MsgChannelUpgradeConfirm): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        channelUpgradeOpen(value: MsgChannelUpgradeOpen): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        channelUpgradeTimeout(value: MsgChannelUpgradeTimeout): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        channelUpgradeCancel(value: MsgChannelUpgradeCancel): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        updateChannelParams(value: MsgUpdateParams): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        pruneAcknowledgements(value: MsgPruneAcknowledgements): {
             typeUrl: string;
             value: Uint8Array;
         };
@@ -87,6 +123,42 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgAcknowledgement;
         };
+        channelUpgradeInit(value: MsgChannelUpgradeInit): {
+            typeUrl: string;
+            value: MsgChannelUpgradeInit;
+        };
+        channelUpgradeTry(value: MsgChannelUpgradeTry): {
+            typeUrl: string;
+            value: MsgChannelUpgradeTry;
+        };
+        channelUpgradeAck(value: MsgChannelUpgradeAck): {
+            typeUrl: string;
+            value: MsgChannelUpgradeAck;
+        };
+        channelUpgradeConfirm(value: MsgChannelUpgradeConfirm): {
+            typeUrl: string;
+            value: MsgChannelUpgradeConfirm;
+        };
+        channelUpgradeOpen(value: MsgChannelUpgradeOpen): {
+            typeUrl: string;
+            value: MsgChannelUpgradeOpen;
+        };
+        channelUpgradeTimeout(value: MsgChannelUpgradeTimeout): {
+            typeUrl: string;
+            value: MsgChannelUpgradeTimeout;
+        };
+        channelUpgradeCancel(value: MsgChannelUpgradeCancel): {
+            typeUrl: string;
+            value: MsgChannelUpgradeCancel;
+        };
+        updateChannelParams(value: MsgUpdateParams): {
+            typeUrl: string;
+            value: MsgUpdateParams;
+        };
+        pruneAcknowledgements(value: MsgPruneAcknowledgements): {
+            typeUrl: string;
+            value: MsgPruneAcknowledgements;
+        };
     };
     fromPartial: {
         channelOpenInit(value: MsgChannelOpenInit): {
@@ -128,6 +200,42 @@ export declare const MessageComposer: {
         acknowledgement(value: MsgAcknowledgement): {
             typeUrl: string;
             value: MsgAcknowledgement;
+        };
+        channelUpgradeInit(value: MsgChannelUpgradeInit): {
+            typeUrl: string;
+            value: MsgChannelUpgradeInit;
+        };
+        channelUpgradeTry(value: MsgChannelUpgradeTry): {
+            typeUrl: string;
+            value: MsgChannelUpgradeTry;
+        };
+        channelUpgradeAck(value: MsgChannelUpgradeAck): {
+            typeUrl: string;
+            value: MsgChannelUpgradeAck;
+        };
+        channelUpgradeConfirm(value: MsgChannelUpgradeConfirm): {
+            typeUrl: string;
+            value: MsgChannelUpgradeConfirm;
+        };
+        channelUpgradeOpen(value: MsgChannelUpgradeOpen): {
+            typeUrl: string;
+            value: MsgChannelUpgradeOpen;
+        };
+        channelUpgradeTimeout(value: MsgChannelUpgradeTimeout): {
+            typeUrl: string;
+            value: MsgChannelUpgradeTimeout;
+        };
+        channelUpgradeCancel(value: MsgChannelUpgradeCancel): {
+            typeUrl: string;
+            value: MsgChannelUpgradeCancel;
+        };
+        updateChannelParams(value: MsgUpdateParams): {
+            typeUrl: string;
+            value: MsgUpdateParams;
+        };
+        pruneAcknowledgements(value: MsgPruneAcknowledgements): {
+            typeUrl: string;
+            value: MsgPruneAcknowledgements;
         };
     };
 };

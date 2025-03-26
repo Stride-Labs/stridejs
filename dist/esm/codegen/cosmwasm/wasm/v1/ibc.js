@@ -174,6 +174,62 @@ const MsgIBCSendResponse = {
     };
   }
 };
+function createBaseMsgIBCWriteAcknowledgementResponse() {
+  return {};
+}
+const MsgIBCWriteAcknowledgementResponse = {
+  typeUrl: "/cosmwasm.wasm.v1.MsgIBCWriteAcknowledgementResponse",
+  encode(_, writer = BinaryWriter.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseMsgIBCWriteAcknowledgementResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_) {
+    const message = createBaseMsgIBCWriteAcknowledgementResponse();
+    return message;
+  },
+  fromAmino(_) {
+    const message = createBaseMsgIBCWriteAcknowledgementResponse();
+    return message;
+  },
+  toAmino(_) {
+    const obj = {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return MsgIBCWriteAcknowledgementResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "wasm/MsgIBCWriteAcknowledgementResponse",
+      value: MsgIBCWriteAcknowledgementResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return MsgIBCWriteAcknowledgementResponse.decode(message.value);
+  },
+  toProto(message) {
+    return MsgIBCWriteAcknowledgementResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmwasm.wasm.v1.MsgIBCWriteAcknowledgementResponse",
+      value: MsgIBCWriteAcknowledgementResponse.encode(message).finish()
+    };
+  }
+};
 function createBaseMsgIBCCloseChannel() {
   return {
     channel: ""
@@ -246,5 +302,6 @@ const MsgIBCCloseChannel = {
 export {
   MsgIBCCloseChannel,
   MsgIBCSend,
-  MsgIBCSendResponse
+  MsgIBCSendResponse,
+  MsgIBCWriteAcknowledgementResponse
 };

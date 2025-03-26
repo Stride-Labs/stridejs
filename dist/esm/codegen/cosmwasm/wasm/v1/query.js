@@ -1014,6 +1014,180 @@ const QueryCodeRequest = {
     };
   }
 };
+function createBaseQueryCodeInfoRequest() {
+  return {
+    codeId: BigInt(0)
+  };
+}
+const QueryCodeInfoRequest = {
+  typeUrl: "/cosmwasm.wasm.v1.QueryCodeInfoRequest",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.codeId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.codeId);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryCodeInfoRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.codeId = reader.uint64();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryCodeInfoRequest();
+    message.codeId = object.codeId !== void 0 && object.codeId !== null ? BigInt(object.codeId.toString()) : BigInt(0);
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryCodeInfoRequest();
+    if (object.code_id !== void 0 && object.code_id !== null) {
+      message.codeId = BigInt(object.code_id);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.code_id = message.codeId !== BigInt(0) ? message.codeId?.toString() : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryCodeInfoRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "wasm/QueryCodeInfoRequest",
+      value: QueryCodeInfoRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryCodeInfoRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryCodeInfoRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmwasm.wasm.v1.QueryCodeInfoRequest",
+      value: QueryCodeInfoRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryCodeInfoResponse() {
+  return {
+    codeId: BigInt(0),
+    creator: "",
+    checksum: new Uint8Array(),
+    instantiatePermission: AccessConfig.fromPartial({})
+  };
+}
+const QueryCodeInfoResponse = {
+  typeUrl: "/cosmwasm.wasm.v1.QueryCodeInfoResponse",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.codeId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.codeId);
+    }
+    if (message.creator !== "") {
+      writer.uint32(18).string(message.creator);
+    }
+    if (message.checksum.length !== 0) {
+      writer.uint32(26).bytes(message.checksum);
+    }
+    if (message.instantiatePermission !== void 0) {
+      AccessConfig.encode(message.instantiatePermission, writer.uint32(34).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryCodeInfoResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.codeId = reader.uint64();
+          break;
+        case 2:
+          message.creator = reader.string();
+          break;
+        case 3:
+          message.checksum = reader.bytes();
+          break;
+        case 4:
+          message.instantiatePermission = AccessConfig.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryCodeInfoResponse();
+    message.codeId = object.codeId !== void 0 && object.codeId !== null ? BigInt(object.codeId.toString()) : BigInt(0);
+    message.creator = object.creator ?? "";
+    message.checksum = object.checksum ?? new Uint8Array();
+    message.instantiatePermission = object.instantiatePermission !== void 0 && object.instantiatePermission !== null ? AccessConfig.fromPartial(object.instantiatePermission) : void 0;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryCodeInfoResponse();
+    if (object.code_id !== void 0 && object.code_id !== null) {
+      message.codeId = BigInt(object.code_id);
+    }
+    if (object.creator !== void 0 && object.creator !== null) {
+      message.creator = object.creator;
+    }
+    if (object.checksum !== void 0 && object.checksum !== null) {
+      message.checksum = bytesFromBase64(object.checksum);
+    }
+    if (object.instantiate_permission !== void 0 && object.instantiate_permission !== null) {
+      message.instantiatePermission = AccessConfig.fromAmino(object.instantiate_permission);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.code_id = message.codeId !== BigInt(0) ? message.codeId?.toString() : void 0;
+    obj.creator = message.creator === "" ? void 0 : message.creator;
+    obj.checksum = message.checksum ? base64FromBytes(message.checksum) : void 0;
+    obj.instantiate_permission = message.instantiatePermission ? AccessConfig.toAmino(message.instantiatePermission) : AccessConfig.toAmino(AccessConfig.fromPartial({}));
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryCodeInfoResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "wasm/QueryCodeInfoResponse",
+      value: QueryCodeInfoResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryCodeInfoResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryCodeInfoResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmwasm.wasm.v1.QueryCodeInfoResponse",
+      value: QueryCodeInfoResponse.encode(message).finish()
+    };
+  }
+};
 function createBaseCodeInfoResponse() {
   return {
     codeId: BigInt(0),
@@ -1802,10 +1976,313 @@ const QueryContractsByCreatorResponse = {
     };
   }
 };
+function createBaseQueryWasmLimitsConfigRequest() {
+  return {};
+}
+const QueryWasmLimitsConfigRequest = {
+  typeUrl: "/cosmwasm.wasm.v1.QueryWasmLimitsConfigRequest",
+  encode(_, writer = BinaryWriter.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryWasmLimitsConfigRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_) {
+    const message = createBaseQueryWasmLimitsConfigRequest();
+    return message;
+  },
+  fromAmino(_) {
+    const message = createBaseQueryWasmLimitsConfigRequest();
+    return message;
+  },
+  toAmino(_) {
+    const obj = {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryWasmLimitsConfigRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "wasm/QueryWasmLimitsConfigRequest",
+      value: QueryWasmLimitsConfigRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryWasmLimitsConfigRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryWasmLimitsConfigRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmwasm.wasm.v1.QueryWasmLimitsConfigRequest",
+      value: QueryWasmLimitsConfigRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryWasmLimitsConfigResponse() {
+  return {
+    config: ""
+  };
+}
+const QueryWasmLimitsConfigResponse = {
+  typeUrl: "/cosmwasm.wasm.v1.QueryWasmLimitsConfigResponse",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.config !== "") {
+      writer.uint32(10).string(message.config);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryWasmLimitsConfigResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.config = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryWasmLimitsConfigResponse();
+    message.config = object.config ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryWasmLimitsConfigResponse();
+    if (object.config !== void 0 && object.config !== null) {
+      message.config = object.config;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.config = message.config === "" ? void 0 : message.config;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryWasmLimitsConfigResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "wasm/QueryWasmLimitsConfigResponse",
+      value: QueryWasmLimitsConfigResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryWasmLimitsConfigResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryWasmLimitsConfigResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmwasm.wasm.v1.QueryWasmLimitsConfigResponse",
+      value: QueryWasmLimitsConfigResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryBuildAddressRequest() {
+  return {
+    codeHash: "",
+    creatorAddress: "",
+    salt: "",
+    initArgs: new Uint8Array()
+  };
+}
+const QueryBuildAddressRequest = {
+  typeUrl: "/cosmwasm.wasm.v1.QueryBuildAddressRequest",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.codeHash !== "") {
+      writer.uint32(10).string(message.codeHash);
+    }
+    if (message.creatorAddress !== "") {
+      writer.uint32(18).string(message.creatorAddress);
+    }
+    if (message.salt !== "") {
+      writer.uint32(26).string(message.salt);
+    }
+    if (message.initArgs.length !== 0) {
+      writer.uint32(34).bytes(message.initArgs);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryBuildAddressRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.codeHash = reader.string();
+          break;
+        case 2:
+          message.creatorAddress = reader.string();
+          break;
+        case 3:
+          message.salt = reader.string();
+          break;
+        case 4:
+          message.initArgs = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryBuildAddressRequest();
+    message.codeHash = object.codeHash ?? "";
+    message.creatorAddress = object.creatorAddress ?? "";
+    message.salt = object.salt ?? "";
+    message.initArgs = object.initArgs ?? new Uint8Array();
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryBuildAddressRequest();
+    if (object.code_hash !== void 0 && object.code_hash !== null) {
+      message.codeHash = object.code_hash;
+    }
+    if (object.creator_address !== void 0 && object.creator_address !== null) {
+      message.creatorAddress = object.creator_address;
+    }
+    if (object.salt !== void 0 && object.salt !== null) {
+      message.salt = object.salt;
+    }
+    if (object.init_args !== void 0 && object.init_args !== null) {
+      message.initArgs = bytesFromBase64(object.init_args);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.code_hash = message.codeHash === "" ? void 0 : message.codeHash;
+    obj.creator_address = message.creatorAddress === "" ? void 0 : message.creatorAddress;
+    obj.salt = message.salt === "" ? void 0 : message.salt;
+    obj.init_args = message.initArgs ? base64FromBytes(message.initArgs) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryBuildAddressRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "wasm/QueryBuildAddressRequest",
+      value: QueryBuildAddressRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryBuildAddressRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryBuildAddressRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmwasm.wasm.v1.QueryBuildAddressRequest",
+      value: QueryBuildAddressRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryBuildAddressResponse() {
+  return {
+    address: ""
+  };
+}
+const QueryBuildAddressResponse = {
+  typeUrl: "/cosmwasm.wasm.v1.QueryBuildAddressResponse",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.address !== "") {
+      writer.uint32(10).string(message.address);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryBuildAddressResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.address = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryBuildAddressResponse();
+    message.address = object.address ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryBuildAddressResponse();
+    if (object.address !== void 0 && object.address !== null) {
+      message.address = object.address;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.address = message.address === "" ? void 0 : message.address;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryBuildAddressResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "wasm/QueryBuildAddressResponse",
+      value: QueryBuildAddressResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryBuildAddressResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryBuildAddressResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmwasm.wasm.v1.QueryBuildAddressResponse",
+      value: QueryBuildAddressResponse.encode(message).finish()
+    };
+  }
+};
 export {
   CodeInfoResponse,
   QueryAllContractStateRequest,
   QueryAllContractStateResponse,
+  QueryBuildAddressRequest,
+  QueryBuildAddressResponse,
+  QueryCodeInfoRequest,
+  QueryCodeInfoResponse,
   QueryCodeRequest,
   QueryCodeResponse,
   QueryCodesRequest,
@@ -1825,5 +2302,7 @@ export {
   QueryRawContractStateRequest,
   QueryRawContractStateResponse,
   QuerySmartContractStateRequest,
-  QuerySmartContractStateResponse
+  QuerySmartContractStateResponse,
+  QueryWasmLimitsConfigRequest,
+  QueryWasmLimitsConfigResponse
 };

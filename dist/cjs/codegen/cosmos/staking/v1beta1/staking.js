@@ -296,9 +296,9 @@ const CommissionRates = {
   },
   toAmino(message) {
     const obj = {};
-    obj.rate = message.rate === "" ? void 0 : message.rate;
-    obj.max_rate = message.maxRate === "" ? void 0 : message.maxRate;
-    obj.max_change_rate = message.maxChangeRate === "" ? void 0 : message.maxChangeRate;
+    obj.rate = message.rate ?? "";
+    obj.max_rate = message.maxRate ?? "";
+    obj.max_change_rate = message.maxChangeRate ?? "";
     return obj;
   },
   fromAminoMsg(object) {
@@ -1789,7 +1789,7 @@ const Params = {
     obj.max_entries = message.maxEntries === 0 ? void 0 : message.maxEntries;
     obj.historical_entries = message.historicalEntries === 0 ? void 0 : message.historicalEntries;
     obj.bond_denom = message.bondDenom === "" ? void 0 : message.bondDenom;
-    obj.min_commission_rate = message.minCommissionRate === "" ? void 0 : message.minCommissionRate;
+    obj.min_commission_rate = message.minCommissionRate ?? "";
     return obj;
   },
   fromAminoMsg(object) {

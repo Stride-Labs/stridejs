@@ -181,10 +181,10 @@ const Params = {
   toAmino(message) {
     const obj = {};
     obj.mint_denom = message.mintDenom === "" ? void 0 : message.mintDenom;
-    obj.inflation_rate_change = message.inflationRateChange === "" ? void 0 : message.inflationRateChange;
-    obj.inflation_max = message.inflationMax === "" ? void 0 : message.inflationMax;
-    obj.inflation_min = message.inflationMin === "" ? void 0 : message.inflationMin;
-    obj.goal_bonded = message.goalBonded === "" ? void 0 : message.goalBonded;
+    obj.inflation_rate_change = message.inflationRateChange ?? "";
+    obj.inflation_max = message.inflationMax ?? "";
+    obj.inflation_min = message.inflationMin ?? "";
+    obj.goal_bonded = message.goalBonded ?? "";
     obj.blocks_per_year = message.blocksPerYear !== BigInt(0) ? message.blocksPerYear?.toString() : void 0;
     return obj;
   },

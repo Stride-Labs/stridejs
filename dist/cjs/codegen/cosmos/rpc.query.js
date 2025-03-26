@@ -62,6 +62,9 @@ const createRPCQueryClient = async ({
           v1beta1: (await import("./base/tendermint/v1beta1/query.rpc.Service")).createRpcQueryExtension(client)
         }
       },
+      circuit: {
+        v1: (await import("./circuit/v1/query.rpc.Query")).createRpcQueryExtension(client)
+      },
       consensus: {
         v1: (await import("./consensus/v1/query.rpc.Query")).createRpcQueryExtension(client)
       },

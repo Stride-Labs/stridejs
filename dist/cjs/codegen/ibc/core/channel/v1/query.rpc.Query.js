@@ -41,6 +41,10 @@ class QueryClientImpl {
     this.unreceivedPackets = this.unreceivedPackets.bind(this);
     this.unreceivedAcks = this.unreceivedAcks.bind(this);
     this.nextSequenceReceive = this.nextSequenceReceive.bind(this);
+    this.nextSequenceSend = this.nextSequenceSend.bind(this);
+    this.upgradeError = this.upgradeError.bind(this);
+    this.upgrade = this.upgrade.bind(this);
+    this.channelParams = this.channelParams.bind(this);
   }
   channel(request) {
     const data = import_query.QueryChannelRequest.encode(request).finish();
@@ -109,6 +113,26 @@ class QueryClientImpl {
     const promise = this.rpc.request("ibc.core.channel.v1.Query", "NextSequenceReceive", data);
     return promise.then((data2) => import_query.QueryNextSequenceReceiveResponse.decode(new import_binary.BinaryReader(data2)));
   }
+  nextSequenceSend(request) {
+    const data = import_query.QueryNextSequenceSendRequest.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Query", "NextSequenceSend", data);
+    return promise.then((data2) => import_query.QueryNextSequenceSendResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  upgradeError(request) {
+    const data = import_query.QueryUpgradeErrorRequest.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Query", "UpgradeError", data);
+    return promise.then((data2) => import_query.QueryUpgradeErrorResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  upgrade(request) {
+    const data = import_query.QueryUpgradeRequest.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Query", "Upgrade", data);
+    return promise.then((data2) => import_query.QueryUpgradeResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  channelParams(request = {}) {
+    const data = import_query.QueryChannelParamsRequest.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Query", "ChannelParams", data);
+    return promise.then((data2) => import_query.QueryChannelParamsResponse.decode(new import_binary.BinaryReader(data2)));
+  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = (0, import_stargate.createProtobufRpcClient)(base);
@@ -152,6 +176,18 @@ const createRpcQueryExtension = (base) => {
     },
     nextSequenceReceive(request) {
       return queryService.nextSequenceReceive(request);
+    },
+    nextSequenceSend(request) {
+      return queryService.nextSequenceSend(request);
+    },
+    upgradeError(request) {
+      return queryService.upgradeError(request);
+    },
+    upgrade(request) {
+      return queryService.upgrade(request);
+    },
+    channelParams(request) {
+      return queryService.channelParams(request);
     }
   };
 };

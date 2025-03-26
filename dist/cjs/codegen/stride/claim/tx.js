@@ -120,6 +120,12 @@ const MsgSetAirdropAllocations = {
   fromAminoMsg(object) {
     return MsgSetAirdropAllocations.fromAmino(object.value);
   },
+  toAminoMsg(message) {
+    return {
+      type: "claim/MsgSetAirdropAllocations",
+      value: MsgSetAirdropAllocations.toAmino(message)
+    };
+  },
   fromProtoMsg(message) {
     return MsgSetAirdropAllocations.decode(message.value);
   },
@@ -439,6 +445,12 @@ const MsgCreateAirdrop = {
   fromAminoMsg(object) {
     return MsgCreateAirdrop.fromAmino(object.value);
   },
+  toAminoMsg(message) {
+    return {
+      type: "claim/MsgCreateAirdrop",
+      value: MsgCreateAirdrop.toAmino(message)
+    };
+  },
   fromProtoMsg(message) {
     return MsgCreateAirdrop.decode(message.value);
   },
@@ -563,6 +575,12 @@ const MsgDeleteAirdrop = {
   },
   fromAminoMsg(object) {
     return MsgDeleteAirdrop.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "claim/MsgDeleteAirdrop",
+      value: MsgDeleteAirdrop.toAmino(message)
+    };
   },
   fromProtoMsg(message) {
     return MsgDeleteAirdrop.decode(message.value);

@@ -23,7 +23,7 @@ module.exports = __toCommonJS(tx_amino_exports);
 var import_tx = require("./tx");
 const AminoConverter = {
   "/cosmos.consensus.v1.MsgUpdateParams": {
-    aminoType: "cosmos-sdk/MsgUpdateParams",
+    aminoType: "cosmos-sdk/x/consensus/MsgUpdateParams",
     toAmino: import_tx.MsgUpdateParams.toAmino,
     fromAmino: import_tx.MsgUpdateParams.fromAmino
   }

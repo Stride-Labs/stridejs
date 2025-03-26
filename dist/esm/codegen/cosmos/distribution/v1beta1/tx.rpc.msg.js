@@ -1,5 +1,5 @@
 import { BinaryReader } from "../../../binary";
-import { MsgSetWithdrawAddress, MsgSetWithdrawAddressResponse, MsgWithdrawDelegatorReward, MsgWithdrawDelegatorRewardResponse, MsgWithdrawValidatorCommission, MsgWithdrawValidatorCommissionResponse, MsgFundCommunityPool, MsgFundCommunityPoolResponse, MsgUpdateParams, MsgUpdateParamsResponse, MsgCommunityPoolSpend, MsgCommunityPoolSpendResponse } from "./tx";
+import { MsgSetWithdrawAddress, MsgSetWithdrawAddressResponse, MsgWithdrawDelegatorReward, MsgWithdrawDelegatorRewardResponse, MsgWithdrawValidatorCommission, MsgWithdrawValidatorCommissionResponse, MsgFundCommunityPool, MsgFundCommunityPoolResponse, MsgUpdateParams, MsgUpdateParamsResponse, MsgCommunityPoolSpend, MsgCommunityPoolSpendResponse, MsgDepositValidatorRewardsPool, MsgDepositValidatorRewardsPoolResponse } from "./tx";
 class MsgClientImpl {
   rpc;
   constructor(rpc) {
@@ -10,6 +10,7 @@ class MsgClientImpl {
     this.fundCommunityPool = this.fundCommunityPool.bind(this);
     this.updateParams = this.updateParams.bind(this);
     this.communityPoolSpend = this.communityPoolSpend.bind(this);
+    this.depositValidatorRewardsPool = this.depositValidatorRewardsPool.bind(this);
   }
   setWithdrawAddress(request) {
     const data = MsgSetWithdrawAddress.encode(request).finish();
@@ -40,6 +41,11 @@ class MsgClientImpl {
     const data = MsgCommunityPoolSpend.encode(request).finish();
     const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "CommunityPoolSpend", data);
     return promise.then((data2) => MsgCommunityPoolSpendResponse.decode(new BinaryReader(data2)));
+  }
+  depositValidatorRewardsPool(request) {
+    const data = MsgDepositValidatorRewardsPool.encode(request).finish();
+    const promise = this.rpc.request("cosmos.distribution.v1beta1.Msg", "DepositValidatorRewardsPool", data);
+    return promise.then((data2) => MsgDepositValidatorRewardsPoolResponse.decode(new BinaryReader(data2)));
   }
 }
 export {

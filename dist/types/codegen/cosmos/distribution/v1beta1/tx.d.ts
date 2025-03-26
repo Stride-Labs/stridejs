@@ -388,6 +388,79 @@ export interface MsgCommunityPoolSpendResponseAminoMsg {
  */
 export interface MsgCommunityPoolSpendResponseSDKType {
 }
+/**
+ * DepositValidatorRewardsPool defines the request structure to provide
+ * additional rewards to delegators from a specific validator.
+ *
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgDepositValidatorRewardsPool {
+    depositor: string;
+    validatorAddress: string;
+    amount: Coin[];
+}
+export interface MsgDepositValidatorRewardsPoolProtoMsg {
+    typeUrl: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPool";
+    value: Uint8Array;
+}
+/**
+ * DepositValidatorRewardsPool defines the request structure to provide
+ * additional rewards to delegators from a specific validator.
+ *
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgDepositValidatorRewardsPoolAmino {
+    depositor?: string;
+    validator_address?: string;
+    amount: CoinAmino[];
+}
+export interface MsgDepositValidatorRewardsPoolAminoMsg {
+    type: "cosmos-sdk/distr/MsgDepositValRewards";
+    value: MsgDepositValidatorRewardsPoolAmino;
+}
+/**
+ * DepositValidatorRewardsPool defines the request structure to provide
+ * additional rewards to delegators from a specific validator.
+ *
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgDepositValidatorRewardsPoolSDKType {
+    depositor: string;
+    validator_address: string;
+    amount: CoinSDKType[];
+}
+/**
+ * MsgDepositValidatorRewardsPoolResponse defines the response to executing a
+ * MsgDepositValidatorRewardsPool message.
+ *
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgDepositValidatorRewardsPoolResponse {
+}
+export interface MsgDepositValidatorRewardsPoolResponseProtoMsg {
+    typeUrl: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPoolResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgDepositValidatorRewardsPoolResponse defines the response to executing a
+ * MsgDepositValidatorRewardsPool message.
+ *
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgDepositValidatorRewardsPoolResponseAmino {
+}
+export interface MsgDepositValidatorRewardsPoolResponseAminoMsg {
+    type: "cosmos-sdk/MsgDepositValidatorRewardsPoolResponse";
+    value: MsgDepositValidatorRewardsPoolResponseAmino;
+}
+/**
+ * MsgDepositValidatorRewardsPoolResponse defines the response to executing a
+ * MsgDepositValidatorRewardsPool message.
+ *
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgDepositValidatorRewardsPoolResponseSDKType {
+}
 export declare const MsgSetWithdrawAddress: {
     typeUrl: string;
     encode(message: MsgSetWithdrawAddress, writer?: BinaryWriter): BinaryWriter;
@@ -543,4 +616,30 @@ export declare const MsgCommunityPoolSpendResponse: {
     fromProtoMsg(message: MsgCommunityPoolSpendResponseProtoMsg): MsgCommunityPoolSpendResponse;
     toProto(message: MsgCommunityPoolSpendResponse): Uint8Array;
     toProtoMsg(message: MsgCommunityPoolSpendResponse): MsgCommunityPoolSpendResponseProtoMsg;
+};
+export declare const MsgDepositValidatorRewardsPool: {
+    typeUrl: string;
+    encode(message: MsgDepositValidatorRewardsPool, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgDepositValidatorRewardsPool;
+    fromPartial(object: Partial<MsgDepositValidatorRewardsPool>): MsgDepositValidatorRewardsPool;
+    fromAmino(object: MsgDepositValidatorRewardsPoolAmino): MsgDepositValidatorRewardsPool;
+    toAmino(message: MsgDepositValidatorRewardsPool): MsgDepositValidatorRewardsPoolAmino;
+    fromAminoMsg(object: MsgDepositValidatorRewardsPoolAminoMsg): MsgDepositValidatorRewardsPool;
+    toAminoMsg(message: MsgDepositValidatorRewardsPool): MsgDepositValidatorRewardsPoolAminoMsg;
+    fromProtoMsg(message: MsgDepositValidatorRewardsPoolProtoMsg): MsgDepositValidatorRewardsPool;
+    toProto(message: MsgDepositValidatorRewardsPool): Uint8Array;
+    toProtoMsg(message: MsgDepositValidatorRewardsPool): MsgDepositValidatorRewardsPoolProtoMsg;
+};
+export declare const MsgDepositValidatorRewardsPoolResponse: {
+    typeUrl: string;
+    encode(_: MsgDepositValidatorRewardsPoolResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgDepositValidatorRewardsPoolResponse;
+    fromPartial(_: Partial<MsgDepositValidatorRewardsPoolResponse>): MsgDepositValidatorRewardsPoolResponse;
+    fromAmino(_: MsgDepositValidatorRewardsPoolResponseAmino): MsgDepositValidatorRewardsPoolResponse;
+    toAmino(_: MsgDepositValidatorRewardsPoolResponse): MsgDepositValidatorRewardsPoolResponseAmino;
+    fromAminoMsg(object: MsgDepositValidatorRewardsPoolResponseAminoMsg): MsgDepositValidatorRewardsPoolResponse;
+    toAminoMsg(message: MsgDepositValidatorRewardsPoolResponse): MsgDepositValidatorRewardsPoolResponseAminoMsg;
+    fromProtoMsg(message: MsgDepositValidatorRewardsPoolResponseProtoMsg): MsgDepositValidatorRewardsPoolResponse;
+    toProto(message: MsgDepositValidatorRewardsPoolResponse): Uint8Array;
+    toProtoMsg(message: MsgDepositValidatorRewardsPoolResponse): MsgDepositValidatorRewardsPoolResponseProtoMsg;
 };

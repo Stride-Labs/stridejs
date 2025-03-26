@@ -31,6 +31,11 @@ const AminoConverter = {
     aminoType: "cosmos-sdk/MsgRevokeAllowance",
     toAmino: import_tx.MsgRevokeAllowance.toAmino,
     fromAmino: import_tx.MsgRevokeAllowance.fromAmino
+  },
+  "/cosmos.feegrant.v1beta1.MsgPruneAllowances": {
+    aminoType: "cosmos-sdk/MsgPruneAllowances",
+    toAmino: import_tx.MsgPruneAllowances.toAmino,
+    fromAmino: import_tx.MsgPruneAllowances.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

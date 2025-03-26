@@ -202,6 +202,11 @@ export declare const cosmosAminoConverters: {
         toAmino: (message: import("./gov/v1/tx").MsgUpdateParams) => import("./gov/v1/tx").MsgUpdateParamsAmino;
         fromAmino: (object: import("./gov/v1/tx").MsgUpdateParamsAmino) => import("./gov/v1/tx").MsgUpdateParams;
     };
+    "/cosmos.gov.v1.MsgCancelProposal": {
+        aminoType: string;
+        toAmino: (message: import("./gov/v1/tx").MsgCancelProposal) => import("./gov/v1/tx").MsgCancelProposalAmino;
+        fromAmino: (object: import("./gov/v1/tx").MsgCancelProposalAmino) => import("./gov/v1/tx").MsgCancelProposal;
+    };
     "/cosmos.feegrant.v1beta1.MsgGrantAllowance": {
         aminoType: string;
         toAmino: (message: import("./feegrant/v1beta1/tx").MsgGrantAllowance) => import("./feegrant/v1beta1/tx").MsgGrantAllowanceAmino;
@@ -211,6 +216,11 @@ export declare const cosmosAminoConverters: {
         aminoType: string;
         toAmino: (message: import("./feegrant/v1beta1/tx").MsgRevokeAllowance) => import("./feegrant/v1beta1/tx").MsgRevokeAllowanceAmino;
         fromAmino: (object: import("./feegrant/v1beta1/tx").MsgRevokeAllowanceAmino) => import("./feegrant/v1beta1/tx").MsgRevokeAllowance;
+    };
+    "/cosmos.feegrant.v1beta1.MsgPruneAllowances": {
+        aminoType: string;
+        toAmino: (message: import("./feegrant/v1beta1/tx").MsgPruneAllowances) => import("./feegrant/v1beta1/tx").MsgPruneAllowancesAmino;
+        fromAmino: (object: import("./feegrant/v1beta1/tx").MsgPruneAllowancesAmino) => import("./feegrant/v1beta1/tx").MsgPruneAllowances;
     };
     "/cosmos.evidence.v1beta1.MsgSubmitEvidence": {
         aminoType: string;
@@ -247,6 +257,11 @@ export declare const cosmosAminoConverters: {
         toAmino: (message: import("./distribution/v1beta1/tx").MsgCommunityPoolSpend) => import("./distribution/v1beta1/tx").MsgCommunityPoolSpendAmino;
         fromAmino: (object: import("./distribution/v1beta1/tx").MsgCommunityPoolSpendAmino) => import("./distribution/v1beta1/tx").MsgCommunityPoolSpend;
     };
+    "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPool": {
+        aminoType: string;
+        toAmino: (message: import("./distribution/v1beta1/tx").MsgDepositValidatorRewardsPool) => import("./distribution/v1beta1/tx").MsgDepositValidatorRewardsPoolAmino;
+        fromAmino: (object: import("./distribution/v1beta1/tx").MsgDepositValidatorRewardsPoolAmino) => import("./distribution/v1beta1/tx").MsgDepositValidatorRewardsPool;
+    };
     "/cosmos.crisis.v1beta1.MsgVerifyInvariant": {
         aminoType: string;
         toAmino: (message: import("./crisis/v1beta1/tx").MsgVerifyInvariant) => import("./crisis/v1beta1/tx").MsgVerifyInvariantAmino;
@@ -261,6 +276,21 @@ export declare const cosmosAminoConverters: {
         aminoType: string;
         toAmino: (message: import("./consensus/v1/tx").MsgUpdateParams) => import("./consensus/v1/tx").MsgUpdateParamsAmino;
         fromAmino: (object: import("./consensus/v1/tx").MsgUpdateParamsAmino) => import("./consensus/v1/tx").MsgUpdateParams;
+    };
+    "/cosmos.circuit.v1.MsgAuthorizeCircuitBreaker": {
+        aminoType: string;
+        toAmino: (message: import("./circuit/v1/tx").MsgAuthorizeCircuitBreaker) => import("./circuit/v1/tx").MsgAuthorizeCircuitBreakerAmino;
+        fromAmino: (object: import("./circuit/v1/tx").MsgAuthorizeCircuitBreakerAmino) => import("./circuit/v1/tx").MsgAuthorizeCircuitBreaker;
+    };
+    "/cosmos.circuit.v1.MsgTripCircuitBreaker": {
+        aminoType: string;
+        toAmino: (message: import("./circuit/v1/tx").MsgTripCircuitBreaker) => import("./circuit/v1/tx").MsgTripCircuitBreakerAmino;
+        fromAmino: (object: import("./circuit/v1/tx").MsgTripCircuitBreakerAmino) => import("./circuit/v1/tx").MsgTripCircuitBreaker;
+    };
+    "/cosmos.circuit.v1.MsgResetCircuitBreaker": {
+        aminoType: string;
+        toAmino: (message: import("./circuit/v1/tx").MsgResetCircuitBreaker) => import("./circuit/v1/tx").MsgResetCircuitBreakerAmino;
+        fromAmino: (object: import("./circuit/v1/tx").MsgResetCircuitBreakerAmino) => import("./circuit/v1/tx").MsgResetCircuitBreaker;
     };
     "/cosmos.bank.v1beta1.MsgSend": {
         aminoType: string;

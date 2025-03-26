@@ -23,7 +23,7 @@ __export(tx_registry_exports, {
 });
 module.exports = __toCommonJS(tx_registry_exports);
 var import_tx = require("./tx");
-const registry = [["/cosmos.feegrant.v1beta1.MsgGrantAllowance", import_tx.MsgGrantAllowance], ["/cosmos.feegrant.v1beta1.MsgRevokeAllowance", import_tx.MsgRevokeAllowance]];
+const registry = [["/cosmos.feegrant.v1beta1.MsgGrantAllowance", import_tx.MsgGrantAllowance], ["/cosmos.feegrant.v1beta1.MsgRevokeAllowance", import_tx.MsgRevokeAllowance], ["/cosmos.feegrant.v1beta1.MsgPruneAllowances", import_tx.MsgPruneAllowances]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -42,6 +42,12 @@ const MessageComposer = {
         typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance",
         value: import_tx.MsgRevokeAllowance.encode(value).finish()
       };
+    },
+    pruneAllowances(value) {
+      return {
+        typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowances",
+        value: import_tx.MsgPruneAllowances.encode(value).finish()
+      };
     }
   },
   withTypeUrl: {
@@ -54,6 +60,12 @@ const MessageComposer = {
     revokeAllowance(value) {
       return {
         typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance",
+        value
+      };
+    },
+    pruneAllowances(value) {
+      return {
+        typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowances",
         value
       };
     }
@@ -69,6 +81,12 @@ const MessageComposer = {
       return {
         typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance",
         value: import_tx.MsgRevokeAllowance.fromPartial(value)
+      };
+    },
+    pruneAllowances(value) {
+      return {
+        typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowances",
+        value: import_tx.MsgPruneAllowances.fromPartial(value)
       };
     }
   }

@@ -156,7 +156,7 @@ const MsgCreateValidator = {
     const obj = {};
     obj.description = message.description ? import_staking.Description.toAmino(message.description) : import_staking.Description.toAmino(import_staking.Description.fromPartial({}));
     obj.commission = message.commission ? import_staking.CommissionRates.toAmino(message.commission) : import_staking.CommissionRates.toAmino(import_staking.CommissionRates.fromPartial({}));
-    obj.min_self_delegation = message.minSelfDelegation === "" ? void 0 : message.minSelfDelegation;
+    obj.min_self_delegation = message.minSelfDelegation ?? "";
     obj.delegator_address = message.delegatorAddress === "" ? void 0 : message.delegatorAddress;
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
     obj.pubkey = message.pubkey ? (0, import_proto_signing.decodePubkey)(message.pubkey) : void 0;
@@ -820,7 +820,8 @@ const MsgUndelegate = {
 };
 function createBaseMsgUndelegateResponse() {
   return {
-    completionTime: /* @__PURE__ */ new Date()
+    completionTime: /* @__PURE__ */ new Date(),
+    amount: import_coin.Coin.fromPartial({})
   };
 }
 const MsgUndelegateResponse = {
@@ -828,6 +829,9 @@ const MsgUndelegateResponse = {
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.completionTime !== void 0) {
       import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.completionTime), writer.uint32(10).fork()).ldelim();
+    }
+    if (message.amount !== void 0) {
+      import_coin.Coin.encode(message.amount, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -841,6 +845,9 @@ const MsgUndelegateResponse = {
         case 1:
           message.completionTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
           break;
+        case 2:
+          message.amount = import_coin.Coin.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -851,6 +858,7 @@ const MsgUndelegateResponse = {
   fromPartial(object) {
     const message = createBaseMsgUndelegateResponse();
     message.completionTime = object.completionTime ?? void 0;
+    message.amount = object.amount !== void 0 && object.amount !== null ? import_coin.Coin.fromPartial(object.amount) : void 0;
     return message;
   },
   fromAmino(object) {
@@ -858,11 +866,15 @@ const MsgUndelegateResponse = {
     if (object.completion_time !== void 0 && object.completion_time !== null) {
       message.completionTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.fromAmino(object.completion_time));
     }
+    if (object.amount !== void 0 && object.amount !== null) {
+      message.amount = import_coin.Coin.fromAmino(object.amount);
+    }
     return message;
   },
   toAmino(message) {
     const obj = {};
     obj.completion_time = message.completionTime ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.completionTime)) : /* @__PURE__ */ new Date();
+    obj.amount = message.amount ? import_coin.Coin.toAmino(message.amount) : import_coin.Coin.toAmino(import_coin.Coin.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {

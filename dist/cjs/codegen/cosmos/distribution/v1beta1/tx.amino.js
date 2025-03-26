@@ -51,6 +51,11 @@ const AminoConverter = {
     aminoType: "cosmos-sdk/distr/MsgCommunityPoolSpend",
     toAmino: import_tx.MsgCommunityPoolSpend.toAmino,
     fromAmino: import_tx.MsgCommunityPoolSpend.fromAmino
+  },
+  "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPool": {
+    aminoType: "cosmos-sdk/distr/MsgDepositValRewards",
+    toAmino: import_tx.MsgDepositValidatorRewardsPool.toAmino,
+    fromAmino: import_tx.MsgDepositValidatorRewardsPool.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

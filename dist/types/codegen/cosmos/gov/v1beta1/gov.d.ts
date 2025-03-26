@@ -84,7 +84,7 @@ export interface WeightedVoteOptionAmino {
     /** option defines the valid vote options, it must not contain duplicate vote options. */
     option?: VoteOption;
     /** weight is the vote weight associated with the vote option. */
-    weight?: string;
+    weight: string;
 }
 export interface WeightedVoteOptionAminoMsg {
     type: "cosmos-sdk/WeightedVoteOption";

@@ -123,6 +123,12 @@ const AddValidatorsProposal = {
   fromAminoMsg(object) {
     return AddValidatorsProposal.fromAmino(object.value);
   },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/AddValidatorsProposal",
+      value: AddValidatorsProposal.toAmino(message)
+    };
+  },
   fromProtoMsg(message) {
     return AddValidatorsProposal.decode(message.value);
   },
@@ -233,6 +239,12 @@ const ToggleLSMProposal = {
   },
   fromAminoMsg(object) {
     return ToggleLSMProposal.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/ToggleLSMProposal",
+      value: ToggleLSMProposal.toAmino(message)
+    };
   },
   fromProtoMsg(message) {
     return ToggleLSMProposal.decode(message.value);

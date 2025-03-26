@@ -41,6 +41,21 @@ const AminoConverter = {
     aminoType: "cosmos-sdk/MsgSubmitMisbehaviour",
     toAmino: import_tx.MsgSubmitMisbehaviour.toAmino,
     fromAmino: import_tx.MsgSubmitMisbehaviour.fromAmino
+  },
+  "/ibc.core.client.v1.MsgRecoverClient": {
+    aminoType: "cosmos-sdk/MsgRecoverClient",
+    toAmino: import_tx.MsgRecoverClient.toAmino,
+    fromAmino: import_tx.MsgRecoverClient.fromAmino
+  },
+  "/ibc.core.client.v1.MsgIBCSoftwareUpgrade": {
+    aminoType: "cosmos-sdk/MsgIBCSoftwareUpgrade",
+    toAmino: import_tx.MsgIBCSoftwareUpgrade.toAmino,
+    fromAmino: import_tx.MsgIBCSoftwareUpgrade.fromAmino
+  },
+  "/ibc.core.client.v1.MsgUpdateParams": {
+    aminoType: "cosmos-sdk/MsgUpdateParams",
+    toAmino: import_tx.MsgUpdateParams.toAmino,
+    fromAmino: import_tx.MsgUpdateParams.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

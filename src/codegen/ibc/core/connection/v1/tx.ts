@@ -1,6 +1,6 @@
 import { Counterparty, CounterpartyAmino, CounterpartySDKType, Version, VersionAmino, VersionSDKType } from "./connection";
 import { Any, AnyAmino, AnySDKType } from "../../../../google/protobuf/any";
-import { Height, HeightAmino, HeightSDKType } from "../../client/v1/client";
+import { Height, HeightAmino, HeightSDKType, Params, ParamsAmino, ParamsSDKType } from "../../client/v1/client";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 import { bytesFromBase64, base64FromBytes } from "../../../../helpers";
 /**
@@ -188,6 +188,7 @@ export interface MsgConnectionOpenAck {
   connectionId: string;
   counterpartyConnectionId: string;
   version?: Version;
+  /** @deprecated */
   clientState?: Any;
   proofHeight: Height;
   /**
@@ -196,12 +197,16 @@ export interface MsgConnectionOpenAck {
    */
   proofTry: Uint8Array;
   /** proof of client state included in message */
+  /** @deprecated */
   proofClient: Uint8Array;
   /** proof of client consensus state */
+  /** @deprecated */
   proofConsensus: Uint8Array;
+  /** @deprecated */
   consensusHeight: Height;
   signer: string;
   /** optional proof data for host state machines that are unable to introspect their own consensus state */
+  /** @deprecated */
   hostConsensusStateProof: Uint8Array;
 }
 export interface MsgConnectionOpenAckProtoMsg {
@@ -216,6 +221,7 @@ export interface MsgConnectionOpenAckAmino {
   connection_id?: string;
   counterparty_connection_id?: string;
   version?: VersionAmino;
+  /** @deprecated */
   client_state?: AnyAmino;
   proof_height?: HeightAmino;
   /**
@@ -224,12 +230,16 @@ export interface MsgConnectionOpenAckAmino {
    */
   proof_try?: string;
   /** proof of client state included in message */
+  /** @deprecated */
   proof_client?: string;
   /** proof of client consensus state */
+  /** @deprecated */
   proof_consensus?: string;
+  /** @deprecated */
   consensus_height?: HeightAmino;
   signer?: string;
   /** optional proof data for host state machines that are unable to introspect their own consensus state */
+  /** @deprecated */
   host_consensus_state_proof?: string;
 }
 export interface MsgConnectionOpenAckAminoMsg {
@@ -244,13 +254,18 @@ export interface MsgConnectionOpenAckSDKType {
   connection_id: string;
   counterparty_connection_id: string;
   version?: VersionSDKType;
+  /** @deprecated */
   client_state?: AnySDKType;
   proof_height: HeightSDKType;
   proof_try: Uint8Array;
+  /** @deprecated */
   proof_client: Uint8Array;
+  /** @deprecated */
   proof_consensus: Uint8Array;
+  /** @deprecated */
   consensus_height: HeightSDKType;
   signer: string;
+  /** @deprecated */
   host_consensus_state_proof: Uint8Array;
 }
 /** MsgConnectionOpenAckResponse defines the Msg/ConnectionOpenAck response type. */
@@ -330,6 +345,55 @@ export interface MsgConnectionOpenConfirmResponseAminoMsg {
  * response type.
  */
 export interface MsgConnectionOpenConfirmResponseSDKType {}
+/** MsgUpdateParams defines the sdk.Msg type to update the connection parameters. */
+export interface MsgUpdateParams {
+  /** signer address */
+  signer: string;
+  /**
+   * params defines the connection parameters to update.
+   * 
+   * NOTE: All parameters must be supplied.
+   */
+  params: Params;
+}
+export interface MsgUpdateParamsProtoMsg {
+  typeUrl: "/ibc.core.connection.v1.MsgUpdateParams";
+  value: Uint8Array;
+}
+/** MsgUpdateParams defines the sdk.Msg type to update the connection parameters. */
+export interface MsgUpdateParamsAmino {
+  /** signer address */
+  signer?: string;
+  /**
+   * params defines the connection parameters to update.
+   * 
+   * NOTE: All parameters must be supplied.
+   */
+  params?: ParamsAmino;
+}
+export interface MsgUpdateParamsAminoMsg {
+  type: "cosmos-sdk/MsgUpdateParams";
+  value: MsgUpdateParamsAmino;
+}
+/** MsgUpdateParams defines the sdk.Msg type to update the connection parameters. */
+export interface MsgUpdateParamsSDKType {
+  signer: string;
+  params: ParamsSDKType;
+}
+/** MsgUpdateParamsResponse defines the MsgUpdateParams response type. */
+export interface MsgUpdateParamsResponse {}
+export interface MsgUpdateParamsResponseProtoMsg {
+  typeUrl: "/ibc.core.connection.v1.MsgUpdateParamsResponse";
+  value: Uint8Array;
+}
+/** MsgUpdateParamsResponse defines the MsgUpdateParams response type. */
+export interface MsgUpdateParamsResponseAmino {}
+export interface MsgUpdateParamsResponseAminoMsg {
+  type: "cosmos-sdk/MsgUpdateParamsResponse";
+  value: MsgUpdateParamsResponseAmino;
+}
+/** MsgUpdateParamsResponse defines the MsgUpdateParams response type. */
+export interface MsgUpdateParamsResponseSDKType {}
 function createBaseMsgConnectionOpenInit(): MsgConnectionOpenInit {
   return {
     clientId: "",
@@ -1177,6 +1241,143 @@ export const MsgConnectionOpenConfirmResponse = {
     return {
       typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenConfirmResponse",
       value: MsgConnectionOpenConfirmResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgUpdateParams(): MsgUpdateParams {
+  return {
+    signer: "",
+    params: Params.fromPartial({})
+  };
+}
+export const MsgUpdateParams = {
+  typeUrl: "/ibc.core.connection.v1.MsgUpdateParams",
+  encode(message: MsgUpdateParams, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.signer !== "") {
+      writer.uint32(10).string(message.signer);
+    }
+    if (message.params !== undefined) {
+      Params.encode(message.params, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParams {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateParams();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.signer = reader.string();
+          break;
+        case 2:
+          message.params = Params.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<MsgUpdateParams>): MsgUpdateParams {
+    const message = createBaseMsgUpdateParams();
+    message.signer = object.signer ?? "";
+    message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    return message;
+  },
+  fromAmino(object: MsgUpdateParamsAmino): MsgUpdateParams {
+    const message = createBaseMsgUpdateParams();
+    if (object.signer !== undefined && object.signer !== null) {
+      message.signer = object.signer;
+    }
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
+    }
+    return message;
+  },
+  toAmino(message: MsgUpdateParams): MsgUpdateParamsAmino {
+    const obj: any = {};
+    obj.signer = message.signer === "" ? undefined : message.signer;
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: MsgUpdateParamsAminoMsg): MsgUpdateParams {
+    return MsgUpdateParams.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgUpdateParams): MsgUpdateParamsAminoMsg {
+    return {
+      type: "cosmos-sdk/MsgUpdateParams",
+      value: MsgUpdateParams.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: MsgUpdateParamsProtoMsg): MsgUpdateParams {
+    return MsgUpdateParams.decode(message.value);
+  },
+  toProto(message: MsgUpdateParams): Uint8Array {
+    return MsgUpdateParams.encode(message).finish();
+  },
+  toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg {
+    return {
+      typeUrl: "/ibc.core.connection.v1.MsgUpdateParams",
+      value: MsgUpdateParams.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgUpdateParamsResponse(): MsgUpdateParamsResponse {
+  return {};
+}
+export const MsgUpdateParamsResponse = {
+  typeUrl: "/ibc.core.connection.v1.MsgUpdateParamsResponse",
+  encode(_: MsgUpdateParamsResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParamsResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgUpdateParamsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_: Partial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse {
+    const message = createBaseMsgUpdateParamsResponse();
+    return message;
+  },
+  fromAmino(_: MsgUpdateParamsResponseAmino): MsgUpdateParamsResponse {
+    const message = createBaseMsgUpdateParamsResponse();
+    return message;
+  },
+  toAmino(_: MsgUpdateParamsResponse): MsgUpdateParamsResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgUpdateParamsResponseAminoMsg): MsgUpdateParamsResponse {
+    return MsgUpdateParamsResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/MsgUpdateParamsResponse",
+      value: MsgUpdateParamsResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse {
+    return MsgUpdateParamsResponse.decode(message.value);
+  },
+  toProto(message: MsgUpdateParamsResponse): Uint8Array {
+    return MsgUpdateParamsResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg {
+    return {
+      typeUrl: "/ibc.core.connection.v1.MsgUpdateParamsResponse",
+      value: MsgUpdateParamsResponse.encode(message).finish()
     };
   }
 };

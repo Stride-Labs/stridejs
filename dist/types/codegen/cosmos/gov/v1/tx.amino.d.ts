@@ -1,4 +1,4 @@
-import { MsgSubmitProposal, MsgExecLegacyContent, MsgVote, MsgVoteWeighted, MsgDeposit, MsgUpdateParams } from "./tx";
+import { MsgSubmitProposal, MsgExecLegacyContent, MsgVote, MsgVoteWeighted, MsgDeposit, MsgUpdateParams, MsgCancelProposal } from "./tx";
 export declare const AminoConverter: {
     "/cosmos.gov.v1.MsgSubmitProposal": {
         aminoType: string;
@@ -29,5 +29,10 @@ export declare const AminoConverter: {
         aminoType: string;
         toAmino: (message: MsgUpdateParams) => import("./tx").MsgUpdateParamsAmino;
         fromAmino: (object: import("./tx").MsgUpdateParamsAmino) => MsgUpdateParams;
+    };
+    "/cosmos.gov.v1.MsgCancelProposal": {
+        aminoType: string;
+        toAmino: (message: MsgCancelProposal) => import("./tx").MsgCancelProposalAmino;
+        fromAmino: (object: import("./tx").MsgCancelProposalAmino) => MsgCancelProposal;
     };
 };

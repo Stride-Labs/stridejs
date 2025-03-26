@@ -118,7 +118,7 @@ const MsgCreateValidator = {
     const obj = {};
     obj.description = message.description ? Description.toAmino(message.description) : Description.toAmino(Description.fromPartial({}));
     obj.commission = message.commission ? CommissionRates.toAmino(message.commission) : CommissionRates.toAmino(CommissionRates.fromPartial({}));
-    obj.min_self_delegation = message.minSelfDelegation === "" ? void 0 : message.minSelfDelegation;
+    obj.min_self_delegation = message.minSelfDelegation ?? "";
     obj.delegator_address = message.delegatorAddress === "" ? void 0 : message.delegatorAddress;
     obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
     obj.pubkey = message.pubkey ? decodePubkey(message.pubkey) : void 0;
@@ -782,7 +782,8 @@ const MsgUndelegate = {
 };
 function createBaseMsgUndelegateResponse() {
   return {
-    completionTime: /* @__PURE__ */ new Date()
+    completionTime: /* @__PURE__ */ new Date(),
+    amount: Coin.fromPartial({})
   };
 }
 const MsgUndelegateResponse = {
@@ -790,6 +791,9 @@ const MsgUndelegateResponse = {
   encode(message, writer = BinaryWriter.create()) {
     if (message.completionTime !== void 0) {
       Timestamp.encode(toTimestamp(message.completionTime), writer.uint32(10).fork()).ldelim();
+    }
+    if (message.amount !== void 0) {
+      Coin.encode(message.amount, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -803,6 +807,9 @@ const MsgUndelegateResponse = {
         case 1:
           message.completionTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
           break;
+        case 2:
+          message.amount = Coin.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -813,6 +820,7 @@ const MsgUndelegateResponse = {
   fromPartial(object) {
     const message = createBaseMsgUndelegateResponse();
     message.completionTime = object.completionTime ?? void 0;
+    message.amount = object.amount !== void 0 && object.amount !== null ? Coin.fromPartial(object.amount) : void 0;
     return message;
   },
   fromAmino(object) {
@@ -820,11 +828,15 @@ const MsgUndelegateResponse = {
     if (object.completion_time !== void 0 && object.completion_time !== null) {
       message.completionTime = fromTimestamp(Timestamp.fromAmino(object.completion_time));
     }
+    if (object.amount !== void 0 && object.amount !== null) {
+      message.amount = Coin.fromAmino(object.amount);
+    }
     return message;
   },
   toAmino(message) {
     const obj = {};
     obj.completion_time = message.completionTime ? Timestamp.toAmino(toTimestamp(message.completionTime)) : /* @__PURE__ */ new Date();
+    obj.amount = message.amount ? Coin.toAmino(message.amount) : Coin.toAmino(Coin.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object) {

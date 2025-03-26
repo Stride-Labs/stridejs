@@ -1,5 +1,5 @@
-import { MsgSubmitProposal, MsgExecLegacyContent, MsgVote, MsgVoteWeighted, MsgDeposit, MsgUpdateParams } from "./tx";
-const registry = [["/cosmos.gov.v1.MsgSubmitProposal", MsgSubmitProposal], ["/cosmos.gov.v1.MsgExecLegacyContent", MsgExecLegacyContent], ["/cosmos.gov.v1.MsgVote", MsgVote], ["/cosmos.gov.v1.MsgVoteWeighted", MsgVoteWeighted], ["/cosmos.gov.v1.MsgDeposit", MsgDeposit], ["/cosmos.gov.v1.MsgUpdateParams", MsgUpdateParams]];
+import { MsgSubmitProposal, MsgExecLegacyContent, MsgVote, MsgVoteWeighted, MsgDeposit, MsgUpdateParams, MsgCancelProposal } from "./tx";
+const registry = [["/cosmos.gov.v1.MsgSubmitProposal", MsgSubmitProposal], ["/cosmos.gov.v1.MsgExecLegacyContent", MsgExecLegacyContent], ["/cosmos.gov.v1.MsgVote", MsgVote], ["/cosmos.gov.v1.MsgVoteWeighted", MsgVoteWeighted], ["/cosmos.gov.v1.MsgDeposit", MsgDeposit], ["/cosmos.gov.v1.MsgUpdateParams", MsgUpdateParams], ["/cosmos.gov.v1.MsgCancelProposal", MsgCancelProposal]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -42,6 +42,12 @@ const MessageComposer = {
         typeUrl: "/cosmos.gov.v1.MsgUpdateParams",
         value: MsgUpdateParams.encode(value).finish()
       };
+    },
+    cancelProposal(value) {
+      return {
+        typeUrl: "/cosmos.gov.v1.MsgCancelProposal",
+        value: MsgCancelProposal.encode(value).finish()
+      };
     }
   },
   withTypeUrl: {
@@ -78,6 +84,12 @@ const MessageComposer = {
     updateParams(value) {
       return {
         typeUrl: "/cosmos.gov.v1.MsgUpdateParams",
+        value
+      };
+    },
+    cancelProposal(value) {
+      return {
+        typeUrl: "/cosmos.gov.v1.MsgCancelProposal",
         value
       };
     }
@@ -117,6 +129,12 @@ const MessageComposer = {
       return {
         typeUrl: "/cosmos.gov.v1.MsgUpdateParams",
         value: MsgUpdateParams.fromPartial(value)
+      };
+    },
+    cancelProposal(value) {
+      return {
+        typeUrl: "/cosmos.gov.v1.MsgCancelProposal",
+        value: MsgCancelProposal.fromPartial(value)
       };
     }
   }

@@ -5,6 +5,7 @@ var AuthorizationType = /* @__PURE__ */ ((AuthorizationType2) => {
   AuthorizationType2[AuthorizationType2["AUTHORIZATION_TYPE_DELEGATE"] = 1] = "AUTHORIZATION_TYPE_DELEGATE";
   AuthorizationType2[AuthorizationType2["AUTHORIZATION_TYPE_UNDELEGATE"] = 2] = "AUTHORIZATION_TYPE_UNDELEGATE";
   AuthorizationType2[AuthorizationType2["AUTHORIZATION_TYPE_REDELEGATE"] = 3] = "AUTHORIZATION_TYPE_REDELEGATE";
+  AuthorizationType2[AuthorizationType2["AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION"] = 4] = "AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION";
   AuthorizationType2[AuthorizationType2["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
   return AuthorizationType2;
 })(AuthorizationType || {});
@@ -24,6 +25,9 @@ function authorizationTypeFromJSON(object) {
     case 3:
     case "AUTHORIZATION_TYPE_REDELEGATE":
       return 3 /* AUTHORIZATION_TYPE_REDELEGATE */;
+    case 4:
+    case "AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION":
+      return 4 /* AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION */;
     case -1:
     case "UNRECOGNIZED":
     default:
@@ -40,6 +44,8 @@ function authorizationTypeToJSON(object) {
       return "AUTHORIZATION_TYPE_UNDELEGATE";
     case 3 /* AUTHORIZATION_TYPE_REDELEGATE */:
       return "AUTHORIZATION_TYPE_REDELEGATE";
+    case 4 /* AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION */:
+      return "AUTHORIZATION_TYPE_CANCEL_UNBONDING_DELEGATION";
     case -1 /* UNRECOGNIZED */:
     default:
       return "UNRECOGNIZED";

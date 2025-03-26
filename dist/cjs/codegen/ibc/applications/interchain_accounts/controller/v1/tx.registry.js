@@ -23,7 +23,7 @@ __export(tx_registry_exports, {
 });
 module.exports = __toCommonJS(tx_registry_exports);
 var import_tx = require("./tx");
-const registry = [["/ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccount", import_tx.MsgRegisterInterchainAccount], ["/ibc.applications.interchain_accounts.controller.v1.MsgSendTx", import_tx.MsgSendTx]];
+const registry = [["/ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccount", import_tx.MsgRegisterInterchainAccount], ["/ibc.applications.interchain_accounts.controller.v1.MsgSendTx", import_tx.MsgSendTx], ["/ibc.applications.interchain_accounts.controller.v1.MsgUpdateParams", import_tx.MsgUpdateParams]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -42,6 +42,12 @@ const MessageComposer = {
         typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgSendTx",
         value: import_tx.MsgSendTx.encode(value).finish()
       };
+    },
+    updateParams(value) {
+      return {
+        typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.encode(value).finish()
+      };
     }
   },
   withTypeUrl: {
@@ -54,6 +60,12 @@ const MessageComposer = {
     sendTx(value) {
       return {
         typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgSendTx",
+        value
+      };
+    },
+    updateParams(value) {
+      return {
+        typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgUpdateParams",
         value
       };
     }
@@ -69,6 +81,12 @@ const MessageComposer = {
       return {
         typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgSendTx",
         value: import_tx.MsgSendTx.fromPartial(value)
+      };
+    },
+    updateParams(value) {
+      return {
+        typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.fromPartial(value)
       };
     }
   }

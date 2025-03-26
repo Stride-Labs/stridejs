@@ -51,6 +51,11 @@ const AminoConverter = {
     aminoType: "cosmos-sdk/x/gov/v1/MsgUpdateParams",
     toAmino: import_tx.MsgUpdateParams.toAmino,
     fromAmino: import_tx.MsgUpdateParams.fromAmino
+  },
+  "/cosmos.gov.v1.MsgCancelProposal": {
+    aminoType: "cosmos-sdk/v1/MsgCancelProposal",
+    toAmino: import_tx.MsgCancelProposal.toAmino,
+    fromAmino: import_tx.MsgCancelProposal.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

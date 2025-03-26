@@ -12,6 +12,9 @@ export declare const createRPCMsgClient: ({ rpc }: {
         bank: {
             v1beta1: import("../cosmos/bank/v1beta1/tx.rpc.msg").MsgClientImpl;
         };
+        circuit: {
+            v1: import("../cosmos/circuit/v1/tx.rpc.msg").MsgClientImpl;
+        };
         consensus: {
             v1: import("../cosmos/consensus/v1/tx.rpc.msg").MsgClientImpl;
         };
@@ -79,6 +82,11 @@ export declare const createRPCMsgClient: ({ rpc }: {
             };
             connection: {
                 v1: import("./core/connection/v1/tx.rpc.msg").MsgClientImpl;
+            };
+        };
+        lightclients: {
+            wasm: {
+                v1: import("./lightclients/wasm/v1/tx.rpc.msg").MsgClientImpl;
             };
         };
     };

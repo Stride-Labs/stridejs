@@ -1,4 +1,4 @@
-import { MsgConnectionOpenInit, MsgConnectionOpenTry, MsgConnectionOpenAck, MsgConnectionOpenConfirm } from "./tx";
+import { MsgConnectionOpenInit, MsgConnectionOpenTry, MsgConnectionOpenAck, MsgConnectionOpenConfirm, MsgUpdateParams } from "./tx";
 export declare const AminoConverter: {
     "/ibc.core.connection.v1.MsgConnectionOpenInit": {
         aminoType: string;
@@ -19,5 +19,10 @@ export declare const AminoConverter: {
         aminoType: string;
         toAmino: (message: MsgConnectionOpenConfirm) => import("./tx").MsgConnectionOpenConfirmAmino;
         fromAmino: (object: import("./tx").MsgConnectionOpenConfirmAmino) => MsgConnectionOpenConfirm;
+    };
+    "/ibc.core.connection.v1.MsgUpdateParams": {
+        aminoType: string;
+        toAmino: (message: MsgUpdateParams) => import("./tx").MsgUpdateParamsAmino;
+        fromAmino: (object: import("./tx").MsgUpdateParamsAmino) => MsgUpdateParams;
     };
 };

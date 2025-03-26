@@ -12,6 +12,9 @@ export declare const createRPCMsgClient: ({ rpc }: {
         bank: {
             v1beta1: import("./bank/v1beta1/tx.rpc.msg").MsgClientImpl;
         };
+        circuit: {
+            v1: import("./circuit/v1/tx.rpc.msg").MsgClientImpl;
+        };
         consensus: {
             v1: import("./consensus/v1/tx.rpc.msg").MsgClientImpl;
         };

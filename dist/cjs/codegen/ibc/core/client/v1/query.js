@@ -34,12 +34,15 @@ __export(query_exports, {
   QueryUpgradedClientStateRequest: () => QueryUpgradedClientStateRequest,
   QueryUpgradedClientStateResponse: () => QueryUpgradedClientStateResponse,
   QueryUpgradedConsensusStateRequest: () => QueryUpgradedConsensusStateRequest,
-  QueryUpgradedConsensusStateResponse: () => QueryUpgradedConsensusStateResponse
+  QueryUpgradedConsensusStateResponse: () => QueryUpgradedConsensusStateResponse,
+  QueryVerifyMembershipRequest: () => QueryVerifyMembershipRequest,
+  QueryVerifyMembershipResponse: () => QueryVerifyMembershipResponse
 });
 module.exports = __toCommonJS(query_exports);
 var import_pagination = require("../../../../cosmos/base/query/v1beta1/pagination");
-var import_any = require("../../../../google/protobuf/any");
 var import_client = require("./client");
+var import_commitment = require("../../commitment/v1/commitment");
+var import_any = require("../../../../google/protobuf/any");
 var import_binary = require("../../../../binary");
 var import_helpers = require("../../../../helpers");
 function createBaseQueryClientStateRequest() {
@@ -1395,6 +1398,216 @@ const QueryUpgradedConsensusStateResponse = {
     };
   }
 };
+function createBaseQueryVerifyMembershipRequest() {
+  return {
+    clientId: "",
+    proof: new Uint8Array(),
+    proofHeight: import_client.Height.fromPartial({}),
+    merklePath: import_commitment.MerklePath.fromPartial({}),
+    value: new Uint8Array(),
+    timeDelay: BigInt(0),
+    blockDelay: BigInt(0)
+  };
+}
+const QueryVerifyMembershipRequest = {
+  typeUrl: "/ibc.core.client.v1.QueryVerifyMembershipRequest",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.clientId !== "") {
+      writer.uint32(10).string(message.clientId);
+    }
+    if (message.proof.length !== 0) {
+      writer.uint32(18).bytes(message.proof);
+    }
+    if (message.proofHeight !== void 0) {
+      import_client.Height.encode(message.proofHeight, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.merklePath !== void 0) {
+      import_commitment.MerklePath.encode(message.merklePath, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.value.length !== 0) {
+      writer.uint32(42).bytes(message.value);
+    }
+    if (message.timeDelay !== BigInt(0)) {
+      writer.uint32(48).uint64(message.timeDelay);
+    }
+    if (message.blockDelay !== BigInt(0)) {
+      writer.uint32(56).uint64(message.blockDelay);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryVerifyMembershipRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.clientId = reader.string();
+          break;
+        case 2:
+          message.proof = reader.bytes();
+          break;
+        case 3:
+          message.proofHeight = import_client.Height.decode(reader, reader.uint32());
+          break;
+        case 4:
+          message.merklePath = import_commitment.MerklePath.decode(reader, reader.uint32());
+          break;
+        case 5:
+          message.value = reader.bytes();
+          break;
+        case 6:
+          message.timeDelay = reader.uint64();
+          break;
+        case 7:
+          message.blockDelay = reader.uint64();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryVerifyMembershipRequest();
+    message.clientId = object.clientId ?? "";
+    message.proof = object.proof ?? new Uint8Array();
+    message.proofHeight = object.proofHeight !== void 0 && object.proofHeight !== null ? import_client.Height.fromPartial(object.proofHeight) : void 0;
+    message.merklePath = object.merklePath !== void 0 && object.merklePath !== null ? import_commitment.MerklePath.fromPartial(object.merklePath) : void 0;
+    message.value = object.value ?? new Uint8Array();
+    message.timeDelay = object.timeDelay !== void 0 && object.timeDelay !== null ? BigInt(object.timeDelay.toString()) : BigInt(0);
+    message.blockDelay = object.blockDelay !== void 0 && object.blockDelay !== null ? BigInt(object.blockDelay.toString()) : BigInt(0);
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryVerifyMembershipRequest();
+    if (object.client_id !== void 0 && object.client_id !== null) {
+      message.clientId = object.client_id;
+    }
+    if (object.proof !== void 0 && object.proof !== null) {
+      message.proof = (0, import_helpers.bytesFromBase64)(object.proof);
+    }
+    if (object.proof_height !== void 0 && object.proof_height !== null) {
+      message.proofHeight = import_client.Height.fromAmino(object.proof_height);
+    }
+    if (object.merkle_path !== void 0 && object.merkle_path !== null) {
+      message.merklePath = import_commitment.MerklePath.fromAmino(object.merkle_path);
+    }
+    if (object.value !== void 0 && object.value !== null) {
+      message.value = (0, import_helpers.bytesFromBase64)(object.value);
+    }
+    if (object.time_delay !== void 0 && object.time_delay !== null) {
+      message.timeDelay = BigInt(object.time_delay);
+    }
+    if (object.block_delay !== void 0 && object.block_delay !== null) {
+      message.blockDelay = BigInt(object.block_delay);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.client_id = message.clientId === "" ? void 0 : message.clientId;
+    obj.proof = message.proof ? (0, import_helpers.base64FromBytes)(message.proof) : void 0;
+    obj.proof_height = message.proofHeight ? import_client.Height.toAmino(message.proofHeight) : {};
+    obj.merkle_path = message.merklePath ? import_commitment.MerklePath.toAmino(message.merklePath) : void 0;
+    obj.value = message.value ? (0, import_helpers.base64FromBytes)(message.value) : void 0;
+    obj.time_delay = message.timeDelay !== BigInt(0) ? message.timeDelay?.toString() : void 0;
+    obj.block_delay = message.blockDelay !== BigInt(0) ? message.blockDelay?.toString() : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryVerifyMembershipRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryVerifyMembershipRequest",
+      value: QueryVerifyMembershipRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryVerifyMembershipRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryVerifyMembershipRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.client.v1.QueryVerifyMembershipRequest",
+      value: QueryVerifyMembershipRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryVerifyMembershipResponse() {
+  return {
+    success: false
+  };
+}
+const QueryVerifyMembershipResponse = {
+  typeUrl: "/ibc.core.client.v1.QueryVerifyMembershipResponse",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.success === true) {
+      writer.uint32(8).bool(message.success);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryVerifyMembershipResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.success = reader.bool();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryVerifyMembershipResponse();
+    message.success = object.success ?? false;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryVerifyMembershipResponse();
+    if (object.success !== void 0 && object.success !== null) {
+      message.success = object.success;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.success = message.success === false ? void 0 : message.success;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryVerifyMembershipResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryVerifyMembershipResponse",
+      value: QueryVerifyMembershipResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryVerifyMembershipResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryVerifyMembershipResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.client.v1.QueryVerifyMembershipResponse",
+      value: QueryVerifyMembershipResponse.encode(message).finish()
+    };
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   QueryClientParamsRequest,
@@ -1414,5 +1627,7 @@ const QueryUpgradedConsensusStateResponse = {
   QueryUpgradedClientStateRequest,
   QueryUpgradedClientStateResponse,
   QueryUpgradedConsensusStateRequest,
-  QueryUpgradedConsensusStateResponse
+  QueryUpgradedConsensusStateResponse,
+  QueryVerifyMembershipRequest,
+  QueryVerifyMembershipResponse
 });

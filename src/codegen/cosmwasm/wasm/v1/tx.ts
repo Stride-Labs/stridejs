@@ -153,7 +153,7 @@ export interface MsgInstantiateContractResponseSDKType {
 }
 /**
  * MsgInstantiateContract2 create a new smart contract instance for the given
- * code id with a predicable address.
+ * code id with a predictable address.
  */
 export interface MsgInstantiateContract2 {
   /** Sender is the that actor that signed the messages */
@@ -182,7 +182,7 @@ export interface MsgInstantiateContract2ProtoMsg {
 }
 /**
  * MsgInstantiateContract2 create a new smart contract instance for the given
- * code id with a predicable address.
+ * code id with a predictable address.
  */
 export interface MsgInstantiateContract2Amino {
   /** Sender is the that actor that signed the messages */
@@ -211,7 +211,7 @@ export interface MsgInstantiateContract2AminoMsg {
 }
 /**
  * MsgInstantiateContract2 create a new smart contract instance for the given
- * code id with a predicable address.
+ * code id with a predictable address.
  */
 export interface MsgInstantiateContract2SDKType {
   sender: string;
@@ -820,7 +820,7 @@ export interface MsgStoreAndInstantiateContract {
   unpinCode: boolean;
   /** Admin is an optional address that can execute migrations */
   admin: string;
-  /** Label is optional metadata to be stored with a constract instance. */
+  /** Label is optional metadata to be stored with a contract instance. */
   label: string;
   /** Msg json encoded message to be passed to the contract on instantiation */
   msg: Uint8Array;
@@ -866,7 +866,7 @@ export interface MsgStoreAndInstantiateContractAmino {
   unpin_code?: boolean;
   /** Admin is an optional address that can execute migrations */
   admin?: string;
-  /** Label is optional metadata to be stored with a constract instance. */
+  /** Label is optional metadata to be stored with a contract instance. */
   label?: string;
   /** Msg json encoded message to be passed to the contract on instantiation */
   msg?: any;

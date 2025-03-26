@@ -1,6 +1,6 @@
 import { TelescopeGeneratedType } from "../../../types";
 import { Registry } from "@cosmjs/proto-signing";
-import { MsgSetWithdrawAddress, MsgWithdrawDelegatorReward, MsgWithdrawValidatorCommission, MsgFundCommunityPool, MsgUpdateParams, MsgCommunityPoolSpend } from "./tx";
+import { MsgSetWithdrawAddress, MsgWithdrawDelegatorReward, MsgWithdrawValidatorCommission, MsgFundCommunityPool, MsgUpdateParams, MsgCommunityPoolSpend, MsgDepositValidatorRewardsPool } from "./tx";
 export declare const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]>;
 export declare const load: (protoRegistry: Registry) => void;
 export declare const MessageComposer: {
@@ -26,6 +26,10 @@ export declare const MessageComposer: {
             value: Uint8Array;
         };
         communityPoolSpend(value: MsgCommunityPoolSpend): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        depositValidatorRewardsPool(value: MsgDepositValidatorRewardsPool): {
             typeUrl: string;
             value: Uint8Array;
         };
@@ -55,6 +59,10 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgCommunityPoolSpend;
         };
+        depositValidatorRewardsPool(value: MsgDepositValidatorRewardsPool): {
+            typeUrl: string;
+            value: MsgDepositValidatorRewardsPool;
+        };
     };
     fromPartial: {
         setWithdrawAddress(value: MsgSetWithdrawAddress): {
@@ -80,6 +88,10 @@ export declare const MessageComposer: {
         communityPoolSpend(value: MsgCommunityPoolSpend): {
             typeUrl: string;
             value: MsgCommunityPoolSpend;
+        };
+        depositValidatorRewardsPool(value: MsgDepositValidatorRewardsPool): {
+            typeUrl: string;
+            value: MsgDepositValidatorRewardsPool;
         };
     };
 };

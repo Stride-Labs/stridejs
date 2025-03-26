@@ -19,6 +19,8 @@ var tx_exports = {};
 __export(tx_exports, {
   MsgCommunityPoolSpend: () => MsgCommunityPoolSpend,
   MsgCommunityPoolSpendResponse: () => MsgCommunityPoolSpendResponse,
+  MsgDepositValidatorRewardsPool: () => MsgDepositValidatorRewardsPool,
+  MsgDepositValidatorRewardsPoolResponse: () => MsgDepositValidatorRewardsPoolResponse,
   MsgFundCommunityPool: () => MsgFundCommunityPool,
   MsgFundCommunityPoolResponse: () => MsgFundCommunityPoolResponse,
   MsgSetWithdrawAddress: () => MsgSetWithdrawAddress,
@@ -890,10 +892,163 @@ const MsgCommunityPoolSpendResponse = {
     };
   }
 };
+function createBaseMsgDepositValidatorRewardsPool() {
+  return {
+    depositor: "",
+    validatorAddress: "",
+    amount: []
+  };
+}
+const MsgDepositValidatorRewardsPool = {
+  typeUrl: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPool",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.depositor !== "") {
+      writer.uint32(10).string(message.depositor);
+    }
+    if (message.validatorAddress !== "") {
+      writer.uint32(18).string(message.validatorAddress);
+    }
+    for (const v of message.amount) {
+      import_coin.Coin.encode(v, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseMsgDepositValidatorRewardsPool();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.depositor = reader.string();
+          break;
+        case 2:
+          message.validatorAddress = reader.string();
+          break;
+        case 3:
+          message.amount.push(import_coin.Coin.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseMsgDepositValidatorRewardsPool();
+    message.depositor = object.depositor ?? "";
+    message.validatorAddress = object.validatorAddress ?? "";
+    message.amount = object.amount?.map((e) => import_coin.Coin.fromPartial(e)) || [];
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseMsgDepositValidatorRewardsPool();
+    if (object.depositor !== void 0 && object.depositor !== null) {
+      message.depositor = object.depositor;
+    }
+    if (object.validator_address !== void 0 && object.validator_address !== null) {
+      message.validatorAddress = object.validator_address;
+    }
+    message.amount = object.amount?.map((e) => import_coin.Coin.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.depositor = message.depositor === "" ? void 0 : message.depositor;
+    obj.validator_address = message.validatorAddress === "" ? void 0 : message.validatorAddress;
+    if (message.amount) {
+      obj.amount = message.amount.map((e) => e ? import_coin.Coin.toAmino(e) : void 0);
+    } else {
+      obj.amount = message.amount;
+    }
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return MsgDepositValidatorRewardsPool.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/distr/MsgDepositValRewards",
+      value: MsgDepositValidatorRewardsPool.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return MsgDepositValidatorRewardsPool.decode(message.value);
+  },
+  toProto(message) {
+    return MsgDepositValidatorRewardsPool.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPool",
+      value: MsgDepositValidatorRewardsPool.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgDepositValidatorRewardsPoolResponse() {
+  return {};
+}
+const MsgDepositValidatorRewardsPoolResponse = {
+  typeUrl: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPoolResponse",
+  encode(_, writer = import_binary.BinaryWriter.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseMsgDepositValidatorRewardsPoolResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_) {
+    const message = createBaseMsgDepositValidatorRewardsPoolResponse();
+    return message;
+  },
+  fromAmino(_) {
+    const message = createBaseMsgDepositValidatorRewardsPoolResponse();
+    return message;
+  },
+  toAmino(_) {
+    const obj = {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return MsgDepositValidatorRewardsPoolResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/MsgDepositValidatorRewardsPoolResponse",
+      value: MsgDepositValidatorRewardsPoolResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return MsgDepositValidatorRewardsPoolResponse.decode(message.value);
+  },
+  toProto(message) {
+    return MsgDepositValidatorRewardsPoolResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPoolResponse",
+      value: MsgDepositValidatorRewardsPoolResponse.encode(message).finish()
+    };
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   MsgCommunityPoolSpend,
   MsgCommunityPoolSpendResponse,
+  MsgDepositValidatorRewardsPool,
+  MsgDepositValidatorRewardsPoolResponse,
   MsgFundCommunityPool,
   MsgFundCommunityPoolResponse,
   MsgSetWithdrawAddress,

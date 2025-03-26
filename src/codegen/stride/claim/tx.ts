@@ -18,7 +18,7 @@ export interface MsgSetAirdropAllocationsAmino {
   weights?: string[];
 }
 export interface MsgSetAirdropAllocationsAminoMsg {
-  type: "/stride.claim.MsgSetAirdropAllocations";
+  type: "claim/MsgSetAirdropAllocations";
   value: MsgSetAirdropAllocationsAmino;
 }
 export interface MsgSetAirdropAllocationsSDKType {
@@ -95,7 +95,7 @@ export interface MsgCreateAirdropAmino {
   autopilot_enabled?: boolean;
 }
 export interface MsgCreateAirdropAminoMsg {
-  type: "/stride.claim.MsgCreateAirdrop";
+  type: "claim/MsgCreateAirdrop";
   value: MsgCreateAirdropAmino;
 }
 export interface MsgCreateAirdropSDKType {
@@ -131,7 +131,7 @@ export interface MsgDeleteAirdropAmino {
   identifier?: string;
 }
 export interface MsgDeleteAirdropAminoMsg {
-  type: "/stride.claim.MsgDeleteAirdrop";
+  type: "claim/MsgDeleteAirdrop";
   value: MsgDeleteAirdropAmino;
 }
 export interface MsgDeleteAirdropSDKType {
@@ -238,6 +238,12 @@ export const MsgSetAirdropAllocations = {
   },
   fromAminoMsg(object: MsgSetAirdropAllocationsAminoMsg): MsgSetAirdropAllocations {
     return MsgSetAirdropAllocations.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgSetAirdropAllocations): MsgSetAirdropAllocationsAminoMsg {
+    return {
+      type: "claim/MsgSetAirdropAllocations",
+      value: MsgSetAirdropAllocations.toAmino(message)
+    };
   },
   fromProtoMsg(message: MsgSetAirdropAllocationsProtoMsg): MsgSetAirdropAllocations {
     return MsgSetAirdropAllocations.decode(message.value);
@@ -558,6 +564,12 @@ export const MsgCreateAirdrop = {
   fromAminoMsg(object: MsgCreateAirdropAminoMsg): MsgCreateAirdrop {
     return MsgCreateAirdrop.fromAmino(object.value);
   },
+  toAminoMsg(message: MsgCreateAirdrop): MsgCreateAirdropAminoMsg {
+    return {
+      type: "claim/MsgCreateAirdrop",
+      value: MsgCreateAirdrop.toAmino(message)
+    };
+  },
   fromProtoMsg(message: MsgCreateAirdropProtoMsg): MsgCreateAirdrop {
     return MsgCreateAirdrop.decode(message.value);
   },
@@ -682,6 +694,12 @@ export const MsgDeleteAirdrop = {
   },
   fromAminoMsg(object: MsgDeleteAirdropAminoMsg): MsgDeleteAirdrop {
     return MsgDeleteAirdrop.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgDeleteAirdrop): MsgDeleteAirdropAminoMsg {
+    return {
+      type: "claim/MsgDeleteAirdrop",
+      value: MsgDeleteAirdrop.toAmino(message)
+    };
   },
   fromProtoMsg(message: MsgDeleteAirdropProtoMsg): MsgDeleteAirdrop {
     return MsgDeleteAirdrop.decode(message.value);

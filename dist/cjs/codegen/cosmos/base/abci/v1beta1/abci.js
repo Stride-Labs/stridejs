@@ -22,6 +22,7 @@ __export(abci_exports, {
   GasInfo: () => GasInfo,
   MsgData: () => MsgData,
   Result: () => Result,
+  SearchBlocksResult: () => SearchBlocksResult,
   SearchTxsResult: () => SearchTxsResult,
   SimulationResponse: () => SimulationResponse,
   StringEvent: () => StringEvent,
@@ -31,6 +32,7 @@ __export(abci_exports, {
 module.exports = __toCommonJS(abci_exports);
 var import_any = require("../../../../google/protobuf/any");
 var import_types = require("../../../../tendermint/abci/types");
+var import_block = require("../../../../tendermint/types/block");
 var import_binary = require("../../../../binary");
 var import_helpers = require("../../../../helpers");
 function createBaseTxResponse() {
@@ -1077,6 +1079,137 @@ const SearchTxsResult = {
     };
   }
 };
+function createBaseSearchBlocksResult() {
+  return {
+    totalCount: BigInt(0),
+    count: BigInt(0),
+    pageNumber: BigInt(0),
+    pageTotal: BigInt(0),
+    limit: BigInt(0),
+    blocks: []
+  };
+}
+const SearchBlocksResult = {
+  typeUrl: "/cosmos.base.abci.v1beta1.SearchBlocksResult",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.totalCount !== BigInt(0)) {
+      writer.uint32(8).int64(message.totalCount);
+    }
+    if (message.count !== BigInt(0)) {
+      writer.uint32(16).int64(message.count);
+    }
+    if (message.pageNumber !== BigInt(0)) {
+      writer.uint32(24).int64(message.pageNumber);
+    }
+    if (message.pageTotal !== BigInt(0)) {
+      writer.uint32(32).int64(message.pageTotal);
+    }
+    if (message.limit !== BigInt(0)) {
+      writer.uint32(40).int64(message.limit);
+    }
+    for (const v of message.blocks) {
+      import_block.Block.encode(v, writer.uint32(50).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseSearchBlocksResult();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.totalCount = reader.int64();
+          break;
+        case 2:
+          message.count = reader.int64();
+          break;
+        case 3:
+          message.pageNumber = reader.int64();
+          break;
+        case 4:
+          message.pageTotal = reader.int64();
+          break;
+        case 5:
+          message.limit = reader.int64();
+          break;
+        case 6:
+          message.blocks.push(import_block.Block.decode(reader, reader.uint32()));
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseSearchBlocksResult();
+    message.totalCount = object.totalCount !== void 0 && object.totalCount !== null ? BigInt(object.totalCount.toString()) : BigInt(0);
+    message.count = object.count !== void 0 && object.count !== null ? BigInt(object.count.toString()) : BigInt(0);
+    message.pageNumber = object.pageNumber !== void 0 && object.pageNumber !== null ? BigInt(object.pageNumber.toString()) : BigInt(0);
+    message.pageTotal = object.pageTotal !== void 0 && object.pageTotal !== null ? BigInt(object.pageTotal.toString()) : BigInt(0);
+    message.limit = object.limit !== void 0 && object.limit !== null ? BigInt(object.limit.toString()) : BigInt(0);
+    message.blocks = object.blocks?.map((e) => import_block.Block.fromPartial(e)) || [];
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseSearchBlocksResult();
+    if (object.total_count !== void 0 && object.total_count !== null) {
+      message.totalCount = BigInt(object.total_count);
+    }
+    if (object.count !== void 0 && object.count !== null) {
+      message.count = BigInt(object.count);
+    }
+    if (object.page_number !== void 0 && object.page_number !== null) {
+      message.pageNumber = BigInt(object.page_number);
+    }
+    if (object.page_total !== void 0 && object.page_total !== null) {
+      message.pageTotal = BigInt(object.page_total);
+    }
+    if (object.limit !== void 0 && object.limit !== null) {
+      message.limit = BigInt(object.limit);
+    }
+    message.blocks = object.blocks?.map((e) => import_block.Block.fromAmino(e)) || [];
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.total_count = message.totalCount !== BigInt(0) ? message.totalCount?.toString() : void 0;
+    obj.count = message.count !== BigInt(0) ? message.count?.toString() : void 0;
+    obj.page_number = message.pageNumber !== BigInt(0) ? message.pageNumber?.toString() : void 0;
+    obj.page_total = message.pageTotal !== BigInt(0) ? message.pageTotal?.toString() : void 0;
+    obj.limit = message.limit !== BigInt(0) ? message.limit?.toString() : void 0;
+    if (message.blocks) {
+      obj.blocks = message.blocks.map((e) => e ? import_block.Block.toAmino(e) : void 0);
+    } else {
+      obj.blocks = message.blocks;
+    }
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return SearchBlocksResult.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/SearchBlocksResult",
+      value: SearchBlocksResult.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return SearchBlocksResult.decode(message.value);
+  },
+  toProto(message) {
+    return SearchBlocksResult.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.base.abci.v1beta1.SearchBlocksResult",
+      value: SearchBlocksResult.encode(message).finish()
+    };
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   ABCIMessageLog,
@@ -1084,6 +1217,7 @@ const SearchTxsResult = {
   GasInfo,
   MsgData,
   Result,
+  SearchBlocksResult,
   SearchTxsResult,
   SimulationResponse,
   StringEvent,

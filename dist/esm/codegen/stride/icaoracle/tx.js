@@ -63,7 +63,7 @@ const MsgAddOracle = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/icaoracle/MsgAddOracle",
+      type: "icaoracle/MsgAddOracle",
       value: MsgAddOracle.toAmino(message)
     };
   },
@@ -218,7 +218,7 @@ const MsgInstantiateOracle = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/icaoracle/MsgInstantiateOracle",
+      type: "icaoracle/MsgInstantiateOracle",
       value: MsgInstantiateOracle.toAmino(message)
     };
   },
@@ -349,7 +349,7 @@ const MsgRestoreOracleICA = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/icaoracle/MsgRestoreOracleICA",
+      type: "icaoracle/MsgRestoreOracleICA",
       value: MsgRestoreOracleICA.toAmino(message)
     };
   },
@@ -492,7 +492,7 @@ const MsgToggleOracle = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/icaoracle/MsgToggleOracle",
+      type: "icaoracle/MsgToggleOracle",
       value: MsgToggleOracle.toAmino(message)
     };
   },
@@ -623,7 +623,7 @@ const MsgRemoveOracle = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/icaoracle/MsgRemoveOracle",
+      type: "icaoracle/MsgRemoveOracle",
       value: MsgRemoveOracle.toAmino(message)
     };
   },

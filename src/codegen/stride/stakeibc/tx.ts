@@ -53,7 +53,7 @@ export interface MsgUpdateInnerRedemptionRateBoundsAmino {
   max_inner_redemption_rate?: string;
 }
 export interface MsgUpdateInnerRedemptionRateBoundsAminoMsg {
-  type: "/stride.stakeibc.MsgUpdateInnerRedemptionRateBounds";
+  type: "stakeibc/MsgUpdateRedemptionRateBounds";
   value: MsgUpdateInnerRedemptionRateBoundsAmino;
 }
 export interface MsgUpdateInnerRedemptionRateBoundsSDKType {
@@ -379,7 +379,7 @@ export interface MsgAddValidatorsAmino {
   validators?: ValidatorAmino[];
 }
 export interface MsgAddValidatorsAminoMsg {
-  type: "/stride.stakeibc.MsgAddValidators";
+  type: "stakeibc/MsgAddValidators";
   value: MsgAddValidatorsAmino;
 }
 export interface MsgAddValidatorsSDKType {
@@ -433,7 +433,7 @@ export interface MsgChangeValidatorWeightsAmino {
   validator_weights?: ValidatorWeightAmino[];
 }
 export interface MsgChangeValidatorWeightsAminoMsg {
-  type: "/stride.stakeibc.MsgChangeValidatorWeights";
+  type: "stakeibc/MsgChangeValidatorWeights";
   value: MsgChangeValidatorWeightsAmino;
 }
 export interface MsgChangeValidatorWeightsSDKType {
@@ -536,7 +536,7 @@ export interface MsgCloseDelegationChannelAmino {
   chain_id?: string;
 }
 export interface MsgCloseDelegationChannelAminoMsg {
-  type: "/stride.stakeibc.MsgCloseDelegationChannel";
+  type: "stakeibc/MsgCloseDelegationChanne";
   value: MsgCloseDelegationChannelAmino;
 }
 export interface MsgCloseDelegationChannelSDKType {
@@ -603,7 +603,7 @@ export interface MsgCalibrateDelegationAmino {
   valoper?: string;
 }
 export interface MsgCalibrateDelegationAminoMsg {
-  type: "/stride.stakeibc.MsgCalibrateDelegation";
+  type: "stakeibc/MsgCalibrateDelegation";
   value: MsgCalibrateDelegationAmino;
 }
 export interface MsgCalibrateDelegationSDKType {
@@ -635,7 +635,7 @@ export interface MsgResumeHostZoneAmino {
   chain_id?: string;
 }
 export interface MsgResumeHostZoneAminoMsg {
-  type: "/stride.stakeibc.MsgResumeHostZone";
+  type: "stakeibc/MsgResumeHostZone";
   value: MsgResumeHostZoneAmino;
 }
 export interface MsgResumeHostZoneSDKType {
@@ -784,7 +784,7 @@ export interface MsgCreateTradeRouteAmino {
   min_transfer_amount?: string;
 }
 export interface MsgCreateTradeRouteAminoMsg {
-  type: "stride/x/stakeibc/MsgCreateTradeRoute";
+  type: "stakeibc/MsgCreateTradeRoute";
   value: MsgCreateTradeRouteAmino;
 }
 /** Creates a new trade route */
@@ -849,7 +849,7 @@ export interface MsgDeleteTradeRouteAmino {
   host_denom?: string;
 }
 export interface MsgDeleteTradeRouteAminoMsg {
-  type: "stride/x/stakeibc/MsgDeleteTradeRoute";
+  type: "stakeibc/MsgDeleteTradeRoute";
   value: MsgDeleteTradeRouteAmino;
 }
 /** Deletes a trade route */
@@ -974,7 +974,7 @@ export interface MsgUpdateTradeRouteAmino {
   min_transfer_amount?: string;
 }
 export interface MsgUpdateTradeRouteAminoMsg {
-  type: "stride/x/stakeibc/MsgUpdateTradeRoute";
+  type: "stakeibc/MsgUpdateTradeRoute";
   value: MsgUpdateTradeRouteAmino;
 }
 /** Updates the config of a trade route */
@@ -1042,7 +1042,7 @@ export interface MsgSetCommunityPoolRebateAmino {
   liquid_staked_st_token_amount?: string;
 }
 export interface MsgSetCommunityPoolRebateAminoMsg {
-  type: "stride/x/stakeibc/MsgSetCommunityPoolRebate";
+  type: "stakeibc/MsgSetCommunityPoolRebate";
   value: MsgSetCommunityPoolRebateAmino;
 }
 /**
@@ -1097,7 +1097,7 @@ export interface MsgToggleTradeControllerAmino {
   legacy?: boolean;
 }
 export interface MsgToggleTradeControllerAminoMsg {
-  type: "stride/x/stakeibc/MsgToggleTradeController";
+  type: "stakeibc/MsgToggleTradeController";
   value: MsgToggleTradeControllerAmino;
 }
 /** Grants or revokes trade permissions to a given address via authz */
@@ -1148,7 +1148,7 @@ export interface MsgUpdateHostZoneParamsAmino {
   max_messages_per_ica_tx?: string;
 }
 export interface MsgUpdateHostZoneParamsAminoMsg {
-  type: "stride/x/stakeibc/MsgUpdateHostZoneParams";
+  type: "stakeibc/MsgUpdateHostZoneParams";
   value: MsgUpdateHostZoneParamsAmino;
 }
 /** Updates host zone params */
@@ -1253,6 +1253,12 @@ export const MsgUpdateInnerRedemptionRateBounds = {
   },
   fromAminoMsg(object: MsgUpdateInnerRedemptionRateBoundsAminoMsg): MsgUpdateInnerRedemptionRateBounds {
     return MsgUpdateInnerRedemptionRateBounds.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgUpdateInnerRedemptionRateBounds): MsgUpdateInnerRedemptionRateBoundsAminoMsg {
+    return {
+      type: "stakeibc/MsgUpdateRedemptionRateBounds",
+      value: MsgUpdateInnerRedemptionRateBounds.toAmino(message)
+    };
   },
   fromProtoMsg(message: MsgUpdateInnerRedemptionRateBoundsProtoMsg): MsgUpdateInnerRedemptionRateBounds {
     return MsgUpdateInnerRedemptionRateBounds.decode(message.value);
@@ -2564,6 +2570,12 @@ export const MsgAddValidators = {
   fromAminoMsg(object: MsgAddValidatorsAminoMsg): MsgAddValidators {
     return MsgAddValidators.fromAmino(object.value);
   },
+  toAminoMsg(message: MsgAddValidators): MsgAddValidatorsAminoMsg {
+    return {
+      type: "stakeibc/MsgAddValidators",
+      value: MsgAddValidators.toAmino(message)
+    };
+  },
   fromProtoMsg(message: MsgAddValidatorsProtoMsg): MsgAddValidators {
     return MsgAddValidators.decode(message.value);
   },
@@ -2777,6 +2789,12 @@ export const MsgChangeValidatorWeights = {
   },
   fromAminoMsg(object: MsgChangeValidatorWeightsAminoMsg): MsgChangeValidatorWeights {
     return MsgChangeValidatorWeights.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgChangeValidatorWeights): MsgChangeValidatorWeightsAminoMsg {
+    return {
+      type: "stakeibc/MsgChangeValidatorWeights",
+      value: MsgChangeValidatorWeights.toAmino(message)
+    };
   },
   fromProtoMsg(message: MsgChangeValidatorWeightsProtoMsg): MsgChangeValidatorWeights {
     return MsgChangeValidatorWeights.decode(message.value);
@@ -3201,6 +3219,12 @@ export const MsgCloseDelegationChannel = {
   fromAminoMsg(object: MsgCloseDelegationChannelAminoMsg): MsgCloseDelegationChannel {
     return MsgCloseDelegationChannel.fromAmino(object.value);
   },
+  toAminoMsg(message: MsgCloseDelegationChannel): MsgCloseDelegationChannelAminoMsg {
+    return {
+      type: "stakeibc/MsgCloseDelegationChanne",
+      value: MsgCloseDelegationChannel.toAmino(message)
+    };
+  },
   fromProtoMsg(message: MsgCloseDelegationChannelProtoMsg): MsgCloseDelegationChannel {
     return MsgCloseDelegationChannel.decode(message.value);
   },
@@ -3481,6 +3505,12 @@ export const MsgCalibrateDelegation = {
   fromAminoMsg(object: MsgCalibrateDelegationAminoMsg): MsgCalibrateDelegation {
     return MsgCalibrateDelegation.fromAmino(object.value);
   },
+  toAminoMsg(message: MsgCalibrateDelegation): MsgCalibrateDelegationAminoMsg {
+    return {
+      type: "stakeibc/MsgCalibrateDelegation",
+      value: MsgCalibrateDelegation.toAmino(message)
+    };
+  },
   fromProtoMsg(message: MsgCalibrateDelegationProtoMsg): MsgCalibrateDelegation {
     return MsgCalibrateDelegation.decode(message.value);
   },
@@ -3605,6 +3635,12 @@ export const MsgResumeHostZone = {
   },
   fromAminoMsg(object: MsgResumeHostZoneAminoMsg): MsgResumeHostZone {
     return MsgResumeHostZone.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgResumeHostZone): MsgResumeHostZoneAminoMsg {
+    return {
+      type: "stakeibc/MsgResumeHostZone",
+      value: MsgResumeHostZone.toAmino(message)
+    };
   },
   fromProtoMsg(message: MsgResumeHostZoneProtoMsg): MsgResumeHostZone {
     return MsgResumeHostZone.decode(message.value);
@@ -3913,7 +3949,7 @@ export const MsgCreateTradeRoute = {
   },
   toAminoMsg(message: MsgCreateTradeRoute): MsgCreateTradeRouteAminoMsg {
     return {
-      type: "stride/x/stakeibc/MsgCreateTradeRoute",
+      type: "stakeibc/MsgCreateTradeRoute",
       value: MsgCreateTradeRoute.toAmino(message)
     };
   },
@@ -4056,7 +4092,7 @@ export const MsgDeleteTradeRoute = {
   },
   toAminoMsg(message: MsgDeleteTradeRoute): MsgDeleteTradeRouteAminoMsg {
     return {
-      type: "stride/x/stakeibc/MsgDeleteTradeRoute",
+      type: "stakeibc/MsgDeleteTradeRoute",
       value: MsgDeleteTradeRoute.toAmino(message)
     };
   },
@@ -4259,7 +4295,7 @@ export const MsgUpdateTradeRoute = {
   },
   toAminoMsg(message: MsgUpdateTradeRoute): MsgUpdateTradeRouteAminoMsg {
     return {
-      type: "stride/x/stakeibc/MsgUpdateTradeRoute",
+      type: "stakeibc/MsgUpdateTradeRoute",
       value: MsgUpdateTradeRoute.toAmino(message)
     };
   },
@@ -4414,7 +4450,7 @@ export const MsgSetCommunityPoolRebate = {
   },
   toAminoMsg(message: MsgSetCommunityPoolRebate): MsgSetCommunityPoolRebateAminoMsg {
     return {
-      type: "stride/x/stakeibc/MsgSetCommunityPoolRebate",
+      type: "stakeibc/MsgSetCommunityPoolRebate",
       value: MsgSetCommunityPoolRebate.toAmino(message)
     };
   },
@@ -4581,7 +4617,7 @@ export const MsgToggleTradeController = {
   },
   toAminoMsg(message: MsgToggleTradeController): MsgToggleTradeControllerAminoMsg {
     return {
-      type: "stride/x/stakeibc/MsgToggleTradeController",
+      type: "stakeibc/MsgToggleTradeController",
       value: MsgToggleTradeController.toAmino(message)
     };
   },
@@ -4724,7 +4760,7 @@ export const MsgUpdateHostZoneParams = {
   },
   toAminoMsg(message: MsgUpdateHostZoneParams): MsgUpdateHostZoneParamsAminoMsg {
     return {
-      type: "stride/x/stakeibc/MsgUpdateHostZoneParams",
+      type: "stakeibc/MsgUpdateHostZoneParams",
       value: MsgUpdateHostZoneParams.toAmino(message)
     };
   },

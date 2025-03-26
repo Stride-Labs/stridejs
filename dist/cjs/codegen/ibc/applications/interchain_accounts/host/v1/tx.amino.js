@@ -22,6 +22,11 @@ __export(tx_amino_exports, {
 module.exports = __toCommonJS(tx_amino_exports);
 var import_tx = require("./tx");
 const AminoConverter = {
+  "/ibc.applications.interchain_accounts.host.v1.MsgUpdateParams": {
+    aminoType: "cosmos-sdk/MsgUpdateParams",
+    toAmino: import_tx.MsgUpdateParams.toAmino,
+    fromAmino: import_tx.MsgUpdateParams.fromAmino
+  },
   "/ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafe": {
     aminoType: "cosmos-sdk/MsgModuleQuerySafe",
     toAmino: import_tx.MsgModuleQuerySafe.toAmino,

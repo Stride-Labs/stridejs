@@ -23,7 +23,7 @@ __export(tx_registry_exports, {
 });
 module.exports = __toCommonJS(tx_registry_exports);
 var import_tx = require("./tx");
-const registry = [["/ibc.core.client.v1.MsgCreateClient", import_tx.MsgCreateClient], ["/ibc.core.client.v1.MsgUpdateClient", import_tx.MsgUpdateClient], ["/ibc.core.client.v1.MsgUpgradeClient", import_tx.MsgUpgradeClient], ["/ibc.core.client.v1.MsgSubmitMisbehaviour", import_tx.MsgSubmitMisbehaviour]];
+const registry = [["/ibc.core.client.v1.MsgCreateClient", import_tx.MsgCreateClient], ["/ibc.core.client.v1.MsgUpdateClient", import_tx.MsgUpdateClient], ["/ibc.core.client.v1.MsgUpgradeClient", import_tx.MsgUpgradeClient], ["/ibc.core.client.v1.MsgSubmitMisbehaviour", import_tx.MsgSubmitMisbehaviour], ["/ibc.core.client.v1.MsgRecoverClient", import_tx.MsgRecoverClient], ["/ibc.core.client.v1.MsgIBCSoftwareUpgrade", import_tx.MsgIBCSoftwareUpgrade], ["/ibc.core.client.v1.MsgUpdateParams", import_tx.MsgUpdateParams]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -54,6 +54,24 @@ const MessageComposer = {
         typeUrl: "/ibc.core.client.v1.MsgSubmitMisbehaviour",
         value: import_tx.MsgSubmitMisbehaviour.encode(value).finish()
       };
+    },
+    recoverClient(value) {
+      return {
+        typeUrl: "/ibc.core.client.v1.MsgRecoverClient",
+        value: import_tx.MsgRecoverClient.encode(value).finish()
+      };
+    },
+    iBCSoftwareUpgrade(value) {
+      return {
+        typeUrl: "/ibc.core.client.v1.MsgIBCSoftwareUpgrade",
+        value: import_tx.MsgIBCSoftwareUpgrade.encode(value).finish()
+      };
+    },
+    updateClientParams(value) {
+      return {
+        typeUrl: "/ibc.core.client.v1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.encode(value).finish()
+      };
     }
   },
   withTypeUrl: {
@@ -78,6 +96,24 @@ const MessageComposer = {
     submitMisbehaviour(value) {
       return {
         typeUrl: "/ibc.core.client.v1.MsgSubmitMisbehaviour",
+        value
+      };
+    },
+    recoverClient(value) {
+      return {
+        typeUrl: "/ibc.core.client.v1.MsgRecoverClient",
+        value
+      };
+    },
+    iBCSoftwareUpgrade(value) {
+      return {
+        typeUrl: "/ibc.core.client.v1.MsgIBCSoftwareUpgrade",
+        value
+      };
+    },
+    updateClientParams(value) {
+      return {
+        typeUrl: "/ibc.core.client.v1.MsgUpdateParams",
         value
       };
     }
@@ -105,6 +141,24 @@ const MessageComposer = {
       return {
         typeUrl: "/ibc.core.client.v1.MsgSubmitMisbehaviour",
         value: import_tx.MsgSubmitMisbehaviour.fromPartial(value)
+      };
+    },
+    recoverClient(value) {
+      return {
+        typeUrl: "/ibc.core.client.v1.MsgRecoverClient",
+        value: import_tx.MsgRecoverClient.fromPartial(value)
+      };
+    },
+    iBCSoftwareUpgrade(value) {
+      return {
+        typeUrl: "/ibc.core.client.v1.MsgIBCSoftwareUpgrade",
+        value: import_tx.MsgIBCSoftwareUpgrade.fromPartial(value)
+      };
+    },
+    updateClientParams(value) {
+      return {
+        typeUrl: "/ibc.core.client.v1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.fromPartial(value)
       };
     }
   }

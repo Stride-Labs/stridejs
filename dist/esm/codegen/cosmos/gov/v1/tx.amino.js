@@ -1,4 +1,4 @@
-import { MsgSubmitProposal, MsgExecLegacyContent, MsgVote, MsgVoteWeighted, MsgDeposit, MsgUpdateParams } from "./tx";
+import { MsgSubmitProposal, MsgExecLegacyContent, MsgVote, MsgVoteWeighted, MsgDeposit, MsgUpdateParams, MsgCancelProposal } from "./tx";
 const AminoConverter = {
   "/cosmos.gov.v1.MsgSubmitProposal": {
     aminoType: "cosmos-sdk/v1/MsgSubmitProposal",
@@ -29,6 +29,11 @@ const AminoConverter = {
     aminoType: "cosmos-sdk/x/gov/v1/MsgUpdateParams",
     toAmino: MsgUpdateParams.toAmino,
     fromAmino: MsgUpdateParams.fromAmino
+  },
+  "/cosmos.gov.v1.MsgCancelProposal": {
+    aminoType: "cosmos-sdk/v1/MsgCancelProposal",
+    toAmino: MsgCancelProposal.toAmino,
+    fromAmino: MsgCancelProposal.fromAmino
   }
 };
 export {

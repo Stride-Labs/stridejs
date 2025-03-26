@@ -71,6 +71,51 @@ const AminoConverter = {
     aminoType: "cosmos-sdk/MsgAcknowledgement",
     toAmino: import_tx.MsgAcknowledgement.toAmino,
     fromAmino: import_tx.MsgAcknowledgement.fromAmino
+  },
+  "/ibc.core.channel.v1.MsgChannelUpgradeInit": {
+    aminoType: "cosmos-sdk/MsgChannelUpgradeInit",
+    toAmino: import_tx.MsgChannelUpgradeInit.toAmino,
+    fromAmino: import_tx.MsgChannelUpgradeInit.fromAmino
+  },
+  "/ibc.core.channel.v1.MsgChannelUpgradeTry": {
+    aminoType: "cosmos-sdk/MsgChannelUpgradeTry",
+    toAmino: import_tx.MsgChannelUpgradeTry.toAmino,
+    fromAmino: import_tx.MsgChannelUpgradeTry.fromAmino
+  },
+  "/ibc.core.channel.v1.MsgChannelUpgradeAck": {
+    aminoType: "cosmos-sdk/MsgChannelUpgradeAck",
+    toAmino: import_tx.MsgChannelUpgradeAck.toAmino,
+    fromAmino: import_tx.MsgChannelUpgradeAck.fromAmino
+  },
+  "/ibc.core.channel.v1.MsgChannelUpgradeConfirm": {
+    aminoType: "cosmos-sdk/MsgChannelUpgradeConfirm",
+    toAmino: import_tx.MsgChannelUpgradeConfirm.toAmino,
+    fromAmino: import_tx.MsgChannelUpgradeConfirm.fromAmino
+  },
+  "/ibc.core.channel.v1.MsgChannelUpgradeOpen": {
+    aminoType: "cosmos-sdk/MsgChannelUpgradeOpen",
+    toAmino: import_tx.MsgChannelUpgradeOpen.toAmino,
+    fromAmino: import_tx.MsgChannelUpgradeOpen.fromAmino
+  },
+  "/ibc.core.channel.v1.MsgChannelUpgradeTimeout": {
+    aminoType: "cosmos-sdk/MsgChannelUpgradeTimeout",
+    toAmino: import_tx.MsgChannelUpgradeTimeout.toAmino,
+    fromAmino: import_tx.MsgChannelUpgradeTimeout.fromAmino
+  },
+  "/ibc.core.channel.v1.MsgChannelUpgradeCancel": {
+    aminoType: "cosmos-sdk/MsgChannelUpgradeCancel",
+    toAmino: import_tx.MsgChannelUpgradeCancel.toAmino,
+    fromAmino: import_tx.MsgChannelUpgradeCancel.fromAmino
+  },
+  "/ibc.core.channel.v1.MsgUpdateParams": {
+    aminoType: "cosmos-sdk/MsgUpdateParams",
+    toAmino: import_tx.MsgUpdateParams.toAmino,
+    fromAmino: import_tx.MsgUpdateParams.fromAmino
+  },
+  "/ibc.core.channel.v1.MsgPruneAcknowledgements": {
+    aminoType: "cosmos-sdk/MsgPruneAcknowledgements",
+    toAmino: import_tx.MsgPruneAcknowledgements.toAmino,
+    fromAmino: import_tx.MsgPruneAcknowledgements.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

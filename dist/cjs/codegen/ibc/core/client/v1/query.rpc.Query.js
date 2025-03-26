@@ -37,6 +37,7 @@ class QueryClientImpl {
     this.clientParams = this.clientParams.bind(this);
     this.upgradedClientState = this.upgradedClientState.bind(this);
     this.upgradedConsensusState = this.upgradedConsensusState.bind(this);
+    this.verifyMembership = this.verifyMembership.bind(this);
   }
   clientState(request) {
     const data = import_query.QueryClientStateRequest.encode(request).finish();
@@ -85,6 +86,11 @@ class QueryClientImpl {
     const promise = this.rpc.request("ibc.core.client.v1.Query", "UpgradedConsensusState", data);
     return promise.then((data2) => import_query.QueryUpgradedConsensusStateResponse.decode(new import_binary.BinaryReader(data2)));
   }
+  verifyMembership(request) {
+    const data = import_query.QueryVerifyMembershipRequest.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.client.v1.Query", "VerifyMembership", data);
+    return promise.then((data2) => import_query.QueryVerifyMembershipResponse.decode(new import_binary.BinaryReader(data2)));
+  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = (0, import_stargate.createProtobufRpcClient)(base);
@@ -116,6 +122,9 @@ const createRpcQueryExtension = (base) => {
     },
     upgradedConsensusState(request) {
       return queryService.upgradedConsensusState(request);
+    },
+    verifyMembership(request) {
+      return queryService.verifyMembership(request);
     }
   };
 };

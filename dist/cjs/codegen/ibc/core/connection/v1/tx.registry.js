@@ -23,7 +23,7 @@ __export(tx_registry_exports, {
 });
 module.exports = __toCommonJS(tx_registry_exports);
 var import_tx = require("./tx");
-const registry = [["/ibc.core.connection.v1.MsgConnectionOpenInit", import_tx.MsgConnectionOpenInit], ["/ibc.core.connection.v1.MsgConnectionOpenTry", import_tx.MsgConnectionOpenTry], ["/ibc.core.connection.v1.MsgConnectionOpenAck", import_tx.MsgConnectionOpenAck], ["/ibc.core.connection.v1.MsgConnectionOpenConfirm", import_tx.MsgConnectionOpenConfirm]];
+const registry = [["/ibc.core.connection.v1.MsgConnectionOpenInit", import_tx.MsgConnectionOpenInit], ["/ibc.core.connection.v1.MsgConnectionOpenTry", import_tx.MsgConnectionOpenTry], ["/ibc.core.connection.v1.MsgConnectionOpenAck", import_tx.MsgConnectionOpenAck], ["/ibc.core.connection.v1.MsgConnectionOpenConfirm", import_tx.MsgConnectionOpenConfirm], ["/ibc.core.connection.v1.MsgUpdateParams", import_tx.MsgUpdateParams]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -54,6 +54,12 @@ const MessageComposer = {
         typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenConfirm",
         value: import_tx.MsgConnectionOpenConfirm.encode(value).finish()
       };
+    },
+    updateConnectionParams(value) {
+      return {
+        typeUrl: "/ibc.core.connection.v1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.encode(value).finish()
+      };
     }
   },
   withTypeUrl: {
@@ -78,6 +84,12 @@ const MessageComposer = {
     connectionOpenConfirm(value) {
       return {
         typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenConfirm",
+        value
+      };
+    },
+    updateConnectionParams(value) {
+      return {
+        typeUrl: "/ibc.core.connection.v1.MsgUpdateParams",
         value
       };
     }
@@ -105,6 +117,12 @@ const MessageComposer = {
       return {
         typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenConfirm",
         value: import_tx.MsgConnectionOpenConfirm.fromPartial(value)
+      };
+    },
+    updateConnectionParams(value) {
+      return {
+        typeUrl: "/ibc.core.connection.v1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.fromPartial(value)
       };
     }
   }

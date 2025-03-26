@@ -32,6 +32,7 @@ class MsgClientImpl {
     this.voteWeighted = this.voteWeighted.bind(this);
     this.deposit = this.deposit.bind(this);
     this.updateParams = this.updateParams.bind(this);
+    this.cancelProposal = this.cancelProposal.bind(this);
   }
   submitProposal(request) {
     const data = import_tx.MsgSubmitProposal.encode(request).finish();
@@ -62,6 +63,11 @@ class MsgClientImpl {
     const data = import_tx.MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.gov.v1.Msg", "UpdateParams", data);
     return promise.then((data2) => import_tx.MsgUpdateParamsResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  cancelProposal(request) {
+    const data = import_tx.MsgCancelProposal.encode(request).finish();
+    const promise = this.rpc.request("cosmos.gov.v1.Msg", "CancelProposal", data);
+    return promise.then((data2) => import_tx.MsgCancelProposalResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

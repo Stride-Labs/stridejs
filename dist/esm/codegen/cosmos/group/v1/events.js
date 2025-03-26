@@ -750,6 +750,87 @@ const EventProposalPruned = {
     };
   }
 };
+function createBaseEventTallyError() {
+  return {
+    proposalId: BigInt(0),
+    errorMessage: ""
+  };
+}
+const EventTallyError = {
+  typeUrl: "/cosmos.group.v1.EventTallyError",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.proposalId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.proposalId);
+    }
+    if (message.errorMessage !== "") {
+      writer.uint32(18).string(message.errorMessage);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseEventTallyError();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.proposalId = reader.uint64();
+          break;
+        case 2:
+          message.errorMessage = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseEventTallyError();
+    message.proposalId = object.proposalId !== void 0 && object.proposalId !== null ? BigInt(object.proposalId.toString()) : BigInt(0);
+    message.errorMessage = object.errorMessage ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseEventTallyError();
+    if (object.proposal_id !== void 0 && object.proposal_id !== null) {
+      message.proposalId = BigInt(object.proposal_id);
+    }
+    if (object.error_message !== void 0 && object.error_message !== null) {
+      message.errorMessage = object.error_message;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.proposal_id = message.proposalId !== BigInt(0) ? message.proposalId?.toString() : void 0;
+    obj.error_message = message.errorMessage === "" ? void 0 : message.errorMessage;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return EventTallyError.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/EventTallyError",
+      value: EventTallyError.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return EventTallyError.decode(message.value);
+  },
+  toProto(message) {
+    return EventTallyError.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.group.v1.EventTallyError",
+      value: EventTallyError.encode(message).finish()
+    };
+  }
+};
 export {
   EventCreateGroup,
   EventCreateGroupPolicy,
@@ -757,6 +838,7 @@ export {
   EventLeaveGroup,
   EventProposalPruned,
   EventSubmitProposal,
+  EventTallyError,
   EventUpdateGroup,
   EventUpdateGroupPolicy,
   EventVote,

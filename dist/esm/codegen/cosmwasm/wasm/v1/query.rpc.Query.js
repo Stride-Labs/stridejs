@@ -1,6 +1,6 @@
 import { BinaryReader } from "../../../binary";
 import { createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryContractInfoRequest, QueryContractInfoResponse, QueryContractHistoryRequest, QueryContractHistoryResponse, QueryContractsByCodeRequest, QueryContractsByCodeResponse, QueryAllContractStateRequest, QueryAllContractStateResponse, QueryRawContractStateRequest, QueryRawContractStateResponse, QuerySmartContractStateRequest, QuerySmartContractStateResponse, QueryCodeRequest, QueryCodeResponse, QueryCodesRequest, QueryCodesResponse, QueryPinnedCodesRequest, QueryPinnedCodesResponse, QueryParamsRequest, QueryParamsResponse, QueryContractsByCreatorRequest, QueryContractsByCreatorResponse } from "./query";
+import { QueryContractInfoRequest, QueryContractInfoResponse, QueryContractHistoryRequest, QueryContractHistoryResponse, QueryContractsByCodeRequest, QueryContractsByCodeResponse, QueryAllContractStateRequest, QueryAllContractStateResponse, QueryRawContractStateRequest, QueryRawContractStateResponse, QuerySmartContractStateRequest, QuerySmartContractStateResponse, QueryCodeRequest, QueryCodeResponse, QueryCodesRequest, QueryCodesResponse, QueryCodeInfoRequest, QueryCodeInfoResponse, QueryPinnedCodesRequest, QueryPinnedCodesResponse, QueryParamsRequest, QueryParamsResponse, QueryContractsByCreatorRequest, QueryContractsByCreatorResponse, QueryWasmLimitsConfigRequest, QueryWasmLimitsConfigResponse, QueryBuildAddressRequest, QueryBuildAddressResponse } from "./query";
 class QueryClientImpl {
   rpc;
   constructor(rpc) {
@@ -13,9 +13,12 @@ class QueryClientImpl {
     this.smartContractState = this.smartContractState.bind(this);
     this.code = this.code.bind(this);
     this.codes = this.codes.bind(this);
+    this.codeInfo = this.codeInfo.bind(this);
     this.pinnedCodes = this.pinnedCodes.bind(this);
     this.params = this.params.bind(this);
     this.contractsByCreator = this.contractsByCreator.bind(this);
+    this.wasmLimitsConfig = this.wasmLimitsConfig.bind(this);
+    this.buildAddress = this.buildAddress.bind(this);
   }
   contractInfo(request) {
     const data = QueryContractInfoRequest.encode(request).finish();
@@ -59,6 +62,11 @@ class QueryClientImpl {
     const promise = this.rpc.request("cosmwasm.wasm.v1.Query", "Codes", data);
     return promise.then((data2) => QueryCodesResponse.decode(new BinaryReader(data2)));
   }
+  codeInfo(request) {
+    const data = QueryCodeInfoRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmwasm.wasm.v1.Query", "CodeInfo", data);
+    return promise.then((data2) => QueryCodeInfoResponse.decode(new BinaryReader(data2)));
+  }
   pinnedCodes(request = {
     pagination: void 0
   }) {
@@ -75,6 +83,16 @@ class QueryClientImpl {
     const data = QueryContractsByCreatorRequest.encode(request).finish();
     const promise = this.rpc.request("cosmwasm.wasm.v1.Query", "ContractsByCreator", data);
     return promise.then((data2) => QueryContractsByCreatorResponse.decode(new BinaryReader(data2)));
+  }
+  wasmLimitsConfig(request = {}) {
+    const data = QueryWasmLimitsConfigRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmwasm.wasm.v1.Query", "WasmLimitsConfig", data);
+    return promise.then((data2) => QueryWasmLimitsConfigResponse.decode(new BinaryReader(data2)));
+  }
+  buildAddress(request) {
+    const data = QueryBuildAddressRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmwasm.wasm.v1.Query", "BuildAddress", data);
+    return promise.then((data2) => QueryBuildAddressResponse.decode(new BinaryReader(data2)));
   }
 }
 const createRpcQueryExtension = (base) => {
@@ -105,6 +123,9 @@ const createRpcQueryExtension = (base) => {
     codes(request) {
       return queryService.codes(request);
     },
+    codeInfo(request) {
+      return queryService.codeInfo(request);
+    },
     pinnedCodes(request) {
       return queryService.pinnedCodes(request);
     },
@@ -113,6 +134,12 @@ const createRpcQueryExtension = (base) => {
     },
     contractsByCreator(request) {
       return queryService.contractsByCreator(request);
+    },
+    wasmLimitsConfig(request) {
+      return queryService.wasmLimitsConfig(request);
+    },
+    buildAddress(request) {
+      return queryService.buildAddress(request);
     }
   };
 };

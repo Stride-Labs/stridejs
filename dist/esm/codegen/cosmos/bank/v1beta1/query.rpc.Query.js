@@ -1,6 +1,6 @@
 import { BinaryReader } from "../../../binary";
 import { createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryBalanceRequest, QueryBalanceResponse, QueryAllBalancesRequest, QueryAllBalancesResponse, QuerySpendableBalancesRequest, QuerySpendableBalancesResponse, QuerySpendableBalanceByDenomRequest, QuerySpendableBalanceByDenomResponse, QueryTotalSupplyRequest, QueryTotalSupplyResponse, QuerySupplyOfRequest, QuerySupplyOfResponse, QueryParamsRequest, QueryParamsResponse, QueryDenomMetadataRequest, QueryDenomMetadataResponse, QueryDenomsMetadataRequest, QueryDenomsMetadataResponse, QueryDenomOwnersRequest, QueryDenomOwnersResponse, QuerySendEnabledRequest, QuerySendEnabledResponse } from "./query";
+import { QueryBalanceRequest, QueryBalanceResponse, QueryAllBalancesRequest, QueryAllBalancesResponse, QuerySpendableBalancesRequest, QuerySpendableBalancesResponse, QuerySpendableBalanceByDenomRequest, QuerySpendableBalanceByDenomResponse, QueryTotalSupplyRequest, QueryTotalSupplyResponse, QuerySupplyOfRequest, QuerySupplyOfResponse, QueryParamsRequest, QueryParamsResponse, QueryDenomMetadataRequest, QueryDenomMetadataResponse, QueryDenomMetadataByQueryStringRequest, QueryDenomMetadataByQueryStringResponse, QueryDenomsMetadataRequest, QueryDenomsMetadataResponse, QueryDenomOwnersRequest, QueryDenomOwnersResponse, QueryDenomOwnersByQueryRequest, QueryDenomOwnersByQueryResponse, QuerySendEnabledRequest, QuerySendEnabledResponse } from "./query";
 class QueryClientImpl {
   rpc;
   constructor(rpc) {
@@ -13,8 +13,10 @@ class QueryClientImpl {
     this.supplyOf = this.supplyOf.bind(this);
     this.params = this.params.bind(this);
     this.denomMetadata = this.denomMetadata.bind(this);
+    this.denomMetadataByQueryString = this.denomMetadataByQueryString.bind(this);
     this.denomsMetadata = this.denomsMetadata.bind(this);
     this.denomOwners = this.denomOwners.bind(this);
+    this.denomOwnersByQuery = this.denomOwnersByQuery.bind(this);
     this.sendEnabled = this.sendEnabled.bind(this);
   }
   balance(request) {
@@ -59,6 +61,11 @@ class QueryClientImpl {
     const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomMetadata", data);
     return promise.then((data2) => QueryDenomMetadataResponse.decode(new BinaryReader(data2)));
   }
+  denomMetadataByQueryString(request) {
+    const data = QueryDenomMetadataByQueryStringRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomMetadataByQueryString", data);
+    return promise.then((data2) => QueryDenomMetadataByQueryStringResponse.decode(new BinaryReader(data2)));
+  }
   denomsMetadata(request = {
     pagination: void 0
   }) {
@@ -70,6 +77,11 @@ class QueryClientImpl {
     const data = QueryDenomOwnersRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomOwners", data);
     return promise.then((data2) => QueryDenomOwnersResponse.decode(new BinaryReader(data2)));
+  }
+  denomOwnersByQuery(request) {
+    const data = QueryDenomOwnersByQueryRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomOwnersByQuery", data);
+    return promise.then((data2) => QueryDenomOwnersByQueryResponse.decode(new BinaryReader(data2)));
   }
   sendEnabled(request) {
     const data = QuerySendEnabledRequest.encode(request).finish();
@@ -105,11 +117,17 @@ const createRpcQueryExtension = (base) => {
     denomMetadata(request) {
       return queryService.denomMetadata(request);
     },
+    denomMetadataByQueryString(request) {
+      return queryService.denomMetadataByQueryString(request);
+    },
     denomsMetadata(request) {
       return queryService.denomsMetadata(request);
     },
     denomOwners(request) {
       return queryService.denomOwners(request);
+    },
+    denomOwnersByQuery(request) {
+      return queryService.denomOwnersByQuery(request);
     },
     sendEnabled(request) {
       return queryService.sendEnabled(request);

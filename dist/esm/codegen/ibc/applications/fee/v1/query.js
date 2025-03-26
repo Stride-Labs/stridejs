@@ -1,4 +1,4 @@
-import { PageRequest } from "../../../../cosmos/base/query/v1beta1/pagination";
+import { PageRequest, PageResponse } from "../../../../cosmos/base/query/v1beta1/pagination";
 import { PacketId } from "../../../core/channel/v1/channel";
 import { IdentifiedPacketFees } from "./fee";
 import { Coin } from "../../../../cosmos/base/v1beta1/coin";
@@ -87,7 +87,8 @@ const QueryIncentivizedPacketsRequest = {
 };
 function createBaseQueryIncentivizedPacketsResponse() {
   return {
-    incentivizedPackets: []
+    incentivizedPackets: [],
+    pagination: void 0
   };
 }
 const QueryIncentivizedPacketsResponse = {
@@ -95,6 +96,9 @@ const QueryIncentivizedPacketsResponse = {
   encode(message, writer = BinaryWriter.create()) {
     for (const v of message.incentivizedPackets) {
       IdentifiedPacketFees.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== void 0) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -108,6 +112,9 @@ const QueryIncentivizedPacketsResponse = {
         case 1:
           message.incentivizedPackets.push(IdentifiedPacketFees.decode(reader, reader.uint32()));
           break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -118,11 +125,15 @@ const QueryIncentivizedPacketsResponse = {
   fromPartial(object) {
     const message = createBaseQueryIncentivizedPacketsResponse();
     message.incentivizedPackets = object.incentivizedPackets?.map((e) => IdentifiedPacketFees.fromPartial(e)) || [];
+    message.pagination = object.pagination !== void 0 && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : void 0;
     return message;
   },
   fromAmino(object) {
     const message = createBaseQueryIncentivizedPacketsResponse();
     message.incentivizedPackets = object.incentivized_packets?.map((e) => IdentifiedPacketFees.fromAmino(e)) || [];
+    if (object.pagination !== void 0 && object.pagination !== null) {
+      message.pagination = PageResponse.fromAmino(object.pagination);
+    }
     return message;
   },
   toAmino(message) {
@@ -132,6 +143,7 @@ const QueryIncentivizedPacketsResponse = {
     } else {
       obj.incentivized_packets = message.incentivizedPackets;
     }
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -413,7 +425,8 @@ const QueryIncentivizedPacketsForChannelRequest = {
 };
 function createBaseQueryIncentivizedPacketsForChannelResponse() {
   return {
-    incentivizedPackets: []
+    incentivizedPackets: [],
+    pagination: void 0
   };
 }
 const QueryIncentivizedPacketsForChannelResponse = {
@@ -421,6 +434,9 @@ const QueryIncentivizedPacketsForChannelResponse = {
   encode(message, writer = BinaryWriter.create()) {
     for (const v of message.incentivizedPackets) {
       IdentifiedPacketFees.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== void 0) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -434,6 +450,9 @@ const QueryIncentivizedPacketsForChannelResponse = {
         case 1:
           message.incentivizedPackets.push(IdentifiedPacketFees.decode(reader, reader.uint32()));
           break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -444,11 +463,15 @@ const QueryIncentivizedPacketsForChannelResponse = {
   fromPartial(object) {
     const message = createBaseQueryIncentivizedPacketsForChannelResponse();
     message.incentivizedPackets = object.incentivizedPackets?.map((e) => IdentifiedPacketFees.fromPartial(e)) || [];
+    message.pagination = object.pagination !== void 0 && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : void 0;
     return message;
   },
   fromAmino(object) {
     const message = createBaseQueryIncentivizedPacketsForChannelResponse();
     message.incentivizedPackets = object.incentivized_packets?.map((e) => IdentifiedPacketFees.fromAmino(e)) || [];
+    if (object.pagination !== void 0 && object.pagination !== null) {
+      message.pagination = PageResponse.fromAmino(object.pagination);
+    }
     return message;
   },
   toAmino(message) {
@@ -458,6 +481,7 @@ const QueryIncentivizedPacketsForChannelResponse = {
     } else {
       obj.incentivized_packets = message.incentivizedPackets;
     }
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1285,7 +1309,8 @@ const QueryFeeEnabledChannelsRequest = {
 };
 function createBaseQueryFeeEnabledChannelsResponse() {
   return {
-    feeEnabledChannels: []
+    feeEnabledChannels: [],
+    pagination: void 0
   };
 }
 const QueryFeeEnabledChannelsResponse = {
@@ -1293,6 +1318,9 @@ const QueryFeeEnabledChannelsResponse = {
   encode(message, writer = BinaryWriter.create()) {
     for (const v of message.feeEnabledChannels) {
       FeeEnabledChannel.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== void 0) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
     }
     return writer;
   },
@@ -1306,6 +1334,9 @@ const QueryFeeEnabledChannelsResponse = {
         case 1:
           message.feeEnabledChannels.push(FeeEnabledChannel.decode(reader, reader.uint32()));
           break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -1316,11 +1347,15 @@ const QueryFeeEnabledChannelsResponse = {
   fromPartial(object) {
     const message = createBaseQueryFeeEnabledChannelsResponse();
     message.feeEnabledChannels = object.feeEnabledChannels?.map((e) => FeeEnabledChannel.fromPartial(e)) || [];
+    message.pagination = object.pagination !== void 0 && object.pagination !== null ? PageResponse.fromPartial(object.pagination) : void 0;
     return message;
   },
   fromAmino(object) {
     const message = createBaseQueryFeeEnabledChannelsResponse();
     message.feeEnabledChannels = object.fee_enabled_channels?.map((e) => FeeEnabledChannel.fromAmino(e)) || [];
+    if (object.pagination !== void 0 && object.pagination !== null) {
+      message.pagination = PageResponse.fromAmino(object.pagination);
+    }
     return message;
   },
   toAmino(message) {
@@ -1330,6 +1365,7 @@ const QueryFeeEnabledChannelsResponse = {
     } else {
       obj.fee_enabled_channels = message.feeEnabledChannels;
     }
+    obj.pagination = message.pagination ? PageResponse.toAmino(message.pagination) : void 0;
     return obj;
   },
   fromAminoMsg(object) {

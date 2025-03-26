@@ -1,9 +1,9 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
 /** ModuleOptions describes the CLI options for a Cosmos SDK module. */
 export interface ModuleOptions {
-  /** tx describes the tx command for the module. */
+  /** tx describes the tx commands for the module. */
   tx?: ServiceCommandDescriptor;
-  /** query describes the tx command for the module. */
+  /** query describes the queries commands for the module. */
   query?: ServiceCommandDescriptor;
 }
 export interface ModuleOptionsProtoMsg {
@@ -12,9 +12,9 @@ export interface ModuleOptionsProtoMsg {
 }
 /** ModuleOptions describes the CLI options for a Cosmos SDK module. */
 export interface ModuleOptionsAmino {
-  /** tx describes the tx command for the module. */
+  /** tx describes the tx commands for the module. */
   tx?: ServiceCommandDescriptorAmino;
-  /** query describes the tx command for the module. */
+  /** query describes the queries commands for the module. */
   query?: ServiceCommandDescriptorAmino;
 }
 export interface ModuleOptionsAminoMsg {
@@ -277,8 +277,6 @@ export interface FlagOptions {
   usage: string;
   /** default_value is the default value as text. */
   defaultValue: string;
-  /** default value is the default value as text if the flag is used without any value. */
-  noOptDefaultValue: string;
   /** deprecated is the usage text to show if this flag is deprecated. */
   deprecated: string;
   /** shorthand_deprecated is the usage text to show if the shorthand of this flag is deprecated. */
@@ -305,8 +303,6 @@ export interface FlagOptionsAmino {
   usage?: string;
   /** default_value is the default value as text. */
   default_value?: string;
-  /** default value is the default value as text if the flag is used without any value. */
-  no_opt_default_value?: string;
   /** deprecated is the usage text to show if this flag is deprecated. */
   deprecated?: string;
   /** shorthand_deprecated is the usage text to show if the shorthand of this flag is deprecated. */
@@ -329,7 +325,6 @@ export interface FlagOptionsSDKType {
   shorthand: string;
   usage: string;
   default_value: string;
-  no_opt_default_value: string;
   deprecated: string;
   shorthand_deprecated: string;
   hidden: boolean;
@@ -946,7 +941,6 @@ function createBaseFlagOptions(): FlagOptions {
     shorthand: "",
     usage: "",
     defaultValue: "",
-    noOptDefaultValue: "",
     deprecated: "",
     shorthandDeprecated: "",
     hidden: false
@@ -966,9 +960,6 @@ export const FlagOptions = {
     }
     if (message.defaultValue !== "") {
       writer.uint32(34).string(message.defaultValue);
-    }
-    if (message.noOptDefaultValue !== "") {
-      writer.uint32(42).string(message.noOptDefaultValue);
     }
     if (message.deprecated !== "") {
       writer.uint32(50).string(message.deprecated);
@@ -1000,9 +991,6 @@ export const FlagOptions = {
         case 4:
           message.defaultValue = reader.string();
           break;
-        case 5:
-          message.noOptDefaultValue = reader.string();
-          break;
         case 6:
           message.deprecated = reader.string();
           break;
@@ -1025,7 +1013,6 @@ export const FlagOptions = {
     message.shorthand = object.shorthand ?? "";
     message.usage = object.usage ?? "";
     message.defaultValue = object.defaultValue ?? "";
-    message.noOptDefaultValue = object.noOptDefaultValue ?? "";
     message.deprecated = object.deprecated ?? "";
     message.shorthandDeprecated = object.shorthandDeprecated ?? "";
     message.hidden = object.hidden ?? false;
@@ -1045,9 +1032,6 @@ export const FlagOptions = {
     if (object.default_value !== undefined && object.default_value !== null) {
       message.defaultValue = object.default_value;
     }
-    if (object.no_opt_default_value !== undefined && object.no_opt_default_value !== null) {
-      message.noOptDefaultValue = object.no_opt_default_value;
-    }
     if (object.deprecated !== undefined && object.deprecated !== null) {
       message.deprecated = object.deprecated;
     }
@@ -1065,7 +1049,6 @@ export const FlagOptions = {
     obj.shorthand = message.shorthand === "" ? undefined : message.shorthand;
     obj.usage = message.usage === "" ? undefined : message.usage;
     obj.default_value = message.defaultValue === "" ? undefined : message.defaultValue;
-    obj.no_opt_default_value = message.noOptDefaultValue === "" ? undefined : message.noOptDefaultValue;
     obj.deprecated = message.deprecated === "" ? undefined : message.deprecated;
     obj.shorthand_deprecated = message.shorthandDeprecated === "" ? undefined : message.shorthandDeprecated;
     obj.hidden = message.hidden === false ? undefined : message.hidden;

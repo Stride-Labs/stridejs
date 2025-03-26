@@ -28,7 +28,8 @@ function createBaseMsgUpdateParams() {
     authority: "",
     block: void 0,
     evidence: void 0,
-    validator: void 0
+    validator: void 0,
+    abci: void 0
   };
 }
 const MsgUpdateParams = {
@@ -45,6 +46,9 @@ const MsgUpdateParams = {
     }
     if (message.validator !== void 0) {
       import_params.ValidatorParams.encode(message.validator, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.abci !== void 0) {
+      import_params.ABCIParams.encode(message.abci, writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -67,6 +71,9 @@ const MsgUpdateParams = {
         case 4:
           message.validator = import_params.ValidatorParams.decode(reader, reader.uint32());
           break;
+        case 5:
+          message.abci = import_params.ABCIParams.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -80,6 +87,7 @@ const MsgUpdateParams = {
     message.block = object.block !== void 0 && object.block !== null ? import_params.BlockParams.fromPartial(object.block) : void 0;
     message.evidence = object.evidence !== void 0 && object.evidence !== null ? import_params.EvidenceParams.fromPartial(object.evidence) : void 0;
     message.validator = object.validator !== void 0 && object.validator !== null ? import_params.ValidatorParams.fromPartial(object.validator) : void 0;
+    message.abci = object.abci !== void 0 && object.abci !== null ? import_params.ABCIParams.fromPartial(object.abci) : void 0;
     return message;
   },
   fromAmino(object) {
@@ -96,6 +104,9 @@ const MsgUpdateParams = {
     if (object.validator !== void 0 && object.validator !== null) {
       message.validator = import_params.ValidatorParams.fromAmino(object.validator);
     }
+    if (object.abci !== void 0 && object.abci !== null) {
+      message.abci = import_params.ABCIParams.fromAmino(object.abci);
+    }
     return message;
   },
   toAmino(message) {
@@ -104,6 +115,7 @@ const MsgUpdateParams = {
     obj.block = message.block ? import_params.BlockParams.toAmino(message.block) : void 0;
     obj.evidence = message.evidence ? import_params.EvidenceParams.toAmino(message.evidence) : void 0;
     obj.validator = message.validator ? import_params.ValidatorParams.toAmino(message.validator) : void 0;
+    obj.abci = message.abci ? import_params.ABCIParams.toAmino(message.abci) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -111,7 +123,7 @@ const MsgUpdateParams = {
   },
   toAminoMsg(message) {
     return {
-      type: "cosmos-sdk/MsgUpdateParams",
+      type: "cosmos-sdk/x/consensus/MsgUpdateParams",
       value: MsgUpdateParams.toAmino(message)
     };
   },

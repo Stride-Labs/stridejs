@@ -1,6 +1,6 @@
 import { TxRpc } from "../../../types";
 import { QueryClient } from "@cosmjs/stargate";
-import { QueryBalanceRequest, QueryBalanceResponse, QueryAllBalancesRequest, QueryAllBalancesResponse, QuerySpendableBalancesRequest, QuerySpendableBalancesResponse, QuerySpendableBalanceByDenomRequest, QuerySpendableBalanceByDenomResponse, QueryTotalSupplyRequest, QueryTotalSupplyResponse, QuerySupplyOfRequest, QuerySupplyOfResponse, QueryParamsRequest, QueryParamsResponse, QueryDenomMetadataRequest, QueryDenomMetadataResponse, QueryDenomsMetadataRequest, QueryDenomsMetadataResponse, QueryDenomOwnersRequest, QueryDenomOwnersResponse, QuerySendEnabledRequest, QuerySendEnabledResponse } from "./query";
+import { QueryBalanceRequest, QueryBalanceResponse, QueryAllBalancesRequest, QueryAllBalancesResponse, QuerySpendableBalancesRequest, QuerySpendableBalancesResponse, QuerySpendableBalanceByDenomRequest, QuerySpendableBalanceByDenomResponse, QueryTotalSupplyRequest, QueryTotalSupplyResponse, QuerySupplyOfRequest, QuerySupplyOfResponse, QueryParamsRequest, QueryParamsResponse, QueryDenomMetadataRequest, QueryDenomMetadataResponse, QueryDenomMetadataByQueryStringRequest, QueryDenomMetadataByQueryStringResponse, QueryDenomsMetadataRequest, QueryDenomsMetadataResponse, QueryDenomOwnersRequest, QueryDenomOwnersResponse, QueryDenomOwnersByQueryRequest, QueryDenomOwnersByQueryResponse, QuerySendEnabledRequest, QuerySendEnabledResponse } from "./query";
 /** Query defines the gRPC querier service. */
 export interface Query {
     /** Balance queries the balance of a single coin for a single account. */
@@ -48,8 +48,10 @@ export interface Query {
     supplyOf(request: QuerySupplyOfRequest): Promise<QuerySupplyOfResponse>;
     /** Params queries the parameters of x/bank module. */
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
-    /** DenomsMetadata queries the client metadata of a given coin denomination. */
+    /** DenomMetadata queries the client metadata of a given coin denomination. */
     denomMetadata(request: QueryDenomMetadataRequest): Promise<QueryDenomMetadataResponse>;
+    /** DenomMetadataByQueryString queries the client metadata of a given coin denomination. */
+    denomMetadataByQueryString(request: QueryDenomMetadataByQueryStringRequest): Promise<QueryDenomMetadataByQueryStringResponse>;
     /**
      * DenomsMetadata queries the client metadata for all registered coin
      * denominations.
@@ -65,6 +67,13 @@ export interface Query {
      * Since: cosmos-sdk 0.46
      */
     denomOwners(request: QueryDenomOwnersRequest): Promise<QueryDenomOwnersResponse>;
+    /**
+     * DenomOwnersByQuery queries for all account addresses that own a particular token
+     * denomination.
+     *
+     * Since: cosmos-sdk 0.50.3
+     */
+    denomOwnersByQuery(request: QueryDenomOwnersByQueryRequest): Promise<QueryDenomOwnersByQueryResponse>;
     /**
      * SendEnabled queries for SendEnabled entries.
      *
@@ -87,8 +96,10 @@ export declare class QueryClientImpl implements Query {
     supplyOf(request: QuerySupplyOfRequest): Promise<QuerySupplyOfResponse>;
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
     denomMetadata(request: QueryDenomMetadataRequest): Promise<QueryDenomMetadataResponse>;
+    denomMetadataByQueryString(request: QueryDenomMetadataByQueryStringRequest): Promise<QueryDenomMetadataByQueryStringResponse>;
     denomsMetadata(request?: QueryDenomsMetadataRequest): Promise<QueryDenomsMetadataResponse>;
     denomOwners(request: QueryDenomOwnersRequest): Promise<QueryDenomOwnersResponse>;
+    denomOwnersByQuery(request: QueryDenomOwnersByQueryRequest): Promise<QueryDenomOwnersByQueryResponse>;
     sendEnabled(request: QuerySendEnabledRequest): Promise<QuerySendEnabledResponse>;
 }
 export declare const createRpcQueryExtension: (base: QueryClient) => {
@@ -100,7 +111,9 @@ export declare const createRpcQueryExtension: (base: QueryClient) => {
     supplyOf(request: QuerySupplyOfRequest): Promise<QuerySupplyOfResponse>;
     params(request?: QueryParamsRequest): Promise<QueryParamsResponse>;
     denomMetadata(request: QueryDenomMetadataRequest): Promise<QueryDenomMetadataResponse>;
+    denomMetadataByQueryString(request: QueryDenomMetadataByQueryStringRequest): Promise<QueryDenomMetadataByQueryStringResponse>;
     denomsMetadata(request?: QueryDenomsMetadataRequest): Promise<QueryDenomsMetadataResponse>;
     denomOwners(request: QueryDenomOwnersRequest): Promise<QueryDenomOwnersResponse>;
+    denomOwnersByQuery(request: QueryDenomOwnersByQueryRequest): Promise<QueryDenomOwnersByQueryResponse>;
     sendEnabled(request: QuerySendEnabledRequest): Promise<QuerySendEnabledResponse>;
 };

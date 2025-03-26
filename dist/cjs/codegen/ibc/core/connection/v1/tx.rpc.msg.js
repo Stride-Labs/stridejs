@@ -30,6 +30,7 @@ class MsgClientImpl {
     this.connectionOpenTry = this.connectionOpenTry.bind(this);
     this.connectionOpenAck = this.connectionOpenAck.bind(this);
     this.connectionOpenConfirm = this.connectionOpenConfirm.bind(this);
+    this.updateConnectionParams = this.updateConnectionParams.bind(this);
   }
   connectionOpenInit(request) {
     const data = import_tx.MsgConnectionOpenInit.encode(request).finish();
@@ -50,6 +51,11 @@ class MsgClientImpl {
     const data = import_tx.MsgConnectionOpenConfirm.encode(request).finish();
     const promise = this.rpc.request("ibc.core.connection.v1.Msg", "ConnectionOpenConfirm", data);
     return promise.then((data2) => import_tx.MsgConnectionOpenConfirmResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  updateConnectionParams(request) {
+    const data = import_tx.MsgUpdateParams.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.connection.v1.Msg", "UpdateConnectionParams", data);
+    return promise.then((data2) => import_tx.MsgUpdateParamsResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

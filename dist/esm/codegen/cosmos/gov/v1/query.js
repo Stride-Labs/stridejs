@@ -1,6 +1,131 @@
 import { Proposal, Vote, VotingParams, DepositParams, TallyParams, Params, Deposit, TallyResult } from "./gov";
 import { PageRequest, PageResponse } from "../../base/query/v1beta1/pagination";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+function createBaseQueryConstitutionRequest() {
+  return {};
+}
+const QueryConstitutionRequest = {
+  typeUrl: "/cosmos.gov.v1.QueryConstitutionRequest",
+  encode(_, writer = BinaryWriter.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryConstitutionRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_) {
+    const message = createBaseQueryConstitutionRequest();
+    return message;
+  },
+  fromAmino(_) {
+    const message = createBaseQueryConstitutionRequest();
+    return message;
+  },
+  toAmino(_) {
+    const obj = {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryConstitutionRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/v1/QueryConstitutionRequest",
+      value: QueryConstitutionRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryConstitutionRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryConstitutionRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.gov.v1.QueryConstitutionRequest",
+      value: QueryConstitutionRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryConstitutionResponse() {
+  return {
+    constitution: ""
+  };
+}
+const QueryConstitutionResponse = {
+  typeUrl: "/cosmos.gov.v1.QueryConstitutionResponse",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.constitution !== "") {
+      writer.uint32(10).string(message.constitution);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryConstitutionResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.constitution = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryConstitutionResponse();
+    message.constitution = object.constitution ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryConstitutionResponse();
+    if (object.constitution !== void 0 && object.constitution !== null) {
+      message.constitution = object.constitution;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.constitution = message.constitution === "" ? void 0 : message.constitution;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryConstitutionResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/v1/QueryConstitutionResponse",
+      value: QueryConstitutionResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryConstitutionResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryConstitutionResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/cosmos.gov.v1.QueryConstitutionResponse",
+      value: QueryConstitutionResponse.encode(message).finish()
+    };
+  }
+};
 function createBaseQueryProposalRequest() {
   return {
     proposalId: BigInt(0)
@@ -1268,6 +1393,8 @@ const QueryTallyResultResponse = {
   }
 };
 export {
+  QueryConstitutionRequest,
+  QueryConstitutionResponse,
   QueryDepositRequest,
   QueryDepositResponse,
   QueryDepositsRequest,

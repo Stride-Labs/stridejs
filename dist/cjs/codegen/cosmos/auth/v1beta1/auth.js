@@ -294,7 +294,7 @@ const ModuleCredential = {
   },
   toAminoMsg(message) {
     return {
-      type: "cosmos-sdk/ModuleCredential",
+      type: "cosmos-sdk/GroupAccountCredential",
       value: ModuleCredential.toAmino(message)
     };
   },

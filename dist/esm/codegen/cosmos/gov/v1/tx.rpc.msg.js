@@ -1,5 +1,5 @@
 import { BinaryReader } from "../../../binary";
-import { MsgSubmitProposal, MsgSubmitProposalResponse, MsgExecLegacyContent, MsgExecLegacyContentResponse, MsgVote, MsgVoteResponse, MsgVoteWeighted, MsgVoteWeightedResponse, MsgDeposit, MsgDepositResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx";
+import { MsgSubmitProposal, MsgSubmitProposalResponse, MsgExecLegacyContent, MsgExecLegacyContentResponse, MsgVote, MsgVoteResponse, MsgVoteWeighted, MsgVoteWeightedResponse, MsgDeposit, MsgDepositResponse, MsgUpdateParams, MsgUpdateParamsResponse, MsgCancelProposal, MsgCancelProposalResponse } from "./tx";
 class MsgClientImpl {
   rpc;
   constructor(rpc) {
@@ -10,6 +10,7 @@ class MsgClientImpl {
     this.voteWeighted = this.voteWeighted.bind(this);
     this.deposit = this.deposit.bind(this);
     this.updateParams = this.updateParams.bind(this);
+    this.cancelProposal = this.cancelProposal.bind(this);
   }
   submitProposal(request) {
     const data = MsgSubmitProposal.encode(request).finish();
@@ -40,6 +41,11 @@ class MsgClientImpl {
     const data = MsgUpdateParams.encode(request).finish();
     const promise = this.rpc.request("cosmos.gov.v1.Msg", "UpdateParams", data);
     return promise.then((data2) => MsgUpdateParamsResponse.decode(new BinaryReader(data2)));
+  }
+  cancelProposal(request) {
+    const data = MsgCancelProposal.encode(request).finish();
+    const promise = this.rpc.request("cosmos.gov.v1.Msg", "CancelProposal", data);
+    return promise.then((data2) => MsgCancelProposalResponse.decode(new BinaryReader(data2)));
   }
 }
 export {
