@@ -283,6 +283,12 @@ const StridePeriodicVestingAccount = {
   fromAminoMsg(object) {
     return StridePeriodicVestingAccount.fromAmino(object.value);
   },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/StridePeriodicVestingAccount",
+      value: StridePeriodicVestingAccount.toAmino(message)
+    };
+  },
   fromProtoMsg(message) {
     return StridePeriodicVestingAccount.decode(message.value);
   },

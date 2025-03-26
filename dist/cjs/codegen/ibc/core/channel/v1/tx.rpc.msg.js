@@ -36,6 +36,15 @@ class MsgClientImpl {
     this.timeout = this.timeout.bind(this);
     this.timeoutOnClose = this.timeoutOnClose.bind(this);
     this.acknowledgement = this.acknowledgement.bind(this);
+    this.channelUpgradeInit = this.channelUpgradeInit.bind(this);
+    this.channelUpgradeTry = this.channelUpgradeTry.bind(this);
+    this.channelUpgradeAck = this.channelUpgradeAck.bind(this);
+    this.channelUpgradeConfirm = this.channelUpgradeConfirm.bind(this);
+    this.channelUpgradeOpen = this.channelUpgradeOpen.bind(this);
+    this.channelUpgradeTimeout = this.channelUpgradeTimeout.bind(this);
+    this.channelUpgradeCancel = this.channelUpgradeCancel.bind(this);
+    this.updateChannelParams = this.updateChannelParams.bind(this);
+    this.pruneAcknowledgements = this.pruneAcknowledgements.bind(this);
   }
   channelOpenInit(request) {
     const data = import_tx.MsgChannelOpenInit.encode(request).finish();
@@ -86,6 +95,51 @@ class MsgClientImpl {
     const data = import_tx.MsgAcknowledgement.encode(request).finish();
     const promise = this.rpc.request("ibc.core.channel.v1.Msg", "Acknowledgement", data);
     return promise.then((data2) => import_tx.MsgAcknowledgementResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  channelUpgradeInit(request) {
+    const data = import_tx.MsgChannelUpgradeInit.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeInit", data);
+    return promise.then((data2) => import_tx.MsgChannelUpgradeInitResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  channelUpgradeTry(request) {
+    const data = import_tx.MsgChannelUpgradeTry.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeTry", data);
+    return promise.then((data2) => import_tx.MsgChannelUpgradeTryResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  channelUpgradeAck(request) {
+    const data = import_tx.MsgChannelUpgradeAck.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeAck", data);
+    return promise.then((data2) => import_tx.MsgChannelUpgradeAckResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  channelUpgradeConfirm(request) {
+    const data = import_tx.MsgChannelUpgradeConfirm.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeConfirm", data);
+    return promise.then((data2) => import_tx.MsgChannelUpgradeConfirmResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  channelUpgradeOpen(request) {
+    const data = import_tx.MsgChannelUpgradeOpen.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeOpen", data);
+    return promise.then((data2) => import_tx.MsgChannelUpgradeOpenResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  channelUpgradeTimeout(request) {
+    const data = import_tx.MsgChannelUpgradeTimeout.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeTimeout", data);
+    return promise.then((data2) => import_tx.MsgChannelUpgradeTimeoutResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  channelUpgradeCancel(request) {
+    const data = import_tx.MsgChannelUpgradeCancel.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "ChannelUpgradeCancel", data);
+    return promise.then((data2) => import_tx.MsgChannelUpgradeCancelResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  updateChannelParams(request) {
+    const data = import_tx.MsgUpdateParams.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "UpdateChannelParams", data);
+    return promise.then((data2) => import_tx.MsgUpdateParamsResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  pruneAcknowledgements(request) {
+    const data = import_tx.MsgPruneAcknowledgements.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.channel.v1.Msg", "PruneAcknowledgements", data);
+    return promise.then((data2) => import_tx.MsgPruneAcknowledgementsResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

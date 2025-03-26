@@ -1,5 +1,5 @@
 import { TxRpc } from "../../../types";
-import { MsgSubmitProposal, MsgSubmitProposalResponse, MsgExecLegacyContent, MsgExecLegacyContentResponse, MsgVote, MsgVoteResponse, MsgVoteWeighted, MsgVoteWeightedResponse, MsgDeposit, MsgDepositResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx";
+import { MsgSubmitProposal, MsgSubmitProposalResponse, MsgExecLegacyContent, MsgExecLegacyContentResponse, MsgVote, MsgVoteResponse, MsgVoteWeighted, MsgVoteWeightedResponse, MsgDeposit, MsgDepositResponse, MsgUpdateParams, MsgUpdateParamsResponse, MsgCancelProposal, MsgCancelProposalResponse } from "./tx";
 /** Msg defines the gov Msg service. */
 export interface Msg {
     /** SubmitProposal defines a method to create new proposal given the messages. */
@@ -22,6 +22,12 @@ export interface Msg {
      * Since: cosmos-sdk 0.47
      */
     updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+    /**
+     * CancelProposal defines a method to cancel governance proposal
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    cancelProposal(request: MsgCancelProposal): Promise<MsgCancelProposalResponse>;
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
@@ -32,4 +38,5 @@ export declare class MsgClientImpl implements Msg {
     voteWeighted(request: MsgVoteWeighted): Promise<MsgVoteWeightedResponse>;
     deposit(request: MsgDeposit): Promise<MsgDepositResponse>;
     updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
+    cancelProposal(request: MsgCancelProposal): Promise<MsgCancelProposalResponse>;
 }

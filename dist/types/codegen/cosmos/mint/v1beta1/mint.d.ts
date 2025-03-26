@@ -50,13 +50,13 @@ export interface ParamsAmino {
     /** type of coin to mint */
     mint_denom?: string;
     /** maximum annual change in inflation rate */
-    inflation_rate_change?: string;
+    inflation_rate_change: string;
     /** maximum inflation rate */
-    inflation_max?: string;
+    inflation_max: string;
     /** minimum inflation rate */
-    inflation_min?: string;
+    inflation_min: string;
     /** goal of percent bonded atoms */
-    goal_bonded?: string;
+    goal_bonded: string;
     /** expected blocks per year */
     blocks_per_year?: string;
 }

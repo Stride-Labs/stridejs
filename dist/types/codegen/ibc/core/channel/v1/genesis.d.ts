@@ -1,4 +1,4 @@
-import { IdentifiedChannel, IdentifiedChannelAmino, IdentifiedChannelSDKType, PacketState, PacketStateAmino, PacketStateSDKType } from "./channel";
+import { IdentifiedChannel, IdentifiedChannelAmino, IdentifiedChannelSDKType, PacketState, PacketStateAmino, PacketStateSDKType, Params, ParamsAmino, ParamsSDKType } from "./channel";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 /** GenesisState defines the ibc channel submodule's genesis state. */
 export interface GenesisState {
@@ -11,6 +11,7 @@ export interface GenesisState {
     ackSequences: PacketSequence[];
     /** the sequence for the next generated channel identifier */
     nextChannelSequence: bigint;
+    params: Params;
 }
 export interface GenesisStateProtoMsg {
     typeUrl: "/ibc.core.channel.v1.GenesisState";
@@ -27,6 +28,7 @@ export interface GenesisStateAmino {
     ack_sequences?: PacketSequenceAmino[];
     /** the sequence for the next generated channel identifier */
     next_channel_sequence?: string;
+    params?: ParamsAmino;
 }
 export interface GenesisStateAminoMsg {
     type: "cosmos-sdk/GenesisState";
@@ -42,6 +44,7 @@ export interface GenesisStateSDKType {
     recv_sequences: PacketSequenceSDKType[];
     ack_sequences: PacketSequenceSDKType[];
     next_channel_sequence: bigint;
+    params: ParamsSDKType;
 }
 /**
  * PacketSequence defines the genesis type necessary to retrieve and store

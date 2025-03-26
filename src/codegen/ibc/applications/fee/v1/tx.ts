@@ -131,7 +131,7 @@ export interface MsgPayPacketFeeProtoMsg {
  */
 export interface MsgPayPacketFeeAmino {
   /** fee encapsulates the recv, ack and timeout fees associated with an IBC packet */
-  fee?: FeeAmino;
+  fee: FeeAmino;
   /** the source port unique identifier */
   source_port_id?: string;
   /** the source channel unique identifer */
@@ -191,9 +191,9 @@ export interface MsgPayPacketFeeAsyncProtoMsg {
  */
 export interface MsgPayPacketFeeAsyncAmino {
   /** unique packet identifier comprised of the channel ID, port ID and sequence */
-  packet_id?: PacketIdAmino;
+  packet_id: PacketIdAmino;
   /** the packet fee associated with a particular IBC packet */
-  packet_fee?: PacketFeeAmino;
+  packet_fee: PacketFeeAmino;
 }
 export interface MsgPayPacketFeeAsyncAminoMsg {
   type: "cosmos-sdk/MsgPayPacketFeeAsync";
@@ -629,7 +629,7 @@ export const MsgPayPacketFee = {
   },
   toAmino(message: MsgPayPacketFee): MsgPayPacketFeeAmino {
     const obj: any = {};
-    obj.fee = message.fee ? Fee.toAmino(message.fee) : undefined;
+    obj.fee = message.fee ? Fee.toAmino(message.fee) : Fee.toAmino(Fee.fromPartial({}));
     obj.source_port_id = message.sourcePortId === "" ? undefined : message.sourcePortId;
     obj.source_channel_id = message.sourceChannelId === "" ? undefined : message.sourceChannelId;
     obj.signer = message.signer === "" ? undefined : message.signer;
@@ -773,8 +773,8 @@ export const MsgPayPacketFeeAsync = {
   },
   toAmino(message: MsgPayPacketFeeAsync): MsgPayPacketFeeAsyncAmino {
     const obj: any = {};
-    obj.packet_id = message.packetId ? PacketId.toAmino(message.packetId) : undefined;
-    obj.packet_fee = message.packetFee ? PacketFee.toAmino(message.packetFee) : undefined;
+    obj.packet_id = message.packetId ? PacketId.toAmino(message.packetId) : PacketId.toAmino(PacketId.fromPartial({}));
+    obj.packet_fee = message.packetFee ? PacketFee.toAmino(message.packetFee) : PacketFee.toAmino(PacketFee.fromPartial({}));
     return obj;
   },
   fromAminoMsg(object: MsgPayPacketFeeAsyncAminoMsg): MsgPayPacketFeeAsync {

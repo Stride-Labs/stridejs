@@ -1,91 +1,89 @@
-import * as _2 from "./app/runtime/v1alpha1/module";
-import * as _3 from "./app/v1alpha1/config";
-import * as _4 from "./app/v1alpha1/module";
-import * as _5 from "./app/v1alpha1/query";
-import * as _6 from "./auth/module/v1/module";
-import * as _7 from "./auth/v1beta1/auth";
-import * as _8 from "./auth/v1beta1/genesis";
-import * as _9 from "./auth/v1beta1/query";
-import * as _10 from "./auth/v1beta1/tx";
-import * as _11 from "./authz/module/v1/module";
-import * as _12 from "./authz/v1beta1/authz";
-import * as _13 from "./authz/v1beta1/event";
-import * as _14 from "./authz/v1beta1/genesis";
-import * as _15 from "./authz/v1beta1/query";
-import * as _16 from "./authz/v1beta1/tx";
-import * as _17 from "./autocli/v1/options";
-import * as _18 from "./autocli/v1/query";
-import * as _19 from "./bank/module/v1/module";
-import * as _20 from "./bank/v1beta1/authz";
-import * as _21 from "./bank/v1beta1/bank";
-import * as _22 from "./bank/v1beta1/genesis";
-import * as _23 from "./bank/v1beta1/query";
-import * as _24 from "./bank/v1beta1/tx";
-import * as _25 from "./base/abci/v1beta1/abci";
-import * as _26 from "./base/kv/v1beta1/kv";
-import * as _27 from "./base/node/v1beta1/query";
-import * as _28 from "./base/query/v1beta1/pagination";
-import * as _29 from "./base/reflection/v1beta1/reflection";
-import * as _30 from "./base/reflection/v2alpha1/reflection";
-import * as _31 from "./base/snapshots/v1beta1/snapshot";
-import * as _32 from "./base/store/v1beta1/commit_info";
-import * as _33 from "./base/store/v1beta1/listening";
-import * as _34 from "./base/tendermint/v1beta1/query";
-import * as _35 from "./base/tendermint/v1beta1/types";
-import * as _36 from "./base/v1beta1/coin";
-import * as _37 from "./capability/module/v1/module";
-import * as _38 from "./capability/v1beta1/capability";
-import * as _39 from "./capability/v1beta1/genesis";
-import * as _40 from "./consensus/module/v1/module";
-import * as _41 from "./consensus/v1/query";
-import * as _42 from "./consensus/v1/tx";
-import * as _43 from "./crisis/module/v1/module";
-import * as _44 from "./crisis/v1beta1/genesis";
-import * as _45 from "./crisis/v1beta1/tx";
-import * as _46 from "./crypto/ed25519/keys";
-import * as _47 from "./crypto/hd/v1/hd";
-import * as _48 from "./crypto/keyring/v1/record";
-import * as _49 from "./crypto/multisig/keys";
-import * as _50 from "./crypto/secp256k1/keys";
-import * as _51 from "./crypto/secp256r1/keys";
-import * as _52 from "./distribution/module/v1/module";
-import * as _53 from "./distribution/v1beta1/distribution";
-import * as _54 from "./distribution/v1beta1/genesis";
-import * as _55 from "./distribution/v1beta1/query";
-import * as _56 from "./distribution/v1beta1/tx";
-import * as _57 from "./evidence/module/v1/module";
-import * as _58 from "./evidence/v1beta1/evidence";
-import * as _59 from "./evidence/v1beta1/genesis";
-import * as _60 from "./evidence/v1beta1/query";
-import * as _61 from "./evidence/v1beta1/tx";
-import * as _62 from "./feegrant/module/v1/module";
-import * as _63 from "./feegrant/v1beta1/feegrant";
-import * as _64 from "./feegrant/v1beta1/genesis";
-import * as _65 from "./feegrant/v1beta1/query";
-import * as _66 from "./feegrant/v1beta1/tx";
-import * as _67 from "./genutil/module/v1/module";
-import * as _68 from "./genutil/v1beta1/genesis";
-import * as _69 from "./gov/module/v1/module";
-import * as _70 from "./gov/v1/genesis";
-import * as _71 from "./gov/v1/gov";
-import * as _72 from "./gov/v1/query";
-import * as _73 from "./gov/v1/tx";
-import * as _74 from "./gov/v1beta1/genesis";
-import * as _75 from "./gov/v1beta1/gov";
-import * as _76 from "./gov/v1beta1/query";
-import * as _77 from "./gov/v1beta1/tx";
-import * as _78 from "./group/module/v1/module";
-import * as _79 from "./group/v1/events";
-import * as _80 from "./group/v1/genesis";
-import * as _81 from "./group/v1/query";
-import * as _82 from "./group/v1/tx";
-import * as _83 from "./group/v1/types";
-import * as _84 from "./ics23/v1/proofs";
-import * as _85 from "./mint/module/v1/module";
-import * as _86 from "./mint/v1beta1/genesis";
-import * as _87 from "./mint/v1beta1/mint";
-import * as _88 from "./mint/v1beta1/query";
-import * as _89 from "./mint/v1beta1/tx";
+import * as _4 from "./app/runtime/v1alpha1/module";
+import * as _5 from "./app/v1alpha1/config";
+import * as _6 from "./app/v1alpha1/module";
+import * as _7 from "./app/v1alpha1/query";
+import * as _8 from "./auth/module/v1/module";
+import * as _9 from "./auth/v1beta1/auth";
+import * as _10 from "./auth/v1beta1/genesis";
+import * as _11 from "./auth/v1beta1/query";
+import * as _12 from "./auth/v1beta1/tx";
+import * as _13 from "./authz/module/v1/module";
+import * as _14 from "./authz/v1beta1/authz";
+import * as _15 from "./authz/v1beta1/event";
+import * as _16 from "./authz/v1beta1/genesis";
+import * as _17 from "./authz/v1beta1/query";
+import * as _18 from "./authz/v1beta1/tx";
+import * as _19 from "./autocli/v1/options";
+import * as _20 from "./autocli/v1/query";
+import * as _21 from "./bank/module/v1/module";
+import * as _22 from "./bank/v1beta1/authz";
+import * as _23 from "./bank/v1beta1/bank";
+import * as _24 from "./bank/v1beta1/genesis";
+import * as _25 from "./bank/v1beta1/query";
+import * as _26 from "./bank/v1beta1/tx";
+import * as _27 from "./base/abci/v1beta1/abci";
+import * as _28 from "./base/node/v1beta1/query";
+import * as _29 from "./base/query/v1beta1/pagination";
+import * as _30 from "./base/reflection/v1beta1/reflection";
+import * as _31 from "./base/reflection/v2alpha1/reflection";
+import * as _32 from "./base/tendermint/v1beta1/query";
+import * as _33 from "./base/tendermint/v1beta1/types";
+import * as _34 from "./base/v1beta1/coin";
+import * as _35 from "./circuit/module/v1/module";
+import * as _36 from "./circuit/v1/query";
+import * as _37 from "./circuit/v1/tx";
+import * as _38 from "./circuit/v1/types";
+import * as _39 from "./consensus/module/v1/module";
+import * as _40 from "./consensus/v1/query";
+import * as _41 from "./consensus/v1/tx";
+import * as _42 from "./crisis/module/v1/module";
+import * as _43 from "./crisis/v1beta1/genesis";
+import * as _44 from "./crisis/v1beta1/tx";
+import * as _45 from "./crypto/ed25519/keys";
+import * as _46 from "./crypto/hd/v1/hd";
+import * as _47 from "./crypto/keyring/v1/record";
+import * as _48 from "./crypto/multisig/keys";
+import * as _49 from "./crypto/secp256k1/keys";
+import * as _50 from "./crypto/secp256r1/keys";
+import * as _51 from "./distribution/module/v1/module";
+import * as _52 from "./distribution/v1beta1/distribution";
+import * as _53 from "./distribution/v1beta1/genesis";
+import * as _54 from "./distribution/v1beta1/query";
+import * as _55 from "./distribution/v1beta1/tx";
+import * as _56 from "./evidence/module/v1/module";
+import * as _57 from "./evidence/v1beta1/evidence";
+import * as _58 from "./evidence/v1beta1/genesis";
+import * as _59 from "./evidence/v1beta1/query";
+import * as _60 from "./evidence/v1beta1/tx";
+import * as _61 from "./feegrant/module/v1/module";
+import * as _62 from "./feegrant/v1beta1/feegrant";
+import * as _63 from "./feegrant/v1beta1/genesis";
+import * as _64 from "./feegrant/v1beta1/query";
+import * as _65 from "./feegrant/v1beta1/tx";
+import * as _66 from "./genutil/module/v1/module";
+import * as _67 from "./genutil/v1beta1/genesis";
+import * as _68 from "./gov/module/v1/module";
+import * as _69 from "./gov/v1/genesis";
+import * as _70 from "./gov/v1/gov";
+import * as _71 from "./gov/v1/query";
+import * as _72 from "./gov/v1/tx";
+import * as _73 from "./gov/v1beta1/genesis";
+import * as _74 from "./gov/v1beta1/gov";
+import * as _75 from "./gov/v1beta1/query";
+import * as _76 from "./gov/v1beta1/tx";
+import * as _77 from "./group/module/v1/module";
+import * as _78 from "./group/v1/events";
+import * as _79 from "./group/v1/genesis";
+import * as _80 from "./group/v1/query";
+import * as _81 from "./group/v1/tx";
+import * as _82 from "./group/v1/types";
+import * as _83 from "./ics23/v1/proofs";
+import * as _84 from "./mint/module/v1/module";
+import * as _85 from "./mint/v1beta1/genesis";
+import * as _86 from "./mint/v1beta1/mint";
+import * as _87 from "./mint/v1beta1/query";
+import * as _88 from "./mint/v1beta1/tx";
+import * as _89 from "./msg/textual/v1/textual";
 import * as _90 from "./msg/v1/msg";
 import * as _91 from "./nft/module/v1/module";
 import * as _92 from "./nft/v1beta1/event";
@@ -114,92 +112,101 @@ import * as _114 from "./staking/v1beta1/lsm_tx";
 import * as _115 from "./staking/v1beta1/query";
 import * as _116 from "./staking/v1beta1/staking";
 import * as _117 from "./staking/v1beta1/tx";
-import * as _118 from "./tx/config/v1/config";
-import * as _119 from "./tx/signing/v1beta1/signing";
-import * as _120 from "./tx/v1beta1/service";
-import * as _121 from "./tx/v1beta1/tx";
-import * as _122 from "./upgrade/module/v1/module";
-import * as _123 from "./upgrade/v1beta1/query";
-import * as _124 from "./upgrade/v1beta1/tx";
-import * as _125 from "./upgrade/v1beta1/upgrade";
-import * as _126 from "./vesting/module/v1/module";
-import * as _127 from "./vesting/v1beta1/tx";
-import * as _128 from "./vesting/v1beta1/vesting";
-import * as _265 from "./auth/v1beta1/tx.amino";
-import * as _266 from "./authz/v1beta1/tx.amino";
-import * as _267 from "./bank/v1beta1/tx.amino";
-import * as _268 from "./consensus/v1/tx.amino";
-import * as _269 from "./crisis/v1beta1/tx.amino";
-import * as _270 from "./distribution/v1beta1/tx.amino";
-import * as _271 from "./evidence/v1beta1/tx.amino";
-import * as _272 from "./feegrant/v1beta1/tx.amino";
-import * as _273 from "./gov/v1/tx.amino";
-import * as _274 from "./gov/v1beta1/tx.amino";
-import * as _275 from "./group/v1/tx.amino";
-import * as _276 from "./mint/v1beta1/tx.amino";
-import * as _277 from "./nft/v1beta1/tx.amino";
-import * as _278 from "./slashing/v1beta1/tx.amino";
-import * as _279 from "./staking/v1beta1/tx.amino";
-import * as _280 from "./upgrade/v1beta1/tx.amino";
-import * as _281 from "./vesting/v1beta1/tx.amino";
-import * as _282 from "./auth/v1beta1/tx.registry";
-import * as _283 from "./authz/v1beta1/tx.registry";
-import * as _284 from "./bank/v1beta1/tx.registry";
-import * as _285 from "./consensus/v1/tx.registry";
-import * as _286 from "./crisis/v1beta1/tx.registry";
-import * as _287 from "./distribution/v1beta1/tx.registry";
-import * as _288 from "./evidence/v1beta1/tx.registry";
-import * as _289 from "./feegrant/v1beta1/tx.registry";
-import * as _290 from "./gov/v1/tx.registry";
-import * as _291 from "./gov/v1beta1/tx.registry";
-import * as _292 from "./group/v1/tx.registry";
-import * as _293 from "./mint/v1beta1/tx.registry";
-import * as _294 from "./nft/v1beta1/tx.registry";
-import * as _295 from "./slashing/v1beta1/tx.registry";
-import * as _296 from "./staking/v1beta1/tx.registry";
-import * as _297 from "./upgrade/v1beta1/tx.registry";
-import * as _298 from "./vesting/v1beta1/tx.registry";
-import * as _299 from "./app/v1alpha1/query.rpc.Query";
-import * as _300 from "./auth/v1beta1/query.rpc.Query";
-import * as _301 from "./authz/v1beta1/query.rpc.Query";
-import * as _302 from "./autocli/v1/query.rpc.Query";
-import * as _303 from "./bank/v1beta1/query.rpc.Query";
-import * as _304 from "./base/node/v1beta1/query.rpc.Service";
-import * as _305 from "./base/tendermint/v1beta1/query.rpc.Service";
-import * as _306 from "./consensus/v1/query.rpc.Query";
-import * as _307 from "./distribution/v1beta1/query.rpc.Query";
-import * as _308 from "./evidence/v1beta1/query.rpc.Query";
-import * as _309 from "./feegrant/v1beta1/query.rpc.Query";
-import * as _310 from "./gov/v1/query.rpc.Query";
-import * as _311 from "./gov/v1beta1/query.rpc.Query";
-import * as _312 from "./group/v1/query.rpc.Query";
-import * as _313 from "./mint/v1beta1/query.rpc.Query";
-import * as _314 from "./nft/v1beta1/query.rpc.Query";
-import * as _315 from "./orm/query/v1alpha1/query.rpc.Query";
-import * as _316 from "./params/v1beta1/query.rpc.Query";
-import * as _317 from "./slashing/v1beta1/query.rpc.Query";
-import * as _318 from "./staking/v1beta1/query.rpc.Query";
-import * as _319 from "./tx/v1beta1/service.rpc.Service";
-import * as _320 from "./upgrade/v1beta1/query.rpc.Query";
-import * as _321 from "./auth/v1beta1/tx.rpc.msg";
-import * as _322 from "./authz/v1beta1/tx.rpc.msg";
-import * as _323 from "./bank/v1beta1/tx.rpc.msg";
-import * as _324 from "./consensus/v1/tx.rpc.msg";
-import * as _325 from "./crisis/v1beta1/tx.rpc.msg";
-import * as _326 from "./distribution/v1beta1/tx.rpc.msg";
-import * as _327 from "./evidence/v1beta1/tx.rpc.msg";
-import * as _328 from "./feegrant/v1beta1/tx.rpc.msg";
-import * as _329 from "./gov/v1/tx.rpc.msg";
-import * as _330 from "./gov/v1beta1/tx.rpc.msg";
-import * as _331 from "./group/v1/tx.rpc.msg";
-import * as _332 from "./mint/v1beta1/tx.rpc.msg";
-import * as _333 from "./nft/v1beta1/tx.rpc.msg";
-import * as _334 from "./slashing/v1beta1/tx.rpc.msg";
-import * as _335 from "./staking/v1beta1/tx.rpc.msg";
-import * as _336 from "./upgrade/v1beta1/tx.rpc.msg";
-import * as _337 from "./vesting/v1beta1/tx.rpc.msg";
-import * as _411 from "./rpc.query";
-import * as _412 from "./rpc.tx";
+import * as _118 from "./store/internal/kv/v1beta1/kv";
+import * as _119 from "./store/snapshots/v1/snapshot";
+import * as _120 from "./store/streaming/abci/grpc";
+import * as _121 from "./store/v1beta1/commit_info";
+import * as _122 from "./store/v1beta1/listening";
+import * as _123 from "./tx/config/v1/config";
+import * as _124 from "./tx/signing/v1beta1/signing";
+import * as _125 from "./tx/v1beta1/service";
+import * as _126 from "./tx/v1beta1/tx";
+import * as _127 from "./upgrade/module/v1/module";
+import * as _128 from "./upgrade/v1beta1/query";
+import * as _129 from "./upgrade/v1beta1/tx";
+import * as _130 from "./upgrade/v1beta1/upgrade";
+import * as _131 from "./vesting/module/v1/module";
+import * as _132 from "./vesting/v1beta1/tx";
+import * as _133 from "./vesting/v1beta1/vesting";
+import * as _273 from "./auth/v1beta1/tx.amino";
+import * as _274 from "./authz/v1beta1/tx.amino";
+import * as _275 from "./bank/v1beta1/tx.amino";
+import * as _276 from "./circuit/v1/tx.amino";
+import * as _277 from "./consensus/v1/tx.amino";
+import * as _278 from "./crisis/v1beta1/tx.amino";
+import * as _279 from "./distribution/v1beta1/tx.amino";
+import * as _280 from "./evidence/v1beta1/tx.amino";
+import * as _281 from "./feegrant/v1beta1/tx.amino";
+import * as _282 from "./gov/v1/tx.amino";
+import * as _283 from "./gov/v1beta1/tx.amino";
+import * as _284 from "./group/v1/tx.amino";
+import * as _285 from "./mint/v1beta1/tx.amino";
+import * as _286 from "./nft/v1beta1/tx.amino";
+import * as _287 from "./slashing/v1beta1/tx.amino";
+import * as _288 from "./staking/v1beta1/tx.amino";
+import * as _289 from "./upgrade/v1beta1/tx.amino";
+import * as _290 from "./vesting/v1beta1/tx.amino";
+import * as _291 from "./auth/v1beta1/tx.registry";
+import * as _292 from "./authz/v1beta1/tx.registry";
+import * as _293 from "./bank/v1beta1/tx.registry";
+import * as _294 from "./circuit/v1/tx.registry";
+import * as _295 from "./consensus/v1/tx.registry";
+import * as _296 from "./crisis/v1beta1/tx.registry";
+import * as _297 from "./distribution/v1beta1/tx.registry";
+import * as _298 from "./evidence/v1beta1/tx.registry";
+import * as _299 from "./feegrant/v1beta1/tx.registry";
+import * as _300 from "./gov/v1/tx.registry";
+import * as _301 from "./gov/v1beta1/tx.registry";
+import * as _302 from "./group/v1/tx.registry";
+import * as _303 from "./mint/v1beta1/tx.registry";
+import * as _304 from "./nft/v1beta1/tx.registry";
+import * as _305 from "./slashing/v1beta1/tx.registry";
+import * as _306 from "./staking/v1beta1/tx.registry";
+import * as _307 from "./upgrade/v1beta1/tx.registry";
+import * as _308 from "./vesting/v1beta1/tx.registry";
+import * as _309 from "./app/v1alpha1/query.rpc.Query";
+import * as _310 from "./auth/v1beta1/query.rpc.Query";
+import * as _311 from "./authz/v1beta1/query.rpc.Query";
+import * as _312 from "./autocli/v1/query.rpc.Query";
+import * as _313 from "./bank/v1beta1/query.rpc.Query";
+import * as _314 from "./base/node/v1beta1/query.rpc.Service";
+import * as _315 from "./base/tendermint/v1beta1/query.rpc.Service";
+import * as _316 from "./circuit/v1/query.rpc.Query";
+import * as _317 from "./consensus/v1/query.rpc.Query";
+import * as _318 from "./distribution/v1beta1/query.rpc.Query";
+import * as _319 from "./evidence/v1beta1/query.rpc.Query";
+import * as _320 from "./feegrant/v1beta1/query.rpc.Query";
+import * as _321 from "./gov/v1/query.rpc.Query";
+import * as _322 from "./gov/v1beta1/query.rpc.Query";
+import * as _323 from "./group/v1/query.rpc.Query";
+import * as _324 from "./mint/v1beta1/query.rpc.Query";
+import * as _325 from "./nft/v1beta1/query.rpc.Query";
+import * as _326 from "./orm/query/v1alpha1/query.rpc.Query";
+import * as _327 from "./params/v1beta1/query.rpc.Query";
+import * as _328 from "./slashing/v1beta1/query.rpc.Query";
+import * as _329 from "./staking/v1beta1/query.rpc.Query";
+import * as _330 from "./tx/v1beta1/service.rpc.Service";
+import * as _331 from "./upgrade/v1beta1/query.rpc.Query";
+import * as _332 from "./auth/v1beta1/tx.rpc.msg";
+import * as _333 from "./authz/v1beta1/tx.rpc.msg";
+import * as _334 from "./bank/v1beta1/tx.rpc.msg";
+import * as _335 from "./circuit/v1/tx.rpc.msg";
+import * as _336 from "./consensus/v1/tx.rpc.msg";
+import * as _337 from "./crisis/v1beta1/tx.rpc.msg";
+import * as _338 from "./distribution/v1beta1/tx.rpc.msg";
+import * as _339 from "./evidence/v1beta1/tx.rpc.msg";
+import * as _340 from "./feegrant/v1beta1/tx.rpc.msg";
+import * as _341 from "./gov/v1/tx.rpc.msg";
+import * as _342 from "./gov/v1beta1/tx.rpc.msg";
+import * as _343 from "./group/v1/tx.rpc.msg";
+import * as _344 from "./mint/v1beta1/tx.rpc.msg";
+import * as _345 from "./nft/v1beta1/tx.rpc.msg";
+import * as _346 from "./slashing/v1beta1/tx.rpc.msg";
+import * as _347 from "./staking/v1beta1/tx.rpc.msg";
+import * as _348 from "./upgrade/v1beta1/tx.rpc.msg";
+import * as _349 from "./vesting/v1beta1/tx.rpc.msg";
+import * as _427 from "./rpc.query";
+import * as _428 from "./rpc.tx";
 var cosmos;
 ((cosmos2) => {
   let app;
@@ -207,14 +214,14 @@ var cosmos;
     let runtime;
     ((runtime2) => {
       runtime2.v1alpha1 = {
-        ..._2
+        ..._4
       };
     })(runtime = app2.runtime || (app2.runtime = {}));
     app2.v1alpha1 = {
-      ..._3,
-      ..._4,
       ..._5,
-      ..._299
+      ..._6,
+      ..._7,
+      ..._309
     };
   })(app = cosmos2.app || (cosmos2.app = {}));
   let auth;
@@ -222,18 +229,18 @@ var cosmos;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._6
+        ..._8
       };
     })(module = auth2.module || (auth2.module = {}));
     auth2.v1beta1 = {
-      ..._7,
-      ..._8,
       ..._9,
       ..._10,
-      ..._265,
-      ..._282,
-      ..._300,
-      ..._321
+      ..._11,
+      ..._12,
+      ..._273,
+      ..._291,
+      ..._310,
+      ..._332
     };
   })(auth = cosmos2.auth || (cosmos2.auth = {}));
   let authz;
@@ -241,27 +248,27 @@ var cosmos;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._11
+        ..._13
       };
     })(module = authz2.module || (authz2.module = {}));
     authz2.v1beta1 = {
-      ..._12,
-      ..._13,
       ..._14,
       ..._15,
       ..._16,
-      ..._266,
-      ..._283,
-      ..._301,
-      ..._322
+      ..._17,
+      ..._18,
+      ..._274,
+      ..._292,
+      ..._311,
+      ..._333
     };
   })(authz = cosmos2.authz || (cosmos2.authz = {}));
   let autocli;
   ((autocli2) => {
     autocli2.v1 = {
-      ..._17,
-      ..._18,
-      ..._302
+      ..._19,
+      ..._20,
+      ..._312
     };
   })(autocli = cosmos2.autocli || (cosmos2.autocli = {}));
   let bank;
@@ -269,19 +276,19 @@ var cosmos;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._19
+        ..._21
       };
     })(module = bank2.module || (bank2.module = {}));
     bank2.v1beta1 = {
-      ..._20,
-      ..._21,
       ..._22,
       ..._23,
       ..._24,
-      ..._267,
-      ..._284,
-      ..._303,
-      ..._323
+      ..._25,
+      ..._26,
+      ..._275,
+      ..._293,
+      ..._313,
+      ..._334
     };
   })(bank = cosmos2.bank || (cosmos2.bank = {}));
   let base;
@@ -289,90 +296,76 @@ var cosmos;
     let abci;
     ((abci2) => {
       abci2.v1beta1 = {
-        ..._25
+        ..._27
       };
     })(abci = base2.abci || (base2.abci = {}));
-    let kv;
-    ((kv2) => {
-      kv2.v1beta1 = {
-        ..._26
-      };
-    })(kv = base2.kv || (base2.kv = {}));
     let node;
     ((node2) => {
       node2.v1beta1 = {
-        ..._27,
-        ..._304
+        ..._28,
+        ..._314
       };
     })(node = base2.node || (base2.node = {}));
     let query2;
     ((query3) => {
       query3.v1beta1 = {
-        ..._28
+        ..._29
       };
     })(query2 = base2.query || (base2.query = {}));
     let reflection2;
     ((reflection3) => {
       reflection3.v1beta1 = {
-        ..._29
-      };
-      reflection3.v2alpha1 = {
         ..._30
       };
-    })(reflection2 = base2.reflection || (base2.reflection = {}));
-    let snapshots;
-    ((snapshots2) => {
-      snapshots2.v1beta1 = {
+      reflection3.v2alpha1 = {
         ..._31
       };
-    })(snapshots = base2.snapshots || (base2.snapshots = {}));
-    let store;
-    ((store2) => {
-      store2.v1beta1 = {
-        ..._32,
-        ..._33
-      };
-    })(store = base2.store || (base2.store = {}));
+    })(reflection2 = base2.reflection || (base2.reflection = {}));
     let tendermint;
     ((tendermint2) => {
       tendermint2.v1beta1 = {
-        ..._34,
-        ..._35,
-        ..._305
+        ..._32,
+        ..._33,
+        ..._315
       };
     })(tendermint = base2.tendermint || (base2.tendermint = {}));
     base2.v1beta1 = {
-      ..._36
+      ..._34
     };
   })(base = cosmos2.base || (cosmos2.base = {}));
-  let capability;
-  ((capability2) => {
+  let circuit;
+  ((circuit2) => {
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._37
+        ..._35
       };
-    })(module = capability2.module || (capability2.module = {}));
-    capability2.v1beta1 = {
+    })(module = circuit2.module || (circuit2.module = {}));
+    circuit2.v1 = {
+      ..._36,
+      ..._37,
       ..._38,
-      ..._39
+      ..._276,
+      ..._294,
+      ..._316,
+      ..._335
     };
-  })(capability = cosmos2.capability || (cosmos2.capability = {}));
+  })(circuit = cosmos2.circuit || (cosmos2.circuit = {}));
   let consensus;
   ((consensus2) => {
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._40
+        ..._39
       };
     })(module = consensus2.module || (consensus2.module = {}));
     consensus2.v1 = {
+      ..._40,
       ..._41,
-      ..._42,
-      ..._268,
-      ..._285,
-      ..._306,
-      ..._324
+      ..._277,
+      ..._295,
+      ..._317,
+      ..._336
     };
   })(consensus = cosmos2.consensus || (cosmos2.consensus = {}));
   let crisis;
@@ -380,42 +373,42 @@ var cosmos;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._43
+        ..._42
       };
     })(module = crisis2.module || (crisis2.module = {}));
     crisis2.v1beta1 = {
+      ..._43,
       ..._44,
-      ..._45,
-      ..._269,
-      ..._286,
-      ..._325
+      ..._278,
+      ..._296,
+      ..._337
     };
   })(crisis = cosmos2.crisis || (cosmos2.crisis = {}));
   let crypto;
   ((crypto2) => {
     crypto2.ed25519 = {
-      ..._46
+      ..._45
     };
     let hd;
     ((hd2) => {
       hd2.v1 = {
-        ..._47
+        ..._46
       };
     })(hd = crypto2.hd || (crypto2.hd = {}));
     let keyring;
     ((keyring2) => {
       keyring2.v1 = {
-        ..._48
+        ..._47
       };
     })(keyring = crypto2.keyring || (crypto2.keyring = {}));
     crypto2.multisig = {
-      ..._49
+      ..._48
     };
     crypto2.secp256k1 = {
-      ..._50
+      ..._49
     };
     crypto2.secp256r1 = {
-      ..._51
+      ..._50
     };
   })(crypto = cosmos2.crypto || (cosmos2.crypto = {}));
   let distribution;
@@ -423,18 +416,18 @@ var cosmos;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._52
+        ..._51
       };
     })(module = distribution2.module || (distribution2.module = {}));
     distribution2.v1beta1 = {
+      ..._52,
       ..._53,
       ..._54,
       ..._55,
-      ..._56,
-      ..._270,
-      ..._287,
-      ..._307,
-      ..._326
+      ..._279,
+      ..._297,
+      ..._318,
+      ..._338
     };
   })(distribution = cosmos2.distribution || (cosmos2.distribution = {}));
   let evidence;
@@ -442,18 +435,18 @@ var cosmos;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._57
+        ..._56
       };
     })(module = evidence2.module || (evidence2.module = {}));
     evidence2.v1beta1 = {
+      ..._57,
       ..._58,
       ..._59,
       ..._60,
-      ..._61,
-      ..._271,
-      ..._288,
-      ..._308,
-      ..._327
+      ..._280,
+      ..._298,
+      ..._319,
+      ..._339
     };
   })(evidence = cosmos2.evidence || (cosmos2.evidence = {}));
   let feegrant;
@@ -461,18 +454,18 @@ var cosmos;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._62
+        ..._61
       };
     })(module = feegrant2.module || (feegrant2.module = {}));
     feegrant2.v1beta1 = {
+      ..._62,
       ..._63,
       ..._64,
       ..._65,
-      ..._66,
-      ..._272,
-      ..._289,
-      ..._309,
-      ..._328
+      ..._281,
+      ..._299,
+      ..._320,
+      ..._340
     };
   })(feegrant = cosmos2.feegrant || (cosmos2.feegrant = {}));
   let genutil;
@@ -480,11 +473,11 @@ var cosmos;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._67
+        ..._66
       };
     })(module = genutil2.module || (genutil2.module = {}));
     genutil2.v1beta1 = {
-      ..._68
+      ..._67
     };
   })(genutil = cosmos2.genutil || (cosmos2.genutil = {}));
   let gov;
@@ -492,28 +485,28 @@ var cosmos;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._69
+        ..._68
       };
     })(module = gov2.module || (gov2.module = {}));
     gov2.v1 = {
+      ..._69,
       ..._70,
       ..._71,
       ..._72,
-      ..._73,
-      ..._273,
-      ..._290,
-      ..._310,
-      ..._329
+      ..._282,
+      ..._300,
+      ..._321,
+      ..._341
     };
     gov2.v1beta1 = {
+      ..._73,
       ..._74,
       ..._75,
       ..._76,
-      ..._77,
-      ..._274,
-      ..._291,
-      ..._311,
-      ..._330
+      ..._283,
+      ..._301,
+      ..._322,
+      ..._342
     };
   })(gov = cosmos2.gov || (cosmos2.gov = {}));
   let group;
@@ -521,25 +514,25 @@ var cosmos;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._78
+        ..._77
       };
     })(module = group2.module || (group2.module = {}));
     group2.v1 = {
+      ..._78,
       ..._79,
       ..._80,
       ..._81,
       ..._82,
-      ..._83,
-      ..._275,
-      ..._292,
-      ..._312,
-      ..._331
+      ..._284,
+      ..._302,
+      ..._323,
+      ..._343
     };
   })(group = cosmos2.group || (cosmos2.group = {}));
   let ics23;
   ((ics232) => {
     ics232.v1 = {
-      ..._84
+      ..._83
     };
   })(ics23 = cosmos2.ics23 || (cosmos2.ics23 = {}));
   let mint;
@@ -547,22 +540,28 @@ var cosmos;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._85
+        ..._84
       };
     })(module = mint2.module || (mint2.module = {}));
     mint2.v1beta1 = {
+      ..._85,
       ..._86,
       ..._87,
       ..._88,
-      ..._89,
-      ..._276,
-      ..._293,
-      ..._313,
-      ..._332
+      ..._285,
+      ..._303,
+      ..._324,
+      ..._344
     };
   })(mint = cosmos2.mint || (cosmos2.mint = {}));
   let msg;
   ((msg2) => {
+    let textual;
+    ((textual2) => {
+      textual2.v1 = {
+        ..._89
+      };
+    })(textual = msg2.textual || (msg2.textual = {}));
     msg2.v1 = {
       ..._90
     };
@@ -581,10 +580,10 @@ var cosmos;
       ..._94,
       ..._95,
       ..._96,
-      ..._277,
-      ..._294,
-      ..._314,
-      ..._333
+      ..._286,
+      ..._304,
+      ..._325,
+      ..._345
     };
   })(nft = cosmos2.nft || (cosmos2.nft = {}));
   let orm;
@@ -599,7 +598,7 @@ var cosmos;
     ((query3) => {
       query3.v1alpha1 = {
         ..._98,
-        ..._315
+        ..._326
       };
     })(query2 = orm2.query || (orm2.query = {}));
     orm2.v1 = {
@@ -620,7 +619,7 @@ var cosmos;
     params2.v1beta1 = {
       ..._102,
       ..._103,
-      ..._316
+      ..._327
     };
   })(params = cosmos2.params || (cosmos2.params = {}));
   let query;
@@ -648,10 +647,10 @@ var cosmos;
       ..._108,
       ..._109,
       ..._110,
-      ..._278,
-      ..._295,
-      ..._317,
-      ..._334
+      ..._287,
+      ..._305,
+      ..._328,
+      ..._346
     };
   })(slashing = cosmos2.slashing || (cosmos2.slashing = {}));
   let staking;
@@ -669,30 +668,58 @@ var cosmos;
       ..._115,
       ..._116,
       ..._117,
-      ..._279,
-      ..._296,
-      ..._318,
-      ..._335
+      ..._288,
+      ..._306,
+      ..._329,
+      ..._347
     };
   })(staking = cosmos2.staking || (cosmos2.staking = {}));
+  let store;
+  ((store2) => {
+    let internal;
+    ((internal2) => {
+      let kv;
+      ((kv2) => {
+        kv2.v1beta1 = {
+          ..._118
+        };
+      })(kv = internal2.kv || (internal2.kv = {}));
+    })(internal = store2.internal || (store2.internal = {}));
+    let snapshots;
+    ((snapshots2) => {
+      snapshots2.v1 = {
+        ..._119
+      };
+    })(snapshots = store2.snapshots || (store2.snapshots = {}));
+    let streaming;
+    ((streaming2) => {
+      streaming2.abci = {
+        ..._120
+      };
+    })(streaming = store2.streaming || (store2.streaming = {}));
+    store2.v1beta1 = {
+      ..._121,
+      ..._122
+    };
+  })(store = cosmos2.store || (cosmos2.store = {}));
   let tx;
   ((tx2) => {
     let config;
     ((config2) => {
       config2.v1 = {
-        ..._118
+        ..._123
       };
     })(config = tx2.config || (tx2.config = {}));
     let signing;
     ((signing2) => {
       signing2.v1beta1 = {
-        ..._119
+        ..._124
       };
     })(signing = tx2.signing || (tx2.signing = {}));
     tx2.v1beta1 = {
-      ..._120,
-      ..._121,
-      ..._319
+      ..._125,
+      ..._126,
+      ..._330
     };
   })(tx = cosmos2.tx || (cosmos2.tx = {}));
   let upgrade;
@@ -700,17 +727,17 @@ var cosmos;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._122
+        ..._127
       };
     })(module = upgrade2.module || (upgrade2.module = {}));
     upgrade2.v1beta1 = {
-      ..._123,
-      ..._124,
-      ..._125,
-      ..._280,
-      ..._297,
-      ..._320,
-      ..._336
+      ..._128,
+      ..._129,
+      ..._130,
+      ..._289,
+      ..._307,
+      ..._331,
+      ..._348
     };
   })(upgrade = cosmos2.upgrade || (cosmos2.upgrade = {}));
   let vesting;
@@ -718,20 +745,20 @@ var cosmos;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._126
+        ..._131
       };
     })(module = vesting2.module || (vesting2.module = {}));
     vesting2.v1beta1 = {
-      ..._127,
-      ..._128,
-      ..._281,
-      ..._298,
-      ..._337
+      ..._132,
+      ..._133,
+      ..._290,
+      ..._308,
+      ..._349
     };
   })(vesting = cosmos2.vesting || (cosmos2.vesting = {}));
   cosmos2.ClientFactory = {
-    ..._411,
-    ..._412
+    ..._427,
+    ..._428
   };
 })(cosmos || (cosmos = {}));
 export {

@@ -23,7 +23,7 @@ __export(tx_registry_exports, {
 });
 module.exports = __toCommonJS(tx_registry_exports);
 var import_tx = require("./tx");
-const registry = [["/ibc.applications.transfer.v1.MsgTransfer", import_tx.MsgTransfer]];
+const registry = [["/ibc.applications.transfer.v1.MsgTransfer", import_tx.MsgTransfer], ["/ibc.applications.transfer.v1.MsgUpdateParams", import_tx.MsgUpdateParams]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -36,12 +36,24 @@ const MessageComposer = {
         typeUrl: "/ibc.applications.transfer.v1.MsgTransfer",
         value: import_tx.MsgTransfer.encode(value).finish()
       };
+    },
+    updateParams(value) {
+      return {
+        typeUrl: "/ibc.applications.transfer.v1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.encode(value).finish()
+      };
     }
   },
   withTypeUrl: {
     transfer(value) {
       return {
         typeUrl: "/ibc.applications.transfer.v1.MsgTransfer",
+        value
+      };
+    },
+    updateParams(value) {
+      return {
+        typeUrl: "/ibc.applications.transfer.v1.MsgUpdateParams",
         value
       };
     }
@@ -51,6 +63,12 @@ const MessageComposer = {
       return {
         typeUrl: "/ibc.applications.transfer.v1.MsgTransfer",
         value: import_tx.MsgTransfer.fromPartial(value)
+      };
+    },
+    updateParams(value) {
+      return {
+        typeUrl: "/ibc.applications.transfer.v1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.fromPartial(value)
       };
     }
   }

@@ -1,6 +1,7 @@
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../../../cosmos/base/query/v1beta1/pagination";
-import { Any, AnyAmino, AnySDKType } from "../../../../google/protobuf/any";
 import { Height, HeightAmino, HeightSDKType, IdentifiedClientState, IdentifiedClientStateAmino, IdentifiedClientStateSDKType, ConsensusStateWithHeight, ConsensusStateWithHeightAmino, ConsensusStateWithHeightSDKType, Params, ParamsAmino, ParamsSDKType } from "./client";
+import { MerklePath, MerklePathAmino, MerklePathSDKType } from "../../commitment/v1/commitment";
+import { Any, AnyAmino, AnySDKType } from "../../../../google/protobuf/any";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 /**
  * QueryClientStateRequest is the request type for the Query/ClientState RPC
@@ -615,6 +616,80 @@ export interface QueryUpgradedConsensusStateResponseAminoMsg {
 export interface QueryUpgradedConsensusStateResponseSDKType {
     upgraded_consensus_state?: AnySDKType;
 }
+/** QueryVerifyMembershipRequest is the request type for the Query/VerifyMembership RPC method */
+export interface QueryVerifyMembershipRequest {
+    /** client unique identifier. */
+    clientId: string;
+    /** the proof to be verified by the client. */
+    proof: Uint8Array;
+    /** the height of the commitment root at which the proof is verified. */
+    proofHeight: Height;
+    /** the commitment key path. */
+    merklePath: MerklePath;
+    /** the value which is proven. */
+    value: Uint8Array;
+    /** optional time delay */
+    timeDelay: bigint;
+    /** optional block delay */
+    blockDelay: bigint;
+}
+export interface QueryVerifyMembershipRequestProtoMsg {
+    typeUrl: "/ibc.core.client.v1.QueryVerifyMembershipRequest";
+    value: Uint8Array;
+}
+/** QueryVerifyMembershipRequest is the request type for the Query/VerifyMembership RPC method */
+export interface QueryVerifyMembershipRequestAmino {
+    /** client unique identifier. */
+    client_id?: string;
+    /** the proof to be verified by the client. */
+    proof?: string;
+    /** the height of the commitment root at which the proof is verified. */
+    proof_height?: HeightAmino;
+    /** the commitment key path. */
+    merkle_path?: MerklePathAmino;
+    /** the value which is proven. */
+    value?: string;
+    /** optional time delay */
+    time_delay?: string;
+    /** optional block delay */
+    block_delay?: string;
+}
+export interface QueryVerifyMembershipRequestAminoMsg {
+    type: "cosmos-sdk/QueryVerifyMembershipRequest";
+    value: QueryVerifyMembershipRequestAmino;
+}
+/** QueryVerifyMembershipRequest is the request type for the Query/VerifyMembership RPC method */
+export interface QueryVerifyMembershipRequestSDKType {
+    client_id: string;
+    proof: Uint8Array;
+    proof_height: HeightSDKType;
+    merkle_path: MerklePathSDKType;
+    value: Uint8Array;
+    time_delay: bigint;
+    block_delay: bigint;
+}
+/** QueryVerifyMembershipResponse is the response type for the Query/VerifyMembership RPC method */
+export interface QueryVerifyMembershipResponse {
+    /** boolean indicating success or failure of proof verification. */
+    success: boolean;
+}
+export interface QueryVerifyMembershipResponseProtoMsg {
+    typeUrl: "/ibc.core.client.v1.QueryVerifyMembershipResponse";
+    value: Uint8Array;
+}
+/** QueryVerifyMembershipResponse is the response type for the Query/VerifyMembership RPC method */
+export interface QueryVerifyMembershipResponseAmino {
+    /** boolean indicating success or failure of proof verification. */
+    success?: boolean;
+}
+export interface QueryVerifyMembershipResponseAminoMsg {
+    type: "cosmos-sdk/QueryVerifyMembershipResponse";
+    value: QueryVerifyMembershipResponseAmino;
+}
+/** QueryVerifyMembershipResponse is the response type for the Query/VerifyMembership RPC method */
+export interface QueryVerifyMembershipResponseSDKType {
+    success: boolean;
+}
 export declare const QueryClientStateRequest: {
     typeUrl: string;
     encode(message: QueryClientStateRequest, writer?: BinaryWriter): BinaryWriter;
@@ -848,4 +923,30 @@ export declare const QueryUpgradedConsensusStateResponse: {
     fromProtoMsg(message: QueryUpgradedConsensusStateResponseProtoMsg): QueryUpgradedConsensusStateResponse;
     toProto(message: QueryUpgradedConsensusStateResponse): Uint8Array;
     toProtoMsg(message: QueryUpgradedConsensusStateResponse): QueryUpgradedConsensusStateResponseProtoMsg;
+};
+export declare const QueryVerifyMembershipRequest: {
+    typeUrl: string;
+    encode(message: QueryVerifyMembershipRequest, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryVerifyMembershipRequest;
+    fromPartial(object: Partial<QueryVerifyMembershipRequest>): QueryVerifyMembershipRequest;
+    fromAmino(object: QueryVerifyMembershipRequestAmino): QueryVerifyMembershipRequest;
+    toAmino(message: QueryVerifyMembershipRequest): QueryVerifyMembershipRequestAmino;
+    fromAminoMsg(object: QueryVerifyMembershipRequestAminoMsg): QueryVerifyMembershipRequest;
+    toAminoMsg(message: QueryVerifyMembershipRequest): QueryVerifyMembershipRequestAminoMsg;
+    fromProtoMsg(message: QueryVerifyMembershipRequestProtoMsg): QueryVerifyMembershipRequest;
+    toProto(message: QueryVerifyMembershipRequest): Uint8Array;
+    toProtoMsg(message: QueryVerifyMembershipRequest): QueryVerifyMembershipRequestProtoMsg;
+};
+export declare const QueryVerifyMembershipResponse: {
+    typeUrl: string;
+    encode(message: QueryVerifyMembershipResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryVerifyMembershipResponse;
+    fromPartial(object: Partial<QueryVerifyMembershipResponse>): QueryVerifyMembershipResponse;
+    fromAmino(object: QueryVerifyMembershipResponseAmino): QueryVerifyMembershipResponse;
+    toAmino(message: QueryVerifyMembershipResponse): QueryVerifyMembershipResponseAmino;
+    fromAminoMsg(object: QueryVerifyMembershipResponseAminoMsg): QueryVerifyMembershipResponse;
+    toAminoMsg(message: QueryVerifyMembershipResponse): QueryVerifyMembershipResponseAminoMsg;
+    fromProtoMsg(message: QueryVerifyMembershipResponseProtoMsg): QueryVerifyMembershipResponse;
+    toProto(message: QueryVerifyMembershipResponse): Uint8Array;
+    toProtoMsg(message: QueryVerifyMembershipResponse): QueryVerifyMembershipResponseProtoMsg;
 };

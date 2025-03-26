@@ -12,6 +12,9 @@ export declare const createRPCMsgClient: ({ rpc }: {
         bank: {
             v1beta1: import("../cosmos/bank/v1beta1/tx.rpc.msg").MsgClientImpl;
         };
+        circuit: {
+            v1: import("../cosmos/circuit/v1/tx.rpc.msg").MsgClientImpl;
+        };
         consensus: {
             v1: import("../cosmos/consensus/v1/tx.rpc.msg").MsgClientImpl;
         };
@@ -60,7 +63,7 @@ export declare const createRPCMsgClient: ({ rpc }: {
         icaoracle: import("./icaoracle/tx.rpc.msg").MsgClientImpl;
         icqoracle: import("./icqoracle/tx.rpc.msg").MsgClientImpl;
         interchainquery: {
-            v1: import("./interchainquery/v1/messages.rpc.msg").MsgClientImpl;
+            v1: import("./interchainquery/v1/tx.rpc.msg").MsgClientImpl;
         };
         stakedym: import("./stakedym/tx.rpc.msg").MsgClientImpl;
         stakeibc: import("./stakeibc/tx.rpc.msg").MsgClientImpl;

@@ -9,6 +9,10 @@ export interface Module {
     hooksOrder: string[];
     /** authority defines the custom module authority. If not set, defaults to the governance module. */
     authority: string;
+    /** bech32_prefix_validator is the bech32 validator prefix for the app. */
+    bech32PrefixValidator: string;
+    /** bech32_prefix_consensus is the bech32 consensus node prefix for the app. */
+    bech32PrefixConsensus: string;
 }
 export interface ModuleProtoMsg {
     typeUrl: "/cosmos.staking.module.v1.Module";
@@ -24,6 +28,10 @@ export interface ModuleAmino {
     hooks_order?: string[];
     /** authority defines the custom module authority. If not set, defaults to the governance module. */
     authority?: string;
+    /** bech32_prefix_validator is the bech32 validator prefix for the app. */
+    bech32_prefix_validator?: string;
+    /** bech32_prefix_consensus is the bech32 consensus node prefix for the app. */
+    bech32_prefix_consensus?: string;
 }
 export interface ModuleAminoMsg {
     type: "cosmos-sdk/Module";
@@ -33,6 +41,8 @@ export interface ModuleAminoMsg {
 export interface ModuleSDKType {
     hooks_order: string[];
     authority: string;
+    bech32_prefix_validator: string;
+    bech32_prefix_consensus: string;
 }
 export declare const Module: {
     typeUrl: string;

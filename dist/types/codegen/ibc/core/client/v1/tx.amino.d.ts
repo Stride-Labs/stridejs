@@ -1,4 +1,4 @@
-import { MsgCreateClient, MsgUpdateClient, MsgUpgradeClient, MsgSubmitMisbehaviour } from "./tx";
+import { MsgCreateClient, MsgUpdateClient, MsgUpgradeClient, MsgSubmitMisbehaviour, MsgRecoverClient, MsgIBCSoftwareUpgrade, MsgUpdateParams } from "./tx";
 export declare const AminoConverter: {
     "/ibc.core.client.v1.MsgCreateClient": {
         aminoType: string;
@@ -19,5 +19,20 @@ export declare const AminoConverter: {
         aminoType: string;
         toAmino: (message: MsgSubmitMisbehaviour) => import("./tx").MsgSubmitMisbehaviourAmino;
         fromAmino: (object: import("./tx").MsgSubmitMisbehaviourAmino) => MsgSubmitMisbehaviour;
+    };
+    "/ibc.core.client.v1.MsgRecoverClient": {
+        aminoType: string;
+        toAmino: (message: MsgRecoverClient) => import("./tx").MsgRecoverClientAmino;
+        fromAmino: (object: import("./tx").MsgRecoverClientAmino) => MsgRecoverClient;
+    };
+    "/ibc.core.client.v1.MsgIBCSoftwareUpgrade": {
+        aminoType: string;
+        toAmino: (message: MsgIBCSoftwareUpgrade) => import("./tx").MsgIBCSoftwareUpgradeAmino;
+        fromAmino: (object: import("./tx").MsgIBCSoftwareUpgradeAmino) => MsgIBCSoftwareUpgrade;
+    };
+    "/ibc.core.client.v1.MsgUpdateParams": {
+        aminoType: string;
+        toAmino: (message: MsgUpdateParams) => import("./tx").MsgUpdateParamsAmino;
+        fromAmino: (object: import("./tx").MsgUpdateParamsAmino) => MsgUpdateParams;
     };
 };

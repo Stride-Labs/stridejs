@@ -92,7 +92,7 @@ export interface StridePeriodicVestingAccountAmino {
     vesting_periods?: PeriodAmino[];
 }
 export interface StridePeriodicVestingAccountAminoMsg {
-    type: "/stride.vesting.StridePeriodicVestingAccount";
+    type: "cosmos-sdk/StridePeriodicVestingAccount";
     value: StridePeriodicVestingAccountAmino;
 }
 /**
@@ -135,6 +135,7 @@ export declare const StridePeriodicVestingAccount: {
     fromAmino(object: StridePeriodicVestingAccountAmino): StridePeriodicVestingAccount;
     toAmino(message: StridePeriodicVestingAccount): StridePeriodicVestingAccountAmino;
     fromAminoMsg(object: StridePeriodicVestingAccountAminoMsg): StridePeriodicVestingAccount;
+    toAminoMsg(message: StridePeriodicVestingAccount): StridePeriodicVestingAccountAminoMsg;
     fromProtoMsg(message: StridePeriodicVestingAccountProtoMsg): StridePeriodicVestingAccount;
     toProto(message: StridePeriodicVestingAccount): Uint8Array;
     toProtoMsg(message: StridePeriodicVestingAccount): StridePeriodicVestingAccountProtoMsg;

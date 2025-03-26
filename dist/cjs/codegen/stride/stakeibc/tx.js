@@ -192,6 +192,12 @@ const MsgUpdateInnerRedemptionRateBounds = {
   fromAminoMsg(object) {
     return MsgUpdateInnerRedemptionRateBounds.fromAmino(object.value);
   },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/MsgUpdateRedemptionRateBounds",
+      value: MsgUpdateInnerRedemptionRateBounds.toAmino(message)
+    };
+  },
   fromProtoMsg(message) {
     return MsgUpdateInnerRedemptionRateBounds.decode(message.value);
   },
@@ -1502,6 +1508,12 @@ const MsgAddValidators = {
   fromAminoMsg(object) {
     return MsgAddValidators.fromAmino(object.value);
   },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/MsgAddValidators",
+      value: MsgAddValidators.toAmino(message)
+    };
+  },
   fromProtoMsg(message) {
     return MsgAddValidators.decode(message.value);
   },
@@ -1715,6 +1727,12 @@ const MsgChangeValidatorWeights = {
   },
   fromAminoMsg(object) {
     return MsgChangeValidatorWeights.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/MsgChangeValidatorWeights",
+      value: MsgChangeValidatorWeights.toAmino(message)
+    };
   },
   fromProtoMsg(message) {
     return MsgChangeValidatorWeights.decode(message.value);
@@ -2139,6 +2157,12 @@ const MsgCloseDelegationChannel = {
   fromAminoMsg(object) {
     return MsgCloseDelegationChannel.fromAmino(object.value);
   },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/MsgCloseDelegationChanne",
+      value: MsgCloseDelegationChannel.toAmino(message)
+    };
+  },
   fromProtoMsg(message) {
     return MsgCloseDelegationChannel.decode(message.value);
   },
@@ -2419,6 +2443,12 @@ const MsgCalibrateDelegation = {
   fromAminoMsg(object) {
     return MsgCalibrateDelegation.fromAmino(object.value);
   },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/MsgCalibrateDelegation",
+      value: MsgCalibrateDelegation.toAmino(message)
+    };
+  },
   fromProtoMsg(message) {
     return MsgCalibrateDelegation.decode(message.value);
   },
@@ -2543,6 +2573,12 @@ const MsgResumeHostZone = {
   },
   fromAminoMsg(object) {
     return MsgResumeHostZone.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/MsgResumeHostZone",
+      value: MsgResumeHostZone.toAmino(message)
+    };
   },
   fromProtoMsg(message) {
     return MsgResumeHostZone.decode(message.value);
@@ -2851,7 +2887,7 @@ const MsgCreateTradeRoute = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/stakeibc/MsgCreateTradeRoute",
+      type: "stakeibc/MsgCreateTradeRoute",
       value: MsgCreateTradeRoute.toAmino(message)
     };
   },
@@ -2994,7 +3030,7 @@ const MsgDeleteTradeRoute = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/stakeibc/MsgDeleteTradeRoute",
+      type: "stakeibc/MsgDeleteTradeRoute",
       value: MsgDeleteTradeRoute.toAmino(message)
     };
   },
@@ -3197,7 +3233,7 @@ const MsgUpdateTradeRoute = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/stakeibc/MsgUpdateTradeRoute",
+      type: "stakeibc/MsgUpdateTradeRoute",
       value: MsgUpdateTradeRoute.toAmino(message)
     };
   },
@@ -3352,7 +3388,7 @@ const MsgSetCommunityPoolRebate = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/stakeibc/MsgSetCommunityPoolRebate",
+      type: "stakeibc/MsgSetCommunityPoolRebate",
       value: MsgSetCommunityPoolRebate.toAmino(message)
     };
   },
@@ -3519,7 +3555,7 @@ const MsgToggleTradeController = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/stakeibc/MsgToggleTradeController",
+      type: "stakeibc/MsgToggleTradeController",
       value: MsgToggleTradeController.toAmino(message)
     };
   },
@@ -3662,7 +3698,7 @@ const MsgUpdateHostZoneParams = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/stakeibc/MsgUpdateHostZoneParams",
+      type: "stakeibc/MsgUpdateHostZoneParams",
       value: MsgUpdateHostZoneParams.toAmino(message)
     };
   },

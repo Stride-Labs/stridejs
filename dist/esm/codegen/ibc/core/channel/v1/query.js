@@ -1,7 +1,8 @@
 import { PageRequest, PageResponse } from "../../../../cosmos/base/query/v1beta1/pagination";
 import { Channel, IdentifiedChannel, PacketState } from "./channel";
-import { Height, IdentifiedClientState } from "../../client/v1/client";
+import { Height, IdentifiedClientState, Params } from "../../client/v1/client";
 import { Any } from "../../../../google/protobuf/any";
+import { ErrorReceipt, Upgrade } from "./upgrade";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 import { bytesFromBase64, base64FromBytes } from "../../../../helpers";
 function createBaseQueryChannelRequest() {
@@ -2425,11 +2426,660 @@ const QueryNextSequenceReceiveResponse = {
     };
   }
 };
+function createBaseQueryNextSequenceSendRequest() {
+  return {
+    portId: "",
+    channelId: ""
+  };
+}
+const QueryNextSequenceSendRequest = {
+  typeUrl: "/ibc.core.channel.v1.QueryNextSequenceSendRequest",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.portId !== "") {
+      writer.uint32(10).string(message.portId);
+    }
+    if (message.channelId !== "") {
+      writer.uint32(18).string(message.channelId);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryNextSequenceSendRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.portId = reader.string();
+          break;
+        case 2:
+          message.channelId = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryNextSequenceSendRequest();
+    message.portId = object.portId ?? "";
+    message.channelId = object.channelId ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryNextSequenceSendRequest();
+    if (object.port_id !== void 0 && object.port_id !== null) {
+      message.portId = object.port_id;
+    }
+    if (object.channel_id !== void 0 && object.channel_id !== null) {
+      message.channelId = object.channel_id;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.port_id = message.portId === "" ? void 0 : message.portId;
+    obj.channel_id = message.channelId === "" ? void 0 : message.channelId;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryNextSequenceSendRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryNextSequenceSendRequest",
+      value: QueryNextSequenceSendRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryNextSequenceSendRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryNextSequenceSendRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.channel.v1.QueryNextSequenceSendRequest",
+      value: QueryNextSequenceSendRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryNextSequenceSendResponse() {
+  return {
+    nextSequenceSend: BigInt(0),
+    proof: new Uint8Array(),
+    proofHeight: Height.fromPartial({})
+  };
+}
+const QueryNextSequenceSendResponse = {
+  typeUrl: "/ibc.core.channel.v1.QueryNextSequenceSendResponse",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.nextSequenceSend !== BigInt(0)) {
+      writer.uint32(8).uint64(message.nextSequenceSend);
+    }
+    if (message.proof.length !== 0) {
+      writer.uint32(18).bytes(message.proof);
+    }
+    if (message.proofHeight !== void 0) {
+      Height.encode(message.proofHeight, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryNextSequenceSendResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.nextSequenceSend = reader.uint64();
+          break;
+        case 2:
+          message.proof = reader.bytes();
+          break;
+        case 3:
+          message.proofHeight = Height.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryNextSequenceSendResponse();
+    message.nextSequenceSend = object.nextSequenceSend !== void 0 && object.nextSequenceSend !== null ? BigInt(object.nextSequenceSend.toString()) : BigInt(0);
+    message.proof = object.proof ?? new Uint8Array();
+    message.proofHeight = object.proofHeight !== void 0 && object.proofHeight !== null ? Height.fromPartial(object.proofHeight) : void 0;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryNextSequenceSendResponse();
+    if (object.next_sequence_send !== void 0 && object.next_sequence_send !== null) {
+      message.nextSequenceSend = BigInt(object.next_sequence_send);
+    }
+    if (object.proof !== void 0 && object.proof !== null) {
+      message.proof = bytesFromBase64(object.proof);
+    }
+    if (object.proof_height !== void 0 && object.proof_height !== null) {
+      message.proofHeight = Height.fromAmino(object.proof_height);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.next_sequence_send = message.nextSequenceSend !== BigInt(0) ? message.nextSequenceSend?.toString() : void 0;
+    obj.proof = message.proof ? base64FromBytes(message.proof) : void 0;
+    obj.proof_height = message.proofHeight ? Height.toAmino(message.proofHeight) : {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryNextSequenceSendResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryNextSequenceSendResponse",
+      value: QueryNextSequenceSendResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryNextSequenceSendResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryNextSequenceSendResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.channel.v1.QueryNextSequenceSendResponse",
+      value: QueryNextSequenceSendResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryUpgradeErrorRequest() {
+  return {
+    portId: "",
+    channelId: ""
+  };
+}
+const QueryUpgradeErrorRequest = {
+  typeUrl: "/ibc.core.channel.v1.QueryUpgradeErrorRequest",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.portId !== "") {
+      writer.uint32(10).string(message.portId);
+    }
+    if (message.channelId !== "") {
+      writer.uint32(18).string(message.channelId);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryUpgradeErrorRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.portId = reader.string();
+          break;
+        case 2:
+          message.channelId = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryUpgradeErrorRequest();
+    message.portId = object.portId ?? "";
+    message.channelId = object.channelId ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryUpgradeErrorRequest();
+    if (object.port_id !== void 0 && object.port_id !== null) {
+      message.portId = object.port_id;
+    }
+    if (object.channel_id !== void 0 && object.channel_id !== null) {
+      message.channelId = object.channel_id;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.port_id = message.portId === "" ? void 0 : message.portId;
+    obj.channel_id = message.channelId === "" ? void 0 : message.channelId;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryUpgradeErrorRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryUpgradeErrorRequest",
+      value: QueryUpgradeErrorRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryUpgradeErrorRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryUpgradeErrorRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.channel.v1.QueryUpgradeErrorRequest",
+      value: QueryUpgradeErrorRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryUpgradeErrorResponse() {
+  return {
+    errorReceipt: ErrorReceipt.fromPartial({}),
+    proof: new Uint8Array(),
+    proofHeight: Height.fromPartial({})
+  };
+}
+const QueryUpgradeErrorResponse = {
+  typeUrl: "/ibc.core.channel.v1.QueryUpgradeErrorResponse",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.errorReceipt !== void 0) {
+      ErrorReceipt.encode(message.errorReceipt, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.proof.length !== 0) {
+      writer.uint32(18).bytes(message.proof);
+    }
+    if (message.proofHeight !== void 0) {
+      Height.encode(message.proofHeight, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryUpgradeErrorResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.errorReceipt = ErrorReceipt.decode(reader, reader.uint32());
+          break;
+        case 2:
+          message.proof = reader.bytes();
+          break;
+        case 3:
+          message.proofHeight = Height.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryUpgradeErrorResponse();
+    message.errorReceipt = object.errorReceipt !== void 0 && object.errorReceipt !== null ? ErrorReceipt.fromPartial(object.errorReceipt) : void 0;
+    message.proof = object.proof ?? new Uint8Array();
+    message.proofHeight = object.proofHeight !== void 0 && object.proofHeight !== null ? Height.fromPartial(object.proofHeight) : void 0;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryUpgradeErrorResponse();
+    if (object.error_receipt !== void 0 && object.error_receipt !== null) {
+      message.errorReceipt = ErrorReceipt.fromAmino(object.error_receipt);
+    }
+    if (object.proof !== void 0 && object.proof !== null) {
+      message.proof = bytesFromBase64(object.proof);
+    }
+    if (object.proof_height !== void 0 && object.proof_height !== null) {
+      message.proofHeight = Height.fromAmino(object.proof_height);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.error_receipt = message.errorReceipt ? ErrorReceipt.toAmino(message.errorReceipt) : void 0;
+    obj.proof = message.proof ? base64FromBytes(message.proof) : void 0;
+    obj.proof_height = message.proofHeight ? Height.toAmino(message.proofHeight) : {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryUpgradeErrorResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryUpgradeErrorResponse",
+      value: QueryUpgradeErrorResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryUpgradeErrorResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryUpgradeErrorResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.channel.v1.QueryUpgradeErrorResponse",
+      value: QueryUpgradeErrorResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryUpgradeRequest() {
+  return {
+    portId: "",
+    channelId: ""
+  };
+}
+const QueryUpgradeRequest = {
+  typeUrl: "/ibc.core.channel.v1.QueryUpgradeRequest",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.portId !== "") {
+      writer.uint32(10).string(message.portId);
+    }
+    if (message.channelId !== "") {
+      writer.uint32(18).string(message.channelId);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryUpgradeRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.portId = reader.string();
+          break;
+        case 2:
+          message.channelId = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryUpgradeRequest();
+    message.portId = object.portId ?? "";
+    message.channelId = object.channelId ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryUpgradeRequest();
+    if (object.port_id !== void 0 && object.port_id !== null) {
+      message.portId = object.port_id;
+    }
+    if (object.channel_id !== void 0 && object.channel_id !== null) {
+      message.channelId = object.channel_id;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.port_id = message.portId === "" ? void 0 : message.portId;
+    obj.channel_id = message.channelId === "" ? void 0 : message.channelId;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryUpgradeRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryUpgradeRequest",
+      value: QueryUpgradeRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryUpgradeRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryUpgradeRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.channel.v1.QueryUpgradeRequest",
+      value: QueryUpgradeRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryUpgradeResponse() {
+  return {
+    upgrade: Upgrade.fromPartial({}),
+    proof: new Uint8Array(),
+    proofHeight: Height.fromPartial({})
+  };
+}
+const QueryUpgradeResponse = {
+  typeUrl: "/ibc.core.channel.v1.QueryUpgradeResponse",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.upgrade !== void 0) {
+      Upgrade.encode(message.upgrade, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.proof.length !== 0) {
+      writer.uint32(18).bytes(message.proof);
+    }
+    if (message.proofHeight !== void 0) {
+      Height.encode(message.proofHeight, writer.uint32(26).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryUpgradeResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.upgrade = Upgrade.decode(reader, reader.uint32());
+          break;
+        case 2:
+          message.proof = reader.bytes();
+          break;
+        case 3:
+          message.proofHeight = Height.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryUpgradeResponse();
+    message.upgrade = object.upgrade !== void 0 && object.upgrade !== null ? Upgrade.fromPartial(object.upgrade) : void 0;
+    message.proof = object.proof ?? new Uint8Array();
+    message.proofHeight = object.proofHeight !== void 0 && object.proofHeight !== null ? Height.fromPartial(object.proofHeight) : void 0;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryUpgradeResponse();
+    if (object.upgrade !== void 0 && object.upgrade !== null) {
+      message.upgrade = Upgrade.fromAmino(object.upgrade);
+    }
+    if (object.proof !== void 0 && object.proof !== null) {
+      message.proof = bytesFromBase64(object.proof);
+    }
+    if (object.proof_height !== void 0 && object.proof_height !== null) {
+      message.proofHeight = Height.fromAmino(object.proof_height);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.upgrade = message.upgrade ? Upgrade.toAmino(message.upgrade) : void 0;
+    obj.proof = message.proof ? base64FromBytes(message.proof) : void 0;
+    obj.proof_height = message.proofHeight ? Height.toAmino(message.proofHeight) : {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryUpgradeResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryUpgradeResponse",
+      value: QueryUpgradeResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryUpgradeResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryUpgradeResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.channel.v1.QueryUpgradeResponse",
+      value: QueryUpgradeResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryChannelParamsRequest() {
+  return {};
+}
+const QueryChannelParamsRequest = {
+  typeUrl: "/ibc.core.channel.v1.QueryChannelParamsRequest",
+  encode(_, writer = BinaryWriter.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryChannelParamsRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_) {
+    const message = createBaseQueryChannelParamsRequest();
+    return message;
+  },
+  fromAmino(_) {
+    const message = createBaseQueryChannelParamsRequest();
+    return message;
+  },
+  toAmino(_) {
+    const obj = {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryChannelParamsRequest.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryChannelParamsRequest",
+      value: QueryChannelParamsRequest.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryChannelParamsRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryChannelParamsRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.channel.v1.QueryChannelParamsRequest",
+      value: QueryChannelParamsRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryChannelParamsResponse() {
+  return {
+    params: void 0
+  };
+}
+const QueryChannelParamsResponse = {
+  typeUrl: "/ibc.core.channel.v1.QueryChannelParamsResponse",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.params !== void 0) {
+      Params.encode(message.params, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryChannelParamsResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.params = Params.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryChannelParamsResponse();
+    message.params = object.params !== void 0 && object.params !== null ? Params.fromPartial(object.params) : void 0;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryChannelParamsResponse();
+    if (object.params !== void 0 && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.params = message.params ? Params.toAmino(message.params) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryChannelParamsResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "cosmos-sdk/QueryChannelParamsResponse",
+      value: QueryChannelParamsResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return QueryChannelParamsResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryChannelParamsResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/ibc.core.channel.v1.QueryChannelParamsResponse",
+      value: QueryChannelParamsResponse.encode(message).finish()
+    };
+  }
+};
 export {
   QueryChannelClientStateRequest,
   QueryChannelClientStateResponse,
   QueryChannelConsensusStateRequest,
   QueryChannelConsensusStateResponse,
+  QueryChannelParamsRequest,
+  QueryChannelParamsResponse,
   QueryChannelRequest,
   QueryChannelResponse,
   QueryChannelsRequest,
@@ -2438,6 +3088,8 @@ export {
   QueryConnectionChannelsResponse,
   QueryNextSequenceReceiveRequest,
   QueryNextSequenceReceiveResponse,
+  QueryNextSequenceSendRequest,
+  QueryNextSequenceSendResponse,
   QueryPacketAcknowledgementRequest,
   QueryPacketAcknowledgementResponse,
   QueryPacketAcknowledgementsRequest,
@@ -2451,5 +3103,9 @@ export {
   QueryUnreceivedAcksRequest,
   QueryUnreceivedAcksResponse,
   QueryUnreceivedPacketsRequest,
-  QueryUnreceivedPacketsResponse
+  QueryUnreceivedPacketsResponse,
+  QueryUpgradeErrorRequest,
+  QueryUpgradeErrorResponse,
+  QueryUpgradeRequest,
+  QueryUpgradeResponse
 };

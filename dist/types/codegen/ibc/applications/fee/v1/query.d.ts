@@ -1,4 +1,4 @@
-import { PageRequest, PageRequestAmino, PageRequestSDKType } from "../../../../cosmos/base/query/v1beta1/pagination";
+import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../../../cosmos/base/query/v1beta1/pagination";
 import { PacketId, PacketIdAmino, PacketIdSDKType } from "../../../core/channel/v1/channel";
 import { IdentifiedPacketFees, IdentifiedPacketFeesAmino, IdentifiedPacketFeesSDKType } from "./fee";
 import { Coin, CoinAmino, CoinSDKType } from "../../../../cosmos/base/v1beta1/coin";
@@ -35,6 +35,8 @@ export interface QueryIncentivizedPacketsRequestSDKType {
 export interface QueryIncentivizedPacketsResponse {
     /** list of identified fees for incentivized packets */
     incentivizedPackets: IdentifiedPacketFees[];
+    /** pagination defines the pagination in the response. */
+    pagination?: PageResponse;
 }
 export interface QueryIncentivizedPacketsResponseProtoMsg {
     typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketsResponse";
@@ -44,6 +46,8 @@ export interface QueryIncentivizedPacketsResponseProtoMsg {
 export interface QueryIncentivizedPacketsResponseAmino {
     /** list of identified fees for incentivized packets */
     incentivized_packets?: IdentifiedPacketFeesAmino[];
+    /** pagination defines the pagination in the response. */
+    pagination?: PageResponseAmino;
 }
 export interface QueryIncentivizedPacketsResponseAminoMsg {
     type: "cosmos-sdk/QueryIncentivizedPacketsResponse";
@@ -52,6 +56,7 @@ export interface QueryIncentivizedPacketsResponseAminoMsg {
 /** QueryIncentivizedPacketsResponse defines the response type for the IncentivizedPackets rpc */
 export interface QueryIncentivizedPacketsResponseSDKType {
     incentivized_packets: IdentifiedPacketFeesSDKType[];
+    pagination?: PageResponseSDKType;
 }
 /** QueryIncentivizedPacketRequest defines the request type for the IncentivizedPacket rpc */
 export interface QueryIncentivizedPacketRequest {
@@ -148,6 +153,8 @@ export interface QueryIncentivizedPacketsForChannelRequestSDKType {
 export interface QueryIncentivizedPacketsForChannelResponse {
     /** Map of all incentivized_packets */
     incentivizedPackets: IdentifiedPacketFees[];
+    /** pagination defines the pagination in the response. */
+    pagination?: PageResponse;
 }
 export interface QueryIncentivizedPacketsForChannelResponseProtoMsg {
     typeUrl: "/ibc.applications.fee.v1.QueryIncentivizedPacketsForChannelResponse";
@@ -157,6 +164,8 @@ export interface QueryIncentivizedPacketsForChannelResponseProtoMsg {
 export interface QueryIncentivizedPacketsForChannelResponseAmino {
     /** Map of all incentivized_packets */
     incentivized_packets?: IdentifiedPacketFeesAmino[];
+    /** pagination defines the pagination in the response. */
+    pagination?: PageResponseAmino;
 }
 export interface QueryIncentivizedPacketsForChannelResponseAminoMsg {
     type: "cosmos-sdk/QueryIncentivizedPacketsForChannelResponse";
@@ -165,6 +174,7 @@ export interface QueryIncentivizedPacketsForChannelResponseAminoMsg {
 /** QueryIncentivizedPacketsResponse defines the response type for the incentivized packets RPC */
 export interface QueryIncentivizedPacketsForChannelResponseSDKType {
     incentivized_packets: IdentifiedPacketFeesSDKType[];
+    pagination?: PageResponseSDKType;
 }
 /** QueryTotalRecvFeesRequest defines the request type for the TotalRecvFees rpc */
 export interface QueryTotalRecvFeesRequest {
@@ -427,6 +437,8 @@ export interface QueryFeeEnabledChannelsRequestSDKType {
 export interface QueryFeeEnabledChannelsResponse {
     /** list of fee enabled channels */
     feeEnabledChannels: FeeEnabledChannel[];
+    /** pagination defines the pagination in the response. */
+    pagination?: PageResponse;
 }
 export interface QueryFeeEnabledChannelsResponseProtoMsg {
     typeUrl: "/ibc.applications.fee.v1.QueryFeeEnabledChannelsResponse";
@@ -436,6 +448,8 @@ export interface QueryFeeEnabledChannelsResponseProtoMsg {
 export interface QueryFeeEnabledChannelsResponseAmino {
     /** list of fee enabled channels */
     fee_enabled_channels?: FeeEnabledChannelAmino[];
+    /** pagination defines the pagination in the response. */
+    pagination?: PageResponseAmino;
 }
 export interface QueryFeeEnabledChannelsResponseAminoMsg {
     type: "cosmos-sdk/QueryFeeEnabledChannelsResponse";
@@ -444,6 +458,7 @@ export interface QueryFeeEnabledChannelsResponseAminoMsg {
 /** QueryFeeEnabledChannelsResponse defines the response type for the FeeEnabledChannels rpc */
 export interface QueryFeeEnabledChannelsResponseSDKType {
     fee_enabled_channels: FeeEnabledChannelSDKType[];
+    pagination?: PageResponseSDKType;
 }
 /** QueryFeeEnabledChannelRequest defines the request type for the FeeEnabledChannel rpc */
 export interface QueryFeeEnabledChannelRequest {

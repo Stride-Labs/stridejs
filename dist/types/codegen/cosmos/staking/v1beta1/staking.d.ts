@@ -95,11 +95,11 @@ export interface CommissionRatesProtoMsg {
  */
 export interface CommissionRatesAmino {
     /** rate is the commission rate charged to delegators, as a fraction. */
-    rate?: string;
+    rate: string;
     /** max_rate defines the maximum commission rate which validator can ever charge, as a fraction. */
-    max_rate?: string;
+    max_rate: string;
     /** max_change_rate defines the maximum daily increase of the validator commission, as a fraction. */
-    max_change_rate?: string;
+    max_change_rate: string;
 }
 export interface CommissionRatesAminoMsg {
     type: "cosmos-sdk/CommissionRates";
@@ -445,9 +445,9 @@ export interface DVVTripletsSDKType {
  * validator.
  */
 export interface Delegation {
-    /** delegator_address is the bech32-encoded address of the delegator. */
+    /** delegator_address is the encoded address of the delegator. */
     delegatorAddress: string;
-    /** validator_address is the bech32-encoded address of the validator. */
+    /** validator_address is the encoded address of the validator. */
     validatorAddress: string;
     /** shares define the delegation shares received. */
     shares: string;
@@ -462,9 +462,9 @@ export interface DelegationProtoMsg {
  * validator.
  */
 export interface DelegationAmino {
-    /** delegator_address is the bech32-encoded address of the delegator. */
+    /** delegator_address is the encoded address of the delegator. */
     delegator_address?: string;
-    /** validator_address is the bech32-encoded address of the validator. */
+    /** validator_address is the encoded address of the validator. */
     validator_address?: string;
     /** shares define the delegation shares received. */
     shares?: string;
@@ -488,9 +488,9 @@ export interface DelegationSDKType {
  * for a single validator in an time-ordered list.
  */
 export interface UnbondingDelegation {
-    /** delegator_address is the bech32-encoded address of the delegator. */
+    /** delegator_address is the encoded address of the delegator. */
     delegatorAddress: string;
-    /** validator_address is the bech32-encoded address of the validator. */
+    /** validator_address is the encoded address of the validator. */
     validatorAddress: string;
     /** entries are the unbonding delegation entries. */
     entries: UnbondingDelegationEntry[];
@@ -504,9 +504,9 @@ export interface UnbondingDelegationProtoMsg {
  * for a single validator in an time-ordered list.
  */
 export interface UnbondingDelegationAmino {
-    /** delegator_address is the bech32-encoded address of the delegator. */
+    /** delegator_address is the encoded address of the delegator. */
     delegator_address?: string;
-    /** validator_address is the bech32-encoded address of the validator. */
+    /** validator_address is the encoded address of the validator. */
     validator_address?: string;
     /** entries are the unbonding delegation entries. */
     entries: UnbondingDelegationEntryAmino[];
@@ -696,7 +696,7 @@ export interface ParamsAmino {
     /** bond_denom defines the bondable coin denomination. */
     bond_denom?: string;
     /** min_commission_rate is the chain-wide minimum commission rate that a validator can charge their delegators */
-    min_commission_rate?: string;
+    min_commission_rate: string;
 }
 export interface ParamsAminoMsg {
     type: "cosmos-sdk/x/staking/Params";

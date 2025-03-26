@@ -30,9 +30,9 @@ __export(bundle_exports, {
   cosmos_proto: () => cosmos_proto
 });
 module.exports = __toCommonJS(bundle_exports);
-var _1 = __toESM(require("./cosmos"));
+var _3 = __toESM(require("./cosmos"));
 const cosmos_proto = {
-  ..._1
+  ..._3
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {

@@ -23,7 +23,7 @@ __export(tx_registry_exports, {
 });
 module.exports = __toCommonJS(tx_registry_exports);
 var import_tx = require("./tx");
-const registry = [["/ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafe", import_tx.MsgModuleQuerySafe]];
+const registry = [["/ibc.applications.interchain_accounts.host.v1.MsgUpdateParams", import_tx.MsgUpdateParams], ["/ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafe", import_tx.MsgModuleQuerySafe]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -31,6 +31,12 @@ const load = (protoRegistry) => {
 };
 const MessageComposer = {
   encoded: {
+    updateParams(value) {
+      return {
+        typeUrl: "/ibc.applications.interchain_accounts.host.v1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.encode(value).finish()
+      };
+    },
     moduleQuerySafe(value) {
       return {
         typeUrl: "/ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafe",
@@ -39,6 +45,12 @@ const MessageComposer = {
     }
   },
   withTypeUrl: {
+    updateParams(value) {
+      return {
+        typeUrl: "/ibc.applications.interchain_accounts.host.v1.MsgUpdateParams",
+        value
+      };
+    },
     moduleQuerySafe(value) {
       return {
         typeUrl: "/ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafe",
@@ -47,6 +59,12 @@ const MessageComposer = {
     }
   },
   fromPartial: {
+    updateParams(value) {
+      return {
+        typeUrl: "/ibc.applications.interchain_accounts.host.v1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.fromPartial(value)
+      };
+    },
     moduleQuerySafe(value) {
       return {
         typeUrl: "/ibc.applications.interchain_accounts.host.v1.MsgModuleQuerySafe",

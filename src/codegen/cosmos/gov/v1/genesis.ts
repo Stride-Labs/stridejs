@@ -34,6 +34,15 @@ export interface GenesisState {
    * Since: cosmos-sdk 0.47
    */
   params?: Params;
+  /**
+   * The constitution allows builders to lay a foundation and define purpose.
+   * This is an immutable string set in genesis.
+   * There are no amendments, to go outside of scope, just fork.
+   * constitution is an immutable string in genesis for a chain builder to lay out their vision, ideas and ideals.
+   * 
+   * Since: cosmos-sdk 0.50
+   */
+  constitution: string;
 }
 export interface GenesisStateProtoMsg {
   typeUrl: "/cosmos.gov.v1.GenesisState";
@@ -73,6 +82,15 @@ export interface GenesisStateAmino {
    * Since: cosmos-sdk 0.47
    */
   params?: ParamsAmino;
+  /**
+   * The constitution allows builders to lay a foundation and define purpose.
+   * This is an immutable string set in genesis.
+   * There are no amendments, to go outside of scope, just fork.
+   * constitution is an immutable string in genesis for a chain builder to lay out their vision, ideas and ideals.
+   * 
+   * Since: cosmos-sdk 0.50
+   */
+  constitution?: string;
 }
 export interface GenesisStateAminoMsg {
   type: "cosmos-sdk/v1/GenesisState";
@@ -91,6 +109,7 @@ export interface GenesisStateSDKType {
   /** @deprecated */
   tally_params?: TallyParamsSDKType;
   params?: ParamsSDKType;
+  constitution: string;
 }
 function createBaseGenesisState(): GenesisState {
   return {
@@ -101,7 +120,8 @@ function createBaseGenesisState(): GenesisState {
     depositParams: undefined,
     votingParams: undefined,
     tallyParams: undefined,
-    params: undefined
+    params: undefined,
+    constitution: ""
   };
 }
 export const GenesisState = {
@@ -130,6 +150,9 @@ export const GenesisState = {
     }
     if (message.params !== undefined) {
       Params.encode(message.params, writer.uint32(66).fork()).ldelim();
+    }
+    if (message.constitution !== "") {
+      writer.uint32(74).string(message.constitution);
     }
     return writer;
   },
@@ -164,6 +187,9 @@ export const GenesisState = {
         case 8:
           message.params = Params.decode(reader, reader.uint32());
           break;
+        case 9:
+          message.constitution = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -181,6 +207,7 @@ export const GenesisState = {
     message.votingParams = object.votingParams !== undefined && object.votingParams !== null ? VotingParams.fromPartial(object.votingParams) : undefined;
     message.tallyParams = object.tallyParams !== undefined && object.tallyParams !== null ? TallyParams.fromPartial(object.tallyParams) : undefined;
     message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
+    message.constitution = object.constitution ?? "";
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
@@ -202,6 +229,9 @@ export const GenesisState = {
     }
     if (object.params !== undefined && object.params !== null) {
       message.params = Params.fromAmino(object.params);
+    }
+    if (object.constitution !== undefined && object.constitution !== null) {
+      message.constitution = object.constitution;
     }
     return message;
   },
@@ -227,6 +257,7 @@ export const GenesisState = {
     obj.voting_params = message.votingParams ? VotingParams.toAmino(message.votingParams) : undefined;
     obj.tally_params = message.tallyParams ? TallyParams.toAmino(message.tallyParams) : undefined;
     obj.params = message.params ? Params.toAmino(message.params) : undefined;
+    obj.constitution = message.constitution === "" ? undefined : message.constitution;
     return obj;
   },
   fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {

@@ -36,9 +36,12 @@ class QueryClientImpl {
     this.smartContractState = this.smartContractState.bind(this);
     this.code = this.code.bind(this);
     this.codes = this.codes.bind(this);
+    this.codeInfo = this.codeInfo.bind(this);
     this.pinnedCodes = this.pinnedCodes.bind(this);
     this.params = this.params.bind(this);
     this.contractsByCreator = this.contractsByCreator.bind(this);
+    this.wasmLimitsConfig = this.wasmLimitsConfig.bind(this);
+    this.buildAddress = this.buildAddress.bind(this);
   }
   contractInfo(request) {
     const data = import_query.QueryContractInfoRequest.encode(request).finish();
@@ -82,6 +85,11 @@ class QueryClientImpl {
     const promise = this.rpc.request("cosmwasm.wasm.v1.Query", "Codes", data);
     return promise.then((data2) => import_query.QueryCodesResponse.decode(new import_binary.BinaryReader(data2)));
   }
+  codeInfo(request) {
+    const data = import_query.QueryCodeInfoRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmwasm.wasm.v1.Query", "CodeInfo", data);
+    return promise.then((data2) => import_query.QueryCodeInfoResponse.decode(new import_binary.BinaryReader(data2)));
+  }
   pinnedCodes(request = {
     pagination: void 0
   }) {
@@ -98,6 +106,16 @@ class QueryClientImpl {
     const data = import_query.QueryContractsByCreatorRequest.encode(request).finish();
     const promise = this.rpc.request("cosmwasm.wasm.v1.Query", "ContractsByCreator", data);
     return promise.then((data2) => import_query.QueryContractsByCreatorResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  wasmLimitsConfig(request = {}) {
+    const data = import_query.QueryWasmLimitsConfigRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmwasm.wasm.v1.Query", "WasmLimitsConfig", data);
+    return promise.then((data2) => import_query.QueryWasmLimitsConfigResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  buildAddress(request) {
+    const data = import_query.QueryBuildAddressRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmwasm.wasm.v1.Query", "BuildAddress", data);
+    return promise.then((data2) => import_query.QueryBuildAddressResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 const createRpcQueryExtension = (base) => {
@@ -128,6 +146,9 @@ const createRpcQueryExtension = (base) => {
     codes(request) {
       return queryService.codes(request);
     },
+    codeInfo(request) {
+      return queryService.codeInfo(request);
+    },
     pinnedCodes(request) {
       return queryService.pinnedCodes(request);
     },
@@ -136,6 +157,12 @@ const createRpcQueryExtension = (base) => {
     },
     contractsByCreator(request) {
       return queryService.contractsByCreator(request);
+    },
+    wasmLimitsConfig(request) {
+      return queryService.wasmLimitsConfig(request);
+    },
+    buildAddress(request) {
+      return queryService.buildAddress(request);
     }
   };
 };

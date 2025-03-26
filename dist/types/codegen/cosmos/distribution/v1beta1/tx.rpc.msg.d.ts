@@ -1,5 +1,5 @@
 import { TxRpc } from "../../../types";
-import { MsgSetWithdrawAddress, MsgSetWithdrawAddressResponse, MsgWithdrawDelegatorReward, MsgWithdrawDelegatorRewardResponse, MsgWithdrawValidatorCommission, MsgWithdrawValidatorCommissionResponse, MsgFundCommunityPool, MsgFundCommunityPoolResponse, MsgUpdateParams, MsgUpdateParamsResponse, MsgCommunityPoolSpend, MsgCommunityPoolSpendResponse } from "./tx";
+import { MsgSetWithdrawAddress, MsgSetWithdrawAddressResponse, MsgWithdrawDelegatorReward, MsgWithdrawDelegatorRewardResponse, MsgWithdrawValidatorCommission, MsgWithdrawValidatorCommissionResponse, MsgFundCommunityPool, MsgFundCommunityPoolResponse, MsgUpdateParams, MsgUpdateParamsResponse, MsgCommunityPoolSpend, MsgCommunityPoolSpendResponse, MsgDepositValidatorRewardsPool, MsgDepositValidatorRewardsPoolResponse } from "./tx";
 /** Msg defines the distribution Msg service. */
 export interface Msg {
     /**
@@ -38,6 +38,13 @@ export interface Msg {
      * Since: cosmos-sdk 0.47
      */
     communityPoolSpend(request: MsgCommunityPoolSpend): Promise<MsgCommunityPoolSpendResponse>;
+    /**
+     * DepositValidatorRewardsPool defines a method to provide additional rewards
+     * to delegators to a specific validator.
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    depositValidatorRewardsPool(request: MsgDepositValidatorRewardsPool): Promise<MsgDepositValidatorRewardsPoolResponse>;
 }
 export declare class MsgClientImpl implements Msg {
     private readonly rpc;
@@ -48,4 +55,5 @@ export declare class MsgClientImpl implements Msg {
     fundCommunityPool(request: MsgFundCommunityPool): Promise<MsgFundCommunityPoolResponse>;
     updateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
     communityPoolSpend(request: MsgCommunityPoolSpend): Promise<MsgCommunityPoolSpendResponse>;
+    depositValidatorRewardsPool(request: MsgDepositValidatorRewardsPool): Promise<MsgDepositValidatorRewardsPoolResponse>;
 }

@@ -36,8 +36,10 @@ class QueryClientImpl {
     this.supplyOf = this.supplyOf.bind(this);
     this.params = this.params.bind(this);
     this.denomMetadata = this.denomMetadata.bind(this);
+    this.denomMetadataByQueryString = this.denomMetadataByQueryString.bind(this);
     this.denomsMetadata = this.denomsMetadata.bind(this);
     this.denomOwners = this.denomOwners.bind(this);
+    this.denomOwnersByQuery = this.denomOwnersByQuery.bind(this);
     this.sendEnabled = this.sendEnabled.bind(this);
   }
   balance(request) {
@@ -82,6 +84,11 @@ class QueryClientImpl {
     const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomMetadata", data);
     return promise.then((data2) => import_query.QueryDenomMetadataResponse.decode(new import_binary.BinaryReader(data2)));
   }
+  denomMetadataByQueryString(request) {
+    const data = import_query.QueryDenomMetadataByQueryStringRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomMetadataByQueryString", data);
+    return promise.then((data2) => import_query.QueryDenomMetadataByQueryStringResponse.decode(new import_binary.BinaryReader(data2)));
+  }
   denomsMetadata(request = {
     pagination: void 0
   }) {
@@ -93,6 +100,11 @@ class QueryClientImpl {
     const data = import_query.QueryDenomOwnersRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomOwners", data);
     return promise.then((data2) => import_query.QueryDenomOwnersResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  denomOwnersByQuery(request) {
+    const data = import_query.QueryDenomOwnersByQueryRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.bank.v1beta1.Query", "DenomOwnersByQuery", data);
+    return promise.then((data2) => import_query.QueryDenomOwnersByQueryResponse.decode(new import_binary.BinaryReader(data2)));
   }
   sendEnabled(request) {
     const data = import_query.QuerySendEnabledRequest.encode(request).finish();
@@ -128,11 +140,17 @@ const createRpcQueryExtension = (base) => {
     denomMetadata(request) {
       return queryService.denomMetadata(request);
     },
+    denomMetadataByQueryString(request) {
+      return queryService.denomMetadataByQueryString(request);
+    },
     denomsMetadata(request) {
       return queryService.denomsMetadata(request);
     },
     denomOwners(request) {
       return queryService.denomOwners(request);
+    },
+    denomOwnersByQuery(request) {
+      return queryService.denomOwnersByQuery(request);
     },
     sendEnabled(request) {
       return queryService.sendEnabled(request);

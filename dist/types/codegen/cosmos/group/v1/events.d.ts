@@ -245,6 +245,33 @@ export interface EventProposalPrunedSDKType {
     status: ProposalStatus;
     tally_result?: TallyResultSDKType;
 }
+/** EventTallyError is an event emitted when a proposal tally failed with an error. */
+export interface EventTallyError {
+    /** proposal_id is the unique ID of the proposal. */
+    proposalId: bigint;
+    /** error_message is the raw error output */
+    errorMessage: string;
+}
+export interface EventTallyErrorProtoMsg {
+    typeUrl: "/cosmos.group.v1.EventTallyError";
+    value: Uint8Array;
+}
+/** EventTallyError is an event emitted when a proposal tally failed with an error. */
+export interface EventTallyErrorAmino {
+    /** proposal_id is the unique ID of the proposal. */
+    proposal_id?: string;
+    /** error_message is the raw error output */
+    error_message?: string;
+}
+export interface EventTallyErrorAminoMsg {
+    type: "cosmos-sdk/EventTallyError";
+    value: EventTallyErrorAmino;
+}
+/** EventTallyError is an event emitted when a proposal tally failed with an error. */
+export interface EventTallyErrorSDKType {
+    proposal_id: bigint;
+    error_message: string;
+}
 export declare const EventCreateGroup: {
     typeUrl: string;
     encode(message: EventCreateGroup, writer?: BinaryWriter): BinaryWriter;
@@ -374,4 +401,17 @@ export declare const EventProposalPruned: {
     fromProtoMsg(message: EventProposalPrunedProtoMsg): EventProposalPruned;
     toProto(message: EventProposalPruned): Uint8Array;
     toProtoMsg(message: EventProposalPruned): EventProposalPrunedProtoMsg;
+};
+export declare const EventTallyError: {
+    typeUrl: string;
+    encode(message: EventTallyError, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): EventTallyError;
+    fromPartial(object: Partial<EventTallyError>): EventTallyError;
+    fromAmino(object: EventTallyErrorAmino): EventTallyError;
+    toAmino(message: EventTallyError): EventTallyErrorAmino;
+    fromAminoMsg(object: EventTallyErrorAminoMsg): EventTallyError;
+    toAminoMsg(message: EventTallyError): EventTallyErrorAminoMsg;
+    fromProtoMsg(message: EventTallyErrorProtoMsg): EventTallyError;
+    toProto(message: EventTallyError): Uint8Array;
+    toProtoMsg(message: EventTallyError): EventTallyErrorProtoMsg;
 };

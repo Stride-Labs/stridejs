@@ -147,7 +147,11 @@ export interface Proposal {
     votingStartTime?: Date;
     /** voting_end_time is the end time of voting on a proposal. */
     votingEndTime?: Date;
-    /** metadata is any arbitrary metadata attached to the proposal. */
+    /**
+     * metadata is any arbitrary metadata attached to the proposal.
+     * the recommended format of the metadata is to be found here:
+     * https://docs.cosmos.network/v0.47/modules/gov#proposal-3
+     */
     metadata: string;
     /**
      * title is the title of the proposal
@@ -162,11 +166,23 @@ export interface Proposal {
      */
     summary: string;
     /**
-     * Proposer is the address of the proposal sumbitter
+     * proposer is the address of the proposal sumbitter
      *
      * Since: cosmos-sdk 0.47
      */
     proposer: string;
+    /**
+     * expedited defines if the proposal is expedited
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    expedited: boolean;
+    /**
+     * failed_reason defines the reason why the proposal failed
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    failedReason: string;
 }
 export interface ProposalProtoMsg {
     typeUrl: "/cosmos.gov.v1.Proposal";
@@ -196,7 +212,11 @@ export interface ProposalAmino {
     voting_start_time?: string;
     /** voting_end_time is the end time of voting on a proposal. */
     voting_end_time?: string;
-    /** metadata is any arbitrary metadata attached to the proposal. */
+    /**
+     * metadata is any arbitrary metadata attached to the proposal.
+     * the recommended format of the metadata is to be found here:
+     * https://docs.cosmos.network/v0.47/modules/gov#proposal-3
+     */
     metadata?: string;
     /**
      * title is the title of the proposal
@@ -211,11 +231,23 @@ export interface ProposalAmino {
      */
     summary?: string;
     /**
-     * Proposer is the address of the proposal sumbitter
+     * proposer is the address of the proposal sumbitter
      *
      * Since: cosmos-sdk 0.47
      */
     proposer?: string;
+    /**
+     * expedited defines if the proposal is expedited
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    expedited?: boolean;
+    /**
+     * failed_reason defines the reason why the proposal failed
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    failed_reason?: string;
 }
 export interface ProposalAminoMsg {
     type: "cosmos-sdk/v1/Proposal";
@@ -236,6 +268,8 @@ export interface ProposalSDKType {
     title: string;
     summary: string;
     proposer: string;
+    expedited: boolean;
+    failed_reason: string;
 }
 /** TallyResult defines a standard tally for a governance proposal. */
 export interface TallyResult {
@@ -285,7 +319,10 @@ export interface Vote {
     voter: string;
     /** options is the weighted vote options. */
     options: WeightedVoteOption[];
-    /** metadata is any  arbitrary metadata to attached to the vote. */
+    /**
+     * metadata is any arbitrary metadata attached to the vote.
+     * the recommended format of the metadata is to be found here: https://docs.cosmos.network/v0.47/modules/gov#vote-5
+     */
     metadata: string;
 }
 export interface VoteProtoMsg {
@@ -303,7 +340,10 @@ export interface VoteAmino {
     voter?: string;
     /** options is the weighted vote options. */
     options?: WeightedVoteOptionAmino[];
-    /** metadata is any  arbitrary metadata to attached to the vote. */
+    /**
+     * metadata is any arbitrary metadata attached to the vote.
+     * the recommended format of the metadata is to be found here: https://docs.cosmos.network/v0.47/modules/gov#vote-5
+     */
     metadata?: string;
 }
 export interface VoteAminoMsg {
@@ -321,6 +361,7 @@ export interface VoteSDKType {
     metadata: string;
 }
 /** DepositParams defines the params for deposits on governance proposals. */
+/** @deprecated */
 export interface DepositParams {
     /** Minimum deposit for a proposal to enter voting period. */
     minDeposit: Coin[];
@@ -335,6 +376,7 @@ export interface DepositParamsProtoMsg {
     value: Uint8Array;
 }
 /** DepositParams defines the params for deposits on governance proposals. */
+/** @deprecated */
 export interface DepositParamsAmino {
     /** Minimum deposit for a proposal to enter voting period. */
     min_deposit?: CoinAmino[];
@@ -349,11 +391,13 @@ export interface DepositParamsAminoMsg {
     value: DepositParamsAmino;
 }
 /** DepositParams defines the params for deposits on governance proposals. */
+/** @deprecated */
 export interface DepositParamsSDKType {
     min_deposit: CoinSDKType[];
     max_deposit_period?: DurationSDKType;
 }
 /** VotingParams defines the params for voting on governance proposals. */
+/** @deprecated */
 export interface VotingParams {
     /** Duration of the voting period. */
     votingPeriod?: Duration;
@@ -363,6 +407,7 @@ export interface VotingParamsProtoMsg {
     value: Uint8Array;
 }
 /** VotingParams defines the params for voting on governance proposals. */
+/** @deprecated */
 export interface VotingParamsAmino {
     /** Duration of the voting period. */
     voting_period?: DurationAmino;
@@ -372,10 +417,12 @@ export interface VotingParamsAminoMsg {
     value: VotingParamsAmino;
 }
 /** VotingParams defines the params for voting on governance proposals. */
+/** @deprecated */
 export interface VotingParamsSDKType {
     voting_period?: DurationSDKType;
 }
 /** TallyParams defines the params for tallying votes on governance proposals. */
+/** @deprecated */
 export interface TallyParams {
     /**
      * Minimum percentage of total stake needed to vote for a result to be
@@ -395,6 +442,7 @@ export interface TallyParamsProtoMsg {
     value: Uint8Array;
 }
 /** TallyParams defines the params for tallying votes on governance proposals. */
+/** @deprecated */
 export interface TallyParamsAmino {
     /**
      * Minimum percentage of total stake needed to vote for a result to be
@@ -414,6 +462,7 @@ export interface TallyParamsAminoMsg {
     value: TallyParamsAmino;
 }
 /** TallyParams defines the params for tallying votes on governance proposals. */
+/** @deprecated */
 export interface TallyParamsSDKType {
     quorum: string;
     threshold: string;
@@ -448,12 +497,47 @@ export interface Params {
     vetoThreshold: string;
     /** The ratio representing the proportion of the deposit value that must be paid at proposal submission. */
     minInitialDepositRatio: string;
+    /**
+     * The cancel ratio which will not be returned back to the depositors when a proposal is cancelled.
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    proposalCancelRatio: string;
+    /**
+     * The address which will receive (proposal_cancel_ratio * deposit) proposal deposits.
+     * If empty, the (proposal_cancel_ratio * deposit) proposal deposits will be burned.
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    proposalCancelDest: string;
+    /**
+     * Duration of the voting period of an expedited proposal.
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    expeditedVotingPeriod?: Duration;
+    /**
+     * Minimum proportion of Yes votes for proposal to pass. Default value: 0.67.
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    expeditedThreshold: string;
+    /** Minimum expedited deposit for a proposal to enter voting period. */
+    expeditedMinDeposit: Coin[];
     /** burn deposits if a proposal does not meet quorum */
     burnVoteQuorum: boolean;
     /** burn deposits if the proposal does not enter voting period */
     burnProposalDepositPrevote: boolean;
     /** burn deposits if quorum with vote type no_veto is met */
     burnVoteVeto: boolean;
+    /**
+     * The ratio representing the proportion of the deposit value minimum that must be met when making a deposit.
+     * Default value: 0.01. Meaning that for a chain with a min_deposit of 100stake, a deposit of 1stake would be
+     * required.
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    minDepositRatio: string;
 }
 export interface ParamsProtoMsg {
     typeUrl: "/cosmos.gov.v1.Params";
@@ -488,12 +572,47 @@ export interface ParamsAmino {
     veto_threshold?: string;
     /** The ratio representing the proportion of the deposit value that must be paid at proposal submission. */
     min_initial_deposit_ratio?: string;
+    /**
+     * The cancel ratio which will not be returned back to the depositors when a proposal is cancelled.
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    proposal_cancel_ratio?: string;
+    /**
+     * The address which will receive (proposal_cancel_ratio * deposit) proposal deposits.
+     * If empty, the (proposal_cancel_ratio * deposit) proposal deposits will be burned.
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    proposal_cancel_dest?: string;
+    /**
+     * Duration of the voting period of an expedited proposal.
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    expedited_voting_period?: DurationAmino;
+    /**
+     * Minimum proportion of Yes votes for proposal to pass. Default value: 0.67.
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    expedited_threshold?: string;
+    /** Minimum expedited deposit for a proposal to enter voting period. */
+    expedited_min_deposit: CoinAmino[];
     /** burn deposits if a proposal does not meet quorum */
     burn_vote_quorum?: boolean;
     /** burn deposits if the proposal does not enter voting period */
     burn_proposal_deposit_prevote?: boolean;
     /** burn deposits if quorum with vote type no_veto is met */
     burn_vote_veto?: boolean;
+    /**
+     * The ratio representing the proportion of the deposit value minimum that must be met when making a deposit.
+     * Default value: 0.01. Meaning that for a chain with a min_deposit of 100stake, a deposit of 1stake would be
+     * required.
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    min_deposit_ratio?: string;
 }
 export interface ParamsAminoMsg {
     type: "cosmos-sdk/v1/Params";
@@ -512,9 +631,15 @@ export interface ParamsSDKType {
     threshold: string;
     veto_threshold: string;
     min_initial_deposit_ratio: string;
+    proposal_cancel_ratio: string;
+    proposal_cancel_dest: string;
+    expedited_voting_period?: DurationSDKType;
+    expedited_threshold: string;
+    expedited_min_deposit: CoinSDKType[];
     burn_vote_quorum: boolean;
     burn_proposal_deposit_prevote: boolean;
     burn_vote_veto: boolean;
+    min_deposit_ratio: string;
 }
 export declare const WeightedVoteOption: {
     typeUrl: string;

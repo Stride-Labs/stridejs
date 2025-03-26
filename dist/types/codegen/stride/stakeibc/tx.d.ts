@@ -29,7 +29,7 @@ export interface MsgUpdateInnerRedemptionRateBoundsAmino {
     max_inner_redemption_rate?: string;
 }
 export interface MsgUpdateInnerRedemptionRateBoundsAminoMsg {
-    type: "/stride.stakeibc.MsgUpdateInnerRedemptionRateBounds";
+    type: "stakeibc/MsgUpdateRedemptionRateBounds";
     value: MsgUpdateInnerRedemptionRateBoundsAmino;
 }
 export interface MsgUpdateInnerRedemptionRateBoundsSDKType {
@@ -373,7 +373,7 @@ export interface MsgAddValidatorsAmino {
     validators?: ValidatorAmino[];
 }
 export interface MsgAddValidatorsAminoMsg {
-    type: "/stride.stakeibc.MsgAddValidators";
+    type: "stakeibc/MsgAddValidators";
     value: MsgAddValidatorsAmino;
 }
 export interface MsgAddValidatorsSDKType {
@@ -430,7 +430,7 @@ export interface MsgChangeValidatorWeightsAmino {
     validator_weights?: ValidatorWeightAmino[];
 }
 export interface MsgChangeValidatorWeightsAminoMsg {
-    type: "/stride.stakeibc.MsgChangeValidatorWeights";
+    type: "stakeibc/MsgChangeValidatorWeights";
     value: MsgChangeValidatorWeightsAmino;
 }
 export interface MsgChangeValidatorWeightsSDKType {
@@ -542,7 +542,7 @@ export interface MsgCloseDelegationChannelAmino {
     chain_id?: string;
 }
 export interface MsgCloseDelegationChannelAminoMsg {
-    type: "/stride.stakeibc.MsgCloseDelegationChannel";
+    type: "stakeibc/MsgCloseDelegationChanne";
     value: MsgCloseDelegationChannelAmino;
 }
 export interface MsgCloseDelegationChannelSDKType {
@@ -615,7 +615,7 @@ export interface MsgCalibrateDelegationAmino {
     valoper?: string;
 }
 export interface MsgCalibrateDelegationAminoMsg {
-    type: "/stride.stakeibc.MsgCalibrateDelegation";
+    type: "stakeibc/MsgCalibrateDelegation";
     value: MsgCalibrateDelegationAmino;
 }
 export interface MsgCalibrateDelegationSDKType {
@@ -650,7 +650,7 @@ export interface MsgResumeHostZoneAmino {
     chain_id?: string;
 }
 export interface MsgResumeHostZoneAminoMsg {
-    type: "/stride.stakeibc.MsgResumeHostZone";
+    type: "stakeibc/MsgResumeHostZone";
     value: MsgResumeHostZoneAmino;
 }
 export interface MsgResumeHostZoneSDKType {
@@ -802,7 +802,7 @@ export interface MsgCreateTradeRouteAmino {
     min_transfer_amount?: string;
 }
 export interface MsgCreateTradeRouteAminoMsg {
-    type: "stride/x/stakeibc/MsgCreateTradeRoute";
+    type: "stakeibc/MsgCreateTradeRoute";
     value: MsgCreateTradeRouteAmino;
 }
 /** Creates a new trade route */
@@ -870,7 +870,7 @@ export interface MsgDeleteTradeRouteAmino {
     host_denom?: string;
 }
 export interface MsgDeleteTradeRouteAminoMsg {
-    type: "stride/x/stakeibc/MsgDeleteTradeRoute";
+    type: "stakeibc/MsgDeleteTradeRoute";
     value: MsgDeleteTradeRouteAmino;
 }
 /** Deletes a trade route */
@@ -998,7 +998,7 @@ export interface MsgUpdateTradeRouteAmino {
     min_transfer_amount?: string;
 }
 export interface MsgUpdateTradeRouteAminoMsg {
-    type: "stride/x/stakeibc/MsgUpdateTradeRoute";
+    type: "stakeibc/MsgUpdateTradeRoute";
     value: MsgUpdateTradeRouteAmino;
 }
 /** Updates the config of a trade route */
@@ -1069,7 +1069,7 @@ export interface MsgSetCommunityPoolRebateAmino {
     liquid_staked_st_token_amount?: string;
 }
 export interface MsgSetCommunityPoolRebateAminoMsg {
-    type: "stride/x/stakeibc/MsgSetCommunityPoolRebate";
+    type: "stakeibc/MsgSetCommunityPoolRebate";
     value: MsgSetCommunityPoolRebateAmino;
 }
 /**
@@ -1127,7 +1127,7 @@ export interface MsgToggleTradeControllerAmino {
     legacy?: boolean;
 }
 export interface MsgToggleTradeControllerAminoMsg {
-    type: "stride/x/stakeibc/MsgToggleTradeController";
+    type: "stakeibc/MsgToggleTradeController";
     value: MsgToggleTradeControllerAmino;
 }
 /** Grants or revokes trade permissions to a given address via authz */
@@ -1181,7 +1181,7 @@ export interface MsgUpdateHostZoneParamsAmino {
     max_messages_per_ica_tx?: string;
 }
 export interface MsgUpdateHostZoneParamsAminoMsg {
-    type: "stride/x/stakeibc/MsgUpdateHostZoneParams";
+    type: "stakeibc/MsgUpdateHostZoneParams";
     value: MsgUpdateHostZoneParamsAmino;
 }
 /** Updates host zone params */
@@ -1212,6 +1212,7 @@ export declare const MsgUpdateInnerRedemptionRateBounds: {
     fromAmino(object: MsgUpdateInnerRedemptionRateBoundsAmino): MsgUpdateInnerRedemptionRateBounds;
     toAmino(message: MsgUpdateInnerRedemptionRateBounds): MsgUpdateInnerRedemptionRateBoundsAmino;
     fromAminoMsg(object: MsgUpdateInnerRedemptionRateBoundsAminoMsg): MsgUpdateInnerRedemptionRateBounds;
+    toAminoMsg(message: MsgUpdateInnerRedemptionRateBounds): MsgUpdateInnerRedemptionRateBoundsAminoMsg;
     fromProtoMsg(message: MsgUpdateInnerRedemptionRateBoundsProtoMsg): MsgUpdateInnerRedemptionRateBounds;
     toProto(message: MsgUpdateInnerRedemptionRateBounds): Uint8Array;
     toProtoMsg(message: MsgUpdateInnerRedemptionRateBounds): MsgUpdateInnerRedemptionRateBoundsProtoMsg;
@@ -1411,6 +1412,7 @@ export declare const MsgAddValidators: {
     fromAmino(object: MsgAddValidatorsAmino): MsgAddValidators;
     toAmino(message: MsgAddValidators): MsgAddValidatorsAmino;
     fromAminoMsg(object: MsgAddValidatorsAminoMsg): MsgAddValidators;
+    toAminoMsg(message: MsgAddValidators): MsgAddValidatorsAminoMsg;
     fromProtoMsg(message: MsgAddValidatorsProtoMsg): MsgAddValidators;
     toProto(message: MsgAddValidators): Uint8Array;
     toProtoMsg(message: MsgAddValidators): MsgAddValidatorsProtoMsg;
@@ -1447,6 +1449,7 @@ export declare const MsgChangeValidatorWeights: {
     fromAmino(object: MsgChangeValidatorWeightsAmino): MsgChangeValidatorWeights;
     toAmino(message: MsgChangeValidatorWeights): MsgChangeValidatorWeightsAmino;
     fromAminoMsg(object: MsgChangeValidatorWeightsAminoMsg): MsgChangeValidatorWeights;
+    toAminoMsg(message: MsgChangeValidatorWeights): MsgChangeValidatorWeightsAminoMsg;
     fromProtoMsg(message: MsgChangeValidatorWeightsProtoMsg): MsgChangeValidatorWeights;
     toProto(message: MsgChangeValidatorWeights): Uint8Array;
     toProtoMsg(message: MsgChangeValidatorWeights): MsgChangeValidatorWeightsProtoMsg;
@@ -1521,6 +1524,7 @@ export declare const MsgCloseDelegationChannel: {
     fromAmino(object: MsgCloseDelegationChannelAmino): MsgCloseDelegationChannel;
     toAmino(message: MsgCloseDelegationChannel): MsgCloseDelegationChannelAmino;
     fromAminoMsg(object: MsgCloseDelegationChannelAminoMsg): MsgCloseDelegationChannel;
+    toAminoMsg(message: MsgCloseDelegationChannel): MsgCloseDelegationChannelAminoMsg;
     fromProtoMsg(message: MsgCloseDelegationChannelProtoMsg): MsgCloseDelegationChannel;
     toProto(message: MsgCloseDelegationChannel): Uint8Array;
     toProtoMsg(message: MsgCloseDelegationChannel): MsgCloseDelegationChannelProtoMsg;
@@ -1570,6 +1574,7 @@ export declare const MsgCalibrateDelegation: {
     fromAmino(object: MsgCalibrateDelegationAmino): MsgCalibrateDelegation;
     toAmino(message: MsgCalibrateDelegation): MsgCalibrateDelegationAmino;
     fromAminoMsg(object: MsgCalibrateDelegationAminoMsg): MsgCalibrateDelegation;
+    toAminoMsg(message: MsgCalibrateDelegation): MsgCalibrateDelegationAminoMsg;
     fromProtoMsg(message: MsgCalibrateDelegationProtoMsg): MsgCalibrateDelegation;
     toProto(message: MsgCalibrateDelegation): Uint8Array;
     toProtoMsg(message: MsgCalibrateDelegation): MsgCalibrateDelegationProtoMsg;
@@ -1594,6 +1599,7 @@ export declare const MsgResumeHostZone: {
     fromAmino(object: MsgResumeHostZoneAmino): MsgResumeHostZone;
     toAmino(message: MsgResumeHostZone): MsgResumeHostZoneAmino;
     fromAminoMsg(object: MsgResumeHostZoneAminoMsg): MsgResumeHostZone;
+    toAminoMsg(message: MsgResumeHostZone): MsgResumeHostZoneAminoMsg;
     fromProtoMsg(message: MsgResumeHostZoneProtoMsg): MsgResumeHostZone;
     toProto(message: MsgResumeHostZone): Uint8Array;
     toProtoMsg(message: MsgResumeHostZone): MsgResumeHostZoneProtoMsg;

@@ -1,5 +1,5 @@
 import { Coin, CoinAmino, CoinSDKType } from "../../../../cosmos/base/v1beta1/coin";
-import { Height, HeightAmino, HeightSDKType } from "../../../core/client/v1/client";
+import { Height, HeightAmino, HeightSDKType, Params, ParamsAmino, ParamsSDKType } from "../../../core/client/v1/client";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 /**
  * MsgTransfer defines a msg to transfer fungible tokens (i.e Coins) between
@@ -45,7 +45,7 @@ export interface MsgTransferAmino {
     /** the channel by which the packet will be sent */
     source_channel?: string;
     /** the tokens to be transferred */
-    token?: CoinAmino;
+    token: CoinAmino;
     /** the sender address */
     sender?: string;
     /** the recipient address on the destination chain */
@@ -54,7 +54,7 @@ export interface MsgTransferAmino {
      * Timeout height relative to the current block height.
      * The timeout is disabled when set to 0.
      */
-    timeout_height?: HeightAmino;
+    timeout_height: HeightAmino;
     /**
      * Timeout timestamp in absolute nanoseconds since unix epoch.
      * The timeout is disabled when set to 0.
@@ -104,6 +104,67 @@ export interface MsgTransferResponseAminoMsg {
 export interface MsgTransferResponseSDKType {
     sequence: bigint;
 }
+/** MsgUpdateParams is the Msg/UpdateParams request type. */
+export interface MsgUpdateParams {
+    /** signer address */
+    signer: string;
+    /**
+     * params defines the transfer parameters to update.
+     *
+     * NOTE: All parameters must be supplied.
+     */
+    params: Params;
+}
+export interface MsgUpdateParamsProtoMsg {
+    typeUrl: "/ibc.applications.transfer.v1.MsgUpdateParams";
+    value: Uint8Array;
+}
+/** MsgUpdateParams is the Msg/UpdateParams request type. */
+export interface MsgUpdateParamsAmino {
+    /** signer address */
+    signer?: string;
+    /**
+     * params defines the transfer parameters to update.
+     *
+     * NOTE: All parameters must be supplied.
+     */
+    params?: ParamsAmino;
+}
+export interface MsgUpdateParamsAminoMsg {
+    type: "cosmos-sdk/MsgUpdateParams";
+    value: MsgUpdateParamsAmino;
+}
+/** MsgUpdateParams is the Msg/UpdateParams request type. */
+export interface MsgUpdateParamsSDKType {
+    signer: string;
+    params: ParamsSDKType;
+}
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ */
+export interface MsgUpdateParamsResponse {
+}
+export interface MsgUpdateParamsResponseProtoMsg {
+    typeUrl: "/ibc.applications.transfer.v1.MsgUpdateParamsResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ */
+export interface MsgUpdateParamsResponseAmino {
+}
+export interface MsgUpdateParamsResponseAminoMsg {
+    type: "cosmos-sdk/MsgUpdateParamsResponse";
+    value: MsgUpdateParamsResponseAmino;
+}
+/**
+ * MsgUpdateParamsResponse defines the response structure for executing a
+ * MsgUpdateParams message.
+ */
+export interface MsgUpdateParamsResponseSDKType {
+}
 export declare const MsgTransfer: {
     typeUrl: string;
     encode(message: MsgTransfer, writer?: BinaryWriter): BinaryWriter;
@@ -129,4 +190,30 @@ export declare const MsgTransferResponse: {
     fromProtoMsg(message: MsgTransferResponseProtoMsg): MsgTransferResponse;
     toProto(message: MsgTransferResponse): Uint8Array;
     toProtoMsg(message: MsgTransferResponse): MsgTransferResponseProtoMsg;
+};
+export declare const MsgUpdateParams: {
+    typeUrl: string;
+    encode(message: MsgUpdateParams, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParams;
+    fromPartial(object: Partial<MsgUpdateParams>): MsgUpdateParams;
+    fromAmino(object: MsgUpdateParamsAmino): MsgUpdateParams;
+    toAmino(message: MsgUpdateParams): MsgUpdateParamsAmino;
+    fromAminoMsg(object: MsgUpdateParamsAminoMsg): MsgUpdateParams;
+    toAminoMsg(message: MsgUpdateParams): MsgUpdateParamsAminoMsg;
+    fromProtoMsg(message: MsgUpdateParamsProtoMsg): MsgUpdateParams;
+    toProto(message: MsgUpdateParams): Uint8Array;
+    toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg;
+};
+export declare const MsgUpdateParamsResponse: {
+    typeUrl: string;
+    encode(_: MsgUpdateParamsResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParamsResponse;
+    fromPartial(_: Partial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse;
+    fromAmino(_: MsgUpdateParamsResponseAmino): MsgUpdateParamsResponse;
+    toAmino(_: MsgUpdateParamsResponse): MsgUpdateParamsResponseAmino;
+    fromAminoMsg(object: MsgUpdateParamsResponseAminoMsg): MsgUpdateParamsResponse;
+    toAminoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseAminoMsg;
+    fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse;
+    toProto(message: MsgUpdateParamsResponse): Uint8Array;
+    toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg;
 };

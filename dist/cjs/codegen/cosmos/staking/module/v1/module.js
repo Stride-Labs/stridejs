@@ -24,7 +24,9 @@ var import_binary = require("../../../../binary");
 function createBaseModule() {
   return {
     hooksOrder: [],
-    authority: ""
+    authority: "",
+    bech32PrefixValidator: "",
+    bech32PrefixConsensus: ""
   };
 }
 const Module = {
@@ -35,6 +37,12 @@ const Module = {
     }
     if (message.authority !== "") {
       writer.uint32(18).string(message.authority);
+    }
+    if (message.bech32PrefixValidator !== "") {
+      writer.uint32(26).string(message.bech32PrefixValidator);
+    }
+    if (message.bech32PrefixConsensus !== "") {
+      writer.uint32(34).string(message.bech32PrefixConsensus);
     }
     return writer;
   },
@@ -51,6 +59,12 @@ const Module = {
         case 2:
           message.authority = reader.string();
           break;
+        case 3:
+          message.bech32PrefixValidator = reader.string();
+          break;
+        case 4:
+          message.bech32PrefixConsensus = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -62,6 +76,8 @@ const Module = {
     const message = createBaseModule();
     message.hooksOrder = object.hooksOrder?.map((e) => e) || [];
     message.authority = object.authority ?? "";
+    message.bech32PrefixValidator = object.bech32PrefixValidator ?? "";
+    message.bech32PrefixConsensus = object.bech32PrefixConsensus ?? "";
     return message;
   },
   fromAmino(object) {
@@ -69,6 +85,12 @@ const Module = {
     message.hooksOrder = object.hooks_order?.map((e) => e) || [];
     if (object.authority !== void 0 && object.authority !== null) {
       message.authority = object.authority;
+    }
+    if (object.bech32_prefix_validator !== void 0 && object.bech32_prefix_validator !== null) {
+      message.bech32PrefixValidator = object.bech32_prefix_validator;
+    }
+    if (object.bech32_prefix_consensus !== void 0 && object.bech32_prefix_consensus !== null) {
+      message.bech32PrefixConsensus = object.bech32_prefix_consensus;
     }
     return message;
   },
@@ -80,6 +102,8 @@ const Module = {
       obj.hooks_order = message.hooksOrder;
     }
     obj.authority = message.authority === "" ? void 0 : message.authority;
+    obj.bech32_prefix_validator = message.bech32PrefixValidator === "" ? void 0 : message.bech32PrefixValidator;
+    obj.bech32_prefix_consensus = message.bech32PrefixConsensus === "" ? void 0 : message.bech32PrefixConsensus;
     return obj;
   },
   fromAminoMsg(object) {

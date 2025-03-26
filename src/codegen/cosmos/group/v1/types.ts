@@ -451,7 +451,10 @@ export interface GroupInfo {
   id: bigint;
   /** admin is the account address of the group's admin. */
   admin: string;
-  /** metadata is any arbitrary metadata to attached to the group. */
+  /**
+   * metadata is any arbitrary metadata to attached to the group.
+   * the recommended format of the metadata is to be found here: https://docs.cosmos.network/v0.47/modules/group#group-1
+   */
   metadata: string;
   /**
    * version is used to track changes to a group's membership structure that
@@ -475,7 +478,10 @@ export interface GroupInfoAmino {
   id?: string;
   /** admin is the account address of the group's admin. */
   admin?: string;
-  /** metadata is any arbitrary metadata to attached to the group. */
+  /**
+   * metadata is any arbitrary metadata to attached to the group.
+   * the recommended format of the metadata is to be found here: https://docs.cosmos.network/v0.47/modules/group#group-1
+   */
   metadata?: string;
   /**
    * version is used to track changes to a group's membership structure that
@@ -799,7 +805,7 @@ export interface TallyResultSDKType {
   no_count: string;
   no_with_veto_count: string;
 }
-/** Vote represents a vote for a proposal. */
+/** Vote represents a vote for a proposal.string metadata */
 export interface Vote {
   /** proposal is the unique ID of the proposal. */
   proposalId: bigint;
@@ -807,7 +813,10 @@ export interface Vote {
   voter: string;
   /** option is the voter's choice on the proposal. */
   option: VoteOption;
-  /** metadata is any arbitrary metadata attached to the vote. */
+  /**
+   * metadata is any arbitrary metadata attached to the vote.
+   * the recommended format of the metadata is to be found here: https://docs.cosmos.network/v0.47/modules/group#vote-2
+   */
   metadata: string;
   /** submit_time is the timestamp when the vote was submitted. */
   submitTime: Date;
@@ -816,7 +825,7 @@ export interface VoteProtoMsg {
   typeUrl: "/cosmos.group.v1.Vote";
   value: Uint8Array;
 }
-/** Vote represents a vote for a proposal. */
+/** Vote represents a vote for a proposal.string metadata */
 export interface VoteAmino {
   /** proposal is the unique ID of the proposal. */
   proposal_id?: string;
@@ -824,7 +833,10 @@ export interface VoteAmino {
   voter?: string;
   /** option is the voter's choice on the proposal. */
   option?: VoteOption;
-  /** metadata is any arbitrary metadata attached to the vote. */
+  /**
+   * metadata is any arbitrary metadata attached to the vote.
+   * the recommended format of the metadata is to be found here: https://docs.cosmos.network/v0.47/modules/group#vote-2
+   */
   metadata?: string;
   /** submit_time is the timestamp when the vote was submitted. */
   submit_time: string;
@@ -833,7 +845,7 @@ export interface VoteAminoMsg {
   type: "cosmos-sdk/Vote";
   value: VoteAmino;
 }
-/** Vote represents a vote for a proposal. */
+/** Vote represents a vote for a proposal.string metadata */
 export interface VoteSDKType {
   proposal_id: bigint;
   voter: string;

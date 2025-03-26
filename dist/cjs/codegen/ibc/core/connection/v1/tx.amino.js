@@ -41,6 +41,11 @@ const AminoConverter = {
     aminoType: "cosmos-sdk/MsgConnectionOpenConfirm",
     toAmino: import_tx.MsgConnectionOpenConfirm.toAmino,
     fromAmino: import_tx.MsgConnectionOpenConfirm.fromAmino
+  },
+  "/ibc.core.connection.v1.MsgUpdateParams": {
+    aminoType: "cosmos-sdk/MsgUpdateParams",
+    toAmino: import_tx.MsgUpdateParams.toAmino,
+    fromAmino: import_tx.MsgUpdateParams.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

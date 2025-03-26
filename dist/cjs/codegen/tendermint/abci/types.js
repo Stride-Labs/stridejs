@@ -23,6 +23,7 @@ __export(types_exports, {
   CommitInfo: () => CommitInfo,
   Event: () => Event,
   EventAttribute: () => EventAttribute,
+  ExecTxResult: () => ExecTxResult,
   ExtendedCommitInfo: () => ExtendedCommitInfo,
   ExtendedVoteInfo: () => ExtendedVoteInfo,
   Misbehavior: () => Misbehavior,
@@ -31,12 +32,11 @@ __export(types_exports, {
   MisbehaviorTypeSDKType: () => MisbehaviorTypeSDKType,
   Request: () => Request,
   RequestApplySnapshotChunk: () => RequestApplySnapshotChunk,
-  RequestBeginBlock: () => RequestBeginBlock,
   RequestCheckTx: () => RequestCheckTx,
   RequestCommit: () => RequestCommit,
-  RequestDeliverTx: () => RequestDeliverTx,
   RequestEcho: () => RequestEcho,
-  RequestEndBlock: () => RequestEndBlock,
+  RequestExtendVote: () => RequestExtendVote,
+  RequestFinalizeBlock: () => RequestFinalizeBlock,
   RequestFlush: () => RequestFlush,
   RequestInfo: () => RequestInfo,
   RequestInitChain: () => RequestInitChain,
@@ -46,18 +46,18 @@ __export(types_exports, {
   RequestPrepareProposal: () => RequestPrepareProposal,
   RequestProcessProposal: () => RequestProcessProposal,
   RequestQuery: () => RequestQuery,
+  RequestVerifyVoteExtension: () => RequestVerifyVoteExtension,
   Response: () => Response,
   ResponseApplySnapshotChunk: () => ResponseApplySnapshotChunk,
   ResponseApplySnapshotChunk_Result: () => ResponseApplySnapshotChunk_Result,
   ResponseApplySnapshotChunk_ResultAmino: () => ResponseApplySnapshotChunk_ResultAmino,
   ResponseApplySnapshotChunk_ResultSDKType: () => ResponseApplySnapshotChunk_ResultSDKType,
-  ResponseBeginBlock: () => ResponseBeginBlock,
   ResponseCheckTx: () => ResponseCheckTx,
   ResponseCommit: () => ResponseCommit,
-  ResponseDeliverTx: () => ResponseDeliverTx,
   ResponseEcho: () => ResponseEcho,
-  ResponseEndBlock: () => ResponseEndBlock,
   ResponseException: () => ResponseException,
+  ResponseExtendVote: () => ResponseExtendVote,
+  ResponseFinalizeBlock: () => ResponseFinalizeBlock,
   ResponseFlush: () => ResponseFlush,
   ResponseInfo: () => ResponseInfo,
   ResponseInitChain: () => ResponseInitChain,
@@ -73,6 +73,10 @@ __export(types_exports, {
   ResponseProcessProposal_ProposalStatusAmino: () => ResponseProcessProposal_ProposalStatusAmino,
   ResponseProcessProposal_ProposalStatusSDKType: () => ResponseProcessProposal_ProposalStatusSDKType,
   ResponseQuery: () => ResponseQuery,
+  ResponseVerifyVoteExtension: () => ResponseVerifyVoteExtension,
+  ResponseVerifyVoteExtension_VerifyStatus: () => ResponseVerifyVoteExtension_VerifyStatus,
+  ResponseVerifyVoteExtension_VerifyStatusAmino: () => ResponseVerifyVoteExtension_VerifyStatusAmino,
+  ResponseVerifyVoteExtension_VerifyStatusSDKType: () => ResponseVerifyVoteExtension_VerifyStatusSDKType,
   Snapshot: () => Snapshot,
   TxResult: () => TxResult,
   Validator: () => Validator,
@@ -87,12 +91,13 @@ __export(types_exports, {
   responseOfferSnapshot_ResultFromJSON: () => responseOfferSnapshot_ResultFromJSON,
   responseOfferSnapshot_ResultToJSON: () => responseOfferSnapshot_ResultToJSON,
   responseProcessProposal_ProposalStatusFromJSON: () => responseProcessProposal_ProposalStatusFromJSON,
-  responseProcessProposal_ProposalStatusToJSON: () => responseProcessProposal_ProposalStatusToJSON
+  responseProcessProposal_ProposalStatusToJSON: () => responseProcessProposal_ProposalStatusToJSON,
+  responseVerifyVoteExtension_VerifyStatusFromJSON: () => responseVerifyVoteExtension_VerifyStatusFromJSON,
+  responseVerifyVoteExtension_VerifyStatusToJSON: () => responseVerifyVoteExtension_VerifyStatusToJSON
 });
 module.exports = __toCommonJS(types_exports);
 var import_timestamp = require("../../google/protobuf/timestamp");
 var import_params = require("../types/params");
-var import_types = require("../types/types");
 var import_proof = require("../crypto/proof");
 var import_keys = require("../crypto/keys");
 var import_binary = require("../../binary");
@@ -283,6 +288,45 @@ function responseProcessProposal_ProposalStatusToJSON(object) {
       return "UNRECOGNIZED";
   }
 }
+var ResponseVerifyVoteExtension_VerifyStatus = /* @__PURE__ */ ((ResponseVerifyVoteExtension_VerifyStatus2) => {
+  ResponseVerifyVoteExtension_VerifyStatus2[ResponseVerifyVoteExtension_VerifyStatus2["UNKNOWN"] = 0] = "UNKNOWN";
+  ResponseVerifyVoteExtension_VerifyStatus2[ResponseVerifyVoteExtension_VerifyStatus2["ACCEPT"] = 1] = "ACCEPT";
+  ResponseVerifyVoteExtension_VerifyStatus2[ResponseVerifyVoteExtension_VerifyStatus2["REJECT"] = 2] = "REJECT";
+  ResponseVerifyVoteExtension_VerifyStatus2[ResponseVerifyVoteExtension_VerifyStatus2["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
+  return ResponseVerifyVoteExtension_VerifyStatus2;
+})(ResponseVerifyVoteExtension_VerifyStatus || {});
+const ResponseVerifyVoteExtension_VerifyStatusSDKType = ResponseVerifyVoteExtension_VerifyStatus;
+const ResponseVerifyVoteExtension_VerifyStatusAmino = ResponseVerifyVoteExtension_VerifyStatus;
+function responseVerifyVoteExtension_VerifyStatusFromJSON(object) {
+  switch (object) {
+    case 0:
+    case "UNKNOWN":
+      return 0 /* UNKNOWN */;
+    case 1:
+    case "ACCEPT":
+      return 1 /* ACCEPT */;
+    case 2:
+    case "REJECT":
+      return 2 /* REJECT */;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return -1 /* UNRECOGNIZED */;
+  }
+}
+function responseVerifyVoteExtension_VerifyStatusToJSON(object) {
+  switch (object) {
+    case 0 /* UNKNOWN */:
+      return "UNKNOWN";
+    case 1 /* ACCEPT */:
+      return "ACCEPT";
+    case 2 /* REJECT */:
+      return "REJECT";
+    case -1 /* UNRECOGNIZED */:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
 var MisbehaviorType = /* @__PURE__ */ ((MisbehaviorType2) => {
   MisbehaviorType2[MisbehaviorType2["UNKNOWN"] = 0] = "UNKNOWN";
   MisbehaviorType2[MisbehaviorType2["DUPLICATE_VOTE"] = 1] = "DUPLICATE_VOTE";
@@ -329,17 +373,17 @@ function createBaseRequest() {
     info: void 0,
     initChain: void 0,
     query: void 0,
-    beginBlock: void 0,
     checkTx: void 0,
-    deliverTx: void 0,
-    endBlock: void 0,
     commit: void 0,
     listSnapshots: void 0,
     offerSnapshot: void 0,
     loadSnapshotChunk: void 0,
     applySnapshotChunk: void 0,
     prepareProposal: void 0,
-    processProposal: void 0
+    processProposal: void 0,
+    extendVote: void 0,
+    verifyVoteExtension: void 0,
+    finalizeBlock: void 0
   };
 }
 const Request = {
@@ -360,17 +404,8 @@ const Request = {
     if (message.query !== void 0) {
       RequestQuery.encode(message.query, writer.uint32(50).fork()).ldelim();
     }
-    if (message.beginBlock !== void 0) {
-      RequestBeginBlock.encode(message.beginBlock, writer.uint32(58).fork()).ldelim();
-    }
     if (message.checkTx !== void 0) {
       RequestCheckTx.encode(message.checkTx, writer.uint32(66).fork()).ldelim();
-    }
-    if (message.deliverTx !== void 0) {
-      RequestDeliverTx.encode(message.deliverTx, writer.uint32(74).fork()).ldelim();
-    }
-    if (message.endBlock !== void 0) {
-      RequestEndBlock.encode(message.endBlock, writer.uint32(82).fork()).ldelim();
     }
     if (message.commit !== void 0) {
       RequestCommit.encode(message.commit, writer.uint32(90).fork()).ldelim();
@@ -392,6 +427,15 @@ const Request = {
     }
     if (message.processProposal !== void 0) {
       RequestProcessProposal.encode(message.processProposal, writer.uint32(138).fork()).ldelim();
+    }
+    if (message.extendVote !== void 0) {
+      RequestExtendVote.encode(message.extendVote, writer.uint32(146).fork()).ldelim();
+    }
+    if (message.verifyVoteExtension !== void 0) {
+      RequestVerifyVoteExtension.encode(message.verifyVoteExtension, writer.uint32(154).fork()).ldelim();
+    }
+    if (message.finalizeBlock !== void 0) {
+      RequestFinalizeBlock.encode(message.finalizeBlock, writer.uint32(162).fork()).ldelim();
     }
     return writer;
   },
@@ -417,17 +461,8 @@ const Request = {
         case 6:
           message.query = RequestQuery.decode(reader, reader.uint32());
           break;
-        case 7:
-          message.beginBlock = RequestBeginBlock.decode(reader, reader.uint32());
-          break;
         case 8:
           message.checkTx = RequestCheckTx.decode(reader, reader.uint32());
-          break;
-        case 9:
-          message.deliverTx = RequestDeliverTx.decode(reader, reader.uint32());
-          break;
-        case 10:
-          message.endBlock = RequestEndBlock.decode(reader, reader.uint32());
           break;
         case 11:
           message.commit = RequestCommit.decode(reader, reader.uint32());
@@ -450,6 +485,15 @@ const Request = {
         case 17:
           message.processProposal = RequestProcessProposal.decode(reader, reader.uint32());
           break;
+        case 18:
+          message.extendVote = RequestExtendVote.decode(reader, reader.uint32());
+          break;
+        case 19:
+          message.verifyVoteExtension = RequestVerifyVoteExtension.decode(reader, reader.uint32());
+          break;
+        case 20:
+          message.finalizeBlock = RequestFinalizeBlock.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -464,10 +508,7 @@ const Request = {
     message.info = object.info !== void 0 && object.info !== null ? RequestInfo.fromPartial(object.info) : void 0;
     message.initChain = object.initChain !== void 0 && object.initChain !== null ? RequestInitChain.fromPartial(object.initChain) : void 0;
     message.query = object.query !== void 0 && object.query !== null ? RequestQuery.fromPartial(object.query) : void 0;
-    message.beginBlock = object.beginBlock !== void 0 && object.beginBlock !== null ? RequestBeginBlock.fromPartial(object.beginBlock) : void 0;
     message.checkTx = object.checkTx !== void 0 && object.checkTx !== null ? RequestCheckTx.fromPartial(object.checkTx) : void 0;
-    message.deliverTx = object.deliverTx !== void 0 && object.deliverTx !== null ? RequestDeliverTx.fromPartial(object.deliverTx) : void 0;
-    message.endBlock = object.endBlock !== void 0 && object.endBlock !== null ? RequestEndBlock.fromPartial(object.endBlock) : void 0;
     message.commit = object.commit !== void 0 && object.commit !== null ? RequestCommit.fromPartial(object.commit) : void 0;
     message.listSnapshots = object.listSnapshots !== void 0 && object.listSnapshots !== null ? RequestListSnapshots.fromPartial(object.listSnapshots) : void 0;
     message.offerSnapshot = object.offerSnapshot !== void 0 && object.offerSnapshot !== null ? RequestOfferSnapshot.fromPartial(object.offerSnapshot) : void 0;
@@ -475,6 +516,9 @@ const Request = {
     message.applySnapshotChunk = object.applySnapshotChunk !== void 0 && object.applySnapshotChunk !== null ? RequestApplySnapshotChunk.fromPartial(object.applySnapshotChunk) : void 0;
     message.prepareProposal = object.prepareProposal !== void 0 && object.prepareProposal !== null ? RequestPrepareProposal.fromPartial(object.prepareProposal) : void 0;
     message.processProposal = object.processProposal !== void 0 && object.processProposal !== null ? RequestProcessProposal.fromPartial(object.processProposal) : void 0;
+    message.extendVote = object.extendVote !== void 0 && object.extendVote !== null ? RequestExtendVote.fromPartial(object.extendVote) : void 0;
+    message.verifyVoteExtension = object.verifyVoteExtension !== void 0 && object.verifyVoteExtension !== null ? RequestVerifyVoteExtension.fromPartial(object.verifyVoteExtension) : void 0;
+    message.finalizeBlock = object.finalizeBlock !== void 0 && object.finalizeBlock !== null ? RequestFinalizeBlock.fromPartial(object.finalizeBlock) : void 0;
     return message;
   },
   fromAmino(object) {
@@ -494,17 +538,8 @@ const Request = {
     if (object.query !== void 0 && object.query !== null) {
       message.query = RequestQuery.fromAmino(object.query);
     }
-    if (object.begin_block !== void 0 && object.begin_block !== null) {
-      message.beginBlock = RequestBeginBlock.fromAmino(object.begin_block);
-    }
     if (object.check_tx !== void 0 && object.check_tx !== null) {
       message.checkTx = RequestCheckTx.fromAmino(object.check_tx);
-    }
-    if (object.deliver_tx !== void 0 && object.deliver_tx !== null) {
-      message.deliverTx = RequestDeliverTx.fromAmino(object.deliver_tx);
-    }
-    if (object.end_block !== void 0 && object.end_block !== null) {
-      message.endBlock = RequestEndBlock.fromAmino(object.end_block);
     }
     if (object.commit !== void 0 && object.commit !== null) {
       message.commit = RequestCommit.fromAmino(object.commit);
@@ -527,6 +562,15 @@ const Request = {
     if (object.process_proposal !== void 0 && object.process_proposal !== null) {
       message.processProposal = RequestProcessProposal.fromAmino(object.process_proposal);
     }
+    if (object.extend_vote !== void 0 && object.extend_vote !== null) {
+      message.extendVote = RequestExtendVote.fromAmino(object.extend_vote);
+    }
+    if (object.verify_vote_extension !== void 0 && object.verify_vote_extension !== null) {
+      message.verifyVoteExtension = RequestVerifyVoteExtension.fromAmino(object.verify_vote_extension);
+    }
+    if (object.finalize_block !== void 0 && object.finalize_block !== null) {
+      message.finalizeBlock = RequestFinalizeBlock.fromAmino(object.finalize_block);
+    }
     return message;
   },
   toAmino(message) {
@@ -536,10 +580,7 @@ const Request = {
     obj.info = message.info ? RequestInfo.toAmino(message.info) : void 0;
     obj.init_chain = message.initChain ? RequestInitChain.toAmino(message.initChain) : void 0;
     obj.query = message.query ? RequestQuery.toAmino(message.query) : void 0;
-    obj.begin_block = message.beginBlock ? RequestBeginBlock.toAmino(message.beginBlock) : void 0;
     obj.check_tx = message.checkTx ? RequestCheckTx.toAmino(message.checkTx) : void 0;
-    obj.deliver_tx = message.deliverTx ? RequestDeliverTx.toAmino(message.deliverTx) : void 0;
-    obj.end_block = message.endBlock ? RequestEndBlock.toAmino(message.endBlock) : void 0;
     obj.commit = message.commit ? RequestCommit.toAmino(message.commit) : void 0;
     obj.list_snapshots = message.listSnapshots ? RequestListSnapshots.toAmino(message.listSnapshots) : void 0;
     obj.offer_snapshot = message.offerSnapshot ? RequestOfferSnapshot.toAmino(message.offerSnapshot) : void 0;
@@ -547,6 +588,9 @@ const Request = {
     obj.apply_snapshot_chunk = message.applySnapshotChunk ? RequestApplySnapshotChunk.toAmino(message.applySnapshotChunk) : void 0;
     obj.prepare_proposal = message.prepareProposal ? RequestPrepareProposal.toAmino(message.prepareProposal) : void 0;
     obj.process_proposal = message.processProposal ? RequestProcessProposal.toAmino(message.processProposal) : void 0;
+    obj.extend_vote = message.extendVote ? RequestExtendVote.toAmino(message.extendVote) : void 0;
+    obj.verify_vote_extension = message.verifyVoteExtension ? RequestVerifyVoteExtension.toAmino(message.verifyVoteExtension) : void 0;
+    obj.finalize_block = message.finalizeBlock ? RequestFinalizeBlock.toAmino(message.finalizeBlock) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1001,107 +1045,6 @@ const RequestQuery = {
     };
   }
 };
-function createBaseRequestBeginBlock() {
-  return {
-    hash: new Uint8Array(),
-    header: import_types.Header.fromPartial({}),
-    lastCommitInfo: CommitInfo.fromPartial({}),
-    byzantineValidators: []
-  };
-}
-const RequestBeginBlock = {
-  typeUrl: "/tendermint.abci.RequestBeginBlock",
-  encode(message, writer = import_binary.BinaryWriter.create()) {
-    if (message.hash.length !== 0) {
-      writer.uint32(10).bytes(message.hash);
-    }
-    if (message.header !== void 0) {
-      import_types.Header.encode(message.header, writer.uint32(18).fork()).ldelim();
-    }
-    if (message.lastCommitInfo !== void 0) {
-      CommitInfo.encode(message.lastCommitInfo, writer.uint32(26).fork()).ldelim();
-    }
-    for (const v of message.byzantineValidators) {
-      Misbehavior.encode(v, writer.uint32(34).fork()).ldelim();
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseRequestBeginBlock();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.hash = reader.bytes();
-          break;
-        case 2:
-          message.header = import_types.Header.decode(reader, reader.uint32());
-          break;
-        case 3:
-          message.lastCommitInfo = CommitInfo.decode(reader, reader.uint32());
-          break;
-        case 4:
-          message.byzantineValidators.push(Misbehavior.decode(reader, reader.uint32()));
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseRequestBeginBlock();
-    message.hash = object.hash ?? new Uint8Array();
-    message.header = object.header !== void 0 && object.header !== null ? import_types.Header.fromPartial(object.header) : void 0;
-    message.lastCommitInfo = object.lastCommitInfo !== void 0 && object.lastCommitInfo !== null ? CommitInfo.fromPartial(object.lastCommitInfo) : void 0;
-    message.byzantineValidators = object.byzantineValidators?.map((e) => Misbehavior.fromPartial(e)) || [];
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseRequestBeginBlock();
-    if (object.hash !== void 0 && object.hash !== null) {
-      message.hash = (0, import_helpers.bytesFromBase64)(object.hash);
-    }
-    if (object.header !== void 0 && object.header !== null) {
-      message.header = import_types.Header.fromAmino(object.header);
-    }
-    if (object.last_commit_info !== void 0 && object.last_commit_info !== null) {
-      message.lastCommitInfo = CommitInfo.fromAmino(object.last_commit_info);
-    }
-    message.byzantineValidators = object.byzantine_validators?.map((e) => Misbehavior.fromAmino(e)) || [];
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    obj.hash = message.hash ? (0, import_helpers.base64FromBytes)(message.hash) : void 0;
-    obj.header = message.header ? import_types.Header.toAmino(message.header) : void 0;
-    obj.last_commit_info = message.lastCommitInfo ? CommitInfo.toAmino(message.lastCommitInfo) : void 0;
-    if (message.byzantineValidators) {
-      obj.byzantine_validators = message.byzantineValidators.map((e) => e ? Misbehavior.toAmino(e) : void 0);
-    } else {
-      obj.byzantine_validators = message.byzantineValidators;
-    }
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return RequestBeginBlock.fromAmino(object.value);
-  },
-  fromProtoMsg(message) {
-    return RequestBeginBlock.decode(message.value);
-  },
-  toProto(message) {
-    return RequestBeginBlock.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/tendermint.abci.RequestBeginBlock",
-      value: RequestBeginBlock.encode(message).finish()
-    };
-  }
-};
 function createBaseRequestCheckTx() {
   return {
     tx: new Uint8Array(),
@@ -1174,132 +1117,6 @@ const RequestCheckTx = {
     return {
       typeUrl: "/tendermint.abci.RequestCheckTx",
       value: RequestCheckTx.encode(message).finish()
-    };
-  }
-};
-function createBaseRequestDeliverTx() {
-  return {
-    tx: new Uint8Array()
-  };
-}
-const RequestDeliverTx = {
-  typeUrl: "/tendermint.abci.RequestDeliverTx",
-  encode(message, writer = import_binary.BinaryWriter.create()) {
-    if (message.tx.length !== 0) {
-      writer.uint32(10).bytes(message.tx);
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseRequestDeliverTx();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.tx = reader.bytes();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseRequestDeliverTx();
-    message.tx = object.tx ?? new Uint8Array();
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseRequestDeliverTx();
-    if (object.tx !== void 0 && object.tx !== null) {
-      message.tx = (0, import_helpers.bytesFromBase64)(object.tx);
-    }
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    obj.tx = message.tx ? (0, import_helpers.base64FromBytes)(message.tx) : void 0;
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return RequestDeliverTx.fromAmino(object.value);
-  },
-  fromProtoMsg(message) {
-    return RequestDeliverTx.decode(message.value);
-  },
-  toProto(message) {
-    return RequestDeliverTx.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/tendermint.abci.RequestDeliverTx",
-      value: RequestDeliverTx.encode(message).finish()
-    };
-  }
-};
-function createBaseRequestEndBlock() {
-  return {
-    height: BigInt(0)
-  };
-}
-const RequestEndBlock = {
-  typeUrl: "/tendermint.abci.RequestEndBlock",
-  encode(message, writer = import_binary.BinaryWriter.create()) {
-    if (message.height !== BigInt(0)) {
-      writer.uint32(8).int64(message.height);
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseRequestEndBlock();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.height = reader.int64();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseRequestEndBlock();
-    message.height = object.height !== void 0 && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseRequestEndBlock();
-    if (object.height !== void 0 && object.height !== null) {
-      message.height = BigInt(object.height);
-    }
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return RequestEndBlock.fromAmino(object.value);
-  },
-  fromProtoMsg(message) {
-    return RequestEndBlock.decode(message.value);
-  },
-  toProto(message) {
-    return RequestEndBlock.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/tendermint.abci.RequestEndBlock",
-      value: RequestEndBlock.encode(message).finish()
     };
   }
 };
@@ -1954,6 +1771,407 @@ const RequestProcessProposal = {
     };
   }
 };
+function createBaseRequestExtendVote() {
+  return {
+    hash: new Uint8Array(),
+    height: BigInt(0),
+    time: /* @__PURE__ */ new Date(),
+    txs: [],
+    proposedLastCommit: CommitInfo.fromPartial({}),
+    misbehavior: [],
+    nextValidatorsHash: new Uint8Array(),
+    proposerAddress: new Uint8Array()
+  };
+}
+const RequestExtendVote = {
+  typeUrl: "/tendermint.abci.RequestExtendVote",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.hash.length !== 0) {
+      writer.uint32(10).bytes(message.hash);
+    }
+    if (message.height !== BigInt(0)) {
+      writer.uint32(16).int64(message.height);
+    }
+    if (message.time !== void 0) {
+      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.time), writer.uint32(26).fork()).ldelim();
+    }
+    for (const v of message.txs) {
+      writer.uint32(34).bytes(v);
+    }
+    if (message.proposedLastCommit !== void 0) {
+      CommitInfo.encode(message.proposedLastCommit, writer.uint32(42).fork()).ldelim();
+    }
+    for (const v of message.misbehavior) {
+      Misbehavior.encode(v, writer.uint32(50).fork()).ldelim();
+    }
+    if (message.nextValidatorsHash.length !== 0) {
+      writer.uint32(58).bytes(message.nextValidatorsHash);
+    }
+    if (message.proposerAddress.length !== 0) {
+      writer.uint32(66).bytes(message.proposerAddress);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseRequestExtendVote();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.hash = reader.bytes();
+          break;
+        case 2:
+          message.height = reader.int64();
+          break;
+        case 3:
+          message.time = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 4:
+          message.txs.push(reader.bytes());
+          break;
+        case 5:
+          message.proposedLastCommit = CommitInfo.decode(reader, reader.uint32());
+          break;
+        case 6:
+          message.misbehavior.push(Misbehavior.decode(reader, reader.uint32()));
+          break;
+        case 7:
+          message.nextValidatorsHash = reader.bytes();
+          break;
+        case 8:
+          message.proposerAddress = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseRequestExtendVote();
+    message.hash = object.hash ?? new Uint8Array();
+    message.height = object.height !== void 0 && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
+    message.time = object.time ?? void 0;
+    message.txs = object.txs?.map((e) => e) || [];
+    message.proposedLastCommit = object.proposedLastCommit !== void 0 && object.proposedLastCommit !== null ? CommitInfo.fromPartial(object.proposedLastCommit) : void 0;
+    message.misbehavior = object.misbehavior?.map((e) => Misbehavior.fromPartial(e)) || [];
+    message.nextValidatorsHash = object.nextValidatorsHash ?? new Uint8Array();
+    message.proposerAddress = object.proposerAddress ?? new Uint8Array();
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseRequestExtendVote();
+    if (object.hash !== void 0 && object.hash !== null) {
+      message.hash = (0, import_helpers.bytesFromBase64)(object.hash);
+    }
+    if (object.height !== void 0 && object.height !== null) {
+      message.height = BigInt(object.height);
+    }
+    if (object.time !== void 0 && object.time !== null) {
+      message.time = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.fromAmino(object.time));
+    }
+    message.txs = object.txs?.map((e) => (0, import_helpers.bytesFromBase64)(e)) || [];
+    if (object.proposed_last_commit !== void 0 && object.proposed_last_commit !== null) {
+      message.proposedLastCommit = CommitInfo.fromAmino(object.proposed_last_commit);
+    }
+    message.misbehavior = object.misbehavior?.map((e) => Misbehavior.fromAmino(e)) || [];
+    if (object.next_validators_hash !== void 0 && object.next_validators_hash !== null) {
+      message.nextValidatorsHash = (0, import_helpers.bytesFromBase64)(object.next_validators_hash);
+    }
+    if (object.proposer_address !== void 0 && object.proposer_address !== null) {
+      message.proposerAddress = (0, import_helpers.bytesFromBase64)(object.proposer_address);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.hash = message.hash ? (0, import_helpers.base64FromBytes)(message.hash) : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
+    obj.time = message.time ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.time)) : void 0;
+    if (message.txs) {
+      obj.txs = message.txs.map((e) => (0, import_helpers.base64FromBytes)(e));
+    } else {
+      obj.txs = message.txs;
+    }
+    obj.proposed_last_commit = message.proposedLastCommit ? CommitInfo.toAmino(message.proposedLastCommit) : void 0;
+    if (message.misbehavior) {
+      obj.misbehavior = message.misbehavior.map((e) => e ? Misbehavior.toAmino(e) : void 0);
+    } else {
+      obj.misbehavior = message.misbehavior;
+    }
+    obj.next_validators_hash = message.nextValidatorsHash ? (0, import_helpers.base64FromBytes)(message.nextValidatorsHash) : void 0;
+    obj.proposer_address = message.proposerAddress ? (0, import_helpers.base64FromBytes)(message.proposerAddress) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return RequestExtendVote.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return RequestExtendVote.decode(message.value);
+  },
+  toProto(message) {
+    return RequestExtendVote.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/tendermint.abci.RequestExtendVote",
+      value: RequestExtendVote.encode(message).finish()
+    };
+  }
+};
+function createBaseRequestVerifyVoteExtension() {
+  return {
+    hash: new Uint8Array(),
+    validatorAddress: new Uint8Array(),
+    height: BigInt(0),
+    voteExtension: new Uint8Array()
+  };
+}
+const RequestVerifyVoteExtension = {
+  typeUrl: "/tendermint.abci.RequestVerifyVoteExtension",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.hash.length !== 0) {
+      writer.uint32(10).bytes(message.hash);
+    }
+    if (message.validatorAddress.length !== 0) {
+      writer.uint32(18).bytes(message.validatorAddress);
+    }
+    if (message.height !== BigInt(0)) {
+      writer.uint32(24).int64(message.height);
+    }
+    if (message.voteExtension.length !== 0) {
+      writer.uint32(34).bytes(message.voteExtension);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseRequestVerifyVoteExtension();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.hash = reader.bytes();
+          break;
+        case 2:
+          message.validatorAddress = reader.bytes();
+          break;
+        case 3:
+          message.height = reader.int64();
+          break;
+        case 4:
+          message.voteExtension = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseRequestVerifyVoteExtension();
+    message.hash = object.hash ?? new Uint8Array();
+    message.validatorAddress = object.validatorAddress ?? new Uint8Array();
+    message.height = object.height !== void 0 && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
+    message.voteExtension = object.voteExtension ?? new Uint8Array();
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseRequestVerifyVoteExtension();
+    if (object.hash !== void 0 && object.hash !== null) {
+      message.hash = (0, import_helpers.bytesFromBase64)(object.hash);
+    }
+    if (object.validator_address !== void 0 && object.validator_address !== null) {
+      message.validatorAddress = (0, import_helpers.bytesFromBase64)(object.validator_address);
+    }
+    if (object.height !== void 0 && object.height !== null) {
+      message.height = BigInt(object.height);
+    }
+    if (object.vote_extension !== void 0 && object.vote_extension !== null) {
+      message.voteExtension = (0, import_helpers.bytesFromBase64)(object.vote_extension);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.hash = message.hash ? (0, import_helpers.base64FromBytes)(message.hash) : void 0;
+    obj.validator_address = message.validatorAddress ? (0, import_helpers.base64FromBytes)(message.validatorAddress) : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
+    obj.vote_extension = message.voteExtension ? (0, import_helpers.base64FromBytes)(message.voteExtension) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return RequestVerifyVoteExtension.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return RequestVerifyVoteExtension.decode(message.value);
+  },
+  toProto(message) {
+    return RequestVerifyVoteExtension.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/tendermint.abci.RequestVerifyVoteExtension",
+      value: RequestVerifyVoteExtension.encode(message).finish()
+    };
+  }
+};
+function createBaseRequestFinalizeBlock() {
+  return {
+    txs: [],
+    decidedLastCommit: CommitInfo.fromPartial({}),
+    misbehavior: [],
+    hash: new Uint8Array(),
+    height: BigInt(0),
+    time: /* @__PURE__ */ new Date(),
+    nextValidatorsHash: new Uint8Array(),
+    proposerAddress: new Uint8Array()
+  };
+}
+const RequestFinalizeBlock = {
+  typeUrl: "/tendermint.abci.RequestFinalizeBlock",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    for (const v of message.txs) {
+      writer.uint32(10).bytes(v);
+    }
+    if (message.decidedLastCommit !== void 0) {
+      CommitInfo.encode(message.decidedLastCommit, writer.uint32(18).fork()).ldelim();
+    }
+    for (const v of message.misbehavior) {
+      Misbehavior.encode(v, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.hash.length !== 0) {
+      writer.uint32(34).bytes(message.hash);
+    }
+    if (message.height !== BigInt(0)) {
+      writer.uint32(40).int64(message.height);
+    }
+    if (message.time !== void 0) {
+      import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.time), writer.uint32(50).fork()).ldelim();
+    }
+    if (message.nextValidatorsHash.length !== 0) {
+      writer.uint32(58).bytes(message.nextValidatorsHash);
+    }
+    if (message.proposerAddress.length !== 0) {
+      writer.uint32(66).bytes(message.proposerAddress);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseRequestFinalizeBlock();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.txs.push(reader.bytes());
+          break;
+        case 2:
+          message.decidedLastCommit = CommitInfo.decode(reader, reader.uint32());
+          break;
+        case 3:
+          message.misbehavior.push(Misbehavior.decode(reader, reader.uint32()));
+          break;
+        case 4:
+          message.hash = reader.bytes();
+          break;
+        case 5:
+          message.height = reader.int64();
+          break;
+        case 6:
+          message.time = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 7:
+          message.nextValidatorsHash = reader.bytes();
+          break;
+        case 8:
+          message.proposerAddress = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseRequestFinalizeBlock();
+    message.txs = object.txs?.map((e) => e) || [];
+    message.decidedLastCommit = object.decidedLastCommit !== void 0 && object.decidedLastCommit !== null ? CommitInfo.fromPartial(object.decidedLastCommit) : void 0;
+    message.misbehavior = object.misbehavior?.map((e) => Misbehavior.fromPartial(e)) || [];
+    message.hash = object.hash ?? new Uint8Array();
+    message.height = object.height !== void 0 && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
+    message.time = object.time ?? void 0;
+    message.nextValidatorsHash = object.nextValidatorsHash ?? new Uint8Array();
+    message.proposerAddress = object.proposerAddress ?? new Uint8Array();
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseRequestFinalizeBlock();
+    message.txs = object.txs?.map((e) => (0, import_helpers.bytesFromBase64)(e)) || [];
+    if (object.decided_last_commit !== void 0 && object.decided_last_commit !== null) {
+      message.decidedLastCommit = CommitInfo.fromAmino(object.decided_last_commit);
+    }
+    message.misbehavior = object.misbehavior?.map((e) => Misbehavior.fromAmino(e)) || [];
+    if (object.hash !== void 0 && object.hash !== null) {
+      message.hash = (0, import_helpers.bytesFromBase64)(object.hash);
+    }
+    if (object.height !== void 0 && object.height !== null) {
+      message.height = BigInt(object.height);
+    }
+    if (object.time !== void 0 && object.time !== null) {
+      message.time = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.fromAmino(object.time));
+    }
+    if (object.next_validators_hash !== void 0 && object.next_validators_hash !== null) {
+      message.nextValidatorsHash = (0, import_helpers.bytesFromBase64)(object.next_validators_hash);
+    }
+    if (object.proposer_address !== void 0 && object.proposer_address !== null) {
+      message.proposerAddress = (0, import_helpers.bytesFromBase64)(object.proposer_address);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    if (message.txs) {
+      obj.txs = message.txs.map((e) => (0, import_helpers.base64FromBytes)(e));
+    } else {
+      obj.txs = message.txs;
+    }
+    obj.decided_last_commit = message.decidedLastCommit ? CommitInfo.toAmino(message.decidedLastCommit) : void 0;
+    if (message.misbehavior) {
+      obj.misbehavior = message.misbehavior.map((e) => e ? Misbehavior.toAmino(e) : void 0);
+    } else {
+      obj.misbehavior = message.misbehavior;
+    }
+    obj.hash = message.hash ? (0, import_helpers.base64FromBytes)(message.hash) : void 0;
+    obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
+    obj.time = message.time ? import_timestamp.Timestamp.toAmino((0, import_helpers.toTimestamp)(message.time)) : void 0;
+    obj.next_validators_hash = message.nextValidatorsHash ? (0, import_helpers.base64FromBytes)(message.nextValidatorsHash) : void 0;
+    obj.proposer_address = message.proposerAddress ? (0, import_helpers.base64FromBytes)(message.proposerAddress) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return RequestFinalizeBlock.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return RequestFinalizeBlock.decode(message.value);
+  },
+  toProto(message) {
+    return RequestFinalizeBlock.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/tendermint.abci.RequestFinalizeBlock",
+      value: RequestFinalizeBlock.encode(message).finish()
+    };
+  }
+};
 function createBaseResponse() {
   return {
     exception: void 0,
@@ -1962,17 +2180,17 @@ function createBaseResponse() {
     info: void 0,
     initChain: void 0,
     query: void 0,
-    beginBlock: void 0,
     checkTx: void 0,
-    deliverTx: void 0,
-    endBlock: void 0,
     commit: void 0,
     listSnapshots: void 0,
     offerSnapshot: void 0,
     loadSnapshotChunk: void 0,
     applySnapshotChunk: void 0,
     prepareProposal: void 0,
-    processProposal: void 0
+    processProposal: void 0,
+    extendVote: void 0,
+    verifyVoteExtension: void 0,
+    finalizeBlock: void 0
   };
 }
 const Response = {
@@ -1996,17 +2214,8 @@ const Response = {
     if (message.query !== void 0) {
       ResponseQuery.encode(message.query, writer.uint32(58).fork()).ldelim();
     }
-    if (message.beginBlock !== void 0) {
-      ResponseBeginBlock.encode(message.beginBlock, writer.uint32(66).fork()).ldelim();
-    }
     if (message.checkTx !== void 0) {
       ResponseCheckTx.encode(message.checkTx, writer.uint32(74).fork()).ldelim();
-    }
-    if (message.deliverTx !== void 0) {
-      ResponseDeliverTx.encode(message.deliverTx, writer.uint32(82).fork()).ldelim();
-    }
-    if (message.endBlock !== void 0) {
-      ResponseEndBlock.encode(message.endBlock, writer.uint32(90).fork()).ldelim();
     }
     if (message.commit !== void 0) {
       ResponseCommit.encode(message.commit, writer.uint32(98).fork()).ldelim();
@@ -2028,6 +2237,15 @@ const Response = {
     }
     if (message.processProposal !== void 0) {
       ResponseProcessProposal.encode(message.processProposal, writer.uint32(146).fork()).ldelim();
+    }
+    if (message.extendVote !== void 0) {
+      ResponseExtendVote.encode(message.extendVote, writer.uint32(154).fork()).ldelim();
+    }
+    if (message.verifyVoteExtension !== void 0) {
+      ResponseVerifyVoteExtension.encode(message.verifyVoteExtension, writer.uint32(162).fork()).ldelim();
+    }
+    if (message.finalizeBlock !== void 0) {
+      ResponseFinalizeBlock.encode(message.finalizeBlock, writer.uint32(170).fork()).ldelim();
     }
     return writer;
   },
@@ -2056,17 +2274,8 @@ const Response = {
         case 7:
           message.query = ResponseQuery.decode(reader, reader.uint32());
           break;
-        case 8:
-          message.beginBlock = ResponseBeginBlock.decode(reader, reader.uint32());
-          break;
         case 9:
           message.checkTx = ResponseCheckTx.decode(reader, reader.uint32());
-          break;
-        case 10:
-          message.deliverTx = ResponseDeliverTx.decode(reader, reader.uint32());
-          break;
-        case 11:
-          message.endBlock = ResponseEndBlock.decode(reader, reader.uint32());
           break;
         case 12:
           message.commit = ResponseCommit.decode(reader, reader.uint32());
@@ -2089,6 +2298,15 @@ const Response = {
         case 18:
           message.processProposal = ResponseProcessProposal.decode(reader, reader.uint32());
           break;
+        case 19:
+          message.extendVote = ResponseExtendVote.decode(reader, reader.uint32());
+          break;
+        case 20:
+          message.verifyVoteExtension = ResponseVerifyVoteExtension.decode(reader, reader.uint32());
+          break;
+        case 21:
+          message.finalizeBlock = ResponseFinalizeBlock.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -2104,10 +2322,7 @@ const Response = {
     message.info = object.info !== void 0 && object.info !== null ? ResponseInfo.fromPartial(object.info) : void 0;
     message.initChain = object.initChain !== void 0 && object.initChain !== null ? ResponseInitChain.fromPartial(object.initChain) : void 0;
     message.query = object.query !== void 0 && object.query !== null ? ResponseQuery.fromPartial(object.query) : void 0;
-    message.beginBlock = object.beginBlock !== void 0 && object.beginBlock !== null ? ResponseBeginBlock.fromPartial(object.beginBlock) : void 0;
     message.checkTx = object.checkTx !== void 0 && object.checkTx !== null ? ResponseCheckTx.fromPartial(object.checkTx) : void 0;
-    message.deliverTx = object.deliverTx !== void 0 && object.deliverTx !== null ? ResponseDeliverTx.fromPartial(object.deliverTx) : void 0;
-    message.endBlock = object.endBlock !== void 0 && object.endBlock !== null ? ResponseEndBlock.fromPartial(object.endBlock) : void 0;
     message.commit = object.commit !== void 0 && object.commit !== null ? ResponseCommit.fromPartial(object.commit) : void 0;
     message.listSnapshots = object.listSnapshots !== void 0 && object.listSnapshots !== null ? ResponseListSnapshots.fromPartial(object.listSnapshots) : void 0;
     message.offerSnapshot = object.offerSnapshot !== void 0 && object.offerSnapshot !== null ? ResponseOfferSnapshot.fromPartial(object.offerSnapshot) : void 0;
@@ -2115,6 +2330,9 @@ const Response = {
     message.applySnapshotChunk = object.applySnapshotChunk !== void 0 && object.applySnapshotChunk !== null ? ResponseApplySnapshotChunk.fromPartial(object.applySnapshotChunk) : void 0;
     message.prepareProposal = object.prepareProposal !== void 0 && object.prepareProposal !== null ? ResponsePrepareProposal.fromPartial(object.prepareProposal) : void 0;
     message.processProposal = object.processProposal !== void 0 && object.processProposal !== null ? ResponseProcessProposal.fromPartial(object.processProposal) : void 0;
+    message.extendVote = object.extendVote !== void 0 && object.extendVote !== null ? ResponseExtendVote.fromPartial(object.extendVote) : void 0;
+    message.verifyVoteExtension = object.verifyVoteExtension !== void 0 && object.verifyVoteExtension !== null ? ResponseVerifyVoteExtension.fromPartial(object.verifyVoteExtension) : void 0;
+    message.finalizeBlock = object.finalizeBlock !== void 0 && object.finalizeBlock !== null ? ResponseFinalizeBlock.fromPartial(object.finalizeBlock) : void 0;
     return message;
   },
   fromAmino(object) {
@@ -2137,17 +2355,8 @@ const Response = {
     if (object.query !== void 0 && object.query !== null) {
       message.query = ResponseQuery.fromAmino(object.query);
     }
-    if (object.begin_block !== void 0 && object.begin_block !== null) {
-      message.beginBlock = ResponseBeginBlock.fromAmino(object.begin_block);
-    }
     if (object.check_tx !== void 0 && object.check_tx !== null) {
       message.checkTx = ResponseCheckTx.fromAmino(object.check_tx);
-    }
-    if (object.deliver_tx !== void 0 && object.deliver_tx !== null) {
-      message.deliverTx = ResponseDeliverTx.fromAmino(object.deliver_tx);
-    }
-    if (object.end_block !== void 0 && object.end_block !== null) {
-      message.endBlock = ResponseEndBlock.fromAmino(object.end_block);
     }
     if (object.commit !== void 0 && object.commit !== null) {
       message.commit = ResponseCommit.fromAmino(object.commit);
@@ -2170,6 +2379,15 @@ const Response = {
     if (object.process_proposal !== void 0 && object.process_proposal !== null) {
       message.processProposal = ResponseProcessProposal.fromAmino(object.process_proposal);
     }
+    if (object.extend_vote !== void 0 && object.extend_vote !== null) {
+      message.extendVote = ResponseExtendVote.fromAmino(object.extend_vote);
+    }
+    if (object.verify_vote_extension !== void 0 && object.verify_vote_extension !== null) {
+      message.verifyVoteExtension = ResponseVerifyVoteExtension.fromAmino(object.verify_vote_extension);
+    }
+    if (object.finalize_block !== void 0 && object.finalize_block !== null) {
+      message.finalizeBlock = ResponseFinalizeBlock.fromAmino(object.finalize_block);
+    }
     return message;
   },
   toAmino(message) {
@@ -2180,10 +2398,7 @@ const Response = {
     obj.info = message.info ? ResponseInfo.toAmino(message.info) : void 0;
     obj.init_chain = message.initChain ? ResponseInitChain.toAmino(message.initChain) : void 0;
     obj.query = message.query ? ResponseQuery.toAmino(message.query) : void 0;
-    obj.begin_block = message.beginBlock ? ResponseBeginBlock.toAmino(message.beginBlock) : void 0;
     obj.check_tx = message.checkTx ? ResponseCheckTx.toAmino(message.checkTx) : void 0;
-    obj.deliver_tx = message.deliverTx ? ResponseDeliverTx.toAmino(message.deliverTx) : void 0;
-    obj.end_block = message.endBlock ? ResponseEndBlock.toAmino(message.endBlock) : void 0;
     obj.commit = message.commit ? ResponseCommit.toAmino(message.commit) : void 0;
     obj.list_snapshots = message.listSnapshots ? ResponseListSnapshots.toAmino(message.listSnapshots) : void 0;
     obj.offer_snapshot = message.offerSnapshot ? ResponseOfferSnapshot.toAmino(message.offerSnapshot) : void 0;
@@ -2191,6 +2406,9 @@ const Response = {
     obj.apply_snapshot_chunk = message.applySnapshotChunk ? ResponseApplySnapshotChunk.toAmino(message.applySnapshotChunk) : void 0;
     obj.prepare_proposal = message.prepareProposal ? ResponsePrepareProposal.toAmino(message.prepareProposal) : void 0;
     obj.process_proposal = message.processProposal ? ResponseProcessProposal.toAmino(message.processProposal) : void 0;
+    obj.extend_vote = message.extendVote ? ResponseExtendVote.toAmino(message.extendVote) : void 0;
+    obj.verify_vote_extension = message.verifyVoteExtension ? ResponseVerifyVoteExtension.toAmino(message.verifyVoteExtension) : void 0;
+    obj.finalize_block = message.finalizeBlock ? ResponseFinalizeBlock.toAmino(message.finalizeBlock) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -2744,71 +2962,6 @@ const ResponseQuery = {
     };
   }
 };
-function createBaseResponseBeginBlock() {
-  return {
-    events: []
-  };
-}
-const ResponseBeginBlock = {
-  typeUrl: "/tendermint.abci.ResponseBeginBlock",
-  encode(message, writer = import_binary.BinaryWriter.create()) {
-    for (const v of message.events) {
-      Event.encode(v, writer.uint32(10).fork()).ldelim();
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseResponseBeginBlock();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.events.push(Event.decode(reader, reader.uint32()));
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseResponseBeginBlock();
-    message.events = object.events?.map((e) => Event.fromPartial(e)) || [];
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseResponseBeginBlock();
-    message.events = object.events?.map((e) => Event.fromAmino(e)) || [];
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    if (message.events) {
-      obj.events = message.events.map((e) => e ? Event.toAmino(e) : void 0);
-    } else {
-      obj.events = message.events;
-    }
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return ResponseBeginBlock.fromAmino(object.value);
-  },
-  fromProtoMsg(message) {
-    return ResponseBeginBlock.decode(message.value);
-  },
-  toProto(message) {
-    return ResponseBeginBlock.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/tendermint.abci.ResponseBeginBlock",
-      value: ResponseBeginBlock.encode(message).finish()
-    };
-  }
-};
 function createBaseResponseCheckTx() {
   return {
     code: 0,
@@ -2818,10 +2971,7 @@ function createBaseResponseCheckTx() {
     gasWanted: BigInt(0),
     gasUsed: BigInt(0),
     events: [],
-    codespace: "",
-    sender: "",
-    priority: BigInt(0),
-    mempoolError: ""
+    codespace: ""
   };
 }
 const ResponseCheckTx = {
@@ -2851,15 +3001,6 @@ const ResponseCheckTx = {
     if (message.codespace !== "") {
       writer.uint32(66).string(message.codespace);
     }
-    if (message.sender !== "") {
-      writer.uint32(74).string(message.sender);
-    }
-    if (message.priority !== BigInt(0)) {
-      writer.uint32(80).int64(message.priority);
-    }
-    if (message.mempoolError !== "") {
-      writer.uint32(90).string(message.mempoolError);
-    }
     return writer;
   },
   decode(input, length) {
@@ -2893,15 +3034,6 @@ const ResponseCheckTx = {
         case 8:
           message.codespace = reader.string();
           break;
-        case 9:
-          message.sender = reader.string();
-          break;
-        case 10:
-          message.priority = reader.int64();
-          break;
-        case 11:
-          message.mempoolError = reader.string();
-          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -2919,9 +3051,6 @@ const ResponseCheckTx = {
     message.gasUsed = object.gasUsed !== void 0 && object.gasUsed !== null ? BigInt(object.gasUsed.toString()) : BigInt(0);
     message.events = object.events?.map((e) => Event.fromPartial(e)) || [];
     message.codespace = object.codespace ?? "";
-    message.sender = object.sender ?? "";
-    message.priority = object.priority !== void 0 && object.priority !== null ? BigInt(object.priority.toString()) : BigInt(0);
-    message.mempoolError = object.mempoolError ?? "";
     return message;
   },
   fromAmino(object) {
@@ -2948,15 +3077,6 @@ const ResponseCheckTx = {
     if (object.codespace !== void 0 && object.codespace !== null) {
       message.codespace = object.codespace;
     }
-    if (object.sender !== void 0 && object.sender !== null) {
-      message.sender = object.sender;
-    }
-    if (object.priority !== void 0 && object.priority !== null) {
-      message.priority = BigInt(object.priority);
-    }
-    if (object.mempool_error !== void 0 && object.mempool_error !== null) {
-      message.mempoolError = object.mempool_error;
-    }
     return message;
   },
   toAmino(message) {
@@ -2973,9 +3093,6 @@ const ResponseCheckTx = {
       obj.events = message.events;
     }
     obj.codespace = message.codespace === "" ? void 0 : message.codespace;
-    obj.sender = message.sender === "" ? void 0 : message.sender;
-    obj.priority = message.priority !== BigInt(0) ? message.priority?.toString() : void 0;
-    obj.mempool_error = message.mempoolError === "" ? void 0 : message.mempoolError;
     return obj;
   },
   fromAminoMsg(object) {
@@ -2994,258 +3111,14 @@ const ResponseCheckTx = {
     };
   }
 };
-function createBaseResponseDeliverTx() {
-  return {
-    code: 0,
-    data: new Uint8Array(),
-    log: "",
-    info: "",
-    gasWanted: BigInt(0),
-    gasUsed: BigInt(0),
-    events: [],
-    codespace: ""
-  };
-}
-const ResponseDeliverTx = {
-  typeUrl: "/tendermint.abci.ResponseDeliverTx",
-  encode(message, writer = import_binary.BinaryWriter.create()) {
-    if (message.code !== 0) {
-      writer.uint32(8).uint32(message.code);
-    }
-    if (message.data.length !== 0) {
-      writer.uint32(18).bytes(message.data);
-    }
-    if (message.log !== "") {
-      writer.uint32(26).string(message.log);
-    }
-    if (message.info !== "") {
-      writer.uint32(34).string(message.info);
-    }
-    if (message.gasWanted !== BigInt(0)) {
-      writer.uint32(40).int64(message.gasWanted);
-    }
-    if (message.gasUsed !== BigInt(0)) {
-      writer.uint32(48).int64(message.gasUsed);
-    }
-    for (const v of message.events) {
-      Event.encode(v, writer.uint32(58).fork()).ldelim();
-    }
-    if (message.codespace !== "") {
-      writer.uint32(66).string(message.codespace);
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseResponseDeliverTx();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.code = reader.uint32();
-          break;
-        case 2:
-          message.data = reader.bytes();
-          break;
-        case 3:
-          message.log = reader.string();
-          break;
-        case 4:
-          message.info = reader.string();
-          break;
-        case 5:
-          message.gasWanted = reader.int64();
-          break;
-        case 6:
-          message.gasUsed = reader.int64();
-          break;
-        case 7:
-          message.events.push(Event.decode(reader, reader.uint32()));
-          break;
-        case 8:
-          message.codespace = reader.string();
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseResponseDeliverTx();
-    message.code = object.code ?? 0;
-    message.data = object.data ?? new Uint8Array();
-    message.log = object.log ?? "";
-    message.info = object.info ?? "";
-    message.gasWanted = object.gasWanted !== void 0 && object.gasWanted !== null ? BigInt(object.gasWanted.toString()) : BigInt(0);
-    message.gasUsed = object.gasUsed !== void 0 && object.gasUsed !== null ? BigInt(object.gasUsed.toString()) : BigInt(0);
-    message.events = object.events?.map((e) => Event.fromPartial(e)) || [];
-    message.codespace = object.codespace ?? "";
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseResponseDeliverTx();
-    if (object.code !== void 0 && object.code !== null) {
-      message.code = object.code;
-    }
-    if (object.data !== void 0 && object.data !== null) {
-      message.data = (0, import_helpers.bytesFromBase64)(object.data);
-    }
-    if (object.log !== void 0 && object.log !== null) {
-      message.log = object.log;
-    }
-    if (object.info !== void 0 && object.info !== null) {
-      message.info = object.info;
-    }
-    if (object.gas_wanted !== void 0 && object.gas_wanted !== null) {
-      message.gasWanted = BigInt(object.gas_wanted);
-    }
-    if (object.gas_used !== void 0 && object.gas_used !== null) {
-      message.gasUsed = BigInt(object.gas_used);
-    }
-    message.events = object.events?.map((e) => Event.fromAmino(e)) || [];
-    if (object.codespace !== void 0 && object.codespace !== null) {
-      message.codespace = object.codespace;
-    }
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    obj.code = message.code === 0 ? void 0 : message.code;
-    obj.data = message.data ? (0, import_helpers.base64FromBytes)(message.data) : void 0;
-    obj.log = message.log === "" ? void 0 : message.log;
-    obj.info = message.info === "" ? void 0 : message.info;
-    obj.gas_wanted = message.gasWanted !== BigInt(0) ? message.gasWanted?.toString() : void 0;
-    obj.gas_used = message.gasUsed !== BigInt(0) ? message.gasUsed?.toString() : void 0;
-    if (message.events) {
-      obj.events = message.events.map((e) => e ? Event.toAmino(e) : void 0);
-    } else {
-      obj.events = message.events;
-    }
-    obj.codespace = message.codespace === "" ? void 0 : message.codespace;
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return ResponseDeliverTx.fromAmino(object.value);
-  },
-  fromProtoMsg(message) {
-    return ResponseDeliverTx.decode(message.value);
-  },
-  toProto(message) {
-    return ResponseDeliverTx.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/tendermint.abci.ResponseDeliverTx",
-      value: ResponseDeliverTx.encode(message).finish()
-    };
-  }
-};
-function createBaseResponseEndBlock() {
-  return {
-    validatorUpdates: [],
-    consensusParamUpdates: void 0,
-    events: []
-  };
-}
-const ResponseEndBlock = {
-  typeUrl: "/tendermint.abci.ResponseEndBlock",
-  encode(message, writer = import_binary.BinaryWriter.create()) {
-    for (const v of message.validatorUpdates) {
-      ValidatorUpdate.encode(v, writer.uint32(10).fork()).ldelim();
-    }
-    if (message.consensusParamUpdates !== void 0) {
-      import_params.ConsensusParams.encode(message.consensusParamUpdates, writer.uint32(18).fork()).ldelim();
-    }
-    for (const v of message.events) {
-      Event.encode(v, writer.uint32(26).fork()).ldelim();
-    }
-    return writer;
-  },
-  decode(input, length) {
-    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
-    let end = length === void 0 ? reader.len : reader.pos + length;
-    const message = createBaseResponseEndBlock();
-    while (reader.pos < end) {
-      const tag = reader.uint32();
-      switch (tag >>> 3) {
-        case 1:
-          message.validatorUpdates.push(ValidatorUpdate.decode(reader, reader.uint32()));
-          break;
-        case 2:
-          message.consensusParamUpdates = import_params.ConsensusParams.decode(reader, reader.uint32());
-          break;
-        case 3:
-          message.events.push(Event.decode(reader, reader.uint32()));
-          break;
-        default:
-          reader.skipType(tag & 7);
-          break;
-      }
-    }
-    return message;
-  },
-  fromPartial(object) {
-    const message = createBaseResponseEndBlock();
-    message.validatorUpdates = object.validatorUpdates?.map((e) => ValidatorUpdate.fromPartial(e)) || [];
-    message.consensusParamUpdates = object.consensusParamUpdates !== void 0 && object.consensusParamUpdates !== null ? import_params.ConsensusParams.fromPartial(object.consensusParamUpdates) : void 0;
-    message.events = object.events?.map((e) => Event.fromPartial(e)) || [];
-    return message;
-  },
-  fromAmino(object) {
-    const message = createBaseResponseEndBlock();
-    message.validatorUpdates = object.validator_updates?.map((e) => ValidatorUpdate.fromAmino(e)) || [];
-    if (object.consensus_param_updates !== void 0 && object.consensus_param_updates !== null) {
-      message.consensusParamUpdates = import_params.ConsensusParams.fromAmino(object.consensus_param_updates);
-    }
-    message.events = object.events?.map((e) => Event.fromAmino(e)) || [];
-    return message;
-  },
-  toAmino(message) {
-    const obj = {};
-    if (message.validatorUpdates) {
-      obj.validator_updates = message.validatorUpdates.map((e) => e ? ValidatorUpdate.toAmino(e) : void 0);
-    } else {
-      obj.validator_updates = message.validatorUpdates;
-    }
-    obj.consensus_param_updates = message.consensusParamUpdates ? import_params.ConsensusParams.toAmino(message.consensusParamUpdates) : void 0;
-    if (message.events) {
-      obj.events = message.events.map((e) => e ? Event.toAmino(e) : void 0);
-    } else {
-      obj.events = message.events;
-    }
-    return obj;
-  },
-  fromAminoMsg(object) {
-    return ResponseEndBlock.fromAmino(object.value);
-  },
-  fromProtoMsg(message) {
-    return ResponseEndBlock.decode(message.value);
-  },
-  toProto(message) {
-    return ResponseEndBlock.encode(message).finish();
-  },
-  toProtoMsg(message) {
-    return {
-      typeUrl: "/tendermint.abci.ResponseEndBlock",
-      value: ResponseEndBlock.encode(message).finish()
-    };
-  }
-};
 function createBaseResponseCommit() {
   return {
-    data: new Uint8Array(),
     retainHeight: BigInt(0)
   };
 }
 const ResponseCommit = {
   typeUrl: "/tendermint.abci.ResponseCommit",
   encode(message, writer = import_binary.BinaryWriter.create()) {
-    if (message.data.length !== 0) {
-      writer.uint32(18).bytes(message.data);
-    }
     if (message.retainHeight !== BigInt(0)) {
       writer.uint32(24).int64(message.retainHeight);
     }
@@ -3258,9 +3131,6 @@ const ResponseCommit = {
     while (reader.pos < end) {
       const tag = reader.uint32();
       switch (tag >>> 3) {
-        case 2:
-          message.data = reader.bytes();
-          break;
         case 3:
           message.retainHeight = reader.int64();
           break;
@@ -3273,15 +3143,11 @@ const ResponseCommit = {
   },
   fromPartial(object) {
     const message = createBaseResponseCommit();
-    message.data = object.data ?? new Uint8Array();
     message.retainHeight = object.retainHeight !== void 0 && object.retainHeight !== null ? BigInt(object.retainHeight.toString()) : BigInt(0);
     return message;
   },
   fromAmino(object) {
     const message = createBaseResponseCommit();
-    if (object.data !== void 0 && object.data !== null) {
-      message.data = (0, import_helpers.bytesFromBase64)(object.data);
-    }
     if (object.retain_height !== void 0 && object.retain_height !== null) {
       message.retainHeight = BigInt(object.retain_height);
     }
@@ -3289,7 +3155,6 @@ const ResponseCommit = {
   },
   toAmino(message) {
     const obj = {};
-    obj.data = message.data ? (0, import_helpers.base64FromBytes)(message.data) : void 0;
     obj.retain_height = message.retainHeight !== BigInt(0) ? message.retainHeight?.toString() : void 0;
     return obj;
   },
@@ -3728,6 +3593,249 @@ const ResponseProcessProposal = {
     };
   }
 };
+function createBaseResponseExtendVote() {
+  return {
+    voteExtension: new Uint8Array()
+  };
+}
+const ResponseExtendVote = {
+  typeUrl: "/tendermint.abci.ResponseExtendVote",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.voteExtension.length !== 0) {
+      writer.uint32(10).bytes(message.voteExtension);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseResponseExtendVote();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.voteExtension = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseResponseExtendVote();
+    message.voteExtension = object.voteExtension ?? new Uint8Array();
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseResponseExtendVote();
+    if (object.vote_extension !== void 0 && object.vote_extension !== null) {
+      message.voteExtension = (0, import_helpers.bytesFromBase64)(object.vote_extension);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.vote_extension = message.voteExtension ? (0, import_helpers.base64FromBytes)(message.voteExtension) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return ResponseExtendVote.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return ResponseExtendVote.decode(message.value);
+  },
+  toProto(message) {
+    return ResponseExtendVote.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/tendermint.abci.ResponseExtendVote",
+      value: ResponseExtendVote.encode(message).finish()
+    };
+  }
+};
+function createBaseResponseVerifyVoteExtension() {
+  return {
+    status: 0
+  };
+}
+const ResponseVerifyVoteExtension = {
+  typeUrl: "/tendermint.abci.ResponseVerifyVoteExtension",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.status !== 0) {
+      writer.uint32(8).int32(message.status);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseResponseVerifyVoteExtension();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.status = reader.int32();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseResponseVerifyVoteExtension();
+    message.status = object.status ?? 0;
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseResponseVerifyVoteExtension();
+    if (object.status !== void 0 && object.status !== null) {
+      message.status = object.status;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.status = message.status === 0 ? void 0 : message.status;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return ResponseVerifyVoteExtension.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return ResponseVerifyVoteExtension.decode(message.value);
+  },
+  toProto(message) {
+    return ResponseVerifyVoteExtension.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/tendermint.abci.ResponseVerifyVoteExtension",
+      value: ResponseVerifyVoteExtension.encode(message).finish()
+    };
+  }
+};
+function createBaseResponseFinalizeBlock() {
+  return {
+    events: [],
+    txResults: [],
+    validatorUpdates: [],
+    consensusParamUpdates: void 0,
+    appHash: new Uint8Array()
+  };
+}
+const ResponseFinalizeBlock = {
+  typeUrl: "/tendermint.abci.ResponseFinalizeBlock",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    for (const v of message.events) {
+      Event.encode(v, writer.uint32(10).fork()).ldelim();
+    }
+    for (const v of message.txResults) {
+      ExecTxResult.encode(v, writer.uint32(18).fork()).ldelim();
+    }
+    for (const v of message.validatorUpdates) {
+      ValidatorUpdate.encode(v, writer.uint32(26).fork()).ldelim();
+    }
+    if (message.consensusParamUpdates !== void 0) {
+      import_params.ConsensusParams.encode(message.consensusParamUpdates, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.appHash.length !== 0) {
+      writer.uint32(42).bytes(message.appHash);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseResponseFinalizeBlock();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.events.push(Event.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.txResults.push(ExecTxResult.decode(reader, reader.uint32()));
+          break;
+        case 3:
+          message.validatorUpdates.push(ValidatorUpdate.decode(reader, reader.uint32()));
+          break;
+        case 4:
+          message.consensusParamUpdates = import_params.ConsensusParams.decode(reader, reader.uint32());
+          break;
+        case 5:
+          message.appHash = reader.bytes();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseResponseFinalizeBlock();
+    message.events = object.events?.map((e) => Event.fromPartial(e)) || [];
+    message.txResults = object.txResults?.map((e) => ExecTxResult.fromPartial(e)) || [];
+    message.validatorUpdates = object.validatorUpdates?.map((e) => ValidatorUpdate.fromPartial(e)) || [];
+    message.consensusParamUpdates = object.consensusParamUpdates !== void 0 && object.consensusParamUpdates !== null ? import_params.ConsensusParams.fromPartial(object.consensusParamUpdates) : void 0;
+    message.appHash = object.appHash ?? new Uint8Array();
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseResponseFinalizeBlock();
+    message.events = object.events?.map((e) => Event.fromAmino(e)) || [];
+    message.txResults = object.tx_results?.map((e) => ExecTxResult.fromAmino(e)) || [];
+    message.validatorUpdates = object.validator_updates?.map((e) => ValidatorUpdate.fromAmino(e)) || [];
+    if (object.consensus_param_updates !== void 0 && object.consensus_param_updates !== null) {
+      message.consensusParamUpdates = import_params.ConsensusParams.fromAmino(object.consensus_param_updates);
+    }
+    if (object.app_hash !== void 0 && object.app_hash !== null) {
+      message.appHash = (0, import_helpers.bytesFromBase64)(object.app_hash);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    if (message.events) {
+      obj.events = message.events.map((e) => e ? Event.toAmino(e) : void 0);
+    } else {
+      obj.events = message.events;
+    }
+    if (message.txResults) {
+      obj.tx_results = message.txResults.map((e) => e ? ExecTxResult.toAmino(e) : void 0);
+    } else {
+      obj.tx_results = message.txResults;
+    }
+    if (message.validatorUpdates) {
+      obj.validator_updates = message.validatorUpdates.map((e) => e ? ValidatorUpdate.toAmino(e) : void 0);
+    } else {
+      obj.validator_updates = message.validatorUpdates;
+    }
+    obj.consensus_param_updates = message.consensusParamUpdates ? import_params.ConsensusParams.toAmino(message.consensusParamUpdates) : void 0;
+    obj.app_hash = message.appHash ? (0, import_helpers.base64FromBytes)(message.appHash) : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return ResponseFinalizeBlock.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return ResponseFinalizeBlock.decode(message.value);
+  },
+  toProto(message) {
+    return ResponseFinalizeBlock.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/tendermint.abci.ResponseFinalizeBlock",
+      value: ResponseFinalizeBlock.encode(message).finish()
+    };
+  }
+};
 function createBaseCommitInfo() {
   return {
     round: 0,
@@ -4046,12 +4154,161 @@ const EventAttribute = {
     };
   }
 };
+function createBaseExecTxResult() {
+  return {
+    code: 0,
+    data: new Uint8Array(),
+    log: "",
+    info: "",
+    gasWanted: BigInt(0),
+    gasUsed: BigInt(0),
+    events: [],
+    codespace: ""
+  };
+}
+const ExecTxResult = {
+  typeUrl: "/tendermint.abci.ExecTxResult",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.code !== 0) {
+      writer.uint32(8).uint32(message.code);
+    }
+    if (message.data.length !== 0) {
+      writer.uint32(18).bytes(message.data);
+    }
+    if (message.log !== "") {
+      writer.uint32(26).string(message.log);
+    }
+    if (message.info !== "") {
+      writer.uint32(34).string(message.info);
+    }
+    if (message.gasWanted !== BigInt(0)) {
+      writer.uint32(40).int64(message.gasWanted);
+    }
+    if (message.gasUsed !== BigInt(0)) {
+      writer.uint32(48).int64(message.gasUsed);
+    }
+    for (const v of message.events) {
+      Event.encode(v, writer.uint32(58).fork()).ldelim();
+    }
+    if (message.codespace !== "") {
+      writer.uint32(66).string(message.codespace);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseExecTxResult();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.code = reader.uint32();
+          break;
+        case 2:
+          message.data = reader.bytes();
+          break;
+        case 3:
+          message.log = reader.string();
+          break;
+        case 4:
+          message.info = reader.string();
+          break;
+        case 5:
+          message.gasWanted = reader.int64();
+          break;
+        case 6:
+          message.gasUsed = reader.int64();
+          break;
+        case 7:
+          message.events.push(Event.decode(reader, reader.uint32()));
+          break;
+        case 8:
+          message.codespace = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseExecTxResult();
+    message.code = object.code ?? 0;
+    message.data = object.data ?? new Uint8Array();
+    message.log = object.log ?? "";
+    message.info = object.info ?? "";
+    message.gasWanted = object.gasWanted !== void 0 && object.gasWanted !== null ? BigInt(object.gasWanted.toString()) : BigInt(0);
+    message.gasUsed = object.gasUsed !== void 0 && object.gasUsed !== null ? BigInt(object.gasUsed.toString()) : BigInt(0);
+    message.events = object.events?.map((e) => Event.fromPartial(e)) || [];
+    message.codespace = object.codespace ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseExecTxResult();
+    if (object.code !== void 0 && object.code !== null) {
+      message.code = object.code;
+    }
+    if (object.data !== void 0 && object.data !== null) {
+      message.data = (0, import_helpers.bytesFromBase64)(object.data);
+    }
+    if (object.log !== void 0 && object.log !== null) {
+      message.log = object.log;
+    }
+    if (object.info !== void 0 && object.info !== null) {
+      message.info = object.info;
+    }
+    if (object.gas_wanted !== void 0 && object.gas_wanted !== null) {
+      message.gasWanted = BigInt(object.gas_wanted);
+    }
+    if (object.gas_used !== void 0 && object.gas_used !== null) {
+      message.gasUsed = BigInt(object.gas_used);
+    }
+    message.events = object.events?.map((e) => Event.fromAmino(e)) || [];
+    if (object.codespace !== void 0 && object.codespace !== null) {
+      message.codespace = object.codespace;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.code = message.code === 0 ? void 0 : message.code;
+    obj.data = message.data ? (0, import_helpers.base64FromBytes)(message.data) : void 0;
+    obj.log = message.log === "" ? void 0 : message.log;
+    obj.info = message.info === "" ? void 0 : message.info;
+    obj.gas_wanted = message.gasWanted !== BigInt(0) ? message.gasWanted?.toString() : void 0;
+    obj.gas_used = message.gasUsed !== BigInt(0) ? message.gasUsed?.toString() : void 0;
+    if (message.events) {
+      obj.events = message.events.map((e) => e ? Event.toAmino(e) : void 0);
+    } else {
+      obj.events = message.events;
+    }
+    obj.codespace = message.codespace === "" ? void 0 : message.codespace;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return ExecTxResult.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return ExecTxResult.decode(message.value);
+  },
+  toProto(message) {
+    return ExecTxResult.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/tendermint.abci.ExecTxResult",
+      value: ExecTxResult.encode(message).finish()
+    };
+  }
+};
 function createBaseTxResult() {
   return {
     height: BigInt(0),
     index: 0,
     tx: new Uint8Array(),
-    result: ResponseDeliverTx.fromPartial({})
+    result: ExecTxResult.fromPartial({})
   };
 }
 const TxResult = {
@@ -4067,7 +4324,7 @@ const TxResult = {
       writer.uint32(26).bytes(message.tx);
     }
     if (message.result !== void 0) {
-      ResponseDeliverTx.encode(message.result, writer.uint32(34).fork()).ldelim();
+      ExecTxResult.encode(message.result, writer.uint32(34).fork()).ldelim();
     }
     return writer;
   },
@@ -4088,7 +4345,7 @@ const TxResult = {
           message.tx = reader.bytes();
           break;
         case 4:
-          message.result = ResponseDeliverTx.decode(reader, reader.uint32());
+          message.result = ExecTxResult.decode(reader, reader.uint32());
           break;
         default:
           reader.skipType(tag & 7);
@@ -4102,7 +4359,7 @@ const TxResult = {
     message.height = object.height !== void 0 && object.height !== null ? BigInt(object.height.toString()) : BigInt(0);
     message.index = object.index ?? 0;
     message.tx = object.tx ?? new Uint8Array();
-    message.result = object.result !== void 0 && object.result !== null ? ResponseDeliverTx.fromPartial(object.result) : void 0;
+    message.result = object.result !== void 0 && object.result !== null ? ExecTxResult.fromPartial(object.result) : void 0;
     return message;
   },
   fromAmino(object) {
@@ -4117,7 +4374,7 @@ const TxResult = {
       message.tx = (0, import_helpers.bytesFromBase64)(object.tx);
     }
     if (object.result !== void 0 && object.result !== null) {
-      message.result = ResponseDeliverTx.fromAmino(object.result);
+      message.result = ExecTxResult.fromAmino(object.result);
     }
     return message;
   },
@@ -4126,7 +4383,7 @@ const TxResult = {
     obj.height = message.height !== BigInt(0) ? message.height?.toString() : void 0;
     obj.index = message.index === 0 ? void 0 : message.index;
     obj.tx = message.tx ? (0, import_helpers.base64FromBytes)(message.tx) : void 0;
-    obj.result = message.result ? ResponseDeliverTx.toAmino(message.result) : void 0;
+    obj.result = message.result ? ExecTxResult.toAmino(message.result) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -4298,7 +4555,7 @@ const ValidatorUpdate = {
 function createBaseVoteInfo() {
   return {
     validator: Validator.fromPartial({}),
-    signedLastBlock: false
+    blockIdFlag: 0
   };
 }
 const VoteInfo = {
@@ -4307,8 +4564,8 @@ const VoteInfo = {
     if (message.validator !== void 0) {
       Validator.encode(message.validator, writer.uint32(10).fork()).ldelim();
     }
-    if (message.signedLastBlock === true) {
-      writer.uint32(16).bool(message.signedLastBlock);
+    if (message.blockIdFlag !== 0) {
+      writer.uint32(24).int32(message.blockIdFlag);
     }
     return writer;
   },
@@ -4322,8 +4579,8 @@ const VoteInfo = {
         case 1:
           message.validator = Validator.decode(reader, reader.uint32());
           break;
-        case 2:
-          message.signedLastBlock = reader.bool();
+        case 3:
+          message.blockIdFlag = reader.int32();
           break;
         default:
           reader.skipType(tag & 7);
@@ -4335,7 +4592,7 @@ const VoteInfo = {
   fromPartial(object) {
     const message = createBaseVoteInfo();
     message.validator = object.validator !== void 0 && object.validator !== null ? Validator.fromPartial(object.validator) : void 0;
-    message.signedLastBlock = object.signedLastBlock ?? false;
+    message.blockIdFlag = object.blockIdFlag ?? 0;
     return message;
   },
   fromAmino(object) {
@@ -4343,15 +4600,15 @@ const VoteInfo = {
     if (object.validator !== void 0 && object.validator !== null) {
       message.validator = Validator.fromAmino(object.validator);
     }
-    if (object.signed_last_block !== void 0 && object.signed_last_block !== null) {
-      message.signedLastBlock = object.signed_last_block;
+    if (object.block_id_flag !== void 0 && object.block_id_flag !== null) {
+      message.blockIdFlag = object.block_id_flag;
     }
     return message;
   },
   toAmino(message) {
     const obj = {};
     obj.validator = message.validator ? Validator.toAmino(message.validator) : void 0;
-    obj.signed_last_block = message.signedLastBlock === false ? void 0 : message.signedLastBlock;
+    obj.block_id_flag = message.blockIdFlag === 0 ? void 0 : message.blockIdFlag;
     return obj;
   },
   fromAminoMsg(object) {
@@ -4373,8 +4630,9 @@ const VoteInfo = {
 function createBaseExtendedVoteInfo() {
   return {
     validator: Validator.fromPartial({}),
-    signedLastBlock: false,
-    voteExtension: new Uint8Array()
+    voteExtension: new Uint8Array(),
+    extensionSignature: new Uint8Array(),
+    blockIdFlag: 0
   };
 }
 const ExtendedVoteInfo = {
@@ -4383,11 +4641,14 @@ const ExtendedVoteInfo = {
     if (message.validator !== void 0) {
       Validator.encode(message.validator, writer.uint32(10).fork()).ldelim();
     }
-    if (message.signedLastBlock === true) {
-      writer.uint32(16).bool(message.signedLastBlock);
-    }
     if (message.voteExtension.length !== 0) {
       writer.uint32(26).bytes(message.voteExtension);
+    }
+    if (message.extensionSignature.length !== 0) {
+      writer.uint32(34).bytes(message.extensionSignature);
+    }
+    if (message.blockIdFlag !== 0) {
+      writer.uint32(40).int32(message.blockIdFlag);
     }
     return writer;
   },
@@ -4401,11 +4662,14 @@ const ExtendedVoteInfo = {
         case 1:
           message.validator = Validator.decode(reader, reader.uint32());
           break;
-        case 2:
-          message.signedLastBlock = reader.bool();
-          break;
         case 3:
           message.voteExtension = reader.bytes();
+          break;
+        case 4:
+          message.extensionSignature = reader.bytes();
+          break;
+        case 5:
+          message.blockIdFlag = reader.int32();
           break;
         default:
           reader.skipType(tag & 7);
@@ -4417,8 +4681,9 @@ const ExtendedVoteInfo = {
   fromPartial(object) {
     const message = createBaseExtendedVoteInfo();
     message.validator = object.validator !== void 0 && object.validator !== null ? Validator.fromPartial(object.validator) : void 0;
-    message.signedLastBlock = object.signedLastBlock ?? false;
     message.voteExtension = object.voteExtension ?? new Uint8Array();
+    message.extensionSignature = object.extensionSignature ?? new Uint8Array();
+    message.blockIdFlag = object.blockIdFlag ?? 0;
     return message;
   },
   fromAmino(object) {
@@ -4426,19 +4691,23 @@ const ExtendedVoteInfo = {
     if (object.validator !== void 0 && object.validator !== null) {
       message.validator = Validator.fromAmino(object.validator);
     }
-    if (object.signed_last_block !== void 0 && object.signed_last_block !== null) {
-      message.signedLastBlock = object.signed_last_block;
-    }
     if (object.vote_extension !== void 0 && object.vote_extension !== null) {
       message.voteExtension = (0, import_helpers.bytesFromBase64)(object.vote_extension);
+    }
+    if (object.extension_signature !== void 0 && object.extension_signature !== null) {
+      message.extensionSignature = (0, import_helpers.bytesFromBase64)(object.extension_signature);
+    }
+    if (object.block_id_flag !== void 0 && object.block_id_flag !== null) {
+      message.blockIdFlag = object.block_id_flag;
     }
     return message;
   },
   toAmino(message) {
     const obj = {};
     obj.validator = message.validator ? Validator.toAmino(message.validator) : void 0;
-    obj.signed_last_block = message.signedLastBlock === false ? void 0 : message.signedLastBlock;
     obj.vote_extension = message.voteExtension ? (0, import_helpers.base64FromBytes)(message.voteExtension) : void 0;
+    obj.extension_signature = message.extensionSignature ? (0, import_helpers.base64FromBytes)(message.extensionSignature) : void 0;
+    obj.block_id_flag = message.blockIdFlag === 0 ? void 0 : message.blockIdFlag;
     return obj;
   },
   fromAminoMsg(object) {
@@ -4687,6 +4956,7 @@ const Snapshot = {
   CommitInfo,
   Event,
   EventAttribute,
+  ExecTxResult,
   ExtendedCommitInfo,
   ExtendedVoteInfo,
   Misbehavior,
@@ -4695,12 +4965,11 @@ const Snapshot = {
   MisbehaviorTypeSDKType,
   Request,
   RequestApplySnapshotChunk,
-  RequestBeginBlock,
   RequestCheckTx,
   RequestCommit,
-  RequestDeliverTx,
   RequestEcho,
-  RequestEndBlock,
+  RequestExtendVote,
+  RequestFinalizeBlock,
   RequestFlush,
   RequestInfo,
   RequestInitChain,
@@ -4710,18 +4979,18 @@ const Snapshot = {
   RequestPrepareProposal,
   RequestProcessProposal,
   RequestQuery,
+  RequestVerifyVoteExtension,
   Response,
   ResponseApplySnapshotChunk,
   ResponseApplySnapshotChunk_Result,
   ResponseApplySnapshotChunk_ResultAmino,
   ResponseApplySnapshotChunk_ResultSDKType,
-  ResponseBeginBlock,
   ResponseCheckTx,
   ResponseCommit,
-  ResponseDeliverTx,
   ResponseEcho,
-  ResponseEndBlock,
   ResponseException,
+  ResponseExtendVote,
+  ResponseFinalizeBlock,
   ResponseFlush,
   ResponseInfo,
   ResponseInitChain,
@@ -4737,6 +5006,10 @@ const Snapshot = {
   ResponseProcessProposal_ProposalStatusAmino,
   ResponseProcessProposal_ProposalStatusSDKType,
   ResponseQuery,
+  ResponseVerifyVoteExtension,
+  ResponseVerifyVoteExtension_VerifyStatus,
+  ResponseVerifyVoteExtension_VerifyStatusAmino,
+  ResponseVerifyVoteExtension_VerifyStatusSDKType,
   Snapshot,
   TxResult,
   Validator,
@@ -4751,5 +5024,7 @@ const Snapshot = {
   responseOfferSnapshot_ResultFromJSON,
   responseOfferSnapshot_ResultToJSON,
   responseProcessProposal_ProposalStatusFromJSON,
-  responseProcessProposal_ProposalStatusToJSON
+  responseProcessProposal_ProposalStatusToJSON,
+  responseVerifyVoteExtension_VerifyStatusFromJSON,
+  responseVerifyVoteExtension_VerifyStatusToJSON
 });

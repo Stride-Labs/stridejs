@@ -44,8 +44,10 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
                 supplyOf(request: import("./bank/v1beta1/query").QuerySupplyOfRequest): Promise<import("./bank/v1beta1/query").QuerySupplyOfResponse>;
                 params(request?: import("./bank/v1beta1/query").QueryParamsRequest): Promise<import("./bank/v1beta1/query").QueryParamsResponse>;
                 denomMetadata(request: import("./bank/v1beta1/query").QueryDenomMetadataRequest): Promise<import("./bank/v1beta1/query").QueryDenomMetadataResponse>;
+                denomMetadataByQueryString(request: import("./bank/v1beta1/query").QueryDenomMetadataByQueryStringRequest): Promise<import("./bank/v1beta1/query").QueryDenomMetadataByQueryStringResponse>;
                 denomsMetadata(request?: import("./bank/v1beta1/query").QueryDenomsMetadataRequest): Promise<import("./bank/v1beta1/query").QueryDenomsMetadataResponse>;
                 denomOwners(request: import("./bank/v1beta1/query").QueryDenomOwnersRequest): Promise<import("./bank/v1beta1/query").QueryDenomOwnersResponse>;
+                denomOwnersByQuery(request: import("./bank/v1beta1/query").QueryDenomOwnersByQueryRequest): Promise<import("./bank/v1beta1/query").QueryDenomOwnersByQueryResponse>;
                 sendEnabled(request: import("./bank/v1beta1/query").QuerySendEnabledRequest): Promise<import("./bank/v1beta1/query").QuerySendEnabledResponse>;
             };
         };
@@ -53,6 +55,7 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
             node: {
                 v1beta1: {
                     config(request?: import("./base/node/v1beta1/query").ConfigRequest): Promise<import("./base/node/v1beta1/query").ConfigResponse>;
+                    status(request?: import("./base/node/v1beta1/query").StatusRequest): Promise<import("./base/node/v1beta1/query").StatusResponse>;
                 };
             };
             tendermint: {
@@ -65,6 +68,13 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
                     getValidatorSetByHeight(request: import("./base/tendermint/v1beta1/query").GetValidatorSetByHeightRequest): Promise<import("./base/tendermint/v1beta1/query").GetValidatorSetByHeightResponse>;
                     aBCIQuery(request: import("./base/tendermint/v1beta1/query").ABCIQueryRequest): Promise<import("./base/tendermint/v1beta1/query").ABCIQueryResponse>;
                 };
+            };
+        };
+        circuit: {
+            v1: {
+                account(request: import("./circuit/v1/query").QueryAccountRequest): Promise<import("./circuit/v1/query").AccountResponse>;
+                accounts(request?: import("./circuit/v1/query").QueryAccountsRequest): Promise<import("./circuit/v1/query").AccountsResponse>;
+                disabledList(request?: import("./circuit/v1/query").QueryDisabledListRequest): Promise<import("./circuit/v1/query").DisabledListResponse>;
             };
         };
         consensus: {
@@ -101,6 +111,7 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
         };
         gov: {
             v1: {
+                constitution(request?: import("./gov/v1/query").QueryConstitutionRequest): Promise<import("./gov/v1/query").QueryConstitutionResponse>;
                 proposal(request: import("./gov/v1/query").QueryProposalRequest): Promise<import("./gov/v1/query").QueryProposalResponse>;
                 proposals(request: import("./gov/v1/query").QueryProposalsRequest): Promise<import("./gov/v1/query").QueryProposalsResponse>;
                 vote(request: import("./gov/v1/query").QueryVoteRequest): Promise<import("./gov/v1/query").QueryVoteResponse>;
