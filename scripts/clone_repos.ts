@@ -8,19 +8,19 @@ export const reposDir = join(__dirname, "repos");
 export const config = [
   {
     repo: "https://github.com/Stride-Labs/stride",
-    branch: "main",
+    branch: "sdk50",
   },
   {
-    repo: "https://github.com/Stride-Labs/cosmos-sdk",
-    branch: "v0.47.15-stride-distribution-fix-0-mempool-verbose-error",
+    repo: "https://github.com/cosmos/cosmos-sdk",
+    branch: "v0.50.13",
   },
   {
     repo: "https://github.com/cosmos/ibc-go",
-    branch: "v7.9.2",
+    branch: "v8.7.0",
   },
   {
     repo: "https://github.com/CosmWasm/wasmd",
-    branch: "v0.46.0",
+    branch: "v0.54.0",
   },
 ];
 
