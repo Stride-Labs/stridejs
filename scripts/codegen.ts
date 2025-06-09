@@ -18,6 +18,7 @@ telescope({
         duration: "duration",
         customTypes: {
           useCosmosSDKDec: true,
+          useEnhancedDecimal: true,
         },
         num64: "bigint", // change to "long" if getting compilationg issues (usually with react-native)
         useTelescopeGeneratedType: true,
