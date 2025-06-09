@@ -8,9 +8,16 @@ export interface GenesisStateProtoMsg {
     typeUrl: "/stride.strdburner.GenesisState";
     value: Uint8Array;
 }
-/** GenesisState defines the strdburner module's genesis state */
+/**
+ * GenesisState defines the strdburner module's genesis state
+ * @name GenesisStateAmino
+ * @package stride.strdburner
+ * @see proto type: stride.strdburner.GenesisState
+ */
 export interface GenesisStateAmino {
-    /** Total amount of ustrd burned */
+    /**
+     * Total amount of ustrd burned
+     */
     total_ustrd_burned?: string;
 }
 export interface GenesisStateAminoMsg {

@@ -3,7 +3,7 @@ import { Timestamp } from "../../google/protobuf/timestamp";
 import { Airdrop, AirdropAmino, AirdropSDKType, UserAllocation, UserAllocationAmino, UserAllocationSDKType } from "./airdrop";
 import { BinaryReader, BinaryWriter } from "../../binary";
 import { toTimestamp, fromTimestamp } from "../../helpers";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 /** Airdrop */
 export interface QueryAirdropRequest {
   id: string;
@@ -12,7 +12,12 @@ export interface QueryAirdropRequestProtoMsg {
   typeUrl: "/stride.airdrop.QueryAirdropRequest";
   value: Uint8Array;
 }
-/** Airdrop */
+/**
+ * Airdrop
+ * @name QueryAirdropRequestAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.QueryAirdropRequest
+ */
 export interface QueryAirdropRequestAmino {
   id?: string;
 }
@@ -64,12 +69,23 @@ export interface QueryAirdropResponseProtoMsg {
   typeUrl: "/stride.airdrop.QueryAirdropResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryAirdropResponseAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.QueryAirdropResponse
+ */
 export interface QueryAirdropResponseAmino {
-  /** Airdrop ID */
+  /**
+   * Airdrop ID
+   */
   id?: string;
-  /** Denom used when distributing rewards */
+  /**
+   * Denom used when distributing rewards
+   */
   reward_denom?: string;
-  /** The first date that claiming begins and rewards are distributed */
+  /**
+   * The first date that claiming begins and rewards are distributed
+   */
   distribution_start_date?: string;
   /**
    * The last date for rewards to be distributed. Immediately after this date
@@ -82,22 +98,34 @@ export interface QueryAirdropResponseAmino {
    * end date)
    */
   clawback_date?: string;
-  /** Deadline for the user to make a decision on their claim type */
+  /**
+   * Deadline for the user to make a decision on their claim type
+   */
   claim_type_deadline_date?: string;
   /**
    * Penalty for claiming rewards early - e.g. 0.5 means claiming early will
    * result in losing 50% of rewards
    */
   early_claim_penalty?: string;
-  /** Account that holds the total reward balance and distributes to users */
+  /**
+   * Account that holds the total reward balance and distributes to users
+   */
   distributor_address?: string;
-  /** Admin account with permissions to add or update allocations */
+  /**
+   * Admin account with permissions to add or update allocations
+   */
   allocator_address?: string;
-  /** Admin account with permissions to link addresseses */
+  /**
+   * Admin account with permissions to link addresseses
+   */
   linker_address?: string;
-  /** The current date index into the airdrop array */
+  /**
+   * The current date index into the airdrop array
+   */
   current_date_index?: string;
-  /** The length of the airdrop (i.e. number of periods in the airdrop array) */
+  /**
+   * The length of the airdrop (i.e. number of periods in the airdrop array)
+   */
   airdrop_length?: string;
 }
 export interface QueryAirdropResponseAminoMsg {
@@ -124,7 +152,12 @@ export interface QueryAllAirdropsRequestProtoMsg {
   typeUrl: "/stride.airdrop.QueryAllAirdropsRequest";
   value: Uint8Array;
 }
-/** Airdrops */
+/**
+ * Airdrops
+ * @name QueryAllAirdropsRequestAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.QueryAllAirdropsRequest
+ */
 export interface QueryAllAirdropsRequestAmino {}
 export interface QueryAllAirdropsRequestAminoMsg {
   type: "/stride.airdrop.QueryAllAirdropsRequest";
@@ -139,6 +172,11 @@ export interface QueryAllAirdropsResponseProtoMsg {
   typeUrl: "/stride.airdrop.QueryAllAirdropsResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryAllAirdropsResponseAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.QueryAllAirdropsResponse
+ */
 export interface QueryAllAirdropsResponseAmino {
   airdrops?: AirdropAmino[];
 }
@@ -158,7 +196,12 @@ export interface QueryUserAllocationRequestProtoMsg {
   typeUrl: "/stride.airdrop.QueryUserAllocationRequest";
   value: Uint8Array;
 }
-/** UserAllocation */
+/**
+ * UserAllocation
+ * @name QueryUserAllocationRequestAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.QueryUserAllocationRequest
+ */
 export interface QueryUserAllocationRequestAmino {
   airdrop_id?: string;
   address?: string;
@@ -179,6 +222,11 @@ export interface QueryUserAllocationResponseProtoMsg {
   typeUrl: "/stride.airdrop.QueryUserAllocationResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryUserAllocationResponseAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.QueryUserAllocationResponse
+ */
 export interface QueryUserAllocationResponseAmino {
   user_allocation?: UserAllocationAmino;
 }
@@ -197,7 +245,12 @@ export interface QueryUserAllocationsRequestProtoMsg {
   typeUrl: "/stride.airdrop.QueryUserAllocationsRequest";
   value: Uint8Array;
 }
-/** UserAllocations */
+/**
+ * UserAllocations
+ * @name QueryUserAllocationsRequestAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.QueryUserAllocationsRequest
+ */
 export interface QueryUserAllocationsRequestAmino {
   address?: string;
 }
@@ -216,6 +269,11 @@ export interface QueryUserAllocationsResponseProtoMsg {
   typeUrl: "/stride.airdrop.QueryUserAllocationsResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryUserAllocationsResponseAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.QueryUserAllocationsResponse
+ */
 export interface QueryUserAllocationsResponseAmino {
   user_allocations?: UserAllocationAmino[];
 }
@@ -235,7 +293,12 @@ export interface QueryAllAllocationsRequestProtoMsg {
   typeUrl: "/stride.airdrop.QueryAllAllocationsRequest";
   value: Uint8Array;
 }
-/** AllAllocations */
+/**
+ * AllAllocations
+ * @name QueryAllAllocationsRequestAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.QueryAllAllocationsRequest
+ */
 export interface QueryAllAllocationsRequestAmino {
   airdrop_id?: string;
   pagination?: PageRequestAmino;
@@ -257,6 +320,11 @@ export interface QueryAllAllocationsResponseProtoMsg {
   typeUrl: "/stride.airdrop.QueryAllAllocationsResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryAllAllocationsResponseAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.QueryAllAllocationsResponse
+ */
 export interface QueryAllAllocationsResponseAmino {
   allocations?: UserAllocationAmino[];
   pagination?: PageResponseAmino;
@@ -278,7 +346,12 @@ export interface QueryUserSummaryRequestProtoMsg {
   typeUrl: "/stride.airdrop.QueryUserSummaryRequest";
   value: Uint8Array;
 }
-/** UserSummary */
+/**
+ * UserSummary
+ * @name QueryUserSummaryRequestAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.QueryUserSummaryRequest
+ */
 export interface QueryUserSummaryRequestAmino {
   airdrop_id?: string;
   address?: string;
@@ -308,16 +381,31 @@ export interface QueryUserSummaryResponseProtoMsg {
   typeUrl: "/stride.airdrop.QueryUserSummaryResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryUserSummaryResponseAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.QueryUserSummaryResponse
+ */
 export interface QueryUserSummaryResponseAmino {
-  /** The claim type (claim daily or claim early) */
+  /**
+   * The claim type (claim daily or claim early)
+   */
   claim_type?: string;
-  /** The total rewards claimed so far */
+  /**
+   * The total rewards claimed so far
+   */
   claimed?: string;
-  /** The total rewards forfeited (in the case of claiming early) */
+  /**
+   * The total rewards forfeited (in the case of claiming early)
+   */
   forfeited?: string;
-  /** The total rewards remaining */
+  /**
+   * The total rewards remaining
+   */
   remaining?: string;
-  /** The total rewards that can be claimed right now */
+  /**
+   * The total rewards that can be claimed right now
+   */
   claimable?: string;
 }
 export interface QueryUserSummaryResponseAminoMsg {

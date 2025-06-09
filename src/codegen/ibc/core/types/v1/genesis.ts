@@ -21,13 +21,24 @@ export interface GenesisStateProtoMsg {
   typeUrl: "/ibc.core.types.v1.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the ibc module's genesis state. */
+/**
+ * GenesisState defines the ibc module's genesis state.
+ * @name GenesisStateAmino
+ * @package ibc.core.types.v1
+ * @see proto type: ibc.core.types.v1.GenesisState
+ */
 export interface GenesisStateAmino {
-  /** ICS002 - Clients genesis state */
+  /**
+   * ICS002 - Clients genesis state
+   */
   client_genesis?: GenesisState1Amino;
-  /** ICS003 - Connections genesis state */
+  /**
+   * ICS003 - Connections genesis state
+   */
   connection_genesis?: GenesisState2Amino;
-  /** ICS004 - Channel genesis state */
+  /**
+   * ICS004 - Channel genesis state
+   */
   channel_genesis?: GenesisState3Amino;
 }
 export interface GenesisStateAminoMsg {

@@ -20,12 +20,17 @@ export interface MsgCreateVestingAccountProtoMsg {
 /**
  * MsgCreateVestingAccount defines a message that enables creating a vesting
  * account.
+ * @name MsgCreateVestingAccountAmino
+ * @package cosmos.vesting.v1beta1
+ * @see proto type: cosmos.vesting.v1beta1.MsgCreateVestingAccount
  */
 export interface MsgCreateVestingAccountAmino {
   from_address?: string;
   to_address?: string;
   amount: CoinAmino[];
-  /** end of vesting as unix time (in seconds). */
+  /**
+   * end of vesting as unix time (in seconds).
+   */
   end_time?: string;
   delayed?: boolean;
 }
@@ -50,7 +55,12 @@ export interface MsgCreateVestingAccountResponseProtoMsg {
   typeUrl: "/cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse";
   value: Uint8Array;
 }
-/** MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount response type. */
+/**
+ * MsgCreateVestingAccountResponse defines the Msg/CreateVestingAccount response type.
+ * @name MsgCreateVestingAccountResponseAmino
+ * @package cosmos.vesting.v1beta1
+ * @see proto type: cosmos.vesting.v1beta1.MsgCreateVestingAccountResponse
+ */
 export interface MsgCreateVestingAccountResponseAmino {}
 export interface MsgCreateVestingAccountResponseAminoMsg {
   type: "cosmos-sdk/MsgCreateVestingAccountResponse";
@@ -78,6 +88,9 @@ export interface MsgCreatePermanentLockedAccountProtoMsg {
  * locked account.
  * 
  * Since: cosmos-sdk 0.46
+ * @name MsgCreatePermanentLockedAccountAmino
+ * @package cosmos.vesting.v1beta1
+ * @see proto type: cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccount
  */
 export interface MsgCreatePermanentLockedAccountAmino {
   from_address?: string;
@@ -113,6 +126,9 @@ export interface MsgCreatePermanentLockedAccountResponseProtoMsg {
  * MsgCreatePermanentLockedAccountResponse defines the Msg/CreatePermanentLockedAccount response type.
  * 
  * Since: cosmos-sdk 0.46
+ * @name MsgCreatePermanentLockedAccountResponseAmino
+ * @package cosmos.vesting.v1beta1
+ * @see proto type: cosmos.vesting.v1beta1.MsgCreatePermanentLockedAccountResponse
  */
 export interface MsgCreatePermanentLockedAccountResponseAmino {}
 export interface MsgCreatePermanentLockedAccountResponseAminoMsg {
@@ -147,11 +163,16 @@ export interface MsgCreatePeriodicVestingAccountProtoMsg {
  * account.
  * 
  * Since: cosmos-sdk 0.46
+ * @name MsgCreatePeriodicVestingAccountAmino
+ * @package cosmos.vesting.v1beta1
+ * @see proto type: cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccount
  */
 export interface MsgCreatePeriodicVestingAccountAmino {
   from_address?: string;
   to_address?: string;
-  /** start of vesting as unix time (in seconds). */
+  /**
+   * start of vesting as unix time (in seconds).
+   */
   start_time?: string;
   vesting_periods: PeriodAmino[];
 }
@@ -187,6 +208,9 @@ export interface MsgCreatePeriodicVestingAccountResponseProtoMsg {
  * response type.
  * 
  * Since: cosmos-sdk 0.46
+ * @name MsgCreatePeriodicVestingAccountResponseAmino
+ * @package cosmos.vesting.v1beta1
+ * @see proto type: cosmos.vesting.v1beta1.MsgCreatePeriodicVestingAccountResponse
  */
 export interface MsgCreatePeriodicVestingAccountResponseAmino {}
 export interface MsgCreatePeriodicVestingAccountResponseAminoMsg {

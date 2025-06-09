@@ -9,9 +9,16 @@ export interface GenesisStateProtoMsg {
   typeUrl: "/stride.autopilot.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the claim module's genesis state. */
+/**
+ * GenesisState defines the claim module's genesis state.
+ * @name GenesisStateAmino
+ * @package stride.autopilot
+ * @see proto type: stride.autopilot.GenesisState
+ */
 export interface GenesisStateAmino {
-  /** params defines all the parameters of the module. */
+  /**
+   * params defines all the parameters of the module.
+   */
   params?: ParamsAmino;
 }
 export interface GenesisStateAminoMsg {

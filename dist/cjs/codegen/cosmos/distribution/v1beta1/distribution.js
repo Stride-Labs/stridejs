@@ -33,7 +33,7 @@ __export(distribution_exports, {
 module.exports = __toCommonJS(distribution_exports);
 var import_coin = require("../../base/v1beta1/coin");
 var import_binary = require("../../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../../decimals");
 function createBaseParams() {
   return {
     communityTax: "",
@@ -46,13 +46,13 @@ const Params = {
   typeUrl: "/cosmos.distribution.v1beta1.Params",
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.communityTax !== "") {
-      writer.uint32(10).string(import_math.Decimal.fromUserInput(message.communityTax, 18).atomics);
+      writer.uint32(10).string(import_decimals.Decimal.fromUserInput(message.communityTax, 18).atomics);
     }
     if (message.baseProposerReward !== "") {
-      writer.uint32(18).string(import_math.Decimal.fromUserInput(message.baseProposerReward, 18).atomics);
+      writer.uint32(18).string(import_decimals.Decimal.fromUserInput(message.baseProposerReward, 18).atomics);
     }
     if (message.bonusProposerReward !== "") {
-      writer.uint32(26).string(import_math.Decimal.fromUserInput(message.bonusProposerReward, 18).atomics);
+      writer.uint32(26).string(import_decimals.Decimal.fromUserInput(message.bonusProposerReward, 18).atomics);
     }
     if (message.withdrawAddrEnabled === true) {
       writer.uint32(32).bool(message.withdrawAddrEnabled);
@@ -67,13 +67,13 @@ const Params = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.communityTax = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.communityTax = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 2:
-          message.baseProposerReward = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.baseProposerReward = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
-          message.bonusProposerReward = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.bonusProposerReward = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 4:
           message.withdrawAddrEnabled = reader.bool();
@@ -460,7 +460,7 @@ const ValidatorSlashEvent = {
       writer.uint32(8).uint64(message.validatorPeriod);
     }
     if (message.fraction !== "") {
-      writer.uint32(18).string(import_math.Decimal.fromUserInput(message.fraction, 18).atomics);
+      writer.uint32(18).string(import_decimals.Decimal.fromUserInput(message.fraction, 18).atomics);
     }
     return writer;
   },
@@ -475,7 +475,7 @@ const ValidatorSlashEvent = {
           message.validatorPeriod = reader.uint64();
           break;
         case 2:
-          message.fraction = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.fraction = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);
@@ -792,7 +792,7 @@ const DelegatorStartingInfo = {
       writer.uint32(8).uint64(message.previousPeriod);
     }
     if (message.stake !== "") {
-      writer.uint32(18).string(import_math.Decimal.fromUserInput(message.stake, 18).atomics);
+      writer.uint32(18).string(import_decimals.Decimal.fromUserInput(message.stake, 18).atomics);
     }
     if (message.height !== BigInt(0)) {
       writer.uint32(24).uint64(message.height);
@@ -810,7 +810,7 @@ const DelegatorStartingInfo = {
           message.previousPeriod = reader.uint64();
           break;
         case 2:
-          message.stake = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.stake = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
           message.height = reader.uint64();

@@ -14,7 +14,12 @@ export interface ModuleProtoMsg {
     typeUrl: "/cosmos.bank.module.v1.Module";
     value: Uint8Array;
 }
-/** Module is the config object of the bank module. */
+/**
+ * Module is the config object of the bank module.
+ * @name ModuleAmino
+ * @package cosmos.bank.module.v1
+ * @see proto type: cosmos.bank.module.v1.Module
+ */
 export interface ModuleAmino {
     /**
      * blocked_module_accounts configures exceptional module accounts which should be blocked from receiving funds.
@@ -22,7 +27,9 @@ export interface ModuleAmino {
      * module_account_permissions
      */
     blocked_module_accounts_override?: string[];
-    /** authority defines the custom module authority. If not set, defaults to the governance module. */
+    /**
+     * authority defines the custom module authority. If not set, defaults to the governance module.
+     */
     authority?: string;
 }
 export interface ModuleAminoMsg {

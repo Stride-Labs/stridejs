@@ -5,7 +5,12 @@ export interface ParamsProtoMsg {
   typeUrl: "/stride.records.Params";
   value: Uint8Array;
 }
-/** Params defines the parameters for the module. */
+/**
+ * Params defines the parameters for the module.
+ * @name ParamsAmino
+ * @package stride.records
+ * @see proto type: stride.records.Params
+ */
 export interface ParamsAmino {}
 export interface ParamsAminoMsg {
   type: "/stride.records.Params";

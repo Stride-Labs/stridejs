@@ -24,18 +24,31 @@ export interface MsgRegisterTokenPriceQueryProtoMsg {
 /**
  * MsgRegisterTokenPriceQuery defines the message for adding a new token to
  * track prices
+ * @name MsgRegisterTokenPriceQueryAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.MsgRegisterTokenPriceQuery
  */
 export interface MsgRegisterTokenPriceQueryAmino {
   admin?: string;
-  /** Token denom on Stride */
+  /**
+   * Token denom on Stride
+   */
   base_denom?: string;
-  /** Quote denom on Stride */
+  /**
+   * Quote denom on Stride
+   */
   quote_denom?: string;
-  /** Token denom on Osmosis */
+  /**
+   * Token denom on Osmosis
+   */
   osmosis_base_denom?: string;
-  /** Quote denom on Osmosis */
+  /**
+   * Quote denom on Osmosis
+   */
   osmosis_quote_denom?: string;
-  /** Pool ID on Osmosis */
+  /**
+   * Pool ID on Osmosis
+   */
   osmosis_pool_id?: string;
 }
 export interface MsgRegisterTokenPriceQueryAminoMsg {
@@ -59,6 +72,11 @@ export interface MsgRegisterTokenPriceQueryResponseProtoMsg {
   typeUrl: "/stride.icqoracle.MsgRegisterTokenPriceQueryResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgRegisterTokenPriceQueryResponseAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.MsgRegisterTokenPriceQueryResponse
+ */
 export interface MsgRegisterTokenPriceQueryResponseAmino {}
 export interface MsgRegisterTokenPriceQueryResponseAminoMsg {
   type: "/stride.icqoracle.MsgRegisterTokenPriceQueryResponse";
@@ -85,14 +103,23 @@ export interface MsgRemoveTokenPriceQueryProtoMsg {
 /**
  * MsgRemoveTokenPriceQuery defines the message for removing a token from price
  * tracking
+ * @name MsgRemoveTokenPriceQueryAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.MsgRemoveTokenPriceQuery
  */
 export interface MsgRemoveTokenPriceQueryAmino {
   admin?: string;
-  /** Token denom on Stride */
+  /**
+   * Token denom on Stride
+   */
   base_denom?: string;
-  /** Quote denom on Stride */
+  /**
+   * Quote denom on Stride
+   */
   quote_denom?: string;
-  /** Pool ID on Osmosis */
+  /**
+   * Pool ID on Osmosis
+   */
   osmosis_pool_id?: string;
 }
 export interface MsgRemoveTokenPriceQueryAminoMsg {
@@ -114,6 +141,11 @@ export interface MsgRemoveTokenPriceQueryResponseProtoMsg {
   typeUrl: "/stride.icqoracle.MsgRemoveTokenPriceQueryResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgRemoveTokenPriceQueryResponseAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.MsgRemoveTokenPriceQueryResponse
+ */
 export interface MsgRemoveTokenPriceQueryResponseAmino {}
 export interface MsgRemoveTokenPriceQueryResponseAminoMsg {
   type: "/stride.icqoracle.MsgRemoveTokenPriceQueryResponse";
@@ -138,7 +170,12 @@ export interface MsgUpdateParamsProtoMsg {
   typeUrl: "/stride.icqoracle.MsgUpdateParams";
   value: Uint8Array;
 }
-/** MsgUpdateParams is the Msg/UpdateParams request type. */
+/**
+ * MsgUpdateParams is the Msg/UpdateParams request type.
+ * @name MsgUpdateParamsAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.MsgUpdateParams
+ */
 export interface MsgUpdateParamsAmino {
   /**
    * authority is the address that controls the module (defaults to x/gov unless
@@ -173,6 +210,9 @@ export interface MsgUpdateParamsResponseProtoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
+ * @name MsgUpdateParamsResponseAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.MsgUpdateParamsResponse
  */
 export interface MsgUpdateParamsResponseAmino {}
 export interface MsgUpdateParamsResponseAminoMsg {

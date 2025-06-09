@@ -15,7 +15,12 @@ export interface GenesisStateProtoMsg {
   typeUrl: "/stride.stakeibc.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the stakeibc module's genesis state. */
+/**
+ * GenesisState defines the stakeibc module's genesis state.
+ * @name GenesisStateAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.GenesisState
+ */
 export interface GenesisStateAmino {
   params?: ParamsAmino;
   port_id?: string;

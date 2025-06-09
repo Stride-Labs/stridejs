@@ -18,11 +18,18 @@ export interface IdentifiedClientStateProtoMsg {
 /**
  * IdentifiedClientState defines a client state with an additional client
  * identifier field.
+ * @name IdentifiedClientStateAmino
+ * @package ibc.core.client.v1
+ * @see proto type: ibc.core.client.v1.IdentifiedClientState
  */
 export interface IdentifiedClientStateAmino {
-    /** client identifier */
+    /**
+     * client identifier
+     */
     client_id?: string;
-    /** client state */
+    /**
+     * client state
+     */
     client_state?: AnyAmino;
 }
 export interface IdentifiedClientStateAminoMsg {
@@ -54,11 +61,18 @@ export interface ConsensusStateWithHeightProtoMsg {
 /**
  * ConsensusStateWithHeight defines a consensus state with an additional height
  * field.
+ * @name ConsensusStateWithHeightAmino
+ * @package ibc.core.client.v1
+ * @see proto type: ibc.core.client.v1.ConsensusStateWithHeight
  */
 export interface ConsensusStateWithHeightAmino {
-    /** consensus state height */
+    /**
+     * consensus state height
+     */
     height?: HeightAmino;
-    /** consensus state */
+    /**
+     * consensus state
+     */
     consensus_state?: AnyAmino;
 }
 export interface ConsensusStateWithHeightAminoMsg {
@@ -90,11 +104,18 @@ export interface ClientConsensusStatesProtoMsg {
 /**
  * ClientConsensusStates defines all the stored consensus states for a given
  * client.
+ * @name ClientConsensusStatesAmino
+ * @package ibc.core.client.v1
+ * @see proto type: ibc.core.client.v1.ClientConsensusStates
  */
 export interface ClientConsensusStatesAmino {
-    /** client identifier */
+    /**
+     * client identifier
+     */
     client_id?: string;
-    /** consensus states and their heights associated with the client */
+    /**
+     * consensus states and their heights associated with the client
+     */
     consensus_states?: ConsensusStateWithHeightAmino[];
 }
 export interface ClientConsensusStatesAminoMsg {
@@ -138,13 +159,22 @@ export interface ClientUpdateProposalProtoMsg {
  * client's latest consensus state is copied over to the subject client. The proposal
  * handler may fail if the subject and the substitute do not match in client and
  * chain parameters (with exception to latest height, frozen height, and chain-id).
+ * @name ClientUpdateProposalAmino
+ * @package ibc.core.client.v1
+ * @see proto type: ibc.core.client.v1.ClientUpdateProposal
  */
 export interface ClientUpdateProposalAmino {
-    /** the title of the update proposal */
+    /**
+     * the title of the update proposal
+     */
     title?: string;
-    /** the description of the proposal */
+    /**
+     * the description of the proposal
+     */
     description?: string;
-    /** the client identifier for the client to be updated if the proposal passes */
+    /**
+     * the client identifier for the client to be updated if the proposal passes
+     */
     subject_client_id?: string;
     /**
      * the substitute client identifier for the client standing in for the subject
@@ -195,6 +225,9 @@ export interface UpgradeProposalProtoMsg {
 /**
  * UpgradeProposal is a gov Content type for initiating an IBC breaking
  * upgrade.
+ * @name UpgradeProposalAmino
+ * @package ibc.core.client.v1
+ * @see proto type: ibc.core.client.v1.UpgradeProposal
  */
 export interface UpgradeProposalAmino {
     title?: string;
@@ -258,11 +291,18 @@ export interface HeightProtoMsg {
  * breaking changes In these cases, the RevisionNumber is incremented so that
  * height continues to be monitonically increasing even as the RevisionHeight
  * gets reset
+ * @name HeightAmino
+ * @package ibc.core.client.v1
+ * @see proto type: ibc.core.client.v1.Height
  */
 export interface HeightAmino {
-    /** the revision that the client is currently on */
+    /**
+     * the revision that the client is currently on
+     */
     revision_number?: string;
-    /** the height within the given revision */
+    /**
+     * the height within the given revision
+     */
     revision_height?: string;
 }
 export interface HeightAminoMsg {
@@ -298,7 +338,12 @@ export interface ParamsProtoMsg {
     typeUrl: "/ibc.core.client.v1.Params";
     value: Uint8Array;
 }
-/** Params defines the set of IBC light client parameters. */
+/**
+ * Params defines the set of IBC light client parameters.
+ * @name ParamsAmino
+ * @package ibc.core.client.v1
+ * @see proto type: ibc.core.client.v1.Params
+ */
 export interface ParamsAmino {
     /**
      * allowed_clients defines the list of allowed client state types which can be created

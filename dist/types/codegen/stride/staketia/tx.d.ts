@@ -27,8 +27,11 @@ export interface MsgLiquidStakeProtoMsg {
 /**
  * Deprecated: Liquid stakes should be handled in stakeibc
  * LiquidStake
+ * @name MsgLiquidStakeAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgLiquidStake
+ * @deprecated
  */
-/** @deprecated */
 export interface MsgLiquidStakeAmino {
     staker?: string;
     native_amount?: string;
@@ -54,7 +57,12 @@ export interface MsgLiquidStakeResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgLiquidStakeResponse";
     value: Uint8Array;
 }
-/** @deprecated */
+/**
+ * @name MsgLiquidStakeResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgLiquidStakeResponse
+ * @deprecated
+ */
 export interface MsgLiquidStakeResponseAmino {
     st_token?: CoinAmino;
 }
@@ -80,7 +88,12 @@ export interface MsgRedeemStakeProtoMsg {
     typeUrl: "/stride.staketia.MsgRedeemStake";
     value: Uint8Array;
 }
-/** RedeemStake */
+/**
+ * RedeemStake
+ * @name MsgRedeemStakeAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgRedeemStake
+ */
 export interface MsgRedeemStakeAmino {
     redeemer?: string;
     st_token_amount?: string;
@@ -107,6 +120,11 @@ export interface MsgRedeemStakeResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgRedeemStakeResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgRedeemStakeResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgRedeemStakeResponse
+ */
 export interface MsgRedeemStakeResponseAmino {
     native_token?: CoinAmino;
 }
@@ -127,7 +145,12 @@ export interface MsgConfirmDelegationProtoMsg {
     typeUrl: "/stride.staketia.MsgConfirmDelegation";
     value: Uint8Array;
 }
-/** ConfirmDelegation */
+/**
+ * ConfirmDelegation
+ * @name MsgConfirmDelegationAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgConfirmDelegation
+ */
 export interface MsgConfirmDelegationAmino {
     operator?: string;
     record_id?: string;
@@ -149,6 +172,11 @@ export interface MsgConfirmDelegationResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgConfirmDelegationResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgConfirmDelegationResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgConfirmDelegationResponse
+ */
 export interface MsgConfirmDelegationResponseAmino {
 }
 export interface MsgConfirmDelegationResponseAminoMsg {
@@ -167,7 +195,12 @@ export interface MsgConfirmUndelegationProtoMsg {
     typeUrl: "/stride.staketia.MsgConfirmUndelegation";
     value: Uint8Array;
 }
-/** ConfirmUndelegation */
+/**
+ * ConfirmUndelegation
+ * @name MsgConfirmUndelegationAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgConfirmUndelegation
+ */
 export interface MsgConfirmUndelegationAmino {
     operator?: string;
     record_id?: string;
@@ -189,6 +222,11 @@ export interface MsgConfirmUndelegationResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgConfirmUndelegationResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgConfirmUndelegationResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgConfirmUndelegationResponse
+ */
 export interface MsgConfirmUndelegationResponseAmino {
 }
 export interface MsgConfirmUndelegationResponseAminoMsg {
@@ -207,7 +245,12 @@ export interface MsgConfirmUnbondedTokenSweepProtoMsg {
     typeUrl: "/stride.staketia.MsgConfirmUnbondedTokenSweep";
     value: Uint8Array;
 }
-/** ConfirmUnbondedTokenSweep */
+/**
+ * ConfirmUnbondedTokenSweep
+ * @name MsgConfirmUnbondedTokenSweepAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgConfirmUnbondedTokenSweep
+ */
 export interface MsgConfirmUnbondedTokenSweepAmino {
     operator?: string;
     record_id?: string;
@@ -229,6 +272,11 @@ export interface MsgConfirmUnbondedTokenSweepResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgConfirmUnbondedTokenSweepResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgConfirmUnbondedTokenSweepResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgConfirmUnbondedTokenSweepResponse
+ */
 export interface MsgConfirmUnbondedTokenSweepResponseAmino {
 }
 export interface MsgConfirmUnbondedTokenSweepResponseAminoMsg {
@@ -247,7 +295,12 @@ export interface MsgAdjustDelegatedBalanceProtoMsg {
     typeUrl: "/stride.staketia.MsgAdjustDelegatedBalance";
     value: Uint8Array;
 }
-/** AdjustDelegatedBalance */
+/**
+ * AdjustDelegatedBalance
+ * @name MsgAdjustDelegatedBalanceAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgAdjustDelegatedBalance
+ */
 export interface MsgAdjustDelegatedBalanceAmino {
     operator?: string;
     delegation_offset?: string;
@@ -269,6 +322,11 @@ export interface MsgAdjustDelegatedBalanceResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgAdjustDelegatedBalanceResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgAdjustDelegatedBalanceResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgAdjustDelegatedBalanceResponse
+ */
 export interface MsgAdjustDelegatedBalanceResponseAmino {
 }
 export interface MsgAdjustDelegatedBalanceResponseAminoMsg {
@@ -287,7 +345,12 @@ export interface MsgUpdateInnerRedemptionRateBoundsProtoMsg {
     typeUrl: "/stride.staketia.MsgUpdateInnerRedemptionRateBounds";
     value: Uint8Array;
 }
-/** UpdateInnerRedemptionRate */
+/**
+ * UpdateInnerRedemptionRate
+ * @name MsgUpdateInnerRedemptionRateBoundsAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgUpdateInnerRedemptionRateBounds
+ */
 export interface MsgUpdateInnerRedemptionRateBoundsAmino {
     creator?: string;
     min_inner_redemption_rate?: string;
@@ -309,6 +372,11 @@ export interface MsgUpdateInnerRedemptionRateBoundsResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgUpdateInnerRedemptionRateBoundsResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgUpdateInnerRedemptionRateBoundsResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgUpdateInnerRedemptionRateBoundsResponse
+ */
 export interface MsgUpdateInnerRedemptionRateBoundsResponseAmino {
 }
 export interface MsgUpdateInnerRedemptionRateBoundsResponseAminoMsg {
@@ -325,7 +393,12 @@ export interface MsgResumeHostZoneProtoMsg {
     typeUrl: "/stride.staketia.MsgResumeHostZone";
     value: Uint8Array;
 }
-/** ResumeHostZone */
+/**
+ * ResumeHostZone
+ * @name MsgResumeHostZoneAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgResumeHostZone
+ */
 export interface MsgResumeHostZoneAmino {
     creator?: string;
 }
@@ -343,6 +416,11 @@ export interface MsgResumeHostZoneResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgResumeHostZoneResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgResumeHostZoneResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgResumeHostZoneResponse
+ */
 export interface MsgResumeHostZoneResponseAmino {
 }
 export interface MsgResumeHostZoneResponseAminoMsg {
@@ -359,7 +437,12 @@ export interface MsgRefreshRedemptionRateProtoMsg {
     typeUrl: "/stride.staketia.MsgRefreshRedemptionRate";
     value: Uint8Array;
 }
-/** RefreshRedemptionRate */
+/**
+ * RefreshRedemptionRate
+ * @name MsgRefreshRedemptionRateAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgRefreshRedemptionRate
+ */
 export interface MsgRefreshRedemptionRateAmino {
     creator?: string;
 }
@@ -377,6 +460,11 @@ export interface MsgRefreshRedemptionRateResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgRefreshRedemptionRateResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgRefreshRedemptionRateResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgRefreshRedemptionRateResponse
+ */
 export interface MsgRefreshRedemptionRateResponseAmino {
 }
 export interface MsgRefreshRedemptionRateResponseAminoMsg {
@@ -394,7 +482,12 @@ export interface MsgOverwriteDelegationRecordProtoMsg {
     typeUrl: "/stride.staketia.MsgOverwriteDelegationRecord";
     value: Uint8Array;
 }
-/** OverwriteDelegationRecord */
+/**
+ * OverwriteDelegationRecord
+ * @name MsgOverwriteDelegationRecordAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgOverwriteDelegationRecord
+ */
 export interface MsgOverwriteDelegationRecordAmino {
     creator?: string;
     delegation_record?: DelegationRecordAmino;
@@ -414,6 +507,11 @@ export interface MsgOverwriteDelegationRecordResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgOverwriteDelegationRecordResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgOverwriteDelegationRecordResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgOverwriteDelegationRecordResponse
+ */
 export interface MsgOverwriteDelegationRecordResponseAmino {
 }
 export interface MsgOverwriteDelegationRecordResponseAminoMsg {
@@ -431,7 +529,12 @@ export interface MsgOverwriteUnbondingRecordProtoMsg {
     typeUrl: "/stride.staketia.MsgOverwriteUnbondingRecord";
     value: Uint8Array;
 }
-/** OverwriteUnbondingRecord */
+/**
+ * OverwriteUnbondingRecord
+ * @name MsgOverwriteUnbondingRecordAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgOverwriteUnbondingRecord
+ */
 export interface MsgOverwriteUnbondingRecordAmino {
     creator?: string;
     unbonding_record?: UnbondingRecordAmino;
@@ -451,6 +554,11 @@ export interface MsgOverwriteUnbondingRecordResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgOverwriteUnbondingRecordResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgOverwriteUnbondingRecordResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgOverwriteUnbondingRecordResponse
+ */
 export interface MsgOverwriteUnbondingRecordResponseAmino {
 }
 export interface MsgOverwriteUnbondingRecordResponseAminoMsg {
@@ -468,7 +576,12 @@ export interface MsgOverwriteRedemptionRecordProtoMsg {
     typeUrl: "/stride.staketia.MsgOverwriteRedemptionRecord";
     value: Uint8Array;
 }
-/** OverwriteRedemptionRecord */
+/**
+ * OverwriteRedemptionRecord
+ * @name MsgOverwriteRedemptionRecordAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgOverwriteRedemptionRecord
+ */
 export interface MsgOverwriteRedemptionRecordAmino {
     creator?: string;
     redemption_record?: RedemptionRecordAmino;
@@ -488,6 +601,11 @@ export interface MsgOverwriteRedemptionRecordResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgOverwriteRedemptionRecordResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgOverwriteRedemptionRecordResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgOverwriteRedemptionRecordResponse
+ */
 export interface MsgOverwriteRedemptionRecordResponseAmino {
 }
 export interface MsgOverwriteRedemptionRecordResponseAminoMsg {
@@ -505,7 +623,12 @@ export interface MsgSetOperatorAddressProtoMsg {
     typeUrl: "/stride.staketia.MsgSetOperatorAddress";
     value: Uint8Array;
 }
-/** SetOperatorAddress */
+/**
+ * SetOperatorAddress
+ * @name MsgSetOperatorAddressAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgSetOperatorAddress
+ */
 export interface MsgSetOperatorAddressAmino {
     signer?: string;
     operator?: string;
@@ -525,6 +648,11 @@ export interface MsgSetOperatorAddressResponseProtoMsg {
     typeUrl: "/stride.staketia.MsgSetOperatorAddressResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgSetOperatorAddressResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.MsgSetOperatorAddressResponse
+ */
 export interface MsgSetOperatorAddressResponseAmino {
 }
 export interface MsgSetOperatorAddressResponseAminoMsg {

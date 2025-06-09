@@ -9,6 +9,11 @@ export interface ValidatorSetProtoMsg {
     typeUrl: "/tendermint.types.ValidatorSet";
     value: Uint8Array;
 }
+/**
+ * @name ValidatorSetAmino
+ * @package tendermint.types
+ * @see proto type: tendermint.types.ValidatorSet
+ */
 export interface ValidatorSetAmino {
     validators?: ValidatorAmino[];
     proposer?: ValidatorAmino;
@@ -33,6 +38,11 @@ export interface ValidatorProtoMsg {
     typeUrl: "/tendermint.types.Validator";
     value: Uint8Array;
 }
+/**
+ * @name ValidatorAmino
+ * @package tendermint.types
+ * @see proto type: tendermint.types.Validator
+ */
 export interface ValidatorAmino {
     address?: string;
     pub_key?: PublicKeyAmino;
@@ -57,6 +67,11 @@ export interface SimpleValidatorProtoMsg {
     typeUrl: "/tendermint.types.SimpleValidator";
     value: Uint8Array;
 }
+/**
+ * @name SimpleValidatorAmino
+ * @package tendermint.types
+ * @see proto type: tendermint.types.SimpleValidator
+ */
 export interface SimpleValidatorAmino {
     pub_key?: PublicKeyAmino;
     voting_power?: string;

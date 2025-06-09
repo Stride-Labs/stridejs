@@ -15,6 +15,9 @@ export interface MsgRedeemTokensForSharesProtoMsg {
 /**
  * MsgRedeemTokensForShares redeems a tokenized share back into a native
  * delegation
+ * @name MsgRedeemTokensForSharesAmino
+ * @package gaia.liquid.v1beta1
+ * @see proto type: gaia.liquid.v1beta1.MsgRedeemTokensForShares
  */
 export interface MsgRedeemTokensForSharesAmino {
     delegator_address?: string;
@@ -46,6 +49,9 @@ export interface MsgRedeemTokensForSharesResponseProtoMsg {
 /**
  * MsgRedeemTokensForSharesResponse defines the Msg/MsgRedeemTokensForShares
  * response type.
+ * @name MsgRedeemTokensForSharesResponseAmino
+ * @package gaia.liquid.v1beta1
+ * @see proto type: gaia.liquid.v1beta1.MsgRedeemTokensForSharesResponse
  */
 export interface MsgRedeemTokensForSharesResponseAmino {
     amount?: CoinAmino;
@@ -69,7 +75,12 @@ export interface MsgDisableTokenizeSharesProtoMsg {
     typeUrl: "/gaia.liquid.v1beta1.MsgDisableTokenizeShares";
     value: Uint8Array;
 }
-/** MsgDisableTokenizeShares prevents LSM tokenization of shares for address */
+/**
+ * MsgDisableTokenizeShares prevents LSM tokenization of shares for address
+ * @name MsgDisableTokenizeSharesAmino
+ * @package gaia.liquid.v1beta1
+ * @see proto type: gaia.liquid.v1beta1.MsgDisableTokenizeShares
+ */
 export interface MsgDisableTokenizeSharesAmino {
     delegator_address?: string;
 }

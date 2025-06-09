@@ -1,6 +1,6 @@
 import { Validator } from "./validator";
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 function createBaseCommunityPoolRebate() {
   return {
     rebateRate: "",

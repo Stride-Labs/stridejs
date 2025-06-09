@@ -22,7 +22,7 @@ __export(mint_exports, {
 });
 module.exports = __toCommonJS(mint_exports);
 var import_binary = require("../../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../../decimals");
 function createBaseMinter() {
   return {
     inflation: "",
@@ -33,10 +33,10 @@ const Minter = {
   typeUrl: "/cosmos.mint.v1beta1.Minter",
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.inflation !== "") {
-      writer.uint32(10).string(import_math.Decimal.fromUserInput(message.inflation, 18).atomics);
+      writer.uint32(10).string(import_decimals.Decimal.fromUserInput(message.inflation, 18).atomics);
     }
     if (message.annualProvisions !== "") {
-      writer.uint32(18).string(import_math.Decimal.fromUserInput(message.annualProvisions, 18).atomics);
+      writer.uint32(18).string(import_decimals.Decimal.fromUserInput(message.annualProvisions, 18).atomics);
     }
     return writer;
   },
@@ -48,10 +48,10 @@ const Minter = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.inflation = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.inflation = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 2:
-          message.annualProvisions = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.annualProvisions = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);
@@ -121,16 +121,16 @@ const Params = {
       writer.uint32(10).string(message.mintDenom);
     }
     if (message.inflationRateChange !== "") {
-      writer.uint32(18).string(import_math.Decimal.fromUserInput(message.inflationRateChange, 18).atomics);
+      writer.uint32(18).string(import_decimals.Decimal.fromUserInput(message.inflationRateChange, 18).atomics);
     }
     if (message.inflationMax !== "") {
-      writer.uint32(26).string(import_math.Decimal.fromUserInput(message.inflationMax, 18).atomics);
+      writer.uint32(26).string(import_decimals.Decimal.fromUserInput(message.inflationMax, 18).atomics);
     }
     if (message.inflationMin !== "") {
-      writer.uint32(34).string(import_math.Decimal.fromUserInput(message.inflationMin, 18).atomics);
+      writer.uint32(34).string(import_decimals.Decimal.fromUserInput(message.inflationMin, 18).atomics);
     }
     if (message.goalBonded !== "") {
-      writer.uint32(42).string(import_math.Decimal.fromUserInput(message.goalBonded, 18).atomics);
+      writer.uint32(42).string(import_decimals.Decimal.fromUserInput(message.goalBonded, 18).atomics);
     }
     if (message.blocksPerYear !== BigInt(0)) {
       writer.uint32(48).uint64(message.blocksPerYear);
@@ -148,16 +148,16 @@ const Params = {
           message.mintDenom = reader.string();
           break;
         case 2:
-          message.inflationRateChange = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.inflationRateChange = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
-          message.inflationMax = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.inflationMax = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 4:
-          message.inflationMin = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.inflationMin = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 5:
-          message.goalBonded = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.goalBonded = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 6:
           message.blocksPerYear = reader.uint64();

@@ -13,13 +13,24 @@ export interface GenesisStateProtoMsg {
   typeUrl: "/stride.mint.v1beta1.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the mint module's genesis state. */
+/**
+ * GenesisState defines the mint module's genesis state.
+ * @name GenesisStateAmino
+ * @package stride.mint.v1beta1
+ * @see proto type: stride.mint.v1beta1.GenesisState
+ */
 export interface GenesisStateAmino {
-  /** minter is a space for holding current rewards information. */
+  /**
+   * minter is a space for holding current rewards information.
+   */
   minter?: MinterAmino;
-  /** params defines all the paramaters of the module. */
+  /**
+   * params defines all the paramaters of the module.
+   */
   params?: ParamsAmino;
-  /** current reduction period start epoch */
+  /**
+   * current reduction period start epoch
+   */
   reduction_started_epoch?: string;
 }
 export interface GenesisStateAminoMsg {

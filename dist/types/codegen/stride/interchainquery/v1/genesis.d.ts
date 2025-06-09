@@ -29,6 +29,11 @@ export interface QueryProtoMsg {
     typeUrl: "/stride.interchainquery.v1.Query";
     value: Uint8Array;
 }
+/**
+ * @name QueryAmino
+ * @package stride.interchainquery.v1
+ * @see proto type: stride.interchainquery.v1.Query
+ */
 export interface QueryAmino {
     id?: string;
     connection_id?: string;
@@ -73,6 +78,11 @@ export interface DataPointProtoMsg {
     typeUrl: "/stride.interchainquery.v1.DataPoint";
     value: Uint8Array;
 }
+/**
+ * @name DataPointAmino
+ * @package stride.interchainquery.v1
+ * @see proto type: stride.interchainquery.v1.DataPoint
+ */
 export interface DataPointAmino {
     id?: string;
     remote_height?: string;
@@ -97,7 +107,12 @@ export interface GenesisStateProtoMsg {
     typeUrl: "/stride.interchainquery.v1.GenesisState";
     value: Uint8Array;
 }
-/** GenesisState defines the epochs module's genesis state. */
+/**
+ * GenesisState defines the epochs module's genesis state.
+ * @name GenesisStateAmino
+ * @package stride.interchainquery.v1
+ * @see proto type: stride.interchainquery.v1.GenesisState
+ */
 export interface GenesisStateAmino {
     queries?: QueryAmino[];
 }

@@ -28,7 +28,7 @@ const AminoConverter = {
     fromAmino: import_tx.MsgSetAirdropAllocations.fromAmino
   },
   "/stride.claim.MsgClaimFreeAmount": {
-    aminoType: "claim/ClaimFreeAmount",
+    aminoType: "claim/MsgClaimFreeAmount",
     toAmino: import_tx.MsgClaimFreeAmount.toAmino,
     fromAmino: import_tx.MsgClaimFreeAmount.fromAmino
   },

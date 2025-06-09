@@ -1,7 +1,7 @@
 import { Validator } from "./validator";
 import { Coin } from "../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 var AuthzPermissionChange = /* @__PURE__ */ ((AuthzPermissionChange2) => {
   AuthzPermissionChange2[AuthzPermissionChange2["GRANT"] = 0] = "GRANT";
   AuthzPermissionChange2[AuthzPermissionChange2["REVOKE"] = 1] = "REVOKE";
@@ -266,7 +266,7 @@ const MsgLiquidStake = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/LiquidStake",
+      type: "stakeibc/MsgLiquidStake",
       value: MsgLiquidStake.toAmino(message)
     };
   },
@@ -422,7 +422,7 @@ const MsgLSMLiquidStake = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/LSMLiquidStake",
+      type: "stakeibc/MsgLSMLiquidStake",
       value: MsgLSMLiquidStake.toAmino(message)
     };
   },
@@ -590,7 +590,7 @@ const MsgClearBalance = {
   },
   toAminoMsg(message) {
     return {
-      type: "still-no-defined",
+      type: "stakeibc/MsgClearBalance",
       value: MsgClearBalance.toAmino(message)
     };
   },
@@ -745,7 +745,7 @@ const MsgRedeemStake = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/RedeemStake",
+      type: "stakeibc/MsgRedeemStake",
       value: MsgRedeemStake.toAmino(message)
     };
   },
@@ -996,7 +996,7 @@ const MsgRegisterHostZone = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/RegisterHostZone",
+      type: "stakeibc/MsgRegisterHostZone",
       value: MsgRegisterHostZone.toAmino(message)
     };
   },
@@ -1151,7 +1151,7 @@ const MsgClaimUndelegatedTokens = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/ClaimUndelegatedTokens",
+      type: "stakeibc/MsgClaimUndelegatedTokens",
       value: MsgClaimUndelegatedTokens.toAmino(message)
     };
   },
@@ -1294,7 +1294,7 @@ const MsgRebalanceValidators = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/RebalanceValidators",
+      type: "stakeibc/MsgRebalanceValidators",
       value: MsgRebalanceValidators.toAmino(message)
     };
   },
@@ -1802,7 +1802,7 @@ const MsgDeleteValidator = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/DeleteValidator",
+      type: "stakeibc/MsgDeleteValidator",
       value: MsgDeleteValidator.toAmino(message)
     };
   },
@@ -1957,7 +1957,7 @@ const MsgRestoreInterchainAccount = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/RestoreInterchainAccount",
+      type: "stakeibc/MsgRestoreInterchainAcco",
       value: MsgRestoreInterchainAccount.toAmino(message)
     };
   },
@@ -2231,7 +2231,7 @@ const MsgUpdateValidatorSharesExchRate = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/UpdateValidatorSharesExchRate",
+      type: "stakeibc/MsgUpdateValSharesExchRate",
       value: MsgUpdateValidatorSharesExchRate.toAmino(message)
     };
   },

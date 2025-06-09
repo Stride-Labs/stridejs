@@ -12,6 +12,11 @@ export interface SplitDelegationProtoMsg {
   typeUrl: "/stride.stakeibc.SplitDelegation";
   value: Uint8Array;
 }
+/**
+ * @name SplitDelegationAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.SplitDelegation
+ */
 export interface SplitDelegationAmino {
   validator?: string;
   amount?: string;
@@ -32,6 +37,11 @@ export interface SplitUndelegationProtoMsg {
   typeUrl: "/stride.stakeibc.SplitUndelegation";
   value: Uint8Array;
 }
+/**
+ * @name SplitUndelegationAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.SplitUndelegation
+ */
 export interface SplitUndelegationAmino {
   validator?: string;
   native_token_amount?: string;
@@ -53,6 +63,11 @@ export interface DelegateCallbackProtoMsg {
   typeUrl: "/stride.stakeibc.DelegateCallback";
   value: Uint8Array;
 }
+/**
+ * @name DelegateCallbackAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.DelegateCallback
+ */
 export interface DelegateCallbackAmino {
   host_zone_id?: string;
   deposit_record_id?: string;
@@ -76,6 +91,11 @@ export interface ClaimCallbackProtoMsg {
   typeUrl: "/stride.stakeibc.ClaimCallback";
   value: Uint8Array;
 }
+/**
+ * @name ClaimCallbackAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.ClaimCallback
+ */
 export interface ClaimCallbackAmino {
   user_redemption_record_id?: string;
   chain_id?: string;
@@ -98,6 +118,11 @@ export interface ReinvestCallbackProtoMsg {
   typeUrl: "/stride.stakeibc.ReinvestCallback";
   value: Uint8Array;
 }
+/**
+ * @name ReinvestCallbackAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.ReinvestCallback
+ */
 export interface ReinvestCallbackAmino {
   reinvest_amount?: CoinAmino;
   host_zone_id?: string;
@@ -119,6 +144,11 @@ export interface UndelegateCallbackProtoMsg {
   typeUrl: "/stride.stakeibc.UndelegateCallback";
   value: Uint8Array;
 }
+/**
+ * @name UndelegateCallbackAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.UndelegateCallback
+ */
 export interface UndelegateCallbackAmino {
   host_zone_id?: string;
   split_undelegations?: SplitUndelegationAmino[];
@@ -141,6 +171,11 @@ export interface RedemptionCallbackProtoMsg {
   typeUrl: "/stride.stakeibc.RedemptionCallback";
   value: Uint8Array;
 }
+/**
+ * @name RedemptionCallbackAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.RedemptionCallback
+ */
 export interface RedemptionCallbackAmino {
   host_zone_id?: string;
   epoch_unbonding_record_ids?: string[];
@@ -162,6 +197,11 @@ export interface RebalancingProtoMsg {
   typeUrl: "/stride.stakeibc.Rebalancing";
   value: Uint8Array;
 }
+/**
+ * @name RebalancingAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.Rebalancing
+ */
 export interface RebalancingAmino {
   src_validator?: string;
   dst_validator?: string;
@@ -184,6 +224,11 @@ export interface RebalanceCallbackProtoMsg {
   typeUrl: "/stride.stakeibc.RebalanceCallback";
   value: Uint8Array;
 }
+/**
+ * @name RebalanceCallbackAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.RebalanceCallback
+ */
 export interface RebalanceCallbackAmino {
   host_zone_id?: string;
   rebalancings?: RebalancingAmino[];
@@ -203,6 +248,11 @@ export interface DetokenizeSharesCallbackProtoMsg {
   typeUrl: "/stride.stakeibc.DetokenizeSharesCallback";
   value: Uint8Array;
 }
+/**
+ * @name DetokenizeSharesCallbackAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.DetokenizeSharesCallback
+ */
 export interface DetokenizeSharesCallbackAmino {
   deposit?: LSMTokenDepositAmino;
 }
@@ -222,6 +272,11 @@ export interface LSMLiquidStakeProtoMsg {
   typeUrl: "/stride.stakeibc.LSMLiquidStake";
   value: Uint8Array;
 }
+/**
+ * @name LSMLiquidStakeAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.LSMLiquidStake
+ */
 export interface LSMLiquidStakeAmino {
   deposit?: LSMTokenDepositAmino;
   host_zone?: HostZoneAmino;
@@ -243,6 +298,11 @@ export interface ValidatorSharesToTokensQueryCallbackProtoMsg {
   typeUrl: "/stride.stakeibc.ValidatorSharesToTokensQueryCallback";
   value: Uint8Array;
 }
+/**
+ * @name ValidatorSharesToTokensQueryCallbackAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.ValidatorSharesToTokensQueryCallback
+ */
 export interface ValidatorSharesToTokensQueryCallbackAmino {
   lsm_liquid_stake?: LSMLiquidStakeAmino;
 }
@@ -261,8 +321,15 @@ export interface DelegatorSharesQueryCallbackProtoMsg {
   typeUrl: "/stride.stakeibc.DelegatorSharesQueryCallback";
   value: Uint8Array;
 }
+/**
+ * @name DelegatorSharesQueryCallbackAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.DelegatorSharesQueryCallback
+ */
 export interface DelegatorSharesQueryCallbackAmino {
-  /** Validator delegation at the time the query is submitted */
+  /**
+   * Validator delegation at the time the query is submitted
+   */
   initial_validator_delegation?: string;
 }
 export interface DelegatorSharesQueryCallbackAminoMsg {
@@ -280,6 +347,11 @@ export interface CommunityPoolBalanceQueryCallbackProtoMsg {
   typeUrl: "/stride.stakeibc.CommunityPoolBalanceQueryCallback";
   value: Uint8Array;
 }
+/**
+ * @name CommunityPoolBalanceQueryCallbackAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.CommunityPoolBalanceQueryCallback
+ */
 export interface CommunityPoolBalanceQueryCallbackAmino {
   ica_type?: ICAAccountType;
   denom?: string;
@@ -300,6 +372,11 @@ export interface TradeRouteCallbackProtoMsg {
   typeUrl: "/stride.stakeibc.TradeRouteCallback";
   value: Uint8Array;
 }
+/**
+ * @name TradeRouteCallbackAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.TradeRouteCallback
+ */
 export interface TradeRouteCallbackAmino {
   reward_denom?: string;
   host_denom?: string;

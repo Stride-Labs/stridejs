@@ -23,32 +23,32 @@ module.exports = __toCommonJS(tx_amino_exports);
 var import_tx = require("./tx");
 const AminoConverter = {
   "/stride.stakeibc.MsgLiquidStake": {
-    aminoType: "stakeibc/LiquidStake",
+    aminoType: "stakeibc/MsgLiquidStake",
     toAmino: import_tx.MsgLiquidStake.toAmino,
     fromAmino: import_tx.MsgLiquidStake.fromAmino
   },
   "/stride.stakeibc.MsgLSMLiquidStake": {
-    aminoType: "stakeibc/LSMLiquidStake",
+    aminoType: "stakeibc/MsgLSMLiquidStake",
     toAmino: import_tx.MsgLSMLiquidStake.toAmino,
     fromAmino: import_tx.MsgLSMLiquidStake.fromAmino
   },
   "/stride.stakeibc.MsgRedeemStake": {
-    aminoType: "stakeibc/RedeemStake",
+    aminoType: "stakeibc/MsgRedeemStake",
     toAmino: import_tx.MsgRedeemStake.toAmino,
     fromAmino: import_tx.MsgRedeemStake.fromAmino
   },
   "/stride.stakeibc.MsgRegisterHostZone": {
-    aminoType: "stakeibc/RegisterHostZone",
+    aminoType: "stakeibc/MsgRegisterHostZone",
     toAmino: import_tx.MsgRegisterHostZone.toAmino,
     fromAmino: import_tx.MsgRegisterHostZone.fromAmino
   },
   "/stride.stakeibc.MsgClaimUndelegatedTokens": {
-    aminoType: "stakeibc/ClaimUndelegatedTokens",
+    aminoType: "stakeibc/MsgClaimUndelegatedTokens",
     toAmino: import_tx.MsgClaimUndelegatedTokens.toAmino,
     fromAmino: import_tx.MsgClaimUndelegatedTokens.fromAmino
   },
   "/stride.stakeibc.MsgRebalanceValidators": {
-    aminoType: "stakeibc/RebalanceValidators",
+    aminoType: "stakeibc/MsgRebalanceValidators",
     toAmino: import_tx.MsgRebalanceValidators.toAmino,
     fromAmino: import_tx.MsgRebalanceValidators.fromAmino
   },
@@ -63,12 +63,12 @@ const AminoConverter = {
     fromAmino: import_tx.MsgChangeValidatorWeights.fromAmino
   },
   "/stride.stakeibc.MsgDeleteValidator": {
-    aminoType: "stakeibc/DeleteValidator",
+    aminoType: "stakeibc/MsgDeleteValidator",
     toAmino: import_tx.MsgDeleteValidator.toAmino,
     fromAmino: import_tx.MsgDeleteValidator.fromAmino
   },
   "/stride.stakeibc.MsgRestoreInterchainAccount": {
-    aminoType: "stakeibc/RestoreInterchainAccount",
+    aminoType: "stakeibc/MsgRestoreInterchainAcco",
     toAmino: import_tx.MsgRestoreInterchainAccount.toAmino,
     fromAmino: import_tx.MsgRestoreInterchainAccount.fromAmino
   },
@@ -78,7 +78,7 @@ const AminoConverter = {
     fromAmino: import_tx.MsgCloseDelegationChannel.fromAmino
   },
   "/stride.stakeibc.MsgUpdateValidatorSharesExchRate": {
-    aminoType: "stakeibc/UpdateValidatorSharesExchRate",
+    aminoType: "stakeibc/MsgUpdateValSharesExchRate",
     toAmino: import_tx.MsgUpdateValidatorSharesExchRate.toAmino,
     fromAmino: import_tx.MsgUpdateValidatorSharesExchRate.fromAmino
   },
@@ -88,7 +88,7 @@ const AminoConverter = {
     fromAmino: import_tx.MsgCalibrateDelegation.fromAmino
   },
   "/stride.stakeibc.MsgClearBalance": {
-    aminoType: "still-no-defined",
+    aminoType: "stakeibc/MsgClearBalance",
     toAmino: import_tx.MsgClearBalance.toAmino,
     fromAmino: import_tx.MsgClearBalance.fromAmino
   },

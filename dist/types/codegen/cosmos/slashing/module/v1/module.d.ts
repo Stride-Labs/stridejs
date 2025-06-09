@@ -8,9 +8,16 @@ export interface ModuleProtoMsg {
     typeUrl: "/cosmos.slashing.module.v1.Module";
     value: Uint8Array;
 }
-/** Module is the config object of the slashing module. */
+/**
+ * Module is the config object of the slashing module.
+ * @name ModuleAmino
+ * @package cosmos.slashing.module.v1
+ * @see proto type: cosmos.slashing.module.v1.Module
+ */
 export interface ModuleAmino {
-    /** authority defines the custom module authority. If not set, defaults to the governance module. */
+    /**
+     * authority defines the custom module authority. If not set, defaults to the governance module.
+     */
     authority?: string;
 }
 export interface ModuleAminoMsg {

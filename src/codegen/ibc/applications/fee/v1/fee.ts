@@ -14,13 +14,24 @@ export interface FeeProtoMsg {
   typeUrl: "/ibc.applications.fee.v1.Fee";
   value: Uint8Array;
 }
-/** Fee defines the ICS29 receive, acknowledgement and timeout fees */
+/**
+ * Fee defines the ICS29 receive, acknowledgement and timeout fees
+ * @name FeeAmino
+ * @package ibc.applications.fee.v1
+ * @see proto type: ibc.applications.fee.v1.Fee
+ */
 export interface FeeAmino {
-  /** the packet receive fee */
+  /**
+   * the packet receive fee
+   */
   recv_fee?: CoinAmino[];
-  /** the packet acknowledgement fee */
+  /**
+   * the packet acknowledgement fee
+   */
   ack_fee?: CoinAmino[];
-  /** the packet timeout fee */
+  /**
+   * the packet timeout fee
+   */
   timeout_fee?: CoinAmino[];
 }
 export interface FeeAminoMsg {
@@ -46,13 +57,24 @@ export interface PacketFeeProtoMsg {
   typeUrl: "/ibc.applications.fee.v1.PacketFee";
   value: Uint8Array;
 }
-/** PacketFee contains ICS29 relayer fees, refund address and optional list of permitted relayers */
+/**
+ * PacketFee contains ICS29 relayer fees, refund address and optional list of permitted relayers
+ * @name PacketFeeAmino
+ * @package ibc.applications.fee.v1
+ * @see proto type: ibc.applications.fee.v1.PacketFee
+ */
 export interface PacketFeeAmino {
-  /** fee encapsulates the recv, ack and timeout fees associated with an IBC packet */
+  /**
+   * fee encapsulates the recv, ack and timeout fees associated with an IBC packet
+   */
   fee?: FeeAmino;
-  /** the refund address for unspent fees */
+  /**
+   * the refund address for unspent fees
+   */
   refund_address?: string;
-  /** optional list of relayers permitted to receive fees */
+  /**
+   * optional list of relayers permitted to receive fees
+   */
   relayers?: string[];
 }
 export interface PacketFeeAminoMsg {
@@ -74,9 +96,16 @@ export interface PacketFeesProtoMsg {
   typeUrl: "/ibc.applications.fee.v1.PacketFees";
   value: Uint8Array;
 }
-/** PacketFees contains a list of type PacketFee */
+/**
+ * PacketFees contains a list of type PacketFee
+ * @name PacketFeesAmino
+ * @package ibc.applications.fee.v1
+ * @see proto type: ibc.applications.fee.v1.PacketFees
+ */
 export interface PacketFeesAmino {
-  /** list of packet fees */
+  /**
+   * list of packet fees
+   */
   packet_fees?: PacketFeeAmino[];
 }
 export interface PacketFeesAminoMsg {
@@ -98,11 +127,20 @@ export interface IdentifiedPacketFeesProtoMsg {
   typeUrl: "/ibc.applications.fee.v1.IdentifiedPacketFees";
   value: Uint8Array;
 }
-/** IdentifiedPacketFees contains a list of type PacketFee and associated PacketId */
+/**
+ * IdentifiedPacketFees contains a list of type PacketFee and associated PacketId
+ * @name IdentifiedPacketFeesAmino
+ * @package ibc.applications.fee.v1
+ * @see proto type: ibc.applications.fee.v1.IdentifiedPacketFees
+ */
 export interface IdentifiedPacketFeesAmino {
-  /** unique packet identifier comprised of the channel ID, port ID and sequence */
+  /**
+   * unique packet identifier comprised of the channel ID, port ID and sequence
+   */
   packet_id?: PacketIdAmino;
-  /** list of packet fees */
+  /**
+   * list of packet fees
+   */
   packet_fees?: PacketFeeAmino[];
 }
 export interface IdentifiedPacketFeesAminoMsg {

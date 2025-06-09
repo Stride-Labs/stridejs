@@ -24,7 +24,12 @@ export interface OracleProtoMsg {
     typeUrl: "/stride.icaoracle.Oracle";
     value: Uint8Array;
 }
-/** Oracle structure stores context about the CW oracle sitting a different chain */
+/**
+ * Oracle structure stores context about the CW oracle sitting a different chain
+ * @name OracleAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.Oracle
+ */
 export interface OracleAmino {
     chain_id?: string;
     connection_id?: string;
@@ -69,6 +74,9 @@ export interface MetricProtoMsg {
 /**
  * Metric structure stores a generic metric using a key value structure
  * along with additional context
+ * @name MetricAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.Metric
  */
 export interface MetricAmino {
     key?: string;
@@ -106,7 +114,12 @@ export interface RedemptionRateAttributesProtoMsg {
     typeUrl: "/stride.icaoracle.RedemptionRateAttributes";
     value: Uint8Array;
 }
-/** Attributes associated with a RedemptionRate metric update */
+/**
+ * Attributes associated with a RedemptionRate metric update
+ * @name RedemptionRateAttributesAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.RedemptionRateAttributes
+ */
 export interface RedemptionRateAttributesAmino {
     sttoken_denom?: string;
 }

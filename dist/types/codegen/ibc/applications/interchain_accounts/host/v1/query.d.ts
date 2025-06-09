@@ -7,7 +7,12 @@ export interface QueryParamsRequestProtoMsg {
     typeUrl: "/ibc.applications.interchain_accounts.host.v1.QueryParamsRequest";
     value: Uint8Array;
 }
-/** QueryParamsRequest is the request type for the Query/Params RPC method. */
+/**
+ * QueryParamsRequest is the request type for the Query/Params RPC method.
+ * @name QueryParamsRequestAmino
+ * @package ibc.applications.interchain_accounts.host.v1
+ * @see proto type: ibc.applications.interchain_accounts.host.v1.QueryParamsRequest
+ */
 export interface QueryParamsRequestAmino {
 }
 export interface QueryParamsRequestAminoMsg {
@@ -26,9 +31,16 @@ export interface QueryParamsResponseProtoMsg {
     typeUrl: "/ibc.applications.interchain_accounts.host.v1.QueryParamsResponse";
     value: Uint8Array;
 }
-/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+/**
+ * QueryParamsResponse is the response type for the Query/Params RPC method.
+ * @name QueryParamsResponseAmino
+ * @package ibc.applications.interchain_accounts.host.v1
+ * @see proto type: ibc.applications.interchain_accounts.host.v1.QueryParamsResponse
+ */
 export interface QueryParamsResponseAmino {
-    /** params defines the parameters of the module. */
+    /**
+     * params defines the parameters of the module.
+     */
     params?: ParamsAmino;
 }
 export interface QueryParamsResponseAminoMsg {

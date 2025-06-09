@@ -11,6 +11,11 @@ export interface ClaimStatusProtoMsg {
     typeUrl: "/stride.claim.ClaimStatus";
     value: Uint8Array;
 }
+/**
+ * @name ClaimStatusAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.ClaimStatus
+ */
 export interface ClaimStatusAmino {
     airdrop_identifier?: string;
     claimed?: boolean;
@@ -30,6 +35,11 @@ export interface QueryClaimStatusRequestProtoMsg {
     typeUrl: "/stride.claim.QueryClaimStatusRequest";
     value: Uint8Array;
 }
+/**
+ * @name QueryClaimStatusRequestAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryClaimStatusRequest
+ */
 export interface QueryClaimStatusRequestAmino {
     address?: string;
 }
@@ -47,6 +57,11 @@ export interface QueryClaimStatusResponseProtoMsg {
     typeUrl: "/stride.claim.QueryClaimStatusResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryClaimStatusResponseAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryClaimStatusResponse
+ */
 export interface QueryClaimStatusResponseAmino {
     claim_status?: ClaimStatusAmino[];
 }
@@ -67,6 +82,11 @@ export interface ClaimMetadataProtoMsg {
     typeUrl: "/stride.claim.ClaimMetadata";
     value: Uint8Array;
 }
+/**
+ * @name ClaimMetadataAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.ClaimMetadata
+ */
 export interface ClaimMetadataAmino {
     airdrop_identifier?: string;
     current_round?: string;
@@ -89,6 +109,11 @@ export interface QueryClaimMetadataRequestProtoMsg {
     typeUrl: "/stride.claim.QueryClaimMetadataRequest";
     value: Uint8Array;
 }
+/**
+ * @name QueryClaimMetadataRequestAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryClaimMetadataRequest
+ */
 export interface QueryClaimMetadataRequestAmino {
 }
 export interface QueryClaimMetadataRequestAminoMsg {
@@ -104,6 +129,11 @@ export interface QueryClaimMetadataResponseProtoMsg {
     typeUrl: "/stride.claim.QueryClaimMetadataResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryClaimMetadataResponseAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryClaimMetadataResponse
+ */
 export interface QueryClaimMetadataResponseAmino {
     claim_metadata?: ClaimMetadataAmino[];
 }
@@ -122,7 +152,12 @@ export interface QueryDistributorAccountBalanceRequestProtoMsg {
     typeUrl: "/stride.claim.QueryDistributorAccountBalanceRequest";
     value: Uint8Array;
 }
-/** QueryParamsRequest is the request type for the Query/Params RPC method. */
+/**
+ * QueryParamsRequest is the request type for the Query/Params RPC method.
+ * @name QueryDistributorAccountBalanceRequestAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryDistributorAccountBalanceRequest
+ */
 export interface QueryDistributorAccountBalanceRequestAmino {
     airdrop_identifier?: string;
 }
@@ -143,9 +178,16 @@ export interface QueryDistributorAccountBalanceResponseProtoMsg {
     typeUrl: "/stride.claim.QueryDistributorAccountBalanceResponse";
     value: Uint8Array;
 }
-/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+/**
+ * QueryParamsResponse is the response type for the Query/Params RPC method.
+ * @name QueryDistributorAccountBalanceResponseAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryDistributorAccountBalanceResponse
+ */
 export interface QueryDistributorAccountBalanceResponseAmino {
-    /** params defines the parameters of the module. */
+    /**
+     * params defines the parameters of the module.
+     */
     distributor_account_balance?: CoinAmino[];
 }
 export interface QueryDistributorAccountBalanceResponseAminoMsg {
@@ -163,7 +205,12 @@ export interface QueryParamsRequestProtoMsg {
     typeUrl: "/stride.claim.QueryParamsRequest";
     value: Uint8Array;
 }
-/** QueryParamsRequest is the request type for the Query/Params RPC method. */
+/**
+ * QueryParamsRequest is the request type for the Query/Params RPC method.
+ * @name QueryParamsRequestAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryParamsRequest
+ */
 export interface QueryParamsRequestAmino {
 }
 export interface QueryParamsRequestAminoMsg {
@@ -182,9 +229,16 @@ export interface QueryParamsResponseProtoMsg {
     typeUrl: "/stride.claim.QueryParamsResponse";
     value: Uint8Array;
 }
-/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+/**
+ * QueryParamsResponse is the response type for the Query/Params RPC method.
+ * @name QueryParamsResponseAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryParamsResponse
+ */
 export interface QueryParamsResponseAmino {
-    /** params defines the parameters of the module. */
+    /**
+     * params defines the parameters of the module.
+     */
     params?: ParamsAmino;
 }
 export interface QueryParamsResponseAminoMsg {
@@ -203,6 +257,11 @@ export interface QueryClaimRecordRequestProtoMsg {
     typeUrl: "/stride.claim.QueryClaimRecordRequest";
     value: Uint8Array;
 }
+/**
+ * @name QueryClaimRecordRequestAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryClaimRecordRequest
+ */
 export interface QueryClaimRecordRequestAmino {
     airdrop_identifier?: string;
     address?: string;
@@ -222,6 +281,11 @@ export interface QueryClaimRecordResponseProtoMsg {
     typeUrl: "/stride.claim.QueryClaimRecordResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryClaimRecordResponseAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryClaimRecordResponse
+ */
 export interface QueryClaimRecordResponseAmino {
     claim_record?: ClaimRecordAmino;
 }
@@ -241,6 +305,11 @@ export interface QueryClaimableForActionRequestProtoMsg {
     typeUrl: "/stride.claim.QueryClaimableForActionRequest";
     value: Uint8Array;
 }
+/**
+ * @name QueryClaimableForActionRequestAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryClaimableForActionRequest
+ */
 export interface QueryClaimableForActionRequestAmino {
     airdrop_identifier?: string;
     address?: string;
@@ -262,6 +331,11 @@ export interface QueryClaimableForActionResponseProtoMsg {
     typeUrl: "/stride.claim.QueryClaimableForActionResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryClaimableForActionResponseAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryClaimableForActionResponse
+ */
 export interface QueryClaimableForActionResponseAmino {
     coins?: CoinAmino[];
 }
@@ -281,6 +355,11 @@ export interface QueryTotalClaimableRequestProtoMsg {
     typeUrl: "/stride.claim.QueryTotalClaimableRequest";
     value: Uint8Array;
 }
+/**
+ * @name QueryTotalClaimableRequestAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryTotalClaimableRequest
+ */
 export interface QueryTotalClaimableRequestAmino {
     airdrop_identifier?: string;
     address?: string;
@@ -302,6 +381,11 @@ export interface QueryTotalClaimableResponseProtoMsg {
     typeUrl: "/stride.claim.QueryTotalClaimableResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryTotalClaimableResponseAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryTotalClaimableResponse
+ */
 export interface QueryTotalClaimableResponseAmino {
     coins?: CoinAmino[];
 }
@@ -319,6 +403,11 @@ export interface QueryUserVestingsRequestProtoMsg {
     typeUrl: "/stride.claim.QueryUserVestingsRequest";
     value: Uint8Array;
 }
+/**
+ * @name QueryUserVestingsRequestAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryUserVestingsRequest
+ */
 export interface QueryUserVestingsRequestAmino {
     address?: string;
 }
@@ -337,6 +426,11 @@ export interface QueryUserVestingsResponseProtoMsg {
     typeUrl: "/stride.claim.QueryUserVestingsResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryUserVestingsResponseAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.QueryUserVestingsResponse
+ */
 export interface QueryUserVestingsResponseAmino {
     spendable_coins?: CoinAmino[];
     periods?: PeriodAmino[];

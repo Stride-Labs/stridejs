@@ -11,11 +11,20 @@ export interface GenesisStateProtoMsg {
   typeUrl: "/stride.icqoracle.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the icqoracle module's genesis state */
+/**
+ * GenesisState defines the icqoracle module's genesis state
+ * @name GenesisStateAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.GenesisState
+ */
 export interface GenesisStateAmino {
-  /** Module parameters */
+  /**
+   * Module parameters
+   */
   params?: ParamsAmino;
-  /** List of token prices */
+  /**
+   * List of token prices
+   */
   token_prices?: TokenPriceAmino[];
 }
 export interface GenesisStateAminoMsg {

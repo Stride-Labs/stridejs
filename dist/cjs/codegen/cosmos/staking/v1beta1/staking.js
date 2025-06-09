@@ -60,7 +60,7 @@ var import_duration = require("../../../google/protobuf/duration");
 var import_coin = require("../../base/v1beta1/coin");
 var import_types2 = require("../../../tendermint/abci/types");
 var import_binary = require("../../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../../decimals");
 var import_helpers = require("../../../helpers");
 var import_proto_signing = require("@cosmjs/proto-signing");
 var BondStatus = /* @__PURE__ */ ((BondStatus2) => {
@@ -241,13 +241,13 @@ const CommissionRates = {
   typeUrl: "/cosmos.staking.v1beta1.CommissionRates",
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.rate !== "") {
-      writer.uint32(10).string(import_math.Decimal.fromUserInput(message.rate, 18).atomics);
+      writer.uint32(10).string(import_decimals.Decimal.fromUserInput(message.rate, 18).atomics);
     }
     if (message.maxRate !== "") {
-      writer.uint32(18).string(import_math.Decimal.fromUserInput(message.maxRate, 18).atomics);
+      writer.uint32(18).string(import_decimals.Decimal.fromUserInput(message.maxRate, 18).atomics);
     }
     if (message.maxChangeRate !== "") {
-      writer.uint32(26).string(import_math.Decimal.fromUserInput(message.maxChangeRate, 18).atomics);
+      writer.uint32(26).string(import_decimals.Decimal.fromUserInput(message.maxChangeRate, 18).atomics);
     }
     return writer;
   },
@@ -259,13 +259,13 @@ const CommissionRates = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.rate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.rate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 2:
-          message.maxRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.maxRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
-          message.maxChangeRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.maxChangeRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);
@@ -557,7 +557,7 @@ const Validator = {
       writer.uint32(42).string(message.tokens);
     }
     if (message.delegatorShares !== "") {
-      writer.uint32(50).string(import_math.Decimal.fromUserInput(message.delegatorShares, 18).atomics);
+      writer.uint32(50).string(import_decimals.Decimal.fromUserInput(message.delegatorShares, 18).atomics);
     }
     if (message.description !== void 0) {
       Description.encode(message.description, writer.uint32(58).fork()).ldelim();
@@ -607,7 +607,7 @@ const Validator = {
           message.tokens = reader.string();
           break;
         case 6:
-          message.delegatorShares = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.delegatorShares = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 7:
           message.description = Description.decode(reader, reader.uint32());
@@ -1149,7 +1149,7 @@ const Delegation = {
       writer.uint32(18).string(message.validatorAddress);
     }
     if (message.shares !== "") {
-      writer.uint32(26).string(import_math.Decimal.fromUserInput(message.shares, 18).atomics);
+      writer.uint32(26).string(import_decimals.Decimal.fromUserInput(message.shares, 18).atomics);
     }
     return writer;
   },
@@ -1167,7 +1167,7 @@ const Delegation = {
           message.validatorAddress = reader.string();
           break;
         case 3:
-          message.shares = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.shares = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1472,7 +1472,7 @@ const RedelegationEntry = {
       writer.uint32(26).string(message.initialBalance);
     }
     if (message.sharesDst !== "") {
-      writer.uint32(34).string(import_math.Decimal.fromUserInput(message.sharesDst, 18).atomics);
+      writer.uint32(34).string(import_decimals.Decimal.fromUserInput(message.sharesDst, 18).atomics);
     }
     if (message.unbondingId !== BigInt(0)) {
       writer.uint32(40).uint64(message.unbondingId);
@@ -1499,7 +1499,7 @@ const RedelegationEntry = {
           message.initialBalance = reader.string();
           break;
         case 4:
-          message.sharesDst = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.sharesDst = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 5:
           message.unbondingId = reader.uint64();
@@ -1714,7 +1714,7 @@ const Params = {
       writer.uint32(42).string(message.bondDenom);
     }
     if (message.minCommissionRate !== "") {
-      writer.uint32(50).string(import_math.Decimal.fromUserInput(message.minCommissionRate, 18).atomics);
+      writer.uint32(50).string(import_decimals.Decimal.fromUserInput(message.minCommissionRate, 18).atomics);
     }
     return writer;
   },
@@ -1741,7 +1741,7 @@ const Params = {
           message.bondDenom = reader.string();
           break;
         case 6:
-          message.minCommissionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.minCommissionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);

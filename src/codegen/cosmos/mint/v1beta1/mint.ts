@@ -1,5 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../../decimals";
 /** Minter represents the minting state. */
 export interface Minter {
   /** current annual inflation rate */
@@ -11,11 +11,20 @@ export interface MinterProtoMsg {
   typeUrl: "/cosmos.mint.v1beta1.Minter";
   value: Uint8Array;
 }
-/** Minter represents the minting state. */
+/**
+ * Minter represents the minting state.
+ * @name MinterAmino
+ * @package cosmos.mint.v1beta1
+ * @see proto type: cosmos.mint.v1beta1.Minter
+ */
 export interface MinterAmino {
-  /** current annual inflation rate */
+  /**
+   * current annual inflation rate
+   */
   inflation?: string;
-  /** current annual expected provisions */
+  /**
+   * current annual expected provisions
+   */
   annual_provisions?: string;
 }
 export interface MinterAminoMsg {
@@ -46,19 +55,36 @@ export interface ParamsProtoMsg {
   typeUrl: "/cosmos.mint.v1beta1.Params";
   value: Uint8Array;
 }
-/** Params defines the parameters for the x/mint module. */
+/**
+ * Params defines the parameters for the x/mint module.
+ * @name ParamsAmino
+ * @package cosmos.mint.v1beta1
+ * @see proto type: cosmos.mint.v1beta1.Params
+ */
 export interface ParamsAmino {
-  /** type of coin to mint */
+  /**
+   * type of coin to mint
+   */
   mint_denom?: string;
-  /** maximum annual change in inflation rate */
+  /**
+   * maximum annual change in inflation rate
+   */
   inflation_rate_change?: string;
-  /** maximum inflation rate */
+  /**
+   * maximum inflation rate
+   */
   inflation_max?: string;
-  /** minimum inflation rate */
+  /**
+   * minimum inflation rate
+   */
   inflation_min?: string;
-  /** goal of percent bonded atoms */
+  /**
+   * goal of percent bonded atoms
+   */
   goal_bonded?: string;
-  /** expected blocks per year */
+  /**
+   * expected blocks per year
+   */
   blocks_per_year?: string;
 }
 export interface ParamsAminoMsg {

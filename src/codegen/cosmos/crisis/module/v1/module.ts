@@ -10,11 +10,20 @@ export interface ModuleProtoMsg {
   typeUrl: "/cosmos.crisis.module.v1.Module";
   value: Uint8Array;
 }
-/** Module is the config object of the crisis module. */
+/**
+ * Module is the config object of the crisis module.
+ * @name ModuleAmino
+ * @package cosmos.crisis.module.v1
+ * @see proto type: cosmos.crisis.module.v1.Module
+ */
 export interface ModuleAmino {
-  /** fee_collector_name is the name of the FeeCollector ModuleAccount. */
+  /**
+   * fee_collector_name is the name of the FeeCollector ModuleAccount.
+   */
   fee_collector_name?: string;
-  /** authority defines the custom module authority. If not set, defaults to the governance module. */
+  /**
+   * authority defines the custom module authority. If not set, defaults to the governance module.
+   */
   authority?: string;
 }
 export interface ModuleAminoMsg {

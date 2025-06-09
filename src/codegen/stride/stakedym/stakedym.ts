@@ -1,5 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 /**
  * Status fields for a delegation record
  * Note: There is an important assumption here that tokens in the deposit
@@ -190,46 +190,91 @@ export interface HostZoneProtoMsg {
   typeUrl: "/stride.stakedym.HostZone";
   value: Uint8Array;
 }
+/**
+ * @name HostZoneAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.HostZone
+ */
 export interface HostZoneAmino {
-  /** Chain ID */
+  /**
+   * Chain ID
+   */
   chain_id?: string;
-  /** Native token denom on the host zone (e.g. adym) */
+  /**
+   * Native token denom on the host zone (e.g. adym)
+   */
   native_token_denom?: string;
-  /** IBC denom of the native token as it lives on stride (e.g. ibc/...) */
+  /**
+   * IBC denom of the native token as it lives on stride (e.g. ibc/...)
+   */
   native_token_ibc_denom?: string;
-  /** Transfer channel ID from stride to the host zone */
+  /**
+   * Transfer channel ID from stride to the host zone
+   */
   transfer_channel_id?: string;
-  /** Operator controlled delegation address on the host zone */
+  /**
+   * Operator controlled delegation address on the host zone
+   */
   delegation_address?: string;
-  /** Operator controlled reward address on the host zone */
+  /**
+   * Operator controlled reward address on the host zone
+   */
   reward_address?: string;
-  /** Deposit address on stride */
+  /**
+   * Deposit address on stride
+   */
   deposit_address?: string;
-  /** Redemption address on stride */
+  /**
+   * Redemption address on stride
+   */
   redemption_address?: string;
-  /** Claim address on stride */
+  /**
+   * Claim address on stride
+   */
   claim_address?: string;
-  /** operator address set by safe, on stride */
+  /**
+   * operator address set by safe, on stride
+   */
   operator_address_on_stride?: string;
-  /** admin address set upon host zone creation,  on stride */
+  /**
+   * admin address set upon host zone creation,  on stride
+   */
   safe_address_on_stride?: string;
-  /** Previous redemption rate */
+  /**
+   * Previous redemption rate
+   */
   last_redemption_rate?: string;
-  /** Current redemption rate */
+  /**
+   * Current redemption rate
+   */
   redemption_rate?: string;
-  /** Min outer redemption rate - adjusted by governance */
+  /**
+   * Min outer redemption rate - adjusted by governance
+   */
   min_redemption_rate?: string;
-  /** Max outer redemption rate - adjusted by governance */
+  /**
+   * Max outer redemption rate - adjusted by governance
+   */
   max_redemption_rate?: string;
-  /** Min inner redemption rate - adjusted by controller */
+  /**
+   * Min inner redemption rate - adjusted by controller
+   */
   min_inner_redemption_rate?: string;
-  /** Max inner redemption rate - adjusted by controller */
+  /**
+   * Max inner redemption rate - adjusted by controller
+   */
   max_inner_redemption_rate?: string;
-  /** Total delegated balance on the host zone delegation account */
+  /**
+   * Total delegated balance on the host zone delegation account
+   */
   delegated_balance?: string;
-  /** The undelegation period for Dymension in days */
+  /**
+   * The undelegation period for Dymension in days
+   */
   unbonding_period_seconds?: string;
-  /** Indicates whether the host zone has been halted */
+  /**
+   * Indicates whether the host zone has been halted
+   */
   halted?: boolean;
 }
 export interface HostZoneAminoMsg {
@@ -285,15 +330,26 @@ export interface DelegationRecordProtoMsg {
  * Note: There is an important assumption here that tokens in the deposit
  * account should not be tracked by these records. The record is created as soon
  * as the tokens leave stride
+ * @name DelegationRecordAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.DelegationRecord
  */
 export interface DelegationRecordAmino {
-  /** Deposit record unique ID */
+  /**
+   * Deposit record unique ID
+   */
   id?: string;
-  /** The amount of native tokens that should be delegated */
+  /**
+   * The amount of native tokens that should be delegated
+   */
   native_amount?: string;
-  /** The status indicating the point in the delegation's lifecycle */
+  /**
+   * The status indicating the point in the delegation's lifecycle
+   */
   status?: DelegationRecordStatus;
-  /** The tx hash of the delegation on the host zone */
+  /**
+   * The tx hash of the delegation on the host zone
+   */
   tx_hash?: string;
 }
 export interface DelegationRecordAminoMsg {
@@ -334,21 +390,40 @@ export interface UnbondingRecordProtoMsg {
   typeUrl: "/stride.stakedym.UnbondingRecord";
   value: Uint8Array;
 }
-/** UnbondingRecords track the aggregate unbondings across an epoch */
+/**
+ * UnbondingRecords track the aggregate unbondings across an epoch
+ * @name UnbondingRecordAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.UnbondingRecord
+ */
 export interface UnbondingRecordAmino {
-  /** Unbonding record ID */
+  /**
+   * Unbonding record ID
+   */
   id?: string;
-  /** The status indicating the point in the delegation's lifecycle */
+  /**
+   * The status indicating the point in the delegation's lifecycle
+   */
   status?: UnbondingRecordStatus;
-  /** The amount of stTokens that were redeemed */
+  /**
+   * The amount of stTokens that were redeemed
+   */
   st_token_amount?: string;
-  /** The corresponding amount of native tokens that should be unbonded */
+  /**
+   * The corresponding amount of native tokens that should be unbonded
+   */
   native_amount?: string;
-  /** The Unix timestamp (in seconds) at which the unbonding completes */
+  /**
+   * The Unix timestamp (in seconds) at which the unbonding completes
+   */
   unbonding_completion_time_seconds?: string;
-  /** The tx hash of the undelegation on the host zone */
+  /**
+   * The tx hash of the undelegation on the host zone
+   */
   undelegation_tx_hash?: string;
-  /** The tx hash of the unbonded token sweep on the host zone */
+  /**
+   * The tx hash of the unbonded token sweep on the host zone
+   */
   unbonded_token_sweep_tx_hash?: string;
 }
 export interface UnbondingRecordAminoMsg {
@@ -380,15 +455,28 @@ export interface RedemptionRecordProtoMsg {
   typeUrl: "/stride.stakedym.RedemptionRecord";
   value: Uint8Array;
 }
-/** RedemptionRecords track an individual user's redemption claims */
+/**
+ * RedemptionRecords track an individual user's redemption claims
+ * @name RedemptionRecordAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.RedemptionRecord
+ */
 export interface RedemptionRecordAmino {
-  /** Unbonding record ID */
+  /**
+   * Unbonding record ID
+   */
   unbonding_record_id?: string;
-  /** Redeemer */
+  /**
+   * Redeemer
+   */
   redeemer?: string;
-  /** The amount of stTokens that were redeemed */
+  /**
+   * The amount of stTokens that were redeemed
+   */
   st_token_amount?: string;
-  /** The corresponding amount of native tokens that should be unbonded */
+  /**
+   * The corresponding amount of native tokens that should be unbonded
+   */
   native_amount?: string;
 }
 export interface RedemptionRecordAminoMsg {
@@ -420,18 +508,29 @@ export interface SlashRecordProtoMsg {
   typeUrl: "/stride.stakedym.SlashRecord";
   value: Uint8Array;
 }
-/** SlashRecords log adjustments to the delegated balance */
+/**
+ * SlashRecords log adjustments to the delegated balance
+ * @name SlashRecordAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.SlashRecord
+ */
 export interface SlashRecordAmino {
-  /** The slash record monotonically increasing ID */
+  /**
+   * The slash record monotonically increasing ID
+   */
   id?: string;
   /**
    * The Unix timestamp (in seconds) when the slash adjustment was processed on
    * stride
    */
   time?: string;
-  /** The delta by which the total delegated amount changed from slash */
+  /**
+   * The delta by which the total delegated amount changed from slash
+   */
   native_amount?: string;
-  /** The address (or addresses) of the validator that was slashed */
+  /**
+   * The address (or addresses) of the validator that was slashed
+   */
   validator_address?: string;
 }
 export interface SlashRecordAminoMsg {

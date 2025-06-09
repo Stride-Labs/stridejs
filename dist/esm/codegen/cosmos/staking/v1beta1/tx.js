@@ -4,7 +4,7 @@ import { Coin } from "../../base/v1beta1/coin";
 import { Timestamp } from "../../../google/protobuf/timestamp";
 import { BinaryReader, BinaryWriter } from "../../../binary";
 import { encodePubkey, decodePubkey } from "@cosmjs/proto-signing";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../../decimals";
 import { toTimestamp, fromTimestamp } from "../../../helpers";
 function createBaseMsgCreateValidator() {
   return {

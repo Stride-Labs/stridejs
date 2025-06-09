@@ -20,9 +20,14 @@ export interface GenericAuthorizationProtoMsg {
 /**
  * GenericAuthorization gives the grantee unrestricted permissions to execute
  * the provided method on behalf of the granter's account.
+ * @name GenericAuthorizationAmino
+ * @package cosmos.authz.v1beta1
+ * @see proto type: cosmos.authz.v1beta1.GenericAuthorization
  */
 export interface GenericAuthorizationAmino {
-    /** Msg, identified by it's type URL, to grant unrestricted permissions to execute */
+    /**
+     * Msg, identified by it's type URL, to grant unrestricted permissions to execute
+     */
     msg?: string;
 }
 export interface GenericAuthorizationAminoMsg {
@@ -60,6 +65,9 @@ export declare type GrantEncoded = Omit<Grant, "authorization"> & {
 /**
  * Grant gives permissions to execute
  * the provide method with expiration time.
+ * @name GrantAmino
+ * @package cosmos.authz.v1beta1
+ * @see proto type: cosmos.authz.v1beta1.Grant
  */
 export interface GrantAmino {
     authorization?: AnyAmino;
@@ -102,6 +110,9 @@ export declare type GrantAuthorizationEncoded = Omit<GrantAuthorization, "author
 /**
  * GrantAuthorization extends a grant with both the addresses of the grantee and granter.
  * It is used in genesis.proto and query.proto
+ * @name GrantAuthorizationAmino
+ * @package cosmos.authz.v1beta1
+ * @see proto type: cosmos.authz.v1beta1.GrantAuthorization
  */
 export interface GrantAuthorizationAmino {
     granter?: string;
@@ -132,9 +143,16 @@ export interface GrantQueueItemProtoMsg {
     typeUrl: "/cosmos.authz.v1beta1.GrantQueueItem";
     value: Uint8Array;
 }
-/** GrantQueueItem contains the list of TypeURL of a sdk.Msg. */
+/**
+ * GrantQueueItem contains the list of TypeURL of a sdk.Msg.
+ * @name GrantQueueItemAmino
+ * @package cosmos.authz.v1beta1
+ * @see proto type: cosmos.authz.v1beta1.GrantQueueItem
+ */
 export interface GrantQueueItemAmino {
-    /** msg_type_urls contains the list of TypeURL of a sdk.Msg. */
+    /**
+     * msg_type_urls contains the list of TypeURL of a sdk.Msg.
+     */
     msg_type_urls?: string[];
 }
 export interface GrantQueueItemAminoMsg {

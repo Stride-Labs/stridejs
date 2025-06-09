@@ -13,6 +13,7 @@ export * from "./osmosis/bundle";
 export * from "./stride/bundle";
 export * from "./stride/client";
 export * from "./tendermint/bundle";
+export * from "./decimals";
 export * from "./varint";
 export * from "./utf8";
 export * from "./binary";

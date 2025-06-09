@@ -10,9 +10,16 @@ export interface QueryGroupInfoRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupInfoRequest";
   value: Uint8Array;
 }
-/** QueryGroupInfoRequest is the Query/GroupInfo request type. */
+/**
+ * QueryGroupInfoRequest is the Query/GroupInfo request type.
+ * @name QueryGroupInfoRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupInfoRequest
+ */
 export interface QueryGroupInfoRequestAmino {
-  /** group_id is the unique ID of the group. */
+  /**
+   * group_id is the unique ID of the group.
+   */
   group_id?: string;
 }
 export interface QueryGroupInfoRequestAminoMsg {
@@ -32,9 +39,16 @@ export interface QueryGroupInfoResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupInfoResponse";
   value: Uint8Array;
 }
-/** QueryGroupInfoResponse is the Query/GroupInfo response type. */
+/**
+ * QueryGroupInfoResponse is the Query/GroupInfo response type.
+ * @name QueryGroupInfoResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupInfoResponse
+ */
 export interface QueryGroupInfoResponseAmino {
-  /** info is the GroupInfo of the group. */
+  /**
+   * info is the GroupInfo of the group.
+   */
   info?: GroupInfoAmino;
 }
 export interface QueryGroupInfoResponseAminoMsg {
@@ -54,9 +68,16 @@ export interface QueryGroupPolicyInfoRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupPolicyInfoRequest";
   value: Uint8Array;
 }
-/** QueryGroupPolicyInfoRequest is the Query/GroupPolicyInfo request type. */
+/**
+ * QueryGroupPolicyInfoRequest is the Query/GroupPolicyInfo request type.
+ * @name QueryGroupPolicyInfoRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupPolicyInfoRequest
+ */
 export interface QueryGroupPolicyInfoRequestAmino {
-  /** address is the account address of the group policy. */
+  /**
+   * address is the account address of the group policy.
+   */
   address?: string;
 }
 export interface QueryGroupPolicyInfoRequestAminoMsg {
@@ -76,9 +97,16 @@ export interface QueryGroupPolicyInfoResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupPolicyInfoResponse";
   value: Uint8Array;
 }
-/** QueryGroupPolicyInfoResponse is the Query/GroupPolicyInfo response type. */
+/**
+ * QueryGroupPolicyInfoResponse is the Query/GroupPolicyInfo response type.
+ * @name QueryGroupPolicyInfoResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupPolicyInfoResponse
+ */
 export interface QueryGroupPolicyInfoResponseAmino {
-  /** info is the GroupPolicyInfo of the group policy. */
+  /**
+   * info is the GroupPolicyInfo of the group policy.
+   */
   info?: GroupPolicyInfoAmino;
 }
 export interface QueryGroupPolicyInfoResponseAminoMsg {
@@ -100,11 +128,20 @@ export interface QueryGroupMembersRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupMembersRequest";
   value: Uint8Array;
 }
-/** QueryGroupMembersRequest is the Query/GroupMembers request type. */
+/**
+ * QueryGroupMembersRequest is the Query/GroupMembers request type.
+ * @name QueryGroupMembersRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupMembersRequest
+ */
 export interface QueryGroupMembersRequestAmino {
-  /** group_id is the unique ID of the group. */
+  /**
+   * group_id is the unique ID of the group.
+   */
   group_id?: string;
-  /** pagination defines an optional pagination for the request. */
+  /**
+   * pagination defines an optional pagination for the request.
+   */
   pagination?: PageRequestAmino;
 }
 export interface QueryGroupMembersRequestAminoMsg {
@@ -127,11 +164,20 @@ export interface QueryGroupMembersResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupMembersResponse";
   value: Uint8Array;
 }
-/** QueryGroupMembersResponse is the Query/GroupMembersResponse response type. */
+/**
+ * QueryGroupMembersResponse is the Query/GroupMembersResponse response type.
+ * @name QueryGroupMembersResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupMembersResponse
+ */
 export interface QueryGroupMembersResponseAmino {
-  /** members are the members of the group with given group_id. */
+  /**
+   * members are the members of the group with given group_id.
+   */
   members?: GroupMemberAmino[];
-  /** pagination defines the pagination in the response. */
+  /**
+   * pagination defines the pagination in the response.
+   */
   pagination?: PageResponseAmino;
 }
 export interface QueryGroupMembersResponseAminoMsg {
@@ -154,11 +200,20 @@ export interface QueryGroupsByAdminRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupsByAdminRequest";
   value: Uint8Array;
 }
-/** QueryGroupsByAdminRequest is the Query/GroupsByAdmin request type. */
+/**
+ * QueryGroupsByAdminRequest is the Query/GroupsByAdmin request type.
+ * @name QueryGroupsByAdminRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupsByAdminRequest
+ */
 export interface QueryGroupsByAdminRequestAmino {
-  /** admin is the account address of a group's admin. */
+  /**
+   * admin is the account address of a group's admin.
+   */
   admin?: string;
-  /** pagination defines an optional pagination for the request. */
+  /**
+   * pagination defines an optional pagination for the request.
+   */
   pagination?: PageRequestAmino;
 }
 export interface QueryGroupsByAdminRequestAminoMsg {
@@ -181,11 +236,20 @@ export interface QueryGroupsByAdminResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupsByAdminResponse";
   value: Uint8Array;
 }
-/** QueryGroupsByAdminResponse is the Query/GroupsByAdminResponse response type. */
+/**
+ * QueryGroupsByAdminResponse is the Query/GroupsByAdminResponse response type.
+ * @name QueryGroupsByAdminResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupsByAdminResponse
+ */
 export interface QueryGroupsByAdminResponseAmino {
-  /** groups are the groups info with the provided admin. */
+  /**
+   * groups are the groups info with the provided admin.
+   */
   groups?: GroupInfoAmino[];
-  /** pagination defines the pagination in the response. */
+  /**
+   * pagination defines the pagination in the response.
+   */
   pagination?: PageResponseAmino;
 }
 export interface QueryGroupsByAdminResponseAminoMsg {
@@ -208,11 +272,20 @@ export interface QueryGroupPoliciesByGroupRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByGroupRequest";
   value: Uint8Array;
 }
-/** QueryGroupPoliciesByGroupRequest is the Query/GroupPoliciesByGroup request type. */
+/**
+ * QueryGroupPoliciesByGroupRequest is the Query/GroupPoliciesByGroup request type.
+ * @name QueryGroupPoliciesByGroupRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupPoliciesByGroupRequest
+ */
 export interface QueryGroupPoliciesByGroupRequestAmino {
-  /** group_id is the unique ID of the group policy's group. */
+  /**
+   * group_id is the unique ID of the group policy's group.
+   */
   group_id?: string;
-  /** pagination defines an optional pagination for the request. */
+  /**
+   * pagination defines an optional pagination for the request.
+   */
   pagination?: PageRequestAmino;
 }
 export interface QueryGroupPoliciesByGroupRequestAminoMsg {
@@ -235,11 +308,20 @@ export interface QueryGroupPoliciesByGroupResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByGroupResponse";
   value: Uint8Array;
 }
-/** QueryGroupPoliciesByGroupResponse is the Query/GroupPoliciesByGroup response type. */
+/**
+ * QueryGroupPoliciesByGroupResponse is the Query/GroupPoliciesByGroup response type.
+ * @name QueryGroupPoliciesByGroupResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupPoliciesByGroupResponse
+ */
 export interface QueryGroupPoliciesByGroupResponseAmino {
-  /** group_policies are the group policies info associated with the provided group. */
+  /**
+   * group_policies are the group policies info associated with the provided group.
+   */
   group_policies?: GroupPolicyInfoAmino[];
-  /** pagination defines the pagination in the response. */
+  /**
+   * pagination defines the pagination in the response.
+   */
   pagination?: PageResponseAmino;
 }
 export interface QueryGroupPoliciesByGroupResponseAminoMsg {
@@ -262,11 +344,20 @@ export interface QueryGroupPoliciesByAdminRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByAdminRequest";
   value: Uint8Array;
 }
-/** QueryGroupPoliciesByAdminRequest is the Query/GroupPoliciesByAdmin request type. */
+/**
+ * QueryGroupPoliciesByAdminRequest is the Query/GroupPoliciesByAdmin request type.
+ * @name QueryGroupPoliciesByAdminRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupPoliciesByAdminRequest
+ */
 export interface QueryGroupPoliciesByAdminRequestAmino {
-  /** admin is the admin address of the group policy. */
+  /**
+   * admin is the admin address of the group policy.
+   */
   admin?: string;
-  /** pagination defines an optional pagination for the request. */
+  /**
+   * pagination defines an optional pagination for the request.
+   */
   pagination?: PageRequestAmino;
 }
 export interface QueryGroupPoliciesByAdminRequestAminoMsg {
@@ -289,11 +380,20 @@ export interface QueryGroupPoliciesByAdminResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupPoliciesByAdminResponse";
   value: Uint8Array;
 }
-/** QueryGroupPoliciesByAdminResponse is the Query/GroupPoliciesByAdmin response type. */
+/**
+ * QueryGroupPoliciesByAdminResponse is the Query/GroupPoliciesByAdmin response type.
+ * @name QueryGroupPoliciesByAdminResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupPoliciesByAdminResponse
+ */
 export interface QueryGroupPoliciesByAdminResponseAmino {
-  /** group_policies are the group policies info with provided admin. */
+  /**
+   * group_policies are the group policies info with provided admin.
+   */
   group_policies?: GroupPolicyInfoAmino[];
-  /** pagination defines the pagination in the response. */
+  /**
+   * pagination defines the pagination in the response.
+   */
   pagination?: PageResponseAmino;
 }
 export interface QueryGroupPoliciesByAdminResponseAminoMsg {
@@ -314,9 +414,16 @@ export interface QueryProposalRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryProposalRequest";
   value: Uint8Array;
 }
-/** QueryProposalRequest is the Query/Proposal request type. */
+/**
+ * QueryProposalRequest is the Query/Proposal request type.
+ * @name QueryProposalRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryProposalRequest
+ */
 export interface QueryProposalRequestAmino {
-  /** proposal_id is the unique ID of a proposal. */
+  /**
+   * proposal_id is the unique ID of a proposal.
+   */
   proposal_id?: string;
 }
 export interface QueryProposalRequestAminoMsg {
@@ -336,9 +443,16 @@ export interface QueryProposalResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryProposalResponse";
   value: Uint8Array;
 }
-/** QueryProposalResponse is the Query/Proposal response type. */
+/**
+ * QueryProposalResponse is the Query/Proposal response type.
+ * @name QueryProposalResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryProposalResponse
+ */
 export interface QueryProposalResponseAmino {
-  /** proposal is the proposal info. */
+  /**
+   * proposal is the proposal info.
+   */
   proposal?: ProposalAmino;
 }
 export interface QueryProposalResponseAminoMsg {
@@ -360,11 +474,20 @@ export interface QueryProposalsByGroupPolicyRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryProposalsByGroupPolicyRequest";
   value: Uint8Array;
 }
-/** QueryProposalsByGroupPolicyRequest is the Query/ProposalByGroupPolicy request type. */
+/**
+ * QueryProposalsByGroupPolicyRequest is the Query/ProposalByGroupPolicy request type.
+ * @name QueryProposalsByGroupPolicyRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryProposalsByGroupPolicyRequest
+ */
 export interface QueryProposalsByGroupPolicyRequestAmino {
-  /** address is the account address of the group policy related to proposals. */
+  /**
+   * address is the account address of the group policy related to proposals.
+   */
   address?: string;
-  /** pagination defines an optional pagination for the request. */
+  /**
+   * pagination defines an optional pagination for the request.
+   */
   pagination?: PageRequestAmino;
 }
 export interface QueryProposalsByGroupPolicyRequestAminoMsg {
@@ -387,11 +510,20 @@ export interface QueryProposalsByGroupPolicyResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryProposalsByGroupPolicyResponse";
   value: Uint8Array;
 }
-/** QueryProposalsByGroupPolicyResponse is the Query/ProposalByGroupPolicy response type. */
+/**
+ * QueryProposalsByGroupPolicyResponse is the Query/ProposalByGroupPolicy response type.
+ * @name QueryProposalsByGroupPolicyResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryProposalsByGroupPolicyResponse
+ */
 export interface QueryProposalsByGroupPolicyResponseAmino {
-  /** proposals are the proposals with given group policy. */
+  /**
+   * proposals are the proposals with given group policy.
+   */
   proposals?: ProposalAmino[];
-  /** pagination defines the pagination in the response. */
+  /**
+   * pagination defines the pagination in the response.
+   */
   pagination?: PageResponseAmino;
 }
 export interface QueryProposalsByGroupPolicyResponseAminoMsg {
@@ -414,11 +546,20 @@ export interface QueryVoteByProposalVoterRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryVoteByProposalVoterRequest";
   value: Uint8Array;
 }
-/** QueryVoteByProposalVoterRequest is the Query/VoteByProposalVoter request type. */
+/**
+ * QueryVoteByProposalVoterRequest is the Query/VoteByProposalVoter request type.
+ * @name QueryVoteByProposalVoterRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryVoteByProposalVoterRequest
+ */
 export interface QueryVoteByProposalVoterRequestAmino {
-  /** proposal_id is the unique ID of a proposal. */
+  /**
+   * proposal_id is the unique ID of a proposal.
+   */
   proposal_id?: string;
-  /** voter is a proposal voter account address. */
+  /**
+   * voter is a proposal voter account address.
+   */
   voter?: string;
 }
 export interface QueryVoteByProposalVoterRequestAminoMsg {
@@ -439,9 +580,16 @@ export interface QueryVoteByProposalVoterResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryVoteByProposalVoterResponse";
   value: Uint8Array;
 }
-/** QueryVoteByProposalVoterResponse is the Query/VoteByProposalVoter response type. */
+/**
+ * QueryVoteByProposalVoterResponse is the Query/VoteByProposalVoter response type.
+ * @name QueryVoteByProposalVoterResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryVoteByProposalVoterResponse
+ */
 export interface QueryVoteByProposalVoterResponseAmino {
-  /** vote is the vote with given proposal_id and voter. */
+  /**
+   * vote is the vote with given proposal_id and voter.
+   */
   vote?: VoteAmino;
 }
 export interface QueryVoteByProposalVoterResponseAminoMsg {
@@ -463,11 +611,20 @@ export interface QueryVotesByProposalRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryVotesByProposalRequest";
   value: Uint8Array;
 }
-/** QueryVotesByProposalRequest is the Query/VotesByProposal request type. */
+/**
+ * QueryVotesByProposalRequest is the Query/VotesByProposal request type.
+ * @name QueryVotesByProposalRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryVotesByProposalRequest
+ */
 export interface QueryVotesByProposalRequestAmino {
-  /** proposal_id is the unique ID of a proposal. */
+  /**
+   * proposal_id is the unique ID of a proposal.
+   */
   proposal_id?: string;
-  /** pagination defines an optional pagination for the request. */
+  /**
+   * pagination defines an optional pagination for the request.
+   */
   pagination?: PageRequestAmino;
 }
 export interface QueryVotesByProposalRequestAminoMsg {
@@ -490,11 +647,20 @@ export interface QueryVotesByProposalResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryVotesByProposalResponse";
   value: Uint8Array;
 }
-/** QueryVotesByProposalResponse is the Query/VotesByProposal response type. */
+/**
+ * QueryVotesByProposalResponse is the Query/VotesByProposal response type.
+ * @name QueryVotesByProposalResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryVotesByProposalResponse
+ */
 export interface QueryVotesByProposalResponseAmino {
-  /** votes are the list of votes for given proposal_id. */
+  /**
+   * votes are the list of votes for given proposal_id.
+   */
   votes?: VoteAmino[];
-  /** pagination defines the pagination in the response. */
+  /**
+   * pagination defines the pagination in the response.
+   */
   pagination?: PageResponseAmino;
 }
 export interface QueryVotesByProposalResponseAminoMsg {
@@ -517,11 +683,20 @@ export interface QueryVotesByVoterRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryVotesByVoterRequest";
   value: Uint8Array;
 }
-/** QueryVotesByVoterRequest is the Query/VotesByVoter request type. */
+/**
+ * QueryVotesByVoterRequest is the Query/VotesByVoter request type.
+ * @name QueryVotesByVoterRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryVotesByVoterRequest
+ */
 export interface QueryVotesByVoterRequestAmino {
-  /** voter is a proposal voter account address. */
+  /**
+   * voter is a proposal voter account address.
+   */
   voter?: string;
-  /** pagination defines an optional pagination for the request. */
+  /**
+   * pagination defines an optional pagination for the request.
+   */
   pagination?: PageRequestAmino;
 }
 export interface QueryVotesByVoterRequestAminoMsg {
@@ -544,11 +719,20 @@ export interface QueryVotesByVoterResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryVotesByVoterResponse";
   value: Uint8Array;
 }
-/** QueryVotesByVoterResponse is the Query/VotesByVoter response type. */
+/**
+ * QueryVotesByVoterResponse is the Query/VotesByVoter response type.
+ * @name QueryVotesByVoterResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryVotesByVoterResponse
+ */
 export interface QueryVotesByVoterResponseAmino {
-  /** votes are the list of votes by given voter. */
+  /**
+   * votes are the list of votes by given voter.
+   */
   votes?: VoteAmino[];
-  /** pagination defines the pagination in the response. */
+  /**
+   * pagination defines the pagination in the response.
+   */
   pagination?: PageResponseAmino;
 }
 export interface QueryVotesByVoterResponseAminoMsg {
@@ -571,11 +755,20 @@ export interface QueryGroupsByMemberRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupsByMemberRequest";
   value: Uint8Array;
 }
-/** QueryGroupsByMemberRequest is the Query/GroupsByMember request type. */
+/**
+ * QueryGroupsByMemberRequest is the Query/GroupsByMember request type.
+ * @name QueryGroupsByMemberRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupsByMemberRequest
+ */
 export interface QueryGroupsByMemberRequestAmino {
-  /** address is the group member address. */
+  /**
+   * address is the group member address.
+   */
   address?: string;
-  /** pagination defines an optional pagination for the request. */
+  /**
+   * pagination defines an optional pagination for the request.
+   */
   pagination?: PageRequestAmino;
 }
 export interface QueryGroupsByMemberRequestAminoMsg {
@@ -598,11 +791,20 @@ export interface QueryGroupsByMemberResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryGroupsByMemberResponse";
   value: Uint8Array;
 }
-/** QueryGroupsByMemberResponse is the Query/GroupsByMember response type. */
+/**
+ * QueryGroupsByMemberResponse is the Query/GroupsByMember response type.
+ * @name QueryGroupsByMemberResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupsByMemberResponse
+ */
 export interface QueryGroupsByMemberResponseAmino {
-  /** groups are the groups info with the provided group member. */
+  /**
+   * groups are the groups info with the provided group member.
+   */
   groups?: GroupInfoAmino[];
-  /** pagination defines the pagination in the response. */
+  /**
+   * pagination defines the pagination in the response.
+   */
   pagination?: PageResponseAmino;
 }
 export interface QueryGroupsByMemberResponseAminoMsg {
@@ -623,9 +825,16 @@ export interface QueryTallyResultRequestProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryTallyResultRequest";
   value: Uint8Array;
 }
-/** QueryTallyResultRequest is the Query/TallyResult request type. */
+/**
+ * QueryTallyResultRequest is the Query/TallyResult request type.
+ * @name QueryTallyResultRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryTallyResultRequest
+ */
 export interface QueryTallyResultRequestAmino {
-  /** proposal_id is the unique id of a proposal. */
+  /**
+   * proposal_id is the unique id of a proposal.
+   */
   proposal_id?: string;
 }
 export interface QueryTallyResultRequestAminoMsg {
@@ -645,9 +854,16 @@ export interface QueryTallyResultResponseProtoMsg {
   typeUrl: "/cosmos.group.v1.QueryTallyResultResponse";
   value: Uint8Array;
 }
-/** QueryTallyResultResponse is the Query/TallyResult response type. */
+/**
+ * QueryTallyResultResponse is the Query/TallyResult response type.
+ * @name QueryTallyResultResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryTallyResultResponse
+ */
 export interface QueryTallyResultResponseAmino {
-  /** tally defines the requested tally. */
+  /**
+   * tally defines the requested tally.
+   */
   tally: TallyResultAmino;
 }
 export interface QueryTallyResultResponseAminoMsg {
@@ -675,9 +891,14 @@ export interface QueryGroupsRequestProtoMsg {
  * QueryGroupsRequest is the Query/Groups request type.
  * 
  * Since: cosmos-sdk 0.47.1
+ * @name QueryGroupsRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupsRequest
  */
 export interface QueryGroupsRequestAmino {
-  /** pagination defines an optional pagination for the request. */
+  /**
+   * pagination defines an optional pagination for the request.
+   */
   pagination?: PageRequestAmino;
 }
 export interface QueryGroupsRequestAminoMsg {
@@ -711,11 +932,18 @@ export interface QueryGroupsResponseProtoMsg {
  * QueryGroupsResponse is the Query/Groups response type.
  * 
  * Since: cosmos-sdk 0.47.1
+ * @name QueryGroupsResponseAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.QueryGroupsResponse
  */
 export interface QueryGroupsResponseAmino {
-  /** `groups` is all the groups present in state. */
+  /**
+   * `groups` is all the groups present in state.
+   */
   groups?: GroupInfoAmino[];
-  /** pagination defines the pagination in the response. */
+  /**
+   * pagination defines the pagination in the response.
+   */
   pagination?: PageResponseAmino;
 }
 export interface QueryGroupsResponseAminoMsg {

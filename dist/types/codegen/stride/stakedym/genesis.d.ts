@@ -7,7 +7,12 @@ export interface ParamsProtoMsg {
     typeUrl: "/stride.stakedym.Params";
     value: Uint8Array;
 }
-/** Params defines the stakedym module parameters. */
+/**
+ * Params defines the stakedym module parameters.
+ * @name ParamsAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.Params
+ */
 export interface ParamsAmino {
 }
 export interface ParamsAminoMsg {
@@ -33,6 +38,9 @@ export interface TransferInProgressRecordIdsProtoMsg {
 /**
  * TransferInProgressRecordIds stores record IDs for delegation records
  * that have a transfer in progress
+ * @name TransferInProgressRecordIdsAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.TransferInProgressRecordIds
  */
 export interface TransferInProgressRecordIdsAmino {
     channel_id?: string;
@@ -66,7 +74,12 @@ export interface GenesisStateProtoMsg {
     typeUrl: "/stride.stakedym.GenesisState";
     value: Uint8Array;
 }
-/** GenesisState defines the stakedym module's genesis state. */
+/**
+ * GenesisState defines the stakedym module's genesis state.
+ * @name GenesisStateAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.GenesisState
+ */
 export interface GenesisStateAmino {
     params?: ParamsAmino;
     host_zone?: HostZoneAmino;

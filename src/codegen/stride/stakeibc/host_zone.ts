@@ -1,6 +1,6 @@
 import { Validator, ValidatorAmino, ValidatorSDKType } from "./validator";
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 /**
  * CommunityPoolRebate stores the size of the community pool liquid stake
  * (denominated in stTokens) and the rebate rate as a decimal
@@ -18,11 +18,18 @@ export interface CommunityPoolRebateProtoMsg {
 /**
  * CommunityPoolRebate stores the size of the community pool liquid stake
  * (denominated in stTokens) and the rebate rate as a decimal
+ * @name CommunityPoolRebateAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.CommunityPoolRebate
  */
 export interface CommunityPoolRebateAmino {
-  /** Rebate percentage as a decimal (e.g. 0.2 for 20%) */
+  /**
+   * Rebate percentage as a decimal (e.g. 0.2 for 20%)
+   */
   rebate_rate?: string;
-  /** Number of stTokens received from the community pool liquid stake */
+  /**
+   * Number of stTokens received from the community pool liquid stake
+   */
   liquid_staked_st_token_amount?: string;
 }
 export interface CommunityPoolRebateAminoMsg {
@@ -141,33 +148,64 @@ export interface HostZoneProtoMsg {
   typeUrl: "/stride.stakeibc.HostZone";
   value: Uint8Array;
 }
-/** Core data structure to track liquid staking zones */
+/**
+ * Core data structure to track liquid staking zones
+ * @name HostZoneAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.HostZone
+ */
 export interface HostZoneAmino {
-  /** Chain ID of the host zone */
+  /**
+   * Chain ID of the host zone
+   */
   chain_id?: string;
-  /** Bech32 prefix of host zone's address */
+  /**
+   * Bech32 prefix of host zone's address
+   */
   bech32prefix?: string;
-  /** ConnectionID from Stride to the host zone (ID is on the stride side) */
+  /**
+   * ConnectionID from Stride to the host zone (ID is on the stride side)
+   */
   connection_id?: string;
-  /** Transfer Channel ID from Stride to the host zone (ID is on the stride side) */
+  /**
+   * Transfer Channel ID from Stride to the host zone (ID is on the stride side)
+   */
   transfer_channel_id?: string;
-  /** ibc denom of the host zone's native token on stride */
+  /**
+   * ibc denom of the host zone's native token on stride
+   */
   ibc_denom?: string;
-  /** native denom on host zone */
+  /**
+   * native denom on host zone
+   */
   host_denom?: string;
-  /** The unbonding period in days (e.g. 21) */
+  /**
+   * The unbonding period in days (e.g. 21)
+   */
   unbonding_period?: string;
-  /** List of validators that are delegated to */
+  /**
+   * List of validators that are delegated to
+   */
   validators?: ValidatorAmino[];
-  /** Address that custodies native tokens during a liquid stake */
+  /**
+   * Address that custodies native tokens during a liquid stake
+   */
   deposit_address?: string;
-  /** ICA Address on the host zone responsible for collecting rewards */
+  /**
+   * ICA Address on the host zone responsible for collecting rewards
+   */
   withdrawal_ica_address?: string;
-  /** ICA Address on the host zone responsible for commission */
+  /**
+   * ICA Address on the host zone responsible for commission
+   */
   fee_ica_address?: string;
-  /** ICA Address on the host zone responsible for staking and unstaking */
+  /**
+   * ICA Address on the host zone responsible for staking and unstaking
+   */
   delegation_ica_address?: string;
-  /** ICA Address that receives unstaked tokens after they've finished unbonding */
+  /**
+   * ICA Address that receives unstaked tokens after they've finished unbonding
+   */
   redemption_ica_address?: string;
   /**
    * ICA Address that receives tokens from a community pool to liquid stake or
@@ -198,11 +236,17 @@ export interface HostZoneAmino {
    * the main community pool
    */
   community_pool_treasury_address?: string;
-  /** The total delegated balance on the host zone */
+  /**
+   * The total delegated balance on the host zone
+   */
   total_delegations?: string;
-  /** The redemption rate from the previous epoch */
+  /**
+   * The redemption rate from the previous epoch
+   */
   last_redemption_rate?: string;
-  /** The current redemption rate */
+  /**
+   * The current redemption rate
+   */
   redemption_rate?: string;
   /**
    * The min outer redemption rate bound - controlled only be governance
@@ -229,16 +273,22 @@ export interface HostZoneAmino {
    * or undelegation ICA tx
    */
   max_messages_per_ica_tx?: string;
-  /** Indicates whether redemptions are allowed through this module */
+  /**
+   * Indicates whether redemptions are allowed through this module
+   */
   redemptions_enabled?: boolean;
   /**
    * An optional fee rebate
    * If there is no rebate for the host zone, this will be nil
    */
   community_pool_rebate?: CommunityPoolRebateAmino;
-  /** A boolean indicating whether the chain has LSM enabled */
+  /**
+   * A boolean indicating whether the chain has LSM enabled
+   */
   lsm_liquid_stake_enabled?: boolean;
-  /** A boolean indicating whether the chain is currently halted */
+  /**
+   * A boolean indicating whether the chain is currently halted
+   */
   halted?: boolean;
 }
 export interface HostZoneAminoMsg {

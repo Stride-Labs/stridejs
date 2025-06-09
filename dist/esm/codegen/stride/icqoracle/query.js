@@ -1,7 +1,7 @@
 import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
 import { TokenPrice, Params } from "./icqoracle";
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 function createBaseQueryTokenPriceRequest() {
   return {
     baseDenom: "",

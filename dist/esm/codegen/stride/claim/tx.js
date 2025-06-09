@@ -1,6 +1,6 @@
 import { Coin } from "../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 function createBaseMsgSetAirdropAllocations() {
   return {
     allocator: "",
@@ -212,7 +212,7 @@ const MsgClaimFreeAmount = {
   },
   toAminoMsg(message) {
     return {
-      type: "claim/ClaimFreeAmount",
+      type: "claim/MsgClaimFreeAmount",
       value: MsgClaimFreeAmount.toAmino(message)
     };
   },

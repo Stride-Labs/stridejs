@@ -29,6 +29,7 @@ __reExport(codegen_exports, require("./osmosis/bundle"), module.exports);
 __reExport(codegen_exports, require("./stride/bundle"), module.exports);
 __reExport(codegen_exports, require("./stride/client"), module.exports);
 __reExport(codegen_exports, require("./tendermint/bundle"), module.exports);
+__reExport(codegen_exports, require("./decimals"), module.exports);
 __reExport(codegen_exports, require("./varint"), module.exports);
 __reExport(codegen_exports, require("./utf8"), module.exports);
 __reExport(codegen_exports, require("./binary"), module.exports);
@@ -50,6 +51,7 @@ __reExport(codegen_exports, require("./types"), module.exports);
   ...require("./stride/bundle"),
   ...require("./stride/client"),
   ...require("./tendermint/bundle"),
+  ...require("./decimals"),
   ...require("./varint"),
   ...require("./utf8"),
   ...require("./binary"),

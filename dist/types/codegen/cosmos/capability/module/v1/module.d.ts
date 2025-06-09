@@ -11,7 +11,12 @@ export interface ModuleProtoMsg {
     typeUrl: "/cosmos.capability.module.v1.Module";
     value: Uint8Array;
 }
-/** Module is the config object of the capability module. */
+/**
+ * Module is the config object of the capability module.
+ * @name ModuleAmino
+ * @package cosmos.capability.module.v1
+ * @see proto type: cosmos.capability.module.v1.Module
+ */
 export interface ModuleAmino {
     /**
      * seal_keeper defines if keeper.Seal() will run on BeginBlock() to prevent further modules from creating a scoped

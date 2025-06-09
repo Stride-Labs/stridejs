@@ -35,7 +35,12 @@ export interface ParamsProtoMsg {
     typeUrl: "/stride.airdrop.Params";
     value: Uint8Array;
 }
-/** Airdrop module parameters */
+/**
+ * Airdrop module parameters
+ * @name ParamsAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.Params
+ */
 export interface ParamsAmino {
     /**
      * The number of seconds between each element in the allocations array
@@ -95,9 +100,14 @@ export interface UserAllocationProtoMsg {
 /**
  * UserAllocation tracks the status of an allocation for a user on a specific
  * airdrop
+ * @name UserAllocationAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.UserAllocation
  */
 export interface UserAllocationAmino {
-    /** ID of the airdrop */
+    /**
+     * ID of the airdrop
+     */
     airdrop_id?: string;
     /**
      * Address of the account that is receiving the airdrop allocation
@@ -105,7 +115,9 @@ export interface UserAllocationAmino {
      * must be linked and merged into a stride address before claiming
      */
     address?: string;
-    /** The total amount of tokens that have already been claimed */
+    /**
+     * The total amount of tokens that have already been claimed
+     */
     claimed?: string;
     /**
      * The total amount of tokens that have been forfeited by the user for
@@ -181,13 +193,24 @@ export interface AirdropProtoMsg {
     typeUrl: "/stride.airdrop.Airdrop";
     value: Uint8Array;
 }
-/** Airdrop track the aggregate unbondings across an epoch */
+/**
+ * Airdrop track the aggregate unbondings across an epoch
+ * @name AirdropAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.Airdrop
+ */
 export interface AirdropAmino {
-    /** Airdrop ID */
+    /**
+     * Airdrop ID
+     */
     id?: string;
-    /** Denom used when distributing rewards */
+    /**
+     * Denom used when distributing rewards
+     */
     reward_denom?: string;
-    /** The first date that claiming begins and rewards are distributed */
+    /**
+     * The first date that claiming begins and rewards are distributed
+     */
     distribution_start_date?: string;
     /**
      * The last date for rewards to be distributed. Immediately after this date
@@ -200,18 +223,26 @@ export interface AirdropAmino {
      * end date)
      */
     clawback_date?: string;
-    /** Deadline for the user to make a decision on their claim type */
+    /**
+     * Deadline for the user to make a decision on their claim type
+     */
     claim_type_deadline_date?: string;
     /**
      * Penalty for claiming rewards early - e.g. 0.5 means claiming early will
      * result in losing 50% of rewards
      */
     early_claim_penalty?: string;
-    /** Account that holds the total reward balance and distributes to users */
+    /**
+     * Account that holds the total reward balance and distributes to users
+     */
     distributor_address?: string;
-    /** Admin account with permissions to add or update allocations */
+    /**
+     * Admin account with permissions to add or update allocations
+     */
     allocator_address?: string;
-    /** Admin account with permissions to link addresseses */
+    /**
+     * Admin account with permissions to link addresseses
+     */
     linker_address?: string;
 }
 export interface AirdropAminoMsg {

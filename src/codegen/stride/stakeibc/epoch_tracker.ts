@@ -9,6 +9,11 @@ export interface EpochTrackerProtoMsg {
   typeUrl: "/stride.stakeibc.EpochTracker";
   value: Uint8Array;
 }
+/**
+ * @name EpochTrackerAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.EpochTracker
+ */
 export interface EpochTrackerAmino {
   epoch_identifier?: string;
   epoch_number?: string;

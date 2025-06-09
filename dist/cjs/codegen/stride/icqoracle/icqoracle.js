@@ -23,7 +23,7 @@ __export(icqoracle_exports, {
 module.exports = __toCommonJS(icqoracle_exports);
 var import_timestamp = require("../../google/protobuf/timestamp");
 var import_binary = require("../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../decimals");
 var import_helpers = require("../../helpers");
 function createBaseTokenPrice() {
   return {
@@ -57,7 +57,7 @@ const TokenPrice = {
       writer.uint32(40).uint64(message.osmosisPoolId);
     }
     if (message.spotPrice !== "") {
-      writer.uint32(50).string(import_math.Decimal.fromUserInput(message.spotPrice, 18).atomics);
+      writer.uint32(50).string(import_decimals.Decimal.fromUserInput(message.spotPrice, 18).atomics);
     }
     if (message.lastRequestTime !== void 0) {
       import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastRequestTime), writer.uint32(58).fork()).ldelim();
@@ -93,7 +93,7 @@ const TokenPrice = {
           message.osmosisPoolId = reader.uint64();
           break;
         case 6:
-          message.spotPrice = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.spotPrice = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 7:
           message.lastRequestTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));

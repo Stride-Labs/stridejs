@@ -11,11 +11,20 @@ export interface GenesisStateProtoMsg {
   typeUrl: "/stride.auction.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the auction module's genesis state */
+/**
+ * GenesisState defines the auction module's genesis state
+ * @name GenesisStateAmino
+ * @package stride.auction
+ * @see proto type: stride.auction.GenesisState
+ */
 export interface GenesisStateAmino {
-  /** Module parameters */
+  /**
+   * Module parameters
+   */
   params?: ParamsAmino;
-  /** List of token auctions */
+  /**
+   * List of token auctions
+   */
   auctions?: AuctionAmino[];
 }
 export interface GenesisStateAminoMsg {

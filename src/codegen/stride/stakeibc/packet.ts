@@ -6,6 +6,11 @@ export interface StakeibcPacketDataProtoMsg {
   typeUrl: "/stride.stakeibc.StakeibcPacketData";
   value: Uint8Array;
 }
+/**
+ * @name StakeibcPacketDataAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.StakeibcPacketData
+ */
 export interface StakeibcPacketDataAmino {
   no_data?: NoDataAmino;
 }
@@ -21,6 +26,11 @@ export interface NoDataProtoMsg {
   typeUrl: "/stride.stakeibc.NoData";
   value: Uint8Array;
 }
+/**
+ * @name NoDataAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.NoData
+ */
 export interface NoDataAmino {}
 export interface NoDataAminoMsg {
   type: "/stride.stakeibc.NoData";

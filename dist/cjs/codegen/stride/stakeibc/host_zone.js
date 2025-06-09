@@ -23,7 +23,7 @@ __export(host_zone_exports, {
 module.exports = __toCommonJS(host_zone_exports);
 var import_validator = require("./validator");
 var import_binary = require("../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../decimals");
 function createBaseCommunityPoolRebate() {
   return {
     rebateRate: "",
@@ -34,7 +34,7 @@ const CommunityPoolRebate = {
   typeUrl: "/stride.stakeibc.CommunityPoolRebate",
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.rebateRate !== "") {
-      writer.uint32(10).string(import_math.Decimal.fromUserInput(message.rebateRate, 18).atomics);
+      writer.uint32(10).string(import_decimals.Decimal.fromUserInput(message.rebateRate, 18).atomics);
     }
     if (message.liquidStakedStTokenAmount !== "") {
       writer.uint32(18).string(message.liquidStakedStTokenAmount);
@@ -49,7 +49,7 @@ const CommunityPoolRebate = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.rebateRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.rebateRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 2:
           message.liquidStakedStTokenAmount = reader.string();
@@ -194,22 +194,22 @@ const HostZone = {
       writer.uint32(106).string(message.totalDelegations);
     }
     if (message.lastRedemptionRate !== "") {
-      writer.uint32(82).string(import_math.Decimal.fromUserInput(message.lastRedemptionRate, 18).atomics);
+      writer.uint32(82).string(import_decimals.Decimal.fromUserInput(message.lastRedemptionRate, 18).atomics);
     }
     if (message.redemptionRate !== "") {
-      writer.uint32(90).string(import_math.Decimal.fromUserInput(message.redemptionRate, 18).atomics);
+      writer.uint32(90).string(import_decimals.Decimal.fromUserInput(message.redemptionRate, 18).atomics);
     }
     if (message.minRedemptionRate !== "") {
-      writer.uint32(162).string(import_math.Decimal.fromUserInput(message.minRedemptionRate, 18).atomics);
+      writer.uint32(162).string(import_decimals.Decimal.fromUserInput(message.minRedemptionRate, 18).atomics);
     }
     if (message.maxRedemptionRate !== "") {
-      writer.uint32(170).string(import_math.Decimal.fromUserInput(message.maxRedemptionRate, 18).atomics);
+      writer.uint32(170).string(import_decimals.Decimal.fromUserInput(message.maxRedemptionRate, 18).atomics);
     }
     if (message.minInnerRedemptionRate !== "") {
-      writer.uint32(226).string(import_math.Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics);
+      writer.uint32(226).string(import_decimals.Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics);
     }
     if (message.maxInnerRedemptionRate !== "") {
-      writer.uint32(234).string(import_math.Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics);
+      writer.uint32(234).string(import_decimals.Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics);
     }
     if (message.maxMessagesPerIcaTx !== BigInt(0)) {
       writer.uint32(288).uint64(message.maxMessagesPerIcaTx);
@@ -293,22 +293,22 @@ const HostZone = {
           message.totalDelegations = reader.string();
           break;
         case 10:
-          message.lastRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.lastRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 11:
-          message.redemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.redemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 20:
-          message.minRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.minRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 21:
-          message.maxRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.maxRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 28:
-          message.minInnerRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.minInnerRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 29:
-          message.maxInnerRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.maxInnerRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 36:
           message.maxMessagesPerIcaTx = reader.uint64();

@@ -9,9 +9,16 @@ export interface ClientStateProtoMsg {
     typeUrl: "/ibc.lightclients.localhost.v2.ClientState";
     value: Uint8Array;
 }
-/** ClientState defines the 09-localhost client state */
+/**
+ * ClientState defines the 09-localhost client state
+ * @name ClientStateAmino
+ * @package ibc.lightclients.localhost.v2
+ * @see proto type: ibc.lightclients.localhost.v2.ClientState
+ */
 export interface ClientStateAmino {
-    /** the latest block height */
+    /**
+     * the latest block height
+     */
     latest_height?: HeightAmino;
 }
 export interface ClientStateAminoMsg {

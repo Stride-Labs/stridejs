@@ -23,7 +23,7 @@ __export(trade_route_exports, {
 module.exports = __toCommonJS(trade_route_exports);
 var import_ica_account = require("./ica_account");
 var import_binary = require("../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../decimals");
 function createBaseTradeConfig() {
   return {
     poolId: BigInt(0),
@@ -41,13 +41,13 @@ const TradeConfig = {
       writer.uint32(8).uint64(message.poolId);
     }
     if (message.swapPrice !== "") {
-      writer.uint32(18).string(import_math.Decimal.fromUserInput(message.swapPrice, 18).atomics);
+      writer.uint32(18).string(import_decimals.Decimal.fromUserInput(message.swapPrice, 18).atomics);
     }
     if (message.priceUpdateTimestamp !== BigInt(0)) {
       writer.uint32(24).uint64(message.priceUpdateTimestamp);
     }
     if (message.maxAllowedSwapLossRate !== "") {
-      writer.uint32(34).string(import_math.Decimal.fromUserInput(message.maxAllowedSwapLossRate, 18).atomics);
+      writer.uint32(34).string(import_decimals.Decimal.fromUserInput(message.maxAllowedSwapLossRate, 18).atomics);
     }
     if (message.minSwapAmount !== "") {
       writer.uint32(42).string(message.minSwapAmount);
@@ -68,13 +68,13 @@ const TradeConfig = {
           message.poolId = reader.uint64();
           break;
         case 2:
-          message.swapPrice = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.swapPrice = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
           message.priceUpdateTimestamp = reader.uint64();
           break;
         case 4:
-          message.maxAllowedSwapLossRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.maxAllowedSwapLossRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 5:
           message.minSwapAmount = reader.string();

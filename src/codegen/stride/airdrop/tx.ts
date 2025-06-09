@@ -1,7 +1,7 @@
 import { Timestamp } from "../../google/protobuf/timestamp";
 import { BinaryReader, BinaryWriter } from "../../binary";
 import { toTimestamp, fromTimestamp } from "../../helpers";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 /** ClaimDaily */
 export interface MsgClaimDaily {
   /** Address of the claimer */
@@ -13,11 +13,20 @@ export interface MsgClaimDailyProtoMsg {
   typeUrl: "/stride.airdrop.MsgClaimDaily";
   value: Uint8Array;
 }
-/** ClaimDaily */
+/**
+ * ClaimDaily
+ * @name MsgClaimDailyAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgClaimDaily
+ */
 export interface MsgClaimDailyAmino {
-  /** Address of the claimer */
+  /**
+   * Address of the claimer
+   */
   claimer?: string;
-  /** Airdrop ID */
+  /**
+   * Airdrop ID
+   */
   airdrop_id?: string;
 }
 export interface MsgClaimDailyAminoMsg {
@@ -34,6 +43,11 @@ export interface MsgClaimDailyResponseProtoMsg {
   typeUrl: "/stride.airdrop.MsgClaimDailyResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgClaimDailyResponseAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgClaimDailyResponse
+ */
 export interface MsgClaimDailyResponseAmino {}
 export interface MsgClaimDailyResponseAminoMsg {
   type: "/stride.airdrop.MsgClaimDailyResponse";
@@ -51,11 +65,20 @@ export interface MsgClaimEarlyProtoMsg {
   typeUrl: "/stride.airdrop.MsgClaimEarly";
   value: Uint8Array;
 }
-/** ClaimEarly */
+/**
+ * ClaimEarly
+ * @name MsgClaimEarlyAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgClaimEarly
+ */
 export interface MsgClaimEarlyAmino {
-  /** Address of the claimer */
+  /**
+   * Address of the claimer
+   */
   claimer?: string;
-  /** Airdrop ID */
+  /**
+   * Airdrop ID
+   */
   airdrop_id?: string;
 }
 export interface MsgClaimEarlyAminoMsg {
@@ -72,6 +95,11 @@ export interface MsgClaimEarlyResponseProtoMsg {
   typeUrl: "/stride.airdrop.MsgClaimEarlyResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgClaimEarlyResponseAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgClaimEarlyResponse
+ */
 export interface MsgClaimEarlyResponseAmino {}
 export interface MsgClaimEarlyResponseAminoMsg {
   type: "/stride.airdrop.MsgClaimEarlyResponse";
@@ -117,15 +145,28 @@ export interface MsgCreateAirdropProtoMsg {
   typeUrl: "/stride.airdrop.MsgCreateAirdrop";
   value: Uint8Array;
 }
-/** CreateAirdrop */
+/**
+ * CreateAirdrop
+ * @name MsgCreateAirdropAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgCreateAirdrop
+ */
 export interface MsgCreateAirdropAmino {
-  /** Airdrop admin address */
+  /**
+   * Airdrop admin address
+   */
   admin?: string;
-  /** Airdrop ID */
+  /**
+   * Airdrop ID
+   */
   airdrop_id?: string;
-  /** Denom used when distributing rewards */
+  /**
+   * Denom used when distributing rewards
+   */
   reward_denom?: string;
-  /** The first date that claiming begins and rewards are distributed */
+  /**
+   * The first date that claiming begins and rewards are distributed
+   */
   distribution_start_date?: string;
   /**
    * The last date for rewards to be distributed. Immediately after this date
@@ -138,18 +179,26 @@ export interface MsgCreateAirdropAmino {
    * end date)
    */
   clawback_date?: string;
-  /** Deadline for the user to make a decision on their claim type */
+  /**
+   * Deadline for the user to make a decision on their claim type
+   */
   claim_type_deadline_date?: string;
   /**
    * Penalty for claiming rewards early - e.g. 0.5 means claiming early will
    * result in losing 50% of rewards
    */
   early_claim_penalty?: string;
-  /** Account that holds the total reward balance and distributes to users */
+  /**
+   * Account that holds the total reward balance and distributes to users
+   */
   distributor_address?: string;
-  /** Admin account with permissions to add or update allocations */
+  /**
+   * Admin account with permissions to add or update allocations
+   */
   allocator_address?: string;
-  /** Admin account with permissions to link addresseses */
+  /**
+   * Admin account with permissions to link addresseses
+   */
   linker_address?: string;
 }
 export interface MsgCreateAirdropAminoMsg {
@@ -175,6 +224,11 @@ export interface MsgCreateAirdropResponseProtoMsg {
   typeUrl: "/stride.airdrop.MsgCreateAirdropResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgCreateAirdropResponseAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgCreateAirdropResponse
+ */
 export interface MsgCreateAirdropResponseAmino {}
 export interface MsgCreateAirdropResponseAminoMsg {
   type: "/stride.airdrop.MsgCreateAirdropResponse";
@@ -220,15 +274,28 @@ export interface MsgUpdateAirdropProtoMsg {
   typeUrl: "/stride.airdrop.MsgUpdateAirdrop";
   value: Uint8Array;
 }
-/** UpdateAirdrop */
+/**
+ * UpdateAirdrop
+ * @name MsgUpdateAirdropAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgUpdateAirdrop
+ */
 export interface MsgUpdateAirdropAmino {
-  /** Airdrop admin address */
+  /**
+   * Airdrop admin address
+   */
   admin?: string;
-  /** Airdrop ID */
+  /**
+   * Airdrop ID
+   */
   airdrop_id?: string;
-  /** Denom used when distributing rewards */
+  /**
+   * Denom used when distributing rewards
+   */
   reward_denom?: string;
-  /** The first date that claiming begins and rewards are distributed */
+  /**
+   * The first date that claiming begins and rewards are distributed
+   */
   distribution_start_date?: string;
   /**
    * The last date for rewards to be distributed. Immediately after this date
@@ -241,18 +308,26 @@ export interface MsgUpdateAirdropAmino {
    * end date)
    */
   clawback_date?: string;
-  /** Deadline for the user to make a decision on their claim type */
+  /**
+   * Deadline for the user to make a decision on their claim type
+   */
   claim_type_deadline_date?: string;
   /**
    * Penalty for claiming rewards early - e.g. 0.5 means claiming early will
    * result in losing 50% of rewards
    */
   early_claim_penalty?: string;
-  /** Account that holds the total reward balance and distributes to users */
+  /**
+   * Account that holds the total reward balance and distributes to users
+   */
   distributor_address?: string;
-  /** Admin account with permissions to add or update allocations */
+  /**
+   * Admin account with permissions to add or update allocations
+   */
   allocator_address?: string;
-  /** Admin account with permissions to link addresseses */
+  /**
+   * Admin account with permissions to link addresseses
+   */
   linker_address?: string;
 }
 export interface MsgUpdateAirdropAminoMsg {
@@ -278,6 +353,11 @@ export interface MsgUpdateAirdropResponseProtoMsg {
   typeUrl: "/stride.airdrop.MsgUpdateAirdropResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgUpdateAirdropResponseAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgUpdateAirdropResponse
+ */
 export interface MsgUpdateAirdropResponseAmino {}
 export interface MsgUpdateAirdropResponseAminoMsg {
   type: "/stride.airdrop.MsgUpdateAirdropResponse";
@@ -293,7 +373,12 @@ export interface RawAllocationProtoMsg {
   typeUrl: "/stride.airdrop.RawAllocation";
   value: Uint8Array;
 }
-/** Allocation specification when bootstrapping reward data */
+/**
+ * Allocation specification when bootstrapping reward data
+ * @name RawAllocationAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.RawAllocation
+ */
 export interface RawAllocationAmino {
   user_address?: string;
   allocations?: string[];
@@ -320,13 +405,24 @@ export interface MsgAddAllocationsProtoMsg {
   typeUrl: "/stride.airdrop.MsgAddAllocations";
   value: Uint8Array;
 }
-/** AddAllocations */
+/**
+ * AddAllocations
+ * @name MsgAddAllocationsAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgAddAllocations
+ */
 export interface MsgAddAllocationsAmino {
-  /** Airdrop admin address */
+  /**
+   * Airdrop admin address
+   */
   admin?: string;
-  /** Airdrop ID */
+  /**
+   * Airdrop ID
+   */
   airdrop_id?: string;
-  /** List of address/allocation pairs for each user */
+  /**
+   * List of address/allocation pairs for each user
+   */
   allocations?: RawAllocationAmino[];
 }
 export interface MsgAddAllocationsAminoMsg {
@@ -344,6 +440,11 @@ export interface MsgAddAllocationsResponseProtoMsg {
   typeUrl: "/stride.airdrop.MsgAddAllocationsResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgAddAllocationsResponseAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgAddAllocationsResponse
+ */
 export interface MsgAddAllocationsResponseAmino {}
 export interface MsgAddAllocationsResponseAminoMsg {
   type: "/stride.airdrop.MsgAddAllocationsResponse";
@@ -368,13 +469,24 @@ export interface MsgUpdateUserAllocationProtoMsg {
   typeUrl: "/stride.airdrop.MsgUpdateUserAllocation";
   value: Uint8Array;
 }
-/** UpdateUserAllocation */
+/**
+ * UpdateUserAllocation
+ * @name MsgUpdateUserAllocationAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgUpdateUserAllocation
+ */
 export interface MsgUpdateUserAllocationAmino {
-  /** Airdrop admin address */
+  /**
+   * Airdrop admin address
+   */
   admin?: string;
-  /** Airdrop ID */
+  /**
+   * Airdrop ID
+   */
   airdrop_id?: string;
-  /** Address of the airdrop recipient */
+  /**
+   * Address of the airdrop recipient
+   */
   user_address?: string;
   /**
    * Allocations - as an array where each element represents the rewards for a
@@ -398,6 +510,11 @@ export interface MsgUpdateUserAllocationResponseProtoMsg {
   typeUrl: "/stride.airdrop.MsgUpdateUserAllocationResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgUpdateUserAllocationResponseAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgUpdateUserAllocationResponse
+ */
 export interface MsgUpdateUserAllocationResponseAmino {}
 export interface MsgUpdateUserAllocationResponseAminoMsg {
   type: "/stride.airdrop.MsgUpdateUserAllocationResponse";
@@ -419,15 +536,28 @@ export interface MsgLinkAddressesProtoMsg {
   typeUrl: "/stride.airdrop.MsgLinkAddresses";
   value: Uint8Array;
 }
-/** LinkAddresses */
+/**
+ * LinkAddresses
+ * @name MsgLinkAddressesAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgLinkAddresses
+ */
 export interface MsgLinkAddressesAmino {
-  /** Airdrop admin address */
+  /**
+   * Airdrop admin address
+   */
   admin?: string;
-  /** Airdrop ID */
+  /**
+   * Airdrop ID
+   */
   airdrop_id?: string;
-  /** Stride address - this address may or may not exist in allocations yet */
+  /**
+   * Stride address - this address may or may not exist in allocations yet
+   */
   stride_address?: string;
-  /** Host address - this address must exist */
+  /**
+   * Host address - this address must exist
+   */
   host_address?: string;
 }
 export interface MsgLinkAddressesAminoMsg {
@@ -446,6 +576,11 @@ export interface MsgLinkAddressesResponseProtoMsg {
   typeUrl: "/stride.airdrop.MsgLinkAddressesResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgLinkAddressesResponseAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.MsgLinkAddressesResponse
+ */
 export interface MsgLinkAddressesResponseAmino {}
 export interface MsgLinkAddressesResponseAminoMsg {
   type: "/stride.airdrop.MsgLinkAddressesResponse";

@@ -1,6 +1,6 @@
 import { ICAAccount, ICAAccountAmino, ICAAccountSDKType } from "./ica_account";
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 /**
  * Deprecated, this configuration is no longer needed since swaps
  * are executed off-chain via authz
@@ -42,10 +42,15 @@ export interface TradeConfigProtoMsg {
  * are executed off-chain via authz
  * 
  * Stores pool information needed to execute the swap along a trade route
+ * @name TradeConfigAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.TradeConfig
+ * @deprecated
  */
-/** @deprecated */
 export interface TradeConfigAmino {
-  /** Currently Osmosis is the only trade chain so this is an osmosis pool id */
+  /**
+   * Currently Osmosis is the only trade chain so this is an osmosis pool id
+   */
   pool_id?: string;
   /**
    * Spot price in the pool to convert the reward denom to the host denom
@@ -53,7 +58,9 @@ export interface TradeConfigAmino {
    * This value may be slightly stale as it is updated by an ICQ
    */
   swap_price?: string;
-  /** unix time in seconds that the price was last updated */
+  /**
+   * unix time in seconds that the price was last updated
+   */
   price_update_timestamp?: string;
   /**
    * Threshold defining the percentage of tokens that could be lost in the trade
@@ -165,17 +172,30 @@ export interface TradeRouteProtoMsg {
  * withdrawl ICA on hostZone
  * The structure is key'd on reward denom and host denom in their native forms
  * (i.e. reward_denom_on_reward_zone and host_denom_on_host_zone)
+ * @name TradeRouteAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.TradeRoute
  */
 export interface TradeRouteAmino {
-  /** ibc denom for the reward on the host zone */
+  /**
+   * ibc denom for the reward on the host zone
+   */
   reward_denom_on_host_zone?: string;
-  /** should be the native denom for the reward chain */
+  /**
+   * should be the native denom for the reward chain
+   */
   reward_denom_on_reward_zone?: string;
-  /** ibc denom of the reward on the trade chain, input to the swap */
+  /**
+   * ibc denom of the reward on the trade chain, input to the swap
+   */
   reward_denom_on_trade_zone?: string;
-  /** ibc of the host denom on the trade chain, output from the swap */
+  /**
+   * ibc of the host denom on the trade chain, output from the swap
+   */
   host_denom_on_trade_zone?: string;
-  /** should be the same as the native host denom on the host chain */
+  /**
+   * should be the same as the native host denom on the host chain
+   */
   host_denom_on_host_zone?: string;
   /**
    * ICAAccount on the host zone with the reward tokens
@@ -218,8 +238,8 @@ export interface TradeRouteAmino {
    * 
    * specifies the configuration needed to execute the swap
    * such as pool_id, slippage, min trade amount, etc.
+   * @deprecated
    */
-  /** @deprecated */
   trade_config?: TradeConfigAmino;
 }
 export interface TradeRouteAminoMsg {

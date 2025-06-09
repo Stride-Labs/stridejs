@@ -1,7 +1,7 @@
 import { Validator, ValidatorAmino, ValidatorSDKType } from "./validator";
 import { Coin, CoinAmino, CoinSDKType } from "../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 export enum AuthzPermissionChange {
   /** GRANT - Grant the address trade permissions */
   GRANT = 0,
@@ -46,6 +46,11 @@ export interface MsgUpdateInnerRedemptionRateBoundsProtoMsg {
   typeUrl: "/stride.stakeibc.MsgUpdateInnerRedemptionRateBounds";
   value: Uint8Array;
 }
+/**
+ * @name MsgUpdateInnerRedemptionRateBoundsAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgUpdateInnerRedemptionRateBounds
+ */
 export interface MsgUpdateInnerRedemptionRateBoundsAmino {
   creator?: string;
   chain_id?: string;
@@ -67,6 +72,11 @@ export interface MsgUpdateInnerRedemptionRateBoundsResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgUpdateInnerRedemptionRateBoundsResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgUpdateInnerRedemptionRateBoundsResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgUpdateInnerRedemptionRateBoundsResponse
+ */
 export interface MsgUpdateInnerRedemptionRateBoundsResponseAmino {}
 export interface MsgUpdateInnerRedemptionRateBoundsResponseAminoMsg {
   type: "/stride.stakeibc.MsgUpdateInnerRedemptionRateBoundsResponse";
@@ -82,13 +92,18 @@ export interface MsgLiquidStakeProtoMsg {
   typeUrl: "/stride.stakeibc.MsgLiquidStake";
   value: Uint8Array;
 }
+/**
+ * @name MsgLiquidStakeAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgLiquidStake
+ */
 export interface MsgLiquidStakeAmino {
   creator?: string;
   amount?: string;
   host_denom?: string;
 }
 export interface MsgLiquidStakeAminoMsg {
-  type: "stakeibc/LiquidStake";
+  type: "stakeibc/MsgLiquidStake";
   value: MsgLiquidStakeAmino;
 }
 export interface MsgLiquidStakeSDKType {
@@ -103,6 +118,11 @@ export interface MsgLiquidStakeResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgLiquidStakeResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgLiquidStakeResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgLiquidStakeResponse
+ */
 export interface MsgLiquidStakeResponseAmino {
   st_token?: CoinAmino;
 }
@@ -122,13 +142,18 @@ export interface MsgLSMLiquidStakeProtoMsg {
   typeUrl: "/stride.stakeibc.MsgLSMLiquidStake";
   value: Uint8Array;
 }
+/**
+ * @name MsgLSMLiquidStakeAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgLSMLiquidStake
+ */
 export interface MsgLSMLiquidStakeAmino {
   creator?: string;
   amount?: string;
   lsm_token_ibc_denom?: string;
 }
 export interface MsgLSMLiquidStakeAminoMsg {
-  type: "stakeibc/LSMLiquidStake";
+  type: "stakeibc/MsgLSMLiquidStake";
   value: MsgLSMLiquidStakeAmino;
 }
 export interface MsgLSMLiquidStakeSDKType {
@@ -143,6 +168,11 @@ export interface MsgLSMLiquidStakeResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgLSMLiquidStakeResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgLSMLiquidStakeResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgLSMLiquidStakeResponse
+ */
 export interface MsgLSMLiquidStakeResponseAmino {
   transaction_complete?: boolean;
 }
@@ -163,6 +193,11 @@ export interface MsgClearBalanceProtoMsg {
   typeUrl: "/stride.stakeibc.MsgClearBalance";
   value: Uint8Array;
 }
+/**
+ * @name MsgClearBalanceAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgClearBalance
+ */
 export interface MsgClearBalanceAmino {
   creator?: string;
   chain_id?: string;
@@ -170,7 +205,7 @@ export interface MsgClearBalanceAmino {
   channel?: string;
 }
 export interface MsgClearBalanceAminoMsg {
-  type: "still-no-defined";
+  type: "stakeibc/MsgClearBalance";
   value: MsgClearBalanceAmino;
 }
 export interface MsgClearBalanceSDKType {
@@ -184,6 +219,11 @@ export interface MsgClearBalanceResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgClearBalanceResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgClearBalanceResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgClearBalanceResponse
+ */
 export interface MsgClearBalanceResponseAmino {}
 export interface MsgClearBalanceResponseAminoMsg {
   type: "/stride.stakeibc.MsgClearBalanceResponse";
@@ -200,6 +240,11 @@ export interface MsgRedeemStakeProtoMsg {
   typeUrl: "/stride.stakeibc.MsgRedeemStake";
   value: Uint8Array;
 }
+/**
+ * @name MsgRedeemStakeAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgRedeemStake
+ */
 export interface MsgRedeemStakeAmino {
   creator?: string;
   amount?: string;
@@ -207,7 +252,7 @@ export interface MsgRedeemStakeAmino {
   receiver?: string;
 }
 export interface MsgRedeemStakeAminoMsg {
-  type: "stakeibc/RedeemStake";
+  type: "stakeibc/MsgRedeemStake";
   value: MsgRedeemStakeAmino;
 }
 export interface MsgRedeemStakeSDKType {
@@ -221,6 +266,11 @@ export interface MsgRedeemStakeResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgRedeemStakeResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgRedeemStakeResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgRedeemStakeResponse
+ */
 export interface MsgRedeemStakeResponseAmino {}
 export interface MsgRedeemStakeResponseAminoMsg {
   type: "/stride.stakeibc.MsgRedeemStakeResponse";
@@ -246,7 +296,12 @@ export interface MsgRegisterHostZoneProtoMsg {
   typeUrl: "/stride.stakeibc.MsgRegisterHostZone";
   value: Uint8Array;
 }
-/** next: 15 */
+/**
+ * next: 15
+ * @name MsgRegisterHostZoneAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgRegisterHostZone
+ */
 export interface MsgRegisterHostZoneAmino {
   connection_id?: string;
   bech32prefix?: string;
@@ -262,7 +317,7 @@ export interface MsgRegisterHostZoneAmino {
   max_messages_per_ica_tx?: string;
 }
 export interface MsgRegisterHostZoneAminoMsg {
-  type: "stakeibc/RegisterHostZone";
+  type: "stakeibc/MsgRegisterHostZone";
   value: MsgRegisterHostZoneAmino;
 }
 /** next: 15 */
@@ -285,6 +340,11 @@ export interface MsgRegisterHostZoneResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgRegisterHostZoneResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgRegisterHostZoneResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgRegisterHostZoneResponse
+ */
 export interface MsgRegisterHostZoneResponseAmino {}
 export interface MsgRegisterHostZoneResponseAminoMsg {
   type: "/stride.stakeibc.MsgRegisterHostZoneResponse";
@@ -302,15 +362,22 @@ export interface MsgClaimUndelegatedTokensProtoMsg {
   typeUrl: "/stride.stakeibc.MsgClaimUndelegatedTokens";
   value: Uint8Array;
 }
+/**
+ * @name MsgClaimUndelegatedTokensAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgClaimUndelegatedTokens
+ */
 export interface MsgClaimUndelegatedTokensAmino {
   creator?: string;
-  /** UserUnbondingRecords are keyed on {chain_id}.{epoch}.{receiver} */
+  /**
+   * UserUnbondingRecords are keyed on {chain_id}.{epoch}.{receiver}
+   */
   host_zone_id?: string;
   epoch?: string;
   receiver?: string;
 }
 export interface MsgClaimUndelegatedTokensAminoMsg {
-  type: "stakeibc/ClaimUndelegatedTokens";
+  type: "stakeibc/MsgClaimUndelegatedTokens";
   value: MsgClaimUndelegatedTokensAmino;
 }
 export interface MsgClaimUndelegatedTokensSDKType {
@@ -324,6 +391,11 @@ export interface MsgClaimUndelegatedTokensResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgClaimUndelegatedTokensResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgClaimUndelegatedTokensResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgClaimUndelegatedTokensResponse
+ */
 export interface MsgClaimUndelegatedTokensResponseAmino {}
 export interface MsgClaimUndelegatedTokensResponseAminoMsg {
   type: "/stride.stakeibc.MsgClaimUndelegatedTokensResponse";
@@ -339,13 +411,18 @@ export interface MsgRebalanceValidatorsProtoMsg {
   typeUrl: "/stride.stakeibc.MsgRebalanceValidators";
   value: Uint8Array;
 }
+/**
+ * @name MsgRebalanceValidatorsAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgRebalanceValidators
+ */
 export interface MsgRebalanceValidatorsAmino {
   creator?: string;
   host_zone?: string;
   num_rebalance?: string;
 }
 export interface MsgRebalanceValidatorsAminoMsg {
-  type: "stakeibc/RebalanceValidators";
+  type: "stakeibc/MsgRebalanceValidators";
   value: MsgRebalanceValidatorsAmino;
 }
 export interface MsgRebalanceValidatorsSDKType {
@@ -358,6 +435,11 @@ export interface MsgRebalanceValidatorsResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgRebalanceValidatorsResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgRebalanceValidatorsResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgRebalanceValidatorsResponse
+ */
 export interface MsgRebalanceValidatorsResponseAmino {}
 export interface MsgRebalanceValidatorsResponseAminoMsg {
   type: "/stride.stakeibc.MsgRebalanceValidatorsResponse";
@@ -373,6 +455,11 @@ export interface MsgAddValidatorsProtoMsg {
   typeUrl: "/stride.stakeibc.MsgAddValidators";
   value: Uint8Array;
 }
+/**
+ * @name MsgAddValidatorsAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgAddValidators
+ */
 export interface MsgAddValidatorsAmino {
   creator?: string;
   host_zone?: string;
@@ -392,6 +479,11 @@ export interface MsgAddValidatorsResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgAddValidatorsResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgAddValidatorsResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgAddValidatorsResponse
+ */
 export interface MsgAddValidatorsResponseAmino {}
 export interface MsgAddValidatorsResponseAminoMsg {
   type: "/stride.stakeibc.MsgAddValidatorsResponse";
@@ -406,6 +498,11 @@ export interface ValidatorWeightProtoMsg {
   typeUrl: "/stride.stakeibc.ValidatorWeight";
   value: Uint8Array;
 }
+/**
+ * @name ValidatorWeightAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.ValidatorWeight
+ */
 export interface ValidatorWeightAmino {
   address?: string;
   weight?: string;
@@ -427,6 +524,11 @@ export interface MsgChangeValidatorWeightsProtoMsg {
   typeUrl: "/stride.stakeibc.MsgChangeValidatorWeights";
   value: Uint8Array;
 }
+/**
+ * @name MsgChangeValidatorWeightsAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgChangeValidatorWeights
+ */
 export interface MsgChangeValidatorWeightsAmino {
   creator?: string;
   host_zone?: string;
@@ -446,6 +548,11 @@ export interface MsgChangeValidatorWeightsResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgChangeValidatorWeightsResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgChangeValidatorWeightsResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgChangeValidatorWeightsResponse
+ */
 export interface MsgChangeValidatorWeightsResponseAmino {}
 export interface MsgChangeValidatorWeightsResponseAminoMsg {
   type: "/stride.stakeibc.MsgChangeValidatorWeightsResponse";
@@ -461,13 +568,18 @@ export interface MsgDeleteValidatorProtoMsg {
   typeUrl: "/stride.stakeibc.MsgDeleteValidator";
   value: Uint8Array;
 }
+/**
+ * @name MsgDeleteValidatorAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgDeleteValidator
+ */
 export interface MsgDeleteValidatorAmino {
   creator?: string;
   host_zone?: string;
   val_addr?: string;
 }
 export interface MsgDeleteValidatorAminoMsg {
-  type: "stakeibc/DeleteValidator";
+  type: "stakeibc/MsgDeleteValidator";
   value: MsgDeleteValidatorAmino;
 }
 export interface MsgDeleteValidatorSDKType {
@@ -480,6 +592,11 @@ export interface MsgDeleteValidatorResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgDeleteValidatorResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgDeleteValidatorResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgDeleteValidatorResponse
+ */
 export interface MsgDeleteValidatorResponseAmino {}
 export interface MsgDeleteValidatorResponseAminoMsg {
   type: "/stride.stakeibc.MsgDeleteValidatorResponse";
@@ -496,6 +613,11 @@ export interface MsgRestoreInterchainAccountProtoMsg {
   typeUrl: "/stride.stakeibc.MsgRestoreInterchainAccount";
   value: Uint8Array;
 }
+/**
+ * @name MsgRestoreInterchainAccountAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgRestoreInterchainAccount
+ */
 export interface MsgRestoreInterchainAccountAmino {
   creator?: string;
   chain_id?: string;
@@ -503,7 +625,7 @@ export interface MsgRestoreInterchainAccountAmino {
   account_owner?: string;
 }
 export interface MsgRestoreInterchainAccountAminoMsg {
-  type: "stakeibc/RestoreInterchainAccount";
+  type: "stakeibc/MsgRestoreInterchainAcco";
   value: MsgRestoreInterchainAccountAmino;
 }
 export interface MsgRestoreInterchainAccountSDKType {
@@ -517,6 +639,11 @@ export interface MsgRestoreInterchainAccountResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgRestoreInterchainAccountResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgRestoreInterchainAccountResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgRestoreInterchainAccountResponse
+ */
 export interface MsgRestoreInterchainAccountResponseAmino {}
 export interface MsgRestoreInterchainAccountResponseAminoMsg {
   type: "/stride.stakeibc.MsgRestoreInterchainAccountResponse";
@@ -531,6 +658,11 @@ export interface MsgCloseDelegationChannelProtoMsg {
   typeUrl: "/stride.stakeibc.MsgCloseDelegationChannel";
   value: Uint8Array;
 }
+/**
+ * @name MsgCloseDelegationChannelAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgCloseDelegationChannel
+ */
 export interface MsgCloseDelegationChannelAmino {
   creator?: string;
   chain_id?: string;
@@ -548,6 +680,11 @@ export interface MsgCloseDelegationChannelResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgCloseDelegationChannelResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgCloseDelegationChannelResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgCloseDelegationChannelResponse
+ */
 export interface MsgCloseDelegationChannelResponseAmino {}
 export interface MsgCloseDelegationChannelResponseAminoMsg {
   type: "/stride.stakeibc.MsgCloseDelegationChannelResponse";
@@ -563,13 +700,18 @@ export interface MsgUpdateValidatorSharesExchRateProtoMsg {
   typeUrl: "/stride.stakeibc.MsgUpdateValidatorSharesExchRate";
   value: Uint8Array;
 }
+/**
+ * @name MsgUpdateValidatorSharesExchRateAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgUpdateValidatorSharesExchRate
+ */
 export interface MsgUpdateValidatorSharesExchRateAmino {
   creator?: string;
   chain_id?: string;
   valoper?: string;
 }
 export interface MsgUpdateValidatorSharesExchRateAminoMsg {
-  type: "stakeibc/UpdateValidatorSharesExchRate";
+  type: "stakeibc/MsgUpdateValSharesExchRate";
   value: MsgUpdateValidatorSharesExchRateAmino;
 }
 export interface MsgUpdateValidatorSharesExchRateSDKType {
@@ -582,6 +724,11 @@ export interface MsgUpdateValidatorSharesExchRateResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgUpdateValidatorSharesExchRateResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgUpdateValidatorSharesExchRateResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgUpdateValidatorSharesExchRateResponse
+ */
 export interface MsgUpdateValidatorSharesExchRateResponseAmino {}
 export interface MsgUpdateValidatorSharesExchRateResponseAminoMsg {
   type: "/stride.stakeibc.MsgUpdateValidatorSharesExchRateResponse";
@@ -597,6 +744,11 @@ export interface MsgCalibrateDelegationProtoMsg {
   typeUrl: "/stride.stakeibc.MsgCalibrateDelegation";
   value: Uint8Array;
 }
+/**
+ * @name MsgCalibrateDelegationAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgCalibrateDelegation
+ */
 export interface MsgCalibrateDelegationAmino {
   creator?: string;
   chain_id?: string;
@@ -616,6 +768,11 @@ export interface MsgCalibrateDelegationResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgCalibrateDelegationResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgCalibrateDelegationResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgCalibrateDelegationResponse
+ */
 export interface MsgCalibrateDelegationResponseAmino {}
 export interface MsgCalibrateDelegationResponseAminoMsg {
   type: "/stride.stakeibc.MsgCalibrateDelegationResponse";
@@ -630,6 +787,11 @@ export interface MsgResumeHostZoneProtoMsg {
   typeUrl: "/stride.stakeibc.MsgResumeHostZone";
   value: Uint8Array;
 }
+/**
+ * @name MsgResumeHostZoneAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgResumeHostZone
+ */
 export interface MsgResumeHostZoneAmino {
   creator?: string;
   chain_id?: string;
@@ -647,6 +809,11 @@ export interface MsgResumeHostZoneResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgResumeHostZoneResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgResumeHostZoneResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgResumeHostZoneResponse
+ */
 export interface MsgResumeHostZoneResponseAmino {}
 export interface MsgResumeHostZoneResponseAminoMsg {
   type: "/stride.stakeibc.MsgResumeHostZoneResponse";
@@ -720,38 +887,59 @@ export interface MsgCreateTradeRouteProtoMsg {
   typeUrl: "/stride.stakeibc.MsgCreateTradeRoute";
   value: Uint8Array;
 }
-/** Creates a new trade route */
+/**
+ * Creates a new trade route
+ * @name MsgCreateTradeRouteAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgCreateTradeRoute
+ */
 export interface MsgCreateTradeRouteAmino {
   /**
    * authority is the address that controls the module (defaults to x/gov unless
    * overwritten).
    */
   authority?: string;
-  /** The chain ID of the host zone */
+  /**
+   * The chain ID of the host zone
+   */
   host_chain_id?: string;
-  /** Connection IDs between stride and the other zones */
+  /**
+   * Connection IDs between stride and the other zones
+   */
   stride_to_reward_connection_id?: string;
   stride_to_trade_connection_id?: string;
-  /** Transfer channels between the host, reward, and trade zones */
+  /**
+   * Transfer channels between the host, reward, and trade zones
+   */
   host_to_reward_transfer_channel_id?: string;
   reward_to_trade_transfer_channel_id?: string;
   trade_to_host_transfer_channel_id?: string;
-  /** ibc denom for the reward token on the host zone (e.g. ibc/usdc on dYdX) */
+  /**
+   * ibc denom for the reward token on the host zone (e.g. ibc/usdc on dYdX)
+   */
   reward_denom_on_host?: string;
-  /** native denom of reward token on the reward zone (e.g. usdc on Noble) */
+  /**
+   * native denom of reward token on the reward zone (e.g. usdc on Noble)
+   */
   reward_denom_on_reward?: string;
-  /** ibc denom of the reward token on the trade zone (e.g. ibc/usdc on Osmosis) */
+  /**
+   * ibc denom of the reward token on the trade zone (e.g. ibc/usdc on Osmosis)
+   */
   reward_denom_on_trade?: string;
-  /** ibc denom of the host's token on the trade zone (e.g. ibc/dydx on Osmosis) */
+  /**
+   * ibc denom of the host's token on the trade zone (e.g. ibc/dydx on Osmosis)
+   */
   host_denom_on_trade?: string;
-  /** the host zone's native denom (e.g. dydx on dYdX) */
+  /**
+   * the host zone's native denom (e.g. dydx on dYdX)
+   */
   host_denom_on_host?: string;
   /**
    * Deprecated, the trades are now executed off-chain via authz
    * 
    * The osmosis pool ID
+   * @deprecated
    */
-  /** @deprecated */
   pool_id?: string;
   /**
    * Deprecated, the trades are now executed off-chain via authz
@@ -760,8 +948,8 @@ export interface MsgCreateTradeRouteAmino {
    * This captures both the loss from slippage and from a stale price on stride
    * "0.05" means the output from the trade can be no less than a 5% deviation
    * from the current value
+   * @deprecated
    */
-  /** @deprecated */
   max_allowed_swap_loss_rate?: string;
   /**
    * Deprecated, the trades are now executed off-chain via authz
@@ -814,6 +1002,11 @@ export interface MsgCreateTradeRouteResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgCreateTradeRouteResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgCreateTradeRouteResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgCreateTradeRouteResponse
+ */
 export interface MsgCreateTradeRouteResponseAmino {}
 export interface MsgCreateTradeRouteResponseAminoMsg {
   type: "/stride.stakeibc.MsgCreateTradeRouteResponse";
@@ -836,16 +1029,25 @@ export interface MsgDeleteTradeRouteProtoMsg {
   typeUrl: "/stride.stakeibc.MsgDeleteTradeRoute";
   value: Uint8Array;
 }
-/** Deletes a trade route */
+/**
+ * Deletes a trade route
+ * @name MsgDeleteTradeRouteAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgDeleteTradeRoute
+ */
 export interface MsgDeleteTradeRouteAmino {
   /**
    * authority is the address that controls the module (defaults to x/gov unless
    * overwritten).
    */
   authority?: string;
-  /** The reward denom of the route in it's native form (e.g. usdc) */
+  /**
+   * The reward denom of the route in it's native form (e.g. usdc)
+   */
   reward_denom?: string;
-  /** The host zone's denom in it's native form (e.g. dydx) */
+  /**
+   * The host zone's denom in it's native form (e.g. dydx)
+   */
   host_denom?: string;
 }
 export interface MsgDeleteTradeRouteAminoMsg {
@@ -863,6 +1065,11 @@ export interface MsgDeleteTradeRouteResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgDeleteTradeRouteResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgDeleteTradeRouteResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgDeleteTradeRouteResponse
+ */
 export interface MsgDeleteTradeRouteResponseAmino {}
 export interface MsgDeleteTradeRouteResponseAminoMsg {
   type: "/stride.stakeibc.MsgDeleteTradeRouteResponse";
@@ -923,23 +1130,32 @@ export interface MsgUpdateTradeRouteProtoMsg {
   typeUrl: "/stride.stakeibc.MsgUpdateTradeRoute";
   value: Uint8Array;
 }
-/** Updates the config of a trade route */
+/**
+ * Updates the config of a trade route
+ * @name MsgUpdateTradeRouteAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgUpdateTradeRoute
+ */
 export interface MsgUpdateTradeRouteAmino {
   /**
    * authority is the address that controls the module (defaults to x/gov unless
    * overwritten).
    */
   authority?: string;
-  /** The reward denom of the route in it's native form (e.g. usdc) */
+  /**
+   * The reward denom of the route in it's native form (e.g. usdc)
+   */
   reward_denom?: string;
-  /** The host zone's denom in it's native form (e.g. dydx) */
+  /**
+   * The host zone's denom in it's native form (e.g. dydx)
+   */
   host_denom?: string;
   /**
    * Deprecated, the trades are now executed off-chain via authz
    * 
    * The osmosis pool ID
+   * @deprecated
    */
-  /** @deprecated */
   pool_id?: string;
   /**
    * Deprecated, the trades are now executed off-chain via authz
@@ -948,24 +1164,24 @@ export interface MsgUpdateTradeRouteAmino {
    * This captures both the loss from slippage and from a stale price on stride
    * "0.05" means the output from the trade can be no less than a 5% deviation
    * from the current value
+   * @deprecated
    */
-  /** @deprecated */
   max_allowed_swap_loss_rate?: string;
   /**
    * Deprecated, the trades are now executed off-chain via authz
    * 
    * minimum amount of reward tokens to initate a swap
    * if not provided, defaults to 0
+   * @deprecated
    */
-  /** @deprecated */
   min_swap_amount?: string;
   /**
    * Deprecated, the trades are now executed off-chain via authz
    * 
    * maximum amount of reward tokens in a single swap
    * if not provided, defaults to 10e24
+   * @deprecated
    */
-  /** @deprecated */
   max_swap_amount?: string;
   /**
    * Minimum amount of reward token that must be accumulated before
@@ -997,6 +1213,11 @@ export interface MsgUpdateTradeRouteResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgUpdateTradeRouteResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgUpdateTradeRouteResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgUpdateTradeRouteResponse
+ */
 export interface MsgUpdateTradeRouteResponseAmino {}
 export interface MsgUpdateTradeRouteResponseAminoMsg {
   type: "/stride.stakeibc.MsgUpdateTradeRouteResponse";
@@ -1027,18 +1248,27 @@ export interface MsgSetCommunityPoolRebateProtoMsg {
 /**
  * Registers or updates a community pool rebate by specifying the amount liquid
  * staked
+ * @name MsgSetCommunityPoolRebateAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgSetCommunityPoolRebate
  */
 export interface MsgSetCommunityPoolRebateAmino {
-  /** Message signer (admin only) */
+  /**
+   * Message signer (admin only)
+   */
   creator?: string;
   /**
    * Chain id of the chain whose community pool has a liquid staking rebate
    * arrangement with stride
    */
   chain_id?: string;
-  /** Rebate percentage represented as a decimal (e.g. 0.2 for 20%) */
+  /**
+   * Rebate percentage represented as a decimal (e.g. 0.2 for 20%)
+   */
   rebate_rate?: string;
-  /** Number of stTokens recieved by the community pool after liquid staking */
+  /**
+   * Number of stTokens recieved by the community pool after liquid staking
+   */
   liquid_staked_st_token_amount?: string;
 }
 export interface MsgSetCommunityPoolRebateAminoMsg {
@@ -1060,6 +1290,11 @@ export interface MsgSetCommunityPoolRebateResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgSetCommunityPoolRebateResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgSetCommunityPoolRebateResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgSetCommunityPoolRebateResponse
+ */
 export interface MsgSetCommunityPoolRebateResponseAmino {}
 export interface MsgSetCommunityPoolRebateResponseAminoMsg {
   type: "/stride.stakeibc.MsgSetCommunityPoolRebateResponse";
@@ -1083,17 +1318,32 @@ export interface MsgToggleTradeControllerProtoMsg {
   typeUrl: "/stride.stakeibc.MsgToggleTradeController";
   value: Uint8Array;
 }
-/** Grants or revokes trade permissions to a given address via authz */
+/**
+ * Grants or revokes trade permissions to a given address via authz
+ * @name MsgToggleTradeControllerAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgToggleTradeController
+ */
 export interface MsgToggleTradeControllerAmino {
-  /** Message signer (admin only) */
+  /**
+   * Message signer (admin only)
+   */
   creator?: string;
-  /** Chain ID of the trade account */
+  /**
+   * Chain ID of the trade account
+   */
   chain_id?: string;
-  /** Permission change (either grant or revoke) */
+  /**
+   * Permission change (either grant or revoke)
+   */
   permission_change?: AuthzPermissionChange;
-  /** Address of trade operator */
+  /**
+   * Address of trade operator
+   */
   address?: string;
-  /** Option to grant/revoke the legacy osmosis swap message */
+  /**
+   * Option to grant/revoke the legacy osmosis swap message
+   */
   legacy?: boolean;
 }
 export interface MsgToggleTradeControllerAminoMsg {
@@ -1113,6 +1363,11 @@ export interface MsgToggleTradeControllerResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgToggleTradeControllerResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgToggleTradeControllerResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgToggleTradeControllerResponse
+ */
 export interface MsgToggleTradeControllerResponseAmino {}
 export interface MsgToggleTradeControllerResponseAminoMsg {
   type: "/stride.stakeibc.MsgToggleTradeControllerResponse";
@@ -1135,16 +1390,25 @@ export interface MsgUpdateHostZoneParamsProtoMsg {
   typeUrl: "/stride.stakeibc.MsgUpdateHostZoneParams";
   value: Uint8Array;
 }
-/** Updates host zone params */
+/**
+ * Updates host zone params
+ * @name MsgUpdateHostZoneParamsAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgUpdateHostZoneParams
+ */
 export interface MsgUpdateHostZoneParamsAmino {
   /**
    * authority is the address that controls the module (defaults to x/gov unless
    * overwritten).
    */
   authority?: string;
-  /** Chain ID of the host zone */
+  /**
+   * Chain ID of the host zone
+   */
   chain_id?: string;
-  /** Max messages that can be sent in a single ICA message */
+  /**
+   * Max messages that can be sent in a single ICA message
+   */
   max_messages_per_ica_tx?: string;
 }
 export interface MsgUpdateHostZoneParamsAminoMsg {
@@ -1162,6 +1426,11 @@ export interface MsgUpdateHostZoneParamsResponseProtoMsg {
   typeUrl: "/stride.stakeibc.MsgUpdateHostZoneParamsResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgUpdateHostZoneParamsResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgUpdateHostZoneParamsResponse
+ */
 export interface MsgUpdateHostZoneParamsResponseAmino {}
 export interface MsgUpdateHostZoneParamsResponseAminoMsg {
   type: "/stride.stakeibc.MsgUpdateHostZoneParamsResponse";
@@ -1399,7 +1668,7 @@ export const MsgLiquidStake = {
   },
   toAminoMsg(message: MsgLiquidStake): MsgLiquidStakeAminoMsg {
     return {
-      type: "stakeibc/LiquidStake",
+      type: "stakeibc/MsgLiquidStake",
       value: MsgLiquidStake.toAmino(message)
     };
   },
@@ -1555,7 +1824,7 @@ export const MsgLSMLiquidStake = {
   },
   toAminoMsg(message: MsgLSMLiquidStake): MsgLSMLiquidStakeAminoMsg {
     return {
-      type: "stakeibc/LSMLiquidStake",
+      type: "stakeibc/MsgLSMLiquidStake",
       value: MsgLSMLiquidStake.toAmino(message)
     };
   },
@@ -1723,7 +1992,7 @@ export const MsgClearBalance = {
   },
   toAminoMsg(message: MsgClearBalance): MsgClearBalanceAminoMsg {
     return {
-      type: "still-no-defined",
+      type: "stakeibc/MsgClearBalance",
       value: MsgClearBalance.toAmino(message)
     };
   },
@@ -1878,7 +2147,7 @@ export const MsgRedeemStake = {
   },
   toAminoMsg(message: MsgRedeemStake): MsgRedeemStakeAminoMsg {
     return {
-      type: "stakeibc/RedeemStake",
+      type: "stakeibc/MsgRedeemStake",
       value: MsgRedeemStake.toAmino(message)
     };
   },
@@ -2129,7 +2398,7 @@ export const MsgRegisterHostZone = {
   },
   toAminoMsg(message: MsgRegisterHostZone): MsgRegisterHostZoneAminoMsg {
     return {
-      type: "stakeibc/RegisterHostZone",
+      type: "stakeibc/MsgRegisterHostZone",
       value: MsgRegisterHostZone.toAmino(message)
     };
   },
@@ -2284,7 +2553,7 @@ export const MsgClaimUndelegatedTokens = {
   },
   toAminoMsg(message: MsgClaimUndelegatedTokens): MsgClaimUndelegatedTokensAminoMsg {
     return {
-      type: "stakeibc/ClaimUndelegatedTokens",
+      type: "stakeibc/MsgClaimUndelegatedTokens",
       value: MsgClaimUndelegatedTokens.toAmino(message)
     };
   },
@@ -2427,7 +2696,7 @@ export const MsgRebalanceValidators = {
   },
   toAminoMsg(message: MsgRebalanceValidators): MsgRebalanceValidatorsAminoMsg {
     return {
-      type: "stakeibc/RebalanceValidators",
+      type: "stakeibc/MsgRebalanceValidators",
       value: MsgRebalanceValidators.toAmino(message)
     };
   },
@@ -2935,7 +3204,7 @@ export const MsgDeleteValidator = {
   },
   toAminoMsg(message: MsgDeleteValidator): MsgDeleteValidatorAminoMsg {
     return {
-      type: "stakeibc/DeleteValidator",
+      type: "stakeibc/MsgDeleteValidator",
       value: MsgDeleteValidator.toAmino(message)
     };
   },
@@ -3090,7 +3359,7 @@ export const MsgRestoreInterchainAccount = {
   },
   toAminoMsg(message: MsgRestoreInterchainAccount): MsgRestoreInterchainAccountAminoMsg {
     return {
-      type: "stakeibc/RestoreInterchainAccount",
+      type: "stakeibc/MsgRestoreInterchainAcco",
       value: MsgRestoreInterchainAccount.toAmino(message)
     };
   },
@@ -3364,7 +3633,7 @@ export const MsgUpdateValidatorSharesExchRate = {
   },
   toAminoMsg(message: MsgUpdateValidatorSharesExchRate): MsgUpdateValidatorSharesExchRateAminoMsg {
     return {
-      type: "stakeibc/UpdateValidatorSharesExchRate",
+      type: "stakeibc/MsgUpdateValSharesExchRate",
       value: MsgUpdateValidatorSharesExchRate.toAmino(message)
     };
   },

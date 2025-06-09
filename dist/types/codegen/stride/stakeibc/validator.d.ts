@@ -14,6 +14,11 @@ export interface ValidatorProtoMsg {
     typeUrl: "/stride.stakeibc.Validator";
     value: Uint8Array;
 }
+/**
+ * @name ValidatorAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.Validator
+ */
 export interface ValidatorAmino {
     name?: string;
     address?: string;

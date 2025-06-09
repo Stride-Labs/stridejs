@@ -21,6 +21,9 @@ export interface MsgConnectionOpenInitProtoMsg {
 /**
  * MsgConnectionOpenInit defines the msg sent by an account on Chain A to
  * initialize a connection with Chain B.
+ * @name MsgConnectionOpenInitAmino
+ * @package ibc.core.connection.v1
+ * @see proto type: ibc.core.connection.v1.MsgConnectionOpenInit
  */
 export interface MsgConnectionOpenInitAmino {
   client_id?: string;
@@ -56,6 +59,9 @@ export interface MsgConnectionOpenInitResponseProtoMsg {
 /**
  * MsgConnectionOpenInitResponse defines the Msg/ConnectionOpenInit response
  * type.
+ * @name MsgConnectionOpenInitResponseAmino
+ * @package ibc.core.connection.v1
+ * @see proto type: ibc.core.connection.v1.MsgConnectionOpenInitResponse
  */
 export interface MsgConnectionOpenInitResponseAmino {}
 export interface MsgConnectionOpenInitResponseAminoMsg {
@@ -107,13 +113,20 @@ export interface MsgConnectionOpenTryProtoMsg {
 /**
  * MsgConnectionOpenTry defines a msg sent by a Relayer to try to open a
  * connection on Chain B.
+ * @name MsgConnectionOpenTryAmino
+ * @package ibc.core.connection.v1
+ * @see proto type: ibc.core.connection.v1.MsgConnectionOpenTry
  */
 export interface MsgConnectionOpenTryAmino {
   client_id?: string;
-  /** Deprecated: this field is unused. Crossing hellos are no longer supported in core IBC. */
-  /** @deprecated */
+  /**
+   * Deprecated: this field is unused. Crossing hellos are no longer supported in core IBC.
+   * @deprecated
+   */
   previous_connection_id?: string;
-  /** @deprecated */
+  /**
+   * @deprecated
+   */
   client_state?: AnyAmino;
   counterparty?: CounterpartyAmino;
   delay_period?: string;
@@ -124,17 +137,25 @@ export interface MsgConnectionOpenTryAmino {
    * INIT`
    */
   proof_init?: string;
-  /** proof of client state included in message */
-  /** @deprecated */
+  /**
+   * proof of client state included in message
+   * @deprecated
+   */
   proof_client?: string;
-  /** proof of client consensus state */
-  /** @deprecated */
+  /**
+   * proof of client consensus state
+   * @deprecated
+   */
   proof_consensus?: string;
-  /** @deprecated */
+  /**
+   * @deprecated
+   */
   consensus_height?: HeightAmino;
   signer?: string;
-  /** optional proof data for host state machines that are unable to introspect their own consensus state */
-  /** @deprecated */
+  /**
+   * optional proof data for host state machines that are unable to introspect their own consensus state
+   * @deprecated
+   */
   host_consensus_state_proof?: string;
 }
 export interface MsgConnectionOpenTryAminoMsg {
@@ -172,7 +193,12 @@ export interface MsgConnectionOpenTryResponseProtoMsg {
   typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenTryResponse";
   value: Uint8Array;
 }
-/** MsgConnectionOpenTryResponse defines the Msg/ConnectionOpenTry response type. */
+/**
+ * MsgConnectionOpenTryResponse defines the Msg/ConnectionOpenTry response type.
+ * @name MsgConnectionOpenTryResponseAmino
+ * @package ibc.core.connection.v1
+ * @see proto type: ibc.core.connection.v1.MsgConnectionOpenTryResponse
+ */
 export interface MsgConnectionOpenTryResponseAmino {}
 export interface MsgConnectionOpenTryResponseAminoMsg {
   type: "cosmos-sdk/MsgConnectionOpenTryResponse";
@@ -211,6 +237,9 @@ export interface MsgConnectionOpenAckProtoMsg {
 /**
  * MsgConnectionOpenAck defines a msg sent by a Relayer to Chain A to
  * acknowledge the change of connection state to TRYOPEN on Chain B.
+ * @name MsgConnectionOpenAckAmino
+ * @package ibc.core.connection.v1
+ * @see proto type: ibc.core.connection.v1.MsgConnectionOpenAck
  */
 export interface MsgConnectionOpenAckAmino {
   connection_id?: string;
@@ -223,13 +252,19 @@ export interface MsgConnectionOpenAckAmino {
    * TRYOPEN`
    */
   proof_try?: string;
-  /** proof of client state included in message */
+  /**
+   * proof of client state included in message
+   */
   proof_client?: string;
-  /** proof of client consensus state */
+  /**
+   * proof of client consensus state
+   */
   proof_consensus?: string;
   consensus_height?: HeightAmino;
   signer?: string;
-  /** optional proof data for host state machines that are unable to introspect their own consensus state */
+  /**
+   * optional proof data for host state machines that are unable to introspect their own consensus state
+   */
   host_consensus_state_proof?: string;
 }
 export interface MsgConnectionOpenAckAminoMsg {
@@ -259,7 +294,12 @@ export interface MsgConnectionOpenAckResponseProtoMsg {
   typeUrl: "/ibc.core.connection.v1.MsgConnectionOpenAckResponse";
   value: Uint8Array;
 }
-/** MsgConnectionOpenAckResponse defines the Msg/ConnectionOpenAck response type. */
+/**
+ * MsgConnectionOpenAckResponse defines the Msg/ConnectionOpenAck response type.
+ * @name MsgConnectionOpenAckResponseAmino
+ * @package ibc.core.connection.v1
+ * @see proto type: ibc.core.connection.v1.MsgConnectionOpenAckResponse
+ */
 export interface MsgConnectionOpenAckResponseAmino {}
 export interface MsgConnectionOpenAckResponseAminoMsg {
   type: "cosmos-sdk/MsgConnectionOpenAckResponse";
@@ -285,10 +325,15 @@ export interface MsgConnectionOpenConfirmProtoMsg {
 /**
  * MsgConnectionOpenConfirm defines a msg sent by a Relayer to Chain B to
  * acknowledge the change of connection state to OPEN on Chain A.
+ * @name MsgConnectionOpenConfirmAmino
+ * @package ibc.core.connection.v1
+ * @see proto type: ibc.core.connection.v1.MsgConnectionOpenConfirm
  */
 export interface MsgConnectionOpenConfirmAmino {
   connection_id?: string;
-  /** proof for the change of the connection state on Chain A: `INIT -> OPEN` */
+  /**
+   * proof for the change of the connection state on Chain A: `INIT -> OPEN`
+   */
   proof_ack?: string;
   proof_height?: HeightAmino;
   signer?: string;
@@ -319,6 +364,9 @@ export interface MsgConnectionOpenConfirmResponseProtoMsg {
 /**
  * MsgConnectionOpenConfirmResponse defines the Msg/ConnectionOpenConfirm
  * response type.
+ * @name MsgConnectionOpenConfirmResponseAmino
+ * @package ibc.core.connection.v1
+ * @see proto type: ibc.core.connection.v1.MsgConnectionOpenConfirmResponse
  */
 export interface MsgConnectionOpenConfirmResponseAmino {}
 export interface MsgConnectionOpenConfirmResponseAminoMsg {

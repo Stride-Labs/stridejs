@@ -11,6 +11,11 @@ export interface AddValidatorsProposalProtoMsg {
   typeUrl: "/stride.stakeibc.AddValidatorsProposal";
   value: Uint8Array;
 }
+/**
+ * @name AddValidatorsProposalAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.AddValidatorsProposal
+ */
 export interface AddValidatorsProposalAmino {
   title?: string;
   description?: string;
@@ -40,6 +45,11 @@ export interface ToggleLSMProposalProtoMsg {
   typeUrl: "/stride.stakeibc.ToggleLSMProposal";
   value: Uint8Array;
 }
+/**
+ * @name ToggleLSMProposalAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.ToggleLSMProposal
+ */
 export interface ToggleLSMProposalAmino {
   title?: string;
   description?: string;

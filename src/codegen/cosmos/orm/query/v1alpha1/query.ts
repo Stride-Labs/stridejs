@@ -25,9 +25,16 @@ export interface GetRequestProtoMsg {
   typeUrl: "/cosmos.orm.query.v1alpha1.GetRequest";
   value: Uint8Array;
 }
-/** GetRequest is the Query/Get request type. */
+/**
+ * GetRequest is the Query/Get request type.
+ * @name GetRequestAmino
+ * @package cosmos.orm.query.v1alpha1
+ * @see proto type: cosmos.orm.query.v1alpha1.GetRequest
+ */
 export interface GetRequestAmino {
-  /** message_name is the fully-qualified message name of the ORM table being queried. */
+  /**
+   * message_name is the fully-qualified message name of the ORM table being queried.
+   */
   message_name?: string;
   /**
    * index is the index fields expression used in orm definitions. If it
@@ -64,7 +71,12 @@ export interface GetResponseProtoMsg {
   typeUrl: "/cosmos.orm.query.v1alpha1.GetResponse";
   value: Uint8Array;
 }
-/** GetResponse is the Query/Get response type. */
+/**
+ * GetResponse is the Query/Get response type.
+ * @name GetResponseAmino
+ * @package cosmos.orm.query.v1alpha1
+ * @see proto type: cosmos.orm.query.v1alpha1.GetResponse
+ */
 export interface GetResponseAmino {
   /**
    * result is the result of the get query. If no value is found, the gRPC
@@ -100,20 +112,33 @@ export interface ListRequestProtoMsg {
   typeUrl: "/cosmos.orm.query.v1alpha1.ListRequest";
   value: Uint8Array;
 }
-/** ListRequest is the Query/List request type. */
+/**
+ * ListRequest is the Query/List request type.
+ * @name ListRequestAmino
+ * @package cosmos.orm.query.v1alpha1
+ * @see proto type: cosmos.orm.query.v1alpha1.ListRequest
+ */
 export interface ListRequestAmino {
-  /** message_name is the fully-qualified message name of the ORM table being queried. */
+  /**
+   * message_name is the fully-qualified message name of the ORM table being queried.
+   */
   message_name?: string;
   /**
    * index is the index fields expression used in orm definitions. If it
    * is empty, the table's primary key is assumed.
    */
   index?: string;
-  /** prefix defines a prefix query. */
+  /**
+   * prefix defines a prefix query.
+   */
   prefix?: ListRequest_PrefixAmino;
-  /** range defines a range query. */
+  /**
+   * range defines a range query.
+   */
   range?: ListRequest_RangeAmino;
-  /** pagination is the pagination request. */
+  /**
+   * pagination is the pagination request.
+   */
   pagination?: PageRequestAmino;
 }
 export interface ListRequestAminoMsg {
@@ -141,7 +166,12 @@ export interface ListRequest_PrefixProtoMsg {
   typeUrl: "/cosmos.orm.query.v1alpha1.Prefix";
   value: Uint8Array;
 }
-/** Prefix specifies the arguments to a prefix query. */
+/**
+ * Prefix specifies the arguments to a prefix query.
+ * @name ListRequest_PrefixAmino
+ * @package cosmos.orm.query.v1alpha1
+ * @see proto type: cosmos.orm.query.v1alpha1.ListRequest_Prefix
+ */
 export interface ListRequest_PrefixAmino {
   /**
    * values specifies the index values for the prefix query.
@@ -177,7 +207,12 @@ export interface ListRequest_RangeProtoMsg {
   typeUrl: "/cosmos.orm.query.v1alpha1.Range";
   value: Uint8Array;
 }
-/** Range specifies the arguments to a range query. */
+/**
+ * Range specifies the arguments to a range query.
+ * @name ListRequest_RangeAmino
+ * @package cosmos.orm.query.v1alpha1
+ * @see proto type: cosmos.orm.query.v1alpha1.ListRequest_Range
+ */
 export interface ListRequest_RangeAmino {
   /**
    * start specifies the starting index values for the range query.
@@ -212,11 +247,20 @@ export interface ListResponseProtoMsg {
   typeUrl: "/cosmos.orm.query.v1alpha1.ListResponse";
   value: Uint8Array;
 }
-/** ListResponse is the Query/List response type. */
+/**
+ * ListResponse is the Query/List response type.
+ * @name ListResponseAmino
+ * @package cosmos.orm.query.v1alpha1
+ * @see proto type: cosmos.orm.query.v1alpha1.ListResponse
+ */
 export interface ListResponseAmino {
-  /** results are the results of the query. */
+  /**
+   * results are the results of the query.
+   */
   results?: AnyAmino[];
-  /** pagination is the pagination response. */
+  /**
+   * pagination is the pagination response.
+   */
   pagination?: PageResponseAmino;
 }
 export interface ListResponseAminoMsg {
@@ -257,7 +301,12 @@ export interface IndexValueProtoMsg {
   typeUrl: "/cosmos.orm.query.v1alpha1.IndexValue";
   value: Uint8Array;
 }
-/** IndexValue represents the value of a field in an ORM index expression. */
+/**
+ * IndexValue represents the value of a field in an ORM index expression.
+ * @name IndexValueAmino
+ * @package cosmos.orm.query.v1alpha1
+ * @see proto type: cosmos.orm.query.v1alpha1.IndexValue
+ */
 export interface IndexValueAmino {
   /**
    * uint specifies a value for an uint32, fixed32, uint64, or fixed64
@@ -269,17 +318,29 @@ export interface IndexValueAmino {
    * index field.
    */
   int?: string;
-  /** str specifies a value for a string index field. */
+  /**
+   * str specifies a value for a string index field.
+   */
   str?: string;
-  /** bytes specifies a value for a bytes index field. */
+  /**
+   * bytes specifies a value for a bytes index field.
+   */
   bytes?: string;
-  /** enum specifies a value for an enum index field. */
+  /**
+   * enum specifies a value for an enum index field.
+   */
   enum?: string;
-  /** bool specifies a value for a bool index field. */
+  /**
+   * bool specifies a value for a bool index field.
+   */
   bool?: boolean;
-  /** timestamp specifies a value for a timestamp index field. */
+  /**
+   * timestamp specifies a value for a timestamp index field.
+   */
   timestamp?: string;
-  /** duration specifies a value for a duration index field. */
+  /**
+   * duration specifies a value for a duration index field.
+   */
   duration?: DurationAmino;
 }
 export interface IndexValueAminoMsg {

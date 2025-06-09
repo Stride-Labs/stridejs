@@ -13,6 +13,9 @@ export interface CapabilityProtoMsg {
 /**
  * Capability defines an implementation of an object capability. The index
  * provided to a Capability must be globally unique.
+ * @name CapabilityAmino
+ * @package cosmos.capability.v1beta1
+ * @see proto type: cosmos.capability.v1beta1.Capability
  */
 export interface CapabilityAmino {
     index?: string;
@@ -43,6 +46,9 @@ export interface OwnerProtoMsg {
 /**
  * Owner defines a single capability owner. An owner is defined by the name of
  * capability and the module name.
+ * @name OwnerAmino
+ * @package cosmos.capability.v1beta1
+ * @see proto type: cosmos.capability.v1beta1.Owner
  */
 export interface OwnerAmino {
     module?: string;
@@ -74,6 +80,9 @@ export interface CapabilityOwnersProtoMsg {
 /**
  * CapabilityOwners defines a set of owners of a single Capability. The set of
  * owners must be unique.
+ * @name CapabilityOwnersAmino
+ * @package cosmos.capability.v1beta1
+ * @see proto type: cosmos.capability.v1beta1.CapabilityOwners
  */
 export interface CapabilityOwnersAmino {
     owners: OwnerAmino[];

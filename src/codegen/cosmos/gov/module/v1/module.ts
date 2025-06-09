@@ -13,14 +13,21 @@ export interface ModuleProtoMsg {
   typeUrl: "/cosmos.gov.module.v1.Module";
   value: Uint8Array;
 }
-/** Module is the config object of the gov module. */
+/**
+ * Module is the config object of the gov module.
+ * @name ModuleAmino
+ * @package cosmos.gov.module.v1
+ * @see proto type: cosmos.gov.module.v1.Module
+ */
 export interface ModuleAmino {
   /**
    * max_metadata_len defines the maximum proposal metadata length.
    * Defaults to 255 if not explicitly set.
    */
   max_metadata_len?: string;
-  /** authority defines the custom module authority. If not set, defaults to the governance module. */
+  /**
+   * authority defines the custom module authority. If not set, defaults to the governance module.
+   */
   authority?: string;
 }
 export interface ModuleAminoMsg {

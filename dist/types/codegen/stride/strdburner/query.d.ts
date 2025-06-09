@@ -12,6 +12,9 @@ export interface QueryStrdBurnerAddressRequestProtoMsg {
 /**
  * QueryStrdBurnerAddressRequest is the request type for the Query/strdburner
  * RPC method
+ * @name QueryStrdBurnerAddressRequestAmino
+ * @package stride.strdburner
+ * @see proto type: stride.strdburner.QueryStrdBurnerAddressRequest
  */
 export interface QueryStrdBurnerAddressRequestAmino {
 }
@@ -39,6 +42,9 @@ export interface QueryStrdBurnerAddressResponseProtoMsg {
 /**
  * QueryStrdBurnerAddressResponse is the response type for the Query/strdburner
  * RPC method
+ * @name QueryStrdBurnerAddressResponseAmino
+ * @package stride.strdburner
+ * @see proto type: stride.strdburner.QueryStrdBurnerAddressResponse
  */
 export interface QueryStrdBurnerAddressResponseAmino {
     address?: string;
@@ -67,6 +73,9 @@ export interface QueryTotalStrdBurnedRequestProtoMsg {
 /**
  * QueryTotalStrdBurnedRequest is the request type for the Query/strdburner
  * RPC method
+ * @name QueryTotalStrdBurnedRequestAmino
+ * @package stride.strdburner
+ * @see proto type: stride.strdburner.QueryTotalStrdBurnedRequest
  */
 export interface QueryTotalStrdBurnedRequestAmino {
 }
@@ -94,6 +103,9 @@ export interface QueryTotalStrdBurnedResponseProtoMsg {
 /**
  * QueryTotalStrdBurnedResponse is the response type for the Query/strdburner
  * RPC method
+ * @name QueryTotalStrdBurnedResponseAmino
+ * @package stride.strdburner
+ * @see proto type: stride.strdburner.QueryTotalStrdBurnedResponse
  */
 export interface QueryTotalStrdBurnedResponseAmino {
     total_burned?: string;

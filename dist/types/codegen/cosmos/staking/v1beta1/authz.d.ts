@@ -50,6 +50,9 @@ export interface StakeAuthorizationProtoMsg {
  * StakeAuthorization defines authorization for delegate/undelegate/redelegate.
  *
  * Since: cosmos-sdk 0.43
+ * @name StakeAuthorizationAmino
+ * @package cosmos.staking.v1beta1
+ * @see proto type: cosmos.staking.v1beta1.StakeAuthorization
  */
 export interface StakeAuthorizationAmino {
     /**
@@ -62,9 +65,13 @@ export interface StakeAuthorizationAmino {
      * account.
      */
     allow_list?: StakeAuthorization_ValidatorsAmino;
-    /** deny_list specifies list of validator addresses to whom grantee can not delegate tokens. */
+    /**
+     * deny_list specifies list of validator addresses to whom grantee can not delegate tokens.
+     */
     deny_list?: StakeAuthorization_ValidatorsAmino;
-    /** authorization_type defines one of AuthorizationType. */
+    /**
+     * authorization_type defines one of AuthorizationType.
+     */
     authorization_type?: AuthorizationType;
 }
 export interface StakeAuthorizationAminoMsg {
@@ -91,7 +98,12 @@ export interface StakeAuthorization_ValidatorsProtoMsg {
     typeUrl: "/cosmos.staking.v1beta1.Validators";
     value: Uint8Array;
 }
-/** Validators defines list of validator addresses. */
+/**
+ * Validators defines list of validator addresses.
+ * @name StakeAuthorization_ValidatorsAmino
+ * @package cosmos.staking.v1beta1
+ * @see proto type: cosmos.staking.v1beta1.StakeAuthorization_Validators
+ */
 export interface StakeAuthorization_ValidatorsAmino {
     address?: string[];
 }

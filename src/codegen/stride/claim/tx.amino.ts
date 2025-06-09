@@ -6,7 +6,7 @@ export const AminoConverter = {
     fromAmino: MsgSetAirdropAllocations.fromAmino
   },
   "/stride.claim.MsgClaimFreeAmount": {
-    aminoType: "claim/ClaimFreeAmount",
+    aminoType: "claim/MsgClaimFreeAmount",
     toAmino: MsgClaimFreeAmount.toAmino,
     fromAmino: MsgClaimFreeAmount.fromAmino
   },

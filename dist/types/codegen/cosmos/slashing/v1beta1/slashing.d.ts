@@ -34,10 +34,15 @@ export interface ValidatorSigningInfoProtoMsg {
 /**
  * ValidatorSigningInfo defines a validator's signing info for monitoring their
  * liveness activity.
+ * @name ValidatorSigningInfoAmino
+ * @package cosmos.slashing.v1beta1
+ * @see proto type: cosmos.slashing.v1beta1.ValidatorSigningInfo
  */
 export interface ValidatorSigningInfoAmino {
     address?: string;
-    /** Height at which validator was first a candidate OR was unjailed */
+    /**
+     * Height at which validator was first a candidate OR was unjailed
+     */
     start_height?: string;
     /**
      * Index which is incremented each time the validator was a bonded
@@ -45,7 +50,9 @@ export interface ValidatorSigningInfoAmino {
      * `SignedBlocksWindow` param determines the index in the `MissedBlocksBitArray`.
      */
     index_offset?: string;
-    /** Timestamp until which the validator is jailed due to liveness downtime. */
+    /**
+     * Timestamp until which the validator is jailed due to liveness downtime.
+     */
     jailed_until: string;
     /**
      * Whether or not a validator has been tombstoned (killed out of validator set). It is set
@@ -86,7 +93,12 @@ export interface ParamsProtoMsg {
     typeUrl: "/cosmos.slashing.v1beta1.Params";
     value: Uint8Array;
 }
-/** Params represents the parameters used for by the slashing module. */
+/**
+ * Params represents the parameters used for by the slashing module.
+ * @name ParamsAmino
+ * @package cosmos.slashing.v1beta1
+ * @see proto type: cosmos.slashing.v1beta1.Params
+ */
 export interface ParamsAmino {
     signed_blocks_window?: string;
     min_signed_per_window: string;

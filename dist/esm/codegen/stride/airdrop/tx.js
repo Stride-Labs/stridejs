@@ -1,7 +1,7 @@
 import { Timestamp } from "../../google/protobuf/timestamp";
 import { BinaryReader, BinaryWriter } from "../../binary";
 import { toTimestamp, fromTimestamp } from "../../helpers";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 function createBaseMsgClaimDaily() {
   return {
     claimer: "",

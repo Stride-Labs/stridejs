@@ -26,7 +26,7 @@ __export(claim_exports, {
 });
 module.exports = __toCommonJS(claim_exports);
 var import_binary = require("../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../decimals");
 var Action = /* @__PURE__ */ ((Action2) => {
   Action2[Action2["ACTION_FREE"] = 0] = "ACTION_FREE";
   Action2[Action2["ACTION_LIQUID_STAKE"] = 1] = "ACTION_LIQUID_STAKE";
@@ -84,7 +84,7 @@ const ClaimRecord = {
       writer.uint32(18).string(message.address);
     }
     if (message.weight !== "") {
-      writer.uint32(26).string(import_math.Decimal.fromUserInput(message.weight, 18).atomics);
+      writer.uint32(26).string(import_decimals.Decimal.fromUserInput(message.weight, 18).atomics);
     }
     writer.uint32(34).fork();
     for (const v of message.actionCompleted) {
@@ -107,7 +107,7 @@ const ClaimRecord = {
           message.address = reader.string();
           break;
         case 3:
-          message.weight = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.weight = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 4:
           if ((tag & 7) === 2) {

@@ -53,6 +53,9 @@ export interface PageRequestProtoMsg {
  *          Foo some_parameter = 1;
  *          PageRequest pagination = 2;
  *  }
+ * @name PageRequestAmino
+ * @package cosmos.base.query.v1beta1
+ * @see proto type: cosmos.base.query.v1beta1.PageRequest
  */
 export interface PageRequestAmino {
   /**
@@ -140,6 +143,9 @@ export interface PageResponseProtoMsg {
  *          repeated Bar results = 1;
  *          PageResponse page = 2;
  *  }
+ * @name PageResponseAmino
+ * @package cosmos.base.query.v1beta1
+ * @see proto type: cosmos.base.query.v1beta1.PageResponse
  */
 export interface PageResponseAmino {
   /**

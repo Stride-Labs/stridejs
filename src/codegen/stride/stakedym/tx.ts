@@ -1,7 +1,7 @@
 import { DelegationRecord, DelegationRecordAmino, DelegationRecordSDKType, UnbondingRecord, UnbondingRecordAmino, UnbondingRecordSDKType, RedemptionRecord, RedemptionRecordAmino, RedemptionRecordSDKType } from "./stakedym";
 import { Coin, CoinAmino, CoinSDKType } from "../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 export enum OverwritableRecordType {
   RECORD_TYPE_DELEGATION = 0,
   RECORD_TYPE_UNBONDING = 1,
@@ -49,7 +49,12 @@ export interface MsgLiquidStakeProtoMsg {
   typeUrl: "/stride.stakedym.MsgLiquidStake";
   value: Uint8Array;
 }
-/** LiquidStake */
+/**
+ * LiquidStake
+ * @name MsgLiquidStakeAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgLiquidStake
+ */
 export interface MsgLiquidStakeAmino {
   staker?: string;
   native_amount?: string;
@@ -70,6 +75,11 @@ export interface MsgLiquidStakeResponseProtoMsg {
   typeUrl: "/stride.stakedym.MsgLiquidStakeResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgLiquidStakeResponseAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgLiquidStakeResponse
+ */
 export interface MsgLiquidStakeResponseAmino {
   st_token?: CoinAmino;
 }
@@ -89,7 +99,12 @@ export interface MsgRedeemStakeProtoMsg {
   typeUrl: "/stride.stakedym.MsgRedeemStake";
   value: Uint8Array;
 }
-/** RedeemStake */
+/**
+ * RedeemStake
+ * @name MsgRedeemStakeAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgRedeemStake
+ */
 export interface MsgRedeemStakeAmino {
   redeemer?: string;
   st_token_amount?: string;
@@ -110,6 +125,11 @@ export interface MsgRedeemStakeResponseProtoMsg {
   typeUrl: "/stride.stakedym.MsgRedeemStakeResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgRedeemStakeResponseAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgRedeemStakeResponse
+ */
 export interface MsgRedeemStakeResponseAmino {
   native_token?: CoinAmino;
 }
@@ -130,7 +150,12 @@ export interface MsgConfirmDelegationProtoMsg {
   typeUrl: "/stride.stakedym.MsgConfirmDelegation";
   value: Uint8Array;
 }
-/** ConfirmDelegation */
+/**
+ * ConfirmDelegation
+ * @name MsgConfirmDelegationAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgConfirmDelegation
+ */
 export interface MsgConfirmDelegationAmino {
   operator?: string;
   record_id?: string;
@@ -151,6 +176,11 @@ export interface MsgConfirmDelegationResponseProtoMsg {
   typeUrl: "/stride.stakedym.MsgConfirmDelegationResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgConfirmDelegationResponseAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgConfirmDelegationResponse
+ */
 export interface MsgConfirmDelegationResponseAmino {}
 export interface MsgConfirmDelegationResponseAminoMsg {
   type: "/stride.stakedym.MsgConfirmDelegationResponse";
@@ -167,7 +197,12 @@ export interface MsgConfirmUndelegationProtoMsg {
   typeUrl: "/stride.stakedym.MsgConfirmUndelegation";
   value: Uint8Array;
 }
-/** ConfirmUndelegation */
+/**
+ * ConfirmUndelegation
+ * @name MsgConfirmUndelegationAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgConfirmUndelegation
+ */
 export interface MsgConfirmUndelegationAmino {
   operator?: string;
   record_id?: string;
@@ -188,6 +223,11 @@ export interface MsgConfirmUndelegationResponseProtoMsg {
   typeUrl: "/stride.stakedym.MsgConfirmUndelegationResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgConfirmUndelegationResponseAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgConfirmUndelegationResponse
+ */
 export interface MsgConfirmUndelegationResponseAmino {}
 export interface MsgConfirmUndelegationResponseAminoMsg {
   type: "/stride.stakedym.MsgConfirmUndelegationResponse";
@@ -204,7 +244,12 @@ export interface MsgConfirmUnbondedTokenSweepProtoMsg {
   typeUrl: "/stride.stakedym.MsgConfirmUnbondedTokenSweep";
   value: Uint8Array;
 }
-/** ConfirmUnbondedTokenSweep */
+/**
+ * ConfirmUnbondedTokenSweep
+ * @name MsgConfirmUnbondedTokenSweepAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgConfirmUnbondedTokenSweep
+ */
 export interface MsgConfirmUnbondedTokenSweepAmino {
   operator?: string;
   record_id?: string;
@@ -225,6 +270,11 @@ export interface MsgConfirmUnbondedTokenSweepResponseProtoMsg {
   typeUrl: "/stride.stakedym.MsgConfirmUnbondedTokenSweepResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgConfirmUnbondedTokenSweepResponseAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgConfirmUnbondedTokenSweepResponse
+ */
 export interface MsgConfirmUnbondedTokenSweepResponseAmino {}
 export interface MsgConfirmUnbondedTokenSweepResponseAminoMsg {
   type: "/stride.stakedym.MsgConfirmUnbondedTokenSweepResponse";
@@ -241,7 +291,12 @@ export interface MsgAdjustDelegatedBalanceProtoMsg {
   typeUrl: "/stride.stakedym.MsgAdjustDelegatedBalance";
   value: Uint8Array;
 }
-/** AdjustDelegatedBalance */
+/**
+ * AdjustDelegatedBalance
+ * @name MsgAdjustDelegatedBalanceAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgAdjustDelegatedBalance
+ */
 export interface MsgAdjustDelegatedBalanceAmino {
   operator?: string;
   delegation_offset?: string;
@@ -262,6 +317,11 @@ export interface MsgAdjustDelegatedBalanceResponseProtoMsg {
   typeUrl: "/stride.stakedym.MsgAdjustDelegatedBalanceResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgAdjustDelegatedBalanceResponseAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgAdjustDelegatedBalanceResponse
+ */
 export interface MsgAdjustDelegatedBalanceResponseAmino {}
 export interface MsgAdjustDelegatedBalanceResponseAminoMsg {
   type: "/stride.stakedym.MsgAdjustDelegatedBalanceResponse";
@@ -278,7 +338,12 @@ export interface MsgUpdateInnerRedemptionRateBoundsProtoMsg {
   typeUrl: "/stride.stakedym.MsgUpdateInnerRedemptionRateBounds";
   value: Uint8Array;
 }
-/** UpdateInnerRedemptionRate */
+/**
+ * UpdateInnerRedemptionRate
+ * @name MsgUpdateInnerRedemptionRateBoundsAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgUpdateInnerRedemptionRateBounds
+ */
 export interface MsgUpdateInnerRedemptionRateBoundsAmino {
   creator?: string;
   min_inner_redemption_rate?: string;
@@ -299,6 +364,11 @@ export interface MsgUpdateInnerRedemptionRateBoundsResponseProtoMsg {
   typeUrl: "/stride.stakedym.MsgUpdateInnerRedemptionRateBoundsResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgUpdateInnerRedemptionRateBoundsResponseAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgUpdateInnerRedemptionRateBoundsResponse
+ */
 export interface MsgUpdateInnerRedemptionRateBoundsResponseAmino {}
 export interface MsgUpdateInnerRedemptionRateBoundsResponseAminoMsg {
   type: "/stride.stakedym.MsgUpdateInnerRedemptionRateBoundsResponse";
@@ -313,7 +383,12 @@ export interface MsgResumeHostZoneProtoMsg {
   typeUrl: "/stride.stakedym.MsgResumeHostZone";
   value: Uint8Array;
 }
-/** ResumeHostZone */
+/**
+ * ResumeHostZone
+ * @name MsgResumeHostZoneAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgResumeHostZone
+ */
 export interface MsgResumeHostZoneAmino {
   creator?: string;
 }
@@ -330,6 +405,11 @@ export interface MsgResumeHostZoneResponseProtoMsg {
   typeUrl: "/stride.stakedym.MsgResumeHostZoneResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgResumeHostZoneResponseAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgResumeHostZoneResponse
+ */
 export interface MsgResumeHostZoneResponseAmino {}
 export interface MsgResumeHostZoneResponseAminoMsg {
   type: "/stride.stakedym.MsgResumeHostZoneResponse";
@@ -344,7 +424,12 @@ export interface MsgRefreshRedemptionRateProtoMsg {
   typeUrl: "/stride.stakedym.MsgRefreshRedemptionRate";
   value: Uint8Array;
 }
-/** RefreshRedemptionRate */
+/**
+ * RefreshRedemptionRate
+ * @name MsgRefreshRedemptionRateAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgRefreshRedemptionRate
+ */
 export interface MsgRefreshRedemptionRateAmino {
   creator?: string;
 }
@@ -361,6 +446,11 @@ export interface MsgRefreshRedemptionRateResponseProtoMsg {
   typeUrl: "/stride.stakedym.MsgRefreshRedemptionRateResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgRefreshRedemptionRateResponseAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgRefreshRedemptionRateResponse
+ */
 export interface MsgRefreshRedemptionRateResponseAmino {}
 export interface MsgRefreshRedemptionRateResponseAminoMsg {
   type: "/stride.stakedym.MsgRefreshRedemptionRateResponse";
@@ -376,7 +466,12 @@ export interface MsgOverwriteDelegationRecordProtoMsg {
   typeUrl: "/stride.stakedym.MsgOverwriteDelegationRecord";
   value: Uint8Array;
 }
-/** OverwriteDelegationRecord */
+/**
+ * OverwriteDelegationRecord
+ * @name MsgOverwriteDelegationRecordAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgOverwriteDelegationRecord
+ */
 export interface MsgOverwriteDelegationRecordAmino {
   creator?: string;
   delegation_record?: DelegationRecordAmino;
@@ -395,6 +490,11 @@ export interface MsgOverwriteDelegationRecordResponseProtoMsg {
   typeUrl: "/stride.stakedym.MsgOverwriteDelegationRecordResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgOverwriteDelegationRecordResponseAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgOverwriteDelegationRecordResponse
+ */
 export interface MsgOverwriteDelegationRecordResponseAmino {}
 export interface MsgOverwriteDelegationRecordResponseAminoMsg {
   type: "/stride.stakedym.MsgOverwriteDelegationRecordResponse";
@@ -410,7 +510,12 @@ export interface MsgOverwriteUnbondingRecordProtoMsg {
   typeUrl: "/stride.stakedym.MsgOverwriteUnbondingRecord";
   value: Uint8Array;
 }
-/** OverwriteUnbondingRecord */
+/**
+ * OverwriteUnbondingRecord
+ * @name MsgOverwriteUnbondingRecordAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgOverwriteUnbondingRecord
+ */
 export interface MsgOverwriteUnbondingRecordAmino {
   creator?: string;
   unbonding_record?: UnbondingRecordAmino;
@@ -429,6 +534,11 @@ export interface MsgOverwriteUnbondingRecordResponseProtoMsg {
   typeUrl: "/stride.stakedym.MsgOverwriteUnbondingRecordResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgOverwriteUnbondingRecordResponseAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgOverwriteUnbondingRecordResponse
+ */
 export interface MsgOverwriteUnbondingRecordResponseAmino {}
 export interface MsgOverwriteUnbondingRecordResponseAminoMsg {
   type: "/stride.stakedym.MsgOverwriteUnbondingRecordResponse";
@@ -444,7 +554,12 @@ export interface MsgOverwriteRedemptionRecordProtoMsg {
   typeUrl: "/stride.stakedym.MsgOverwriteRedemptionRecord";
   value: Uint8Array;
 }
-/** OverwriteRedemptionRecord */
+/**
+ * OverwriteRedemptionRecord
+ * @name MsgOverwriteRedemptionRecordAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgOverwriteRedemptionRecord
+ */
 export interface MsgOverwriteRedemptionRecordAmino {
   creator?: string;
   redemption_record?: RedemptionRecordAmino;
@@ -463,6 +578,11 @@ export interface MsgOverwriteRedemptionRecordResponseProtoMsg {
   typeUrl: "/stride.stakedym.MsgOverwriteRedemptionRecordResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgOverwriteRedemptionRecordResponseAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgOverwriteRedemptionRecordResponse
+ */
 export interface MsgOverwriteRedemptionRecordResponseAmino {}
 export interface MsgOverwriteRedemptionRecordResponseAminoMsg {
   type: "/stride.stakedym.MsgOverwriteRedemptionRecordResponse";
@@ -478,7 +598,12 @@ export interface MsgSetOperatorAddressProtoMsg {
   typeUrl: "/stride.stakedym.MsgSetOperatorAddress";
   value: Uint8Array;
 }
-/** SetOperatorAddress */
+/**
+ * SetOperatorAddress
+ * @name MsgSetOperatorAddressAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgSetOperatorAddress
+ */
 export interface MsgSetOperatorAddressAmino {
   signer?: string;
   operator?: string;
@@ -497,6 +622,11 @@ export interface MsgSetOperatorAddressResponseProtoMsg {
   typeUrl: "/stride.stakedym.MsgSetOperatorAddressResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgSetOperatorAddressResponseAmino
+ * @package stride.stakedym
+ * @see proto type: stride.stakedym.MsgSetOperatorAddressResponse
+ */
 export interface MsgSetOperatorAddressResponseAmino {}
 export interface MsgSetOperatorAddressResponseAminoMsg {
   type: "/stride.stakedym.MsgSetOperatorAddressResponse";

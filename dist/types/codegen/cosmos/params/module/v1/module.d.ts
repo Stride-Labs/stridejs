@@ -6,7 +6,12 @@ export interface ModuleProtoMsg {
     typeUrl: "/cosmos.params.module.v1.Module";
     value: Uint8Array;
 }
-/** Module is the config object of the params module. */
+/**
+ * Module is the config object of the params module.
+ * @name ModuleAmino
+ * @package cosmos.params.module.v1
+ * @see proto type: cosmos.params.module.v1.Module
+ */
 export interface ModuleAmino {
 }
 export interface ModuleAminoMsg {

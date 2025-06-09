@@ -1,5 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 export enum Action {
   ACTION_FREE = 0,
   ACTION_LIQUID_STAKE = 1,
@@ -56,13 +56,24 @@ export interface ClaimRecordProtoMsg {
   typeUrl: "/stride.claim.ClaimRecord";
   value: Uint8Array;
 }
-/** A Claim Records is the metadata of claim data per address */
+/**
+ * A Claim Records is the metadata of claim data per address
+ * @name ClaimRecordAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.ClaimRecord
+ */
 export interface ClaimRecordAmino {
-  /** airdrop identifier */
+  /**
+   * airdrop identifier
+   */
   airdrop_identifier?: string;
-  /** address of claim user */
+  /**
+   * address of claim user
+   */
   address?: string;
-  /** weight that represent the portion from total allocation */
+  /**
+   * weight that represent the portion from total allocation
+   */
   weight?: string;
   /**
    * true if action is completed

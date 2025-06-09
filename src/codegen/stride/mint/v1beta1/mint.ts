@@ -1,5 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../../decimals";
 /** Minter represents the minting state. */
 export interface Minter {
   /** current epoch provisions */
@@ -9,9 +9,16 @@ export interface MinterProtoMsg {
   typeUrl: "/stride.mint.v1beta1.Minter";
   value: Uint8Array;
 }
-/** Minter represents the minting state. */
+/**
+ * Minter represents the minting state.
+ * @name MinterAmino
+ * @package stride.mint.v1beta1
+ * @see proto type: stride.mint.v1beta1.Minter
+ */
 export interface MinterAmino {
-  /** current epoch provisions */
+  /**
+   * current epoch provisions
+   */
   epoch_provisions?: string;
 }
 export interface MinterAminoMsg {
@@ -49,7 +56,12 @@ export interface DistributionProportionsProtoMsg {
   typeUrl: "/stride.mint.v1beta1.DistributionProportions";
   value: Uint8Array;
 }
-/** next id: 5 */
+/**
+ * next id: 5
+ * @name DistributionProportionsAmino
+ * @package stride.mint.v1beta1
+ * @see proto type: stride.mint.v1beta1.DistributionProportions
+ */
 export interface DistributionProportionsAmino {
   /**
    * staking defines the proportion of the minted minted_denom that is to be
@@ -104,21 +116,40 @@ export interface ParamsProtoMsg {
   typeUrl: "/stride.mint.v1beta1.Params";
   value: Uint8Array;
 }
-/** Params holds parameters for the mint module. */
+/**
+ * Params holds parameters for the mint module.
+ * @name ParamsAmino
+ * @package stride.mint.v1beta1
+ * @see proto type: stride.mint.v1beta1.Params
+ */
 export interface ParamsAmino {
-  /** type of coin to mint */
+  /**
+   * type of coin to mint
+   */
   mint_denom?: string;
-  /** epoch provisions from the first epoch */
+  /**
+   * epoch provisions from the first epoch
+   */
   genesis_epoch_provisions?: string;
-  /** mint epoch identifier */
+  /**
+   * mint epoch identifier
+   */
   epoch_identifier?: string;
-  /** number of epochs take to reduce rewards */
+  /**
+   * number of epochs take to reduce rewards
+   */
   reduction_period_in_epochs?: string;
-  /** reduction multiplier to execute on each period */
+  /**
+   * reduction multiplier to execute on each period
+   */
   reduction_factor?: string;
-  /** distribution_proportions defines the proportion of the minted denom */
+  /**
+   * distribution_proportions defines the proportion of the minted denom
+   */
   distribution_proportions?: DistributionProportionsAmino;
-  /** start epoch to distribute minting rewards */
+  /**
+   * start epoch to distribute minting rewards
+   */
   minting_rewards_distribution_start_epoch?: string;
 }
 export interface ParamsAminoMsg {

@@ -7,6 +7,11 @@ export interface BitArrayProtoMsg {
   typeUrl: "/tendermint.libs.bits.BitArray";
   value: Uint8Array;
 }
+/**
+ * @name BitArrayAmino
+ * @package tendermint.libs.bits
+ * @see proto type: tendermint.libs.bits.BitArray
+ */
 export interface BitArrayAmino {
   bits?: string;
   elems?: string[];

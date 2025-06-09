@@ -21,7 +21,7 @@ __export(validator_exports, {
 });
 module.exports = __toCommonJS(validator_exports);
 var import_binary = require("../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../decimals");
 function createBaseValidator() {
   return {
     name: "",
@@ -57,7 +57,7 @@ const Validator = {
       writer.uint32(98).string(message.slashQueryCheckpoint);
     }
     if (message.sharesToTokensRate !== "") {
-      writer.uint32(82).string(import_math.Decimal.fromUserInput(message.sharesToTokensRate, 18).atomics);
+      writer.uint32(82).string(import_decimals.Decimal.fromUserInput(message.sharesToTokensRate, 18).atomics);
     }
     if (message.delegationChangesInProgress !== BigInt(0)) {
       writer.uint32(88).int64(message.delegationChangesInProgress);
@@ -93,7 +93,7 @@ const Validator = {
           message.slashQueryCheckpoint = reader.string();
           break;
         case 10:
-          message.sharesToTokensRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.sharesToTokensRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 11:
           message.delegationChangesInProgress = reader.int64();

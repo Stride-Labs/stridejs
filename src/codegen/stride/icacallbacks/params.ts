@@ -5,7 +5,12 @@ export interface ParamsProtoMsg {
   typeUrl: "/stride.icacallbacks.Params";
   value: Uint8Array;
 }
-/** Params defines the parameters for the module. */
+/**
+ * Params defines the parameters for the module.
+ * @name ParamsAmino
+ * @package stride.icacallbacks
+ * @see proto type: stride.icacallbacks.Params
+ */
 export interface ParamsAmino {}
 export interface ParamsAminoMsg {
   type: "/stride.icacallbacks.Params";

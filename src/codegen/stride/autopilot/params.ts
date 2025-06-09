@@ -15,9 +15,14 @@ export interface ParamsProtoMsg {
 /**
  * Params defines the parameters for the module.
  * next id: 1
+ * @name ParamsAmino
+ * @package stride.autopilot
+ * @see proto type: stride.autopilot.Params
  */
 export interface ParamsAmino {
-  /** optionally, turn off each module */
+  /**
+   * optionally, turn off each module
+   */
   stakeibc_active?: boolean;
   claim_active?: boolean;
 }

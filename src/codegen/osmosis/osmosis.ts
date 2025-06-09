@@ -1,7 +1,7 @@
 import { Timestamp } from "../google/protobuf/timestamp";
 import { BinaryReader, BinaryWriter } from "../binary";
 import { toTimestamp, fromTimestamp } from "../helpers";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../decimals";
 /**
  * A TWAP record should be indexed in state by pool_id, (asset pair), timestamp
  * The asset pair assets should be lexicographically sorted.
@@ -52,14 +52,23 @@ export interface OsmosisTwapRecordProtoMsg {
  * given SDK today. Would rather we optimize for readability and correctness,
  * than an optimal state storage format. The system bottleneck is elsewhere for
  * now.
+ * @name OsmosisTwapRecordAmino
+ * @package osmosis
+ * @see proto type: osmosis.OsmosisTwapRecord
  */
 export interface OsmosisTwapRecordAmino {
   pool_id?: string;
-  /** Lexicographically smaller denom of the pair */
+  /**
+   * Lexicographically smaller denom of the pair
+   */
   asset0_denom?: string;
-  /** Lexicographically larger denom of the pair */
+  /**
+   * Lexicographically larger denom of the pair
+   */
   asset1_denom?: string;
-  /** height this record corresponds to, for debugging purposes */
+  /**
+   * height this record corresponds to, for debugging purposes
+   */
   height: string;
   /**
    * This field should only exist until we have a global registry in the state

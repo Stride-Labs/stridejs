@@ -20,15 +20,26 @@ export interface EquivocationProtoMsg {
 /**
  * Equivocation implements the Evidence interface and defines evidence of double
  * signing misbehavior.
+ * @name EquivocationAmino
+ * @package cosmos.evidence.v1beta1
+ * @see proto type: cosmos.evidence.v1beta1.Equivocation
  */
 export interface EquivocationAmino {
-    /** height is the equivocation height. */
+    /**
+     * height is the equivocation height.
+     */
     height?: string;
-    /** time is the equivocation time. */
+    /**
+     * time is the equivocation time.
+     */
     time: string;
-    /** power is the equivocation validator power. */
+    /**
+     * power is the equivocation validator power.
+     */
     power?: string;
-    /** consensus_address is the equivocation validator consensus address. */
+    /**
+     * consensus_address is the equivocation validator consensus address.
+     */
     consensus_address?: string;
 }
 export interface EquivocationAminoMsg {

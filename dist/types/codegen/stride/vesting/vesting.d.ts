@@ -19,6 +19,9 @@ export interface BaseVestingAccountProtoMsg {
 /**
  * BaseVestingAccount implements the VestingAccount interface. It contains all
  * the necessary fields needed for any vesting account implementation.
+ * @name BaseVestingAccountAmino
+ * @package stride.vesting
+ * @see proto type: stride.vesting.BaseVestingAccount
  */
 export interface BaseVestingAccountAmino {
     base_account?: BaseAccountAmino;
@@ -53,7 +56,12 @@ export interface PeriodProtoMsg {
     typeUrl: "/stride.vesting.Period";
     value: Uint8Array;
 }
-/** Period defines a length of time and amount of coins that will vest. */
+/**
+ * Period defines a length of time and amount of coins that will vest.
+ * @name PeriodAmino
+ * @package stride.vesting
+ * @see proto type: stride.vesting.Period
+ */
 export interface PeriodAmino {
     start_time?: string;
     length?: string;
@@ -86,6 +94,9 @@ export interface StridePeriodicVestingAccountProtoMsg {
 /**
  * StridePeriodicVestingAccount implements the VestingAccount interface. It
  * periodically vests by unlocking coins during each specified period.
+ * @name StridePeriodicVestingAccountAmino
+ * @package stride.vesting
+ * @see proto type: stride.vesting.StridePeriodicVestingAccount
  */
 export interface StridePeriodicVestingAccountAmino {
     base_vesting_account?: BaseVestingAccountAmino;

@@ -12,11 +12,20 @@ export interface GenesisStateProtoMsg {
     typeUrl: "/stride.claim.GenesisState";
     value: Uint8Array;
 }
-/** GenesisState defines the claim module's genesis state. */
+/**
+ * GenesisState defines the claim module's genesis state.
+ * @name GenesisStateAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.GenesisState
+ */
 export interface GenesisStateAmino {
-    /** params defines all the parameters of the module. */
+    /**
+     * params defines all the parameters of the module.
+     */
     params?: ParamsAmino;
-    /** list of claim records, one for every airdrop recipient */
+    /**
+     * list of claim records, one for every airdrop recipient
+     */
     claim_records?: ClaimRecordAmino[];
 }
 export interface GenesisStateAminoMsg {

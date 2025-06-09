@@ -16,7 +16,12 @@ export interface GenesisStateProtoMsg {
   typeUrl: "/ibc.applications.transfer.v1.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the ibc-transfer genesis state */
+/**
+ * GenesisState defines the ibc-transfer genesis state
+ * @name GenesisStateAmino
+ * @package ibc.applications.transfer.v1
+ * @see proto type: ibc.applications.transfer.v1.GenesisState
+ */
 export interface GenesisStateAmino {
   port_id?: string;
   denom_traces?: DenomTraceAmino[];

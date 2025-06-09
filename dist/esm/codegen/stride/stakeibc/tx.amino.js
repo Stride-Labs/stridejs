@@ -1,32 +1,32 @@
 import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeights, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgCloseDelegationChannel, MsgUpdateValidatorSharesExchRate, MsgCalibrateDelegation, MsgClearBalance, MsgUpdateInnerRedemptionRateBounds, MsgResumeHostZone, MsgCreateTradeRoute, MsgDeleteTradeRoute, MsgUpdateTradeRoute, MsgSetCommunityPoolRebate, MsgToggleTradeController, MsgUpdateHostZoneParams } from "./tx";
 const AminoConverter = {
   "/stride.stakeibc.MsgLiquidStake": {
-    aminoType: "stakeibc/LiquidStake",
+    aminoType: "stakeibc/MsgLiquidStake",
     toAmino: MsgLiquidStake.toAmino,
     fromAmino: MsgLiquidStake.fromAmino
   },
   "/stride.stakeibc.MsgLSMLiquidStake": {
-    aminoType: "stakeibc/LSMLiquidStake",
+    aminoType: "stakeibc/MsgLSMLiquidStake",
     toAmino: MsgLSMLiquidStake.toAmino,
     fromAmino: MsgLSMLiquidStake.fromAmino
   },
   "/stride.stakeibc.MsgRedeemStake": {
-    aminoType: "stakeibc/RedeemStake",
+    aminoType: "stakeibc/MsgRedeemStake",
     toAmino: MsgRedeemStake.toAmino,
     fromAmino: MsgRedeemStake.fromAmino
   },
   "/stride.stakeibc.MsgRegisterHostZone": {
-    aminoType: "stakeibc/RegisterHostZone",
+    aminoType: "stakeibc/MsgRegisterHostZone",
     toAmino: MsgRegisterHostZone.toAmino,
     fromAmino: MsgRegisterHostZone.fromAmino
   },
   "/stride.stakeibc.MsgClaimUndelegatedTokens": {
-    aminoType: "stakeibc/ClaimUndelegatedTokens",
+    aminoType: "stakeibc/MsgClaimUndelegatedTokens",
     toAmino: MsgClaimUndelegatedTokens.toAmino,
     fromAmino: MsgClaimUndelegatedTokens.fromAmino
   },
   "/stride.stakeibc.MsgRebalanceValidators": {
-    aminoType: "stakeibc/RebalanceValidators",
+    aminoType: "stakeibc/MsgRebalanceValidators",
     toAmino: MsgRebalanceValidators.toAmino,
     fromAmino: MsgRebalanceValidators.fromAmino
   },
@@ -41,12 +41,12 @@ const AminoConverter = {
     fromAmino: MsgChangeValidatorWeights.fromAmino
   },
   "/stride.stakeibc.MsgDeleteValidator": {
-    aminoType: "stakeibc/DeleteValidator",
+    aminoType: "stakeibc/MsgDeleteValidator",
     toAmino: MsgDeleteValidator.toAmino,
     fromAmino: MsgDeleteValidator.fromAmino
   },
   "/stride.stakeibc.MsgRestoreInterchainAccount": {
-    aminoType: "stakeibc/RestoreInterchainAccount",
+    aminoType: "stakeibc/MsgRestoreInterchainAcco",
     toAmino: MsgRestoreInterchainAccount.toAmino,
     fromAmino: MsgRestoreInterchainAccount.fromAmino
   },
@@ -56,7 +56,7 @@ const AminoConverter = {
     fromAmino: MsgCloseDelegationChannel.fromAmino
   },
   "/stride.stakeibc.MsgUpdateValidatorSharesExchRate": {
-    aminoType: "stakeibc/UpdateValidatorSharesExchRate",
+    aminoType: "stakeibc/MsgUpdateValSharesExchRate",
     toAmino: MsgUpdateValidatorSharesExchRate.toAmino,
     fromAmino: MsgUpdateValidatorSharesExchRate.fromAmino
   },
@@ -66,7 +66,7 @@ const AminoConverter = {
     fromAmino: MsgCalibrateDelegation.fromAmino
   },
   "/stride.stakeibc.MsgClearBalance": {
-    aminoType: "still-no-defined",
+    aminoType: "stakeibc/MsgClearBalance",
     toAmino: MsgClearBalance.toAmino,
     fromAmino: MsgClearBalance.fromAmino
   },

@@ -42,7 +42,7 @@ var import_coin = require("../../base/v1beta1/coin");
 var import_timestamp = require("../../../google/protobuf/timestamp");
 var import_binary = require("../../../binary");
 var import_proto_signing = require("@cosmjs/proto-signing");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../../decimals");
 var import_helpers = require("../../../helpers");
 function createBaseMsgCreateValidator() {
   return {
@@ -259,7 +259,7 @@ const MsgEditValidator = {
       writer.uint32(18).string(message.validatorAddress);
     }
     if (message.commissionRate !== "") {
-      writer.uint32(26).string(import_math.Decimal.fromUserInput(message.commissionRate, 18).atomics);
+      writer.uint32(26).string(import_decimals.Decimal.fromUserInput(message.commissionRate, 18).atomics);
     }
     if (message.minSelfDelegation !== "") {
       writer.uint32(34).string(message.minSelfDelegation);
@@ -280,7 +280,7 @@ const MsgEditValidator = {
           message.validatorAddress = reader.string();
           break;
         case 3:
-          message.commissionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.commissionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 4:
           message.minSelfDelegation = reader.string();
