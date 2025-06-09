@@ -49,8 +49,8 @@ importers:
         specifier: 1.34.0
         version: 1.34.0
       '@cosmology/telescope':
-        specifier: 1.11.25
-        version: 1.11.25
+        specifier: 1.12.19
+        version: 1.12.19
       '@types/node':
         specifier: 20.14.11
         version: 20.14.11
@@ -781,8 +781,8 @@ packages:
     resolution: {integrity: sha512-zHf/yqGQ7QSjIYvv7kvGKY9yXNjqj55kWdRyntrXwnte/tY8uMTuCFD/EWC48LGhGu3P7nbzTlhyCGMc3xm9bw==}
     engines: {node: '>=12.0.0'}
 
-  '@cosmology/telescope@1.11.25':
-    resolution: {integrity: sha512-wOkwRIDSnGgOkpUmZrXlvyfYGVM86zeAZsHAbEwGlotkDgfAeGzv/vzM8CVZIqIq1p/WPXDUkg/IQQOuA//2Uw==}
+  '@cosmology/telescope@1.12.19':
+    resolution: {integrity: sha512-XdRIhIKZ9ZEcvjK2CMlj8kwE1VidtS7FWVQwa3J/mGzagNDtdQIKNN+HtH8qIGDASwIELmR7U0Yv2Vs8+od8GA==}
     hasBin: true
 
   '@cosmology/types@1.12.3':
@@ -3246,7 +3246,7 @@ snapshots:
       '@types/node': 20.14.11
       long: 5.2.4
 
-  '@cosmology/telescope@1.11.25':
+  '@cosmology/telescope@1.12.19':
     dependencies:
       '@babel/generator': 7.26.5
       '@babel/parser': 7.26.7

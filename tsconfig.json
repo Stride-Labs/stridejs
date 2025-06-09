@@ -6,7 +6,10 @@
     "emitDeclarationOnly": true,
     "isolatedModules": true,
     "allowJs": true,
-    "lib": ["es2015"],
+    "target": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "moduleResolution": "node",
+    "module": "commonjs",
     "useUnknownInCatchVariables": false,
     "skipLibCheck": true,
     "noEmitOnError": false
