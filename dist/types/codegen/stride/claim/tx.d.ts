@@ -17,7 +17,7 @@ export interface MsgSetAirdropAllocationsAmino {
     weights?: string[];
 }
 export interface MsgSetAirdropAllocationsAminoMsg {
-    type: "/stride.claim.MsgSetAirdropAllocations";
+    type: "claim/MsgSetAirdropAllocations";
     value: MsgSetAirdropAllocationsAmino;
 }
 export interface MsgSetAirdropAllocationsSDKType {
@@ -97,7 +97,7 @@ export interface MsgCreateAirdropAmino {
     autopilot_enabled?: boolean;
 }
 export interface MsgCreateAirdropAminoMsg {
-    type: "/stride.claim.MsgCreateAirdrop";
+    type: "claim/MsgCreateAirdrop";
     value: MsgCreateAirdropAmino;
 }
 export interface MsgCreateAirdropSDKType {
@@ -136,7 +136,7 @@ export interface MsgDeleteAirdropAmino {
     identifier?: string;
 }
 export interface MsgDeleteAirdropAminoMsg {
-    type: "/stride.claim.MsgDeleteAirdrop";
+    type: "claim/MsgDeleteAirdrop";
     value: MsgDeleteAirdropAmino;
 }
 export interface MsgDeleteAirdropSDKType {
@@ -165,6 +165,7 @@ export declare const MsgSetAirdropAllocations: {
     fromAmino(object: MsgSetAirdropAllocationsAmino): MsgSetAirdropAllocations;
     toAmino(message: MsgSetAirdropAllocations): MsgSetAirdropAllocationsAmino;
     fromAminoMsg(object: MsgSetAirdropAllocationsAminoMsg): MsgSetAirdropAllocations;
+    toAminoMsg(message: MsgSetAirdropAllocations): MsgSetAirdropAllocationsAminoMsg;
     fromProtoMsg(message: MsgSetAirdropAllocationsProtoMsg): MsgSetAirdropAllocations;
     toProto(message: MsgSetAirdropAllocations): Uint8Array;
     toProtoMsg(message: MsgSetAirdropAllocations): MsgSetAirdropAllocationsProtoMsg;
@@ -214,6 +215,7 @@ export declare const MsgCreateAirdrop: {
     fromAmino(object: MsgCreateAirdropAmino): MsgCreateAirdrop;
     toAmino(message: MsgCreateAirdrop): MsgCreateAirdropAmino;
     fromAminoMsg(object: MsgCreateAirdropAminoMsg): MsgCreateAirdrop;
+    toAminoMsg(message: MsgCreateAirdrop): MsgCreateAirdropAminoMsg;
     fromProtoMsg(message: MsgCreateAirdropProtoMsg): MsgCreateAirdrop;
     toProto(message: MsgCreateAirdrop): Uint8Array;
     toProtoMsg(message: MsgCreateAirdrop): MsgCreateAirdropProtoMsg;
@@ -238,6 +240,7 @@ export declare const MsgDeleteAirdrop: {
     fromAmino(object: MsgDeleteAirdropAmino): MsgDeleteAirdrop;
     toAmino(message: MsgDeleteAirdrop): MsgDeleteAirdropAmino;
     fromAminoMsg(object: MsgDeleteAirdropAminoMsg): MsgDeleteAirdrop;
+    toAminoMsg(message: MsgDeleteAirdrop): MsgDeleteAirdropAminoMsg;
     fromProtoMsg(message: MsgDeleteAirdropProtoMsg): MsgDeleteAirdrop;
     toProto(message: MsgDeleteAirdrop): Uint8Array;
     toProtoMsg(message: MsgDeleteAirdrop): MsgDeleteAirdropProtoMsg;

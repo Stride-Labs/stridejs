@@ -31,12 +31,12 @@ const AminoConverter = {
     fromAmino: MsgRebalanceValidators.fromAmino
   },
   "/stride.stakeibc.MsgAddValidators": {
-    aminoType: "/stride.stakeibc.MsgAddValidators",
+    aminoType: "stakeibc/MsgAddValidators",
     toAmino: MsgAddValidators.toAmino,
     fromAmino: MsgAddValidators.fromAmino
   },
   "/stride.stakeibc.MsgChangeValidatorWeights": {
-    aminoType: "/stride.stakeibc.MsgChangeValidatorWeights",
+    aminoType: "stakeibc/MsgChangeValidatorWeights",
     toAmino: MsgChangeValidatorWeights.toAmino,
     fromAmino: MsgChangeValidatorWeights.fromAmino
   },
@@ -51,7 +51,7 @@ const AminoConverter = {
     fromAmino: MsgRestoreInterchainAccount.fromAmino
   },
   "/stride.stakeibc.MsgCloseDelegationChannel": {
-    aminoType: "/stride.stakeibc.MsgCloseDelegationChannel",
+    aminoType: "stakeibc/MsgCloseDelegationChanne",
     toAmino: MsgCloseDelegationChannel.toAmino,
     fromAmino: MsgCloseDelegationChannel.fromAmino
   },
@@ -61,7 +61,7 @@ const AminoConverter = {
     fromAmino: MsgUpdateValidatorSharesExchRate.fromAmino
   },
   "/stride.stakeibc.MsgCalibrateDelegation": {
-    aminoType: "/stride.stakeibc.MsgCalibrateDelegation",
+    aminoType: "stakeibc/MsgCalibrateDelegation",
     toAmino: MsgCalibrateDelegation.toAmino,
     fromAmino: MsgCalibrateDelegation.fromAmino
   },
@@ -71,42 +71,42 @@ const AminoConverter = {
     fromAmino: MsgClearBalance.fromAmino
   },
   "/stride.stakeibc.MsgUpdateInnerRedemptionRateBounds": {
-    aminoType: "/stride.stakeibc.MsgUpdateInnerRedemptionRateBounds",
+    aminoType: "stakeibc/MsgUpdateRedemptionRateBounds",
     toAmino: MsgUpdateInnerRedemptionRateBounds.toAmino,
     fromAmino: MsgUpdateInnerRedemptionRateBounds.fromAmino
   },
   "/stride.stakeibc.MsgResumeHostZone": {
-    aminoType: "/stride.stakeibc.MsgResumeHostZone",
+    aminoType: "stakeibc/MsgResumeHostZone",
     toAmino: MsgResumeHostZone.toAmino,
     fromAmino: MsgResumeHostZone.fromAmino
   },
   "/stride.stakeibc.MsgCreateTradeRoute": {
-    aminoType: "stride/x/stakeibc/MsgCreateTradeRoute",
+    aminoType: "stakeibc/MsgCreateTradeRoute",
     toAmino: MsgCreateTradeRoute.toAmino,
     fromAmino: MsgCreateTradeRoute.fromAmino
   },
   "/stride.stakeibc.MsgDeleteTradeRoute": {
-    aminoType: "stride/x/stakeibc/MsgDeleteTradeRoute",
+    aminoType: "stakeibc/MsgDeleteTradeRoute",
     toAmino: MsgDeleteTradeRoute.toAmino,
     fromAmino: MsgDeleteTradeRoute.fromAmino
   },
   "/stride.stakeibc.MsgUpdateTradeRoute": {
-    aminoType: "stride/x/stakeibc/MsgUpdateTradeRoute",
+    aminoType: "stakeibc/MsgUpdateTradeRoute",
     toAmino: MsgUpdateTradeRoute.toAmino,
     fromAmino: MsgUpdateTradeRoute.fromAmino
   },
   "/stride.stakeibc.MsgSetCommunityPoolRebate": {
-    aminoType: "stride/x/stakeibc/MsgSetCommunityPoolRebate",
+    aminoType: "stakeibc/MsgSetCommunityPoolRebate",
     toAmino: MsgSetCommunityPoolRebate.toAmino,
     fromAmino: MsgSetCommunityPoolRebate.fromAmino
   },
   "/stride.stakeibc.MsgToggleTradeController": {
-    aminoType: "stride/x/stakeibc/MsgToggleTradeController",
+    aminoType: "stakeibc/MsgToggleTradeController",
     toAmino: MsgToggleTradeController.toAmino,
     fromAmino: MsgToggleTradeController.fromAmino
   },
   "/stride.stakeibc.MsgUpdateHostZoneParams": {
-    aminoType: "stride/x/stakeibc/MsgUpdateHostZoneParams",
+    aminoType: "stakeibc/MsgUpdateHostZoneParams",
     toAmino: MsgUpdateHostZoneParams.toAmino,
     fromAmino: MsgUpdateHostZoneParams.fromAmino
   }

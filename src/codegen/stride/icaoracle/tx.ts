@@ -14,7 +14,7 @@ export interface MsgAddOracleAmino {
   connection_id?: string;
 }
 export interface MsgAddOracleAminoMsg {
-  type: "stride/x/icaoracle/MsgAddOracle";
+  type: "icaoracle/MsgAddOracle";
   value: MsgAddOracleAmino;
 }
 /** Adds a new oracle */
@@ -52,7 +52,7 @@ export interface MsgInstantiateOracleAmino {
   transfer_channel_on_oracle?: string;
 }
 export interface MsgInstantiateOracleAminoMsg {
-  type: "stride/x/icaoracle/MsgInstantiateOracle";
+  type: "icaoracle/MsgInstantiateOracle";
   value: MsgInstantiateOracleAmino;
 }
 /** Instantiates the oracle's CW contract */
@@ -88,7 +88,7 @@ export interface MsgRestoreOracleICAAmino {
   oracle_chain_id?: string;
 }
 export interface MsgRestoreOracleICAAminoMsg {
-  type: "stride/x/icaoracle/MsgRestoreOracleICA";
+  type: "icaoracle/MsgRestoreOracleICA";
   value: MsgRestoreOracleICAAmino;
 }
 /** Restore's a closed ICA channel for a given oracle */
@@ -132,7 +132,7 @@ export interface MsgToggleOracleAmino {
   active?: boolean;
 }
 export interface MsgToggleOracleAminoMsg {
-  type: "stride/x/icaoracle/MsgToggleOracle";
+  type: "icaoracle/MsgToggleOracle";
   value: MsgToggleOracleAmino;
 }
 /** Toggle's whether an oracle is active and should receive metric updates */
@@ -175,7 +175,7 @@ export interface MsgRemoveOracleAmino {
   oracle_chain_id?: string;
 }
 export interface MsgRemoveOracleAminoMsg {
-  type: "stride/x/icaoracle/MsgRemoveOracle";
+  type: "icaoracle/MsgRemoveOracle";
   value: MsgRemoveOracleAmino;
 }
 /** Removes an oracle completely */
@@ -258,7 +258,7 @@ export const MsgAddOracle = {
   },
   toAminoMsg(message: MsgAddOracle): MsgAddOracleAminoMsg {
     return {
-      type: "stride/x/icaoracle/MsgAddOracle",
+      type: "icaoracle/MsgAddOracle",
       value: MsgAddOracle.toAmino(message)
     };
   },
@@ -413,7 +413,7 @@ export const MsgInstantiateOracle = {
   },
   toAminoMsg(message: MsgInstantiateOracle): MsgInstantiateOracleAminoMsg {
     return {
-      type: "stride/x/icaoracle/MsgInstantiateOracle",
+      type: "icaoracle/MsgInstantiateOracle",
       value: MsgInstantiateOracle.toAmino(message)
     };
   },
@@ -544,7 +544,7 @@ export const MsgRestoreOracleICA = {
   },
   toAminoMsg(message: MsgRestoreOracleICA): MsgRestoreOracleICAAminoMsg {
     return {
-      type: "stride/x/icaoracle/MsgRestoreOracleICA",
+      type: "icaoracle/MsgRestoreOracleICA",
       value: MsgRestoreOracleICA.toAmino(message)
     };
   },
@@ -687,7 +687,7 @@ export const MsgToggleOracle = {
   },
   toAminoMsg(message: MsgToggleOracle): MsgToggleOracleAminoMsg {
     return {
-      type: "stride/x/icaoracle/MsgToggleOracle",
+      type: "icaoracle/MsgToggleOracle",
       value: MsgToggleOracle.toAmino(message)
     };
   },
@@ -818,7 +818,7 @@ export const MsgRemoveOracle = {
   },
   toAminoMsg(message: MsgRemoveOracle): MsgRemoveOracleAminoMsg {
     return {
-      type: "stride/x/icaoracle/MsgRemoveOracle",
+      type: "icaoracle/MsgRemoveOracle",
       value: MsgRemoveOracle.toAmino(message)
     };
   },

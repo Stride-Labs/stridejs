@@ -92,7 +92,7 @@ export interface StridePeriodicVestingAccountAmino {
   vesting_periods?: PeriodAmino[];
 }
 export interface StridePeriodicVestingAccountAminoMsg {
-  type: "/stride.vesting.StridePeriodicVestingAccount";
+  type: "cosmos-sdk/StridePeriodicVestingAccount";
   value: StridePeriodicVestingAccountAmino;
 }
 /**
@@ -384,6 +384,12 @@ export const StridePeriodicVestingAccount = {
   },
   fromAminoMsg(object: StridePeriodicVestingAccountAminoMsg): StridePeriodicVestingAccount {
     return StridePeriodicVestingAccount.fromAmino(object.value);
+  },
+  toAminoMsg(message: StridePeriodicVestingAccount): StridePeriodicVestingAccountAminoMsg {
+    return {
+      type: "cosmos-sdk/StridePeriodicVestingAccount",
+      value: StridePeriodicVestingAccount.toAmino(message)
+    };
   },
   fromProtoMsg(message: StridePeriodicVestingAccountProtoMsg): StridePeriodicVestingAccount {
     return StridePeriodicVestingAccount.decode(message.value);

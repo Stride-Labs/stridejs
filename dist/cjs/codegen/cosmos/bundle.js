@@ -142,21 +142,20 @@ var _110 = __toESM(require("./slashing/v1beta1/tx"));
 var _111 = __toESM(require("./staking/module/v1/module"));
 var _112 = __toESM(require("./staking/v1beta1/authz"));
 var _113 = __toESM(require("./staking/v1beta1/genesis"));
-var _114 = __toESM(require("./staking/v1beta1/lsm_tx"));
-var _115 = __toESM(require("./staking/v1beta1/query"));
-var _116 = __toESM(require("./staking/v1beta1/staking"));
-var _117 = __toESM(require("./staking/v1beta1/tx"));
-var _118 = __toESM(require("./tx/config/v1/config"));
-var _119 = __toESM(require("./tx/signing/v1beta1/signing"));
-var _120 = __toESM(require("./tx/v1beta1/service"));
-var _121 = __toESM(require("./tx/v1beta1/tx"));
-var _122 = __toESM(require("./upgrade/module/v1/module"));
-var _123 = __toESM(require("./upgrade/v1beta1/query"));
-var _124 = __toESM(require("./upgrade/v1beta1/tx"));
-var _125 = __toESM(require("./upgrade/v1beta1/upgrade"));
-var _126 = __toESM(require("./vesting/module/v1/module"));
-var _127 = __toESM(require("./vesting/v1beta1/tx"));
-var _128 = __toESM(require("./vesting/v1beta1/vesting"));
+var _114 = __toESM(require("./staking/v1beta1/query"));
+var _115 = __toESM(require("./staking/v1beta1/staking"));
+var _116 = __toESM(require("./staking/v1beta1/tx"));
+var _117 = __toESM(require("./tx/config/v1/config"));
+var _118 = __toESM(require("./tx/signing/v1beta1/signing"));
+var _119 = __toESM(require("./tx/v1beta1/service"));
+var _120 = __toESM(require("./tx/v1beta1/tx"));
+var _121 = __toESM(require("./upgrade/module/v1/module"));
+var _122 = __toESM(require("./upgrade/v1beta1/query"));
+var _123 = __toESM(require("./upgrade/v1beta1/tx"));
+var _124 = __toESM(require("./upgrade/v1beta1/upgrade"));
+var _125 = __toESM(require("./vesting/module/v1/module"));
+var _126 = __toESM(require("./vesting/v1beta1/tx"));
+var _127 = __toESM(require("./vesting/v1beta1/vesting"));
 var _265 = __toESM(require("./auth/v1beta1/tx.amino"));
 var _266 = __toESM(require("./authz/v1beta1/tx.amino"));
 var _267 = __toESM(require("./bank/v1beta1/tx.amino"));
@@ -700,7 +699,6 @@ var cosmos;
       ..._114,
       ..._115,
       ..._116,
-      ..._117,
       ..._279,
       ..._296,
       ..._318,
@@ -712,18 +710,18 @@ var cosmos;
     let config;
     ((config2) => {
       config2.v1 = {
-        ..._118
+        ..._117
       };
     })(config = tx2.config || (tx2.config = {}));
     let signing;
     ((signing2) => {
       signing2.v1beta1 = {
-        ..._119
+        ..._118
       };
     })(signing = tx2.signing || (tx2.signing = {}));
     tx2.v1beta1 = {
+      ..._119,
       ..._120,
-      ..._121,
       ..._319
     };
   })(tx = cosmos2.tx || (cosmos2.tx = {}));
@@ -732,13 +730,13 @@ var cosmos;
     let module2;
     ((module3) => {
       module3.v1 = {
-        ..._122
+        ..._121
       };
     })(module2 = upgrade2.module || (upgrade2.module = {}));
     upgrade2.v1beta1 = {
+      ..._122,
       ..._123,
       ..._124,
-      ..._125,
       ..._280,
       ..._297,
       ..._320,
@@ -750,12 +748,12 @@ var cosmos;
     let module2;
     ((module3) => {
       module3.v1 = {
-        ..._126
+        ..._125
       };
     })(module2 = vesting2.module || (vesting2.module = {}));
     vesting2.v1beta1 = {
+      ..._126,
       ..._127,
-      ..._128,
       ..._281,
       ..._298,
       ..._337

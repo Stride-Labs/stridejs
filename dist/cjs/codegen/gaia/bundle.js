@@ -27,46 +27,20 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var bundle_exports = {};
 __export(bundle_exports, {
-  cosmwasm: () => cosmwasm
+  gaia: () => gaia
 });
 module.exports = __toCommonJS(bundle_exports);
-var _128 = __toESM(require("./wasm/v1/authz"));
-var _129 = __toESM(require("./wasm/v1/genesis"));
-var _130 = __toESM(require("./wasm/v1/ibc"));
-var _131 = __toESM(require("./wasm/v1/proposal_legacy"));
-var _132 = __toESM(require("./wasm/v1/query"));
-var _133 = __toESM(require("./wasm/v1/tx"));
-var _134 = __toESM(require("./wasm/v1/types"));
-var _338 = __toESM(require("./wasm/v1/tx.amino"));
-var _339 = __toESM(require("./wasm/v1/tx.registry"));
-var _340 = __toESM(require("./wasm/v1/query.rpc.Query"));
-var _341 = __toESM(require("./wasm/v1/tx.rpc.msg"));
-var _413 = __toESM(require("./rpc.query"));
-var _414 = __toESM(require("./rpc.tx"));
-var cosmwasm;
-((cosmwasm2) => {
-  let wasm;
-  ((wasm2) => {
-    wasm2.v1 = {
-      ..._128,
-      ..._129,
-      ..._130,
-      ..._131,
-      ..._132,
-      ..._133,
-      ..._134,
-      ..._338,
-      ..._339,
-      ..._340,
-      ..._341
+var _135 = __toESM(require("./liquid/v1beta1/lsm_tx"));
+var gaia;
+((gaia2) => {
+  let liquid;
+  ((liquid2) => {
+    liquid2.v1beta1 = {
+      ..._135
     };
-  })(wasm = cosmwasm2.wasm || (cosmwasm2.wasm = {}));
-  cosmwasm2.ClientFactory = {
-    ..._413,
-    ..._414
-  };
-})(cosmwasm || (cosmwasm = {}));
+  })(liquid = gaia2.liquid || (gaia2.liquid = {}));
+})(gaia || (gaia = {}));
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  cosmwasm
+  gaia
 });

@@ -19,7 +19,7 @@ export interface AddValidatorsProposalAmino {
   deposit?: string;
 }
 export interface AddValidatorsProposalAminoMsg {
-  type: "/stride.stakeibc.AddValidatorsProposal";
+  type: "stakeibc/AddValidatorsProposal";
   value: AddValidatorsProposalAmino;
 }
 export interface AddValidatorsProposalSDKType {
@@ -48,7 +48,7 @@ export interface ToggleLSMProposalAmino {
   deposit?: string;
 }
 export interface ToggleLSMProposalAminoMsg {
-  type: "/stride.stakeibc.ToggleLSMProposal";
+  type: "stakeibc/ToggleLSMProposal";
   value: ToggleLSMProposalAmino;
 }
 export interface ToggleLSMProposalSDKType {
@@ -157,6 +157,12 @@ export const AddValidatorsProposal = {
   },
   fromAminoMsg(object: AddValidatorsProposalAminoMsg): AddValidatorsProposal {
     return AddValidatorsProposal.fromAmino(object.value);
+  },
+  toAminoMsg(message: AddValidatorsProposal): AddValidatorsProposalAminoMsg {
+    return {
+      type: "stakeibc/AddValidatorsProposal",
+      value: AddValidatorsProposal.toAmino(message)
+    };
   },
   fromProtoMsg(message: AddValidatorsProposalProtoMsg): AddValidatorsProposal {
     return AddValidatorsProposal.decode(message.value);
@@ -268,6 +274,12 @@ export const ToggleLSMProposal = {
   },
   fromAminoMsg(object: ToggleLSMProposalAminoMsg): ToggleLSMProposal {
     return ToggleLSMProposal.fromAmino(object.value);
+  },
+  toAminoMsg(message: ToggleLSMProposal): ToggleLSMProposalAminoMsg {
+    return {
+      type: "stakeibc/ToggleLSMProposal",
+      value: ToggleLSMProposal.toAmino(message)
+    };
   },
   fromProtoMsg(message: ToggleLSMProposalProtoMsg): ToggleLSMProposal {
     return ToggleLSMProposal.decode(message.value);
