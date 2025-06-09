@@ -13,6 +13,11 @@ export interface EpochInfoProtoMsg {
     typeUrl: "/stride.epochs.EpochInfo";
     value: Uint8Array;
 }
+/**
+ * @name EpochInfoAmino
+ * @package stride.epochs
+ * @see proto type: stride.epochs.EpochInfo
+ */
 export interface EpochInfoAmino {
     identifier?: string;
     start_time?: string;
@@ -43,7 +48,12 @@ export interface GenesisStateProtoMsg {
     typeUrl: "/stride.epochs.GenesisState";
     value: Uint8Array;
 }
-/** GenesisState defines the epochs module's genesis state. */
+/**
+ * GenesisState defines the epochs module's genesis state.
+ * @name GenesisStateAmino
+ * @package stride.epochs
+ * @see proto type: stride.epochs.GenesisState
+ */
 export interface GenesisStateAmino {
     epochs?: EpochInfoAmino[];
 }

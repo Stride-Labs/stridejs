@@ -1,5 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 var Action = /* @__PURE__ */ ((Action2) => {
   Action2[Action2["ACTION_FREE"] = 0] = "ACTION_FREE";
   Action2[Action2["ACTION_LIQUID_STAKE"] = 1] = "ACTION_LIQUID_STAKE";

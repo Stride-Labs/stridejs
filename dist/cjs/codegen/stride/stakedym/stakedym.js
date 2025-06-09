@@ -35,7 +35,7 @@ __export(stakedym_exports, {
 });
 module.exports = __toCommonJS(stakedym_exports);
 var import_binary = require("../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../decimals");
 var DelegationRecordStatus = /* @__PURE__ */ ((DelegationRecordStatus2) => {
   DelegationRecordStatus2[DelegationRecordStatus2["TRANSFER_IN_PROGRESS"] = 0] = "TRANSFER_IN_PROGRESS";
   DelegationRecordStatus2[DelegationRecordStatus2["TRANSFER_FAILED"] = 1] = "TRANSFER_FAILED";
@@ -199,22 +199,22 @@ const HostZone = {
       writer.uint32(90).string(message.safeAddressOnStride);
     }
     if (message.lastRedemptionRate !== "") {
-      writer.uint32(98).string(import_math.Decimal.fromUserInput(message.lastRedemptionRate, 18).atomics);
+      writer.uint32(98).string(import_decimals.Decimal.fromUserInput(message.lastRedemptionRate, 18).atomics);
     }
     if (message.redemptionRate !== "") {
-      writer.uint32(106).string(import_math.Decimal.fromUserInput(message.redemptionRate, 18).atomics);
+      writer.uint32(106).string(import_decimals.Decimal.fromUserInput(message.redemptionRate, 18).atomics);
     }
     if (message.minRedemptionRate !== "") {
-      writer.uint32(114).string(import_math.Decimal.fromUserInput(message.minRedemptionRate, 18).atomics);
+      writer.uint32(114).string(import_decimals.Decimal.fromUserInput(message.minRedemptionRate, 18).atomics);
     }
     if (message.maxRedemptionRate !== "") {
-      writer.uint32(122).string(import_math.Decimal.fromUserInput(message.maxRedemptionRate, 18).atomics);
+      writer.uint32(122).string(import_decimals.Decimal.fromUserInput(message.maxRedemptionRate, 18).atomics);
     }
     if (message.minInnerRedemptionRate !== "") {
-      writer.uint32(130).string(import_math.Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics);
+      writer.uint32(130).string(import_decimals.Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics);
     }
     if (message.maxInnerRedemptionRate !== "") {
-      writer.uint32(138).string(import_math.Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics);
+      writer.uint32(138).string(import_decimals.Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics);
     }
     if (message.delegatedBalance !== "") {
       writer.uint32(146).string(message.delegatedBalance);
@@ -268,22 +268,22 @@ const HostZone = {
           message.safeAddressOnStride = reader.string();
           break;
         case 12:
-          message.lastRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.lastRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 13:
-          message.redemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.redemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 14:
-          message.minRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.minRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 15:
-          message.maxRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.maxRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 16:
-          message.minInnerRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.minInnerRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 17:
-          message.maxInnerRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.maxInnerRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 18:
           message.delegatedBalance = reader.string();

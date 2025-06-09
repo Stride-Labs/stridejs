@@ -7,6 +7,11 @@ export interface TransferCallbackProtoMsg {
     typeUrl: "/stride.records.TransferCallback";
     value: Uint8Array;
 }
+/**
+ * @name TransferCallbackAmino
+ * @package stride.records
+ * @see proto type: stride.records.TransferCallback
+ */
 export interface TransferCallbackAmino {
     deposit_record_id?: string;
 }
@@ -24,6 +29,11 @@ export interface TransferLSMTokenCallbackProtoMsg {
     typeUrl: "/stride.records.TransferLSMTokenCallback";
     value: Uint8Array;
 }
+/**
+ * @name TransferLSMTokenCallbackAmino
+ * @package stride.records
+ * @see proto type: stride.records.TransferLSMTokenCallback
+ */
 export interface TransferLSMTokenCallbackAmino {
     deposit?: LSMTokenDepositAmino;
 }

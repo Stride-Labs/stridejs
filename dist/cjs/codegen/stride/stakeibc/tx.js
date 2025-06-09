@@ -72,7 +72,7 @@ module.exports = __toCommonJS(tx_exports);
 var import_validator = require("./validator");
 var import_coin = require("../../cosmos/base/v1beta1/coin");
 var import_binary = require("../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../decimals");
 var AuthzPermissionChange = /* @__PURE__ */ ((AuthzPermissionChange2) => {
   AuthzPermissionChange2[AuthzPermissionChange2["GRANT"] = 0] = "GRANT";
   AuthzPermissionChange2[AuthzPermissionChange2["REVOKE"] = 1] = "REVOKE";
@@ -124,10 +124,10 @@ const MsgUpdateInnerRedemptionRateBounds = {
       writer.uint32(18).string(message.chainId);
     }
     if (message.minInnerRedemptionRate !== "") {
-      writer.uint32(26).string(import_math.Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics);
+      writer.uint32(26).string(import_decimals.Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics);
     }
     if (message.maxInnerRedemptionRate !== "") {
-      writer.uint32(34).string(import_math.Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics);
+      writer.uint32(34).string(import_decimals.Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics);
     }
     return writer;
   },
@@ -145,10 +145,10 @@ const MsgUpdateInnerRedemptionRateBounds = {
           message.chainId = reader.string();
           break;
         case 3:
-          message.minInnerRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.minInnerRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 4:
-          message.maxInnerRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.maxInnerRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);
@@ -191,6 +191,12 @@ const MsgUpdateInnerRedemptionRateBounds = {
   },
   fromAminoMsg(object) {
     return MsgUpdateInnerRedemptionRateBounds.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/MsgUpdateRedemptionRateBounds",
+      value: MsgUpdateInnerRedemptionRateBounds.toAmino(message)
+    };
   },
   fromProtoMsg(message) {
     return MsgUpdateInnerRedemptionRateBounds.decode(message.value);
@@ -331,7 +337,7 @@ const MsgLiquidStake = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/LiquidStake",
+      type: "stakeibc/MsgLiquidStake",
       value: MsgLiquidStake.toAmino(message)
     };
   },
@@ -487,7 +493,7 @@ const MsgLSMLiquidStake = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/LSMLiquidStake",
+      type: "stakeibc/MsgLSMLiquidStake",
       value: MsgLSMLiquidStake.toAmino(message)
     };
   },
@@ -655,7 +661,7 @@ const MsgClearBalance = {
   },
   toAminoMsg(message) {
     return {
-      type: "still-no-defined",
+      type: "stakeibc/MsgClearBalance",
       value: MsgClearBalance.toAmino(message)
     };
   },
@@ -810,7 +816,7 @@ const MsgRedeemStake = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/RedeemStake",
+      type: "stakeibc/MsgRedeemStake",
       value: MsgRedeemStake.toAmino(message)
     };
   },
@@ -918,10 +924,10 @@ const MsgRegisterHostZone = {
       writer.uint32(88).uint64(message.unbondingPeriod);
     }
     if (message.minRedemptionRate !== "") {
-      writer.uint32(106).string(import_math.Decimal.fromUserInput(message.minRedemptionRate, 18).atomics);
+      writer.uint32(106).string(import_decimals.Decimal.fromUserInput(message.minRedemptionRate, 18).atomics);
     }
     if (message.maxRedemptionRate !== "") {
-      writer.uint32(114).string(import_math.Decimal.fromUserInput(message.maxRedemptionRate, 18).atomics);
+      writer.uint32(114).string(import_decimals.Decimal.fromUserInput(message.maxRedemptionRate, 18).atomics);
     }
     if (message.lsmLiquidStakeEnabled === true) {
       writer.uint32(120).bool(message.lsmLiquidStakeEnabled);
@@ -963,10 +969,10 @@ const MsgRegisterHostZone = {
           message.unbondingPeriod = reader.uint64();
           break;
         case 13:
-          message.minRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.minRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 14:
-          message.maxRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.maxRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 15:
           message.lsmLiquidStakeEnabled = reader.bool();
@@ -1061,7 +1067,7 @@ const MsgRegisterHostZone = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/RegisterHostZone",
+      type: "stakeibc/MsgRegisterHostZone",
       value: MsgRegisterHostZone.toAmino(message)
     };
   },
@@ -1216,7 +1222,7 @@ const MsgClaimUndelegatedTokens = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/ClaimUndelegatedTokens",
+      type: "stakeibc/MsgClaimUndelegatedTokens",
       value: MsgClaimUndelegatedTokens.toAmino(message)
     };
   },
@@ -1359,7 +1365,7 @@ const MsgRebalanceValidators = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/RebalanceValidators",
+      type: "stakeibc/MsgRebalanceValidators",
       value: MsgRebalanceValidators.toAmino(message)
     };
   },
@@ -1501,6 +1507,12 @@ const MsgAddValidators = {
   },
   fromAminoMsg(object) {
     return MsgAddValidators.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/MsgAddValidators",
+      value: MsgAddValidators.toAmino(message)
+    };
   },
   fromProtoMsg(message) {
     return MsgAddValidators.decode(message.value);
@@ -1716,6 +1728,12 @@ const MsgChangeValidatorWeights = {
   fromAminoMsg(object) {
     return MsgChangeValidatorWeights.fromAmino(object.value);
   },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/MsgChangeValidatorWeights",
+      value: MsgChangeValidatorWeights.toAmino(message)
+    };
+  },
   fromProtoMsg(message) {
     return MsgChangeValidatorWeights.decode(message.value);
   },
@@ -1855,7 +1873,7 @@ const MsgDeleteValidator = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/DeleteValidator",
+      type: "stakeibc/MsgDeleteValidator",
       value: MsgDeleteValidator.toAmino(message)
     };
   },
@@ -2010,7 +2028,7 @@ const MsgRestoreInterchainAccount = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/RestoreInterchainAccount",
+      type: "stakeibc/MsgRestoreInterchainAcco",
       value: MsgRestoreInterchainAccount.toAmino(message)
     };
   },
@@ -2138,6 +2156,12 @@ const MsgCloseDelegationChannel = {
   },
   fromAminoMsg(object) {
     return MsgCloseDelegationChannel.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/MsgCloseDelegationChanne",
+      value: MsgCloseDelegationChannel.toAmino(message)
+    };
   },
   fromProtoMsg(message) {
     return MsgCloseDelegationChannel.decode(message.value);
@@ -2278,7 +2302,7 @@ const MsgUpdateValidatorSharesExchRate = {
   },
   toAminoMsg(message) {
     return {
-      type: "stakeibc/UpdateValidatorSharesExchRate",
+      type: "stakeibc/MsgUpdateValSharesExchRate",
       value: MsgUpdateValidatorSharesExchRate.toAmino(message)
     };
   },
@@ -2419,6 +2443,12 @@ const MsgCalibrateDelegation = {
   fromAminoMsg(object) {
     return MsgCalibrateDelegation.fromAmino(object.value);
   },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/MsgCalibrateDelegation",
+      value: MsgCalibrateDelegation.toAmino(message)
+    };
+  },
   fromProtoMsg(message) {
     return MsgCalibrateDelegation.decode(message.value);
   },
@@ -2543,6 +2573,12 @@ const MsgResumeHostZone = {
   },
   fromAminoMsg(object) {
     return MsgResumeHostZone.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/MsgResumeHostZone",
+      value: MsgResumeHostZone.toAmino(message)
+    };
   },
   fromProtoMsg(message) {
     return MsgResumeHostZone.decode(message.value);
@@ -2851,7 +2887,7 @@ const MsgCreateTradeRoute = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/stakeibc/MsgCreateTradeRoute",
+      type: "stakeibc/MsgCreateTradeRoute",
       value: MsgCreateTradeRoute.toAmino(message)
     };
   },
@@ -2994,7 +3030,7 @@ const MsgDeleteTradeRoute = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/stakeibc/MsgDeleteTradeRoute",
+      type: "stakeibc/MsgDeleteTradeRoute",
       value: MsgDeleteTradeRoute.toAmino(message)
     };
   },
@@ -3197,7 +3233,7 @@ const MsgUpdateTradeRoute = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/stakeibc/MsgUpdateTradeRoute",
+      type: "stakeibc/MsgUpdateTradeRoute",
       value: MsgUpdateTradeRoute.toAmino(message)
     };
   },
@@ -3282,7 +3318,7 @@ const MsgSetCommunityPoolRebate = {
       writer.uint32(18).string(message.chainId);
     }
     if (message.rebateRate !== "") {
-      writer.uint32(26).string(import_math.Decimal.fromUserInput(message.rebateRate, 18).atomics);
+      writer.uint32(26).string(import_decimals.Decimal.fromUserInput(message.rebateRate, 18).atomics);
     }
     if (message.liquidStakedStTokenAmount !== "") {
       writer.uint32(34).string(message.liquidStakedStTokenAmount);
@@ -3303,7 +3339,7 @@ const MsgSetCommunityPoolRebate = {
           message.chainId = reader.string();
           break;
         case 3:
-          message.rebateRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.rebateRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 4:
           message.liquidStakedStTokenAmount = reader.string();
@@ -3352,7 +3388,7 @@ const MsgSetCommunityPoolRebate = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/stakeibc/MsgSetCommunityPoolRebate",
+      type: "stakeibc/MsgSetCommunityPoolRebate",
       value: MsgSetCommunityPoolRebate.toAmino(message)
     };
   },
@@ -3519,7 +3555,7 @@ const MsgToggleTradeController = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/stakeibc/MsgToggleTradeController",
+      type: "stakeibc/MsgToggleTradeController",
       value: MsgToggleTradeController.toAmino(message)
     };
   },
@@ -3662,7 +3698,7 @@ const MsgUpdateHostZoneParams = {
   },
   toAminoMsg(message) {
     return {
-      type: "stride/x/stakeibc/MsgUpdateHostZoneParams",
+      type: "stakeibc/MsgUpdateHostZoneParams",
       value: MsgUpdateHostZoneParams.toAmino(message)
     };
   },

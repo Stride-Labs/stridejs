@@ -12,7 +12,12 @@ export interface MsgRegisterInterchainAccountProtoMsg {
     typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccount";
     value: Uint8Array;
 }
-/** MsgRegisterInterchainAccount defines the payload for Msg/RegisterAccount */
+/**
+ * MsgRegisterInterchainAccount defines the payload for Msg/RegisterAccount
+ * @name MsgRegisterInterchainAccountAmino
+ * @package ibc.applications.interchain_accounts.controller.v1
+ * @see proto type: ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccount
+ */
 export interface MsgRegisterInterchainAccountAmino {
     owner?: string;
     connection_id?: string;
@@ -39,7 +44,12 @@ export interface MsgRegisterInterchainAccountResponseProtoMsg {
     typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccountResponse";
     value: Uint8Array;
 }
-/** MsgRegisterInterchainAccountResponse defines the response for Msg/RegisterAccount */
+/**
+ * MsgRegisterInterchainAccountResponse defines the response for Msg/RegisterAccount
+ * @name MsgRegisterInterchainAccountResponseAmino
+ * @package ibc.applications.interchain_accounts.controller.v1
+ * @see proto type: ibc.applications.interchain_accounts.controller.v1.MsgRegisterInterchainAccountResponse
+ */
 export interface MsgRegisterInterchainAccountResponseAmino {
     channel_id?: string;
     port_id?: string;
@@ -68,7 +78,12 @@ export interface MsgSendTxProtoMsg {
     typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgSendTx";
     value: Uint8Array;
 }
-/** MsgSendTx defines the payload for Msg/SendTx */
+/**
+ * MsgSendTx defines the payload for Msg/SendTx
+ * @name MsgSendTxAmino
+ * @package ibc.applications.interchain_accounts.controller.v1
+ * @see proto type: ibc.applications.interchain_accounts.controller.v1.MsgSendTx
+ */
 export interface MsgSendTxAmino {
     owner?: string;
     connection_id?: string;
@@ -98,7 +113,12 @@ export interface MsgSendTxResponseProtoMsg {
     typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgSendTxResponse";
     value: Uint8Array;
 }
-/** MsgSendTxResponse defines the response for MsgSendTx */
+/**
+ * MsgSendTxResponse defines the response for MsgSendTx
+ * @name MsgSendTxResponseAmino
+ * @package ibc.applications.interchain_accounts.controller.v1
+ * @see proto type: ibc.applications.interchain_accounts.controller.v1.MsgSendTxResponse
+ */
 export interface MsgSendTxResponseAmino {
     sequence?: string;
 }

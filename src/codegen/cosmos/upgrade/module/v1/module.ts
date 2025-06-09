@@ -8,9 +8,16 @@ export interface ModuleProtoMsg {
   typeUrl: "/cosmos.upgrade.module.v1.Module";
   value: Uint8Array;
 }
-/** Module is the config object of the upgrade module. */
+/**
+ * Module is the config object of the upgrade module.
+ * @name ModuleAmino
+ * @package cosmos.upgrade.module.v1
+ * @see proto type: cosmos.upgrade.module.v1.Module
+ */
 export interface ModuleAmino {
-  /** authority defines the custom module authority. If not set, defaults to the governance module. */
+  /**
+   * authority defines the custom module authority. If not set, defaults to the governance module.
+   */
   authority?: string;
 }
 export interface ModuleAminoMsg {

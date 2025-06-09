@@ -29,9 +29,14 @@ export interface ParamsProtoMsg {
 /**
  * Params defines the parameters for the module.
  * next id: 20
+ * @name ParamsAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.Params
  */
 export interface ParamsAmino {
-  /** define epoch lengths, in stride_epochs */
+  /**
+   * define epoch lengths, in stride_epochs
+   */
   rewards_interval?: string;
   delegate_interval?: string;
   deposit_interval?: string;

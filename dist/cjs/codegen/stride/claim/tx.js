@@ -29,7 +29,7 @@ __export(tx_exports, {
 module.exports = __toCommonJS(tx_exports);
 var import_coin = require("../../cosmos/base/v1beta1/coin");
 var import_binary = require("../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../decimals");
 function createBaseMsgSetAirdropAllocations() {
   return {
     allocator: "",
@@ -51,7 +51,7 @@ const MsgSetAirdropAllocations = {
       writer.uint32(26).string(v);
     }
     for (const v of message.weights) {
-      writer.uint32(34).string(import_math.Decimal.fromUserInput(v, 18).atomics);
+      writer.uint32(34).string(import_decimals.Decimal.fromUserInput(v, 18).atomics);
     }
     return writer;
   },
@@ -72,7 +72,7 @@ const MsgSetAirdropAllocations = {
           message.users.push(reader.string());
           break;
         case 4:
-          message.weights.push(import_math.Decimal.fromAtomics(reader.string(), 18).toString());
+          message.weights.push(import_decimals.Decimal.fromAtomics(reader.string(), 18).toString());
           break;
         default:
           reader.skipType(tag & 7);
@@ -119,6 +119,12 @@ const MsgSetAirdropAllocations = {
   },
   fromAminoMsg(object) {
     return MsgSetAirdropAllocations.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "claim/MsgSetAirdropAllocations",
+      value: MsgSetAirdropAllocations.toAmino(message)
+    };
   },
   fromProtoMsg(message) {
     return MsgSetAirdropAllocations.decode(message.value);
@@ -235,7 +241,7 @@ const MsgClaimFreeAmount = {
   },
   toAminoMsg(message) {
     return {
-      type: "claim/ClaimFreeAmount",
+      type: "claim/MsgClaimFreeAmount",
       value: MsgClaimFreeAmount.toAmino(message)
     };
   },
@@ -439,6 +445,12 @@ const MsgCreateAirdrop = {
   fromAminoMsg(object) {
     return MsgCreateAirdrop.fromAmino(object.value);
   },
+  toAminoMsg(message) {
+    return {
+      type: "claim/MsgCreateAirdrop",
+      value: MsgCreateAirdrop.toAmino(message)
+    };
+  },
   fromProtoMsg(message) {
     return MsgCreateAirdrop.decode(message.value);
   },
@@ -563,6 +575,12 @@ const MsgDeleteAirdrop = {
   },
   fromAminoMsg(object) {
     return MsgDeleteAirdrop.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "claim/MsgDeleteAirdrop",
+      value: MsgDeleteAirdrop.toAmino(message)
+    };
   },
   fromProtoMsg(message) {
     return MsgDeleteAirdrop.decode(message.value);

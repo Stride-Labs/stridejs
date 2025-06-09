@@ -27,7 +27,7 @@ __export(auction_exports, {
 });
 module.exports = __toCommonJS(auction_exports);
 var import_binary = require("../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../decimals");
 var AuctionType = /* @__PURE__ */ ((AuctionType2) => {
   AuctionType2[AuctionType2["AUCTION_TYPE_UNSPECIFIED"] = 0] = "AUCTION_TYPE_UNSPECIFIED";
   AuctionType2[AuctionType2["AUCTION_TYPE_FCFS"] = 1] = "AUCTION_TYPE_FCFS";
@@ -144,7 +144,7 @@ const Auction = {
       writer.uint32(40).bool(message.enabled);
     }
     if (message.minPriceMultiplier !== "") {
-      writer.uint32(50).string(import_math.Decimal.fromUserInput(message.minPriceMultiplier, 18).atomics);
+      writer.uint32(50).string(import_decimals.Decimal.fromUserInput(message.minPriceMultiplier, 18).atomics);
     }
     if (message.minBidAmount !== "") {
       writer.uint32(58).string(message.minBidAmount);
@@ -183,7 +183,7 @@ const Auction = {
           message.enabled = reader.bool();
           break;
         case 6:
-          message.minPriceMultiplier = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.minPriceMultiplier = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 7:
           message.minBidAmount = reader.string();

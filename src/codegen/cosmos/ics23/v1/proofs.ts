@@ -204,6 +204,9 @@ export interface ExistenceProofProtoMsg {
  * With LengthOp this is tricker but not impossible. Which is why the "leafPrefixEqual" field
  * in the ProofSpec is valuable to prevent this mutability. And why all trees should
  * length-prefix the data before hashing it.
+ * @name ExistenceProofAmino
+ * @package cosmos.ics23.v1
+ * @see proto type: cosmos.ics23.v1.ExistenceProof
  */
 export interface ExistenceProofAmino {
   key?: string;
@@ -261,9 +264,14 @@ export interface NonExistenceProofProtoMsg {
  * NonExistenceProof takes a proof of two neighbors, one left of the desired key,
  * one right of the desired key. If both proofs are valid AND they are neighbors,
  * then there is no valid proof for the given key.
+ * @name NonExistenceProofAmino
+ * @package cosmos.ics23.v1
+ * @see proto type: cosmos.ics23.v1.NonExistenceProof
  */
 export interface NonExistenceProofAmino {
-  /** TODO: remove this as unnecessary??? we prove a range */
+  /**
+   * TODO: remove this as unnecessary??? we prove a range
+   */
   key?: string;
   left?: ExistenceProofAmino;
   right?: ExistenceProofAmino;
@@ -293,7 +301,12 @@ export interface CommitmentProofProtoMsg {
   typeUrl: "/cosmos.ics23.v1.CommitmentProof";
   value: Uint8Array;
 }
-/** CommitmentProof is either an ExistenceProof or a NonExistenceProof, or a Batch of such messages */
+/**
+ * CommitmentProof is either an ExistenceProof or a NonExistenceProof, or a Batch of such messages
+ * @name CommitmentProofAmino
+ * @package cosmos.ics23.v1
+ * @see proto type: cosmos.ics23.v1.CommitmentProof
+ */
 export interface CommitmentProofAmino {
   exist?: ExistenceProofAmino;
   nonexist?: NonExistenceProofAmino;
@@ -357,6 +370,9 @@ export interface LeafOpProtoMsg {
  * 
  * Then combine the bytes, and hash it
  * output = hash(prefix || length(hkey) || hkey || length(hvalue) || hvalue)
+ * @name LeafOpAmino
+ * @package cosmos.ics23.v1
+ * @see proto type: cosmos.ics23.v1.LeafOp
  */
 export interface LeafOpAmino {
   hash?: HashOp;
@@ -438,6 +454,9 @@ export interface InnerOpProtoMsg {
  * Any special data, like prepending child with the length, or prepending the entire operation with
  * some value to differentiate from leaf nodes, should be included in prefix and suffix.
  * If either of prefix or suffix is empty, we just treat it as an empty string
+ * @name InnerOpAmino
+ * @package cosmos.ics23.v1
+ * @see proto type: cosmos.ics23.v1.InnerOp
  */
 export interface InnerOpAmino {
   hash?: HashOp;
@@ -509,6 +528,9 @@ export interface ProofSpecProtoMsg {
  * generate a given hash (by interpretting the preimage differently).
  * We need this for proper security, requires client knows a priori what
  * tree format server uses. But not in code, rather a configuration object.
+ * @name ProofSpecAmino
+ * @package cosmos.ics23.v1
+ * @see proto type: cosmos.ics23.v1.ProofSpec
  */
 export interface ProofSpecAmino {
   /**
@@ -517,9 +539,13 @@ export interface ProofSpecAmino {
    */
   leaf_spec?: LeafOpAmino;
   inner_spec?: InnerSpecAmino;
-  /** max_depth (if > 0) is the maximum number of InnerOps allowed (mainly for fixed-depth tries) */
+  /**
+   * max_depth (if > 0) is the maximum number of InnerOps allowed (mainly for fixed-depth tries)
+   */
   max_depth?: number;
-  /** min_depth (if > 0) is the minimum number of InnerOps allowed (mainly for fixed-depth tries) */
+  /**
+   * min_depth (if > 0) is the minimum number of InnerOps allowed (mainly for fixed-depth tries)
+   */
   min_depth?: number;
 }
 export interface ProofSpecAminoMsg {
@@ -582,6 +608,9 @@ export interface InnerSpecProtoMsg {
  * isLeftMost(spec: InnerSpec, op: InnerOp)
  * isRightMost(spec: InnerSpec, op: InnerOp)
  * isLeftNeighbor(spec: InnerSpec, left: InnerOp, right: InnerOp)
+ * @name InnerSpecAmino
+ * @package cosmos.ics23.v1
+ * @see proto type: cosmos.ics23.v1.InnerSpec
  */
 export interface InnerSpecAmino {
   /**
@@ -593,9 +622,13 @@ export interface InnerSpecAmino {
   child_size?: number;
   min_prefix_length?: number;
   max_prefix_length?: number;
-  /** empty child is the prehash image that is used when one child is nil (eg. 20 bytes of 0) */
+  /**
+   * empty child is the prehash image that is used when one child is nil (eg. 20 bytes of 0)
+   */
   empty_child?: string;
-  /** hash is the algorithm that must be used for each InnerOp */
+  /**
+   * hash is the algorithm that must be used for each InnerOp
+   */
   hash?: HashOp;
 }
 export interface InnerSpecAminoMsg {
@@ -628,7 +661,12 @@ export interface BatchProofProtoMsg {
   typeUrl: "/cosmos.ics23.v1.BatchProof";
   value: Uint8Array;
 }
-/** BatchProof is a group of multiple proof types than can be compressed */
+/**
+ * BatchProof is a group of multiple proof types than can be compressed
+ * @name BatchProofAmino
+ * @package cosmos.ics23.v1
+ * @see proto type: cosmos.ics23.v1.BatchProof
+ */
 export interface BatchProofAmino {
   entries?: BatchEntryAmino[];
 }
@@ -649,7 +687,12 @@ export interface BatchEntryProtoMsg {
   typeUrl: "/cosmos.ics23.v1.BatchEntry";
   value: Uint8Array;
 }
-/** Use BatchEntry not CommitmentProof, to avoid recursion */
+/**
+ * Use BatchEntry not CommitmentProof, to avoid recursion
+ * @name BatchEntryAmino
+ * @package cosmos.ics23.v1
+ * @see proto type: cosmos.ics23.v1.BatchEntry
+ */
 export interface BatchEntryAmino {
   exist?: ExistenceProofAmino;
   nonexist?: NonExistenceProofAmino;
@@ -671,6 +714,11 @@ export interface CompressedBatchProofProtoMsg {
   typeUrl: "/cosmos.ics23.v1.CompressedBatchProof";
   value: Uint8Array;
 }
+/**
+ * @name CompressedBatchProofAmino
+ * @package cosmos.ics23.v1
+ * @see proto type: cosmos.ics23.v1.CompressedBatchProof
+ */
 export interface CompressedBatchProofAmino {
   entries?: CompressedBatchEntryAmino[];
   lookup_inners?: InnerOpAmino[];
@@ -692,7 +740,12 @@ export interface CompressedBatchEntryProtoMsg {
   typeUrl: "/cosmos.ics23.v1.CompressedBatchEntry";
   value: Uint8Array;
 }
-/** Use BatchEntry not CommitmentProof, to avoid recursion */
+/**
+ * Use BatchEntry not CommitmentProof, to avoid recursion
+ * @name CompressedBatchEntryAmino
+ * @package cosmos.ics23.v1
+ * @see proto type: cosmos.ics23.v1.CompressedBatchEntry
+ */
 export interface CompressedBatchEntryAmino {
   exist?: CompressedExistenceProofAmino;
   nonexist?: CompressedNonExistenceProofAmino;
@@ -717,11 +770,18 @@ export interface CompressedExistenceProofProtoMsg {
   typeUrl: "/cosmos.ics23.v1.CompressedExistenceProof";
   value: Uint8Array;
 }
+/**
+ * @name CompressedExistenceProofAmino
+ * @package cosmos.ics23.v1
+ * @see proto type: cosmos.ics23.v1.CompressedExistenceProof
+ */
 export interface CompressedExistenceProofAmino {
   key?: string;
   value?: string;
   leaf?: LeafOpAmino;
-  /** these are indexes into the lookup_inners table in CompressedBatchProof */
+  /**
+   * these are indexes into the lookup_inners table in CompressedBatchProof
+   */
   path?: number[];
 }
 export interface CompressedExistenceProofAminoMsg {
@@ -744,8 +804,15 @@ export interface CompressedNonExistenceProofProtoMsg {
   typeUrl: "/cosmos.ics23.v1.CompressedNonExistenceProof";
   value: Uint8Array;
 }
+/**
+ * @name CompressedNonExistenceProofAmino
+ * @package cosmos.ics23.v1
+ * @see proto type: cosmos.ics23.v1.CompressedNonExistenceProof
+ */
 export interface CompressedNonExistenceProofAmino {
-  /** TODO: remove this as unnecessary??? we prove a range */
+  /**
+   * TODO: remove this as unnecessary??? we prove a range
+   */
   key?: string;
   left?: CompressedExistenceProofAmino;
   right?: CompressedExistenceProofAmino;

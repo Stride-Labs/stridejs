@@ -23,13 +23,22 @@ export declare type MsgGrantAllowanceEncoded = Omit<MsgGrantAllowance, "allowanc
 /**
  * MsgGrantAllowance adds permission for Grantee to spend up to Allowance
  * of fees from the account of Granter.
+ * @name MsgGrantAllowanceAmino
+ * @package cosmos.feegrant.v1beta1
+ * @see proto type: cosmos.feegrant.v1beta1.MsgGrantAllowance
  */
 export interface MsgGrantAllowanceAmino {
-    /** granter is the address of the user granting an allowance of their funds. */
+    /**
+     * granter is the address of the user granting an allowance of their funds.
+     */
     granter?: string;
-    /** grantee is the address of the user being granted an allowance of another user's funds. */
+    /**
+     * grantee is the address of the user being granted an allowance of another user's funds.
+     */
     grantee?: string;
-    /** allowance can be any of basic, periodic, allowed fee allowance. */
+    /**
+     * allowance can be any of basic, periodic, allowed fee allowance.
+     */
     allowance?: AnyAmino;
 }
 export interface MsgGrantAllowanceAminoMsg {
@@ -52,7 +61,12 @@ export interface MsgGrantAllowanceResponseProtoMsg {
     typeUrl: "/cosmos.feegrant.v1beta1.MsgGrantAllowanceResponse";
     value: Uint8Array;
 }
-/** MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response type. */
+/**
+ * MsgGrantAllowanceResponse defines the Msg/GrantAllowanceResponse response type.
+ * @name MsgGrantAllowanceResponseAmino
+ * @package cosmos.feegrant.v1beta1
+ * @see proto type: cosmos.feegrant.v1beta1.MsgGrantAllowanceResponse
+ */
 export interface MsgGrantAllowanceResponseAmino {
 }
 export interface MsgGrantAllowanceResponseAminoMsg {
@@ -73,11 +87,20 @@ export interface MsgRevokeAllowanceProtoMsg {
     typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance";
     value: Uint8Array;
 }
-/** MsgRevokeAllowance removes any existing Allowance from Granter to Grantee. */
+/**
+ * MsgRevokeAllowance removes any existing Allowance from Granter to Grantee.
+ * @name MsgRevokeAllowanceAmino
+ * @package cosmos.feegrant.v1beta1
+ * @see proto type: cosmos.feegrant.v1beta1.MsgRevokeAllowance
+ */
 export interface MsgRevokeAllowanceAmino {
-    /** granter is the address of the user granting an allowance of their funds. */
+    /**
+     * granter is the address of the user granting an allowance of their funds.
+     */
     granter?: string;
-    /** grantee is the address of the user being granted an allowance of another user's funds. */
+    /**
+     * grantee is the address of the user being granted an allowance of another user's funds.
+     */
     grantee?: string;
 }
 export interface MsgRevokeAllowanceAminoMsg {
@@ -96,7 +119,12 @@ export interface MsgRevokeAllowanceResponseProtoMsg {
     typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowanceResponse";
     value: Uint8Array;
 }
-/** MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response type. */
+/**
+ * MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response type.
+ * @name MsgRevokeAllowanceResponseAmino
+ * @package cosmos.feegrant.v1beta1
+ * @see proto type: cosmos.feegrant.v1beta1.MsgRevokeAllowanceResponse
+ */
 export interface MsgRevokeAllowanceResponseAmino {
 }
 export interface MsgRevokeAllowanceResponseAminoMsg {

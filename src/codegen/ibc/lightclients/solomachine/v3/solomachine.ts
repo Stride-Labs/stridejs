@@ -19,11 +19,18 @@ export interface ClientStateProtoMsg {
 /**
  * ClientState defines a solo machine client that tracks the current consensus
  * state and if the client is frozen.
+ * @name ClientStateAmino
+ * @package ibc.lightclients.solomachine.v3
+ * @see proto type: ibc.lightclients.solomachine.v3.ClientState
  */
 export interface ClientStateAmino {
-  /** latest sequence of the client state */
+  /**
+   * latest sequence of the client state
+   */
   sequence?: string;
-  /** frozen sequence of the solo machine */
+  /**
+   * frozen sequence of the solo machine
+   */
   is_frozen?: boolean;
   consensus_state?: ConsensusStateAmino;
 }
@@ -64,9 +71,14 @@ export interface ConsensusStateProtoMsg {
  * ConsensusState defines a solo machine consensus state. The sequence of a
  * consensus state is contained in the "height" key used in storing the
  * consensus state.
+ * @name ConsensusStateAmino
+ * @package ibc.lightclients.solomachine.v3
+ * @see proto type: ibc.lightclients.solomachine.v3.ConsensusState
  */
 export interface ConsensusStateAmino {
-  /** public key of the solo machine */
+  /**
+   * public key of the solo machine
+   */
   public_key?: AnyAmino;
   /**
    * diversifier allows the same public key to be re-used across different solo
@@ -101,7 +113,12 @@ export interface HeaderProtoMsg {
   typeUrl: "/ibc.lightclients.solomachine.v3.Header";
   value: Uint8Array;
 }
-/** Header defines a solo machine consensus header */
+/**
+ * Header defines a solo machine consensus header
+ * @name HeaderAmino
+ * @package ibc.lightclients.solomachine.v3
+ * @see proto type: ibc.lightclients.solomachine.v3.Header
+ */
 export interface HeaderAmino {
   timestamp?: string;
   signature?: string;
@@ -135,6 +152,9 @@ export interface MisbehaviourProtoMsg {
 /**
  * Misbehaviour defines misbehaviour for a solo machine which consists
  * of a sequence and two signatures over different messages at that sequence.
+ * @name MisbehaviourAmino
+ * @package ibc.lightclients.solomachine.v3
+ * @see proto type: ibc.lightclients.solomachine.v3.Misbehaviour
  */
 export interface MisbehaviourAmino {
   sequence?: string;
@@ -171,6 +191,9 @@ export interface SignatureAndDataProtoMsg {
 /**
  * SignatureAndData contains a signature and the data signed over to create that
  * signature.
+ * @name SignatureAndDataAmino
+ * @package ibc.lightclients.solomachine.v3
+ * @see proto type: ibc.lightclients.solomachine.v3.SignatureAndData
  */
 export interface SignatureAndDataAmino {
   signature?: string;
@@ -207,6 +230,9 @@ export interface TimestampedSignatureDataProtoMsg {
 /**
  * TimestampedSignatureData contains the signature data and the timestamp of the
  * signature.
+ * @name TimestampedSignatureDataAmino
+ * @package ibc.lightclients.solomachine.v3
+ * @see proto type: ibc.lightclients.solomachine.v3.TimestampedSignatureData
  */
 export interface TimestampedSignatureDataAmino {
   signature_data?: string;
@@ -241,17 +267,32 @@ export interface SignBytesProtoMsg {
   typeUrl: "/ibc.lightclients.solomachine.v3.SignBytes";
   value: Uint8Array;
 }
-/** SignBytes defines the signed bytes used for signature verification. */
+/**
+ * SignBytes defines the signed bytes used for signature verification.
+ * @name SignBytesAmino
+ * @package ibc.lightclients.solomachine.v3
+ * @see proto type: ibc.lightclients.solomachine.v3.SignBytes
+ */
 export interface SignBytesAmino {
-  /** the sequence number */
+  /**
+   * the sequence number
+   */
   sequence?: string;
-  /** the proof timestamp */
+  /**
+   * the proof timestamp
+   */
   timestamp?: string;
-  /** the public key diversifier */
+  /**
+   * the public key diversifier
+   */
   diversifier?: string;
-  /** the standardised path bytes */
+  /**
+   * the standardised path bytes
+   */
   path?: string;
-  /** the marshaled data bytes */
+  /**
+   * the marshaled data bytes
+   */
   data?: string;
 }
 export interface SignBytesAminoMsg {
@@ -277,11 +318,20 @@ export interface HeaderDataProtoMsg {
   typeUrl: "/ibc.lightclients.solomachine.v3.HeaderData";
   value: Uint8Array;
 }
-/** HeaderData returns the SignBytes data for update verification. */
+/**
+ * HeaderData returns the SignBytes data for update verification.
+ * @name HeaderDataAmino
+ * @package ibc.lightclients.solomachine.v3
+ * @see proto type: ibc.lightclients.solomachine.v3.HeaderData
+ */
 export interface HeaderDataAmino {
-  /** header public key */
+  /**
+   * header public key
+   */
   new_pub_key?: AnyAmino;
-  /** header diversifier */
+  /**
+   * header diversifier
+   */
   new_diversifier?: string;
 }
 export interface HeaderDataAminoMsg {

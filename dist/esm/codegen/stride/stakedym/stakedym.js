@@ -1,5 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 var DelegationRecordStatus = /* @__PURE__ */ ((DelegationRecordStatus2) => {
   DelegationRecordStatus2[DelegationRecordStatus2["TRANSFER_IN_PROGRESS"] = 0] = "TRANSFER_IN_PROGRESS";
   DelegationRecordStatus2[DelegationRecordStatus2["TRANSFER_FAILED"] = 1] = "TRANSFER_FAILED";

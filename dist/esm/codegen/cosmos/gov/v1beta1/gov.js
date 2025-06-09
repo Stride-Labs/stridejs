@@ -8,7 +8,7 @@ import { SoftwareUpgradeProposal, CancelSoftwareUpgradeProposal } from "../../up
 import { StoreCodeProposal, InstantiateContractProposal, InstantiateContract2Proposal, MigrateContractProposal, SudoContractProposal, ExecuteContractProposal, UpdateAdminProposal, ClearAdminProposal, PinCodesProposal, UnpinCodesProposal, UpdateInstantiateConfigProposal, StoreAndInstantiateContractProposal } from "../../../cosmwasm/wasm/v1/proposal_legacy";
 import { ClientUpdateProposal, UpgradeProposal } from "../../../ibc/core/client/v1/client";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../../decimals";
 import { toTimestamp, fromTimestamp, bytesFromBase64, base64FromBytes } from "../../../helpers";
 var VoteOption = /* @__PURE__ */ ((VoteOption2) => {
   VoteOption2[VoteOption2["VOTE_OPTION_UNSPECIFIED"] = 0] = "VOTE_OPTION_UNSPECIFIED";

@@ -8,7 +8,12 @@ export interface QueryOracleRequestProtoMsg {
   typeUrl: "/stride.icaoracle.QueryOracleRequest";
   value: Uint8Array;
 }
-/** Query's a specific oracle */
+/**
+ * Query's a specific oracle
+ * @name QueryOracleRequestAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.QueryOracleRequest
+ */
 export interface QueryOracleRequestAmino {
   chain_id?: string;
 }
@@ -27,6 +32,11 @@ export interface QueryOracleResponseProtoMsg {
   typeUrl: "/stride.icaoracle.QueryOracleResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryOracleResponseAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.QueryOracleResponse
+ */
 export interface QueryOracleResponseAmino {
   oracle?: OracleAmino;
 }
@@ -43,7 +53,12 @@ export interface QueryAllOraclesRequestProtoMsg {
   typeUrl: "/stride.icaoracle.QueryAllOraclesRequest";
   value: Uint8Array;
 }
-/** Query's all oracle's */
+/**
+ * Query's all oracle's
+ * @name QueryAllOraclesRequestAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.QueryAllOraclesRequest
+ */
 export interface QueryAllOraclesRequestAmino {}
 export interface QueryAllOraclesRequestAminoMsg {
   type: "/stride.icaoracle.QueryAllOraclesRequest";
@@ -58,6 +73,11 @@ export interface QueryAllOraclesResponseProtoMsg {
   typeUrl: "/stride.icaoracle.QueryAllOraclesResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryAllOraclesResponseAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.QueryAllOraclesResponse
+ */
 export interface QueryAllOraclesResponseAmino {
   oracles?: OracleAmino[];
 }
@@ -76,7 +96,12 @@ export interface QueryActiveOraclesRequestProtoMsg {
   typeUrl: "/stride.icaoracle.QueryActiveOraclesRequest";
   value: Uint8Array;
 }
-/** Query's all oracle with a filter for whether they're active */
+/**
+ * Query's all oracle with a filter for whether they're active
+ * @name QueryActiveOraclesRequestAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.QueryActiveOraclesRequest
+ */
 export interface QueryActiveOraclesRequestAmino {
   active?: boolean;
 }
@@ -95,6 +120,11 @@ export interface QueryActiveOraclesResponseProtoMsg {
   typeUrl: "/stride.icaoracle.QueryActiveOraclesResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryActiveOraclesResponseAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.QueryActiveOraclesResponse
+ */
 export interface QueryActiveOraclesResponseAmino {
   oracles?: OracleAmino[];
 }
@@ -114,7 +144,12 @@ export interface QueryMetricsRequestProtoMsg {
   typeUrl: "/stride.icaoracle.QueryMetricsRequest";
   value: Uint8Array;
 }
-/** Query's metric's with optional filters */
+/**
+ * Query's metric's with optional filters
+ * @name QueryMetricsRequestAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.QueryMetricsRequest
+ */
 export interface QueryMetricsRequestAmino {
   metric_key?: string;
   oracle_chain_id?: string;
@@ -135,6 +170,11 @@ export interface QueryMetricsResponseProtoMsg {
   typeUrl: "/stride.icaoracle.QueryMetricsResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryMetricsResponseAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.QueryMetricsResponse
+ */
 export interface QueryMetricsResponseAmino {
   metrics?: MetricAmino[];
 }

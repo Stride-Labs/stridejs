@@ -199,6 +199,9 @@ export interface AnyProtoMsg {
  *       "@type": "type.googleapis.com/google.protobuf.Duration",
  *       "value": "1.212s"
  *     }
+ * @name AnyAmino
+ * @package google.protobuf
+ * @see proto type: google.protobuf.Any
  */
 export interface AnyAmino {
     /**
@@ -231,7 +234,9 @@ export interface AnyAmino {
      * used with implementation specific semantics.
      */
     type: string;
-    /** Must be a valid serialized protocol buffer of the above specified type. */
+    /**
+     * Must be a valid serialized protocol buffer of the above specified type.
+     */
     value: any;
 }
 export interface AnyAminoMsg {

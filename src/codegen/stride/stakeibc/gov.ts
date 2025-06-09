@@ -11,6 +11,11 @@ export interface AddValidatorsProposalProtoMsg {
   typeUrl: "/stride.stakeibc.AddValidatorsProposal";
   value: Uint8Array;
 }
+/**
+ * @name AddValidatorsProposalAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.AddValidatorsProposal
+ */
 export interface AddValidatorsProposalAmino {
   title?: string;
   description?: string;
@@ -19,7 +24,7 @@ export interface AddValidatorsProposalAmino {
   deposit?: string;
 }
 export interface AddValidatorsProposalAminoMsg {
-  type: "/stride.stakeibc.AddValidatorsProposal";
+  type: "stakeibc/AddValidatorsProposal";
   value: AddValidatorsProposalAmino;
 }
 export interface AddValidatorsProposalSDKType {
@@ -40,6 +45,11 @@ export interface ToggleLSMProposalProtoMsg {
   typeUrl: "/stride.stakeibc.ToggleLSMProposal";
   value: Uint8Array;
 }
+/**
+ * @name ToggleLSMProposalAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.ToggleLSMProposal
+ */
 export interface ToggleLSMProposalAmino {
   title?: string;
   description?: string;
@@ -48,7 +58,7 @@ export interface ToggleLSMProposalAmino {
   deposit?: string;
 }
 export interface ToggleLSMProposalAminoMsg {
-  type: "/stride.stakeibc.ToggleLSMProposal";
+  type: "stakeibc/ToggleLSMProposal";
   value: ToggleLSMProposalAmino;
 }
 export interface ToggleLSMProposalSDKType {
@@ -157,6 +167,12 @@ export const AddValidatorsProposal = {
   },
   fromAminoMsg(object: AddValidatorsProposalAminoMsg): AddValidatorsProposal {
     return AddValidatorsProposal.fromAmino(object.value);
+  },
+  toAminoMsg(message: AddValidatorsProposal): AddValidatorsProposalAminoMsg {
+    return {
+      type: "stakeibc/AddValidatorsProposal",
+      value: AddValidatorsProposal.toAmino(message)
+    };
   },
   fromProtoMsg(message: AddValidatorsProposalProtoMsg): AddValidatorsProposal {
     return AddValidatorsProposal.decode(message.value);
@@ -268,6 +284,12 @@ export const ToggleLSMProposal = {
   },
   fromAminoMsg(object: ToggleLSMProposalAminoMsg): ToggleLSMProposal {
     return ToggleLSMProposal.fromAmino(object.value);
+  },
+  toAminoMsg(message: ToggleLSMProposal): ToggleLSMProposalAminoMsg {
+    return {
+      type: "stakeibc/ToggleLSMProposal",
+      value: ToggleLSMProposal.toAmino(message)
+    };
   },
   fromProtoMsg(message: ToggleLSMProposalProtoMsg): ToggleLSMProposal {
     return ToggleLSMProposal.decode(message.value);

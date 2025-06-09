@@ -26,7 +26,7 @@ __export(tx_exports, {
 });
 module.exports = __toCommonJS(tx_exports);
 var import_binary = require("../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../decimals");
 function createBaseMsgPlaceBid() {
   return {
     bidder: "",
@@ -217,7 +217,7 @@ const MsgCreateAuction = {
       writer.uint32(48).bool(message.enabled);
     }
     if (message.minPriceMultiplier !== "") {
-      writer.uint32(58).string(import_math.Decimal.fromUserInput(message.minPriceMultiplier, 18).atomics);
+      writer.uint32(58).string(import_decimals.Decimal.fromUserInput(message.minPriceMultiplier, 18).atomics);
     }
     if (message.minBidAmount !== "") {
       writer.uint32(66).string(message.minBidAmount);
@@ -253,7 +253,7 @@ const MsgCreateAuction = {
           message.enabled = reader.bool();
           break;
         case 7:
-          message.minPriceMultiplier = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.minPriceMultiplier = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 8:
           message.minBidAmount = reader.string();
@@ -424,7 +424,7 @@ const MsgUpdateAuction = {
       writer.uint32(32).bool(message.enabled);
     }
     if (message.minPriceMultiplier !== "") {
-      writer.uint32(42).string(import_math.Decimal.fromUserInput(message.minPriceMultiplier, 18).atomics);
+      writer.uint32(42).string(import_decimals.Decimal.fromUserInput(message.minPriceMultiplier, 18).atomics);
     }
     if (message.minBidAmount !== "") {
       writer.uint32(50).string(message.minBidAmount);
@@ -454,7 +454,7 @@ const MsgUpdateAuction = {
           message.enabled = reader.bool();
           break;
         case 5:
-          message.minPriceMultiplier = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.minPriceMultiplier = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 6:
           message.minBidAmount = reader.string();

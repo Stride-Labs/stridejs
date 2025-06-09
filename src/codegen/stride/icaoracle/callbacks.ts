@@ -8,7 +8,12 @@ export interface InstantiateOracleCallbackProtoMsg {
   typeUrl: "/stride.icaoracle.InstantiateOracleCallback";
   value: Uint8Array;
 }
-/** Callback data for instantiating an oracle */
+/**
+ * Callback data for instantiating an oracle
+ * @name InstantiateOracleCallbackAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.InstantiateOracleCallback
+ */
 export interface InstantiateOracleCallbackAmino {
   oracle_chain_id?: string;
 }
@@ -29,7 +34,12 @@ export interface UpdateOracleCallbackProtoMsg {
   typeUrl: "/stride.icaoracle.UpdateOracleCallback";
   value: Uint8Array;
 }
-/** Callback data for updating a value in the oracle */
+/**
+ * Callback data for updating a value in the oracle
+ * @name UpdateOracleCallbackAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.UpdateOracleCallback
+ */
 export interface UpdateOracleCallbackAmino {
   oracle_chain_id?: string;
   metric?: MetricAmino;

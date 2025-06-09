@@ -1,6 +1,6 @@
 import { AuctionType } from "./auction";
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 /** MsgPlaceBid defines the message for bidding in a token auction */
 export interface MsgPlaceBid {
   /** Bidder's address */
@@ -16,15 +16,28 @@ export interface MsgPlaceBidProtoMsg {
   typeUrl: "/stride.auction.MsgPlaceBid";
   value: Uint8Array;
 }
-/** MsgPlaceBid defines the message for bidding in a token auction */
+/**
+ * MsgPlaceBid defines the message for bidding in a token auction
+ * @name MsgPlaceBidAmino
+ * @package stride.auction
+ * @see proto type: stride.auction.MsgPlaceBid
+ */
 export interface MsgPlaceBidAmino {
-  /** Bidder's address */
+  /**
+   * Bidder's address
+   */
   bidder?: string;
-  /** Token being bid on */
+  /**
+   * Token being bid on
+   */
   auction_name?: string;
-  /** Amount of tokens requested in base units (utoken) */
+  /**
+   * Amount of tokens requested in base units (utoken)
+   */
   selling_token_amount?: string;
-  /** Amount of tokens being paid in base units (utoken) */
+  /**
+   * Amount of tokens being paid in base units (utoken)
+   */
   payment_token_amount?: string;
 }
 export interface MsgPlaceBidAminoMsg {
@@ -43,6 +56,11 @@ export interface MsgPlaceBidResponseProtoMsg {
   typeUrl: "/stride.auction.MsgPlaceBidResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgPlaceBidResponseAmino
+ * @package stride.auction
+ * @see proto type: stride.auction.MsgPlaceBidResponse
+ */
 export interface MsgPlaceBidResponseAmino {}
 export interface MsgPlaceBidResponseAminoMsg {
   type: "/stride.auction.MsgPlaceBidResponse";
@@ -76,26 +94,45 @@ export interface MsgCreateAuctionProtoMsg {
   typeUrl: "/stride.auction.MsgCreateAuction";
   value: Uint8Array;
 }
-/** MsgCreateAuction defines the message for adding a token auction */
+/**
+ * MsgCreateAuction defines the message for adding a token auction
+ * @name MsgCreateAuctionAmino
+ * @package stride.auction
+ * @see proto type: stride.auction.MsgCreateAuction
+ */
 export interface MsgCreateAuctionAmino {
-  /** Admin's address */
+  /**
+   * Admin's address
+   */
   admin?: string;
-  /** A unique auction name */
+  /**
+   * A unique auction name
+   */
   auction_name?: string;
-  /** Auction type */
+  /**
+   * Auction type
+   */
   auction_type?: AuctionType;
-  /** Denom on Stride of the token being auctioned off (e.g. "ibc/...") */
+  /**
+   * Denom on Stride of the token being auctioned off (e.g. "ibc/...")
+   */
   selling_denom?: string;
-  /** Denom on Stride of the token being used to place bids (e.g. "ustrd") */
+  /**
+   * Denom on Stride of the token being used to place bids (e.g. "ustrd")
+   */
   payment_denom?: string;
-  /** Whether auction is active */
+  /**
+   * Whether auction is active
+   */
   enabled?: boolean;
   /**
    * Minimum price multiplier (e.g. 0.95 for 5% discount off the oracle price)
    * bids_floor_price = oracle_price * min_price_multiplier
    */
   min_price_multiplier?: string;
-  /** Minimum payment token bid amount */
+  /**
+   * Minimum payment token bid amount
+   */
   min_bid_amount?: string;
   beneficiary?: string;
 }
@@ -120,6 +157,11 @@ export interface MsgCreateAuctionResponseProtoMsg {
   typeUrl: "/stride.auction.MsgCreateAuctionResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgCreateAuctionResponseAmino
+ * @package stride.auction
+ * @see proto type: stride.auction.MsgCreateAuctionResponse
+ */
 export interface MsgCreateAuctionResponseAmino {}
 export interface MsgCreateAuctionResponseAminoMsg {
   type: "/stride.auction.MsgCreateAuctionResponse";
@@ -149,22 +191,37 @@ export interface MsgUpdateAuctionProtoMsg {
   typeUrl: "/stride.auction.MsgUpdateAuction";
   value: Uint8Array;
 }
-/** MsgUpdateAuction defines the message for adding a token auction */
+/**
+ * MsgUpdateAuction defines the message for adding a token auction
+ * @name MsgUpdateAuctionAmino
+ * @package stride.auction
+ * @see proto type: stride.auction.MsgUpdateAuction
+ */
 export interface MsgUpdateAuctionAmino {
-  /** Admin's address */
+  /**
+   * Admin's address
+   */
   admin?: string;
-  /** A unique auction name */
+  /**
+   * A unique auction name
+   */
   auction_name?: string;
-  /** Auction type */
+  /**
+   * Auction type
+   */
   auction_type?: AuctionType;
-  /** Whether auction is active */
+  /**
+   * Whether auction is active
+   */
   enabled?: boolean;
   /**
    * Minimum price multiplier (e.g. 0.95 for 5% discount off the oracle price)
    * bids_floor_price = oracle_price * min_price_multiplier
    */
   min_price_multiplier?: string;
-  /** Minimum payment token bid amount */
+  /**
+   * Minimum payment token bid amount
+   */
   min_bid_amount?: string;
   beneficiary?: string;
 }
@@ -187,6 +244,11 @@ export interface MsgUpdateAuctionResponseProtoMsg {
   typeUrl: "/stride.auction.MsgUpdateAuctionResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgUpdateAuctionResponseAmino
+ * @package stride.auction
+ * @see proto type: stride.auction.MsgUpdateAuctionResponse
+ */
 export interface MsgUpdateAuctionResponseAmino {}
 export interface MsgUpdateAuctionResponseAminoMsg {
   type: "/stride.auction.MsgUpdateAuctionResponse";

@@ -1,6 +1,6 @@
 import { ICAAccount } from "./ica_account";
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 function createBaseTradeConfig() {
   return {
     poolId: BigInt(0),

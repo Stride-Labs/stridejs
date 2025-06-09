@@ -3,7 +3,7 @@ import { Timestamp } from "../../google/protobuf/timestamp";
 import { Airdrop, UserAllocation } from "./airdrop";
 import { BinaryReader, BinaryWriter } from "../../binary";
 import { toTimestamp, fromTimestamp } from "../../helpers";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 function createBaseQueryAirdropRequest() {
   return {
     id: ""

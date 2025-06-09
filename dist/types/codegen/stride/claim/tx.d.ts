@@ -10,6 +10,11 @@ export interface MsgSetAirdropAllocationsProtoMsg {
     typeUrl: "/stride.claim.MsgSetAirdropAllocations";
     value: Uint8Array;
 }
+/**
+ * @name MsgSetAirdropAllocationsAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.MsgSetAirdropAllocations
+ */
 export interface MsgSetAirdropAllocationsAmino {
     allocator?: string;
     airdrop_identifier?: string;
@@ -17,7 +22,7 @@ export interface MsgSetAirdropAllocationsAmino {
     weights?: string[];
 }
 export interface MsgSetAirdropAllocationsAminoMsg {
-    type: "/stride.claim.MsgSetAirdropAllocations";
+    type: "claim/MsgSetAirdropAllocations";
     value: MsgSetAirdropAllocationsAmino;
 }
 export interface MsgSetAirdropAllocationsSDKType {
@@ -32,6 +37,11 @@ export interface MsgSetAirdropAllocationsResponseProtoMsg {
     typeUrl: "/stride.claim.MsgSetAirdropAllocationsResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgSetAirdropAllocationsResponseAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.MsgSetAirdropAllocationsResponse
+ */
 export interface MsgSetAirdropAllocationsResponseAmino {
 }
 export interface MsgSetAirdropAllocationsResponseAminoMsg {
@@ -47,11 +57,16 @@ export interface MsgClaimFreeAmountProtoMsg {
     typeUrl: "/stride.claim.MsgClaimFreeAmount";
     value: Uint8Array;
 }
+/**
+ * @name MsgClaimFreeAmountAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.MsgClaimFreeAmount
+ */
 export interface MsgClaimFreeAmountAmino {
     user?: string;
 }
 export interface MsgClaimFreeAmountAminoMsg {
-    type: "claim/ClaimFreeAmount";
+    type: "claim/MsgClaimFreeAmount";
     value: MsgClaimFreeAmountAmino;
 }
 export interface MsgClaimFreeAmountSDKType {
@@ -64,6 +79,11 @@ export interface MsgClaimFreeAmountResponseProtoMsg {
     typeUrl: "/stride.claim.MsgClaimFreeAmountResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgClaimFreeAmountResponseAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.MsgClaimFreeAmountResponse
+ */
 export interface MsgClaimFreeAmountResponseAmino {
     claimed_amount?: CoinAmino[];
 }
@@ -87,6 +107,11 @@ export interface MsgCreateAirdropProtoMsg {
     typeUrl: "/stride.claim.MsgCreateAirdrop";
     value: Uint8Array;
 }
+/**
+ * @name MsgCreateAirdropAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.MsgCreateAirdrop
+ */
 export interface MsgCreateAirdropAmino {
     distributor?: string;
     identifier?: string;
@@ -97,7 +122,7 @@ export interface MsgCreateAirdropAmino {
     autopilot_enabled?: boolean;
 }
 export interface MsgCreateAirdropAminoMsg {
-    type: "/stride.claim.MsgCreateAirdrop";
+    type: "claim/MsgCreateAirdrop";
     value: MsgCreateAirdropAmino;
 }
 export interface MsgCreateAirdropSDKType {
@@ -115,6 +140,11 @@ export interface MsgCreateAirdropResponseProtoMsg {
     typeUrl: "/stride.claim.MsgCreateAirdropResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgCreateAirdropResponseAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.MsgCreateAirdropResponse
+ */
 export interface MsgCreateAirdropResponseAmino {
 }
 export interface MsgCreateAirdropResponseAminoMsg {
@@ -131,12 +161,17 @@ export interface MsgDeleteAirdropProtoMsg {
     typeUrl: "/stride.claim.MsgDeleteAirdrop";
     value: Uint8Array;
 }
+/**
+ * @name MsgDeleteAirdropAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.MsgDeleteAirdrop
+ */
 export interface MsgDeleteAirdropAmino {
     distributor?: string;
     identifier?: string;
 }
 export interface MsgDeleteAirdropAminoMsg {
-    type: "/stride.claim.MsgDeleteAirdrop";
+    type: "claim/MsgDeleteAirdrop";
     value: MsgDeleteAirdropAmino;
 }
 export interface MsgDeleteAirdropSDKType {
@@ -149,6 +184,11 @@ export interface MsgDeleteAirdropResponseProtoMsg {
     typeUrl: "/stride.claim.MsgDeleteAirdropResponse";
     value: Uint8Array;
 }
+/**
+ * @name MsgDeleteAirdropResponseAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.MsgDeleteAirdropResponse
+ */
 export interface MsgDeleteAirdropResponseAmino {
 }
 export interface MsgDeleteAirdropResponseAminoMsg {
@@ -165,6 +205,7 @@ export declare const MsgSetAirdropAllocations: {
     fromAmino(object: MsgSetAirdropAllocationsAmino): MsgSetAirdropAllocations;
     toAmino(message: MsgSetAirdropAllocations): MsgSetAirdropAllocationsAmino;
     fromAminoMsg(object: MsgSetAirdropAllocationsAminoMsg): MsgSetAirdropAllocations;
+    toAminoMsg(message: MsgSetAirdropAllocations): MsgSetAirdropAllocationsAminoMsg;
     fromProtoMsg(message: MsgSetAirdropAllocationsProtoMsg): MsgSetAirdropAllocations;
     toProto(message: MsgSetAirdropAllocations): Uint8Array;
     toProtoMsg(message: MsgSetAirdropAllocations): MsgSetAirdropAllocationsProtoMsg;
@@ -214,6 +255,7 @@ export declare const MsgCreateAirdrop: {
     fromAmino(object: MsgCreateAirdropAmino): MsgCreateAirdrop;
     toAmino(message: MsgCreateAirdrop): MsgCreateAirdropAmino;
     fromAminoMsg(object: MsgCreateAirdropAminoMsg): MsgCreateAirdrop;
+    toAminoMsg(message: MsgCreateAirdrop): MsgCreateAirdropAminoMsg;
     fromProtoMsg(message: MsgCreateAirdropProtoMsg): MsgCreateAirdrop;
     toProto(message: MsgCreateAirdrop): Uint8Array;
     toProtoMsg(message: MsgCreateAirdrop): MsgCreateAirdropProtoMsg;
@@ -238,6 +280,7 @@ export declare const MsgDeleteAirdrop: {
     fromAmino(object: MsgDeleteAirdropAmino): MsgDeleteAirdrop;
     toAmino(message: MsgDeleteAirdrop): MsgDeleteAirdropAmino;
     fromAminoMsg(object: MsgDeleteAirdropAminoMsg): MsgDeleteAirdrop;
+    toAminoMsg(message: MsgDeleteAirdrop): MsgDeleteAirdropAminoMsg;
     fromProtoMsg(message: MsgDeleteAirdropProtoMsg): MsgDeleteAirdrop;
     toProto(message: MsgDeleteAirdrop): Uint8Array;
     toProtoMsg(message: MsgDeleteAirdrop): MsgDeleteAirdropProtoMsg;

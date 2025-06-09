@@ -27,14 +27,20 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var bundle_exports = {};
 __export(bundle_exports, {
-  ics23: () => ics23
+  gaia: () => gaia
 });
 module.exports = __toCommonJS(bundle_exports);
-var _1 = __toESM(require("../confio/proofs"));
-const ics23 = {
-  ..._1
-};
+var _135 = __toESM(require("./liquid/v1beta1/lsm_tx"));
+var gaia;
+((gaia2) => {
+  let liquid;
+  ((liquid2) => {
+    liquid2.v1beta1 = {
+      ..._135
+    };
+  })(liquid = gaia2.liquid || (gaia2.liquid = {}));
+})(gaia || (gaia = {}));
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  ics23
+  gaia
 });

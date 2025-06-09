@@ -11,7 +11,12 @@ export interface GenesisStateProtoMsg {
     typeUrl: "/stride.icacallbacks.GenesisState";
     value: Uint8Array;
 }
-/** GenesisState defines the icacallbacks module's genesis state. */
+/**
+ * GenesisState defines the icacallbacks module's genesis state.
+ * @name GenesisStateAmino
+ * @package stride.icacallbacks
+ * @see proto type: stride.icacallbacks.GenesisState
+ */
 export interface GenesisStateAmino {
     params?: ParamsAmino;
     port_id?: string;

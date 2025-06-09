@@ -12,6 +12,11 @@ export interface CallbackDataProtoMsg {
   typeUrl: "/stride.icacallbacks.CallbackData";
   value: Uint8Array;
 }
+/**
+ * @name CallbackDataAmino
+ * @package stride.icacallbacks
+ * @see proto type: stride.icacallbacks.CallbackData
+ */
 export interface CallbackDataAmino {
   callback_key?: string;
   port_id?: string;

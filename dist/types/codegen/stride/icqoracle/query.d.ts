@@ -17,6 +17,9 @@ export interface QueryTokenPriceRequestProtoMsg {
 /**
  * QueryTokenPriceRequest is the request type for the Query/TokenPrice RPC
  * method
+ * @name QueryTokenPriceRequestAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.QueryTokenPriceRequest
  */
 export interface QueryTokenPriceRequestAmino {
     base_denom?: string;
@@ -50,6 +53,9 @@ export interface QueryTokenPricesRequestProtoMsg {
 /**
  * QueryTokenPricesRequest is the request type for the Query/TokenPrices RPC
  * method
+ * @name QueryTokenPricesRequestAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.QueryTokenPricesRequest
  */
 export interface QueryTokenPricesRequestAmino {
     pagination?: PageRequestAmino;
@@ -78,13 +84,24 @@ export interface TokenPriceResponseProtoMsg {
     typeUrl: "/stride.icqoracle.TokenPriceResponse";
     value: Uint8Array;
 }
-/** TokenPriceResponse adds human readable info on to of TokenPrice */
+/**
+ * TokenPriceResponse adds human readable info on to of TokenPrice
+ * @name TokenPriceResponseAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.TokenPriceResponse
+ */
 export interface TokenPriceResponseAmino {
-    /** If IBC token, base denom unwrapped (e.g. ibc/... -> uatom) */
+    /**
+     * If IBC token, base denom unwrapped (e.g. ibc/... -> uatom)
+     */
     base_denom_unwrapped?: string;
-    /** If IBC token, Quote denom unwrapped (e.g. ibc/... -> uatom) */
+    /**
+     * If IBC token, Quote denom unwrapped (e.g. ibc/... -> uatom)
+     */
     quote_denom_unwrapped?: string;
-    /** The token price object with the remaining price metadata */
+    /**
+     * The token price object with the remaining price metadata
+     */
     token_price?: TokenPriceAmino;
 }
 export interface TokenPriceResponseAminoMsg {
@@ -112,6 +129,9 @@ export interface QueryTokenPricesResponseProtoMsg {
 /**
  * QueryTokenPricesResponse is the response type for the Query/TokenPrices RPC
  * method
+ * @name QueryTokenPricesResponseAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.QueryTokenPricesResponse
  */
 export interface QueryTokenPricesResponseAmino {
     token_prices?: TokenPriceResponseAmino[];
@@ -136,7 +156,12 @@ export interface QueryParamsRequestProtoMsg {
     typeUrl: "/stride.icqoracle.QueryParamsRequest";
     value: Uint8Array;
 }
-/** QueryParamsRequest is the request type for the Query/Params RPC method */
+/**
+ * QueryParamsRequest is the request type for the Query/Params RPC method
+ * @name QueryParamsRequestAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.QueryParamsRequest
+ */
 export interface QueryParamsRequestAmino {
 }
 export interface QueryParamsRequestAminoMsg {
@@ -154,7 +179,12 @@ export interface QueryParamsResponseProtoMsg {
     typeUrl: "/stride.icqoracle.QueryParamsResponse";
     value: Uint8Array;
 }
-/** QueryParamsResponse is the response type for the Query/Params RPC method */
+/**
+ * QueryParamsResponse is the response type for the Query/Params RPC method
+ * @name QueryParamsResponseAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.QueryParamsResponse
+ */
 export interface QueryParamsResponseAmino {
     params?: ParamsAmino;
 }
@@ -181,6 +211,9 @@ export interface QueryTokenPriceForQuoteDenomRequestProtoMsg {
 /**
  * QueryTokenPriceForQuoteDenomRequest is the request type for the
  * Query/TokenPriceForQuoteDenom RPC method
+ * @name QueryTokenPriceForQuoteDenomRequestAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.QueryTokenPriceForQuoteDenomRequest
  */
 export interface QueryTokenPriceForQuoteDenomRequestAmino {
     base_denom?: string;
@@ -212,6 +245,9 @@ export interface QueryTokenPriceForQuoteDenomResponseProtoMsg {
 /**
  * QueryTokenPriceForQuoteDenomResponse is the response type for the
  * Query/TokenPriceForQuoteDenom RPC method
+ * @name QueryTokenPriceForQuoteDenomResponseAmino
+ * @package stride.icqoracle
+ * @see proto type: stride.icqoracle.QueryTokenPriceForQuoteDenomResponse
  */
 export interface QueryTokenPriceForQuoteDenomResponseAmino {
     price?: string;

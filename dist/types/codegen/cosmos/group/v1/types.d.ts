@@ -91,15 +91,26 @@ export interface MemberProtoMsg {
 /**
  * Member represents a group member with an account address,
  * non-zero weight, metadata and added_at timestamp.
+ * @name MemberAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.Member
  */
 export interface MemberAmino {
-    /** address is the member's account address. */
+    /**
+     * address is the member's account address.
+     */
     address?: string;
-    /** weight is the member's voting weight that should be greater than 0. */
+    /**
+     * weight is the member's voting weight that should be greater than 0.
+     */
     weight?: string;
-    /** metadata is any arbitrary metadata attached to the member. */
+    /**
+     * metadata is any arbitrary metadata attached to the member.
+     */
     metadata?: string;
-    /** added_at is a timestamp specifying when a member was added. */
+    /**
+     * added_at is a timestamp specifying when a member was added.
+     */
     added_at: string;
 }
 export interface MemberAminoMsg {
@@ -137,13 +148,22 @@ export interface MemberRequestProtoMsg {
  * MemberRequest represents a group member to be used in Msg server requests.
  * Contrary to `Member`, it doesn't have any `added_at` field
  * since this field cannot be set as part of requests.
+ * @name MemberRequestAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.MemberRequest
  */
 export interface MemberRequestAmino {
-    /** address is the member's account address. */
+    /**
+     * address is the member's account address.
+     */
     address?: string;
-    /** weight is the member's voting weight that should be greater than 0. */
+    /**
+     * weight is the member's voting weight that should be greater than 0.
+     */
     weight?: string;
-    /** metadata is any arbitrary metadata attached to the member. */
+    /**
+     * metadata is any arbitrary metadata attached to the member.
+     */
     metadata?: string;
 }
 export interface MemberRequestAminoMsg {
@@ -189,6 +209,9 @@ export interface ThresholdDecisionPolicyProtoMsg {
  *    `threshold`.
  * 2. The voting and execution periods of the proposal respect the parameters
  *    given by `windows`.
+ * @name ThresholdDecisionPolicyAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.ThresholdDecisionPolicy
  */
 export interface ThresholdDecisionPolicyAmino {
     /**
@@ -196,7 +219,9 @@ export interface ThresholdDecisionPolicyAmino {
      * exceeded for a proposal to succeed.
      */
     threshold?: string;
-    /** windows defines the different windows for voting and execution. */
+    /**
+     * windows defines the different windows for voting and execution.
+     */
     windows?: DecisionPolicyWindowsAmino;
 }
 export interface ThresholdDecisionPolicyAminoMsg {
@@ -245,6 +270,9 @@ export interface PercentageDecisionPolicyProtoMsg {
  *    is greater or equal than the given `percentage`.
  * 2. The voting and execution periods of the proposal respect the parameters
  *    given by `windows`.
+ * @name PercentageDecisionPolicyAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.PercentageDecisionPolicy
  */
 export interface PercentageDecisionPolicyAmino {
     /**
@@ -252,7 +280,9 @@ export interface PercentageDecisionPolicyAmino {
      * meet for a proposal to succeed.
      */
     percentage?: string;
-    /** windows defines the different windows for voting and execution. */
+    /**
+     * windows defines the different windows for voting and execution.
+     */
     windows?: DecisionPolicyWindowsAmino;
 }
 export interface PercentageDecisionPolicyAminoMsg {
@@ -298,7 +328,12 @@ export interface DecisionPolicyWindowsProtoMsg {
     typeUrl: "/cosmos.group.v1.DecisionPolicyWindows";
     value: Uint8Array;
 }
-/** DecisionPolicyWindows defines the different windows for voting and execution. */
+/**
+ * DecisionPolicyWindows defines the different windows for voting and execution.
+ * @name DecisionPolicyWindowsAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.DecisionPolicyWindows
+ */
 export interface DecisionPolicyWindowsAmino {
     /**
      * voting_period is the duration from submission of a proposal to the end of voting period
@@ -353,13 +388,24 @@ export interface GroupInfoProtoMsg {
     typeUrl: "/cosmos.group.v1.GroupInfo";
     value: Uint8Array;
 }
-/** GroupInfo represents the high-level on-chain information for a group. */
+/**
+ * GroupInfo represents the high-level on-chain information for a group.
+ * @name GroupInfoAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.GroupInfo
+ */
 export interface GroupInfoAmino {
-    /** id is the unique ID of the group. */
+    /**
+     * id is the unique ID of the group.
+     */
     id?: string;
-    /** admin is the account address of the group's admin. */
+    /**
+     * admin is the account address of the group's admin.
+     */
     admin?: string;
-    /** metadata is any arbitrary metadata to attached to the group. */
+    /**
+     * metadata is any arbitrary metadata to attached to the group.
+     */
     metadata?: string;
     /**
      * version is used to track changes to a group's membership structure that
@@ -368,9 +414,13 @@ export interface GroupInfoAmino {
      * cause proposals based on older versions of this group to fail
      */
     version?: string;
-    /** total_weight is the sum of the group members' weights. */
+    /**
+     * total_weight is the sum of the group members' weights.
+     */
     total_weight?: string;
-    /** created_at is a timestamp specifying when a group was created. */
+    /**
+     * created_at is a timestamp specifying when a group was created.
+     */
     created_at: string;
 }
 export interface GroupInfoAminoMsg {
@@ -397,11 +447,20 @@ export interface GroupMemberProtoMsg {
     typeUrl: "/cosmos.group.v1.GroupMember";
     value: Uint8Array;
 }
-/** GroupMember represents the relationship between a group and a member. */
+/**
+ * GroupMember represents the relationship between a group and a member.
+ * @name GroupMemberAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.GroupMember
+ */
 export interface GroupMemberAmino {
-    /** group_id is the unique ID of the group. */
+    /**
+     * group_id is the unique ID of the group.
+     */
     group_id?: string;
-    /** member is the member data. */
+    /**
+     * member is the member data.
+     */
     member?: MemberAmino;
 }
 export interface GroupMemberAminoMsg {
@@ -444,13 +503,24 @@ export interface GroupPolicyInfoProtoMsg {
 export declare type GroupPolicyInfoEncoded = Omit<GroupPolicyInfo, "decisionPolicy"> & {
     /** decision_policy specifies the group policy's decision policy. */ decisionPolicy?: ThresholdDecisionPolicyProtoMsg | PercentageDecisionPolicyProtoMsg | AnyProtoMsg | undefined;
 };
-/** GroupPolicyInfo represents the high-level on-chain information for a group policy. */
+/**
+ * GroupPolicyInfo represents the high-level on-chain information for a group policy.
+ * @name GroupPolicyInfoAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.GroupPolicyInfo
+ */
 export interface GroupPolicyInfoAmino {
-    /** address is the account address of group policy. */
+    /**
+     * address is the account address of group policy.
+     */
     address?: string;
-    /** group_id is the unique ID of the group. */
+    /**
+     * group_id is the unique ID of the group.
+     */
     group_id?: string;
-    /** admin is the account address of the group admin. */
+    /**
+     * admin is the account address of the group admin.
+     */
     admin?: string;
     /**
      * metadata is any arbitrary metadata attached to the group policy.
@@ -463,9 +533,13 @@ export interface GroupPolicyInfoAmino {
      * would create a different result on a running proposal.
      */
     version?: string;
-    /** decision_policy specifies the group policy's decision policy. */
+    /**
+     * decision_policy specifies the group policy's decision policy.
+     */
     decision_policy?: AnyAmino;
-    /** created_at is a timestamp specifying when a group policy was created. */
+    /**
+     * created_at is a timestamp specifying when a group policy was created.
+     */
     created_at: string;
 }
 export interface GroupPolicyInfoAminoMsg {
@@ -558,11 +632,18 @@ export interface ProposalProtoMsg {
  * for a group policy to decide upon.
  * A proposal consists of a set of `sdk.Msg`s that will be executed if the proposal
  * passes as well as some optional metadata associated with the proposal.
+ * @name ProposalAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.Proposal
  */
 export interface ProposalAmino {
-    /** id is the unique id of the proposal. */
+    /**
+     * id is the unique id of the proposal.
+     */
     id?: string;
-    /** group_policy_address is the account address of group policy. */
+    /**
+     * group_policy_address is the account address of group policy.
+     */
     group_policy_address?: string;
     /**
      * metadata is any arbitrary metadata attached to the proposal.
@@ -570,9 +651,13 @@ export interface ProposalAmino {
      * https://docs.cosmos.network/v0.47/modules/group#proposal-4
      */
     metadata?: string;
-    /** proposers are the account addresses of the proposers. */
+    /**
+     * proposers are the account addresses of the proposers.
+     */
     proposers?: string[];
-    /** submit_time is a timestamp specifying when a proposal was submitted. */
+    /**
+     * submit_time is a timestamp specifying when a proposal was submitted.
+     */
     submit_time: string;
     /**
      * group_version tracks the version of the group at proposal submission.
@@ -586,7 +671,9 @@ export interface ProposalAmino {
      * This field is here for informational purposes only.
      */
     group_policy_version?: string;
-    /** status represents the high level position in the life cycle of the proposal. Initial value is Submitted. */
+    /**
+     * status represents the high level position in the life cycle of the proposal. Initial value is Submitted.
+     */
     status?: ProposalStatus;
     /**
      * final_tally_result contains the sums of all weighted votes for this
@@ -603,9 +690,13 @@ export interface ProposalAmino {
      * accordingly updated.
      */
     voting_period_end: string;
-    /** executor_result is the final result of the proposal execution. Initial value is NotRun. */
+    /**
+     * executor_result is the final result of the proposal execution. Initial value is NotRun.
+     */
     executor_result?: ProposalExecutorResult;
-    /** messages is a list of `sdk.Msg`s that will be executed if the proposal passes. */
+    /**
+     * messages is a list of `sdk.Msg`s that will be executed if the proposal passes.
+     */
     messages?: AnyAmino[];
     /**
      * title is the title of the proposal
@@ -661,15 +752,28 @@ export interface TallyResultProtoMsg {
     typeUrl: "/cosmos.group.v1.TallyResult";
     value: Uint8Array;
 }
-/** TallyResult represents the sum of weighted votes for each vote option. */
+/**
+ * TallyResult represents the sum of weighted votes for each vote option.
+ * @name TallyResultAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.TallyResult
+ */
 export interface TallyResultAmino {
-    /** yes_count is the weighted sum of yes votes. */
+    /**
+     * yes_count is the weighted sum of yes votes.
+     */
     yes_count?: string;
-    /** abstain_count is the weighted sum of abstainers. */
+    /**
+     * abstain_count is the weighted sum of abstainers.
+     */
     abstain_count?: string;
-    /** no_count is the weighted sum of no votes. */
+    /**
+     * no_count is the weighted sum of no votes.
+     */
     no_count?: string;
-    /** no_with_veto_count is the weighted sum of veto. */
+    /**
+     * no_with_veto_count is the weighted sum of veto.
+     */
     no_with_veto_count?: string;
 }
 export interface TallyResultAminoMsg {
@@ -700,17 +804,32 @@ export interface VoteProtoMsg {
     typeUrl: "/cosmos.group.v1.Vote";
     value: Uint8Array;
 }
-/** Vote represents a vote for a proposal. */
+/**
+ * Vote represents a vote for a proposal.
+ * @name VoteAmino
+ * @package cosmos.group.v1
+ * @see proto type: cosmos.group.v1.Vote
+ */
 export interface VoteAmino {
-    /** proposal is the unique ID of the proposal. */
+    /**
+     * proposal is the unique ID of the proposal.
+     */
     proposal_id?: string;
-    /** voter is the account address of the voter. */
+    /**
+     * voter is the account address of the voter.
+     */
     voter?: string;
-    /** option is the voter's choice on the proposal. */
+    /**
+     * option is the voter's choice on the proposal.
+     */
     option?: VoteOption;
-    /** metadata is any arbitrary metadata attached to the vote. */
+    /**
+     * metadata is any arbitrary metadata attached to the vote.
+     */
     metadata?: string;
-    /** submit_time is the timestamp when the vote was submitted. */
+    /**
+     * submit_time is the timestamp when the vote was submitted.
+     */
     submit_time: string;
 }
 export interface VoteAminoMsg {

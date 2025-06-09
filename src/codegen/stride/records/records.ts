@@ -219,8 +219,15 @@ export interface UserRedemptionRecordProtoMsg {
   typeUrl: "/stride.records.UserRedemptionRecord";
   value: Uint8Array;
 }
+/**
+ * @name UserRedemptionRecordAmino
+ * @package stride.records
+ * @see proto type: stride.records.UserRedemptionRecord
+ */
 export interface UserRedemptionRecordAmino {
-  /** {chain_id}.{epoch}.{receiver} */
+  /**
+   * {chain_id}.{epoch}.{receiver}
+   */
   id?: string;
   receiver?: string;
   native_token_amount?: string;
@@ -258,6 +265,11 @@ export interface DepositRecordProtoMsg {
   typeUrl: "/stride.records.DepositRecord";
   value: Uint8Array;
 }
+/**
+ * @name DepositRecordAmino
+ * @package stride.records
+ * @see proto type: stride.records.DepositRecord
+ */
 export interface DepositRecordAmino {
   id?: string;
   amount?: string;
@@ -299,6 +311,11 @@ export interface HostZoneUnbondingProtoMsg {
   typeUrl: "/stride.records.HostZoneUnbonding";
   value: Uint8Array;
 }
+/**
+ * @name HostZoneUnbondingAmino
+ * @package stride.records
+ * @see proto type: stride.records.HostZoneUnbonding
+ */
 export interface HostZoneUnbondingAmino {
   st_token_amount?: string;
   native_token_amount?: string;
@@ -337,6 +354,11 @@ export interface EpochUnbondingRecordProtoMsg {
   typeUrl: "/stride.records.EpochUnbondingRecord";
   value: Uint8Array;
 }
+/**
+ * @name EpochUnbondingRecordAmino
+ * @package stride.records
+ * @see proto type: stride.records.EpochUnbondingRecord
+ */
 export interface EpochUnbondingRecordAmino {
   epoch_number?: string;
   host_zone_unbondings?: HostZoneUnbondingAmino[];
@@ -364,6 +386,11 @@ export interface LSMTokenDepositProtoMsg {
   typeUrl: "/stride.records.LSMTokenDeposit";
   value: Uint8Array;
 }
+/**
+ * @name LSMTokenDepositAmino
+ * @package stride.records
+ * @see proto type: stride.records.LSMTokenDeposit
+ */
 export interface LSMTokenDepositAmino {
   deposit_id?: string;
   chain_id?: string;

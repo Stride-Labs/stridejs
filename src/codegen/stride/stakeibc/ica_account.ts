@@ -77,6 +77,11 @@ export interface ICAAccountProtoMsg {
   typeUrl: "/stride.stakeibc.ICAAccount";
   value: Uint8Array;
 }
+/**
+ * @name ICAAccountAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.ICAAccount
+ */
 export interface ICAAccountAmino {
   chain_id?: string;
   type?: ICAAccountType;

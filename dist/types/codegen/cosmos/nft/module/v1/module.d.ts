@@ -6,7 +6,12 @@ export interface ModuleProtoMsg {
     typeUrl: "/cosmos.nft.module.v1.Module";
     value: Uint8Array;
 }
-/** Module is the config object of the nft module. */
+/**
+ * Module is the config object of the nft module.
+ * @name ModuleAmino
+ * @package cosmos.nft.module.v1
+ * @see proto type: cosmos.nft.module.v1.Module
+ */
 export interface ModuleAmino {
 }
 export interface ModuleAminoMsg {

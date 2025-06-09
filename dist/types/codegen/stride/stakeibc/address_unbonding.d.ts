@@ -12,6 +12,11 @@ export interface AddressUnbondingProtoMsg {
     typeUrl: "/stride.stakeibc.AddressUnbonding";
     value: Uint8Array;
 }
+/**
+ * @name AddressUnbondingAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.AddressUnbonding
+ */
 export interface AddressUnbondingAmino {
     address?: string;
     receiver?: string;

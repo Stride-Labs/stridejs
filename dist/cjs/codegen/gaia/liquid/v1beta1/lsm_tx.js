@@ -22,7 +22,7 @@ __export(lsm_tx_exports, {
   MsgRedeemTokensForSharesResponse: () => MsgRedeemTokensForSharesResponse
 });
 module.exports = __toCommonJS(lsm_tx_exports);
-var import_coin = require("../../base/v1beta1/coin");
+var import_coin = require("../../../cosmos/base/v1beta1/coin");
 var import_binary = require("../../../binary");
 function createBaseMsgRedeemTokensForShares() {
   return {
@@ -31,7 +31,7 @@ function createBaseMsgRedeemTokensForShares() {
   };
 }
 const MsgRedeemTokensForShares = {
-  typeUrl: "/cosmos.staking.v1beta1.MsgRedeemTokensForShares",
+  typeUrl: "/gaia.liquid.v1beta1.MsgRedeemTokensForShares",
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.delegatorAddress !== "") {
       writer.uint32(10).string(message.delegatorAddress);
@@ -86,12 +86,6 @@ const MsgRedeemTokensForShares = {
   fromAminoMsg(object) {
     return MsgRedeemTokensForShares.fromAmino(object.value);
   },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/MsgRedeemTokensForShares",
-      value: MsgRedeemTokensForShares.toAmino(message)
-    };
-  },
   fromProtoMsg(message) {
     return MsgRedeemTokensForShares.decode(message.value);
   },
@@ -100,7 +94,7 @@ const MsgRedeemTokensForShares = {
   },
   toProtoMsg(message) {
     return {
-      typeUrl: "/cosmos.staking.v1beta1.MsgRedeemTokensForShares",
+      typeUrl: "/gaia.liquid.v1beta1.MsgRedeemTokensForShares",
       value: MsgRedeemTokensForShares.encode(message).finish()
     };
   }
@@ -111,7 +105,7 @@ function createBaseMsgRedeemTokensForSharesResponse() {
   };
 }
 const MsgRedeemTokensForSharesResponse = {
-  typeUrl: "/cosmos.staking.v1beta1.MsgRedeemTokensForSharesResponse",
+  typeUrl: "/gaia.liquid.v1beta1.MsgRedeemTokensForSharesResponse",
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.amount !== void 0) {
       import_coin.Coin.encode(message.amount, writer.uint32(10).fork()).ldelim();
@@ -155,12 +149,6 @@ const MsgRedeemTokensForSharesResponse = {
   fromAminoMsg(object) {
     return MsgRedeemTokensForSharesResponse.fromAmino(object.value);
   },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/MsgRedeemTokensForSharesResponse",
-      value: MsgRedeemTokensForSharesResponse.toAmino(message)
-    };
-  },
   fromProtoMsg(message) {
     return MsgRedeemTokensForSharesResponse.decode(message.value);
   },
@@ -169,7 +157,7 @@ const MsgRedeemTokensForSharesResponse = {
   },
   toProtoMsg(message) {
     return {
-      typeUrl: "/cosmos.staking.v1beta1.MsgRedeemTokensForSharesResponse",
+      typeUrl: "/gaia.liquid.v1beta1.MsgRedeemTokensForSharesResponse",
       value: MsgRedeemTokensForSharesResponse.encode(message).finish()
     };
   }
@@ -180,7 +168,7 @@ function createBaseMsgDisableTokenizeShares() {
   };
 }
 const MsgDisableTokenizeShares = {
-  typeUrl: "/cosmos.staking.v1beta1.MsgDisableTokenizeShares",
+  typeUrl: "/gaia.liquid.v1beta1.MsgDisableTokenizeShares",
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.delegatorAddress !== "") {
       writer.uint32(10).string(message.delegatorAddress);
@@ -224,12 +212,6 @@ const MsgDisableTokenizeShares = {
   fromAminoMsg(object) {
     return MsgDisableTokenizeShares.fromAmino(object.value);
   },
-  toAminoMsg(message) {
-    return {
-      type: "cosmos-sdk/MsgDisableTokenizeShares",
-      value: MsgDisableTokenizeShares.toAmino(message)
-    };
-  },
   fromProtoMsg(message) {
     return MsgDisableTokenizeShares.decode(message.value);
   },
@@ -238,7 +220,7 @@ const MsgDisableTokenizeShares = {
   },
   toProtoMsg(message) {
     return {
-      typeUrl: "/cosmos.staking.v1beta1.MsgDisableTokenizeShares",
+      typeUrl: "/gaia.liquid.v1beta1.MsgDisableTokenizeShares",
       value: MsgDisableTokenizeShares.encode(message).finish()
     };
   }

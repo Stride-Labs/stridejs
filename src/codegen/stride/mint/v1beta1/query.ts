@@ -7,7 +7,12 @@ export interface QueryParamsRequestProtoMsg {
   typeUrl: "/stride.mint.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
-/** QueryParamsRequest is the request type for the Query/Params RPC method. */
+/**
+ * QueryParamsRequest is the request type for the Query/Params RPC method.
+ * @name QueryParamsRequestAmino
+ * @package stride.mint.v1beta1
+ * @see proto type: stride.mint.v1beta1.QueryParamsRequest
+ */
 export interface QueryParamsRequestAmino {}
 export interface QueryParamsRequestAminoMsg {
   type: "/stride.mint.v1beta1.QueryParamsRequest";
@@ -24,9 +29,16 @@ export interface QueryParamsResponseProtoMsg {
   typeUrl: "/stride.mint.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
-/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+/**
+ * QueryParamsResponse is the response type for the Query/Params RPC method.
+ * @name QueryParamsResponseAmino
+ * @package stride.mint.v1beta1
+ * @see proto type: stride.mint.v1beta1.QueryParamsResponse
+ */
 export interface QueryParamsResponseAmino {
-  /** params defines the parameters of the module. */
+  /**
+   * params defines the parameters of the module.
+   */
   params?: ParamsAmino;
 }
 export interface QueryParamsResponseAminoMsg {
@@ -49,6 +61,9 @@ export interface QueryEpochProvisionsRequestProtoMsg {
 /**
  * QueryEpochProvisionsRequest is the request type for the
  * Query/EpochProvisions RPC method.
+ * @name QueryEpochProvisionsRequestAmino
+ * @package stride.mint.v1beta1
+ * @see proto type: stride.mint.v1beta1.QueryEpochProvisionsRequest
  */
 export interface QueryEpochProvisionsRequestAmino {}
 export interface QueryEpochProvisionsRequestAminoMsg {
@@ -75,9 +90,14 @@ export interface QueryEpochProvisionsResponseProtoMsg {
 /**
  * QueryEpochProvisionsResponse is the response type for the
  * Query/EpochProvisions RPC method.
+ * @name QueryEpochProvisionsResponseAmino
+ * @package stride.mint.v1beta1
+ * @see proto type: stride.mint.v1beta1.QueryEpochProvisionsResponse
  */
 export interface QueryEpochProvisionsResponseAmino {
-  /** epoch_provisions is the current minting per epoch provisions value. */
+  /**
+   * epoch_provisions is the current minting per epoch provisions value.
+   */
   epoch_provisions?: string;
 }
 export interface QueryEpochProvisionsResponseAminoMsg {

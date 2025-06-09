@@ -1,7 +1,7 @@
 import { DelegationRecord, UnbondingRecord, RedemptionRecord } from "./staketia";
 import { Coin } from "../../cosmos/base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 var OverwritableRecordType = /* @__PURE__ */ ((OverwritableRecordType2) => {
   OverwritableRecordType2[OverwritableRecordType2["RECORD_TYPE_DELEGATION"] = 0] = "RECORD_TYPE_DELEGATION";
   OverwritableRecordType2[OverwritableRecordType2["RECORD_TYPE_UNBONDING"] = 1] = "RECORD_TYPE_UNBONDING";

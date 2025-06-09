@@ -23,7 +23,7 @@ __export(mint_exports, {
 });
 module.exports = __toCommonJS(mint_exports);
 var import_binary = require("../../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../../decimals");
 function createBaseMinter() {
   return {
     epochProvisions: ""
@@ -33,7 +33,7 @@ const Minter = {
   typeUrl: "/stride.mint.v1beta1.Minter",
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.epochProvisions !== "") {
-      writer.uint32(10).string(import_math.Decimal.fromUserInput(message.epochProvisions, 18).atomics);
+      writer.uint32(10).string(import_decimals.Decimal.fromUserInput(message.epochProvisions, 18).atomics);
     }
     return writer;
   },
@@ -45,7 +45,7 @@ const Minter = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.epochProvisions = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.epochProvisions = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);
@@ -99,16 +99,16 @@ const DistributionProportions = {
   typeUrl: "/stride.mint.v1beta1.DistributionProportions",
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.staking !== "") {
-      writer.uint32(10).string(import_math.Decimal.fromUserInput(message.staking, 18).atomics);
+      writer.uint32(10).string(import_decimals.Decimal.fromUserInput(message.staking, 18).atomics);
     }
     if (message.communityPoolGrowth !== "") {
-      writer.uint32(18).string(import_math.Decimal.fromUserInput(message.communityPoolGrowth, 18).atomics);
+      writer.uint32(18).string(import_decimals.Decimal.fromUserInput(message.communityPoolGrowth, 18).atomics);
     }
     if (message.communityPoolSecurityBudget !== "") {
-      writer.uint32(26).string(import_math.Decimal.fromUserInput(message.communityPoolSecurityBudget, 18).atomics);
+      writer.uint32(26).string(import_decimals.Decimal.fromUserInput(message.communityPoolSecurityBudget, 18).atomics);
     }
     if (message.strategicReserve !== "") {
-      writer.uint32(34).string(import_math.Decimal.fromUserInput(message.strategicReserve, 18).atomics);
+      writer.uint32(34).string(import_decimals.Decimal.fromUserInput(message.strategicReserve, 18).atomics);
     }
     return writer;
   },
@@ -120,16 +120,16 @@ const DistributionProportions = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.staking = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.staking = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 2:
-          message.communityPoolGrowth = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.communityPoolGrowth = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
-          message.communityPoolSecurityBudget = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.communityPoolSecurityBudget = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 4:
-          message.strategicReserve = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.strategicReserve = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);
@@ -204,7 +204,7 @@ const Params = {
       writer.uint32(10).string(message.mintDenom);
     }
     if (message.genesisEpochProvisions !== "") {
-      writer.uint32(18).string(import_math.Decimal.fromUserInput(message.genesisEpochProvisions, 18).atomics);
+      writer.uint32(18).string(import_decimals.Decimal.fromUserInput(message.genesisEpochProvisions, 18).atomics);
     }
     if (message.epochIdentifier !== "") {
       writer.uint32(26).string(message.epochIdentifier);
@@ -213,7 +213,7 @@ const Params = {
       writer.uint32(32).int64(message.reductionPeriodInEpochs);
     }
     if (message.reductionFactor !== "") {
-      writer.uint32(42).string(import_math.Decimal.fromUserInput(message.reductionFactor, 18).atomics);
+      writer.uint32(42).string(import_decimals.Decimal.fromUserInput(message.reductionFactor, 18).atomics);
     }
     if (message.distributionProportions !== void 0) {
       DistributionProportions.encode(message.distributionProportions, writer.uint32(50).fork()).ldelim();
@@ -234,7 +234,7 @@ const Params = {
           message.mintDenom = reader.string();
           break;
         case 2:
-          message.genesisEpochProvisions = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.genesisEpochProvisions = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
           message.epochIdentifier = reader.string();
@@ -243,7 +243,7 @@ const Params = {
           message.reductionPeriodInEpochs = reader.int64();
           break;
         case 5:
-          message.reductionFactor = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.reductionFactor = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 6:
           message.distributionProportions = DistributionProportions.decode(reader, reader.uint32());

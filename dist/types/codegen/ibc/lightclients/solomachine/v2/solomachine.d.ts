@@ -56,11 +56,18 @@ export interface ClientStateProtoMsg {
 /**
  * ClientState defines a solo machine client that tracks the current consensus
  * state and if the client is frozen.
+ * @name ClientStateAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.ClientState
  */
 export interface ClientStateAmino {
-    /** latest sequence of the client state */
+    /**
+     * latest sequence of the client state
+     */
     sequence?: string;
-    /** frozen sequence of the solo machine */
+    /**
+     * frozen sequence of the solo machine
+     */
     is_frozen?: boolean;
     consensus_state?: ConsensusStateAmino;
     /**
@@ -107,9 +114,14 @@ export interface ConsensusStateProtoMsg {
  * ConsensusState defines a solo machine consensus state. The sequence of a
  * consensus state is contained in the "height" key used in storing the
  * consensus state.
+ * @name ConsensusStateAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.ConsensusState
  */
 export interface ConsensusStateAmino {
-    /** public key of the solo machine */
+    /**
+     * public key of the solo machine
+     */
     public_key?: AnyAmino;
     /**
      * diversifier allows the same public key to be re-used across different solo
@@ -146,9 +158,16 @@ export interface HeaderProtoMsg {
     typeUrl: "/ibc.lightclients.solomachine.v2.Header";
     value: Uint8Array;
 }
-/** Header defines a solo machine consensus header */
+/**
+ * Header defines a solo machine consensus header
+ * @name HeaderAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.Header
+ */
 export interface HeaderAmino {
-    /** sequence to update solo machine public key at */
+    /**
+     * sequence to update solo machine public key at
+     */
     sequence?: string;
     timestamp?: string;
     signature?: string;
@@ -184,6 +203,9 @@ export interface MisbehaviourProtoMsg {
 /**
  * Misbehaviour defines misbehaviour for a solo machine which consists
  * of a sequence and two signatures over different messages at that sequence.
+ * @name MisbehaviourAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.Misbehaviour
  */
 export interface MisbehaviourAmino {
     client_id?: string;
@@ -222,6 +244,9 @@ export interface SignatureAndDataProtoMsg {
 /**
  * SignatureAndData contains a signature and the data signed over to create that
  * signature.
+ * @name SignatureAndDataAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.SignatureAndData
  */
 export interface SignatureAndDataAmino {
     signature?: string;
@@ -258,6 +283,9 @@ export interface TimestampedSignatureDataProtoMsg {
 /**
  * TimestampedSignatureData contains the signature data and the timestamp of the
  * signature.
+ * @name TimestampedSignatureDataAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.TimestampedSignatureData
  */
 export interface TimestampedSignatureDataAmino {
     signature_data?: string;
@@ -289,14 +317,23 @@ export interface SignBytesProtoMsg {
     typeUrl: "/ibc.lightclients.solomachine.v2.SignBytes";
     value: Uint8Array;
 }
-/** SignBytes defines the signed bytes used for signature verification. */
+/**
+ * SignBytes defines the signed bytes used for signature verification.
+ * @name SignBytesAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.SignBytes
+ */
 export interface SignBytesAmino {
     sequence?: string;
     timestamp?: string;
     diversifier?: string;
-    /** type of the data used */
+    /**
+     * type of the data used
+     */
     data_type?: DataType;
-    /** marshaled data */
+    /**
+     * marshaled data
+     */
     data?: string;
 }
 export interface SignBytesAminoMsg {
@@ -322,11 +359,20 @@ export interface HeaderDataProtoMsg {
     typeUrl: "/ibc.lightclients.solomachine.v2.HeaderData";
     value: Uint8Array;
 }
-/** HeaderData returns the SignBytes data for update verification. */
+/**
+ * HeaderData returns the SignBytes data for update verification.
+ * @name HeaderDataAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.HeaderData
+ */
 export interface HeaderDataAmino {
-    /** header public key */
+    /**
+     * header public key
+     */
     new_pub_key?: AnyAmino;
-    /** header diversifier */
+    /**
+     * header diversifier
+     */
     new_diversifier?: string;
 }
 export interface HeaderDataAminoMsg {
@@ -347,7 +393,12 @@ export interface ClientStateDataProtoMsg {
     typeUrl: "/ibc.lightclients.solomachine.v2.ClientStateData";
     value: Uint8Array;
 }
-/** ClientStateData returns the SignBytes data for client state verification. */
+/**
+ * ClientStateData returns the SignBytes data for client state verification.
+ * @name ClientStateDataAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.ClientStateData
+ */
 export interface ClientStateDataAmino {
     path?: string;
     client_state?: AnyAmino;
@@ -376,6 +427,9 @@ export interface ConsensusStateDataProtoMsg {
 /**
  * ConsensusStateData returns the SignBytes data for consensus state
  * verification.
+ * @name ConsensusStateDataAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.ConsensusStateData
  */
 export interface ConsensusStateDataAmino {
     path?: string;
@@ -408,6 +462,9 @@ export interface ConnectionStateDataProtoMsg {
 /**
  * ConnectionStateData returns the SignBytes data for connection state
  * verification.
+ * @name ConnectionStateDataAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.ConnectionStateData
  */
 export interface ConnectionStateDataAmino {
     path?: string;
@@ -440,6 +497,9 @@ export interface ChannelStateDataProtoMsg {
 /**
  * ChannelStateData returns the SignBytes data for channel state
  * verification.
+ * @name ChannelStateDataAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.ChannelStateData
  */
 export interface ChannelStateDataAmino {
     path?: string;
@@ -472,6 +532,9 @@ export interface PacketCommitmentDataProtoMsg {
 /**
  * PacketCommitmentData returns the SignBytes data for packet commitment
  * verification.
+ * @name PacketCommitmentDataAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.PacketCommitmentData
  */
 export interface PacketCommitmentDataAmino {
     path?: string;
@@ -504,6 +567,9 @@ export interface PacketAcknowledgementDataProtoMsg {
 /**
  * PacketAcknowledgementData returns the SignBytes data for acknowledgement
  * verification.
+ * @name PacketAcknowledgementDataAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.PacketAcknowledgementData
  */
 export interface PacketAcknowledgementDataAmino {
     path?: string;
@@ -535,6 +601,9 @@ export interface PacketReceiptAbsenceDataProtoMsg {
 /**
  * PacketReceiptAbsenceData returns the SignBytes data for
  * packet receipt absence verification.
+ * @name PacketReceiptAbsenceDataAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.PacketReceiptAbsenceData
  */
 export interface PacketReceiptAbsenceDataAmino {
     path?: string;
@@ -565,6 +634,9 @@ export interface NextSequenceRecvDataProtoMsg {
 /**
  * NextSequenceRecvData returns the SignBytes data for verification of the next
  * sequence to be received.
+ * @name NextSequenceRecvDataAmino
+ * @package ibc.lightclients.solomachine.v2
+ * @see proto type: ibc.lightclients.solomachine.v2.NextSequenceRecvData
  */
 export interface NextSequenceRecvDataAmino {
     path?: string;

@@ -8,7 +8,12 @@ export interface MsgInstantiateOracleContractProtoMsg {
   typeUrl: "/stride.icaoracle.MsgInstantiateOracleContract";
   value: Uint8Array;
 }
-/** InstanitateOracleContract is the contract-specific instantiate message */
+/**
+ * InstanitateOracleContract is the contract-specific instantiate message
+ * @name MsgInstantiateOracleContractAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.MsgInstantiateOracleContract
+ */
 export interface MsgInstantiateOracleContractAmino {
   admin_address?: string;
   transfer_channel_id?: string;
@@ -30,7 +35,12 @@ export interface MsgExecuteContractPostMetricProtoMsg {
   typeUrl: "/stride.icaoracle.MsgExecuteContractPostMetric";
   value: Uint8Array;
 }
-/** ExecuteContractPostMetric is the contract-specific metric update message */
+/**
+ * ExecuteContractPostMetric is the contract-specific metric update message
+ * @name MsgExecuteContractPostMetricAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.MsgExecuteContractPostMetric
+ */
 export interface MsgExecuteContractPostMetricAmino {
   post_metric?: MsgPostMetricAmino;
 }
@@ -55,7 +65,12 @@ export interface MsgPostMetricProtoMsg {
   typeUrl: "/stride.icaoracle.MsgPostMetric";
   value: Uint8Array;
 }
-/** Body of PostMetric contract message */
+/**
+ * Body of PostMetric contract message
+ * @name MsgPostMetricAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.MsgPostMetric
+ */
 export interface MsgPostMetricAmino {
   key?: string;
   value?: string;

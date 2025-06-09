@@ -1007,6 +1007,7 @@ export declare namespace stride {
             fromAmino(object: _199.MsgSetAirdropAllocationsAmino): _199.MsgSetAirdropAllocations;
             toAmino(message: _199.MsgSetAirdropAllocations): _199.MsgSetAirdropAllocationsAmino;
             fromAminoMsg(object: _199.MsgSetAirdropAllocationsAminoMsg): _199.MsgSetAirdropAllocations;
+            toAminoMsg(message: _199.MsgSetAirdropAllocations): _199.MsgSetAirdropAllocationsAminoMsg;
             fromProtoMsg(message: _199.MsgSetAirdropAllocationsProtoMsg): _199.MsgSetAirdropAllocations;
             toProto(message: _199.MsgSetAirdropAllocations): Uint8Array;
             toProtoMsg(message: _199.MsgSetAirdropAllocations): _199.MsgSetAirdropAllocationsProtoMsg;
@@ -1056,6 +1057,7 @@ export declare namespace stride {
             fromAmino(object: _199.MsgCreateAirdropAmino): _199.MsgCreateAirdrop;
             toAmino(message: _199.MsgCreateAirdrop): _199.MsgCreateAirdropAmino;
             fromAminoMsg(object: _199.MsgCreateAirdropAminoMsg): _199.MsgCreateAirdrop;
+            toAminoMsg(message: _199.MsgCreateAirdrop): _199.MsgCreateAirdropAminoMsg;
             fromProtoMsg(message: _199.MsgCreateAirdropProtoMsg): _199.MsgCreateAirdrop;
             toProto(message: _199.MsgCreateAirdrop): Uint8Array;
             toProtoMsg(message: _199.MsgCreateAirdrop): _199.MsgCreateAirdropProtoMsg;
@@ -1080,6 +1082,7 @@ export declare namespace stride {
             fromAmino(object: _199.MsgDeleteAirdropAmino): _199.MsgDeleteAirdrop;
             toAmino(message: _199.MsgDeleteAirdrop): _199.MsgDeleteAirdropAmino;
             fromAminoMsg(object: _199.MsgDeleteAirdropAminoMsg): _199.MsgDeleteAirdrop;
+            toAminoMsg(message: _199.MsgDeleteAirdrop): _199.MsgDeleteAirdropAminoMsg;
             fromProtoMsg(message: _199.MsgDeleteAirdropProtoMsg): _199.MsgDeleteAirdrop;
             toProto(message: _199.MsgDeleteAirdrop): Uint8Array;
             toProtoMsg(message: _199.MsgDeleteAirdrop): _199.MsgDeleteAirdropProtoMsg;
@@ -4243,6 +4246,7 @@ export declare namespace stride {
             fromAmino(object: _244.MsgUpdateInnerRedemptionRateBoundsAmino): _244.MsgUpdateInnerRedemptionRateBounds;
             toAmino(message: _244.MsgUpdateInnerRedemptionRateBounds): _244.MsgUpdateInnerRedemptionRateBoundsAmino;
             fromAminoMsg(object: _244.MsgUpdateInnerRedemptionRateBoundsAminoMsg): _244.MsgUpdateInnerRedemptionRateBounds;
+            toAminoMsg(message: _244.MsgUpdateInnerRedemptionRateBounds): _244.MsgUpdateInnerRedemptionRateBoundsAminoMsg;
             fromProtoMsg(message: _244.MsgUpdateInnerRedemptionRateBoundsProtoMsg): _244.MsgUpdateInnerRedemptionRateBounds;
             toProto(message: _244.MsgUpdateInnerRedemptionRateBounds): Uint8Array;
             toProtoMsg(message: _244.MsgUpdateInnerRedemptionRateBounds): _244.MsgUpdateInnerRedemptionRateBoundsProtoMsg;
@@ -4442,6 +4446,7 @@ export declare namespace stride {
             fromAmino(object: _244.MsgAddValidatorsAmino): _244.MsgAddValidators;
             toAmino(message: _244.MsgAddValidators): _244.MsgAddValidatorsAmino;
             fromAminoMsg(object: _244.MsgAddValidatorsAminoMsg): _244.MsgAddValidators;
+            toAminoMsg(message: _244.MsgAddValidators): _244.MsgAddValidatorsAminoMsg;
             fromProtoMsg(message: _244.MsgAddValidatorsProtoMsg): _244.MsgAddValidators;
             toProto(message: _244.MsgAddValidators): Uint8Array;
             toProtoMsg(message: _244.MsgAddValidators): _244.MsgAddValidatorsProtoMsg;
@@ -4478,6 +4483,7 @@ export declare namespace stride {
             fromAmino(object: _244.MsgChangeValidatorWeightsAmino): _244.MsgChangeValidatorWeights;
             toAmino(message: _244.MsgChangeValidatorWeights): _244.MsgChangeValidatorWeightsAmino;
             fromAminoMsg(object: _244.MsgChangeValidatorWeightsAminoMsg): _244.MsgChangeValidatorWeights;
+            toAminoMsg(message: _244.MsgChangeValidatorWeights): _244.MsgChangeValidatorWeightsAminoMsg;
             fromProtoMsg(message: _244.MsgChangeValidatorWeightsProtoMsg): _244.MsgChangeValidatorWeights;
             toProto(message: _244.MsgChangeValidatorWeights): Uint8Array;
             toProtoMsg(message: _244.MsgChangeValidatorWeights): _244.MsgChangeValidatorWeightsProtoMsg;
@@ -4552,6 +4558,7 @@ export declare namespace stride {
             fromAmino(object: _244.MsgCloseDelegationChannelAmino): _244.MsgCloseDelegationChannel;
             toAmino(message: _244.MsgCloseDelegationChannel): _244.MsgCloseDelegationChannelAmino;
             fromAminoMsg(object: _244.MsgCloseDelegationChannelAminoMsg): _244.MsgCloseDelegationChannel;
+            toAminoMsg(message: _244.MsgCloseDelegationChannel): _244.MsgCloseDelegationChannelAminoMsg;
             fromProtoMsg(message: _244.MsgCloseDelegationChannelProtoMsg): _244.MsgCloseDelegationChannel;
             toProto(message: _244.MsgCloseDelegationChannel): Uint8Array;
             toProtoMsg(message: _244.MsgCloseDelegationChannel): _244.MsgCloseDelegationChannelProtoMsg;
@@ -4601,6 +4608,7 @@ export declare namespace stride {
             fromAmino(object: _244.MsgCalibrateDelegationAmino): _244.MsgCalibrateDelegation;
             toAmino(message: _244.MsgCalibrateDelegation): _244.MsgCalibrateDelegationAmino;
             fromAminoMsg(object: _244.MsgCalibrateDelegationAminoMsg): _244.MsgCalibrateDelegation;
+            toAminoMsg(message: _244.MsgCalibrateDelegation): _244.MsgCalibrateDelegationAminoMsg;
             fromProtoMsg(message: _244.MsgCalibrateDelegationProtoMsg): _244.MsgCalibrateDelegation;
             toProto(message: _244.MsgCalibrateDelegation): Uint8Array;
             toProtoMsg(message: _244.MsgCalibrateDelegation): _244.MsgCalibrateDelegationProtoMsg;
@@ -4625,6 +4633,7 @@ export declare namespace stride {
             fromAmino(object: _244.MsgResumeHostZoneAmino): _244.MsgResumeHostZone;
             toAmino(message: _244.MsgResumeHostZone): _244.MsgResumeHostZoneAmino;
             fromAminoMsg(object: _244.MsgResumeHostZoneAminoMsg): _244.MsgResumeHostZone;
+            toAminoMsg(message: _244.MsgResumeHostZone): _244.MsgResumeHostZoneAminoMsg;
             fromProtoMsg(message: _244.MsgResumeHostZoneProtoMsg): _244.MsgResumeHostZone;
             toProto(message: _244.MsgResumeHostZone): Uint8Array;
             toProtoMsg(message: _244.MsgResumeHostZone): _244.MsgResumeHostZoneProtoMsg;
@@ -5164,6 +5173,7 @@ export declare namespace stride {
             fromAmino(object: _237.AddValidatorsProposalAmino): _237.AddValidatorsProposal;
             toAmino(message: _237.AddValidatorsProposal): _237.AddValidatorsProposalAmino;
             fromAminoMsg(object: _237.AddValidatorsProposalAminoMsg): _237.AddValidatorsProposal;
+            toAminoMsg(message: _237.AddValidatorsProposal): _237.AddValidatorsProposalAminoMsg;
             fromProtoMsg(message: _237.AddValidatorsProposalProtoMsg): _237.AddValidatorsProposal;
             toProto(message: _237.AddValidatorsProposal): Uint8Array;
             toProtoMsg(message: _237.AddValidatorsProposal): _237.AddValidatorsProposalProtoMsg;
@@ -5176,6 +5186,7 @@ export declare namespace stride {
             fromAmino(object: _237.ToggleLSMProposalAmino): _237.ToggleLSMProposal;
             toAmino(message: _237.ToggleLSMProposal): _237.ToggleLSMProposalAmino;
             fromAminoMsg(object: _237.ToggleLSMProposalAminoMsg): _237.ToggleLSMProposal;
+            toAminoMsg(message: _237.ToggleLSMProposal): _237.ToggleLSMProposalAminoMsg;
             fromProtoMsg(message: _237.ToggleLSMProposalProtoMsg): _237.ToggleLSMProposal;
             toProto(message: _237.ToggleLSMProposal): Uint8Array;
             toProtoMsg(message: _237.ToggleLSMProposal): _237.ToggleLSMProposalProtoMsg;
@@ -6334,6 +6345,7 @@ export declare namespace stride {
             fromAmino(object: _253.StridePeriodicVestingAccountAmino): _253.StridePeriodicVestingAccount;
             toAmino(message: _253.StridePeriodicVestingAccount): _253.StridePeriodicVestingAccountAmino;
             fromAminoMsg(object: _253.StridePeriodicVestingAccountAminoMsg): _253.StridePeriodicVestingAccount;
+            toAminoMsg(message: _253.StridePeriodicVestingAccount): _253.StridePeriodicVestingAccountAminoMsg;
             fromProtoMsg(message: _253.StridePeriodicVestingAccountProtoMsg): _253.StridePeriodicVestingAccount;
             toProto(message: _253.StridePeriodicVestingAccount): Uint8Array;
             toProtoMsg(message: _253.StridePeriodicVestingAccount): _253.StridePeriodicVestingAccountProtoMsg;

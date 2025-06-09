@@ -8,6 +8,11 @@ export interface NetAddressProtoMsg {
     typeUrl: "/tendermint.p2p.NetAddress";
     value: Uint8Array;
 }
+/**
+ * @name NetAddressAmino
+ * @package tendermint.p2p
+ * @see proto type: tendermint.p2p.NetAddress
+ */
 export interface NetAddressAmino {
     id?: string;
     ip?: string;
@@ -31,6 +36,11 @@ export interface ProtocolVersionProtoMsg {
     typeUrl: "/tendermint.p2p.ProtocolVersion";
     value: Uint8Array;
 }
+/**
+ * @name ProtocolVersionAmino
+ * @package tendermint.p2p
+ * @see proto type: tendermint.p2p.ProtocolVersion
+ */
 export interface ProtocolVersionAmino {
     p2p?: string;
     block?: string;
@@ -59,6 +69,11 @@ export interface DefaultNodeInfoProtoMsg {
     typeUrl: "/tendermint.p2p.DefaultNodeInfo";
     value: Uint8Array;
 }
+/**
+ * @name DefaultNodeInfoAmino
+ * @package tendermint.p2p
+ * @see proto type: tendermint.p2p.DefaultNodeInfo
+ */
 export interface DefaultNodeInfoAmino {
     protocol_version?: ProtocolVersionAmino;
     default_node_id?: string;
@@ -91,6 +106,11 @@ export interface DefaultNodeInfoOtherProtoMsg {
     typeUrl: "/tendermint.p2p.DefaultNodeInfoOther";
     value: Uint8Array;
 }
+/**
+ * @name DefaultNodeInfoOtherAmino
+ * @package tendermint.p2p
+ * @see proto type: tendermint.p2p.DefaultNodeInfoOther
+ */
 export interface DefaultNodeInfoOtherAmino {
     tx_index?: string;
     rpc_address?: string;

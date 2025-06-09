@@ -16,7 +16,12 @@ export interface GenesisStateProtoMsg {
     typeUrl: "/ibc.core.channel.v1.GenesisState";
     value: Uint8Array;
 }
-/** GenesisState defines the ibc channel submodule's genesis state. */
+/**
+ * GenesisState defines the ibc channel submodule's genesis state.
+ * @name GenesisStateAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.GenesisState
+ */
 export interface GenesisStateAmino {
     channels?: IdentifiedChannelAmino[];
     acknowledgements?: PacketStateAmino[];
@@ -25,7 +30,9 @@ export interface GenesisStateAmino {
     send_sequences?: PacketSequenceAmino[];
     recv_sequences?: PacketSequenceAmino[];
     ack_sequences?: PacketSequenceAmino[];
-    /** the sequence for the next generated channel identifier */
+    /**
+     * the sequence for the next generated channel identifier
+     */
     next_channel_sequence?: string;
 }
 export interface GenesisStateAminoMsg {
@@ -59,6 +66,9 @@ export interface PacketSequenceProtoMsg {
 /**
  * PacketSequence defines the genesis type necessary to retrieve and store
  * next send and receive sequences.
+ * @name PacketSequenceAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.PacketSequence
  */
 export interface PacketSequenceAmino {
     port_id?: string;

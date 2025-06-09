@@ -1,5 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 export interface Validator {
   name: string;
   address: string;
@@ -15,6 +15,11 @@ export interface ValidatorProtoMsg {
   typeUrl: "/stride.stakeibc.Validator";
   value: Uint8Array;
 }
+/**
+ * @name ValidatorAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.Validator
+ */
 export interface ValidatorAmino {
   name?: string;
   address?: string;

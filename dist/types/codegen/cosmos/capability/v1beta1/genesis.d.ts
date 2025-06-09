@@ -11,11 +11,20 @@ export interface GenesisOwnersProtoMsg {
     typeUrl: "/cosmos.capability.v1beta1.GenesisOwners";
     value: Uint8Array;
 }
-/** GenesisOwners defines the capability owners with their corresponding index. */
+/**
+ * GenesisOwners defines the capability owners with their corresponding index.
+ * @name GenesisOwnersAmino
+ * @package cosmos.capability.v1beta1
+ * @see proto type: cosmos.capability.v1beta1.GenesisOwners
+ */
 export interface GenesisOwnersAmino {
-    /** index is the index of the capability owner. */
+    /**
+     * index is the index of the capability owner.
+     */
     index?: string;
-    /** index_owners are the owners at the given index. */
+    /**
+     * index_owners are the owners at the given index.
+     */
     index_owners: CapabilityOwnersAmino;
 }
 export interface GenesisOwnersAminoMsg {
@@ -41,9 +50,16 @@ export interface GenesisStateProtoMsg {
     typeUrl: "/cosmos.capability.v1beta1.GenesisState";
     value: Uint8Array;
 }
-/** GenesisState defines the capability module's genesis state. */
+/**
+ * GenesisState defines the capability module's genesis state.
+ * @name GenesisStateAmino
+ * @package cosmos.capability.v1beta1
+ * @see proto type: cosmos.capability.v1beta1.GenesisState
+ */
 export interface GenesisStateAmino {
-    /** index is the capability global index. */
+    /**
+     * index is the capability global index.
+     */
     index?: string;
     /**
      * owners represents a map from index to owners of the capability index

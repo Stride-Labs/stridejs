@@ -8,7 +8,12 @@ export interface QueryParamsRequestProtoMsg {
   typeUrl: "/stride.records.QueryParamsRequest";
   value: Uint8Array;
 }
-/** QueryParamsRequest is request type for the Query/Params RPC method. */
+/**
+ * QueryParamsRequest is request type for the Query/Params RPC method.
+ * @name QueryParamsRequestAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryParamsRequest
+ */
 export interface QueryParamsRequestAmino {}
 export interface QueryParamsRequestAminoMsg {
   type: "/stride.records.QueryParamsRequest";
@@ -25,9 +30,16 @@ export interface QueryParamsResponseProtoMsg {
   typeUrl: "/stride.records.QueryParamsResponse";
   value: Uint8Array;
 }
-/** QueryParamsResponse is response type for the Query/Params RPC method. */
+/**
+ * QueryParamsResponse is response type for the Query/Params RPC method.
+ * @name QueryParamsResponseAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryParamsResponse
+ */
 export interface QueryParamsResponseAmino {
-  /** params holds all the parameters of this module. */
+  /**
+   * params holds all the parameters of this module.
+   */
   params?: ParamsAmino;
 }
 export interface QueryParamsResponseAminoMsg {
@@ -45,6 +57,11 @@ export interface QueryGetDepositRecordRequestProtoMsg {
   typeUrl: "/stride.records.QueryGetDepositRecordRequest";
   value: Uint8Array;
 }
+/**
+ * @name QueryGetDepositRecordRequestAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryGetDepositRecordRequest
+ */
 export interface QueryGetDepositRecordRequestAmino {
   id?: string;
 }
@@ -62,6 +79,11 @@ export interface QueryGetDepositRecordResponseProtoMsg {
   typeUrl: "/stride.records.QueryGetDepositRecordResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryGetDepositRecordResponseAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryGetDepositRecordResponse
+ */
 export interface QueryGetDepositRecordResponseAmino {
   deposit_record?: DepositRecordAmino;
 }
@@ -79,6 +101,11 @@ export interface QueryAllDepositRecordRequestProtoMsg {
   typeUrl: "/stride.records.QueryAllDepositRecordRequest";
   value: Uint8Array;
 }
+/**
+ * @name QueryAllDepositRecordRequestAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryAllDepositRecordRequest
+ */
 export interface QueryAllDepositRecordRequestAmino {
   pagination?: PageRequestAmino;
 }
@@ -97,6 +124,11 @@ export interface QueryAllDepositRecordResponseProtoMsg {
   typeUrl: "/stride.records.QueryAllDepositRecordResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryAllDepositRecordResponseAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryAllDepositRecordResponse
+ */
 export interface QueryAllDepositRecordResponseAmino {
   deposit_record?: DepositRecordAmino[];
   pagination?: PageResponseAmino;
@@ -116,6 +148,11 @@ export interface QueryDepositRecordByHostRequestProtoMsg {
   typeUrl: "/stride.records.QueryDepositRecordByHostRequest";
   value: Uint8Array;
 }
+/**
+ * @name QueryDepositRecordByHostRequestAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryDepositRecordByHostRequest
+ */
 export interface QueryDepositRecordByHostRequestAmino {
   host_zone_id?: string;
 }
@@ -133,6 +170,11 @@ export interface QueryDepositRecordByHostResponseProtoMsg {
   typeUrl: "/stride.records.QueryDepositRecordByHostResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryDepositRecordByHostResponseAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryDepositRecordByHostResponse
+ */
 export interface QueryDepositRecordByHostResponseAmino {
   deposit_record?: DepositRecordAmino[];
 }
@@ -150,6 +192,11 @@ export interface QueryGetUserRedemptionRecordRequestProtoMsg {
   typeUrl: "/stride.records.QueryGetUserRedemptionRecordRequest";
   value: Uint8Array;
 }
+/**
+ * @name QueryGetUserRedemptionRecordRequestAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryGetUserRedemptionRecordRequest
+ */
 export interface QueryGetUserRedemptionRecordRequestAmino {
   id?: string;
 }
@@ -167,6 +214,11 @@ export interface QueryGetUserRedemptionRecordResponseProtoMsg {
   typeUrl: "/stride.records.QueryGetUserRedemptionRecordResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryGetUserRedemptionRecordResponseAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryGetUserRedemptionRecordResponse
+ */
 export interface QueryGetUserRedemptionRecordResponseAmino {
   user_redemption_record?: UserRedemptionRecordAmino;
 }
@@ -184,6 +236,11 @@ export interface QueryAllUserRedemptionRecordRequestProtoMsg {
   typeUrl: "/stride.records.QueryAllUserRedemptionRecordRequest";
   value: Uint8Array;
 }
+/**
+ * @name QueryAllUserRedemptionRecordRequestAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryAllUserRedemptionRecordRequest
+ */
 export interface QueryAllUserRedemptionRecordRequestAmino {
   pagination?: PageRequestAmino;
 }
@@ -202,6 +259,11 @@ export interface QueryAllUserRedemptionRecordResponseProtoMsg {
   typeUrl: "/stride.records.QueryAllUserRedemptionRecordResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryAllUserRedemptionRecordResponseAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryAllUserRedemptionRecordResponse
+ */
 export interface QueryAllUserRedemptionRecordResponseAmino {
   user_redemption_record?: UserRedemptionRecordAmino[];
   pagination?: PageResponseAmino;
@@ -226,7 +288,12 @@ export interface QueryAllUserRedemptionRecordForUserRequestProtoMsg {
   typeUrl: "/stride.records.QueryAllUserRedemptionRecordForUserRequest";
   value: Uint8Array;
 }
-/** Query UserRedemptionRecords by chainId / userId pair */
+/**
+ * Query UserRedemptionRecords by chainId / userId pair
+ * @name QueryAllUserRedemptionRecordForUserRequestAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryAllUserRedemptionRecordForUserRequest
+ */
 export interface QueryAllUserRedemptionRecordForUserRequestAmino {
   chain_id?: string;
   day?: string;
@@ -254,6 +321,11 @@ export interface QueryAllUserRedemptionRecordForUserResponseProtoMsg {
   typeUrl: "/stride.records.QueryAllUserRedemptionRecordForUserResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryAllUserRedemptionRecordForUserResponseAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryAllUserRedemptionRecordForUserResponse
+ */
 export interface QueryAllUserRedemptionRecordForUserResponseAmino {
   user_redemption_record?: UserRedemptionRecordAmino[];
   pagination?: PageResponseAmino;
@@ -273,6 +345,11 @@ export interface QueryGetEpochUnbondingRecordRequestProtoMsg {
   typeUrl: "/stride.records.QueryGetEpochUnbondingRecordRequest";
   value: Uint8Array;
 }
+/**
+ * @name QueryGetEpochUnbondingRecordRequestAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryGetEpochUnbondingRecordRequest
+ */
 export interface QueryGetEpochUnbondingRecordRequestAmino {
   epoch_number?: string;
 }
@@ -290,6 +367,11 @@ export interface QueryGetEpochUnbondingRecordResponseProtoMsg {
   typeUrl: "/stride.records.QueryGetEpochUnbondingRecordResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryGetEpochUnbondingRecordResponseAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryGetEpochUnbondingRecordResponse
+ */
 export interface QueryGetEpochUnbondingRecordResponseAmino {
   epoch_unbonding_record?: EpochUnbondingRecordAmino;
 }
@@ -307,6 +389,11 @@ export interface QueryAllEpochUnbondingRecordRequestProtoMsg {
   typeUrl: "/stride.records.QueryAllEpochUnbondingRecordRequest";
   value: Uint8Array;
 }
+/**
+ * @name QueryAllEpochUnbondingRecordRequestAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryAllEpochUnbondingRecordRequest
+ */
 export interface QueryAllEpochUnbondingRecordRequestAmino {
   pagination?: PageRequestAmino;
 }
@@ -325,6 +412,11 @@ export interface QueryAllEpochUnbondingRecordResponseProtoMsg {
   typeUrl: "/stride.records.QueryAllEpochUnbondingRecordResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryAllEpochUnbondingRecordResponseAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryAllEpochUnbondingRecordResponse
+ */
 export interface QueryAllEpochUnbondingRecordResponseAmino {
   epoch_unbonding_record?: EpochUnbondingRecordAmino[];
   pagination?: PageResponseAmino;
@@ -345,6 +437,11 @@ export interface QueryLSMDepositRequestProtoMsg {
   typeUrl: "/stride.records.QueryLSMDepositRequest";
   value: Uint8Array;
 }
+/**
+ * @name QueryLSMDepositRequestAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryLSMDepositRequest
+ */
 export interface QueryLSMDepositRequestAmino {
   chain_id?: string;
   denom?: string;
@@ -364,6 +461,11 @@ export interface QueryLSMDepositResponseProtoMsg {
   typeUrl: "/stride.records.QueryLSMDepositResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryLSMDepositResponseAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryLSMDepositResponse
+ */
 export interface QueryLSMDepositResponseAmino {
   deposit?: LSMTokenDepositAmino;
 }
@@ -383,6 +485,11 @@ export interface QueryLSMDepositsRequestProtoMsg {
   typeUrl: "/stride.records.QueryLSMDepositsRequest";
   value: Uint8Array;
 }
+/**
+ * @name QueryLSMDepositsRequestAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryLSMDepositsRequest
+ */
 export interface QueryLSMDepositsRequestAmino {
   chain_id?: string;
   validator_address?: string;
@@ -404,6 +511,11 @@ export interface QueryLSMDepositsResponseProtoMsg {
   typeUrl: "/stride.records.QueryLSMDepositsResponse";
   value: Uint8Array;
 }
+/**
+ * @name QueryLSMDepositsResponseAmino
+ * @package stride.records
+ * @see proto type: stride.records.QueryLSMDepositsResponse
+ */
 export interface QueryLSMDepositsResponseAmino {
   deposits?: LSMTokenDepositAmino[];
 }

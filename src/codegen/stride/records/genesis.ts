@@ -16,7 +16,12 @@ export interface GenesisStateProtoMsg {
   typeUrl: "/stride.records.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the records module's genesis state. */
+/**
+ * GenesisState defines the records module's genesis state.
+ * @name GenesisStateAmino
+ * @package stride.records
+ * @see proto type: stride.records.GenesisState
+ */
 export interface GenesisStateAmino {
   params?: ParamsAmino;
   port_id?: string;

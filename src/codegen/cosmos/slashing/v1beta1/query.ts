@@ -7,7 +7,12 @@ export interface QueryParamsRequestProtoMsg {
   typeUrl: "/cosmos.slashing.v1beta1.QueryParamsRequest";
   value: Uint8Array;
 }
-/** QueryParamsRequest is the request type for the Query/Params RPC method */
+/**
+ * QueryParamsRequest is the request type for the Query/Params RPC method
+ * @name QueryParamsRequestAmino
+ * @package cosmos.slashing.v1beta1
+ * @see proto type: cosmos.slashing.v1beta1.QueryParamsRequest
+ */
 export interface QueryParamsRequestAmino {}
 export interface QueryParamsRequestAminoMsg {
   type: "cosmos-sdk/QueryParamsRequest";
@@ -23,7 +28,12 @@ export interface QueryParamsResponseProtoMsg {
   typeUrl: "/cosmos.slashing.v1beta1.QueryParamsResponse";
   value: Uint8Array;
 }
-/** QueryParamsResponse is the response type for the Query/Params RPC method */
+/**
+ * QueryParamsResponse is the response type for the Query/Params RPC method
+ * @name QueryParamsResponseAmino
+ * @package cosmos.slashing.v1beta1
+ * @see proto type: cosmos.slashing.v1beta1.QueryParamsResponse
+ */
 export interface QueryParamsResponseAmino {
   params: ParamsAmino;
 }
@@ -50,9 +60,14 @@ export interface QuerySigningInfoRequestProtoMsg {
 /**
  * QuerySigningInfoRequest is the request type for the Query/SigningInfo RPC
  * method
+ * @name QuerySigningInfoRequestAmino
+ * @package cosmos.slashing.v1beta1
+ * @see proto type: cosmos.slashing.v1beta1.QuerySigningInfoRequest
  */
 export interface QuerySigningInfoRequestAmino {
-  /** cons_address is the address to query signing info of */
+  /**
+   * cons_address is the address to query signing info of
+   */
   cons_address?: string;
 }
 export interface QuerySigningInfoRequestAminoMsg {
@@ -81,9 +96,14 @@ export interface QuerySigningInfoResponseProtoMsg {
 /**
  * QuerySigningInfoResponse is the response type for the Query/SigningInfo RPC
  * method
+ * @name QuerySigningInfoResponseAmino
+ * @package cosmos.slashing.v1beta1
+ * @see proto type: cosmos.slashing.v1beta1.QuerySigningInfoResponse
  */
 export interface QuerySigningInfoResponseAmino {
-  /** val_signing_info is the signing info of requested val cons address */
+  /**
+   * val_signing_info is the signing info of requested val cons address
+   */
   val_signing_info: ValidatorSigningInfoAmino;
 }
 export interface QuerySigningInfoResponseAminoMsg {
@@ -111,6 +131,9 @@ export interface QuerySigningInfosRequestProtoMsg {
 /**
  * QuerySigningInfosRequest is the request type for the Query/SigningInfos RPC
  * method
+ * @name QuerySigningInfosRequestAmino
+ * @package cosmos.slashing.v1beta1
+ * @see proto type: cosmos.slashing.v1beta1.QuerySigningInfosRequest
  */
 export interface QuerySigningInfosRequestAmino {
   pagination?: PageRequestAmino;
@@ -142,9 +165,14 @@ export interface QuerySigningInfosResponseProtoMsg {
 /**
  * QuerySigningInfosResponse is the response type for the Query/SigningInfos RPC
  * method
+ * @name QuerySigningInfosResponseAmino
+ * @package cosmos.slashing.v1beta1
+ * @see proto type: cosmos.slashing.v1beta1.QuerySigningInfosResponse
  */
 export interface QuerySigningInfosResponseAmino {
-  /** info is the signing info of all validators */
+  /**
+   * info is the signing info of all validators
+   */
   info: ValidatorSigningInfoAmino[];
   pagination?: PageResponseAmino;
 }

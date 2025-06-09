@@ -53,7 +53,7 @@ module.exports = __toCommonJS(tx_exports);
 var import_stakedym = require("./stakedym");
 var import_coin = require("../../cosmos/base/v1beta1/coin");
 var import_binary = require("../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../decimals");
 var OverwritableRecordType = /* @__PURE__ */ ((OverwritableRecordType2) => {
   OverwritableRecordType2[OverwritableRecordType2["RECORD_TYPE_DELEGATION"] = 0] = "RECORD_TYPE_DELEGATION";
   OverwritableRecordType2[OverwritableRecordType2["RECORD_TYPE_UNBONDING"] = 1] = "RECORD_TYPE_UNBONDING";
@@ -967,10 +967,10 @@ const MsgUpdateInnerRedemptionRateBounds = {
       writer.uint32(10).string(message.creator);
     }
     if (message.minInnerRedemptionRate !== "") {
-      writer.uint32(18).string(import_math.Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics);
+      writer.uint32(18).string(import_decimals.Decimal.fromUserInput(message.minInnerRedemptionRate, 18).atomics);
     }
     if (message.maxInnerRedemptionRate !== "") {
-      writer.uint32(26).string(import_math.Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics);
+      writer.uint32(26).string(import_decimals.Decimal.fromUserInput(message.maxInnerRedemptionRate, 18).atomics);
     }
     return writer;
   },
@@ -985,10 +985,10 @@ const MsgUpdateInnerRedemptionRateBounds = {
           message.creator = reader.string();
           break;
         case 2:
-          message.minInnerRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.minInnerRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 3:
-          message.maxInnerRedemptionRate = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.maxInnerRedemptionRate = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);

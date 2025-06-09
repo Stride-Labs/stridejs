@@ -51,7 +51,7 @@ var import_upgrade = require("../../upgrade/v1beta1/upgrade");
 var import_proposal_legacy = require("../../../cosmwasm/wasm/v1/proposal_legacy");
 var import_client = require("../../../ibc/core/client/v1/client");
 var import_binary = require("../../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../../decimals");
 var import_helpers = require("../../../helpers");
 var VoteOption = /* @__PURE__ */ ((VoteOption2) => {
   VoteOption2[VoteOption2["VOTE_OPTION_UNSPECIFIED"] = 0] = "VOTE_OPTION_UNSPECIFIED";
@@ -174,7 +174,7 @@ const WeightedVoteOption = {
       writer.uint32(8).int32(message.option);
     }
     if (message.weight !== "") {
-      writer.uint32(18).string(import_math.Decimal.fromUserInput(message.weight, 18).atomics);
+      writer.uint32(18).string(import_decimals.Decimal.fromUserInput(message.weight, 18).atomics);
     }
     return writer;
   },
@@ -189,7 +189,7 @@ const WeightedVoteOption = {
           message.option = reader.int32();
           break;
         case 2:
-          message.weight = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.weight = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);

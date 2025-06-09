@@ -23,22 +23,22 @@ module.exports = __toCommonJS(tx_amino_exports);
 var import_tx = require("./tx");
 const AminoConverter = {
   "/stride.claim.MsgSetAirdropAllocations": {
-    aminoType: "/stride.claim.MsgSetAirdropAllocations",
+    aminoType: "claim/MsgSetAirdropAllocations",
     toAmino: import_tx.MsgSetAirdropAllocations.toAmino,
     fromAmino: import_tx.MsgSetAirdropAllocations.fromAmino
   },
   "/stride.claim.MsgClaimFreeAmount": {
-    aminoType: "claim/ClaimFreeAmount",
+    aminoType: "claim/MsgClaimFreeAmount",
     toAmino: import_tx.MsgClaimFreeAmount.toAmino,
     fromAmino: import_tx.MsgClaimFreeAmount.fromAmino
   },
   "/stride.claim.MsgCreateAirdrop": {
-    aminoType: "/stride.claim.MsgCreateAirdrop",
+    aminoType: "claim/MsgCreateAirdrop",
     toAmino: import_tx.MsgCreateAirdrop.toAmino,
     fromAmino: import_tx.MsgCreateAirdrop.fromAmino
   },
   "/stride.claim.MsgDeleteAirdrop": {
-    aminoType: "/stride.claim.MsgDeleteAirdrop",
+    aminoType: "claim/MsgDeleteAirdrop",
     toAmino: import_tx.MsgDeleteAirdrop.toAmino,
     fromAmino: import_tx.MsgDeleteAirdrop.fromAmino
   }

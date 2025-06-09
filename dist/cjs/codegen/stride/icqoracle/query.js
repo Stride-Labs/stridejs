@@ -30,7 +30,7 @@ module.exports = __toCommonJS(query_exports);
 var import_pagination = require("../../cosmos/base/query/v1beta1/pagination");
 var import_icqoracle = require("./icqoracle");
 var import_binary = require("../../binary");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../decimals");
 function createBaseQueryTokenPriceRequest() {
   return {
     baseDenom: "",
@@ -542,7 +542,7 @@ const QueryTokenPriceForQuoteDenomResponse = {
   typeUrl: "/stride.icqoracle.QueryTokenPriceForQuoteDenomResponse",
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.price !== "") {
-      writer.uint32(10).string(import_math.Decimal.fromUserInput(message.price, 18).atomics);
+      writer.uint32(10).string(import_decimals.Decimal.fromUserInput(message.price, 18).atomics);
     }
     return writer;
   },
@@ -554,7 +554,7 @@ const QueryTokenPriceForQuoteDenomResponse = {
       const tag = reader.uint32();
       switch (tag >>> 3) {
         case 1:
-          message.price = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.price = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         default:
           reader.skipType(tag & 7);

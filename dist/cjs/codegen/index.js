@@ -20,6 +20,7 @@ __reExport(codegen_exports, require("./cosmos/bundle"), module.exports);
 __reExport(codegen_exports, require("./cosmos/client"), module.exports);
 __reExport(codegen_exports, require("./cosmwasm/bundle"), module.exports);
 __reExport(codegen_exports, require("./cosmwasm/client"), module.exports);
+__reExport(codegen_exports, require("./gaia/bundle"), module.exports);
 __reExport(codegen_exports, require("./gogoproto/bundle"), module.exports);
 __reExport(codegen_exports, require("./google/bundle"), module.exports);
 __reExport(codegen_exports, require("./ibc/bundle"), module.exports);
@@ -28,6 +29,7 @@ __reExport(codegen_exports, require("./osmosis/bundle"), module.exports);
 __reExport(codegen_exports, require("./stride/bundle"), module.exports);
 __reExport(codegen_exports, require("./stride/client"), module.exports);
 __reExport(codegen_exports, require("./tendermint/bundle"), module.exports);
+__reExport(codegen_exports, require("./decimals"), module.exports);
 __reExport(codegen_exports, require("./varint"), module.exports);
 __reExport(codegen_exports, require("./utf8"), module.exports);
 __reExport(codegen_exports, require("./binary"), module.exports);
@@ -40,6 +42,7 @@ __reExport(codegen_exports, require("./types"), module.exports);
   ...require("./cosmos/client"),
   ...require("./cosmwasm/bundle"),
   ...require("./cosmwasm/client"),
+  ...require("./gaia/bundle"),
   ...require("./gogoproto/bundle"),
   ...require("./google/bundle"),
   ...require("./ibc/bundle"),
@@ -48,6 +51,7 @@ __reExport(codegen_exports, require("./types"), module.exports);
   ...require("./stride/bundle"),
   ...require("./stride/client"),
   ...require("./tendermint/bundle"),
+  ...require("./decimals"),
   ...require("./varint"),
   ...require("./utf8"),
   ...require("./binary"),

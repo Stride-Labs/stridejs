@@ -13,7 +13,12 @@ export interface MsgSubmitQueryResponseProtoMsg {
     typeUrl: "/stride.interchainquery.v1.MsgSubmitQueryResponse";
     value: Uint8Array;
 }
-/** MsgSubmitQueryResponse represents a message type to fulfil a query request. */
+/**
+ * MsgSubmitQueryResponse represents a message type to fulfil a query request.
+ * @name MsgSubmitQueryResponseAmino
+ * @package stride.interchainquery.v1
+ * @see proto type: stride.interchainquery.v1.MsgSubmitQueryResponse
+ */
 export interface MsgSubmitQueryResponseAmino {
     chain_id?: string;
     query_id?: string;
@@ -48,6 +53,9 @@ export interface MsgSubmitQueryResponseResponseProtoMsg {
 /**
  * MsgSubmitQueryResponseResponse defines the MsgSubmitQueryResponse response
  * type.
+ * @name MsgSubmitQueryResponseResponseAmino
+ * @package stride.interchainquery.v1
+ * @see proto type: stride.interchainquery.v1.MsgSubmitQueryResponseResponse
  */
 export interface MsgSubmitQueryResponseResponseAmino {
 }

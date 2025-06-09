@@ -9,7 +9,12 @@ export interface QueryParamsRequestProtoMsg {
     typeUrl: "/stride.icacallbacks.QueryParamsRequest";
     value: Uint8Array;
 }
-/** QueryParamsRequest is request type for the Query/Params RPC method. */
+/**
+ * QueryParamsRequest is request type for the Query/Params RPC method.
+ * @name QueryParamsRequestAmino
+ * @package stride.icacallbacks
+ * @see proto type: stride.icacallbacks.QueryParamsRequest
+ */
 export interface QueryParamsRequestAmino {
 }
 export interface QueryParamsRequestAminoMsg {
@@ -28,9 +33,16 @@ export interface QueryParamsResponseProtoMsg {
     typeUrl: "/stride.icacallbacks.QueryParamsResponse";
     value: Uint8Array;
 }
-/** QueryParamsResponse is response type for the Query/Params RPC method. */
+/**
+ * QueryParamsResponse is response type for the Query/Params RPC method.
+ * @name QueryParamsResponseAmino
+ * @package stride.icacallbacks
+ * @see proto type: stride.icacallbacks.QueryParamsResponse
+ */
 export interface QueryParamsResponseAmino {
-    /** params holds all the parameters of this module. */
+    /**
+     * params holds all the parameters of this module.
+     */
     params?: ParamsAmino;
 }
 export interface QueryParamsResponseAminoMsg {
@@ -48,6 +60,11 @@ export interface QueryGetCallbackDataRequestProtoMsg {
     typeUrl: "/stride.icacallbacks.QueryGetCallbackDataRequest";
     value: Uint8Array;
 }
+/**
+ * @name QueryGetCallbackDataRequestAmino
+ * @package stride.icacallbacks
+ * @see proto type: stride.icacallbacks.QueryGetCallbackDataRequest
+ */
 export interface QueryGetCallbackDataRequestAmino {
     callback_key?: string;
 }
@@ -65,6 +82,11 @@ export interface QueryGetCallbackDataResponseProtoMsg {
     typeUrl: "/stride.icacallbacks.QueryGetCallbackDataResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryGetCallbackDataResponseAmino
+ * @package stride.icacallbacks
+ * @see proto type: stride.icacallbacks.QueryGetCallbackDataResponse
+ */
 export interface QueryGetCallbackDataResponseAmino {
     callback_data?: CallbackDataAmino;
 }
@@ -82,6 +104,11 @@ export interface QueryAllCallbackDataRequestProtoMsg {
     typeUrl: "/stride.icacallbacks.QueryAllCallbackDataRequest";
     value: Uint8Array;
 }
+/**
+ * @name QueryAllCallbackDataRequestAmino
+ * @package stride.icacallbacks
+ * @see proto type: stride.icacallbacks.QueryAllCallbackDataRequest
+ */
 export interface QueryAllCallbackDataRequestAmino {
     pagination?: PageRequestAmino;
 }
@@ -100,6 +127,11 @@ export interface QueryAllCallbackDataResponseProtoMsg {
     typeUrl: "/stride.icacallbacks.QueryAllCallbackDataResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryAllCallbackDataResponseAmino
+ * @package stride.icacallbacks
+ * @see proto type: stride.icacallbacks.QueryAllCallbackDataResponse
+ */
 export interface QueryAllCallbackDataResponseAmino {
     callback_data?: CallbackDataAmino[];
     pagination?: PageResponseAmino;

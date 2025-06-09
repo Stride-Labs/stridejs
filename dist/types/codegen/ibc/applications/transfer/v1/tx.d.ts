@@ -38,17 +38,30 @@ export interface MsgTransferProtoMsg {
  * MsgTransfer defines a msg to transfer fungible tokens (i.e Coins) between
  * ICS20 enabled chains. See ICS Spec here:
  * https://github.com/cosmos/ibc/tree/master/spec/app/ics-020-fungible-token-transfer#data-structures
+ * @name MsgTransferAmino
+ * @package ibc.applications.transfer.v1
+ * @see proto type: ibc.applications.transfer.v1.MsgTransfer
  */
 export interface MsgTransferAmino {
-    /** the port on which the packet will be sent */
+    /**
+     * the port on which the packet will be sent
+     */
     source_port?: string;
-    /** the channel by which the packet will be sent */
+    /**
+     * the channel by which the packet will be sent
+     */
     source_channel?: string;
-    /** the tokens to be transferred */
+    /**
+     * the tokens to be transferred
+     */
     token?: CoinAmino;
-    /** the sender address */
+    /**
+     * the sender address
+     */
     sender?: string;
-    /** the recipient address on the destination chain */
+    /**
+     * the recipient address on the destination chain
+     */
     receiver?: string;
     /**
      * Timeout height relative to the current block height.
@@ -60,7 +73,9 @@ export interface MsgTransferAmino {
      * The timeout is disabled when set to 0.
      */
     timeout_timestamp?: string;
-    /** optional memo */
+    /**
+     * optional memo
+     */
     memo?: string;
 }
 export interface MsgTransferAminoMsg {
@@ -91,9 +106,16 @@ export interface MsgTransferResponseProtoMsg {
     typeUrl: "/ibc.applications.transfer.v1.MsgTransferResponse";
     value: Uint8Array;
 }
-/** MsgTransferResponse defines the Msg/Transfer response type. */
+/**
+ * MsgTransferResponse defines the Msg/Transfer response type.
+ * @name MsgTransferResponseAmino
+ * @package ibc.applications.transfer.v1
+ * @see proto type: ibc.applications.transfer.v1.MsgTransferResponse
+ */
 export interface MsgTransferResponseAmino {
-    /** sequence number of the transfer packet sent */
+    /**
+     * sequence number of the transfer packet sent
+     */
     sequence?: string;
 }
 export interface MsgTransferResponseAminoMsg {

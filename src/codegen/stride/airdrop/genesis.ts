@@ -13,13 +13,24 @@ export interface GenesisStateProtoMsg {
   typeUrl: "/stride.airdrop.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the airdrop module's genesis state. */
+/**
+ * GenesisState defines the airdrop module's genesis state.
+ * @name GenesisStateAmino
+ * @package stride.airdrop
+ * @see proto type: stride.airdrop.GenesisState
+ */
 export interface GenesisStateAmino {
-  /** Module parameters */
+  /**
+   * Module parameters
+   */
   params?: ParamsAmino;
-  /** All airdrop config records */
+  /**
+   * All airdrop config records
+   */
   airdrops?: AirdropAmino[];
-  /** All allocation records across all airdrops */
+  /**
+   * All allocation records across all airdrops
+   */
   user_allocations?: UserAllocationAmino[];
 }
 export interface GenesisStateAminoMsg {

@@ -14,7 +14,12 @@ export interface ModuleProtoMsg {
   typeUrl: "/cosmos.staking.module.v1.Module";
   value: Uint8Array;
 }
-/** Module is the config object of the staking module. */
+/**
+ * Module is the config object of the staking module.
+ * @name ModuleAmino
+ * @package cosmos.staking.module.v1
+ * @see proto type: cosmos.staking.module.v1.Module
+ */
 export interface ModuleAmino {
   /**
    * hooks_order specifies the order of staking hooks and should be a list
@@ -22,7 +27,9 @@ export interface ModuleAmino {
    * provided, then hooks will be applied in alphabetical order of module names.
    */
   hooks_order?: string[];
-  /** authority defines the custom module authority. If not set, defaults to the governance module. */
+  /**
+   * authority defines the custom module authority. If not set, defaults to the governance module.
+   */
   authority?: string;
 }
 export interface ModuleAminoMsg {

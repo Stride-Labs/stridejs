@@ -19,9 +19,16 @@ export interface MsgUpdateParamsProtoMsg {
     typeUrl: "/cosmos.consensus.v1.MsgUpdateParams";
     value: Uint8Array;
 }
-/** MsgUpdateParams is the Msg/UpdateParams request type. */
+/**
+ * MsgUpdateParams is the Msg/UpdateParams request type.
+ * @name MsgUpdateParamsAmino
+ * @package cosmos.consensus.v1
+ * @see proto type: cosmos.consensus.v1.MsgUpdateParams
+ */
 export interface MsgUpdateParamsAmino {
-    /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
+    /**
+     * authority is the address that controls the module (defaults to x/gov unless overwritten).
+     */
     authority?: string;
     /**
      * params defines the x/consensus parameters to update.
@@ -58,6 +65,9 @@ export interface MsgUpdateParamsResponseProtoMsg {
 /**
  * MsgUpdateParamsResponse defines the response structure for executing a
  * MsgUpdateParams message.
+ * @name MsgUpdateParamsResponseAmino
+ * @package cosmos.consensus.v1
+ * @see proto type: cosmos.consensus.v1.MsgUpdateParamsResponse
  */
 export interface MsgUpdateParamsResponseAmino {
 }

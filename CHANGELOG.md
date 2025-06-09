@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.14.0
+
+- Rebuild types for v27
+- Update telescope to v0.12.19
+- Fix Amino decimals
+
 ## 0.13.0
 
 - Add types for buyback and burn (x/icqoracle, x/auction, x/strdburner)

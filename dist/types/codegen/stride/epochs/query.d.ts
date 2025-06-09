@@ -8,6 +8,11 @@ export interface QueryEpochsInfoRequestProtoMsg {
     typeUrl: "/stride.epochs.QueryEpochsInfoRequest";
     value: Uint8Array;
 }
+/**
+ * @name QueryEpochsInfoRequestAmino
+ * @package stride.epochs
+ * @see proto type: stride.epochs.QueryEpochsInfoRequest
+ */
 export interface QueryEpochsInfoRequestAmino {
     pagination?: PageRequestAmino;
 }
@@ -26,6 +31,11 @@ export interface QueryEpochsInfoResponseProtoMsg {
     typeUrl: "/stride.epochs.QueryEpochsInfoResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryEpochsInfoResponseAmino
+ * @package stride.epochs
+ * @see proto type: stride.epochs.QueryEpochsInfoResponse
+ */
 export interface QueryEpochsInfoResponseAmino {
     epochs?: EpochInfoAmino[];
     pagination?: PageResponseAmino;
@@ -45,6 +55,11 @@ export interface QueryCurrentEpochRequestProtoMsg {
     typeUrl: "/stride.epochs.QueryCurrentEpochRequest";
     value: Uint8Array;
 }
+/**
+ * @name QueryCurrentEpochRequestAmino
+ * @package stride.epochs
+ * @see proto type: stride.epochs.QueryCurrentEpochRequest
+ */
 export interface QueryCurrentEpochRequestAmino {
     identifier?: string;
 }
@@ -62,6 +77,11 @@ export interface QueryCurrentEpochResponseProtoMsg {
     typeUrl: "/stride.epochs.QueryCurrentEpochResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryCurrentEpochResponseAmino
+ * @package stride.epochs
+ * @see proto type: stride.epochs.QueryCurrentEpochResponse
+ */
 export interface QueryCurrentEpochResponseAmino {
     current_epoch?: string;
 }
@@ -79,6 +99,11 @@ export interface QueryEpochInfoRequestProtoMsg {
     typeUrl: "/stride.epochs.QueryEpochInfoRequest";
     value: Uint8Array;
 }
+/**
+ * @name QueryEpochInfoRequestAmino
+ * @package stride.epochs
+ * @see proto type: stride.epochs.QueryEpochInfoRequest
+ */
 export interface QueryEpochInfoRequestAmino {
     identifier?: string;
 }
@@ -96,6 +121,11 @@ export interface QueryEpochInfoResponseProtoMsg {
     typeUrl: "/stride.epochs.QueryEpochInfoResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryEpochInfoResponseAmino
+ * @package stride.epochs
+ * @see proto type: stride.epochs.QueryEpochInfoResponse
+ */
 export interface QueryEpochInfoResponseAmino {
     epoch?: EpochInfoAmino;
 }

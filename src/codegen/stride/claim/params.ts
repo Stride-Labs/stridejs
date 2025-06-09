@@ -10,7 +10,12 @@ export interface ParamsProtoMsg {
   typeUrl: "/stride.claim.Params";
   value: Uint8Array;
 }
-/** Params defines the claim module's parameters. */
+/**
+ * Params defines the claim module's parameters.
+ * @name ParamsAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.Params
+ */
 export interface ParamsAmino {
   airdrops?: AirdropAmino[];
 }
@@ -42,20 +47,37 @@ export interface AirdropProtoMsg {
   typeUrl: "/stride.claim.Airdrop";
   value: Uint8Array;
 }
+/**
+ * @name AirdropAmino
+ * @package stride.claim
+ * @see proto type: stride.claim.Airdrop
+ */
 export interface AirdropAmino {
   airdrop_identifier?: string;
   chain_id?: string;
-  /** seconds */
+  /**
+   * seconds
+   */
   airdrop_start_time?: string;
-  /** seconds */
+  /**
+   * seconds
+   */
   airdrop_duration?: DurationAmino;
-  /** denom of claimable asset */
+  /**
+   * denom of claimable asset
+   */
   claim_denom?: string;
-  /** airdrop distribution account */
+  /**
+   * airdrop distribution account
+   */
   distributor_address?: string;
-  /** ustrd tokens claimed so far in the current period */
+  /**
+   * ustrd tokens claimed so far in the current period
+   */
   claimed_so_far?: string;
-  /** indicates the airdrop should be claimed via autopilot */
+  /**
+   * indicates the airdrop should be claimed via autopilot
+   */
   autopilot_enabled?: boolean;
 }
 export interface AirdropAminoMsg {

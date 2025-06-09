@@ -5,7 +5,12 @@ export interface ModuleProtoMsg {
   typeUrl: "/cosmos.evidence.module.v1.Module";
   value: Uint8Array;
 }
-/** Module is the config object of the evidence module. */
+/**
+ * Module is the config object of the evidence module.
+ * @name ModuleAmino
+ * @package cosmos.evidence.module.v1
+ * @see proto type: cosmos.evidence.module.v1.Module
+ */
 export interface ModuleAmino {}
 export interface ModuleAminoMsg {
   type: "cosmos-sdk/Module";

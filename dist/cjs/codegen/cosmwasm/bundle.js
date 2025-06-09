@@ -30,13 +30,13 @@ __export(bundle_exports, {
   cosmwasm: () => cosmwasm
 });
 module.exports = __toCommonJS(bundle_exports);
-var _129 = __toESM(require("./wasm/v1/authz"));
-var _130 = __toESM(require("./wasm/v1/genesis"));
-var _131 = __toESM(require("./wasm/v1/ibc"));
-var _132 = __toESM(require("./wasm/v1/proposal_legacy"));
-var _133 = __toESM(require("./wasm/v1/query"));
-var _134 = __toESM(require("./wasm/v1/tx"));
-var _135 = __toESM(require("./wasm/v1/types"));
+var _128 = __toESM(require("./wasm/v1/authz"));
+var _129 = __toESM(require("./wasm/v1/genesis"));
+var _130 = __toESM(require("./wasm/v1/ibc"));
+var _131 = __toESM(require("./wasm/v1/proposal_legacy"));
+var _132 = __toESM(require("./wasm/v1/query"));
+var _133 = __toESM(require("./wasm/v1/tx"));
+var _134 = __toESM(require("./wasm/v1/types"));
 var _338 = __toESM(require("./wasm/v1/tx.amino"));
 var _339 = __toESM(require("./wasm/v1/tx.registry"));
 var _340 = __toESM(require("./wasm/v1/query.rpc.Query"));
@@ -48,13 +48,13 @@ var cosmwasm;
   let wasm;
   ((wasm2) => {
     wasm2.v1 = {
+      ..._128,
       ..._129,
       ..._130,
       ..._131,
       ..._132,
       ..._133,
       ..._134,
-      ..._135,
       ..._338,
       ..._339,
       ..._340,

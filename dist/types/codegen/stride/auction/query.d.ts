@@ -15,6 +15,9 @@ export interface QueryAuctionRequestProtoMsg {
 /**
  * QueryAuctionRequest is the request type for the Query/Auction RPC
  * method
+ * @name QueryAuctionRequestAmino
+ * @package stride.auction
+ * @see proto type: stride.auction.QueryAuctionRequest
  */
 export interface QueryAuctionRequestAmino {
     name?: string;
@@ -44,6 +47,9 @@ export interface QueryAuctionResponseProtoMsg {
 /**
  * QueryAuctionResponse is the response type for the Query/Auction RPC
  * method
+ * @name QueryAuctionResponseAmino
+ * @package stride.auction
+ * @see proto type: stride.auction.QueryAuctionResponse
  */
 export interface QueryAuctionResponseAmino {
     auction?: AuctionAmino;
@@ -73,6 +79,9 @@ export interface QueryAuctionsRequestProtoMsg {
 /**
  * QueryAuctionsRequest is the request type for the
  * Query/Auctions RPC method
+ * @name QueryAuctionsRequestAmino
+ * @package stride.auction
+ * @see proto type: stride.auction.QueryAuctionsRequest
  */
 export interface QueryAuctionsRequestAmino {
     pagination?: PageRequestAmino;
@@ -103,6 +112,9 @@ export interface QueryAuctionsResponseProtoMsg {
 /**
  * QueryAuctionsResponse is the response type for the
  * Query/Auctions RPC method
+ * @name QueryAuctionsResponseAmino
+ * @package stride.auction
+ * @see proto type: stride.auction.QueryAuctionsResponse
  */
 export interface QueryAuctionsResponseAmino {
     auctions?: AuctionAmino[];

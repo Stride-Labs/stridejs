@@ -1,6 +1,6 @@
 import { DecCoin, Coin } from "../../base/v1beta1/coin";
 import { BinaryReader, BinaryWriter } from "../../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../../decimals";
 function createBaseParams() {
   return {
     communityTax: "",

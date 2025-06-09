@@ -30,7 +30,7 @@ module.exports = __toCommonJS(airdrop_exports);
 var import_timestamp = require("../../google/protobuf/timestamp");
 var import_binary = require("../../binary");
 var import_helpers = require("../../helpers");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../../decimals");
 var ClaimType = /* @__PURE__ */ ((ClaimType2) => {
   ClaimType2[ClaimType2["CLAIM_DAILY"] = 0] = "CLAIM_DAILY";
   ClaimType2[ClaimType2["CLAIM_EARLY"] = 1] = "CLAIM_EARLY";
@@ -276,7 +276,7 @@ const Airdrop = {
       import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.claimTypeDeadlineDate), writer.uint32(50).fork()).ldelim();
     }
     if (message.earlyClaimPenalty !== "") {
-      writer.uint32(58).string(import_math.Decimal.fromUserInput(message.earlyClaimPenalty, 18).atomics);
+      writer.uint32(58).string(import_decimals.Decimal.fromUserInput(message.earlyClaimPenalty, 18).atomics);
     }
     if (message.distributorAddress !== "") {
       writer.uint32(66).string(message.distributorAddress);
@@ -315,7 +315,7 @@ const Airdrop = {
           message.claimTypeDeadlineDate = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
           break;
         case 7:
-          message.earlyClaimPenalty = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.earlyClaimPenalty = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 8:
           message.distributorAddress = reader.string();

@@ -17,7 +17,12 @@ export interface ModuleProtoMsg {
     typeUrl: "/cosmos.group.module.v1.Module";
     value: Uint8Array;
 }
-/** Module is the config object of the group module. */
+/**
+ * Module is the config object of the group module.
+ * @name ModuleAmino
+ * @package cosmos.group.module.v1
+ * @see proto type: cosmos.group.module.v1.Module
+ */
 export interface ModuleAmino {
     /**
      * max_execution_period defines the max duration after a proposal's voting period ends that members can send a MsgExec

@@ -7,7 +7,12 @@ export interface QueryParamsRequestProtoMsg {
     typeUrl: "/stride.autopilot.QueryParamsRequest";
     value: Uint8Array;
 }
-/** QueryParamsRequest is request type for the Query/Params RPC method. */
+/**
+ * QueryParamsRequest is request type for the Query/Params RPC method.
+ * @name QueryParamsRequestAmino
+ * @package stride.autopilot
+ * @see proto type: stride.autopilot.QueryParamsRequest
+ */
 export interface QueryParamsRequestAmino {
 }
 export interface QueryParamsRequestAminoMsg {
@@ -26,9 +31,16 @@ export interface QueryParamsResponseProtoMsg {
     typeUrl: "/stride.autopilot.QueryParamsResponse";
     value: Uint8Array;
 }
-/** QueryParamsResponse is response type for the Query/Params RPC method. */
+/**
+ * QueryParamsResponse is response type for the Query/Params RPC method.
+ * @name QueryParamsResponseAmino
+ * @package stride.autopilot
+ * @see proto type: stride.autopilot.QueryParamsResponse
+ */
 export interface QueryParamsResponseAmino {
-    /** params holds all the parameters of this module. */
+    /**
+     * params holds all the parameters of this module.
+     */
     params?: ParamsAmino;
 }
 export interface QueryParamsResponseAminoMsg {

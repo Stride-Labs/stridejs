@@ -6,6 +6,11 @@ export interface IcacallbacksPacketDataProtoMsg {
     typeUrl: "/stride.icacallbacks.IcacallbacksPacketData";
     value: Uint8Array;
 }
+/**
+ * @name IcacallbacksPacketDataAmino
+ * @package stride.icacallbacks
+ * @see proto type: stride.icacallbacks.IcacallbacksPacketData
+ */
 export interface IcacallbacksPacketDataAmino {
     no_data?: NoDataAmino;
 }
@@ -22,6 +27,11 @@ export interface NoDataProtoMsg {
     typeUrl: "/stride.icacallbacks.NoData";
     value: Uint8Array;
 }
+/**
+ * @name NoDataAmino
+ * @package stride.icacallbacks
+ * @see proto type: stride.icacallbacks.NoData
+ */
 export interface NoDataAmino {
 }
 export interface NoDataAminoMsg {

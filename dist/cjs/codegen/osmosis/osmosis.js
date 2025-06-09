@@ -23,7 +23,7 @@ module.exports = __toCommonJS(osmosis_exports);
 var import_timestamp = require("../google/protobuf/timestamp");
 var import_binary = require("../binary");
 var import_helpers = require("../helpers");
-var import_math = require("@cosmjs/math");
+var import_decimals = require("../decimals");
 function createBaseOsmosisTwapRecord() {
   return {
     poolId: BigInt(0),
@@ -58,19 +58,19 @@ const OsmosisTwapRecord = {
       import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.time), writer.uint32(42).fork()).ldelim();
     }
     if (message.p0LastSpotPrice !== "") {
-      writer.uint32(50).string(import_math.Decimal.fromUserInput(message.p0LastSpotPrice, 18).atomics);
+      writer.uint32(50).string(import_decimals.Decimal.fromUserInput(message.p0LastSpotPrice, 18).atomics);
     }
     if (message.p1LastSpotPrice !== "") {
-      writer.uint32(58).string(import_math.Decimal.fromUserInput(message.p1LastSpotPrice, 18).atomics);
+      writer.uint32(58).string(import_decimals.Decimal.fromUserInput(message.p1LastSpotPrice, 18).atomics);
     }
     if (message.p0ArithmeticTwapAccumulator !== "") {
-      writer.uint32(66).string(import_math.Decimal.fromUserInput(message.p0ArithmeticTwapAccumulator, 18).atomics);
+      writer.uint32(66).string(import_decimals.Decimal.fromUserInput(message.p0ArithmeticTwapAccumulator, 18).atomics);
     }
     if (message.p1ArithmeticTwapAccumulator !== "") {
-      writer.uint32(74).string(import_math.Decimal.fromUserInput(message.p1ArithmeticTwapAccumulator, 18).atomics);
+      writer.uint32(74).string(import_decimals.Decimal.fromUserInput(message.p1ArithmeticTwapAccumulator, 18).atomics);
     }
     if (message.geometricTwapAccumulator !== "") {
-      writer.uint32(82).string(import_math.Decimal.fromUserInput(message.geometricTwapAccumulator, 18).atomics);
+      writer.uint32(82).string(import_decimals.Decimal.fromUserInput(message.geometricTwapAccumulator, 18).atomics);
     }
     if (message.lastErrorTime !== void 0) {
       import_timestamp.Timestamp.encode((0, import_helpers.toTimestamp)(message.lastErrorTime), writer.uint32(90).fork()).ldelim();
@@ -100,19 +100,19 @@ const OsmosisTwapRecord = {
           message.time = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));
           break;
         case 6:
-          message.p0LastSpotPrice = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.p0LastSpotPrice = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 7:
-          message.p1LastSpotPrice = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.p1LastSpotPrice = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 8:
-          message.p0ArithmeticTwapAccumulator = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.p0ArithmeticTwapAccumulator = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 9:
-          message.p1ArithmeticTwapAccumulator = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.p1ArithmeticTwapAccumulator = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 10:
-          message.geometricTwapAccumulator = import_math.Decimal.fromAtomics(reader.string(), 18).toString();
+          message.geometricTwapAccumulator = import_decimals.Decimal.fromAtomics(reader.string(), 18).toString();
           break;
         case 11:
           message.lastErrorTime = (0, import_helpers.fromTimestamp)(import_timestamp.Timestamp.decode(reader, reader.uint32()));

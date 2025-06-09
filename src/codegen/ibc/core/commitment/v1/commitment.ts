@@ -15,6 +15,9 @@ export interface MerkleRootProtoMsg {
 /**
  * MerkleRoot defines a merkle root hash.
  * In the Cosmos SDK, the AppHash of a block header becomes the root.
+ * @name MerkleRootAmino
+ * @package ibc.core.commitment.v1
+ * @see proto type: ibc.core.commitment.v1.MerkleRoot
  */
 export interface MerkleRootAmino {
   hash?: string;
@@ -46,6 +49,9 @@ export interface MerklePrefixProtoMsg {
  * MerklePrefix is merkle path prefixed to the key.
  * The constructed key from the Path and the key will be append(Path.KeyPath,
  * append(Path.KeyPrefix, key...))
+ * @name MerklePrefixAmino
+ * @package ibc.core.commitment.v1
+ * @see proto type: ibc.core.commitment.v1.MerklePrefix
  */
 export interface MerklePrefixAmino {
   key_prefix?: string;
@@ -78,6 +84,9 @@ export interface MerklePathProtoMsg {
  * MerklePath is the path used to verify commitment proofs, which can be an
  * arbitrary structured object (defined by a commitment type).
  * MerklePath is represented from root-to-leaf
+ * @name MerklePathAmino
+ * @package ibc.core.commitment.v1
+ * @see proto type: ibc.core.commitment.v1.MerklePath
  */
 export interface MerklePathAmino {
   key_path?: string[];
@@ -114,6 +123,9 @@ export interface MerkleProofProtoMsg {
  * elements, verifiable in conjunction with a known commitment root. Proofs
  * should be succinct.
  * MerkleProofs are ordered from leaf-to-root
+ * @name MerkleProofAmino
+ * @package ibc.core.commitment.v1
+ * @see proto type: ibc.core.commitment.v1.MerkleProof
  */
 export interface MerkleProofAmino {
   proofs?: CommitmentProofAmino[];

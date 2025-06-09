@@ -8,13 +8,18 @@ export interface MsgAddOracleProtoMsg {
   typeUrl: "/stride.icaoracle.MsgAddOracle";
   value: Uint8Array;
 }
-/** Adds a new oracle */
+/**
+ * Adds a new oracle
+ * @name MsgAddOracleAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.MsgAddOracle
+ */
 export interface MsgAddOracleAmino {
   creator?: string;
   connection_id?: string;
 }
 export interface MsgAddOracleAminoMsg {
-  type: "stride/x/icaoracle/MsgAddOracle";
+  type: "icaoracle/MsgAddOracle";
   value: MsgAddOracleAmino;
 }
 /** Adds a new oracle */
@@ -27,6 +32,11 @@ export interface MsgAddOracleResponseProtoMsg {
   typeUrl: "/stride.icaoracle.MsgAddOracleResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgAddOracleResponseAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.MsgAddOracleResponse
+ */
 export interface MsgAddOracleResponseAmino {}
 export interface MsgAddOracleResponseAminoMsg {
   type: "/stride.icaoracle.MsgAddOracleResponse";
@@ -44,7 +54,12 @@ export interface MsgInstantiateOracleProtoMsg {
   typeUrl: "/stride.icaoracle.MsgInstantiateOracle";
   value: Uint8Array;
 }
-/** Instantiates the oracle's CW contract */
+/**
+ * Instantiates the oracle's CW contract
+ * @name MsgInstantiateOracleAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.MsgInstantiateOracle
+ */
 export interface MsgInstantiateOracleAmino {
   creator?: string;
   oracle_chain_id?: string;
@@ -52,7 +67,7 @@ export interface MsgInstantiateOracleAmino {
   transfer_channel_on_oracle?: string;
 }
 export interface MsgInstantiateOracleAminoMsg {
-  type: "stride/x/icaoracle/MsgInstantiateOracle";
+  type: "icaoracle/MsgInstantiateOracle";
   value: MsgInstantiateOracleAmino;
 }
 /** Instantiates the oracle's CW contract */
@@ -67,6 +82,11 @@ export interface MsgInstantiateOracleResponseProtoMsg {
   typeUrl: "/stride.icaoracle.MsgInstantiateOracleResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgInstantiateOracleResponseAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.MsgInstantiateOracleResponse
+ */
 export interface MsgInstantiateOracleResponseAmino {}
 export interface MsgInstantiateOracleResponseAminoMsg {
   type: "/stride.icaoracle.MsgInstantiateOracleResponse";
@@ -82,13 +102,18 @@ export interface MsgRestoreOracleICAProtoMsg {
   typeUrl: "/stride.icaoracle.MsgRestoreOracleICA";
   value: Uint8Array;
 }
-/** Restore's a closed ICA channel for a given oracle */
+/**
+ * Restore's a closed ICA channel for a given oracle
+ * @name MsgRestoreOracleICAAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.MsgRestoreOracleICA
+ */
 export interface MsgRestoreOracleICAAmino {
   creator?: string;
   oracle_chain_id?: string;
 }
 export interface MsgRestoreOracleICAAminoMsg {
-  type: "stride/x/icaoracle/MsgRestoreOracleICA";
+  type: "icaoracle/MsgRestoreOracleICA";
   value: MsgRestoreOracleICAAmino;
 }
 /** Restore's a closed ICA channel for a given oracle */
@@ -101,6 +126,11 @@ export interface MsgRestoreOracleICAResponseProtoMsg {
   typeUrl: "/stride.icaoracle.MsgRestoreOracleICAResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgRestoreOracleICAResponseAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.MsgRestoreOracleICAResponse
+ */
 export interface MsgRestoreOracleICAResponseAmino {}
 export interface MsgRestoreOracleICAResponseAminoMsg {
   type: "/stride.icaoracle.MsgRestoreOracleICAResponse";
@@ -121,7 +151,12 @@ export interface MsgToggleOracleProtoMsg {
   typeUrl: "/stride.icaoracle.MsgToggleOracle";
   value: Uint8Array;
 }
-/** Toggle's whether an oracle is active and should receive metric updates */
+/**
+ * Toggle's whether an oracle is active and should receive metric updates
+ * @name MsgToggleOracleAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.MsgToggleOracle
+ */
 export interface MsgToggleOracleAmino {
   /**
    * authority is the address that controls the module (defaults to x/gov unless
@@ -132,7 +167,7 @@ export interface MsgToggleOracleAmino {
   active?: boolean;
 }
 export interface MsgToggleOracleAminoMsg {
-  type: "stride/x/icaoracle/MsgToggleOracle";
+  type: "icaoracle/MsgToggleOracle";
   value: MsgToggleOracleAmino;
 }
 /** Toggle's whether an oracle is active and should receive metric updates */
@@ -146,6 +181,11 @@ export interface MsgToggleOracleResponseProtoMsg {
   typeUrl: "/stride.icaoracle.MsgToggleOracleResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgToggleOracleResponseAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.MsgToggleOracleResponse
+ */
 export interface MsgToggleOracleResponseAmino {}
 export interface MsgToggleOracleResponseAminoMsg {
   type: "/stride.icaoracle.MsgToggleOracleResponse";
@@ -165,7 +205,12 @@ export interface MsgRemoveOracleProtoMsg {
   typeUrl: "/stride.icaoracle.MsgRemoveOracle";
   value: Uint8Array;
 }
-/** Removes an oracle completely */
+/**
+ * Removes an oracle completely
+ * @name MsgRemoveOracleAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.MsgRemoveOracle
+ */
 export interface MsgRemoveOracleAmino {
   /**
    * authority is the address that controls the module (defaults to x/gov unless
@@ -175,7 +220,7 @@ export interface MsgRemoveOracleAmino {
   oracle_chain_id?: string;
 }
 export interface MsgRemoveOracleAminoMsg {
-  type: "stride/x/icaoracle/MsgRemoveOracle";
+  type: "icaoracle/MsgRemoveOracle";
   value: MsgRemoveOracleAmino;
 }
 /** Removes an oracle completely */
@@ -188,6 +233,11 @@ export interface MsgRemoveOracleResponseProtoMsg {
   typeUrl: "/stride.icaoracle.MsgRemoveOracleResponse";
   value: Uint8Array;
 }
+/**
+ * @name MsgRemoveOracleResponseAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.MsgRemoveOracleResponse
+ */
 export interface MsgRemoveOracleResponseAmino {}
 export interface MsgRemoveOracleResponseAminoMsg {
   type: "/stride.icaoracle.MsgRemoveOracleResponse";
@@ -258,7 +308,7 @@ export const MsgAddOracle = {
   },
   toAminoMsg(message: MsgAddOracle): MsgAddOracleAminoMsg {
     return {
-      type: "stride/x/icaoracle/MsgAddOracle",
+      type: "icaoracle/MsgAddOracle",
       value: MsgAddOracle.toAmino(message)
     };
   },
@@ -413,7 +463,7 @@ export const MsgInstantiateOracle = {
   },
   toAminoMsg(message: MsgInstantiateOracle): MsgInstantiateOracleAminoMsg {
     return {
-      type: "stride/x/icaoracle/MsgInstantiateOracle",
+      type: "icaoracle/MsgInstantiateOracle",
       value: MsgInstantiateOracle.toAmino(message)
     };
   },
@@ -544,7 +594,7 @@ export const MsgRestoreOracleICA = {
   },
   toAminoMsg(message: MsgRestoreOracleICA): MsgRestoreOracleICAAminoMsg {
     return {
-      type: "stride/x/icaoracle/MsgRestoreOracleICA",
+      type: "icaoracle/MsgRestoreOracleICA",
       value: MsgRestoreOracleICA.toAmino(message)
     };
   },
@@ -687,7 +737,7 @@ export const MsgToggleOracle = {
   },
   toAminoMsg(message: MsgToggleOracle): MsgToggleOracleAminoMsg {
     return {
-      type: "stride/x/icaoracle/MsgToggleOracle",
+      type: "icaoracle/MsgToggleOracle",
       value: MsgToggleOracle.toAmino(message)
     };
   },
@@ -818,7 +868,7 @@ export const MsgRemoveOracle = {
   },
   toAminoMsg(message: MsgRemoveOracle): MsgRemoveOracleAminoMsg {
     return {
-      type: "stride/x/icaoracle/MsgRemoveOracle",
+      type: "icaoracle/MsgRemoveOracle",
       value: MsgRemoveOracle.toAmino(message)
     };
   },

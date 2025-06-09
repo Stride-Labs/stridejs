@@ -6,7 +6,12 @@ export interface ParamsProtoMsg {
   typeUrl: "/stride.icaoracle.Params";
   value: Uint8Array;
 }
-/** Params defines the icaoracle module parameters. */
+/**
+ * Params defines the icaoracle module parameters.
+ * @name ParamsAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.Params
+ */
 export interface ParamsAmino {}
 export interface ParamsAminoMsg {
   type: "/stride.icaoracle.Params";
@@ -24,7 +29,12 @@ export interface GenesisStateProtoMsg {
   typeUrl: "/stride.icaoracle.GenesisState";
   value: Uint8Array;
 }
-/** GenesisState defines the icaoracle module's genesis state. */
+/**
+ * GenesisState defines the icaoracle module's genesis state.
+ * @name GenesisStateAmino
+ * @package stride.icaoracle
+ * @see proto type: stride.icaoracle.GenesisState
+ */
 export interface GenesisStateAmino {
   params?: ParamsAmino;
   oracles?: OracleAmino[];

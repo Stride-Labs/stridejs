@@ -16,9 +16,14 @@ export interface QueryContractInfoRequestProtoMsg {
 /**
  * QueryContractInfoRequest is the request type for the Query/ContractInfo RPC
  * method
+ * @name QueryContractInfoRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryContractInfoRequest
  */
 export interface QueryContractInfoRequestAmino {
-    /** address is the address of the contract to query */
+    /**
+     * address is the address of the contract to query
+     */
     address?: string;
 }
 export interface QueryContractInfoRequestAminoMsg {
@@ -48,9 +53,14 @@ export interface QueryContractInfoResponseProtoMsg {
 /**
  * QueryContractInfoResponse is the response type for the Query/ContractInfo RPC
  * method
+ * @name QueryContractInfoResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryContractInfoResponse
  */
 export interface QueryContractInfoResponseAmino {
-    /** address is the address of the contract */
+    /**
+     * address is the address of the contract
+     */
     address?: string;
     contract_info: ContractInfoAmino;
 }
@@ -83,11 +93,18 @@ export interface QueryContractHistoryRequestProtoMsg {
 /**
  * QueryContractHistoryRequest is the request type for the Query/ContractHistory
  * RPC method
+ * @name QueryContractHistoryRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryContractHistoryRequest
  */
 export interface QueryContractHistoryRequestAmino {
-    /** address is the address of the contract to query */
+    /**
+     * address is the address of the contract to query
+     */
     address?: string;
-    /** pagination defines an optional pagination for the request. */
+    /**
+     * pagination defines an optional pagination for the request.
+     */
     pagination?: PageRequestAmino;
 }
 export interface QueryContractHistoryRequestAminoMsg {
@@ -118,10 +135,15 @@ export interface QueryContractHistoryResponseProtoMsg {
 /**
  * QueryContractHistoryResponse is the response type for the
  * Query/ContractHistory RPC method
+ * @name QueryContractHistoryResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryContractHistoryResponse
  */
 export interface QueryContractHistoryResponseAmino {
     entries: ContractCodeHistoryEntryAmino[];
-    /** pagination defines the pagination in the response. */
+    /**
+     * pagination defines the pagination in the response.
+     */
     pagination?: PageResponseAmino;
 }
 export interface QueryContractHistoryResponseAminoMsg {
@@ -153,11 +175,18 @@ export interface QueryContractsByCodeRequestProtoMsg {
 /**
  * QueryContractsByCodeRequest is the request type for the Query/ContractsByCode
  * RPC method
+ * @name QueryContractsByCodeRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryContractsByCodeRequest
  */
 export interface QueryContractsByCodeRequestAmino {
-    /** grpc-gateway_out does not support Go style CodID */
+    /**
+     * grpc-gateway_out does not support Go style CodID
+     */
     code_id?: string;
-    /** pagination defines an optional pagination for the request. */
+    /**
+     * pagination defines an optional pagination for the request.
+     */
     pagination?: PageRequestAmino;
 }
 export interface QueryContractsByCodeRequestAminoMsg {
@@ -189,11 +218,18 @@ export interface QueryContractsByCodeResponseProtoMsg {
 /**
  * QueryContractsByCodeResponse is the response type for the
  * Query/ContractsByCode RPC method
+ * @name QueryContractsByCodeResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryContractsByCodeResponse
  */
 export interface QueryContractsByCodeResponseAmino {
-    /** contracts are a set of contract addresses */
+    /**
+     * contracts are a set of contract addresses
+     */
     contracts?: string[];
-    /** pagination defines the pagination in the response. */
+    /**
+     * pagination defines the pagination in the response.
+     */
     pagination?: PageResponseAmino;
 }
 export interface QueryContractsByCodeResponseAminoMsg {
@@ -225,11 +261,18 @@ export interface QueryAllContractStateRequestProtoMsg {
 /**
  * QueryAllContractStateRequest is the request type for the
  * Query/AllContractState RPC method
+ * @name QueryAllContractStateRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryAllContractStateRequest
  */
 export interface QueryAllContractStateRequestAmino {
-    /** address is the address of the contract */
+    /**
+     * address is the address of the contract
+     */
     address?: string;
-    /** pagination defines an optional pagination for the request. */
+    /**
+     * pagination defines an optional pagination for the request.
+     */
     pagination?: PageRequestAmino;
 }
 export interface QueryAllContractStateRequestAminoMsg {
@@ -260,10 +303,15 @@ export interface QueryAllContractStateResponseProtoMsg {
 /**
  * QueryAllContractStateResponse is the response type for the
  * Query/AllContractState RPC method
+ * @name QueryAllContractStateResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryAllContractStateResponse
  */
 export interface QueryAllContractStateResponseAmino {
     models: ModelAmino[];
-    /** pagination defines the pagination in the response. */
+    /**
+     * pagination defines the pagination in the response.
+     */
     pagination?: PageResponseAmino;
 }
 export interface QueryAllContractStateResponseAminoMsg {
@@ -294,9 +342,14 @@ export interface QueryRawContractStateRequestProtoMsg {
 /**
  * QueryRawContractStateRequest is the request type for the
  * Query/RawContractState RPC method
+ * @name QueryRawContractStateRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryRawContractStateRequest
  */
 export interface QueryRawContractStateRequestAmino {
-    /** address is the address of the contract */
+    /**
+     * address is the address of the contract
+     */
     address?: string;
     query_data?: string;
 }
@@ -327,9 +380,14 @@ export interface QueryRawContractStateResponseProtoMsg {
 /**
  * QueryRawContractStateResponse is the response type for the
  * Query/RawContractState RPC method
+ * @name QueryRawContractStateResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryRawContractStateResponse
  */
 export interface QueryRawContractStateResponseAmino {
-    /** Data contains the raw store data */
+    /**
+     * Data contains the raw store data
+     */
     data?: string;
 }
 export interface QueryRawContractStateResponseAminoMsg {
@@ -360,11 +418,18 @@ export interface QuerySmartContractStateRequestProtoMsg {
 /**
  * QuerySmartContractStateRequest is the request type for the
  * Query/SmartContractState RPC method
+ * @name QuerySmartContractStateRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QuerySmartContractStateRequest
  */
 export interface QuerySmartContractStateRequestAmino {
-    /** address is the address of the contract */
+    /**
+     * address is the address of the contract
+     */
     address?: string;
-    /** QueryData contains the query data passed to the contract */
+    /**
+     * QueryData contains the query data passed to the contract
+     */
     query_data?: any;
 }
 export interface QuerySmartContractStateRequestAminoMsg {
@@ -394,9 +459,14 @@ export interface QuerySmartContractStateResponseProtoMsg {
 /**
  * QuerySmartContractStateResponse is the response type for the
  * Query/SmartContractState RPC method
+ * @name QuerySmartContractStateResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QuerySmartContractStateResponse
  */
 export interface QuerySmartContractStateResponseAmino {
-    /** Data contains the json data returned from the smart contract */
+    /**
+     * Data contains the json data returned from the smart contract
+     */
     data?: any;
 }
 export interface QuerySmartContractStateResponseAminoMsg {
@@ -419,9 +489,16 @@ export interface QueryCodeRequestProtoMsg {
     typeUrl: "/cosmwasm.wasm.v1.QueryCodeRequest";
     value: Uint8Array;
 }
-/** QueryCodeRequest is the request type for the Query/Code RPC method */
+/**
+ * QueryCodeRequest is the request type for the Query/Code RPC method
+ * @name QueryCodeRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryCodeRequest
+ */
 export interface QueryCodeRequestAmino {
-    /** grpc-gateway_out does not support Go style CodID */
+    /**
+     * grpc-gateway_out does not support Go style CodID
+     */
     code_id?: string;
 }
 export interface QueryCodeRequestAminoMsg {
@@ -443,7 +520,12 @@ export interface CodeInfoResponseProtoMsg {
     typeUrl: "/cosmwasm.wasm.v1.CodeInfoResponse";
     value: Uint8Array;
 }
-/** CodeInfoResponse contains code meta data from CodeInfo */
+/**
+ * CodeInfoResponse contains code meta data from CodeInfo
+ * @name CodeInfoResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.CodeInfoResponse
+ */
 export interface CodeInfoResponseAmino {
     code_id: string;
     creator?: string;
@@ -470,7 +552,12 @@ export interface QueryCodeResponseProtoMsg {
     typeUrl: "/cosmwasm.wasm.v1.QueryCodeResponse";
     value: Uint8Array;
 }
-/** QueryCodeResponse is the response type for the Query/Code RPC method */
+/**
+ * QueryCodeResponse is the response type for the Query/Code RPC method
+ * @name QueryCodeResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryCodeResponse
+ */
 export interface QueryCodeResponseAmino {
     code_info?: CodeInfoResponseAmino;
     data: string;
@@ -493,9 +580,16 @@ export interface QueryCodesRequestProtoMsg {
     typeUrl: "/cosmwasm.wasm.v1.QueryCodesRequest";
     value: Uint8Array;
 }
-/** QueryCodesRequest is the request type for the Query/Codes RPC method */
+/**
+ * QueryCodesRequest is the request type for the Query/Codes RPC method
+ * @name QueryCodesRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryCodesRequest
+ */
 export interface QueryCodesRequestAmino {
-    /** pagination defines an optional pagination for the request. */
+    /**
+     * pagination defines an optional pagination for the request.
+     */
     pagination?: PageRequestAmino;
 }
 export interface QueryCodesRequestAminoMsg {
@@ -516,10 +610,17 @@ export interface QueryCodesResponseProtoMsg {
     typeUrl: "/cosmwasm.wasm.v1.QueryCodesResponse";
     value: Uint8Array;
 }
-/** QueryCodesResponse is the response type for the Query/Codes RPC method */
+/**
+ * QueryCodesResponse is the response type for the Query/Codes RPC method
+ * @name QueryCodesResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryCodesResponse
+ */
 export interface QueryCodesResponseAmino {
     code_infos: CodeInfoResponseAmino[];
-    /** pagination defines the pagination in the response. */
+    /**
+     * pagination defines the pagination in the response.
+     */
     pagination?: PageResponseAmino;
 }
 export interface QueryCodesResponseAminoMsg {
@@ -546,9 +647,14 @@ export interface QueryPinnedCodesRequestProtoMsg {
 /**
  * QueryPinnedCodesRequest is the request type for the Query/PinnedCodes
  * RPC method
+ * @name QueryPinnedCodesRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryPinnedCodesRequest
  */
 export interface QueryPinnedCodesRequestAmino {
-    /** pagination defines an optional pagination for the request. */
+    /**
+     * pagination defines an optional pagination for the request.
+     */
     pagination?: PageRequestAmino;
 }
 export interface QueryPinnedCodesRequestAminoMsg {
@@ -578,10 +684,15 @@ export interface QueryPinnedCodesResponseProtoMsg {
 /**
  * QueryPinnedCodesResponse is the response type for the
  * Query/PinnedCodes RPC method
+ * @name QueryPinnedCodesResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryPinnedCodesResponse
  */
 export interface QueryPinnedCodesResponseAmino {
     code_ids?: string[];
-    /** pagination defines the pagination in the response. */
+    /**
+     * pagination defines the pagination in the response.
+     */
     pagination?: PageResponseAmino;
 }
 export interface QueryPinnedCodesResponseAminoMsg {
@@ -603,7 +714,12 @@ export interface QueryParamsRequestProtoMsg {
     typeUrl: "/cosmwasm.wasm.v1.QueryParamsRequest";
     value: Uint8Array;
 }
-/** QueryParamsRequest is the request type for the Query/Params RPC method. */
+/**
+ * QueryParamsRequest is the request type for the Query/Params RPC method.
+ * @name QueryParamsRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryParamsRequest
+ */
 export interface QueryParamsRequestAmino {
 }
 export interface QueryParamsRequestAminoMsg {
@@ -622,9 +738,16 @@ export interface QueryParamsResponseProtoMsg {
     typeUrl: "/cosmwasm.wasm.v1.QueryParamsResponse";
     value: Uint8Array;
 }
-/** QueryParamsResponse is the response type for the Query/Params RPC method. */
+/**
+ * QueryParamsResponse is the response type for the Query/Params RPC method.
+ * @name QueryParamsResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryParamsResponse
+ */
 export interface QueryParamsResponseAmino {
-    /** params defines the parameters of the module. */
+    /**
+     * params defines the parameters of the module.
+     */
     params: ParamsAmino;
 }
 export interface QueryParamsResponseAminoMsg {
@@ -652,11 +775,18 @@ export interface QueryContractsByCreatorRequestProtoMsg {
 /**
  * QueryContractsByCreatorRequest is the request type for the
  * Query/ContractsByCreator RPC method.
+ * @name QueryContractsByCreatorRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryContractsByCreatorRequest
  */
 export interface QueryContractsByCreatorRequestAmino {
-    /** CreatorAddress is the address of contract creator */
+    /**
+     * CreatorAddress is the address of contract creator
+     */
     creator_address?: string;
-    /** Pagination defines an optional pagination for the request. */
+    /**
+     * Pagination defines an optional pagination for the request.
+     */
     pagination?: PageRequestAmino;
 }
 export interface QueryContractsByCreatorRequestAminoMsg {
@@ -688,11 +818,18 @@ export interface QueryContractsByCreatorResponseProtoMsg {
 /**
  * QueryContractsByCreatorResponse is the response type for the
  * Query/ContractsByCreator RPC method.
+ * @name QueryContractsByCreatorResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryContractsByCreatorResponse
  */
 export interface QueryContractsByCreatorResponseAmino {
-    /** ContractAddresses result set */
+    /**
+     * ContractAddresses result set
+     */
     contract_addresses?: string[];
-    /** Pagination defines the pagination in the response. */
+    /**
+     * Pagination defines the pagination in the response.
+     */
     pagination?: PageResponseAmino;
 }
 export interface QueryContractsByCreatorResponseAminoMsg {

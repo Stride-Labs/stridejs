@@ -1,5 +1,5 @@
 import { BinaryReader, BinaryWriter } from "../../binary";
-import { Decimal } from "@cosmjs/math";
+import { Decimal } from "../../decimals";
 var AuctionType = /* @__PURE__ */ ((AuctionType2) => {
   AuctionType2[AuctionType2["AUCTION_TYPE_UNSPECIFIED"] = 0] = "AUCTION_TYPE_UNSPECIFIED";
   AuctionType2[AuctionType2["AUCTION_TYPE_FCFS"] = 1] = "AUCTION_TYPE_FCFS";

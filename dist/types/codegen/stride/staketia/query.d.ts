@@ -8,7 +8,12 @@ export interface QueryHostZoneRequestProtoMsg {
     typeUrl: "/stride.staketia.QueryHostZoneRequest";
     value: Uint8Array;
 }
-/** Host Zone */
+/**
+ * Host Zone
+ * @name QueryHostZoneRequestAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.QueryHostZoneRequest
+ */
 export interface QueryHostZoneRequestAmino {
 }
 export interface QueryHostZoneRequestAminoMsg {
@@ -25,6 +30,11 @@ export interface QueryHostZoneResponseProtoMsg {
     typeUrl: "/stride.staketia.QueryHostZoneResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryHostZoneResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.QueryHostZoneResponse
+ */
 export interface QueryHostZoneResponseAmino {
     host_zone?: HostZoneAmino;
 }
@@ -43,7 +53,12 @@ export interface QueryDelegationRecordsRequestProtoMsg {
     typeUrl: "/stride.staketia.QueryDelegationRecordsRequest";
     value: Uint8Array;
 }
-/** All Delegation Records */
+/**
+ * All Delegation Records
+ * @name QueryDelegationRecordsRequestAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.QueryDelegationRecordsRequest
+ */
 export interface QueryDelegationRecordsRequestAmino {
     include_archived?: boolean;
 }
@@ -62,6 +77,11 @@ export interface QueryDelegationRecordsResponseProtoMsg {
     typeUrl: "/stride.staketia.QueryDelegationRecordsResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryDelegationRecordsResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.QueryDelegationRecordsResponse
+ */
 export interface QueryDelegationRecordsResponseAmino {
     delegation_records?: DelegationRecordAmino[];
 }
@@ -80,7 +100,12 @@ export interface QueryUnbondingRecordsRequestProtoMsg {
     typeUrl: "/stride.staketia.QueryUnbondingRecordsRequest";
     value: Uint8Array;
 }
-/** All Unbonding Records */
+/**
+ * All Unbonding Records
+ * @name QueryUnbondingRecordsRequestAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.QueryUnbondingRecordsRequest
+ */
 export interface QueryUnbondingRecordsRequestAmino {
     include_archived?: boolean;
 }
@@ -99,6 +124,11 @@ export interface QueryUnbondingRecordsResponseProtoMsg {
     typeUrl: "/stride.staketia.QueryUnbondingRecordsResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryUnbondingRecordsResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.QueryUnbondingRecordsResponse
+ */
 export interface QueryUnbondingRecordsResponseAmino {
     unbonding_records?: UnbondingRecordAmino[];
 }
@@ -118,7 +148,12 @@ export interface QueryRedemptionRecordRequestProtoMsg {
     typeUrl: "/stride.staketia.QueryRedemptionRecordRequest";
     value: Uint8Array;
 }
-/** Single Redemption Record */
+/**
+ * Single Redemption Record
+ * @name QueryRedemptionRecordRequestAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.QueryRedemptionRecordRequest
+ */
 export interface QueryRedemptionRecordRequestAmino {
     unbonding_record_id?: string;
     address?: string;
@@ -139,6 +174,11 @@ export interface QueryRedemptionRecordResponseProtoMsg {
     typeUrl: "/stride.staketia.QueryRedemptionRecordResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryRedemptionRecordResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.QueryRedemptionRecordResponse
+ */
 export interface QueryRedemptionRecordResponseAmino {
     redemption_record_response?: RedemptionRecordResponseAmino;
 }
@@ -159,7 +199,12 @@ export interface QueryRedemptionRecordsRequestProtoMsg {
     typeUrl: "/stride.staketia.QueryRedemptionRecordsRequest";
     value: Uint8Array;
 }
-/** All Redemption Records */
+/**
+ * All Redemption Records
+ * @name QueryRedemptionRecordsRequestAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.QueryRedemptionRecordsRequest
+ */
 export interface QueryRedemptionRecordsRequestAmino {
     address?: string;
     unbonding_record_id?: string;
@@ -183,6 +228,11 @@ export interface QueryRedemptionRecordsResponseProtoMsg {
     typeUrl: "/stride.staketia.QueryRedemptionRecordsResponse";
     value: Uint8Array;
 }
+/**
+ * @name QueryRedemptionRecordsResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.QueryRedemptionRecordsResponse
+ */
 export interface QueryRedemptionRecordsResponseAmino {
     redemption_record_responses?: RedemptionRecordResponseAmino[];
     pagination?: PageResponseAmino;
@@ -202,7 +252,12 @@ export interface QuerySlashRecordsRequestProtoMsg {
     typeUrl: "/stride.staketia.QuerySlashRecordsRequest";
     value: Uint8Array;
 }
-/** All Slash Records */
+/**
+ * All Slash Records
+ * @name QuerySlashRecordsRequestAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.QuerySlashRecordsRequest
+ */
 export interface QuerySlashRecordsRequestAmino {
 }
 export interface QuerySlashRecordsRequestAminoMsg {
@@ -219,6 +274,11 @@ export interface QuerySlashRecordsResponseProtoMsg {
     typeUrl: "/stride.staketia.QuerySlashRecordsResponse";
     value: Uint8Array;
 }
+/**
+ * @name QuerySlashRecordsResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.QuerySlashRecordsResponse
+ */
 export interface QuerySlashRecordsResponseAmino {
     slash_records?: SlashRecordAmino[];
 }
@@ -243,9 +303,16 @@ export interface RedemptionRecordResponseProtoMsg {
     typeUrl: "/stride.staketia.RedemptionRecordResponse";
     value: Uint8Array;
 }
-/** Data structure for frontend to consume */
+/**
+ * Data structure for frontend to consume
+ * @name RedemptionRecordResponseAmino
+ * @package stride.staketia
+ * @see proto type: stride.staketia.RedemptionRecordResponse
+ */
 export interface RedemptionRecordResponseAmino {
-    /** Redemption record */
+    /**
+     * Redemption record
+     */
     redemption_record?: RedemptionRecordAmino;
     /**
      * The Unix timestamp (in seconds) at which the unbonding for the UR
