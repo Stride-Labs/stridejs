@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.1
+
+- Add Gaia v24.0.0 types
+
 ## 0.14.0
 
 - Rebuild types for v27
