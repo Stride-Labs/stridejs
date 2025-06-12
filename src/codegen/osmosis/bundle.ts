@@ -1,4 +1,4 @@
-import * as _183 from "./osmosis";
+import * as _189 from "./osmosis";
 export const osmosis = {
-  ..._183
+  ..._189
 };

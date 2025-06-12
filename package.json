@@ -36,13 +36,14 @@
     "build": "pnpm run codegen && pnpm run bundle && pnpm run types",
     "bundle": "ts-node scripts/build.ts",
     "types": "tsc",
-    "codegen": "pnpm run codegen:cleanup && pnpm run codegen:clone && pnpm run codegen:build-stride && pnpm run codegen:build-cosmos-sdk && pnpm run codegen:build-ibc-go && pnpm run codegen:build-cosmwasm && pnpm run codegen:run",
+    "codegen": "pnpm run codegen:cleanup && pnpm run codegen:clone && pnpm run codegen:build-stride && pnpm run codegen:build-cosmos-sdk && pnpm run codegen:build-ibc-go && pnpm run codegen:build-cosmwasm && pnpm run codegen:build-gaia && pnpm run codegen:run",
     "codegen:cleanup": "cross-env rm -rf src/codegen scripts/proto scripts/repos",
     "codegen:clone": "cross-env NODE_ENV=development ts-node scripts/clone_repos.ts",
     "codegen:build-stride": "buf export scripts/repos/stride --output=scripts/proto",
     "codegen:build-cosmos-sdk": "buf export scripts/repos/cosmos-sdk --output=scripts/proto",
     "codegen:build-ibc-go": "buf export scripts/repos/ibc-go --output=scripts/proto",
     "codegen:build-cosmwasm": "buf export scripts/repos/wasmd --output=scripts/proto",
+    "codegen:build-gaia": "buf export scripts/repos/gaia --output=scripts/proto",
     "codegen:run": "cross-env NODE_ENV=development ts-node scripts/codegen.ts"
   },
   "publishConfig": {

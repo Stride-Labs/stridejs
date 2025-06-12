@@ -15,6 +15,10 @@ export const config = [
     branch: "v0.47.15-stride-distribution-fix-0-mempool-verbose-error",
   },
   {
+    repo: "https://github.com/cosmos/gaia",
+    branch: "v24.0.0",
+  },
+  {
     repo: "https://github.com/cosmos/ibc-go",
     branch: "v7.9.2",
   },

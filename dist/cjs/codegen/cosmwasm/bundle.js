@@ -37,12 +37,12 @@ var _131 = __toESM(require("./wasm/v1/proposal_legacy"));
 var _132 = __toESM(require("./wasm/v1/query"));
 var _133 = __toESM(require("./wasm/v1/tx"));
 var _134 = __toESM(require("./wasm/v1/types"));
-var _338 = __toESM(require("./wasm/v1/tx.amino"));
-var _339 = __toESM(require("./wasm/v1/tx.registry"));
-var _340 = __toESM(require("./wasm/v1/query.rpc.Query"));
-var _341 = __toESM(require("./wasm/v1/tx.rpc.msg"));
-var _413 = __toESM(require("./rpc.query"));
-var _414 = __toESM(require("./rpc.tx"));
+var _344 = __toESM(require("./wasm/v1/tx.amino"));
+var _345 = __toESM(require("./wasm/v1/tx.registry"));
+var _346 = __toESM(require("./wasm/v1/query.rpc.Query"));
+var _347 = __toESM(require("./wasm/v1/tx.rpc.msg"));
+var _423 = __toESM(require("./rpc.query"));
+var _424 = __toESM(require("./rpc.tx"));
 var cosmwasm;
 ((cosmwasm2) => {
   let wasm;
@@ -55,15 +55,15 @@ var cosmwasm;
       ..._132,
       ..._133,
       ..._134,
-      ..._338,
-      ..._339,
-      ..._340,
-      ..._341
+      ..._344,
+      ..._345,
+      ..._346,
+      ..._347
     };
   })(wasm = cosmwasm2.wasm || (cosmwasm2.wasm = {}));
   cosmwasm2.ClientFactory = {
-    ..._413,
-    ..._414
+    ..._423,
+    ..._424
   };
 })(cosmwasm || (cosmwasm = {}));
 // Annotate the CommonJS export names for ESM import in node:

@@ -30,9 +30,9 @@ __export(bundle_exports, {
   gogoproto: () => gogoproto
 });
 module.exports = __toCommonJS(bundle_exports);
-var _136 = __toESM(require("./gogo"));
+var _142 = __toESM(require("./gogo"));
 const gogoproto = {
-  ..._136
+  ..._142
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
