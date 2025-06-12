@@ -1,6 +1,6 @@
 {
   "name": "stridejs",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "The JavaScript SDK for Stride",
   "contributors": [
     "Dan Lynch <pyramation@gmail.com>",
