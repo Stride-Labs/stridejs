@@ -1,3 +1,4 @@
+"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -262,8 +263,8 @@ function writeFixed32(val, buf, pos) {
 function writeByte(val, buf, pos) {
   buf[pos] = val & 255;
 }
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+// Proper CommonJS exports for dynamic imports
+module.exports = {
   int64FromString,
   int64Length,
   int64ToString,
@@ -280,4 +281,4 @@ function writeByte(val, buf, pos) {
   writeVarint64,
   zzDecode,
   zzEncode
-});
+};

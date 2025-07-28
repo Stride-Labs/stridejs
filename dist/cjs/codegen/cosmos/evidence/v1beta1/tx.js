@@ -1,3 +1,4 @@
+"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -191,11 +192,11 @@ const Cosmos_evidencev1beta1Evidence_FromAmino = (content) => {
 const Cosmos_evidencev1beta1Evidence_ToAmino = (content) => {
   return import_any.Any.toAmino(content);
 };
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+// Proper CommonJS exports for dynamic imports
+module.exports = {
   Cosmos_evidencev1beta1Evidence_FromAmino,
   Cosmos_evidencev1beta1Evidence_InterfaceDecoder,
   Cosmos_evidencev1beta1Evidence_ToAmino,
   MsgSubmitEvidence,
   MsgSubmitEvidenceResponse
-});
+};

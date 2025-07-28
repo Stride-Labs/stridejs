@@ -1,3 +1,4 @@
+"use strict";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -34,7 +35,7 @@ var _1 = __toESM(require("./cosmos"));
 const cosmos_proto = {
   ..._1
 };
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+// Proper CommonJS exports for dynamic imports
+module.exports = {
   cosmos_proto
-});
+};

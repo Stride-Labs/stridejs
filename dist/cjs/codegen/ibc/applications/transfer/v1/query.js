@@ -1,3 +1,4 @@
+"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -876,8 +877,8 @@ const QueryTotalEscrowForDenomResponse = {
     };
   }
 };
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+// Proper CommonJS exports for dynamic imports
+module.exports = {
   QueryDenomHashRequest,
   QueryDenomHashResponse,
   QueryDenomTraceRequest,
@@ -890,4 +891,4 @@ const QueryTotalEscrowForDenomResponse = {
   QueryParamsResponse,
   QueryTotalEscrowForDenomRequest,
   QueryTotalEscrowForDenomResponse
-});
+};

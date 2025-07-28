@@ -1,4 +1,5 @@
 "use strict";
+"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -88,9 +89,9 @@ function utf8Write(str, buffer, offset) {
   }
   return offset - start;
 }
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+// Proper CommonJS exports for dynamic imports
+module.exports = {
   utf8Length,
   utf8Read,
   utf8Write
-});
+};

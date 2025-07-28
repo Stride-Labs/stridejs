@@ -1,3 +1,4 @@
+"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -818,8 +819,8 @@ const PositionalArgDescriptor = {
     };
   }
 };
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+// Proper CommonJS exports for dynamic imports
+module.exports = {
   FlagOptions,
   ModuleOptions,
   PositionalArgDescriptor,
@@ -827,4 +828,4 @@ const PositionalArgDescriptor = {
   RpcCommandOptions_FlagOptionsEntry,
   ServiceCommandDescriptor,
   ServiceCommandDescriptor_SubCommandsEntry
-});
+};

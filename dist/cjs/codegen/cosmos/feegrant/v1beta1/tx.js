@@ -1,3 +1,4 @@
+"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -371,8 +372,8 @@ const Cosmos_feegrantv1beta1FeeAllowanceI_ToAmino = (content) => {
       return import_any.Any.toAmino(content);
   }
 };
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+// Proper CommonJS exports for dynamic imports
+module.exports = {
   Cosmos_feegrantv1beta1FeeAllowanceI_FromAmino,
   Cosmos_feegrantv1beta1FeeAllowanceI_InterfaceDecoder,
   Cosmos_feegrantv1beta1FeeAllowanceI_ToAmino,
@@ -380,4 +381,4 @@ const Cosmos_feegrantv1beta1FeeAllowanceI_ToAmino = (content) => {
   MsgGrantAllowanceResponse,
   MsgRevokeAllowance,
   MsgRevokeAllowanceResponse
-});
+};

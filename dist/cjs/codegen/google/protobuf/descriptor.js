@@ -1,3 +1,4 @@
+"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -3384,8 +3385,8 @@ const GeneratedCodeInfo_Annotation = {
     };
   }
 };
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+// Proper CommonJS exports for dynamic imports
+module.exports = {
   DescriptorProto,
   DescriptorProto_ExtensionRange,
   DescriptorProto_ReservedRange,
@@ -3443,4 +3444,4 @@ const GeneratedCodeInfo_Annotation = {
   fileOptions_OptimizeModeToJSON,
   methodOptions_IdempotencyLevelFromJSON,
   methodOptions_IdempotencyLevelToJSON
-});
+};

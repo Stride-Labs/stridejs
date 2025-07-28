@@ -1,3 +1,4 @@
+"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -35,8 +36,8 @@ __reExport(codegen_exports, require("./varint"), module.exports);
 __reExport(codegen_exports, require("./utf8"), module.exports);
 __reExport(codegen_exports, require("./binary"), module.exports);
 __reExport(codegen_exports, require("./types"), module.exports);
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+// Proper CommonJS exports for dynamic imports
+module.exports = {
   ...require("./amino/bundle"),
   ...require("./cosmos_proto/bundle"),
   ...require("./cosmos/bundle"),
@@ -58,4 +59,4 @@ __reExport(codegen_exports, require("./types"), module.exports);
   ...require("./utf8"),
   ...require("./binary"),
   ...require("./types")
-});
+};

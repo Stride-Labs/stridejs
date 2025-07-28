@@ -1,3 +1,4 @@
+"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -4679,8 +4680,8 @@ const Snapshot = {
     };
   }
 };
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+// Proper CommonJS exports for dynamic imports
+module.exports = {
   CheckTxType,
   CheckTxTypeAmino,
   CheckTxTypeSDKType,
@@ -4752,4 +4753,4 @@ const Snapshot = {
   responseOfferSnapshot_ResultToJSON,
   responseProcessProposal_ProposalStatusFromJSON,
   responseProcessProposal_ProposalStatusToJSON
-});
+};

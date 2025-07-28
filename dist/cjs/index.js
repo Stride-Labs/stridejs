@@ -1,3 +1,4 @@
+"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -47,8 +48,8 @@ __reExport(src_exports, require("./codegen"), module.exports);
 __reExport(src_exports, require("./parser"), module.exports);
 __reExport(src_exports, require("./stride_client"), module.exports);
 __reExport(src_exports, require("./utils"), module.exports);
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+// Proper CommonJS exports for dynamic imports
+module.exports = {
   DirectSecp256k1HdWallet,
   GasPrice,
   LedgerSigner,
@@ -71,4 +72,4 @@ __reExport(src_exports, require("./utils"), module.exports);
   ...require("./parser"),
   ...require("./stride_client"),
   ...require("./utils")
-});
+};

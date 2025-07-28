@@ -1,3 +1,4 @@
+"use strict";
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -1199,8 +1200,8 @@ const Cosmos_cryptoPubKey_FromAmino = (content) => {
 const Cosmos_cryptoPubKey_ToAmino = (content) => {
   return (0, import_proto_signing.decodePubkey)(content);
 };
-// Annotate the CommonJS export names for ESM import in node:
-0 && (module.exports = {
+// Proper CommonJS exports for dynamic imports
+module.exports = {
   Cosmos_cryptoPubKey_FromAmino,
   Cosmos_cryptoPubKey_InterfaceDecoder,
   Cosmos_cryptoPubKey_ToAmino,
@@ -1218,4 +1219,4 @@ const Cosmos_cryptoPubKey_ToAmino = (content) => {
   MsgUndelegateResponse,
   MsgUpdateParams,
   MsgUpdateParamsResponse
-});
+};
