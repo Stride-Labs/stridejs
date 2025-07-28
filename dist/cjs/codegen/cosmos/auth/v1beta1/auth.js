@@ -429,10 +429,4 @@ const Params = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  BaseAccount,
-  ModuleAccount,
-  ModuleCredential,
-  Params
-};
+// Removed broken CommonJS export annotation

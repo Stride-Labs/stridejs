@@ -613,14 +613,4 @@ const MsgSetSendEnabledResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgMultiSend,
-  MsgMultiSendResponse,
-  MsgSend,
-  MsgSendResponse,
-  MsgSetSendEnabled,
-  MsgSetSendEnabledResponse,
-  MsgUpdateParams,
-  MsgUpdateParamsResponse
-};
+// Removed broken CommonJS export annotation

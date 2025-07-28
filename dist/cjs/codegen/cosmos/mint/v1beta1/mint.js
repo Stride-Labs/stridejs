@@ -234,8 +234,4 @@ const Params = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Minter,
-  Params
-};
+// Removed broken CommonJS export annotation

@@ -108,7 +108,4 @@ const BitArray = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  BitArray
-};
+// Removed broken CommonJS export annotation

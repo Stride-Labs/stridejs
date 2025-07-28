@@ -191,8 +191,4 @@ const MsgModuleQuerySafeResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgModuleQuerySafe,
-  MsgModuleQuerySafeResponse
-};
+// Removed broken CommonJS export annotation

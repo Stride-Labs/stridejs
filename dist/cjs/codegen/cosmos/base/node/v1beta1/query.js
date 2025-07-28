@@ -148,8 +148,4 @@ const ConfigResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ConfigRequest,
-  ConfigResponse
-};
+// Removed broken CommonJS export annotation

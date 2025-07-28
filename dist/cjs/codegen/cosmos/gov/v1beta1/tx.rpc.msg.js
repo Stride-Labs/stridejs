@@ -53,7 +53,4 @@ class MsgClientImpl {
     return promise.then((data2) => import_tx.MsgDepositResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgClientImpl
-};
+// Removed broken CommonJS export annotation

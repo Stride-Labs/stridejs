@@ -107,7 +107,4 @@ const GenesisState = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  GenesisState
-};
+// Removed broken CommonJS export annotation

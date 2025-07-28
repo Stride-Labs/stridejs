@@ -1073,18 +1073,4 @@ const CommunityPoolSpendProposalWithDeposit = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  CommunityPoolSpendProposal,
-  CommunityPoolSpendProposalWithDeposit,
-  DelegationDelegatorReward,
-  DelegatorStartingInfo,
-  FeePool,
-  Params,
-  ValidatorAccumulatedCommission,
-  ValidatorCurrentRewards,
-  ValidatorHistoricalRewards,
-  ValidatorOutstandingRewards,
-  ValidatorSlashEvent,
-  ValidatorSlashEvents
-};
+// Removed broken CommonJS export annotation

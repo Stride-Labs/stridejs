@@ -409,12 +409,4 @@ const QueryAllCallbackDataResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryAllCallbackDataRequest,
-  QueryAllCallbackDataResponse,
-  QueryGetCallbackDataRequest,
-  QueryGetCallbackDataResponse,
-  QueryParamsRequest,
-  QueryParamsResponse
-};
+// Removed broken CommonJS export annotation

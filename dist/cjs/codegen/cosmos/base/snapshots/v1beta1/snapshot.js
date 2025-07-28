@@ -824,15 +824,4 @@ const SnapshotSchema = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Metadata,
-  Snapshot,
-  SnapshotExtensionMeta,
-  SnapshotExtensionPayload,
-  SnapshotIAVLItem,
-  SnapshotItem,
-  SnapshotKVItem,
-  SnapshotSchema,
-  SnapshotStoreItem
-};
+// Removed broken CommonJS export annotation

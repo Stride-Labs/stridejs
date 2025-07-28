@@ -877,18 +877,4 @@ const QueryTotalEscrowForDenomResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryDenomHashRequest,
-  QueryDenomHashResponse,
-  QueryDenomTraceRequest,
-  QueryDenomTraceResponse,
-  QueryDenomTracesRequest,
-  QueryDenomTracesResponse,
-  QueryEscrowAddressRequest,
-  QueryEscrowAddressResponse,
-  QueryParamsRequest,
-  QueryParamsResponse,
-  QueryTotalEscrowForDenomRequest,
-  QueryTotalEscrowForDenomResponse
-};
+// Removed broken CommonJS export annotation

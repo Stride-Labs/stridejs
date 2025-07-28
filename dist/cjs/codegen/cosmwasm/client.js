@@ -71,10 +71,4 @@ const getSigningCosmwasmClient = async ({
   });
   return client;
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  cosmwasmAminoConverters,
-  cosmwasmProtoRegistry,
-  getSigningCosmwasmClient,
-  getSigningCosmwasmClientOptions
-};
+// Removed broken CommonJS export annotation

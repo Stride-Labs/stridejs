@@ -283,9 +283,4 @@ const CommitID = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  CommitID,
-  CommitInfo,
-  StoreInfo
-};
+// Removed broken CommonJS export annotation

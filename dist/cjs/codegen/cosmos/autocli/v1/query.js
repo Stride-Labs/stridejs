@@ -237,9 +237,4 @@ const AppOptionsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  AppOptionsRequest,
-  AppOptionsResponse,
-  AppOptionsResponse_ModuleOptionsEntry
-};
+// Removed broken CommonJS export annotation

@@ -35,7 +35,4 @@ var _1 = __toESM(require("./cosmos"));
 const cosmos_proto = {
   ..._1
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  cosmos_proto
-};
+// Removed broken CommonJS export annotation

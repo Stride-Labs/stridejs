@@ -663,14 +663,4 @@ const MsgSubmitMisbehaviourResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgCreateClient,
-  MsgCreateClientResponse,
-  MsgSubmitMisbehaviour,
-  MsgSubmitMisbehaviourResponse,
-  MsgUpdateClient,
-  MsgUpdateClientResponse,
-  MsgUpgradeClient,
-  MsgUpgradeClientResponse
-};
+// Removed broken CommonJS export annotation

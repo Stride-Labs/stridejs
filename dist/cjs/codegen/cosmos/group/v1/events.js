@@ -782,16 +782,4 @@ const EventProposalPruned = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  EventCreateGroup,
-  EventCreateGroupPolicy,
-  EventExec,
-  EventLeaveGroup,
-  EventProposalPruned,
-  EventSubmitProposal,
-  EventUpdateGroup,
-  EventUpdateGroupPolicy,
-  EventVote,
-  EventWithdrawProposal
-};
+// Removed broken CommonJS export annotation

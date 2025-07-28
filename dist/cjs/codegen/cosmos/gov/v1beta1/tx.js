@@ -915,17 +915,4 @@ const Cosmos_govv1beta1Content_ToAmino = (content) => {
       return import_any.Any.toAmino(content);
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Cosmos_govv1beta1Content_FromAmino,
-  Cosmos_govv1beta1Content_InterfaceDecoder,
-  Cosmos_govv1beta1Content_ToAmino,
-  MsgDeposit,
-  MsgDepositResponse,
-  MsgSubmitProposal,
-  MsgSubmitProposalResponse,
-  MsgVote,
-  MsgVoteResponse,
-  MsgVoteWeighted,
-  MsgVoteWeightedResponse
-};
+// Removed broken CommonJS export annotation

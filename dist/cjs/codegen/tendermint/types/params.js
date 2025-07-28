@@ -492,12 +492,4 @@ const HashedParams = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  BlockParams,
-  ConsensusParams,
-  EvidenceParams,
-  HashedParams,
-  ValidatorParams,
-  VersionParams
-};
+// Removed broken CommonJS export annotation

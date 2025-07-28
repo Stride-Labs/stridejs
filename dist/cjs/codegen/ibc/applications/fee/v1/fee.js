@@ -375,10 +375,4 @@ const IdentifiedPacketFees = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Fee,
-  IdentifiedPacketFees,
-  PacketFee,
-  PacketFees
-};
+// Removed broken CommonJS export annotation

@@ -728,18 +728,4 @@ const Params = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ClientPaths,
-  ConnectionEnd,
-  ConnectionPaths,
-  Counterparty,
-  IdentifiedConnection,
-  Params,
-  State,
-  StateAmino,
-  StateSDKType,
-  Version,
-  stateFromJSON,
-  stateToJSON
-};
+// Removed broken CommonJS export annotation

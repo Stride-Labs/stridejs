@@ -143,18 +143,4 @@ function fromJsonTimestamp(o) {
 function numberToLong(number) {
   return BigInt(Math.trunc(number));
 }
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  base64FromBytes,
-  bytesFromBase64,
-  fromDuration,
-  fromJsonTimestamp,
-  fromTimestamp,
-  isObject,
-  isRpc,
-  isSet,
-  omitDefault,
-  setPaginationParams,
-  toDuration,
-  toTimestamp
-};
+// Removed broken CommonJS export annotation

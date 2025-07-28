@@ -129,8 +129,4 @@ const createRpcQueryExtension = (base) => {
     }
   };
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryClientImpl,
-  createRpcQueryExtension
-};
+// Removed broken CommonJS export annotation

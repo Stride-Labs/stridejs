@@ -114,10 +114,4 @@ const getSigningCosmosClient = async ({
   });
   return client;
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  cosmosAminoConverters,
-  cosmosProtoRegistry,
-  getSigningCosmosClient,
-  getSigningCosmosClientOptions
-};
+// Removed broken CommonJS export annotation

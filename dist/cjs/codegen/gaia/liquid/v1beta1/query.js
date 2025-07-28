@@ -1424,28 +1424,4 @@ const QueryTokenizeShareRecordRewardResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryAllTokenizeShareRecordsRequest,
-  QueryAllTokenizeShareRecordsResponse,
-  QueryLastTokenizeShareRecordIdRequest,
-  QueryLastTokenizeShareRecordIdResponse,
-  QueryLiquidValidatorRequest,
-  QueryLiquidValidatorResponse,
-  QueryParamsRequest,
-  QueryParamsResponse,
-  QueryTokenizeShareLockInfo,
-  QueryTokenizeShareLockInfoResponse,
-  QueryTokenizeShareRecordByDenomRequest,
-  QueryTokenizeShareRecordByDenomResponse,
-  QueryTokenizeShareRecordByIdRequest,
-  QueryTokenizeShareRecordByIdResponse,
-  QueryTokenizeShareRecordRewardRequest,
-  QueryTokenizeShareRecordRewardResponse,
-  QueryTokenizeShareRecordsOwnedRequest,
-  QueryTokenizeShareRecordsOwnedResponse,
-  QueryTotalLiquidStaked,
-  QueryTotalLiquidStakedResponse,
-  QueryTotalTokenizeSharedAssetsRequest,
-  QueryTotalTokenizeSharedAssetsResponse
-};
+// Removed broken CommonJS export annotation

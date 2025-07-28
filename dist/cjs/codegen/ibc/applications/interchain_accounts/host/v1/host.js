@@ -188,8 +188,4 @@ const QueryRequest = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Params,
-  QueryRequest
-};
+// Removed broken CommonJS export annotation

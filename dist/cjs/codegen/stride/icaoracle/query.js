@@ -539,14 +539,4 @@ const QueryMetricsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryActiveOraclesRequest,
-  QueryActiveOraclesResponse,
-  QueryAllOraclesRequest,
-  QueryAllOraclesResponse,
-  QueryMetricsRequest,
-  QueryMetricsResponse,
-  QueryOracleRequest,
-  QueryOracleResponse
-};
+// Removed broken CommonJS export annotation

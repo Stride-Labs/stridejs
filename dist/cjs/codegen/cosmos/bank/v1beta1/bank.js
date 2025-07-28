@@ -681,13 +681,4 @@ const Metadata = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  DenomUnit,
-  Input,
-  Metadata,
-  Output,
-  Params,
-  SendEnabled,
-  Supply
-};
+// Removed broken CommonJS export annotation

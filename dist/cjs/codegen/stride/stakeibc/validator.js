@@ -182,7 +182,4 @@ const Validator = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Validator
-};
+// Removed broken CommonJS export annotation

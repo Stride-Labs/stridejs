@@ -240,13 +240,4 @@ const ScalarDescriptor = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  InterfaceDescriptor,
-  ScalarDescriptor,
-  ScalarType,
-  ScalarTypeAmino,
-  ScalarTypeSDKType,
-  scalarTypeFromJSON,
-  scalarTypeToJSON
-};
+// Removed broken CommonJS export annotation

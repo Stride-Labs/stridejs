@@ -635,13 +635,4 @@ const Params = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ClientConsensusStates,
-  ClientUpdateProposal,
-  ConsensusStateWithHeight,
-  Height,
-  IdentifiedClientState,
-  Params,
-  UpgradeProposal
-};
+// Removed broken CommonJS export annotation

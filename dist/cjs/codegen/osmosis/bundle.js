@@ -35,7 +35,4 @@ var _189 = __toESM(require("./osmosis"));
 const osmosis = {
   ..._189
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  osmosis
-};
+// Removed broken CommonJS export annotation

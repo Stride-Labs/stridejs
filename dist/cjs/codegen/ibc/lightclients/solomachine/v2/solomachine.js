@@ -1567,27 +1567,4 @@ const NextSequenceRecvData = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ChannelStateData,
-  ClientState,
-  ClientStateData,
-  ConnectionStateData,
-  ConsensusState,
-  ConsensusStateData,
-  DataType,
-  DataTypeAmino,
-  DataTypeSDKType,
-  Header,
-  HeaderData,
-  Misbehaviour,
-  NextSequenceRecvData,
-  PacketAcknowledgementData,
-  PacketCommitmentData,
-  PacketReceiptAbsenceData,
-  SignBytes,
-  SignatureAndData,
-  TimestampedSignatureData,
-  dataTypeFromJSON,
-  dataTypeToJSON
-};
+// Removed broken CommonJS export annotation

@@ -146,7 +146,4 @@ const CallbackData = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  CallbackData
-};
+// Removed broken CommonJS export annotation

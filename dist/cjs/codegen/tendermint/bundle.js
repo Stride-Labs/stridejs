@@ -71,7 +71,4 @@ var tendermint;
     ..._270
   };
 })(tendermint || (tendermint = {}));
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  tendermint
-};
+// Removed broken CommonJS export annotation

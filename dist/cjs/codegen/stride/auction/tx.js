@@ -589,12 +589,4 @@ const MsgUpdateAuctionResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgCreateAuction,
-  MsgCreateAuctionResponse,
-  MsgPlaceBid,
-  MsgPlaceBidResponse,
-  MsgUpdateAuction,
-  MsgUpdateAuctionResponse
-};
+// Removed broken CommonJS export annotation

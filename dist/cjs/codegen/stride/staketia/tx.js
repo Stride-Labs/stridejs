@@ -1871,37 +1871,4 @@ const MsgSetOperatorAddressResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgAdjustDelegatedBalance,
-  MsgAdjustDelegatedBalanceResponse,
-  MsgConfirmDelegation,
-  MsgConfirmDelegationResponse,
-  MsgConfirmUnbondedTokenSweep,
-  MsgConfirmUnbondedTokenSweepResponse,
-  MsgConfirmUndelegation,
-  MsgConfirmUndelegationResponse,
-  MsgLiquidStake,
-  MsgLiquidStakeResponse,
-  MsgOverwriteDelegationRecord,
-  MsgOverwriteDelegationRecordResponse,
-  MsgOverwriteRedemptionRecord,
-  MsgOverwriteRedemptionRecordResponse,
-  MsgOverwriteUnbondingRecord,
-  MsgOverwriteUnbondingRecordResponse,
-  MsgRedeemStake,
-  MsgRedeemStakeResponse,
-  MsgRefreshRedemptionRate,
-  MsgRefreshRedemptionRateResponse,
-  MsgResumeHostZone,
-  MsgResumeHostZoneResponse,
-  MsgSetOperatorAddress,
-  MsgSetOperatorAddressResponse,
-  MsgUpdateInnerRedemptionRateBounds,
-  MsgUpdateInnerRedemptionRateBoundsResponse,
-  OverwritableRecordType,
-  OverwritableRecordTypeAmino,
-  OverwritableRecordTypeSDKType,
-  overwritableRecordTypeFromJSON,
-  overwritableRecordTypeToJSON
-};
+// Removed broken CommonJS export annotation

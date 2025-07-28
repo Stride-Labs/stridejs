@@ -139,8 +139,4 @@ const QueryPendingQueriesResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryPendingQueriesRequest,
-  QueryPendingQueriesResponse
-};
+// Removed broken CommonJS export annotation

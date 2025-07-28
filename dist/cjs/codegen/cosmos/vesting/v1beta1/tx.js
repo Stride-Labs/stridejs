@@ -518,12 +518,4 @@ const MsgCreatePeriodicVestingAccountResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgCreatePeriodicVestingAccount,
-  MsgCreatePeriodicVestingAccountResponse,
-  MsgCreatePermanentLockedAccount,
-  MsgCreatePermanentLockedAccountResponse,
-  MsgCreateVestingAccount,
-  MsgCreateVestingAccountResponse
-};
+// Removed broken CommonJS export annotation

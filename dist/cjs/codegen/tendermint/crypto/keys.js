@@ -98,7 +98,4 @@ const PublicKey = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  PublicKey
-};
+// Removed broken CommonJS export annotation

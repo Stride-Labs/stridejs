@@ -549,12 +549,4 @@ const PermanentLockedAccount = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  BaseVestingAccount,
-  ContinuousVestingAccount,
-  DelayedVestingAccount,
-  Period,
-  PeriodicVestingAccount,
-  PermanentLockedAccount
-};
+// Removed broken CommonJS export annotation

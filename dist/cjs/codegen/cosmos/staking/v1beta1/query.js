@@ -2199,34 +2199,4 @@ const QueryParamsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryDelegationRequest,
-  QueryDelegationResponse,
-  QueryDelegatorDelegationsRequest,
-  QueryDelegatorDelegationsResponse,
-  QueryDelegatorUnbondingDelegationsRequest,
-  QueryDelegatorUnbondingDelegationsResponse,
-  QueryDelegatorValidatorRequest,
-  QueryDelegatorValidatorResponse,
-  QueryDelegatorValidatorsRequest,
-  QueryDelegatorValidatorsResponse,
-  QueryHistoricalInfoRequest,
-  QueryHistoricalInfoResponse,
-  QueryParamsRequest,
-  QueryParamsResponse,
-  QueryPoolRequest,
-  QueryPoolResponse,
-  QueryRedelegationsRequest,
-  QueryRedelegationsResponse,
-  QueryUnbondingDelegationRequest,
-  QueryUnbondingDelegationResponse,
-  QueryValidatorDelegationsRequest,
-  QueryValidatorDelegationsResponse,
-  QueryValidatorRequest,
-  QueryValidatorResponse,
-  QueryValidatorUnbondingDelegationsRequest,
-  QueryValidatorUnbondingDelegationsResponse,
-  QueryValidatorsRequest,
-  QueryValidatorsResponse
-};
+// Removed broken CommonJS export annotation

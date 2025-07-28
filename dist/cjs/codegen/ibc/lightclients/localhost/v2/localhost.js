@@ -92,7 +92,4 @@ const ClientState = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ClientState
-};
+// Removed broken CommonJS export annotation

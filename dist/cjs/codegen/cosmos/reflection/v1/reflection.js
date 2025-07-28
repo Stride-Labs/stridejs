@@ -151,8 +151,4 @@ const FileDescriptorsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  FileDescriptorsRequest,
-  FileDescriptorsResponse
-};
+// Removed broken CommonJS export annotation

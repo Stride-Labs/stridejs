@@ -507,12 +507,4 @@ const QueryAllowancesByGranterResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryAllowanceRequest,
-  QueryAllowanceResponse,
-  QueryAllowancesByGranterRequest,
-  QueryAllowancesByGranterResponse,
-  QueryAllowancesRequest,
-  QueryAllowancesResponse
-};
+// Removed broken CommonJS export annotation

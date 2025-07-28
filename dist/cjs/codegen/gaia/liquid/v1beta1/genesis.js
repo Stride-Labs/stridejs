@@ -228,8 +228,4 @@ const TokenizeShareLock = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  GenesisState,
-  TokenizeShareLock
-};
+// Removed broken CommonJS export annotation

@@ -545,12 +545,4 @@ const QueryGranteeGrantsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryGranteeGrantsRequest,
-  QueryGranteeGrantsResponse,
-  QueryGranterGrantsRequest,
-  QueryGranterGrantsResponse,
-  QueryGrantsRequest,
-  QueryGrantsResponse
-};
+// Removed broken CommonJS export annotation

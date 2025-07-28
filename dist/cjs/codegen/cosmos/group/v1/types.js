@@ -1496,35 +1496,4 @@ const Cosmos_groupv1DecisionPolicy_ToAmino = (content) => {
       return import_any.Any.toAmino(content);
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Cosmos_groupv1DecisionPolicy_FromAmino,
-  Cosmos_groupv1DecisionPolicy_InterfaceDecoder,
-  Cosmos_groupv1DecisionPolicy_ToAmino,
-  DecisionPolicyWindows,
-  GroupInfo,
-  GroupMember,
-  GroupPolicyInfo,
-  Member,
-  MemberRequest,
-  PercentageDecisionPolicy,
-  Proposal,
-  ProposalExecutorResult,
-  ProposalExecutorResultAmino,
-  ProposalExecutorResultSDKType,
-  ProposalStatus,
-  ProposalStatusAmino,
-  ProposalStatusSDKType,
-  TallyResult,
-  ThresholdDecisionPolicy,
-  Vote,
-  VoteOption,
-  VoteOptionAmino,
-  VoteOptionSDKType,
-  proposalExecutorResultFromJSON,
-  proposalExecutorResultToJSON,
-  proposalStatusFromJSON,
-  proposalStatusToJSON,
-  voteOptionFromJSON,
-  voteOptionToJSON
-};
+// Removed broken CommonJS export annotation

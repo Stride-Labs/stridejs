@@ -149,8 +149,4 @@ const QueryConfigResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryConfigRequest,
-  QueryConfigResponse
-};
+// Removed broken CommonJS export annotation

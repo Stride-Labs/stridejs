@@ -198,8 +198,4 @@ const MsgSubmitQueryResponseResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgSubmitQueryResponse,
-  MsgSubmitQueryResponseResponse
-};
+// Removed broken CommonJS export annotation

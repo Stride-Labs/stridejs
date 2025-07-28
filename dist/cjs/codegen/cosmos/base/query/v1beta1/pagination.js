@@ -222,8 +222,4 @@ const PageResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  PageRequest,
-  PageResponse
-};
+// Removed broken CommonJS export annotation

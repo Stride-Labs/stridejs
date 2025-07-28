@@ -176,8 +176,4 @@ const Pair = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Pair,
-  Pairs
-};
+// Removed broken CommonJS export annotation

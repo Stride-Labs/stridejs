@@ -137,8 +137,4 @@ const QueryParamsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryParamsRequest,
-  QueryParamsResponse
-};
+// Removed broken CommonJS export annotation

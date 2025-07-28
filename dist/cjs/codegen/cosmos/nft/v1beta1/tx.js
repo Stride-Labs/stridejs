@@ -184,8 +184,4 @@ const MsgSendResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgSend,
-  MsgSendResponse
-};
+// Removed broken CommonJS export annotation

@@ -307,10 +307,4 @@ const MerkleProof = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MerklePath,
-  MerklePrefix,
-  MerkleProof,
-  MerkleRoot
-};
+// Removed broken CommonJS export annotation

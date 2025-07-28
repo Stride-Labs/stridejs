@@ -103,7 +103,4 @@ const Module = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Module
-};
+// Removed broken CommonJS export annotation

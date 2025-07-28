@@ -110,7 +110,4 @@ const ExtensionData = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ExtensionData
-};
+// Removed broken CommonJS export annotation

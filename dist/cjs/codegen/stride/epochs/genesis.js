@@ -226,8 +226,4 @@ const GenesisState = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  EpochInfo,
-  GenesisState
-};
+// Removed broken CommonJS export annotation

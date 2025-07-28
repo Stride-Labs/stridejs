@@ -765,7 +765,4 @@ var cosmos;
     ..._422
   };
 })(cosmos || (cosmos = {}));
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  cosmos
-};
+// Removed broken CommonJS export annotation

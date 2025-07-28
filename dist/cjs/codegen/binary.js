@@ -334,9 +334,4 @@ function indexOutOfRange(reader, writeLength) {
     "index out of range: " + reader.pos + " + " + (writeLength || 1) + " > " + reader.len
   );
 }
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  BinaryReader,
-  BinaryWriter,
-  WireType
-};
+// Removed broken CommonJS export annotation

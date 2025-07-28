@@ -50,7 +50,4 @@ var google;
     ..._148
   };
 })(google || (google = {}));
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  google
-};
+// Removed broken CommonJS export annotation

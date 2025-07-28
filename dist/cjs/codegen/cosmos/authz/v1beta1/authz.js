@@ -466,13 +466,4 @@ const Cosmos_authzv1beta1Authorization_ToAmino = (content) => {
       return import_any.Any.toAmino(content);
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Cosmos_authzv1beta1Authorization_FromAmino,
-  Cosmos_authzv1beta1Authorization_InterfaceDecoder,
-  Cosmos_authzv1beta1Authorization_ToAmino,
-  GenericAuthorization,
-  Grant,
-  GrantAuthorization,
-  GrantQueueItem
-};
+// Removed broken CommonJS export annotation

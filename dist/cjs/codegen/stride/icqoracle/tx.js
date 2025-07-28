@@ -493,12 +493,4 @@ const MsgUpdateParamsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgRegisterTokenPriceQuery,
-  MsgRegisterTokenPriceQueryResponse,
-  MsgRemoveTokenPriceQuery,
-  MsgRemoveTokenPriceQueryResponse,
-  MsgUpdateParams,
-  MsgUpdateParamsResponse
-};
+// Removed broken CommonJS export annotation

@@ -195,12 +195,4 @@ const ICAAccount = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ICAAccount,
-  ICAAccountType,
-  ICAAccountTypeAmino,
-  ICAAccountTypeSDKType,
-  iCAAccountTypeFromJSON,
-  iCAAccountTypeToJSON
-};
+// Removed broken CommonJS export annotation

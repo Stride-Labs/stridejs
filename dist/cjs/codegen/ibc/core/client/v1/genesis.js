@@ -325,9 +325,4 @@ const IdentifiedGenesisMetadata = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  GenesisMetadata,
-  GenesisState,
-  IdentifiedGenesisMetadata
-};
+// Removed broken CommonJS export annotation

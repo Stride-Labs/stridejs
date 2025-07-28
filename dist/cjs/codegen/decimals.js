@@ -108,7 +108,4 @@ class Decimal {
     }
   }
 }
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Decimal
-};
+// Removed broken CommonJS export annotation

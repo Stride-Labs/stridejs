@@ -260,8 +260,4 @@ const ToggleLSMProposal = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  AddValidatorsProposal,
-  ToggleLSMProposal
-};
+// Removed broken CommonJS export annotation

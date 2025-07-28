@@ -286,9 +286,4 @@ const GolangBinding = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Config,
-  GolangBinding,
-  ModuleConfig
-};
+// Removed broken CommonJS export annotation

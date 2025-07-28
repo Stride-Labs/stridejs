@@ -185,22 +185,4 @@ function getValueFromEvents(events, key) {
   }
   throw new Error(`Event ${key} isn't in ${JSON.stringify(events)}`);
 }
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  base64PubkeyToAddress,
-  base64TendermintPubkeyToValconsAddress,
-  coinFromString,
-  coinsFromString,
-  convertBech32Prefix,
-  decToString,
-  feeFromGas,
-  findIbcResponse,
-  getTxIbcResponses,
-  getValueFromEvents,
-  ibcDenom,
-  pubkeyToAddress,
-  selfDelegatorAddressToValidatorAddress,
-  sleep,
-  tendermintPubkeyToValconsAddress,
-  validatorAddressToSelfDelegatorAddress
-};
+// Removed broken CommonJS export annotation

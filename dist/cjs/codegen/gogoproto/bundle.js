@@ -35,7 +35,4 @@ var _142 = __toESM(require("./gogo"));
 const gogoproto = {
   ..._142
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  gogoproto
-};
+// Removed broken CommonJS export annotation

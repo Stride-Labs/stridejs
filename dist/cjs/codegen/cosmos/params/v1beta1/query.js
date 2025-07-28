@@ -387,11 +387,4 @@ const Subspace = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryParamsRequest,
-  QueryParamsResponse,
-  QuerySubspacesRequest,
-  QuerySubspacesResponse,
-  Subspace
-};
+// Removed broken CommonJS export annotation

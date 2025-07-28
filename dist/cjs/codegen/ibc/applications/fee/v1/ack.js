@@ -116,7 +116,4 @@ const IncentivizedAcknowledgement = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  IncentivizedAcknowledgement
-};
+// Removed broken CommonJS export annotation

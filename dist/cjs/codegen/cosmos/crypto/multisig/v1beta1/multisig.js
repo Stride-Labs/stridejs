@@ -176,8 +176,4 @@ const CompactBitArray = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  CompactBitArray,
-  MultiSignature
-};
+// Removed broken CommonJS export annotation

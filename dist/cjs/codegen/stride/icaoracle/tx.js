@@ -722,16 +722,4 @@ const MsgRemoveOracleResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgAddOracle,
-  MsgAddOracleResponse,
-  MsgInstantiateOracle,
-  MsgInstantiateOracleResponse,
-  MsgRemoveOracle,
-  MsgRemoveOracleResponse,
-  MsgRestoreOracleICA,
-  MsgRestoreOracleICAResponse,
-  MsgToggleOracle,
-  MsgToggleOracleResponse
-};
+// Removed broken CommonJS export annotation

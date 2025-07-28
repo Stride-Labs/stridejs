@@ -355,8 +355,4 @@ const TradeRoute = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  TradeConfig,
-  TradeRoute
-};
+// Removed broken CommonJS export annotation

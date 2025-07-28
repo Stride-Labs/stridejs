@@ -214,7 +214,4 @@ const OsmosisTwapRecord = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  OsmosisTwapRecord
-};
+// Removed broken CommonJS export annotation

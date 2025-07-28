@@ -665,14 +665,4 @@ const MsgPayPacketFeeAsyncResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgPayPacketFee,
-  MsgPayPacketFeeAsync,
-  MsgPayPacketFeeAsyncResponse,
-  MsgPayPacketFeeResponse,
-  MsgRegisterCounterpartyPayee,
-  MsgRegisterCounterpartyPayeeResponse,
-  MsgRegisterPayee,
-  MsgRegisterPayeeResponse
-};
+// Removed broken CommonJS export annotation

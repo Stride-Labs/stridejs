@@ -444,12 +444,4 @@ const QuerySigningInfosResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryParamsRequest,
-  QueryParamsResponse,
-  QuerySigningInfoRequest,
-  QuerySigningInfoResponse,
-  QuerySigningInfosRequest,
-  QuerySigningInfosResponse
-};
+// Removed broken CommonJS export annotation

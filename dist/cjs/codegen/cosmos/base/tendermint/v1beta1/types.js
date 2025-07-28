@@ -358,8 +358,4 @@ const Header = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Block,
-  Header
-};
+// Removed broken CommonJS export annotation

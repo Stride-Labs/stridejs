@@ -839,14 +839,4 @@ const GenesisState = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  DelegatorStartingInfoRecord,
-  DelegatorWithdrawInfo,
-  GenesisState,
-  ValidatorAccumulatedCommissionRecord,
-  ValidatorCurrentRewardsRecord,
-  ValidatorHistoricalRewardsRecord,
-  ValidatorOutstandingRewardsRecord,
-  ValidatorSlashEventRecord
-};
+// Removed broken CommonJS export annotation

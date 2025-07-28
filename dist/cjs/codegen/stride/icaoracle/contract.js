@@ -285,9 +285,4 @@ const MsgPostMetric = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgExecuteContractPostMetric,
-  MsgInstantiateOracleContract,
-  MsgPostMetric
-};
+// Removed broken CommonJS export annotation

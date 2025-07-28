@@ -315,9 +315,4 @@ const EventBurn = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  EventBurn,
-  EventMint,
-  EventSend
-};
+// Removed broken CommonJS export annotation

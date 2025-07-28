@@ -475,16 +475,4 @@ const LiquidValidator = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  LiquidValidator,
-  Params,
-  PendingTokenizeShareAuthorizations,
-  TokenizeShareLockStatus,
-  TokenizeShareLockStatusAmino,
-  TokenizeShareLockStatusSDKType,
-  TokenizeShareRecord,
-  TokenizeShareRecordReward,
-  tokenizeShareLockStatusFromJSON,
-  tokenizeShareLockStatusToJSON
-};
+// Removed broken CommonJS export annotation

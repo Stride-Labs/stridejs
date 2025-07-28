@@ -146,9 +146,4 @@ const MessageComposer = {
     }
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MessageComposer,
-  load,
-  registry
-};
+// Removed broken CommonJS export annotation

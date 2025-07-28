@@ -503,11 +503,4 @@ const ForwardRelayerAddress = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  FeeEnabledChannel,
-  ForwardRelayerAddress,
-  GenesisState,
-  RegisteredCounterpartyPayee,
-  RegisteredPayee
-};
+// Removed broken CommonJS export annotation

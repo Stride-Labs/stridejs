@@ -162,8 +162,4 @@ const UpdateOracleCallback = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  InstantiateOracleCallback,
-  UpdateOracleCallback
-};
+// Removed broken CommonJS export annotation

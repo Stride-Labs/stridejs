@@ -1478,29 +1478,4 @@ const TxProof = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  BlockID,
-  BlockIDFlag,
-  BlockIDFlagAmino,
-  BlockIDFlagSDKType,
-  BlockMeta,
-  Commit,
-  CommitSig,
-  Data,
-  Header,
-  LightBlock,
-  Part,
-  PartSetHeader,
-  Proposal,
-  SignedHeader,
-  SignedMsgType,
-  SignedMsgTypeAmino,
-  SignedMsgTypeSDKType,
-  TxProof,
-  Vote,
-  blockIDFlagFromJSON,
-  blockIDFlagToJSON,
-  signedMsgTypeFromJSON,
-  signedMsgTypeToJSON
-};
+// Removed broken CommonJS export annotation

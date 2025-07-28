@@ -393,10 +393,4 @@ const EvidenceList = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  DuplicateVoteEvidence,
-  Evidence,
-  EvidenceList,
-  LightClientAttackEvidence
-};
+// Removed broken CommonJS export annotation

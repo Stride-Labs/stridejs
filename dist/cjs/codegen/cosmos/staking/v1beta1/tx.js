@@ -1200,23 +1200,4 @@ const Cosmos_cryptoPubKey_FromAmino = (content) => {
 const Cosmos_cryptoPubKey_ToAmino = (content) => {
   return (0, import_proto_signing.decodePubkey)(content);
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Cosmos_cryptoPubKey_FromAmino,
-  Cosmos_cryptoPubKey_InterfaceDecoder,
-  Cosmos_cryptoPubKey_ToAmino,
-  MsgBeginRedelegate,
-  MsgBeginRedelegateResponse,
-  MsgCancelUnbondingDelegation,
-  MsgCancelUnbondingDelegationResponse,
-  MsgCreateValidator,
-  MsgCreateValidatorResponse,
-  MsgDelegate,
-  MsgDelegateResponse,
-  MsgEditValidator,
-  MsgEditValidatorResponse,
-  MsgUndelegate,
-  MsgUndelegateResponse,
-  MsgUpdateParams,
-  MsgUpdateParamsResponse
-};
+// Removed broken CommonJS export annotation

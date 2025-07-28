@@ -139,7 +139,4 @@ const BIP44Params = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  BIP44Params
-};
+// Removed broken CommonJS export annotation

@@ -1443,28 +1443,4 @@ const QueryAllTradeRoutesResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryAddressUnbondings,
-  QueryAddressUnbondingsResponse,
-  QueryAllEpochTrackerRequest,
-  QueryAllEpochTrackerResponse,
-  QueryAllHostZoneRequest,
-  QueryAllHostZoneResponse,
-  QueryAllTradeRoutes,
-  QueryAllTradeRoutesResponse,
-  QueryGetEpochTrackerRequest,
-  QueryGetEpochTrackerResponse,
-  QueryGetHostZoneRequest,
-  QueryGetHostZoneResponse,
-  QueryGetNextPacketSequenceRequest,
-  QueryGetNextPacketSequenceResponse,
-  QueryGetValidatorsRequest,
-  QueryGetValidatorsResponse,
-  QueryInterchainAccountFromAddressRequest,
-  QueryInterchainAccountFromAddressResponse,
-  QueryModuleAddressRequest,
-  QueryModuleAddressResponse,
-  QueryParamsRequest,
-  QueryParamsResponse
-};
+// Removed broken CommonJS export annotation

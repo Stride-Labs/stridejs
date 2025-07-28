@@ -819,13 +819,4 @@ const PositionalArgDescriptor = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  FlagOptions,
-  ModuleOptions,
-  PositionalArgDescriptor,
-  RpcCommandOptions,
-  RpcCommandOptions_FlagOptionsEntry,
-  ServiceCommandDescriptor,
-  ServiceCommandDescriptor_SubCommandsEntry
-};
+// Removed broken CommonJS export annotation

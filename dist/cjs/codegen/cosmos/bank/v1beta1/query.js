@@ -1791,29 +1791,4 @@ const QuerySendEnabledResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  DenomOwner,
-  QueryAllBalancesRequest,
-  QueryAllBalancesResponse,
-  QueryBalanceRequest,
-  QueryBalanceResponse,
-  QueryDenomMetadataRequest,
-  QueryDenomMetadataResponse,
-  QueryDenomOwnersRequest,
-  QueryDenomOwnersResponse,
-  QueryDenomsMetadataRequest,
-  QueryDenomsMetadataResponse,
-  QueryParamsRequest,
-  QueryParamsResponse,
-  QuerySendEnabledRequest,
-  QuerySendEnabledResponse,
-  QuerySpendableBalanceByDenomRequest,
-  QuerySpendableBalanceByDenomResponse,
-  QuerySpendableBalancesRequest,
-  QuerySpendableBalancesResponse,
-  QuerySupplyOfRequest,
-  QuerySupplyOfResponse,
-  QueryTotalSupplyRequest,
-  QueryTotalSupplyResponse
-};
+// Removed broken CommonJS export annotation

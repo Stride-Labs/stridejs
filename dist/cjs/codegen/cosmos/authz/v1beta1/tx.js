@@ -499,15 +499,4 @@ const Cosmos_basev1beta1Msg_FromAmino = (content) => {
 const Cosmos_basev1beta1Msg_ToAmino = (content) => {
   return import_any.Any.toAmino(content);
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Cosmos_basev1beta1Msg_FromAmino,
-  Cosmos_basev1beta1Msg_InterfaceDecoder,
-  Cosmos_basev1beta1Msg_ToAmino,
-  MsgExec,
-  MsgExecResponse,
-  MsgGrant,
-  MsgGrantResponse,
-  MsgRevoke,
-  MsgRevokeResponse
-};
+// Removed broken CommonJS export annotation

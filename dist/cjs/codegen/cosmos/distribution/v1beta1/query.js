@@ -1510,26 +1510,4 @@ const QueryCommunityPoolResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryCommunityPoolRequest,
-  QueryCommunityPoolResponse,
-  QueryDelegationRewardsRequest,
-  QueryDelegationRewardsResponse,
-  QueryDelegationTotalRewardsRequest,
-  QueryDelegationTotalRewardsResponse,
-  QueryDelegatorValidatorsRequest,
-  QueryDelegatorValidatorsResponse,
-  QueryDelegatorWithdrawAddressRequest,
-  QueryDelegatorWithdrawAddressResponse,
-  QueryParamsRequest,
-  QueryParamsResponse,
-  QueryValidatorCommissionRequest,
-  QueryValidatorCommissionResponse,
-  QueryValidatorDistributionInfoRequest,
-  QueryValidatorDistributionInfoResponse,
-  QueryValidatorOutstandingRewardsRequest,
-  QueryValidatorOutstandingRewardsResponse,
-  QueryValidatorSlashesRequest,
-  QueryValidatorSlashesResponse
-};
+// Removed broken CommonJS export annotation

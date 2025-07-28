@@ -67,7 +67,4 @@ var cosmwasm;
     ..._424
   };
 })(cosmwasm || (cosmwasm = {}));
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  cosmwasm
-};
+// Removed broken CommonJS export annotation

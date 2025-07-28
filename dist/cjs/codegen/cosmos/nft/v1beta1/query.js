@@ -1091,20 +1091,4 @@ const QueryClassesResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryBalanceRequest,
-  QueryBalanceResponse,
-  QueryClassRequest,
-  QueryClassResponse,
-  QueryClassesRequest,
-  QueryClassesResponse,
-  QueryNFTRequest,
-  QueryNFTResponse,
-  QueryNFTsRequest,
-  QueryNFTsResponse,
-  QueryOwnerRequest,
-  QueryOwnerResponse,
-  QuerySupplyRequest,
-  QuerySupplyResponse
-};
+// Removed broken CommonJS export annotation

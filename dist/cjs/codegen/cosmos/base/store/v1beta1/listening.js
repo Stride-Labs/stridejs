@@ -343,9 +343,4 @@ const BlockMetadata_DeliverTx = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  BlockMetadata,
-  BlockMetadata_DeliverTx,
-  StoreKVPair
-};
+// Removed broken CommonJS export annotation

@@ -1546,26 +1546,4 @@ const QueryFeeEnabledChannelResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryCounterpartyPayeeRequest,
-  QueryCounterpartyPayeeResponse,
-  QueryFeeEnabledChannelRequest,
-  QueryFeeEnabledChannelResponse,
-  QueryFeeEnabledChannelsRequest,
-  QueryFeeEnabledChannelsResponse,
-  QueryIncentivizedPacketRequest,
-  QueryIncentivizedPacketResponse,
-  QueryIncentivizedPacketsForChannelRequest,
-  QueryIncentivizedPacketsForChannelResponse,
-  QueryIncentivizedPacketsRequest,
-  QueryIncentivizedPacketsResponse,
-  QueryPayeeRequest,
-  QueryPayeeResponse,
-  QueryTotalAckFeesRequest,
-  QueryTotalAckFeesResponse,
-  QueryTotalRecvFeesRequest,
-  QueryTotalRecvFeesResponse,
-  QueryTotalTimeoutFeesRequest,
-  QueryTotalTimeoutFeesResponse
-};
+// Removed broken CommonJS export annotation

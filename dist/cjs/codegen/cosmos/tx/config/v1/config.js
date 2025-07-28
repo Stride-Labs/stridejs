@@ -103,7 +103,4 @@ const Config = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Config
-};
+// Removed broken CommonJS export annotation

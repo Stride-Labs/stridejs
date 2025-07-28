@@ -177,12 +177,4 @@ const ClaimRecord = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Action,
-  ActionAmino,
-  ActionSDKType,
-  ClaimRecord,
-  actionFromJSON,
-  actionToJSON
-};
+// Removed broken CommonJS export annotation

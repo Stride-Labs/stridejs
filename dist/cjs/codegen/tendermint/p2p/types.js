@@ -422,10 +422,4 @@ const DefaultNodeInfoOther = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  DefaultNodeInfo,
-  DefaultNodeInfoOther,
-  NetAddress,
-  ProtocolVersion
-};
+// Removed broken CommonJS export annotation

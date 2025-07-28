@@ -1484,32 +1484,4 @@ const Cosmos_authv1beta1ModuleAccountI_ToAmino = (content) => {
       return import_any.Any.toAmino(content);
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  AddressBytesToStringRequest,
-  AddressBytesToStringResponse,
-  AddressStringToBytesRequest,
-  AddressStringToBytesResponse,
-  Bech32PrefixRequest,
-  Bech32PrefixResponse,
-  Cosmos_authv1beta1AccountI_FromAmino,
-  Cosmos_authv1beta1AccountI_InterfaceDecoder,
-  Cosmos_authv1beta1AccountI_ToAmino,
-  Cosmos_authv1beta1ModuleAccountI_FromAmino,
-  Cosmos_authv1beta1ModuleAccountI_InterfaceDecoder,
-  Cosmos_authv1beta1ModuleAccountI_ToAmino,
-  QueryAccountAddressByIDRequest,
-  QueryAccountAddressByIDResponse,
-  QueryAccountInfoRequest,
-  QueryAccountInfoResponse,
-  QueryAccountRequest,
-  QueryAccountResponse,
-  QueryAccountsRequest,
-  QueryAccountsResponse,
-  QueryModuleAccountByNameRequest,
-  QueryModuleAccountByNameResponse,
-  QueryModuleAccountsRequest,
-  QueryModuleAccountsResponse,
-  QueryParamsRequest,
-  QueryParamsResponse
-};
+// Removed broken CommonJS export annotation

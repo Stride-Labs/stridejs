@@ -212,8 +212,4 @@ const ParamChange = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ParamChange,
-  ParameterChangeProposal
-};
+// Removed broken CommonJS export annotation

@@ -251,13 +251,4 @@ const StakeAuthorization_Validators = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  AuthorizationType,
-  AuthorizationTypeAmino,
-  AuthorizationTypeSDKType,
-  StakeAuthorization,
-  StakeAuthorization_Validators,
-  authorizationTypeFromJSON,
-  authorizationTypeToJSON
-};
+// Removed broken CommonJS export annotation

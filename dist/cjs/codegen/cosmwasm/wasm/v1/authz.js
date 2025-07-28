@@ -973,23 +973,4 @@ const Cosmwasm_wasmv1ContractAuthzFilterX_ToAmino = (content) => {
       return import_any.Any.toAmino(content);
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  AcceptedMessageKeysFilter,
-  AcceptedMessagesFilter,
-  AllowAllMessagesFilter,
-  CodeGrant,
-  CombinedLimit,
-  ContractExecutionAuthorization,
-  ContractGrant,
-  ContractMigrationAuthorization,
-  Cosmwasm_wasmv1ContractAuthzFilterX_FromAmino,
-  Cosmwasm_wasmv1ContractAuthzFilterX_InterfaceDecoder,
-  Cosmwasm_wasmv1ContractAuthzFilterX_ToAmino,
-  Cosmwasm_wasmv1ContractAuthzLimitX_FromAmino,
-  Cosmwasm_wasmv1ContractAuthzLimitX_InterfaceDecoder,
-  Cosmwasm_wasmv1ContractAuthzLimitX_ToAmino,
-  MaxCallsLimit,
-  MaxFundsLimit,
-  StoreCodeAuthorization
-};
+// Removed broken CommonJS export annotation

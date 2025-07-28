@@ -89,9 +89,4 @@ function utf8Write(str, buffer, offset) {
   }
   return offset - start;
 }
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  utf8Length,
-  utf8Read,
-  utf8Write
-};
+// Removed broken CommonJS export annotation

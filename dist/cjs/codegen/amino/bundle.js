@@ -35,7 +35,4 @@ var _0 = __toESM(require("./amino"));
 const amino = {
   ..._0
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  amino
-};
+// Removed broken CommonJS export annotation

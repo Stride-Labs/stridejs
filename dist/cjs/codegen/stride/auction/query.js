@@ -293,10 +293,4 @@ const QueryAuctionsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryAuctionRequest,
-  QueryAuctionResponse,
-  QueryAuctionsRequest,
-  QueryAuctionsResponse
-};
+// Removed broken CommonJS export annotation

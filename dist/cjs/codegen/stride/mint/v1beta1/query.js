@@ -253,10 +253,4 @@ const QueryEpochProvisionsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryEpochProvisionsRequest,
-  QueryEpochProvisionsResponse,
-  QueryParamsRequest,
-  QueryParamsResponse
-};
+// Removed broken CommonJS export annotation

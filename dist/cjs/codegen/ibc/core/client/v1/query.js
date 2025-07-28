@@ -1396,24 +1396,4 @@ const QueryUpgradedConsensusStateResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryClientParamsRequest,
-  QueryClientParamsResponse,
-  QueryClientStateRequest,
-  QueryClientStateResponse,
-  QueryClientStatesRequest,
-  QueryClientStatesResponse,
-  QueryClientStatusRequest,
-  QueryClientStatusResponse,
-  QueryConsensusStateHeightsRequest,
-  QueryConsensusStateHeightsResponse,
-  QueryConsensusStateRequest,
-  QueryConsensusStateResponse,
-  QueryConsensusStatesRequest,
-  QueryConsensusStatesResponse,
-  QueryUpgradedClientStateRequest,
-  QueryUpgradedClientStateResponse,
-  QueryUpgradedConsensusStateRequest,
-  QueryUpgradedConsensusStateResponse
-};
+// Removed broken CommonJS export annotation

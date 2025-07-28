@@ -883,14 +883,4 @@ const MsgConnectionOpenConfirmResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgConnectionOpenAck,
-  MsgConnectionOpenAckResponse,
-  MsgConnectionOpenConfirm,
-  MsgConnectionOpenConfirmResponse,
-  MsgConnectionOpenInit,
-  MsgConnectionOpenInitResponse,
-  MsgConnectionOpenTry,
-  MsgConnectionOpenTryResponse
-};
+// Removed broken CommonJS export annotation

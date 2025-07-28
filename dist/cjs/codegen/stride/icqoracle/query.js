@@ -597,14 +597,4 @@ const QueryTokenPriceForQuoteDenomResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryParamsRequest,
-  QueryParamsResponse,
-  QueryTokenPriceForQuoteDenomRequest,
-  QueryTokenPriceForQuoteDenomResponse,
-  QueryTokenPriceRequest,
-  QueryTokenPricesRequest,
-  QueryTokenPricesResponse,
-  TokenPriceResponse
-};
+// Removed broken CommonJS export annotation

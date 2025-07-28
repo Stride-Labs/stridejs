@@ -1847,29 +1847,4 @@ const QueryContractsByCreatorResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  CodeInfoResponse,
-  QueryAllContractStateRequest,
-  QueryAllContractStateResponse,
-  QueryCodeRequest,
-  QueryCodeResponse,
-  QueryCodesRequest,
-  QueryCodesResponse,
-  QueryContractHistoryRequest,
-  QueryContractHistoryResponse,
-  QueryContractInfoRequest,
-  QueryContractInfoResponse,
-  QueryContractsByCodeRequest,
-  QueryContractsByCodeResponse,
-  QueryContractsByCreatorRequest,
-  QueryContractsByCreatorResponse,
-  QueryParamsRequest,
-  QueryParamsResponse,
-  QueryPinnedCodesRequest,
-  QueryPinnedCodesResponse,
-  QueryRawContractStateRequest,
-  QueryRawContractStateResponse,
-  QuerySmartContractStateRequest,
-  QuerySmartContractStateResponse
-};
+// Removed broken CommonJS export annotation

@@ -284,8 +284,4 @@ const PacketSequence = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  GenesisState,
-  PacketSequence
-};
+// Removed broken CommonJS export annotation

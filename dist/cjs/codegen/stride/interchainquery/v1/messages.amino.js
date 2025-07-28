@@ -29,7 +29,4 @@ const AminoConverter = {
     fromAmino: import_messages.MsgSubmitQueryResponse.fromAmino
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  AminoConverter
-};
+// Removed broken CommonJS export annotation

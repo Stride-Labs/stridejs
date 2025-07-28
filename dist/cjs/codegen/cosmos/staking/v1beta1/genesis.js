@@ -269,8 +269,4 @@ const LastValidatorPower = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  GenesisState,
-  LastValidatorPower
-};
+// Removed broken CommonJS export annotation

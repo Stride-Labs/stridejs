@@ -527,11 +527,4 @@ const RegisteredInterchainAccount = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ActiveChannel,
-  ControllerGenesisState,
-  GenesisState,
-  HostGenesisState,
-  RegisteredInterchainAccount
-};
+// Removed broken CommonJS export annotation

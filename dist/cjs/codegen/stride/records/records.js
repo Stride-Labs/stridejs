@@ -960,31 +960,4 @@ const LSMTokenDeposit = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  DepositRecord,
-  DepositRecord_Source,
-  DepositRecord_SourceAmino,
-  DepositRecord_SourceSDKType,
-  DepositRecord_Status,
-  DepositRecord_StatusAmino,
-  DepositRecord_StatusSDKType,
-  EpochUnbondingRecord,
-  HostZoneUnbonding,
-  HostZoneUnbonding_Status,
-  HostZoneUnbonding_StatusAmino,
-  HostZoneUnbonding_StatusSDKType,
-  LSMTokenDeposit,
-  LSMTokenDeposit_Status,
-  LSMTokenDeposit_StatusAmino,
-  LSMTokenDeposit_StatusSDKType,
-  UserRedemptionRecord,
-  depositRecord_SourceFromJSON,
-  depositRecord_SourceToJSON,
-  depositRecord_StatusFromJSON,
-  depositRecord_StatusToJSON,
-  hostZoneUnbonding_StatusFromJSON,
-  hostZoneUnbonding_StatusToJSON,
-  lSMTokenDeposit_StatusFromJSON,
-  lSMTokenDeposit_StatusToJSON
-};
+// Removed broken CommonJS export annotation

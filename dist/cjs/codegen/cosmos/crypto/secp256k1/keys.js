@@ -162,8 +162,4 @@ const PrivKey = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  PrivKey,
-  PubKey
-};
+// Removed broken CommonJS export annotation

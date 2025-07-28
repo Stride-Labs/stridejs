@@ -441,14 +441,4 @@ const GenesisState = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  DataPoint,
-  GenesisState,
-  Query,
-  TimeoutPolicy,
-  TimeoutPolicyAmino,
-  TimeoutPolicySDKType,
-  timeoutPolicyFromJSON,
-  timeoutPolicyToJSON
-};
+// Removed broken CommonJS export annotation

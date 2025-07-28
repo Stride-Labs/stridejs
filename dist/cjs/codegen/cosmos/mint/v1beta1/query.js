@@ -404,12 +404,4 @@ const QueryAnnualProvisionsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryAnnualProvisionsRequest,
-  QueryAnnualProvisionsResponse,
-  QueryInflationRequest,
-  QueryInflationResponse,
-  QueryParamsRequest,
-  QueryParamsResponse
-};
+// Removed broken CommonJS export annotation

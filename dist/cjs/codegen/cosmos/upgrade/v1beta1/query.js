@@ -699,16 +699,4 @@ const QueryAuthorityResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryAppliedPlanRequest,
-  QueryAppliedPlanResponse,
-  QueryAuthorityRequest,
-  QueryAuthorityResponse,
-  QueryCurrentPlanRequest,
-  QueryCurrentPlanResponse,
-  QueryModuleVersionsRequest,
-  QueryModuleVersionsResponse,
-  QueryUpgradedConsensusStateRequest,
-  QueryUpgradedConsensusStateResponse
-};
+// Removed broken CommonJS export annotation

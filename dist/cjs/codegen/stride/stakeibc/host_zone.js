@@ -513,8 +513,4 @@ const HostZone = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  CommunityPoolRebate,
-  HostZone
-};
+// Removed broken CommonJS export annotation

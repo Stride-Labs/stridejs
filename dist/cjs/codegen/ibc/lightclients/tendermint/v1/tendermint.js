@@ -599,11 +599,4 @@ const Fraction = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ClientState,
-  ConsensusState,
-  Fraction,
-  Header,
-  Misbehaviour
-};
+// Removed broken CommonJS export annotation

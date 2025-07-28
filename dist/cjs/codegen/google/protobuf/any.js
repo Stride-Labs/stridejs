@@ -94,7 +94,4 @@ const Any = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Any
-};
+// Removed broken CommonJS export annotation

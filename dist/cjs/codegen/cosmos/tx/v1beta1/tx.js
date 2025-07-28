@@ -1301,19 +1301,4 @@ const AuxSignerData = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  AuthInfo,
-  AuxSignerData,
-  Fee,
-  ModeInfo,
-  ModeInfo_Multi,
-  ModeInfo_Single,
-  SignDoc,
-  SignDocDirectAux,
-  SignerInfo,
-  Tip,
-  Tx,
-  TxBody,
-  TxRaw
-};
+// Removed broken CommonJS export annotation

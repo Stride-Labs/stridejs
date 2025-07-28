@@ -259,7 +259,4 @@ var ibc;
     ..._428
   };
 })(ibc || (ibc = {}));
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ibc
-};
+// Removed broken CommonJS export annotation

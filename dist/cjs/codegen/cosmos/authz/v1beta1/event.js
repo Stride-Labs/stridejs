@@ -209,8 +209,4 @@ const EventRevoke = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  EventGrant,
-  EventRevoke
-};
+// Removed broken CommonJS export annotation

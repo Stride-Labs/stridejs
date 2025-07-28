@@ -121,7 +121,4 @@ const EpochTracker = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  EpochTracker
-};
+// Removed broken CommonJS export annotation

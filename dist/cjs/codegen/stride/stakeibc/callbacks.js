@@ -1217,21 +1217,4 @@ const TradeRouteCallback = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ClaimCallback,
-  CommunityPoolBalanceQueryCallback,
-  DelegateCallback,
-  DelegatorSharesQueryCallback,
-  DetokenizeSharesCallback,
-  LSMLiquidStake,
-  RebalanceCallback,
-  Rebalancing,
-  RedemptionCallback,
-  ReinvestCallback,
-  SplitDelegation,
-  SplitUndelegation,
-  TradeRouteCallback,
-  UndelegateCallback,
-  ValidatorSharesToTokensQueryCallback
-};
+// Removed broken CommonJS export annotation

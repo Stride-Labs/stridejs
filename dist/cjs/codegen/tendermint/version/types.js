@@ -173,8 +173,4 @@ const Consensus = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  App,
-  Consensus
-};
+// Removed broken CommonJS export annotation

@@ -897,19 +897,4 @@ const RedemptionRecordResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryDelegationRecordsRequest,
-  QueryDelegationRecordsResponse,
-  QueryHostZoneRequest,
-  QueryHostZoneResponse,
-  QueryRedemptionRecordRequest,
-  QueryRedemptionRecordResponse,
-  QueryRedemptionRecordsRequest,
-  QueryRedemptionRecordsResponse,
-  QuerySlashRecordsRequest,
-  QuerySlashRecordsResponse,
-  QueryUnbondingRecordsRequest,
-  QueryUnbondingRecordsResponse,
-  RedemptionRecordResponse
-};
+// Removed broken CommonJS export annotation

@@ -129,7 +129,4 @@ const Equivocation = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Equivocation
-};
+// Removed broken CommonJS export annotation

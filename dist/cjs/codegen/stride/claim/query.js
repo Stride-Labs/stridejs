@@ -1287,24 +1287,4 @@ const QueryUserVestingsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ClaimMetadata,
-  ClaimStatus,
-  QueryClaimMetadataRequest,
-  QueryClaimMetadataResponse,
-  QueryClaimRecordRequest,
-  QueryClaimRecordResponse,
-  QueryClaimStatusRequest,
-  QueryClaimStatusResponse,
-  QueryClaimableForActionRequest,
-  QueryClaimableForActionResponse,
-  QueryDistributorAccountBalanceRequest,
-  QueryDistributorAccountBalanceResponse,
-  QueryParamsRequest,
-  QueryParamsResponse,
-  QueryTotalClaimableRequest,
-  QueryTotalClaimableResponse,
-  QueryUserVestingsRequest,
-  QueryUserVestingsResponse
-};
+// Removed broken CommonJS export annotation

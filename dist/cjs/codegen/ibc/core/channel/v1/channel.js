@@ -905,23 +905,4 @@ const Acknowledgement = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Acknowledgement,
-  Channel,
-  Counterparty,
-  IdentifiedChannel,
-  Order,
-  OrderAmino,
-  OrderSDKType,
-  Packet,
-  PacketId,
-  PacketState,
-  State,
-  StateAmino,
-  StateSDKType,
-  orderFromJSON,
-  orderToJSON,
-  stateFromJSON,
-  stateToJSON
-};
+// Removed broken CommonJS export annotation

@@ -91,7 +91,4 @@ const Params = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Params
-};
+// Removed broken CommonJS export annotation

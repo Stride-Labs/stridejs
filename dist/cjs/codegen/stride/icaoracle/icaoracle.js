@@ -413,14 +413,4 @@ const RedemptionRateAttributes = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Metric,
-  MetricStatus,
-  MetricStatusAmino,
-  MetricStatusSDKType,
-  Oracle,
-  RedemptionRateAttributes,
-  metricStatusFromJSON,
-  metricStatusToJSON
-};
+// Removed broken CommonJS export annotation

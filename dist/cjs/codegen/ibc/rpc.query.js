@@ -140,7 +140,4 @@ const createRPCQueryClient = async ({
     }
   };
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  createRPCQueryClient
-};
+// Removed broken CommonJS export annotation

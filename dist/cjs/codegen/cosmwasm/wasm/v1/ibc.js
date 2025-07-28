@@ -268,9 +268,4 @@ const MsgIBCCloseChannel = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgIBCCloseChannel,
-  MsgIBCSend,
-  MsgIBCSendResponse
-};
+// Removed broken CommonJS export annotation

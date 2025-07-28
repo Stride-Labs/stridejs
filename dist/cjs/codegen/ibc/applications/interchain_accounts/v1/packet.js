@@ -227,13 +227,4 @@ const CosmosTx = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  CosmosTx,
-  InterchainAccountPacketData,
-  Type,
-  TypeAmino,
-  TypeSDKType,
-  typeFromJSON,
-  typeToJSON
-};
+// Removed broken CommonJS export annotation

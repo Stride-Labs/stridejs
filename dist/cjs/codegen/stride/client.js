@@ -95,10 +95,4 @@ const getSigningStrideClient = async ({
   });
   return client;
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  getSigningStrideClient,
-  getSigningStrideClientOptions,
-  strideAminoConverters,
-  strideProtoRegistry
-};
+// Removed broken CommonJS export annotation

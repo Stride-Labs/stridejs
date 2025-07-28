@@ -300,7 +300,4 @@ var stride;
     ..._430
   };
 })(stride || (stride = {}));
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  stride
-};
+// Removed broken CommonJS export annotation

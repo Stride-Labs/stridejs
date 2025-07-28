@@ -363,10 +363,4 @@ const SingletonDescriptor = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  PrimaryKeyDescriptor,
-  SecondaryIndexDescriptor,
-  SingletonDescriptor,
-  TableDescriptor
-};
+// Removed broken CommonJS export annotation

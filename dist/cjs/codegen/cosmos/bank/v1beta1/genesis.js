@@ -233,8 +233,4 @@ const Balance = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Balance,
-  GenesisState
-};
+// Removed broken CommonJS export annotation

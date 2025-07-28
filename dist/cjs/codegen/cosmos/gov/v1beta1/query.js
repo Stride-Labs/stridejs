@@ -1293,22 +1293,4 @@ const QueryTallyResultResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryDepositRequest,
-  QueryDepositResponse,
-  QueryDepositsRequest,
-  QueryDepositsResponse,
-  QueryParamsRequest,
-  QueryParamsResponse,
-  QueryProposalRequest,
-  QueryProposalResponse,
-  QueryProposalsRequest,
-  QueryProposalsResponse,
-  QueryTallyResultRequest,
-  QueryTallyResultResponse,
-  QueryVoteRequest,
-  QueryVoteResponse,
-  QueryVotesRequest,
-  QueryVotesResponse
-};
+// Removed broken CommonJS export annotation

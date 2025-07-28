@@ -330,10 +330,4 @@ const QueryAllEvidenceResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryAllEvidenceRequest,
-  QueryAllEvidenceResponse,
-  QueryEvidenceRequest,
-  QueryEvidenceResponse
-};
+// Removed broken CommonJS export annotation

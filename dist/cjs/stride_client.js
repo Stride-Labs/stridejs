@@ -118,7 +118,4 @@ class StrideClient {
     return Object.assign(txResp, { ibcResponses });
   }
 }
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  StrideClient
-};
+// Removed broken CommonJS export annotation

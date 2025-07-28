@@ -1699,19 +1699,4 @@ const StoreAndInstantiateContractProposal = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  AccessConfigUpdate,
-  ClearAdminProposal,
-  ExecuteContractProposal,
-  InstantiateContract2Proposal,
-  InstantiateContractProposal,
-  MigrateContractProposal,
-  PinCodesProposal,
-  StoreAndInstantiateContractProposal,
-  StoreCodeProposal,
-  SudoContractProposal,
-  UnpinCodesProposal,
-  UpdateAdminProposal,
-  UpdateInstantiateConfigProposal
-};
+// Removed broken CommonJS export annotation

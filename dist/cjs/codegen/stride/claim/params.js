@@ -238,8 +238,4 @@ const Airdrop = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Airdrop,
-  Params
-};
+// Removed broken CommonJS export annotation

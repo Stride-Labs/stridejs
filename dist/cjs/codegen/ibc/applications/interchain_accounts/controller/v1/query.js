@@ -301,10 +301,4 @@ const QueryParamsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryInterchainAccountRequest,
-  QueryInterchainAccountResponse,
-  QueryParamsRequest,
-  QueryParamsResponse
-};
+// Removed broken CommonJS export annotation

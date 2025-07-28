@@ -442,11 +442,4 @@ const ProofOps = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  DominoOp,
-  Proof,
-  ProofOp,
-  ProofOps,
-  ValueOp
-};
+// Removed broken CommonJS export annotation

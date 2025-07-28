@@ -799,14 +799,4 @@ const HeaderData = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ClientState,
-  ConsensusState,
-  Header,
-  HeaderData,
-  Misbehaviour,
-  SignBytes,
-  SignatureAndData,
-  TimestampedSignatureData
-};
+// Removed broken CommonJS export annotation

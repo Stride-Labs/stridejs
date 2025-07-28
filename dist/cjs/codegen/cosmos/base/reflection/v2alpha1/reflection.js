@@ -1959,32 +1959,4 @@ const QueryMethodDescriptor = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  AppDescriptor,
-  AuthnDescriptor,
-  ChainDescriptor,
-  CodecDescriptor,
-  ConfigurationDescriptor,
-  GetAuthnDescriptorRequest,
-  GetAuthnDescriptorResponse,
-  GetChainDescriptorRequest,
-  GetChainDescriptorResponse,
-  GetCodecDescriptorRequest,
-  GetCodecDescriptorResponse,
-  GetConfigurationDescriptorRequest,
-  GetConfigurationDescriptorResponse,
-  GetQueryServicesDescriptorRequest,
-  GetQueryServicesDescriptorResponse,
-  GetTxDescriptorRequest,
-  GetTxDescriptorResponse,
-  InterfaceAcceptingMessageDescriptor,
-  InterfaceDescriptor,
-  InterfaceImplementerDescriptor,
-  MsgDescriptor,
-  QueryMethodDescriptor,
-  QueryServiceDescriptor,
-  QueryServicesDescriptor,
-  SigningModeDescriptor,
-  TxDescriptor
-};
+// Removed broken CommonJS export annotation

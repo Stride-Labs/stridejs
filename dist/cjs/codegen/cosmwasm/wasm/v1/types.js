@@ -883,27 +883,4 @@ const Cosmwasm_wasmv1ContractInfoExtension_FromAmino = (content) => {
 const Cosmwasm_wasmv1ContractInfoExtension_ToAmino = (content) => {
   return import_any.Any.toAmino(content);
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  AbsoluteTxPosition,
-  AccessConfig,
-  AccessType,
-  AccessTypeAmino,
-  AccessTypeParam,
-  AccessTypeSDKType,
-  CodeInfo,
-  ContractCodeHistoryEntry,
-  ContractCodeHistoryOperationType,
-  ContractCodeHistoryOperationTypeAmino,
-  ContractCodeHistoryOperationTypeSDKType,
-  ContractInfo,
-  Cosmwasm_wasmv1ContractInfoExtension_FromAmino,
-  Cosmwasm_wasmv1ContractInfoExtension_InterfaceDecoder,
-  Cosmwasm_wasmv1ContractInfoExtension_ToAmino,
-  Model,
-  Params,
-  accessTypeFromJSON,
-  accessTypeToJSON,
-  contractCodeHistoryOperationTypeFromJSON,
-  contractCodeHistoryOperationTypeToJSON
-};
+// Removed broken CommonJS export annotation

@@ -1182,25 +1182,4 @@ const Params = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Deposit,
-  DepositParams,
-  Params,
-  Proposal,
-  ProposalStatus,
-  ProposalStatusAmino,
-  ProposalStatusSDKType,
-  TallyParams,
-  TallyResult,
-  Vote,
-  VoteOption,
-  VoteOptionAmino,
-  VoteOptionSDKType,
-  VotingParams,
-  WeightedVoteOption,
-  proposalStatusFromJSON,
-  proposalStatusToJSON,
-  voteOptionFromJSON,
-  voteOptionToJSON
-};
+// Removed broken CommonJS export annotation

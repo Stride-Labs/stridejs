@@ -36,27 +36,4 @@ __reExport(codegen_exports, require("./varint"), module.exports);
 __reExport(codegen_exports, require("./utf8"), module.exports);
 __reExport(codegen_exports, require("./binary"), module.exports);
 __reExport(codegen_exports, require("./types"), module.exports);
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ...require("./amino/bundle"),
-  ...require("./cosmos_proto/bundle"),
-  ...require("./cosmos/bundle"),
-  ...require("./cosmos/client"),
-  ...require("./cosmwasm/bundle"),
-  ...require("./cosmwasm/client"),
-  ...require("./gaia/bundle"),
-  ...require("./gaia/client"),
-  ...require("./gogoproto/bundle"),
-  ...require("./google/bundle"),
-  ...require("./ibc/bundle"),
-  ...require("./ibc/client"),
-  ...require("./osmosis/bundle"),
-  ...require("./stride/bundle"),
-  ...require("./stride/client"),
-  ...require("./tendermint/bundle"),
-  ...require("./decimals"),
-  ...require("./varint"),
-  ...require("./utf8"),
-  ...require("./binary"),
-  ...require("./types")
-};
+// Removed broken CommonJS export annotation

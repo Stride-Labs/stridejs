@@ -368,10 +368,4 @@ const MissedBlock = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  GenesisState,
-  MissedBlock,
-  SigningInfo,
-  ValidatorMissedBlocks
-};
+// Removed broken CommonJS export annotation

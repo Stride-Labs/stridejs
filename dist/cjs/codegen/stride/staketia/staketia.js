@@ -789,21 +789,4 @@ const SlashRecord = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  DelegationRecord,
-  DelegationRecordStatus,
-  DelegationRecordStatusAmino,
-  DelegationRecordStatusSDKType,
-  HostZone,
-  RedemptionRecord,
-  SlashRecord,
-  UnbondingRecord,
-  UnbondingRecordStatus,
-  UnbondingRecordStatusAmino,
-  UnbondingRecordStatusSDKType,
-  delegationRecordStatusFromJSON,
-  delegationRecordStatusToJSON,
-  unbondingRecordStatusFromJSON,
-  unbondingRecordStatusToJSON
-};
+// Removed broken CommonJS export annotation

@@ -1470,29 +1470,4 @@ const CompressedNonExistenceProof = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  BatchEntry,
-  BatchProof,
-  CommitmentProof,
-  CompressedBatchEntry,
-  CompressedBatchProof,
-  CompressedExistenceProof,
-  CompressedNonExistenceProof,
-  ExistenceProof,
-  HashOp,
-  HashOpAmino,
-  HashOpSDKType,
-  InnerOp,
-  InnerSpec,
-  LeafOp,
-  LengthOp,
-  LengthOpAmino,
-  LengthOpSDKType,
-  NonExistenceProof,
-  ProofSpec,
-  hashOpFromJSON,
-  hashOpToJSON,
-  lengthOpFromJSON,
-  lengthOpToJSON
-};
+// Removed broken CommonJS export annotation

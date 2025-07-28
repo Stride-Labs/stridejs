@@ -201,8 +201,4 @@ const ModuleAccountPermission = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Module,
-  ModuleAccountPermission
-};
+// Removed broken CommonJS export annotation

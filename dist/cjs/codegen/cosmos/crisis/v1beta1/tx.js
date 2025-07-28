@@ -312,10 +312,4 @@ const MsgUpdateParamsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgUpdateParams,
-  MsgUpdateParamsResponse,
-  MsgVerifyInvariant,
-  MsgVerifyInvariantResponse
-};
+// Removed broken CommonJS export annotation

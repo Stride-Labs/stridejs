@@ -185,8 +185,4 @@ const Params = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  DenomTrace,
-  Params
-};
+// Removed broken CommonJS export annotation

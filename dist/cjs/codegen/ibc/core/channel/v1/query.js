@@ -2473,32 +2473,4 @@ const QueryNextSequenceReceiveResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryChannelClientStateRequest,
-  QueryChannelClientStateResponse,
-  QueryChannelConsensusStateRequest,
-  QueryChannelConsensusStateResponse,
-  QueryChannelRequest,
-  QueryChannelResponse,
-  QueryChannelsRequest,
-  QueryChannelsResponse,
-  QueryConnectionChannelsRequest,
-  QueryConnectionChannelsResponse,
-  QueryNextSequenceReceiveRequest,
-  QueryNextSequenceReceiveResponse,
-  QueryPacketAcknowledgementRequest,
-  QueryPacketAcknowledgementResponse,
-  QueryPacketAcknowledgementsRequest,
-  QueryPacketAcknowledgementsResponse,
-  QueryPacketCommitmentRequest,
-  QueryPacketCommitmentResponse,
-  QueryPacketCommitmentsRequest,
-  QueryPacketCommitmentsResponse,
-  QueryPacketReceiptRequest,
-  QueryPacketReceiptResponse,
-  QueryUnreceivedAcksRequest,
-  QueryUnreceivedAcksResponse,
-  QueryUnreceivedPacketsRequest,
-  QueryUnreceivedPacketsResponse
-};
+// Removed broken CommonJS export annotation

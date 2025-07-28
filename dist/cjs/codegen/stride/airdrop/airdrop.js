@@ -412,14 +412,4 @@ const Airdrop = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Airdrop,
-  ClaimType,
-  ClaimTypeAmino,
-  ClaimTypeSDKType,
-  Params,
-  UserAllocation,
-  claimTypeFromJSON,
-  claimTypeToJSON
-};
+// Removed broken CommonJS export annotation

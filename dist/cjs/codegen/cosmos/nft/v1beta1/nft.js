@@ -282,8 +282,4 @@ const NFT = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Class,
-  NFT
-};
+// Removed broken CommonJS export annotation

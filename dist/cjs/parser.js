@@ -48,7 +48,4 @@ function strideAccountParser(input) {
     }
   }
 }
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  strideAccountParser
-};
+// Removed broken CommonJS export annotation

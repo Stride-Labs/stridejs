@@ -219,8 +219,4 @@ const TransferAuthorization = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Allocation,
-  TransferAuthorization
-};
+// Removed broken CommonJS export annotation

@@ -1128,22 +1128,4 @@ const MsgWithdrawAllTokenizeShareRecordRewardResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgDisableTokenizeShares,
-  MsgDisableTokenizeSharesResponse,
-  MsgEnableTokenizeShares,
-  MsgEnableTokenizeSharesResponse,
-  MsgRedeemTokensForShares,
-  MsgRedeemTokensForSharesResponse,
-  MsgTokenizeShares,
-  MsgTokenizeSharesResponse,
-  MsgTransferTokenizeShareRecord,
-  MsgTransferTokenizeShareRecordResponse,
-  MsgUpdateParams,
-  MsgUpdateParamsResponse,
-  MsgWithdrawAllTokenizeShareRecordReward,
-  MsgWithdrawAllTokenizeShareRecordRewardResponse,
-  MsgWithdrawTokenizeShareRecordReward,
-  MsgWithdrawTokenizeShareRecordRewardResponse
-};
+// Removed broken CommonJS export annotation

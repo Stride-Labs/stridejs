@@ -150,8 +150,4 @@ const TransferLSMTokenCallback = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  TransferCallback,
-  TransferLSMTokenCallback
-};
+// Removed broken CommonJS export annotation

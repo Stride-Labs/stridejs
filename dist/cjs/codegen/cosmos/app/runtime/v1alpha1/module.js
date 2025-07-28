@@ -243,8 +243,4 @@ const StoreKeyConfig = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Module,
-  StoreKeyConfig
-};
+// Removed broken CommonJS export annotation

@@ -322,9 +322,4 @@ const Params = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  DistributionProportions,
-  Minter,
-  Params
-};
+// Removed broken CommonJS export annotation

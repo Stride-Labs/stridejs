@@ -288,10 +288,4 @@ const MsgUpdateParamsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgUnjail,
-  MsgUnjailResponse,
-  MsgUpdateParams,
-  MsgUpdateParamsResponse
-};
+// Removed broken CommonJS export annotation

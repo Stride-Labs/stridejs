@@ -421,12 +421,4 @@ const QueryEpochInfoResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryCurrentEpochRequest,
-  QueryCurrentEpochResponse,
-  QueryEpochInfoRequest,
-  QueryEpochInfoResponse,
-  QueryEpochsInfoRequest,
-  QueryEpochsInfoResponse
-};
+// Removed broken CommonJS export annotation

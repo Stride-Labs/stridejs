@@ -2970,40 +2970,4 @@ const MsgUpdateContractLabelResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgAddCodeUploadParamsAddresses,
-  MsgAddCodeUploadParamsAddressesResponse,
-  MsgClearAdmin,
-  MsgClearAdminResponse,
-  MsgExecuteContract,
-  MsgExecuteContractResponse,
-  MsgInstantiateContract,
-  MsgInstantiateContract2,
-  MsgInstantiateContract2Response,
-  MsgInstantiateContractResponse,
-  MsgMigrateContract,
-  MsgMigrateContractResponse,
-  MsgPinCodes,
-  MsgPinCodesResponse,
-  MsgRemoveCodeUploadParamsAddresses,
-  MsgRemoveCodeUploadParamsAddressesResponse,
-  MsgStoreAndInstantiateContract,
-  MsgStoreAndInstantiateContractResponse,
-  MsgStoreAndMigrateContract,
-  MsgStoreAndMigrateContractResponse,
-  MsgStoreCode,
-  MsgStoreCodeResponse,
-  MsgSudoContract,
-  MsgSudoContractResponse,
-  MsgUnpinCodes,
-  MsgUnpinCodesResponse,
-  MsgUpdateAdmin,
-  MsgUpdateAdminResponse,
-  MsgUpdateContractLabel,
-  MsgUpdateContractLabelResponse,
-  MsgUpdateInstantiateConfig,
-  MsgUpdateInstantiateConfigResponse,
-  MsgUpdateParams,
-  MsgUpdateParamsResponse
-};
+// Removed broken CommonJS export annotation

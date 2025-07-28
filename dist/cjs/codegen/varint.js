@@ -263,22 +263,4 @@ function writeFixed32(val, buf, pos) {
 function writeByte(val, buf, pos) {
   buf[pos] = val & 255;
 }
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  int64FromString,
-  int64Length,
-  int64ToString,
-  readInt32,
-  readUInt32,
-  uInt64ToString,
-  varint32read,
-  varint32write,
-  varint64read,
-  varint64write,
-  writeByte,
-  writeFixed32,
-  writeVarint32,
-  writeVarint64,
-  zzDecode,
-  zzEncode
-};
+// Removed broken CommonJS export annotation

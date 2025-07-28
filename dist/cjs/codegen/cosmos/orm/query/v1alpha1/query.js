@@ -706,13 +706,4 @@ const IndexValue = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  GetRequest,
-  GetResponse,
-  IndexValue,
-  ListRequest,
-  ListRequest_Prefix,
-  ListRequest_Range,
-  ListResponse
-};
+// Removed broken CommonJS export annotation

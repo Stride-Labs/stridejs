@@ -1747,25 +1747,4 @@ const ProofOps = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ABCIQueryRequest,
-  ABCIQueryResponse,
-  GetBlockByHeightRequest,
-  GetBlockByHeightResponse,
-  GetLatestBlockRequest,
-  GetLatestBlockResponse,
-  GetLatestValidatorSetRequest,
-  GetLatestValidatorSetResponse,
-  GetNodeInfoRequest,
-  GetNodeInfoResponse,
-  GetSyncingRequest,
-  GetSyncingResponse,
-  GetValidatorSetByHeightRequest,
-  GetValidatorSetByHeightResponse,
-  Module,
-  ProofOp,
-  ProofOps,
-  Validator,
-  VersionInfo
-};
+// Removed broken CommonJS export annotation

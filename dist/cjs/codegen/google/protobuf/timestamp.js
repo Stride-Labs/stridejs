@@ -88,7 +88,4 @@ const Timestamp = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Timestamp
-};
+// Removed broken CommonJS export annotation

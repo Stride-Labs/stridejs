@@ -256,13 +256,4 @@ const ModuleSchemaDescriptor_FileEntry = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ModuleSchemaDescriptor,
-  ModuleSchemaDescriptor_FileEntry,
-  StorageType,
-  StorageTypeAmino,
-  StorageTypeSDKType,
-  storageTypeFromJSON,
-  storageTypeToJSON
-};
+// Removed broken CommonJS export annotation

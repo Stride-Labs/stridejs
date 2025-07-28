@@ -71,10 +71,4 @@ const getSigningGaiaClient = async ({
   });
   return client;
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  gaiaAminoConverters,
-  gaiaProtoRegistry,
-  getSigningGaiaClient,
-  getSigningGaiaClientOptions
-};
+// Removed broken CommonJS export annotation

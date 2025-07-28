@@ -891,18 +891,4 @@ const MsgCommunityPoolSpendResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgCommunityPoolSpend,
-  MsgCommunityPoolSpendResponse,
-  MsgFundCommunityPool,
-  MsgFundCommunityPoolResponse,
-  MsgSetWithdrawAddress,
-  MsgSetWithdrawAddressResponse,
-  MsgUpdateParams,
-  MsgUpdateParamsResponse,
-  MsgWithdrawDelegatorReward,
-  MsgWithdrawDelegatorRewardResponse,
-  MsgWithdrawValidatorCommission,
-  MsgWithdrawValidatorCommissionResponse
-};
+// Removed broken CommonJS export annotation

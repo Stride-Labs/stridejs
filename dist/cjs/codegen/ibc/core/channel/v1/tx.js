@@ -1920,31 +1920,4 @@ const MsgAcknowledgementResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgAcknowledgement,
-  MsgAcknowledgementResponse,
-  MsgChannelCloseConfirm,
-  MsgChannelCloseConfirmResponse,
-  MsgChannelCloseInit,
-  MsgChannelCloseInitResponse,
-  MsgChannelOpenAck,
-  MsgChannelOpenAckResponse,
-  MsgChannelOpenConfirm,
-  MsgChannelOpenConfirmResponse,
-  MsgChannelOpenInit,
-  MsgChannelOpenInitResponse,
-  MsgChannelOpenTry,
-  MsgChannelOpenTryResponse,
-  MsgRecvPacket,
-  MsgRecvPacketResponse,
-  MsgTimeout,
-  MsgTimeoutOnClose,
-  MsgTimeoutOnCloseResponse,
-  MsgTimeoutResponse,
-  ResponseResultType,
-  ResponseResultTypeAmino,
-  ResponseResultTypeSDKType,
-  responseResultTypeFromJSON,
-  responseResultTypeToJSON
-};
+// Removed broken CommonJS export annotation

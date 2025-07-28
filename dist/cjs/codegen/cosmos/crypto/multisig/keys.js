@@ -106,7 +106,4 @@ const LegacyAminoPubKey = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  LegacyAminoPubKey
-};
+// Removed broken CommonJS export annotation

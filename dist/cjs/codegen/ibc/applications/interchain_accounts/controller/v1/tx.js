@@ -386,10 +386,4 @@ const MsgSendTxResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgRegisterInterchainAccount,
-  MsgRegisterInterchainAccountResponse,
-  MsgSendTx,
-  MsgSendTxResponse
-};
+// Removed broken CommonJS export annotation

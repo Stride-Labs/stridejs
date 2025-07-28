@@ -151,7 +151,4 @@ const Metadata = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Metadata
-};
+// Removed broken CommonJS export annotation

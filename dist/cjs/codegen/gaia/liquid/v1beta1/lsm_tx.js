@@ -226,9 +226,4 @@ const MsgDisableTokenizeShares = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgDisableTokenizeShares,
-  MsgRedeemTokensForShares,
-  MsgRedeemTokensForSharesResponse
-};
+// Removed broken CommonJS export annotation

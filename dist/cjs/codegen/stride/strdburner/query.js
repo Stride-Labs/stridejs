@@ -251,10 +251,4 @@ const QueryTotalStrdBurnedResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryStrdBurnerAddressRequest,
-  QueryStrdBurnerAddressResponse,
-  QueryTotalStrdBurnedRequest,
-  QueryTotalStrdBurnedResponse
-};
+// Removed broken CommonJS export annotation

@@ -157,7 +157,4 @@ const AddressUnbonding = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  AddressUnbonding
-};
+// Removed broken CommonJS export annotation

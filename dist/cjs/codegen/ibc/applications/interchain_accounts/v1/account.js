@@ -105,7 +105,4 @@ const InterchainAccount = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  InterchainAccount
-};
+// Removed broken CommonJS export annotation

@@ -472,13 +472,4 @@ const Cosmos_feegrantv1beta1FeeAllowanceI_ToAmino = (content) => {
       return import_any.Any.toAmino(content);
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  AllowedMsgAllowance,
-  BasicAllowance,
-  Cosmos_feegrantv1beta1FeeAllowanceI_FromAmino,
-  Cosmos_feegrantv1beta1FeeAllowanceI_InterfaceDecoder,
-  Cosmos_feegrantv1beta1FeeAllowanceI_ToAmino,
-  Grant,
-  PeriodicAllowance
-};
+// Removed broken CommonJS export annotation

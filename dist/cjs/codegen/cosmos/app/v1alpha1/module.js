@@ -271,9 +271,4 @@ const MigrateFromInfo = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MigrateFromInfo,
-  ModuleDescriptor,
-  PackageReference
-};
+// Removed broken CommonJS export annotation

@@ -74,7 +74,4 @@ const AminoConverter = {
     fromAmino: import_tx.MsgAcknowledgement.fromAmino
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  AminoConverter
-};
+// Removed broken CommonJS export annotation

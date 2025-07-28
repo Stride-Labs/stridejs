@@ -1015,18 +1015,4 @@ const QueryUserSummaryResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryAirdropRequest,
-  QueryAirdropResponse,
-  QueryAllAirdropsRequest,
-  QueryAllAirdropsResponse,
-  QueryAllAllocationsRequest,
-  QueryAllAllocationsResponse,
-  QueryUserAllocationRequest,
-  QueryUserAllocationResponse,
-  QueryUserAllocationsRequest,
-  QueryUserAllocationsResponse,
-  QueryUserSummaryRequest,
-  QueryUserSummaryResponse
-};
+// Removed broken CommonJS export annotation

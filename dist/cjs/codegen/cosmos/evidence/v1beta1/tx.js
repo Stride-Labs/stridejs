@@ -192,11 +192,4 @@ const Cosmos_evidencev1beta1Evidence_FromAmino = (content) => {
 const Cosmos_evidencev1beta1Evidence_ToAmino = (content) => {
   return import_any.Any.toAmino(content);
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Cosmos_evidencev1beta1Evidence_FromAmino,
-  Cosmos_evidencev1beta1Evidence_InterfaceDecoder,
-  Cosmos_evidencev1beta1Evidence_ToAmino,
-  MsgSubmitEvidence,
-  MsgSubmitEvidenceResponse
-};
+// Removed broken CommonJS export annotation

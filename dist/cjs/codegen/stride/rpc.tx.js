@@ -99,7 +99,4 @@ const createRPCMsgClient = async ({
     staketia: new (await import("./staketia/tx.rpc.msg")).MsgClientImpl(rpc)
   }
 });
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  createRPCMsgClient
-};
+// Removed broken CommonJS export annotation

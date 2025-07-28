@@ -288,10 +288,4 @@ const MsgCancelUpgradeResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgCancelUpgrade,
-  MsgCancelUpgradeResponse,
-  MsgSoftwareUpgrade,
-  MsgSoftwareUpgradeResponse
-};
+// Removed broken CommonJS export annotation

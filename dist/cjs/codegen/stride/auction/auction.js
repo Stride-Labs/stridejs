@@ -283,13 +283,4 @@ const Auction = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Auction,
-  AuctionType,
-  AuctionTypeAmino,
-  AuctionTypeSDKType,
-  Params,
-  auctionTypeFromJSON,
-  auctionTypeToJSON
-};
+// Removed broken CommonJS export annotation

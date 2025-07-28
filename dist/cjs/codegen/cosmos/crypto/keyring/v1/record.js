@@ -407,11 +407,4 @@ const Record_Offline = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Record,
-  Record_Ledger,
-  Record_Local,
-  Record_Multi,
-  Record_Offline
-};
+// Removed broken CommonJS export annotation

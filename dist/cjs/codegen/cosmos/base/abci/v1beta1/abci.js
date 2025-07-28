@@ -1078,16 +1078,4 @@ const SearchTxsResult = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ABCIMessageLog,
-  Attribute,
-  GasInfo,
-  MsgData,
-  Result,
-  SearchTxsResult,
-  SimulationResponse,
-  StringEvent,
-  TxMsgData,
-  TxResponse
-};
+// Removed broken CommonJS export annotation

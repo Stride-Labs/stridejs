@@ -1313,21 +1313,4 @@ const MsgLinkAddressesResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgAddAllocations,
-  MsgAddAllocationsResponse,
-  MsgClaimDaily,
-  MsgClaimDailyResponse,
-  MsgClaimEarly,
-  MsgClaimEarlyResponse,
-  MsgCreateAirdrop,
-  MsgCreateAirdropResponse,
-  MsgLinkAddresses,
-  MsgLinkAddressesResponse,
-  MsgUpdateAirdrop,
-  MsgUpdateAirdropResponse,
-  MsgUpdateUserAllocation,
-  MsgUpdateUserAllocationResponse,
-  RawAllocation
-};
+// Removed broken CommonJS export annotation

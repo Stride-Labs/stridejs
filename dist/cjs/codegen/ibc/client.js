@@ -89,10 +89,4 @@ const getSigningIbcClient = async ({
   });
   return client;
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  getSigningIbcClient,
-  getSigningIbcClientOptions,
-  ibcAminoConverters,
-  ibcProtoRegistry
-};
+// Removed broken CommonJS export annotation

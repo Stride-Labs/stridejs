@@ -1569,34 +1569,4 @@ const TxDecodeAminoResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  BroadcastMode,
-  BroadcastModeAmino,
-  BroadcastModeSDKType,
-  BroadcastTxRequest,
-  BroadcastTxResponse,
-  GetBlockWithTxsRequest,
-  GetBlockWithTxsResponse,
-  GetTxRequest,
-  GetTxResponse,
-  GetTxsEventRequest,
-  GetTxsEventResponse,
-  OrderBy,
-  OrderByAmino,
-  OrderBySDKType,
-  SimulateRequest,
-  SimulateResponse,
-  TxDecodeAminoRequest,
-  TxDecodeAminoResponse,
-  TxDecodeRequest,
-  TxDecodeResponse,
-  TxEncodeAminoRequest,
-  TxEncodeAminoResponse,
-  TxEncodeRequest,
-  TxEncodeResponse,
-  broadcastModeFromJSON,
-  broadcastModeToJSON,
-  orderByFromJSON,
-  orderByToJSON
-};
+// Removed broken CommonJS export annotation

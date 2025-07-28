@@ -91,7 +91,4 @@ const createRPCMsgClient = async ({
     }
   }
 });
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  createRPCMsgClient
-};
+// Removed broken CommonJS export annotation

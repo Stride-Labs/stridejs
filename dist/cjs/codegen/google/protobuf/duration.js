@@ -91,7 +91,4 @@ const Duration = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Duration
-};
+// Removed broken CommonJS export annotation

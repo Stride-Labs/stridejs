@@ -245,9 +245,4 @@ const CapabilityOwners = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Capability,
-  CapabilityOwners,
-  Owner
-};
+// Removed broken CommonJS export annotation

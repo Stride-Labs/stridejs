@@ -139,7 +139,4 @@ const FungibleTokenPacketData = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  FungibleTokenPacketData
-};
+// Removed broken CommonJS export annotation

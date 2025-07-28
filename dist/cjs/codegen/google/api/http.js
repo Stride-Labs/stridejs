@@ -349,9 +349,4 @@ const CustomHttpPattern = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  CustomHttpPattern,
-  Http,
-  HttpRule
-};
+// Removed broken CommonJS export annotation

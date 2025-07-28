@@ -327,9 +327,4 @@ const StridePeriodicVestingAccount = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  BaseVestingAccount,
-  Period,
-  StridePeriodicVestingAccount
-};
+// Removed broken CommonJS export annotation

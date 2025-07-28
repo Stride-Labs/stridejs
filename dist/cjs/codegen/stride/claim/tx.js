@@ -646,14 +646,4 @@ const MsgDeleteAirdropResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgClaimFreeAmount,
-  MsgClaimFreeAmountResponse,
-  MsgCreateAirdrop,
-  MsgCreateAirdropResponse,
-  MsgDeleteAirdrop,
-  MsgDeleteAirdropResponse,
-  MsgSetAirdropAllocations,
-  MsgSetAirdropAllocationsResponse
-};
+// Removed broken CommonJS export annotation

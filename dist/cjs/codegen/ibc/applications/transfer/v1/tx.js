@@ -247,8 +247,4 @@ const MsgTransferResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  MsgTransfer,
-  MsgTransferResponse
-};
+// Removed broken CommonJS export annotation

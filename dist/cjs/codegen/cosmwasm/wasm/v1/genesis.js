@@ -433,10 +433,4 @@ const Sequence = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  Code,
-  Contract,
-  GenesisState,
-  Sequence
-};
+// Removed broken CommonJS export annotation

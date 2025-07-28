@@ -1563,28 +1563,4 @@ const QueryLSMDepositsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryAllDepositRecordRequest,
-  QueryAllDepositRecordResponse,
-  QueryAllEpochUnbondingRecordRequest,
-  QueryAllEpochUnbondingRecordResponse,
-  QueryAllUserRedemptionRecordForUserRequest,
-  QueryAllUserRedemptionRecordForUserResponse,
-  QueryAllUserRedemptionRecordRequest,
-  QueryAllUserRedemptionRecordResponse,
-  QueryDepositRecordByHostRequest,
-  QueryDepositRecordByHostResponse,
-  QueryGetDepositRecordRequest,
-  QueryGetDepositRecordResponse,
-  QueryGetEpochUnbondingRecordRequest,
-  QueryGetEpochUnbondingRecordResponse,
-  QueryGetUserRedemptionRecordRequest,
-  QueryGetUserRedemptionRecordResponse,
-  QueryLSMDepositRequest,
-  QueryLSMDepositResponse,
-  QueryLSMDepositsRequest,
-  QueryLSMDepositsResponse,
-  QueryParamsRequest,
-  QueryParamsResponse
-};
+// Removed broken CommonJS export annotation

@@ -74,7 +74,4 @@ var gaia;
     ..._426
   };
 })(gaia || (gaia = {}));
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  gaia
-};
+// Removed broken CommonJS export annotation

@@ -292,10 +292,4 @@ const ListImplementationsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  ListAllInterfacesRequest,
-  ListAllInterfacesResponse,
-  ListImplementationsRequest,
-  ListImplementationsResponse
-};
+// Removed broken CommonJS export annotation

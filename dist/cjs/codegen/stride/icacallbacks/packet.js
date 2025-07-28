@@ -136,8 +136,4 @@ const NoData = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  IcacallbacksPacketData,
-  NoData
-};
+// Removed broken CommonJS export annotation

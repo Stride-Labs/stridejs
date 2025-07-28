@@ -2217,34 +2217,4 @@ const QueryGroupsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryGroupInfoRequest,
-  QueryGroupInfoResponse,
-  QueryGroupMembersRequest,
-  QueryGroupMembersResponse,
-  QueryGroupPoliciesByAdminRequest,
-  QueryGroupPoliciesByAdminResponse,
-  QueryGroupPoliciesByGroupRequest,
-  QueryGroupPoliciesByGroupResponse,
-  QueryGroupPolicyInfoRequest,
-  QueryGroupPolicyInfoResponse,
-  QueryGroupsByAdminRequest,
-  QueryGroupsByAdminResponse,
-  QueryGroupsByMemberRequest,
-  QueryGroupsByMemberResponse,
-  QueryGroupsRequest,
-  QueryGroupsResponse,
-  QueryProposalRequest,
-  QueryProposalResponse,
-  QueryProposalsByGroupPolicyRequest,
-  QueryProposalsByGroupPolicyResponse,
-  QueryTallyResultRequest,
-  QueryTallyResultResponse,
-  QueryVoteByProposalVoterRequest,
-  QueryVoteByProposalVoterResponse,
-  QueryVotesByProposalRequest,
-  QueryVotesByProposalResponse,
-  QueryVotesByVoterRequest,
-  QueryVotesByVoterResponse
-};
+// Removed broken CommonJS export annotation

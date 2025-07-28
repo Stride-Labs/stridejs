@@ -289,9 +289,4 @@ const SimpleValidator = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  SimpleValidator,
-  Validator,
-  ValidatorSet
-};
+// Removed broken CommonJS export annotation

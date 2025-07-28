@@ -402,10 +402,4 @@ const ModuleVersion = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  CancelSoftwareUpgradeProposal,
-  ModuleVersion,
-  Plan,
-  SoftwareUpgradeProposal
-};
+// Removed broken CommonJS export annotation

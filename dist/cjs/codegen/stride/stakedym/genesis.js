@@ -307,9 +307,4 @@ const GenesisState = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  GenesisState,
-  Params,
-  TransferInProgressRecordIds
-};
+// Removed broken CommonJS export annotation

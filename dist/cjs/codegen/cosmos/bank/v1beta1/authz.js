@@ -109,7 +109,4 @@ const SendAuthorization = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  SendAuthorization
-};
+// Removed broken CommonJS export annotation

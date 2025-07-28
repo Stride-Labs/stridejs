@@ -500,16 +500,4 @@ const SignatureDescriptor_Data_Multi = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  SignMode,
-  SignModeAmino,
-  SignModeSDKType,
-  SignatureDescriptor,
-  SignatureDescriptor_Data,
-  SignatureDescriptor_Data_Multi,
-  SignatureDescriptor_Data_Single,
-  SignatureDescriptors,
-  signModeFromJSON,
-  signModeToJSON
-};
+// Removed broken CommonJS export annotation

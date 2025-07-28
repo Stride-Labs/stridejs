@@ -1013,18 +1013,4 @@ const QueryConnectionParamsResponse = {
     };
   }
 };
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  QueryClientConnectionsRequest,
-  QueryClientConnectionsResponse,
-  QueryConnectionClientStateRequest,
-  QueryConnectionClientStateResponse,
-  QueryConnectionConsensusStateRequest,
-  QueryConnectionConsensusStateResponse,
-  QueryConnectionParamsRequest,
-  QueryConnectionParamsResponse,
-  QueryConnectionRequest,
-  QueryConnectionResponse,
-  QueryConnectionsRequest,
-  QueryConnectionsResponse
-};
+// Removed broken CommonJS export annotation
