@@ -48,28 +48,4 @@ __reExport(src_exports, require("./codegen"), module.exports);
 __reExport(src_exports, require("./parser"), module.exports);
 __reExport(src_exports, require("./stride_client"), module.exports);
 __reExport(src_exports, require("./utils"), module.exports);
-// Proper CommonJS exports for dynamic imports
-module.exports = {
-  DirectSecp256k1HdWallet,
-  GasPrice,
-  LedgerSigner,
-  Secp256k1HdWallet,
-  fromAscii,
-  fromBase64,
-  fromBech32,
-  fromHex,
-  fromRfc3339,
-  fromUtf8,
-  makeCosmoshubPath,
-  normalizeBech32,
-  toAscii,
-  toBase64,
-  toBech32,
-  toHex,
-  toRfc3339,
-  toUtf8,
-  ...require("./codegen"),
-  ...require("./parser"),
-  ...require("./stride_client"),
-  ...require("./utils")
-};
+// Removed broken CommonJS export annotation

@@ -30,10 +30,16 @@ const fixCjsExports = async () => {
     const content = readFileSync(file, "utf8");
     
     // Fix the broken export pattern: 0 && (module.exports = {...})
-    const fixedContent = content.replace(
+    let fixedContent = content.replace(
       /\/\/ Annotate the CommonJS export names for ESM import in node:\n0 && \(module\.exports = \{([^}]+)\}\);/g,
       (match, exports) => {
-        // Convert the export list to proper CommonJS exports
+        // For the main index.js, just remove the broken exports entirely
+        // since it already has proper exports via __toCommonJS
+        if (file.includes('dist/cjs/index.js')) {
+          return '// Removed broken CommonJS export annotation';
+        }
+        
+        // For other files, convert the export list to proper CommonJS exports
         const exportNames = exports.split(',').map(name => name.trim()).filter(Boolean);
         const properExports = exportNames.map(name => `  ${name}`).join(',\n');
         return `// Proper CommonJS exports for dynamic imports\nmodule.exports = {\n${properExports}\n};`;
