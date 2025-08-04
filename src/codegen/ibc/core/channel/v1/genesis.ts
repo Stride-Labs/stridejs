@@ -1,4 +1,4 @@
-import { IdentifiedChannel, IdentifiedChannelAmino, IdentifiedChannelSDKType, PacketState, PacketStateAmino, PacketStateSDKType } from "./channel";
+import { IdentifiedChannel, IdentifiedChannelAmino, IdentifiedChannelSDKType, PacketState, PacketStateAmino, PacketStateSDKType, Params, ParamsAmino, ParamsSDKType } from "./channel";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 /** GenesisState defines the ibc channel submodule's genesis state. */
 export interface GenesisState {
@@ -11,6 +11,7 @@ export interface GenesisState {
   ackSequences: PacketSequence[];
   /** the sequence for the next generated channel identifier */
   nextChannelSequence: bigint;
+  params: Params;
 }
 export interface GenesisStateProtoMsg {
   typeUrl: "/ibc.core.channel.v1.GenesisState";
@@ -34,6 +35,7 @@ export interface GenesisStateAmino {
    * the sequence for the next generated channel identifier
    */
   next_channel_sequence?: string;
+  params?: ParamsAmino;
 }
 export interface GenesisStateAminoMsg {
   type: "cosmos-sdk/GenesisState";
@@ -49,6 +51,7 @@ export interface GenesisStateSDKType {
   recv_sequences: PacketSequenceSDKType[];
   ack_sequences: PacketSequenceSDKType[];
   next_channel_sequence: bigint;
+  params: ParamsSDKType;
 }
 /**
  * PacketSequence defines the genesis type necessary to retrieve and store
@@ -97,7 +100,8 @@ function createBaseGenesisState(): GenesisState {
     sendSequences: [],
     recvSequences: [],
     ackSequences: [],
-    nextChannelSequence: BigInt(0)
+    nextChannelSequence: BigInt(0),
+    params: Params.fromPartial({})
   };
 }
 export const GenesisState = {
@@ -126,6 +130,9 @@ export const GenesisState = {
     }
     if (message.nextChannelSequence !== BigInt(0)) {
       writer.uint32(64).uint64(message.nextChannelSequence);
+    }
+    if (message.params !== undefined) {
+      Params.encode(message.params, writer.uint32(74).fork()).ldelim();
     }
     return writer;
   },
@@ -160,6 +167,9 @@ export const GenesisState = {
         case 8:
           message.nextChannelSequence = reader.uint64();
           break;
+        case 9:
+          message.params = Params.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -177,6 +187,7 @@ export const GenesisState = {
     message.recvSequences = object.recvSequences?.map(e => PacketSequence.fromPartial(e)) || [];
     message.ackSequences = object.ackSequences?.map(e => PacketSequence.fromPartial(e)) || [];
     message.nextChannelSequence = object.nextChannelSequence !== undefined && object.nextChannelSequence !== null ? BigInt(object.nextChannelSequence.toString()) : BigInt(0);
+    message.params = object.params !== undefined && object.params !== null ? Params.fromPartial(object.params) : undefined;
     return message;
   },
   fromAmino(object: GenesisStateAmino): GenesisState {
@@ -190,6 +201,9 @@ export const GenesisState = {
     message.ackSequences = object.ack_sequences?.map(e => PacketSequence.fromAmino(e)) || [];
     if (object.next_channel_sequence !== undefined && object.next_channel_sequence !== null) {
       message.nextChannelSequence = BigInt(object.next_channel_sequence);
+    }
+    if (object.params !== undefined && object.params !== null) {
+      message.params = Params.fromAmino(object.params);
     }
     return message;
   },
@@ -231,6 +245,7 @@ export const GenesisState = {
       obj.ack_sequences = message.ackSequences;
     }
     obj.next_channel_sequence = message.nextChannelSequence !== BigInt(0) ? message.nextChannelSequence?.toString() : undefined;
+    obj.params = message.params ? Params.toAmino(message.params) : undefined;
     return obj;
   },
   fromAminoMsg(object: GenesisStateAminoMsg): GenesisState {

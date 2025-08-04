@@ -1,6 +1,7 @@
 import { Any, AnyProtoMsg, AnyAmino, AnySDKType } from "../../../google/protobuf/any";
 import { Coin, CoinAmino, CoinSDKType } from "../../base/v1beta1/coin";
 import { VoteOption, WeightedVoteOption, WeightedVoteOptionAmino, WeightedVoteOptionSDKType, Params, ParamsAmino, ParamsSDKType } from "./gov";
+import { Timestamp } from "../../../google/protobuf/timestamp";
 import { CommunityPoolSpendProposal, CommunityPoolSpendProposalProtoMsg, CommunityPoolSpendProposalSDKType, CommunityPoolSpendProposalWithDeposit, CommunityPoolSpendProposalWithDepositProtoMsg, CommunityPoolSpendProposalWithDepositSDKType } from "../../distribution/v1beta1/distribution";
 import { TextProposal, TextProposalProtoMsg, TextProposalSDKType } from "../v1beta1/gov";
 import { ParameterChangeProposal, ParameterChangeProposalProtoMsg, ParameterChangeProposalSDKType } from "../../params/v1beta1/params";
@@ -8,6 +9,7 @@ import { SoftwareUpgradeProposal, SoftwareUpgradeProposalProtoMsg, SoftwareUpgra
 import { StoreCodeProposal, StoreCodeProposalProtoMsg, StoreCodeProposalSDKType, InstantiateContractProposal, InstantiateContractProposalProtoMsg, InstantiateContractProposalSDKType, InstantiateContract2Proposal, InstantiateContract2ProposalProtoMsg, InstantiateContract2ProposalSDKType, MigrateContractProposal, MigrateContractProposalProtoMsg, MigrateContractProposalSDKType, SudoContractProposal, SudoContractProposalProtoMsg, SudoContractProposalSDKType, ExecuteContractProposal, ExecuteContractProposalProtoMsg, ExecuteContractProposalSDKType, UpdateAdminProposal, UpdateAdminProposalProtoMsg, UpdateAdminProposalSDKType, ClearAdminProposal, ClearAdminProposalProtoMsg, ClearAdminProposalSDKType, PinCodesProposal, PinCodesProposalProtoMsg, PinCodesProposalSDKType, UnpinCodesProposal, UnpinCodesProposalProtoMsg, UnpinCodesProposalSDKType, UpdateInstantiateConfigProposal, UpdateInstantiateConfigProposalProtoMsg, UpdateInstantiateConfigProposalSDKType, StoreAndInstantiateContractProposal, StoreAndInstantiateContractProposalProtoMsg, StoreAndInstantiateContractProposalSDKType } from "../../../cosmwasm/wasm/v1/proposal_legacy";
 import { ClientUpdateProposal, ClientUpdateProposalProtoMsg, ClientUpdateProposalSDKType, UpgradeProposal, UpgradeProposalProtoMsg, UpgradeProposalSDKType } from "../../../ibc/core/client/v1/client";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+import { toTimestamp, fromTimestamp } from "../../../helpers";
 /**
  * MsgSubmitProposal defines an sdk.Msg type that supports submitting arbitrary
  * proposal Content.
@@ -33,6 +35,12 @@ export interface MsgSubmitProposal {
    * Since: cosmos-sdk 0.47
    */
   summary: string;
+  /**
+   * expedited defines if the proposal is expedited or not
+   * 
+   * Since: cosmos-sdk 0.50
+   */
+  expedited: boolean;
 }
 export interface MsgSubmitProposalProtoMsg {
   typeUrl: "/cosmos.gov.v1.MsgSubmitProposal";
@@ -74,6 +82,12 @@ export interface MsgSubmitProposalAmino {
    * Since: cosmos-sdk 0.47
    */
   summary?: string;
+  /**
+   * expedited defines if the proposal is expedited or not
+   * 
+   * Since: cosmos-sdk 0.50
+   */
+  expedited?: boolean;
 }
 export interface MsgSubmitProposalAminoMsg {
   type: "cosmos-sdk/v1/MsgSubmitProposal";
@@ -90,6 +104,7 @@ export interface MsgSubmitProposalSDKType {
   metadata: string;
   title: string;
   summary: string;
+  expedited: boolean;
 }
 /** MsgSubmitProposalResponse defines the Msg/SubmitProposal response type. */
 export interface MsgSubmitProposalResponse {
@@ -469,6 +484,108 @@ export interface MsgUpdateParamsResponseAminoMsg {
  * Since: cosmos-sdk 0.47
  */
 export interface MsgUpdateParamsResponseSDKType {}
+/**
+ * MsgCancelProposal is the Msg/CancelProposal request type.
+ * 
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgCancelProposal {
+  /** proposal_id defines the unique id of the proposal. */
+  proposalId: bigint;
+  /** proposer is the account address of the proposer. */
+  proposer: string;
+}
+export interface MsgCancelProposalProtoMsg {
+  typeUrl: "/cosmos.gov.v1.MsgCancelProposal";
+  value: Uint8Array;
+}
+/**
+ * MsgCancelProposal is the Msg/CancelProposal request type.
+ * 
+ * Since: cosmos-sdk 0.50
+ * @name MsgCancelProposalAmino
+ * @package cosmos.gov.v1
+ * @see proto type: cosmos.gov.v1.MsgCancelProposal
+ */
+export interface MsgCancelProposalAmino {
+  /**
+   * proposal_id defines the unique id of the proposal.
+   */
+  proposal_id: string;
+  /**
+   * proposer is the account address of the proposer.
+   */
+  proposer?: string;
+}
+export interface MsgCancelProposalAminoMsg {
+  type: "cosmos-sdk/v1/MsgCancelProposal";
+  value: MsgCancelProposalAmino;
+}
+/**
+ * MsgCancelProposal is the Msg/CancelProposal request type.
+ * 
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgCancelProposalSDKType {
+  proposal_id: bigint;
+  proposer: string;
+}
+/**
+ * MsgCancelProposalResponse defines the response structure for executing a
+ * MsgCancelProposal message.
+ * 
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgCancelProposalResponse {
+  /** proposal_id defines the unique id of the proposal. */
+  proposalId: bigint;
+  /** canceled_time is the time when proposal is canceled. */
+  canceledTime: Date;
+  /** canceled_height defines the block height at which the proposal is canceled. */
+  canceledHeight: bigint;
+}
+export interface MsgCancelProposalResponseProtoMsg {
+  typeUrl: "/cosmos.gov.v1.MsgCancelProposalResponse";
+  value: Uint8Array;
+}
+/**
+ * MsgCancelProposalResponse defines the response structure for executing a
+ * MsgCancelProposal message.
+ * 
+ * Since: cosmos-sdk 0.50
+ * @name MsgCancelProposalResponseAmino
+ * @package cosmos.gov.v1
+ * @see proto type: cosmos.gov.v1.MsgCancelProposalResponse
+ */
+export interface MsgCancelProposalResponseAmino {
+  /**
+   * proposal_id defines the unique id of the proposal.
+   */
+  proposal_id: string;
+  /**
+   * canceled_time is the time when proposal is canceled.
+   */
+  canceled_time?: string;
+  /**
+   * canceled_height defines the block height at which the proposal is canceled.
+   */
+  canceled_height?: string;
+}
+export interface MsgCancelProposalResponseAminoMsg {
+  type: "cosmos-sdk/v1/MsgCancelProposalResponse";
+  value: MsgCancelProposalResponseAmino;
+}
+/**
+ * MsgCancelProposalResponse defines the response structure for executing a
+ * MsgCancelProposal message.
+ * 
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgCancelProposalResponseSDKType {
+  proposal_id: bigint;
+  canceled_time: Date;
+  canceled_height: bigint;
+}
 function createBaseMsgSubmitProposal(): MsgSubmitProposal {
   return {
     messages: [],
@@ -476,7 +593,8 @@ function createBaseMsgSubmitProposal(): MsgSubmitProposal {
     proposer: "",
     metadata: "",
     title: "",
-    summary: ""
+    summary: "",
+    expedited: false
   };
 }
 export const MsgSubmitProposal = {
@@ -499,6 +617,9 @@ export const MsgSubmitProposal = {
     }
     if (message.summary !== "") {
       writer.uint32(50).string(message.summary);
+    }
+    if (message.expedited === true) {
+      writer.uint32(56).bool(message.expedited);
     }
     return writer;
   },
@@ -527,6 +648,9 @@ export const MsgSubmitProposal = {
         case 6:
           message.summary = reader.string();
           break;
+        case 7:
+          message.expedited = reader.bool();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -542,6 +666,7 @@ export const MsgSubmitProposal = {
     message.metadata = object.metadata ?? "";
     message.title = object.title ?? "";
     message.summary = object.summary ?? "";
+    message.expedited = object.expedited ?? false;
     return message;
   },
   fromAmino(object: MsgSubmitProposalAmino): MsgSubmitProposal {
@@ -559,6 +684,9 @@ export const MsgSubmitProposal = {
     }
     if (object.summary !== undefined && object.summary !== null) {
       message.summary = object.summary;
+    }
+    if (object.expedited !== undefined && object.expedited !== null) {
+      message.expedited = object.expedited;
     }
     return message;
   },
@@ -578,6 +706,7 @@ export const MsgSubmitProposal = {
     obj.metadata = message.metadata === "" ? undefined : message.metadata;
     obj.title = message.title === "" ? undefined : message.title;
     obj.summary = message.summary === "" ? undefined : message.summary;
+    obj.expedited = message.expedited === false ? undefined : message.expedited;
     return obj;
   },
   fromAminoMsg(object: MsgSubmitProposalAminoMsg): MsgSubmitProposal {
@@ -1417,6 +1546,180 @@ export const MsgUpdateParamsResponse = {
     return {
       typeUrl: "/cosmos.gov.v1.MsgUpdateParamsResponse",
       value: MsgUpdateParamsResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgCancelProposal(): MsgCancelProposal {
+  return {
+    proposalId: BigInt(0),
+    proposer: ""
+  };
+}
+export const MsgCancelProposal = {
+  typeUrl: "/cosmos.gov.v1.MsgCancelProposal",
+  encode(message: MsgCancelProposal, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.proposalId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.proposalId);
+    }
+    if (message.proposer !== "") {
+      writer.uint32(18).string(message.proposer);
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): MsgCancelProposal {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCancelProposal();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.proposalId = reader.uint64();
+          break;
+        case 2:
+          message.proposer = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<MsgCancelProposal>): MsgCancelProposal {
+    const message = createBaseMsgCancelProposal();
+    message.proposalId = object.proposalId !== undefined && object.proposalId !== null ? BigInt(object.proposalId.toString()) : BigInt(0);
+    message.proposer = object.proposer ?? "";
+    return message;
+  },
+  fromAmino(object: MsgCancelProposalAmino): MsgCancelProposal {
+    const message = createBaseMsgCancelProposal();
+    if (object.proposal_id !== undefined && object.proposal_id !== null) {
+      message.proposalId = BigInt(object.proposal_id);
+    }
+    if (object.proposer !== undefined && object.proposer !== null) {
+      message.proposer = object.proposer;
+    }
+    return message;
+  },
+  toAmino(message: MsgCancelProposal): MsgCancelProposalAmino {
+    const obj: any = {};
+    obj.proposal_id = message.proposalId ? message.proposalId?.toString() : "0";
+    obj.proposer = message.proposer === "" ? undefined : message.proposer;
+    return obj;
+  },
+  fromAminoMsg(object: MsgCancelProposalAminoMsg): MsgCancelProposal {
+    return MsgCancelProposal.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgCancelProposal): MsgCancelProposalAminoMsg {
+    return {
+      type: "cosmos-sdk/v1/MsgCancelProposal",
+      value: MsgCancelProposal.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: MsgCancelProposalProtoMsg): MsgCancelProposal {
+    return MsgCancelProposal.decode(message.value);
+  },
+  toProto(message: MsgCancelProposal): Uint8Array {
+    return MsgCancelProposal.encode(message).finish();
+  },
+  toProtoMsg(message: MsgCancelProposal): MsgCancelProposalProtoMsg {
+    return {
+      typeUrl: "/cosmos.gov.v1.MsgCancelProposal",
+      value: MsgCancelProposal.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgCancelProposalResponse(): MsgCancelProposalResponse {
+  return {
+    proposalId: BigInt(0),
+    canceledTime: new Date(),
+    canceledHeight: BigInt(0)
+  };
+}
+export const MsgCancelProposalResponse = {
+  typeUrl: "/cosmos.gov.v1.MsgCancelProposalResponse",
+  encode(message: MsgCancelProposalResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.proposalId !== BigInt(0)) {
+      writer.uint32(8).uint64(message.proposalId);
+    }
+    if (message.canceledTime !== undefined) {
+      Timestamp.encode(toTimestamp(message.canceledTime), writer.uint32(18).fork()).ldelim();
+    }
+    if (message.canceledHeight !== BigInt(0)) {
+      writer.uint32(24).uint64(message.canceledHeight);
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): MsgCancelProposalResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCancelProposalResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.proposalId = reader.uint64();
+          break;
+        case 2:
+          message.canceledTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          break;
+        case 3:
+          message.canceledHeight = reader.uint64();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<MsgCancelProposalResponse>): MsgCancelProposalResponse {
+    const message = createBaseMsgCancelProposalResponse();
+    message.proposalId = object.proposalId !== undefined && object.proposalId !== null ? BigInt(object.proposalId.toString()) : BigInt(0);
+    message.canceledTime = object.canceledTime ?? undefined;
+    message.canceledHeight = object.canceledHeight !== undefined && object.canceledHeight !== null ? BigInt(object.canceledHeight.toString()) : BigInt(0);
+    return message;
+  },
+  fromAmino(object: MsgCancelProposalResponseAmino): MsgCancelProposalResponse {
+    const message = createBaseMsgCancelProposalResponse();
+    if (object.proposal_id !== undefined && object.proposal_id !== null) {
+      message.proposalId = BigInt(object.proposal_id);
+    }
+    if (object.canceled_time !== undefined && object.canceled_time !== null) {
+      message.canceledTime = fromTimestamp(Timestamp.fromAmino(object.canceled_time));
+    }
+    if (object.canceled_height !== undefined && object.canceled_height !== null) {
+      message.canceledHeight = BigInt(object.canceled_height);
+    }
+    return message;
+  },
+  toAmino(message: MsgCancelProposalResponse): MsgCancelProposalResponseAmino {
+    const obj: any = {};
+    obj.proposal_id = message.proposalId ? message.proposalId?.toString() : "0";
+    obj.canceled_time = message.canceledTime ? Timestamp.toAmino(toTimestamp(message.canceledTime)) : undefined;
+    obj.canceled_height = message.canceledHeight !== BigInt(0) ? message.canceledHeight?.toString() : undefined;
+    return obj;
+  },
+  fromAminoMsg(object: MsgCancelProposalResponseAminoMsg): MsgCancelProposalResponse {
+    return MsgCancelProposalResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgCancelProposalResponse): MsgCancelProposalResponseAminoMsg {
+    return {
+      type: "cosmos-sdk/v1/MsgCancelProposalResponse",
+      value: MsgCancelProposalResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: MsgCancelProposalResponseProtoMsg): MsgCancelProposalResponse {
+    return MsgCancelProposalResponse.decode(message.value);
+  },
+  toProto(message: MsgCancelProposalResponse): Uint8Array {
+    return MsgCancelProposalResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgCancelProposalResponse): MsgCancelProposalResponseProtoMsg {
+    return {
+      typeUrl: "/cosmos.gov.v1.MsgCancelProposalResponse",
+      value: MsgCancelProposalResponse.encode(message).finish()
     };
   }
 };

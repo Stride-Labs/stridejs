@@ -91,6 +91,25 @@ export interface MsgIBCSendResponseAminoMsg {
 export interface MsgIBCSendResponseSDKType {
   sequence: bigint;
 }
+/** MsgIBCWriteAcknowledgementResponse */
+export interface MsgIBCWriteAcknowledgementResponse {}
+export interface MsgIBCWriteAcknowledgementResponseProtoMsg {
+  typeUrl: "/cosmwasm.wasm.v1.MsgIBCWriteAcknowledgementResponse";
+  value: Uint8Array;
+}
+/**
+ * MsgIBCWriteAcknowledgementResponse
+ * @name MsgIBCWriteAcknowledgementResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.MsgIBCWriteAcknowledgementResponse
+ */
+export interface MsgIBCWriteAcknowledgementResponseAmino {}
+export interface MsgIBCWriteAcknowledgementResponseAminoMsg {
+  type: "wasm/MsgIBCWriteAcknowledgementResponse";
+  value: MsgIBCWriteAcknowledgementResponseAmino;
+}
+/** MsgIBCWriteAcknowledgementResponse */
+export interface MsgIBCWriteAcknowledgementResponseSDKType {}
 /** MsgIBCCloseChannel port and channel need to be owned by the contract */
 export interface MsgIBCCloseChannel {
   channel: string;
@@ -287,6 +306,62 @@ export const MsgIBCSendResponse = {
     return {
       typeUrl: "/cosmwasm.wasm.v1.MsgIBCSendResponse",
       value: MsgIBCSendResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgIBCWriteAcknowledgementResponse(): MsgIBCWriteAcknowledgementResponse {
+  return {};
+}
+export const MsgIBCWriteAcknowledgementResponse = {
+  typeUrl: "/cosmwasm.wasm.v1.MsgIBCWriteAcknowledgementResponse",
+  encode(_: MsgIBCWriteAcknowledgementResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): MsgIBCWriteAcknowledgementResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgIBCWriteAcknowledgementResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_: Partial<MsgIBCWriteAcknowledgementResponse>): MsgIBCWriteAcknowledgementResponse {
+    const message = createBaseMsgIBCWriteAcknowledgementResponse();
+    return message;
+  },
+  fromAmino(_: MsgIBCWriteAcknowledgementResponseAmino): MsgIBCWriteAcknowledgementResponse {
+    const message = createBaseMsgIBCWriteAcknowledgementResponse();
+    return message;
+  },
+  toAmino(_: MsgIBCWriteAcknowledgementResponse): MsgIBCWriteAcknowledgementResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgIBCWriteAcknowledgementResponseAminoMsg): MsgIBCWriteAcknowledgementResponse {
+    return MsgIBCWriteAcknowledgementResponse.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgIBCWriteAcknowledgementResponse): MsgIBCWriteAcknowledgementResponseAminoMsg {
+    return {
+      type: "wasm/MsgIBCWriteAcknowledgementResponse",
+      value: MsgIBCWriteAcknowledgementResponse.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: MsgIBCWriteAcknowledgementResponseProtoMsg): MsgIBCWriteAcknowledgementResponse {
+    return MsgIBCWriteAcknowledgementResponse.decode(message.value);
+  },
+  toProto(message: MsgIBCWriteAcknowledgementResponse): Uint8Array {
+    return MsgIBCWriteAcknowledgementResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgIBCWriteAcknowledgementResponse): MsgIBCWriteAcknowledgementResponseProtoMsg {
+    return {
+      typeUrl: "/cosmwasm.wasm.v1.MsgIBCWriteAcknowledgementResponse",
+      value: MsgIBCWriteAcknowledgementResponse.encode(message).finish()
     };
   }
 };

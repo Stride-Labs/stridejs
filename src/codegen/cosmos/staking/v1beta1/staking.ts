@@ -168,15 +168,15 @@ export interface CommissionRatesAmino {
   /**
    * rate is the commission rate charged to delegators, as a fraction.
    */
-  rate?: string;
+  rate: string;
   /**
    * max_rate defines the maximum commission rate which validator can ever charge, as a fraction.
    */
-  max_rate?: string;
+  max_rate: string;
   /**
    * max_change_rate defines the maximum daily increase of the validator commission, as a fraction.
    */
-  max_change_rate?: string;
+  max_change_rate: string;
 }
 export interface CommissionRatesAminoMsg {
   type: "cosmos-sdk/CommissionRates";
@@ -594,9 +594,9 @@ export interface DVVTripletsSDKType {
  * validator.
  */
 export interface Delegation {
-  /** delegator_address is the bech32-encoded address of the delegator. */
+  /** delegator_address is the encoded address of the delegator. */
   delegatorAddress: string;
-  /** validator_address is the bech32-encoded address of the validator. */
+  /** validator_address is the encoded address of the validator. */
   validatorAddress: string;
   /** shares define the delegation shares received. */
   shares: string;
@@ -615,11 +615,11 @@ export interface DelegationProtoMsg {
  */
 export interface DelegationAmino {
   /**
-   * delegator_address is the bech32-encoded address of the delegator.
+   * delegator_address is the encoded address of the delegator.
    */
   delegator_address?: string;
   /**
-   * validator_address is the bech32-encoded address of the validator.
+   * validator_address is the encoded address of the validator.
    */
   validator_address?: string;
   /**
@@ -646,9 +646,9 @@ export interface DelegationSDKType {
  * for a single validator in an time-ordered list.
  */
 export interface UnbondingDelegation {
-  /** delegator_address is the bech32-encoded address of the delegator. */
+  /** delegator_address is the encoded address of the delegator. */
   delegatorAddress: string;
-  /** validator_address is the bech32-encoded address of the validator. */
+  /** validator_address is the encoded address of the validator. */
   validatorAddress: string;
   /** entries are the unbonding delegation entries. */
   entries: UnbondingDelegationEntry[];
@@ -666,11 +666,11 @@ export interface UnbondingDelegationProtoMsg {
  */
 export interface UnbondingDelegationAmino {
   /**
-   * delegator_address is the bech32-encoded address of the delegator.
+   * delegator_address is the encoded address of the delegator.
    */
   delegator_address?: string;
   /**
-   * validator_address is the bech32-encoded address of the validator.
+   * validator_address is the encoded address of the validator.
    */
   validator_address?: string;
   /**
@@ -925,7 +925,7 @@ export interface ParamsAmino {
   /**
    * min_commission_rate is the chain-wide minimum commission rate that a validator can charge their delegators
    */
-  min_commission_rate?: string;
+  min_commission_rate: string;
 }
 export interface ParamsAminoMsg {
   type: "cosmos-sdk/x/staking/Params";
@@ -1267,9 +1267,9 @@ export const CommissionRates = {
   },
   toAmino(message: CommissionRates): CommissionRatesAmino {
     const obj: any = {};
-    obj.rate = message.rate === "" ? undefined : message.rate;
-    obj.max_rate = message.maxRate === "" ? undefined : message.maxRate;
-    obj.max_change_rate = message.maxChangeRate === "" ? undefined : message.maxChangeRate;
+    obj.rate = message.rate ?? "";
+    obj.max_rate = message.maxRate ?? "";
+    obj.max_change_rate = message.maxChangeRate ?? "";
     return obj;
   },
   fromAminoMsg(object: CommissionRatesAminoMsg): CommissionRates {
@@ -2760,7 +2760,7 @@ export const Params = {
     obj.max_entries = message.maxEntries === 0 ? undefined : message.maxEntries;
     obj.historical_entries = message.historicalEntries === 0 ? undefined : message.historicalEntries;
     obj.bond_denom = message.bondDenom === "" ? undefined : message.bondDenom;
-    obj.min_commission_rate = message.minCommissionRate === "" ? undefined : message.minCommissionRate;
+    obj.min_commission_rate = message.minCommissionRate ?? "";
     return obj;
   },
   fromAminoMsg(object: ParamsAminoMsg): Params {

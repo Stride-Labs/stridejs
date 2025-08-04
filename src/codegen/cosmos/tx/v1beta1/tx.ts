@@ -218,14 +218,8 @@ export interface SignDocDirectAux {
   accountNumber: bigint;
   /** sequence is the sequence number of the signing account. */
   sequence: bigint;
-  /**
-   * Tip is the optional tip used for transactions fees paid in another denom.
-   * It should be left empty if the signer is not the tipper for this
-   * transaction.
-   * 
-   * This field is ignored if the chain didn't enable tips, i.e. didn't add the
-   * `TipDecorator` in its posthandler.
-   */
+  /** tips have been depreacted and should not be used */
+  /** @deprecated */
   tip?: Tip;
 }
 export interface SignDocDirectAuxProtoMsg {
@@ -266,12 +260,8 @@ export interface SignDocDirectAuxAmino {
    */
   sequence?: string;
   /**
-   * Tip is the optional tip used for transactions fees paid in another denom.
-   * It should be left empty if the signer is not the tipper for this
-   * transaction.
-   * 
-   * This field is ignored if the chain didn't enable tips, i.e. didn't add the
-   * `TipDecorator` in its posthandler.
+   * tips have been depreacted and should not be used
+   * @deprecated
    */
   tip?: TipAmino;
 }
@@ -291,6 +281,7 @@ export interface SignDocDirectAuxSDKType {
   chain_id: string;
   account_number: bigint;
   sequence: bigint;
+  /** @deprecated */
   tip?: TipSDKType;
 }
 /** TxBody is the body of a transaction that all signers sign over. */
@@ -413,6 +404,7 @@ export interface AuthInfo {
    * 
    * Since: cosmos-sdk 0.46
    */
+  /** @deprecated */
   tip?: Tip;
 }
 export interface AuthInfoProtoMsg {
@@ -448,6 +440,7 @@ export interface AuthInfoAmino {
    * `TipDecorator` in its posthandler.
    * 
    * Since: cosmos-sdk 0.46
+   * @deprecated
    */
   tip?: TipAmino;
 }
@@ -462,6 +455,7 @@ export interface AuthInfoAminoMsg {
 export interface AuthInfoSDKType {
   signer_infos: SignerInfoSDKType[];
   fee?: FeeSDKType;
+  /** @deprecated */
   tip?: TipSDKType;
 }
 /**
@@ -687,7 +681,7 @@ export interface FeeAmino {
   /**
    * amount is the amount of coins to be paid as a fee
    */
-  amount?: CoinAmino[];
+  amount: CoinAmino[];
   /**
    * gas_limit is the maximum gas that can be used in transaction processing
    * before an out of gas error occurs
@@ -726,6 +720,7 @@ export interface FeeSDKType {
  * 
  * Since: cosmos-sdk 0.46
  */
+/** @deprecated */
 export interface Tip {
   /** amount is the amount of the tip */
   amount: Coin[];
@@ -743,12 +738,13 @@ export interface TipProtoMsg {
  * @name TipAmino
  * @package cosmos.tx.v1beta1
  * @see proto type: cosmos.tx.v1beta1.Tip
+ * @deprecated
  */
 export interface TipAmino {
   /**
    * amount is the amount of the tip
    */
-  amount?: CoinAmino[];
+  amount: CoinAmino[];
   /**
    * tipper is the address of the account paying for the tip
    */
@@ -763,6 +759,7 @@ export interface TipAminoMsg {
  * 
  * Since: cosmos-sdk 0.46
  */
+/** @deprecated */
 export interface TipSDKType {
   amount: CoinSDKType[];
   tipper: string;
