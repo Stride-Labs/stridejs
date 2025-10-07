@@ -820,6 +820,47 @@ export interface MsgResumeHostZoneResponseAminoMsg {
   value: MsgResumeHostZoneResponseAmino;
 }
 export interface MsgResumeHostZoneResponseSDKType {}
+export interface MsgDeprecateHostZone {
+  authority: string;
+  chainId: string;
+}
+export interface MsgDeprecateHostZoneProtoMsg {
+  typeUrl: "/stride.stakeibc.MsgDeprecateHostZone";
+  value: Uint8Array;
+}
+/**
+ * @name MsgDeprecateHostZoneAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgDeprecateHostZone
+ */
+export interface MsgDeprecateHostZoneAmino {
+  authority?: string;
+  chain_id?: string;
+}
+export interface MsgDeprecateHostZoneAminoMsg {
+  type: "stakeibc/MsgDeprecateHostZone";
+  value: MsgDeprecateHostZoneAmino;
+}
+export interface MsgDeprecateHostZoneSDKType {
+  authority: string;
+  chain_id: string;
+}
+export interface MsgDeprecateHostZoneResponse {}
+export interface MsgDeprecateHostZoneResponseProtoMsg {
+  typeUrl: "/stride.stakeibc.MsgDeprecateHostZoneResponse";
+  value: Uint8Array;
+}
+/**
+ * @name MsgDeprecateHostZoneResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgDeprecateHostZoneResponse
+ */
+export interface MsgDeprecateHostZoneResponseAmino {}
+export interface MsgDeprecateHostZoneResponseAminoMsg {
+  type: "/stride.stakeibc.MsgDeprecateHostZoneResponse";
+  value: MsgDeprecateHostZoneResponseAmino;
+}
+export interface MsgDeprecateHostZoneResponseSDKType {}
 /** Creates a new trade route */
 export interface MsgCreateTradeRoute {
   /**
@@ -3971,6 +4012,137 @@ export const MsgResumeHostZoneResponse = {
     return {
       typeUrl: "/stride.stakeibc.MsgResumeHostZoneResponse",
       value: MsgResumeHostZoneResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgDeprecateHostZone(): MsgDeprecateHostZone {
+  return {
+    authority: "",
+    chainId: ""
+  };
+}
+export const MsgDeprecateHostZone = {
+  typeUrl: "/stride.stakeibc.MsgDeprecateHostZone",
+  encode(message: MsgDeprecateHostZone, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    if (message.authority !== "") {
+      writer.uint32(10).string(message.authority);
+    }
+    if (message.chainId !== "") {
+      writer.uint32(18).string(message.chainId);
+    }
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): MsgDeprecateHostZone {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgDeprecateHostZone();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.authority = reader.string();
+          break;
+        case 2:
+          message.chainId = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object: Partial<MsgDeprecateHostZone>): MsgDeprecateHostZone {
+    const message = createBaseMsgDeprecateHostZone();
+    message.authority = object.authority ?? "";
+    message.chainId = object.chainId ?? "";
+    return message;
+  },
+  fromAmino(object: MsgDeprecateHostZoneAmino): MsgDeprecateHostZone {
+    const message = createBaseMsgDeprecateHostZone();
+    if (object.authority !== undefined && object.authority !== null) {
+      message.authority = object.authority;
+    }
+    if (object.chain_id !== undefined && object.chain_id !== null) {
+      message.chainId = object.chain_id;
+    }
+    return message;
+  },
+  toAmino(message: MsgDeprecateHostZone): MsgDeprecateHostZoneAmino {
+    const obj: any = {};
+    obj.authority = message.authority === "" ? undefined : message.authority;
+    obj.chain_id = message.chainId === "" ? undefined : message.chainId;
+    return obj;
+  },
+  fromAminoMsg(object: MsgDeprecateHostZoneAminoMsg): MsgDeprecateHostZone {
+    return MsgDeprecateHostZone.fromAmino(object.value);
+  },
+  toAminoMsg(message: MsgDeprecateHostZone): MsgDeprecateHostZoneAminoMsg {
+    return {
+      type: "stakeibc/MsgDeprecateHostZone",
+      value: MsgDeprecateHostZone.toAmino(message)
+    };
+  },
+  fromProtoMsg(message: MsgDeprecateHostZoneProtoMsg): MsgDeprecateHostZone {
+    return MsgDeprecateHostZone.decode(message.value);
+  },
+  toProto(message: MsgDeprecateHostZone): Uint8Array {
+    return MsgDeprecateHostZone.encode(message).finish();
+  },
+  toProtoMsg(message: MsgDeprecateHostZone): MsgDeprecateHostZoneProtoMsg {
+    return {
+      typeUrl: "/stride.stakeibc.MsgDeprecateHostZone",
+      value: MsgDeprecateHostZone.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgDeprecateHostZoneResponse(): MsgDeprecateHostZoneResponse {
+  return {};
+}
+export const MsgDeprecateHostZoneResponse = {
+  typeUrl: "/stride.stakeibc.MsgDeprecateHostZoneResponse",
+  encode(_: MsgDeprecateHostZoneResponse, writer: BinaryWriter = BinaryWriter.create()): BinaryWriter {
+    return writer;
+  },
+  decode(input: BinaryReader | Uint8Array, length?: number): MsgDeprecateHostZoneResponse {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgDeprecateHostZoneResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_: Partial<MsgDeprecateHostZoneResponse>): MsgDeprecateHostZoneResponse {
+    const message = createBaseMsgDeprecateHostZoneResponse();
+    return message;
+  },
+  fromAmino(_: MsgDeprecateHostZoneResponseAmino): MsgDeprecateHostZoneResponse {
+    const message = createBaseMsgDeprecateHostZoneResponse();
+    return message;
+  },
+  toAmino(_: MsgDeprecateHostZoneResponse): MsgDeprecateHostZoneResponseAmino {
+    const obj: any = {};
+    return obj;
+  },
+  fromAminoMsg(object: MsgDeprecateHostZoneResponseAminoMsg): MsgDeprecateHostZoneResponse {
+    return MsgDeprecateHostZoneResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message: MsgDeprecateHostZoneResponseProtoMsg): MsgDeprecateHostZoneResponse {
+    return MsgDeprecateHostZoneResponse.decode(message.value);
+  },
+  toProto(message: MsgDeprecateHostZoneResponse): Uint8Array {
+    return MsgDeprecateHostZoneResponse.encode(message).finish();
+  },
+  toProtoMsg(message: MsgDeprecateHostZoneResponse): MsgDeprecateHostZoneResponseProtoMsg {
+    return {
+      typeUrl: "/stride.stakeibc.MsgDeprecateHostZoneResponse",
+      value: MsgDeprecateHostZoneResponse.encode(message).finish()
     };
   }
 };

@@ -140,8 +140,18 @@ export interface HostZone {
     communityPoolRebate?: CommunityPoolRebate;
     /** A boolean indicating whether the chain has LSM enabled */
     lsmLiquidStakeEnabled: boolean;
-    /** A boolean indicating whether the chain is currently halted */
+    /**
+     * A boolean indicating whether the chain is currently halted
+     * A host zone is halted if redemption rate bounds are exceeded or it is
+     * deprecated
+     */
     halted: boolean;
+    /**
+     * Indicates if the host zone is deprecated and should no longer handle liquid
+     * stakes. This is only used as documentation - it doesn't affect any
+     * functionality `Halted` is used to stop business logic
+     */
+    deprecated: boolean;
 }
 export interface HostZoneProtoMsg {
     typeUrl: "/stride.stakeibc.HostZone";
@@ -287,8 +297,16 @@ export interface HostZoneAmino {
     lsm_liquid_stake_enabled?: boolean;
     /**
      * A boolean indicating whether the chain is currently halted
+     * A host zone is halted if redemption rate bounds are exceeded or it is
+     * deprecated
      */
     halted?: boolean;
+    /**
+     * Indicates if the host zone is deprecated and should no longer handle liquid
+     * stakes. This is only used as documentation - it doesn't affect any
+     * functionality `Halted` is used to stop business logic
+     */
+    deprecated?: boolean;
 }
 export interface HostZoneAminoMsg {
     type: "/stride.stakeibc.HostZone";
@@ -326,6 +344,7 @@ export interface HostZoneSDKType {
     community_pool_rebate?: CommunityPoolRebateSDKType;
     lsm_liquid_stake_enabled: boolean;
     halted: boolean;
+    deprecated: boolean;
 }
 export declare const CommunityPoolRebate: {
     typeUrl: string;

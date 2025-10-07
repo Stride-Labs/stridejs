@@ -30,9 +30,9 @@ __export(bundle_exports, {
   osmosis: () => osmosis
 });
 module.exports = __toCommonJS(bundle_exports);
-var _189 = __toESM(require("./osmosis"));
+var _199 = __toESM(require("./osmosis"));
 const osmosis = {
-  ..._189
+  ..._199
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {

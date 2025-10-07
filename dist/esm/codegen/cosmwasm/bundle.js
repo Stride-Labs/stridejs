@@ -1,37 +1,37 @@
-import * as _128 from "./wasm/v1/authz";
-import * as _129 from "./wasm/v1/genesis";
-import * as _130 from "./wasm/v1/ibc";
-import * as _131 from "./wasm/v1/proposal_legacy";
-import * as _132 from "./wasm/v1/query";
-import * as _133 from "./wasm/v1/tx";
-import * as _134 from "./wasm/v1/types";
-import * as _344 from "./wasm/v1/tx.amino";
-import * as _345 from "./wasm/v1/tx.registry";
-import * as _346 from "./wasm/v1/query.rpc.Query";
-import * as _347 from "./wasm/v1/tx.rpc.msg";
-import * as _423 from "./rpc.query";
-import * as _424 from "./rpc.tx";
+import * as _133 from "./wasm/v1/authz";
+import * as _134 from "./wasm/v1/genesis";
+import * as _135 from "./wasm/v1/ibc";
+import * as _136 from "./wasm/v1/proposal_legacy";
+import * as _137 from "./wasm/v1/query";
+import * as _138 from "./wasm/v1/tx";
+import * as _139 from "./wasm/v1/types";
+import * as _357 from "./wasm/v1/tx.amino";
+import * as _358 from "./wasm/v1/tx.registry";
+import * as _359 from "./wasm/v1/query.rpc.Query";
+import * as _360 from "./wasm/v1/tx.rpc.msg";
+import * as _443 from "./rpc.query";
+import * as _444 from "./rpc.tx";
 var cosmwasm;
 ((cosmwasm2) => {
   let wasm;
   ((wasm2) => {
     wasm2.v1 = {
-      ..._128,
-      ..._129,
-      ..._130,
-      ..._131,
-      ..._132,
       ..._133,
       ..._134,
-      ..._344,
-      ..._345,
-      ..._346,
-      ..._347
+      ..._135,
+      ..._136,
+      ..._137,
+      ..._138,
+      ..._139,
+      ..._357,
+      ..._358,
+      ..._359,
+      ..._360
     };
   })(wasm = cosmwasm2.wasm || (cosmwasm2.wasm = {}));
   cosmwasm2.ClientFactory = {
-    ..._423,
-    ..._424
+    ..._443,
+    ..._444
   };
 })(cosmwasm || (cosmwasm = {}));
 export {

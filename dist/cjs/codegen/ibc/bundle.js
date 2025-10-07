@@ -30,76 +30,85 @@ __export(bundle_exports, {
   ibc: () => ibc
 });
 module.exports = __toCommonJS(bundle_exports);
-var _149 = __toESM(require("./applications/fee/v1/ack"));
-var _150 = __toESM(require("./applications/fee/v1/fee"));
-var _151 = __toESM(require("./applications/fee/v1/genesis"));
-var _152 = __toESM(require("./applications/fee/v1/metadata"));
-var _153 = __toESM(require("./applications/fee/v1/query"));
-var _154 = __toESM(require("./applications/fee/v1/tx"));
-var _155 = __toESM(require("./applications/interchain_accounts/controller/v1/controller"));
-var _156 = __toESM(require("./applications/interchain_accounts/controller/v1/query"));
-var _157 = __toESM(require("./applications/interchain_accounts/controller/v1/tx"));
-var _158 = __toESM(require("./applications/interchain_accounts/genesis/v1/genesis"));
-var _159 = __toESM(require("./applications/interchain_accounts/host/v1/host"));
-var _160 = __toESM(require("./applications/interchain_accounts/host/v1/query"));
-var _161 = __toESM(require("./applications/interchain_accounts/host/v1/tx"));
-var _162 = __toESM(require("./applications/interchain_accounts/v1/account"));
-var _163 = __toESM(require("./applications/interchain_accounts/v1/metadata"));
-var _164 = __toESM(require("./applications/interchain_accounts/v1/packet"));
-var _165 = __toESM(require("./applications/transfer/v1/authz"));
-var _166 = __toESM(require("./applications/transfer/v1/genesis"));
-var _167 = __toESM(require("./applications/transfer/v1/query"));
-var _168 = __toESM(require("./applications/transfer/v1/transfer"));
-var _169 = __toESM(require("./applications/transfer/v1/tx"));
-var _170 = __toESM(require("./applications/transfer/v2/packet"));
-var _171 = __toESM(require("./core/channel/v1/channel"));
-var _172 = __toESM(require("./core/channel/v1/genesis"));
-var _173 = __toESM(require("./core/channel/v1/query"));
-var _174 = __toESM(require("./core/channel/v1/tx"));
-var _175 = __toESM(require("./core/client/v1/client"));
-var _176 = __toESM(require("./core/client/v1/genesis"));
-var _177 = __toESM(require("./core/client/v1/query"));
-var _178 = __toESM(require("./core/client/v1/tx"));
-var _179 = __toESM(require("./core/commitment/v1/commitment"));
-var _180 = __toESM(require("./core/connection/v1/connection"));
-var _181 = __toESM(require("./core/connection/v1/genesis"));
-var _182 = __toESM(require("./core/connection/v1/query"));
-var _183 = __toESM(require("./core/connection/v1/tx"));
-var _184 = __toESM(require("./core/types/v1/genesis"));
-var _185 = __toESM(require("./lightclients/localhost/v2/localhost"));
-var _186 = __toESM(require("./lightclients/solomachine/v2/solomachine"));
-var _187 = __toESM(require("./lightclients/solomachine/v3/solomachine"));
-var _188 = __toESM(require("./lightclients/tendermint/v1/tendermint"));
-var _352 = __toESM(require("./applications/fee/v1/tx.amino"));
-var _353 = __toESM(require("./applications/interchain_accounts/controller/v1/tx.amino"));
-var _354 = __toESM(require("./applications/interchain_accounts/host/v1/tx.amino"));
-var _355 = __toESM(require("./applications/transfer/v1/tx.amino"));
-var _356 = __toESM(require("./core/channel/v1/tx.amino"));
-var _357 = __toESM(require("./core/client/v1/tx.amino"));
-var _358 = __toESM(require("./core/connection/v1/tx.amino"));
-var _359 = __toESM(require("./applications/fee/v1/tx.registry"));
-var _360 = __toESM(require("./applications/interchain_accounts/controller/v1/tx.registry"));
-var _361 = __toESM(require("./applications/interchain_accounts/host/v1/tx.registry"));
-var _362 = __toESM(require("./applications/transfer/v1/tx.registry"));
-var _363 = __toESM(require("./core/channel/v1/tx.registry"));
-var _364 = __toESM(require("./core/client/v1/tx.registry"));
-var _365 = __toESM(require("./core/connection/v1/tx.registry"));
-var _366 = __toESM(require("./applications/fee/v1/query.rpc.Query"));
-var _367 = __toESM(require("./applications/interchain_accounts/controller/v1/query.rpc.Query"));
-var _368 = __toESM(require("./applications/interchain_accounts/host/v1/query.rpc.Query"));
-var _369 = __toESM(require("./applications/transfer/v1/query.rpc.Query"));
-var _370 = __toESM(require("./core/channel/v1/query.rpc.Query"));
-var _371 = __toESM(require("./core/client/v1/query.rpc.Query"));
-var _372 = __toESM(require("./core/connection/v1/query.rpc.Query"));
-var _373 = __toESM(require("./applications/fee/v1/tx.rpc.msg"));
-var _374 = __toESM(require("./applications/interchain_accounts/controller/v1/tx.rpc.msg"));
-var _375 = __toESM(require("./applications/interchain_accounts/host/v1/tx.rpc.msg"));
-var _376 = __toESM(require("./applications/transfer/v1/tx.rpc.msg"));
-var _377 = __toESM(require("./core/channel/v1/tx.rpc.msg"));
-var _378 = __toESM(require("./core/client/v1/tx.rpc.msg"));
-var _379 = __toESM(require("./core/connection/v1/tx.rpc.msg"));
-var _427 = __toESM(require("./rpc.query"));
-var _428 = __toESM(require("./rpc.tx"));
+var _154 = __toESM(require("./applications/fee/v1/ack"));
+var _155 = __toESM(require("./applications/fee/v1/fee"));
+var _156 = __toESM(require("./applications/fee/v1/genesis"));
+var _157 = __toESM(require("./applications/fee/v1/metadata"));
+var _158 = __toESM(require("./applications/fee/v1/query"));
+var _159 = __toESM(require("./applications/fee/v1/tx"));
+var _160 = __toESM(require("./applications/interchain_accounts/controller/v1/controller"));
+var _161 = __toESM(require("./applications/interchain_accounts/controller/v1/query"));
+var _162 = __toESM(require("./applications/interchain_accounts/controller/v1/tx"));
+var _163 = __toESM(require("./applications/interchain_accounts/genesis/v1/genesis"));
+var _164 = __toESM(require("./applications/interchain_accounts/host/v1/host"));
+var _165 = __toESM(require("./applications/interchain_accounts/host/v1/query"));
+var _166 = __toESM(require("./applications/interchain_accounts/host/v1/tx"));
+var _167 = __toESM(require("./applications/interchain_accounts/v1/account"));
+var _168 = __toESM(require("./applications/interchain_accounts/v1/metadata"));
+var _169 = __toESM(require("./applications/interchain_accounts/v1/packet"));
+var _170 = __toESM(require("./applications/transfer/v1/authz"));
+var _171 = __toESM(require("./applications/transfer/v1/genesis"));
+var _172 = __toESM(require("./applications/transfer/v1/query"));
+var _173 = __toESM(require("./applications/transfer/v1/transfer"));
+var _174 = __toESM(require("./applications/transfer/v1/tx"));
+var _175 = __toESM(require("./applications/transfer/v2/packet"));
+var _176 = __toESM(require("./core/channel/v1/channel"));
+var _177 = __toESM(require("./core/channel/v1/genesis"));
+var _178 = __toESM(require("./core/channel/v1/query"));
+var _179 = __toESM(require("./core/channel/v1/tx"));
+var _180 = __toESM(require("./core/channel/v1/upgrade"));
+var _181 = __toESM(require("./core/client/v1/client"));
+var _182 = __toESM(require("./core/client/v1/genesis"));
+var _183 = __toESM(require("./core/client/v1/query"));
+var _184 = __toESM(require("./core/client/v1/tx"));
+var _185 = __toESM(require("./core/commitment/v1/commitment"));
+var _186 = __toESM(require("./core/connection/v1/connection"));
+var _187 = __toESM(require("./core/connection/v1/genesis"));
+var _188 = __toESM(require("./core/connection/v1/query"));
+var _189 = __toESM(require("./core/connection/v1/tx"));
+var _190 = __toESM(require("./core/types/v1/genesis"));
+var _191 = __toESM(require("./lightclients/localhost/v2/localhost"));
+var _192 = __toESM(require("./lightclients/solomachine/v2/solomachine"));
+var _193 = __toESM(require("./lightclients/solomachine/v3/solomachine"));
+var _194 = __toESM(require("./lightclients/tendermint/v1/tendermint"));
+var _195 = __toESM(require("./lightclients/wasm/v1/genesis"));
+var _196 = __toESM(require("./lightclients/wasm/v1/query"));
+var _197 = __toESM(require("./lightclients/wasm/v1/tx"));
+var _198 = __toESM(require("./lightclients/wasm/v1/wasm"));
+var _365 = __toESM(require("./applications/fee/v1/tx.amino"));
+var _366 = __toESM(require("./applications/interchain_accounts/controller/v1/tx.amino"));
+var _367 = __toESM(require("./applications/interchain_accounts/host/v1/tx.amino"));
+var _368 = __toESM(require("./applications/transfer/v1/tx.amino"));
+var _369 = __toESM(require("./core/channel/v1/tx.amino"));
+var _370 = __toESM(require("./core/client/v1/tx.amino"));
+var _371 = __toESM(require("./core/connection/v1/tx.amino"));
+var _372 = __toESM(require("./lightclients/wasm/v1/tx.amino"));
+var _373 = __toESM(require("./applications/fee/v1/tx.registry"));
+var _374 = __toESM(require("./applications/interchain_accounts/controller/v1/tx.registry"));
+var _375 = __toESM(require("./applications/interchain_accounts/host/v1/tx.registry"));
+var _376 = __toESM(require("./applications/transfer/v1/tx.registry"));
+var _377 = __toESM(require("./core/channel/v1/tx.registry"));
+var _378 = __toESM(require("./core/client/v1/tx.registry"));
+var _379 = __toESM(require("./core/connection/v1/tx.registry"));
+var _380 = __toESM(require("./lightclients/wasm/v1/tx.registry"));
+var _381 = __toESM(require("./applications/fee/v1/query.rpc.Query"));
+var _382 = __toESM(require("./applications/interchain_accounts/controller/v1/query.rpc.Query"));
+var _383 = __toESM(require("./applications/interchain_accounts/host/v1/query.rpc.Query"));
+var _384 = __toESM(require("./applications/transfer/v1/query.rpc.Query"));
+var _385 = __toESM(require("./core/channel/v1/query.rpc.Query"));
+var _386 = __toESM(require("./core/client/v1/query.rpc.Query"));
+var _387 = __toESM(require("./core/connection/v1/query.rpc.Query"));
+var _388 = __toESM(require("./lightclients/wasm/v1/query.rpc.Query"));
+var _389 = __toESM(require("./applications/fee/v1/tx.rpc.msg"));
+var _390 = __toESM(require("./applications/interchain_accounts/controller/v1/tx.rpc.msg"));
+var _391 = __toESM(require("./applications/interchain_accounts/host/v1/tx.rpc.msg"));
+var _392 = __toESM(require("./applications/transfer/v1/tx.rpc.msg"));
+var _393 = __toESM(require("./core/channel/v1/tx.rpc.msg"));
+var _394 = __toESM(require("./core/client/v1/tx.rpc.msg"));
+var _395 = __toESM(require("./core/connection/v1/tx.rpc.msg"));
+var _396 = __toESM(require("./lightclients/wasm/v1/tx.rpc.msg"));
+var _447 = __toESM(require("./rpc.query"));
+var _448 = __toESM(require("./rpc.tx"));
 var ibc;
 ((ibc2) => {
   let applications;
@@ -107,16 +116,16 @@ var ibc;
     let fee;
     ((fee2) => {
       fee2.v1 = {
-        ..._149,
-        ..._150,
-        ..._151,
-        ..._152,
-        ..._153,
         ..._154,
-        ..._352,
-        ..._359,
-        ..._366,
-        ..._373
+        ..._155,
+        ..._156,
+        ..._157,
+        ..._158,
+        ..._159,
+        ..._365,
+        ..._373,
+        ..._381,
+        ..._389
       };
     })(fee = applications2.fee || (applications2.fee = {}));
     let interchain_accounts;
@@ -124,54 +133,54 @@ var ibc;
       let controller;
       ((controller2) => {
         controller2.v1 = {
-          ..._155,
-          ..._156,
-          ..._157,
-          ..._353,
-          ..._360,
-          ..._367,
-          ..._374
+          ..._160,
+          ..._161,
+          ..._162,
+          ..._366,
+          ..._374,
+          ..._382,
+          ..._390
         };
       })(controller = interchain_accounts2.controller || (interchain_accounts2.controller = {}));
       let genesis;
       ((genesis2) => {
         genesis2.v1 = {
-          ..._158
+          ..._163
         };
       })(genesis = interchain_accounts2.genesis || (interchain_accounts2.genesis = {}));
       let host;
       ((host2) => {
         host2.v1 = {
-          ..._159,
-          ..._160,
-          ..._161,
-          ..._354,
-          ..._361,
-          ..._368,
-          ..._375
+          ..._164,
+          ..._165,
+          ..._166,
+          ..._367,
+          ..._375,
+          ..._383,
+          ..._391
         };
       })(host = interchain_accounts2.host || (interchain_accounts2.host = {}));
       interchain_accounts2.v1 = {
-        ..._162,
-        ..._163,
-        ..._164
+        ..._167,
+        ..._168,
+        ..._169
       };
     })(interchain_accounts = applications2.interchain_accounts || (applications2.interchain_accounts = {}));
     let transfer;
     ((transfer2) => {
       transfer2.v1 = {
-        ..._165,
-        ..._166,
-        ..._167,
-        ..._168,
-        ..._169,
-        ..._355,
-        ..._362,
-        ..._369,
-        ..._376
+        ..._170,
+        ..._171,
+        ..._172,
+        ..._173,
+        ..._174,
+        ..._368,
+        ..._376,
+        ..._384,
+        ..._392
       };
       transfer2.v2 = {
-        ..._170
+        ..._175
       };
     })(transfer = applications2.transfer || (applications2.transfer = {}));
   })(applications = ibc2.applications || (ibc2.applications = {}));
@@ -180,52 +189,53 @@ var ibc;
     let channel;
     ((channel2) => {
       channel2.v1 = {
-        ..._171,
-        ..._172,
-        ..._173,
-        ..._174,
-        ..._356,
-        ..._363,
-        ..._370,
-        ..._377
+        ..._176,
+        ..._177,
+        ..._178,
+        ..._179,
+        ..._180,
+        ..._369,
+        ..._377,
+        ..._385,
+        ..._393
       };
     })(channel = core2.channel || (core2.channel = {}));
     let client;
     ((client2) => {
       client2.v1 = {
-        ..._175,
-        ..._176,
-        ..._177,
-        ..._178,
-        ..._357,
-        ..._364,
-        ..._371,
-        ..._378
+        ..._181,
+        ..._182,
+        ..._183,
+        ..._184,
+        ..._370,
+        ..._378,
+        ..._386,
+        ..._394
       };
     })(client = core2.client || (core2.client = {}));
     let commitment;
     ((commitment2) => {
       commitment2.v1 = {
-        ..._179
+        ..._185
       };
     })(commitment = core2.commitment || (core2.commitment = {}));
     let connection;
     ((connection2) => {
       connection2.v1 = {
-        ..._180,
-        ..._181,
-        ..._182,
-        ..._183,
-        ..._358,
-        ..._365,
-        ..._372,
-        ..._379
+        ..._186,
+        ..._187,
+        ..._188,
+        ..._189,
+        ..._371,
+        ..._379,
+        ..._387,
+        ..._395
       };
     })(connection = core2.connection || (core2.connection = {}));
     let types;
     ((types2) => {
       types2.v1 = {
-        ..._184
+        ..._190
       };
     })(types = core2.types || (core2.types = {}));
   })(core = ibc2.core || (ibc2.core = {}));
@@ -234,28 +244,41 @@ var ibc;
     let localhost;
     ((localhost2) => {
       localhost2.v2 = {
-        ..._185
+        ..._191
       };
     })(localhost = lightclients2.localhost || (lightclients2.localhost = {}));
     let solomachine;
     ((solomachine2) => {
       solomachine2.v2 = {
-        ..._186
+        ..._192
       };
       solomachine2.v3 = {
-        ..._187
+        ..._193
       };
     })(solomachine = lightclients2.solomachine || (lightclients2.solomachine = {}));
     let tendermint;
     ((tendermint2) => {
       tendermint2.v1 = {
-        ..._188
+        ..._194
       };
     })(tendermint = lightclients2.tendermint || (lightclients2.tendermint = {}));
+    let wasm;
+    ((wasm2) => {
+      wasm2.v1 = {
+        ..._195,
+        ..._196,
+        ..._197,
+        ..._198,
+        ..._372,
+        ..._380,
+        ..._388,
+        ..._396
+      };
+    })(wasm = lightclients2.wasm || (lightclients2.wasm = {}));
   })(lightclients = ibc2.lightclients || (ibc2.lightclients = {}));
   ibc2.ClientFactory = {
-    ..._427,
-    ..._428
+    ..._447,
+    ..._448
   };
 })(ibc || (ibc = {}));
 // Annotate the CommonJS export names for ESM import in node:

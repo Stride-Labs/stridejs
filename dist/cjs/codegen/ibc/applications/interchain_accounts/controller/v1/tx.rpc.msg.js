@@ -28,6 +28,7 @@ class MsgClientImpl {
     this.rpc = rpc;
     this.registerInterchainAccount = this.registerInterchainAccount.bind(this);
     this.sendTx = this.sendTx.bind(this);
+    this.updateParams = this.updateParams.bind(this);
   }
   registerInterchainAccount(request) {
     const data = import_tx.MsgRegisterInterchainAccount.encode(request).finish();
@@ -38,6 +39,11 @@ class MsgClientImpl {
     const data = import_tx.MsgSendTx.encode(request).finish();
     const promise = this.rpc.request("ibc.applications.interchain_accounts.controller.v1.Msg", "SendTx", data);
     return promise.then((data2) => import_tx.MsgSendTxResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  updateParams(request) {
+    const data = import_tx.MsgUpdateParams.encode(request).finish();
+    const promise = this.rpc.request("ibc.applications.interchain_accounts.controller.v1.Msg", "UpdateParams", data);
+    return promise.then((data2) => import_tx.MsgUpdateParamsResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

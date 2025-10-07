@@ -5,12 +5,12 @@ import * as _143 from "./liquid/v1beta1/lsm_tx";
 import * as _144 from "./liquid/v1beta1/query";
 import * as _145 from "./liquid/v1beta1/tx";
 import * as _146 from "./metaprotocols/extensions";
-import * as _360 from "./liquid/v1beta1/tx.amino";
-import * as _361 from "./liquid/v1beta1/tx.registry";
-import * as _362 from "./liquid/v1beta1/query.rpc.Query";
-import * as _363 from "./liquid/v1beta1/tx.rpc.msg";
-import * as _441 from "./rpc.query";
-import * as _442 from "./rpc.tx";
+import * as _361 from "./liquid/v1beta1/tx.amino";
+import * as _362 from "./liquid/v1beta1/tx.registry";
+import * as _363 from "./liquid/v1beta1/query.rpc.Query";
+import * as _364 from "./liquid/v1beta1/tx.rpc.msg";
+import * as _445 from "./rpc.query";
+import * as _446 from "./rpc.tx";
 export namespace gaia {
   export namespace liquid {
     export namespace module {
@@ -24,17 +24,17 @@ export namespace gaia {
       ..._143,
       ..._144,
       ..._145,
-      ..._360,
       ..._361,
       ..._362,
-      ..._363
+      ..._363,
+      ..._364
     };
   }
   export const metaprotocols = {
     ..._146
   };
   export const ClientFactory = {
-    ..._441,
-    ..._442
+    ..._445,
+    ..._446
   };
 }

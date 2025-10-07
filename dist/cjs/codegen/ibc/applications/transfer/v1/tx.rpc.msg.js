@@ -27,11 +27,17 @@ class MsgClientImpl {
   constructor(rpc) {
     this.rpc = rpc;
     this.transfer = this.transfer.bind(this);
+    this.updateParams = this.updateParams.bind(this);
   }
   transfer(request) {
     const data = import_tx.MsgTransfer.encode(request).finish();
     const promise = this.rpc.request("ibc.applications.transfer.v1.Msg", "Transfer", data);
     return promise.then((data2) => import_tx.MsgTransferResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  updateParams(request) {
+    const data = import_tx.MsgUpdateParams.encode(request).finish();
+    const promise = this.rpc.request("ibc.applications.transfer.v1.Msg", "UpdateParams", data);
+    return promise.then((data2) => import_tx.MsgUpdateParamsResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

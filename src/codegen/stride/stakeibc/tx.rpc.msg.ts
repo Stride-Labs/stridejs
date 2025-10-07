@@ -1,6 +1,6 @@
 import { TxRpc } from "../../types";
 import { BinaryReader } from "../../binary";
-import { MsgLiquidStake, MsgLiquidStakeResponse, MsgLSMLiquidStake, MsgLSMLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidators, MsgAddValidatorsResponse, MsgChangeValidatorWeights, MsgChangeValidatorWeightsResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgCloseDelegationChannel, MsgCloseDelegationChannelResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgCalibrateDelegation, MsgCalibrateDelegationResponse, MsgClearBalance, MsgClearBalanceResponse, MsgUpdateInnerRedemptionRateBounds, MsgUpdateInnerRedemptionRateBoundsResponse, MsgResumeHostZone, MsgResumeHostZoneResponse, MsgCreateTradeRoute, MsgCreateTradeRouteResponse, MsgDeleteTradeRoute, MsgDeleteTradeRouteResponse, MsgUpdateTradeRoute, MsgUpdateTradeRouteResponse, MsgSetCommunityPoolRebate, MsgSetCommunityPoolRebateResponse, MsgToggleTradeController, MsgToggleTradeControllerResponse, MsgUpdateHostZoneParams, MsgUpdateHostZoneParamsResponse } from "./tx";
+import { MsgLiquidStake, MsgLiquidStakeResponse, MsgLSMLiquidStake, MsgLSMLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidators, MsgAddValidatorsResponse, MsgChangeValidatorWeights, MsgChangeValidatorWeightsResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgCloseDelegationChannel, MsgCloseDelegationChannelResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgCalibrateDelegation, MsgCalibrateDelegationResponse, MsgClearBalance, MsgClearBalanceResponse, MsgUpdateInnerRedemptionRateBounds, MsgUpdateInnerRedemptionRateBoundsResponse, MsgResumeHostZone, MsgResumeHostZoneResponse, MsgCreateTradeRoute, MsgCreateTradeRouteResponse, MsgDeleteTradeRoute, MsgDeleteTradeRouteResponse, MsgUpdateTradeRoute, MsgUpdateTradeRouteResponse, MsgSetCommunityPoolRebate, MsgSetCommunityPoolRebateResponse, MsgToggleTradeController, MsgToggleTradeControllerResponse, MsgUpdateHostZoneParams, MsgUpdateHostZoneParamsResponse, MsgDeprecateHostZone, MsgDeprecateHostZoneResponse } from "./tx";
 /** Msg defines the Msg service. */
 export interface Msg {
   liquidStake(request: MsgLiquidStake): Promise<MsgLiquidStakeResponse>;
@@ -25,6 +25,7 @@ export interface Msg {
   setCommunityPoolRebate(request: MsgSetCommunityPoolRebate): Promise<MsgSetCommunityPoolRebateResponse>;
   toggleTradeController(request: MsgToggleTradeController): Promise<MsgToggleTradeControllerResponse>;
   updateHostZoneParams(request: MsgUpdateHostZoneParams): Promise<MsgUpdateHostZoneParamsResponse>;
+  deprecateHostZone(request: MsgDeprecateHostZone): Promise<MsgDeprecateHostZoneResponse>;
 }
 export class MsgClientImpl implements Msg {
   private readonly rpc: TxRpc;
@@ -52,6 +53,7 @@ export class MsgClientImpl implements Msg {
     this.setCommunityPoolRebate = this.setCommunityPoolRebate.bind(this);
     this.toggleTradeController = this.toggleTradeController.bind(this);
     this.updateHostZoneParams = this.updateHostZoneParams.bind(this);
+    this.deprecateHostZone = this.deprecateHostZone.bind(this);
   }
   liquidStake(request: MsgLiquidStake): Promise<MsgLiquidStakeResponse> {
     const data = MsgLiquidStake.encode(request).finish();
@@ -162,5 +164,10 @@ export class MsgClientImpl implements Msg {
     const data = MsgUpdateHostZoneParams.encode(request).finish();
     const promise = this.rpc.request("stride.stakeibc.Msg", "UpdateHostZoneParams", data);
     return promise.then(data => MsgUpdateHostZoneParamsResponse.decode(new BinaryReader(data)));
+  }
+  deprecateHostZone(request: MsgDeprecateHostZone): Promise<MsgDeprecateHostZoneResponse> {
+    const data = MsgDeprecateHostZone.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "DeprecateHostZone", data);
+    return promise.then(data => MsgDeprecateHostZoneResponse.decode(new BinaryReader(data)));
   }
 }

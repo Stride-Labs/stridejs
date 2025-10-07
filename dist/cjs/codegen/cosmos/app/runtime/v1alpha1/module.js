@@ -29,7 +29,10 @@ function createBaseModule() {
     endBlockers: [],
     initGenesis: [],
     exportGenesis: [],
-    overrideStoreKeys: []
+    overrideStoreKeys: [],
+    orderMigrations: [],
+    precommiters: [],
+    prepareCheckStaters: []
   };
 }
 const Module = {
@@ -52,6 +55,15 @@ const Module = {
     }
     for (const v of message.overrideStoreKeys) {
       StoreKeyConfig.encode(v, writer.uint32(50).fork()).ldelim();
+    }
+    for (const v of message.orderMigrations) {
+      writer.uint32(58).string(v);
+    }
+    for (const v of message.precommiters) {
+      writer.uint32(66).string(v);
+    }
+    for (const v of message.prepareCheckStaters) {
+      writer.uint32(74).string(v);
     }
     return writer;
   },
@@ -80,6 +92,15 @@ const Module = {
         case 6:
           message.overrideStoreKeys.push(StoreKeyConfig.decode(reader, reader.uint32()));
           break;
+        case 7:
+          message.orderMigrations.push(reader.string());
+          break;
+        case 8:
+          message.precommiters.push(reader.string());
+          break;
+        case 9:
+          message.prepareCheckStaters.push(reader.string());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -95,6 +116,9 @@ const Module = {
     message.initGenesis = object.initGenesis?.map((e) => e) || [];
     message.exportGenesis = object.exportGenesis?.map((e) => e) || [];
     message.overrideStoreKeys = object.overrideStoreKeys?.map((e) => StoreKeyConfig.fromPartial(e)) || [];
+    message.orderMigrations = object.orderMigrations?.map((e) => e) || [];
+    message.precommiters = object.precommiters?.map((e) => e) || [];
+    message.prepareCheckStaters = object.prepareCheckStaters?.map((e) => e) || [];
     return message;
   },
   fromAmino(object) {
@@ -107,6 +131,9 @@ const Module = {
     message.initGenesis = object.init_genesis?.map((e) => e) || [];
     message.exportGenesis = object.export_genesis?.map((e) => e) || [];
     message.overrideStoreKeys = object.override_store_keys?.map((e) => StoreKeyConfig.fromAmino(e)) || [];
+    message.orderMigrations = object.order_migrations?.map((e) => e) || [];
+    message.precommiters = object.precommiters?.map((e) => e) || [];
+    message.prepareCheckStaters = object.prepare_check_staters?.map((e) => e) || [];
     return message;
   },
   toAmino(message) {
@@ -136,6 +163,21 @@ const Module = {
       obj.override_store_keys = message.overrideStoreKeys.map((e) => e ? StoreKeyConfig.toAmino(e) : void 0);
     } else {
       obj.override_store_keys = message.overrideStoreKeys;
+    }
+    if (message.orderMigrations) {
+      obj.order_migrations = message.orderMigrations.map((e) => e);
+    } else {
+      obj.order_migrations = message.orderMigrations;
+    }
+    if (message.precommiters) {
+      obj.precommiters = message.precommiters.map((e) => e);
+    } else {
+      obj.precommiters = message.precommiters;
+    }
+    if (message.prepareCheckStaters) {
+      obj.prepare_check_staters = message.prepareCheckStaters.map((e) => e);
+    } else {
+      obj.prepare_check_staters = message.prepareCheckStaters;
     }
     return obj;
   },

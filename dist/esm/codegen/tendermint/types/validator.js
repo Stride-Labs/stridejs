@@ -1,6 +1,51 @@
 import { PublicKey } from "../crypto/keys";
 import { BinaryReader, BinaryWriter } from "../../binary";
 import { bytesFromBase64, base64FromBytes } from "../../helpers";
+var BlockIDFlag = /* @__PURE__ */ ((BlockIDFlag2) => {
+  BlockIDFlag2[BlockIDFlag2["BLOCK_ID_FLAG_UNKNOWN"] = 0] = "BLOCK_ID_FLAG_UNKNOWN";
+  BlockIDFlag2[BlockIDFlag2["BLOCK_ID_FLAG_ABSENT"] = 1] = "BLOCK_ID_FLAG_ABSENT";
+  BlockIDFlag2[BlockIDFlag2["BLOCK_ID_FLAG_COMMIT"] = 2] = "BLOCK_ID_FLAG_COMMIT";
+  BlockIDFlag2[BlockIDFlag2["BLOCK_ID_FLAG_NIL"] = 3] = "BLOCK_ID_FLAG_NIL";
+  BlockIDFlag2[BlockIDFlag2["UNRECOGNIZED"] = -1] = "UNRECOGNIZED";
+  return BlockIDFlag2;
+})(BlockIDFlag || {});
+const BlockIDFlagSDKType = BlockIDFlag;
+const BlockIDFlagAmino = BlockIDFlag;
+function blockIDFlagFromJSON(object) {
+  switch (object) {
+    case 0:
+    case "BLOCK_ID_FLAG_UNKNOWN":
+      return 0 /* BLOCK_ID_FLAG_UNKNOWN */;
+    case 1:
+    case "BLOCK_ID_FLAG_ABSENT":
+      return 1 /* BLOCK_ID_FLAG_ABSENT */;
+    case 2:
+    case "BLOCK_ID_FLAG_COMMIT":
+      return 2 /* BLOCK_ID_FLAG_COMMIT */;
+    case 3:
+    case "BLOCK_ID_FLAG_NIL":
+      return 3 /* BLOCK_ID_FLAG_NIL */;
+    case -1:
+    case "UNRECOGNIZED":
+    default:
+      return -1 /* UNRECOGNIZED */;
+  }
+}
+function blockIDFlagToJSON(object) {
+  switch (object) {
+    case 0 /* BLOCK_ID_FLAG_UNKNOWN */:
+      return "BLOCK_ID_FLAG_UNKNOWN";
+    case 1 /* BLOCK_ID_FLAG_ABSENT */:
+      return "BLOCK_ID_FLAG_ABSENT";
+    case 2 /* BLOCK_ID_FLAG_COMMIT */:
+      return "BLOCK_ID_FLAG_COMMIT";
+    case 3 /* BLOCK_ID_FLAG_NIL */:
+      return "BLOCK_ID_FLAG_NIL";
+    case -1 /* UNRECOGNIZED */:
+    default:
+      return "UNRECOGNIZED";
+  }
+}
 function createBaseValidatorSet() {
   return {
     validators: [],
@@ -265,7 +310,12 @@ const SimpleValidator = {
   }
 };
 export {
+  BlockIDFlag,
+  BlockIDFlagAmino,
+  BlockIDFlagSDKType,
   SimpleValidator,
   Validator,
-  ValidatorSet
+  ValidatorSet,
+  blockIDFlagFromJSON,
+  blockIDFlagToJSON
 };

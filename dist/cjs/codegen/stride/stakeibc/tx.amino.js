@@ -131,6 +131,11 @@ const AminoConverter = {
     aminoType: "stakeibc/MsgUpdateHostZoneParams",
     toAmino: import_tx.MsgUpdateHostZoneParams.toAmino,
     fromAmino: import_tx.MsgUpdateHostZoneParams.fromAmino
+  },
+  "/stride.stakeibc.MsgDeprecateHostZone": {
+    aminoType: "stakeibc/MsgDeprecateHostZone",
+    toAmino: import_tx.MsgDeprecateHostZone.toAmino,
+    fromAmino: import_tx.MsgDeprecateHostZone.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

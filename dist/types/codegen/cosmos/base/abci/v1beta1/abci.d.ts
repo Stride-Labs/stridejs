@@ -1,5 +1,6 @@
 import { Any, AnyAmino, AnySDKType } from "../../../../google/protobuf/any";
 import { Event, EventAmino, EventSDKType } from "../../../../tendermint/abci/types";
+import { Block, BlockAmino, BlockSDKType } from "../../../../tendermint/types/block";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 /**
  * TxResponse defines a structure containing relevant tx data and metadata. The
@@ -548,6 +549,70 @@ export interface SearchTxsResultSDKType {
     limit: bigint;
     txs: TxResponseSDKType[];
 }
+/** SearchBlocksResult defines a structure for querying blocks pageable */
+export interface SearchBlocksResult {
+    /** Count of all blocks */
+    totalCount: bigint;
+    /** Count of blocks in current page */
+    count: bigint;
+    /** Index of current page, start from 1 */
+    pageNumber: bigint;
+    /** Count of total pages */
+    pageTotal: bigint;
+    /** Max count blocks per page */
+    limit: bigint;
+    /** List of blocks in current page */
+    blocks: Block[];
+}
+export interface SearchBlocksResultProtoMsg {
+    typeUrl: "/cosmos.base.abci.v1beta1.SearchBlocksResult";
+    value: Uint8Array;
+}
+/**
+ * SearchBlocksResult defines a structure for querying blocks pageable
+ * @name SearchBlocksResultAmino
+ * @package cosmos.base.abci.v1beta1
+ * @see proto type: cosmos.base.abci.v1beta1.SearchBlocksResult
+ */
+export interface SearchBlocksResultAmino {
+    /**
+     * Count of all blocks
+     */
+    total_count?: string;
+    /**
+     * Count of blocks in current page
+     */
+    count?: string;
+    /**
+     * Index of current page, start from 1
+     */
+    page_number?: string;
+    /**
+     * Count of total pages
+     */
+    page_total?: string;
+    /**
+     * Max count blocks per page
+     */
+    limit?: string;
+    /**
+     * List of blocks in current page
+     */
+    blocks?: BlockAmino[];
+}
+export interface SearchBlocksResultAminoMsg {
+    type: "cosmos-sdk/SearchBlocksResult";
+    value: SearchBlocksResultAmino;
+}
+/** SearchBlocksResult defines a structure for querying blocks pageable */
+export interface SearchBlocksResultSDKType {
+    total_count: bigint;
+    count: bigint;
+    page_number: bigint;
+    page_total: bigint;
+    limit: bigint;
+    blocks: BlockSDKType[];
+}
 export declare const TxResponse: {
     typeUrl: string;
     encode(message: TxResponse, writer?: BinaryWriter): BinaryWriter;
@@ -677,4 +742,17 @@ export declare const SearchTxsResult: {
     fromProtoMsg(message: SearchTxsResultProtoMsg): SearchTxsResult;
     toProto(message: SearchTxsResult): Uint8Array;
     toProtoMsg(message: SearchTxsResult): SearchTxsResultProtoMsg;
+};
+export declare const SearchBlocksResult: {
+    typeUrl: string;
+    encode(message: SearchBlocksResult, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): SearchBlocksResult;
+    fromPartial(object: Partial<SearchBlocksResult>): SearchBlocksResult;
+    fromAmino(object: SearchBlocksResultAmino): SearchBlocksResult;
+    toAmino(message: SearchBlocksResult): SearchBlocksResultAmino;
+    fromAminoMsg(object: SearchBlocksResultAminoMsg): SearchBlocksResult;
+    toAminoMsg(message: SearchBlocksResult): SearchBlocksResultAminoMsg;
+    fromProtoMsg(message: SearchBlocksResultProtoMsg): SearchBlocksResult;
+    toProto(message: SearchBlocksResult): Uint8Array;
+    toProtoMsg(message: SearchBlocksResult): SearchBlocksResultProtoMsg;
 };

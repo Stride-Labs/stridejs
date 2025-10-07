@@ -131,7 +131,7 @@ export interface InstantiateContractProposal {
     admin: string;
     /** CodeID is the reference to the stored WASM code */
     codeId: bigint;
-    /** Label is optional metadata to be stored with a constract instance. */
+    /** Label is optional metadata to be stored with a contract instance. */
     label: string;
     /** Msg json encoded message to be passed to the contract on instantiation */
     msg: Uint8Array;
@@ -174,7 +174,7 @@ export interface InstantiateContractProposalAmino {
      */
     code_id?: string;
     /**
-     * Label is optional metadata to be stored with a constract instance.
+     * Label is optional metadata to be stored with a contract instance.
      */
     label?: string;
     /**
@@ -221,13 +221,13 @@ export interface InstantiateContract2Proposal {
     title: string;
     /** Description is a human readable text */
     description: string;
-    /** RunAs is the address that is passed to the contract's enviroment as sender */
+    /** RunAs is the address that is passed to the contract's environment as sender */
     runAs: string;
     /** Admin is an optional address that can execute migrations */
     admin: string;
     /** CodeID is the reference to the stored WASM code */
     codeId: bigint;
-    /** Label is optional metadata to be stored with a constract instance. */
+    /** Label is optional metadata to be stored with a contract instance. */
     label: string;
     /** Msg json encode message to be passed to the contract on instantiation */
     msg: Uint8Array;
@@ -265,7 +265,7 @@ export interface InstantiateContract2ProposalAmino {
      */
     description?: string;
     /**
-     * RunAs is the address that is passed to the contract's enviroment as sender
+     * RunAs is the address that is passed to the contract's environment as sender
      */
     run_as?: string;
     /**
@@ -277,7 +277,7 @@ export interface InstantiateContract2ProposalAmino {
      */
     code_id?: string;
     /**
-     * Label is optional metadata to be stored with a constract instance.
+     * Label is optional metadata to be stored with a contract instance.
      */
     label?: string;
     /**
@@ -929,7 +929,7 @@ export interface StoreAndInstantiateContractProposal {
     unpinCode: boolean;
     /** Admin is an optional address that can execute migrations */
     admin: string;
-    /** Label is optional metadata to be stored with a constract instance. */
+    /** Label is optional metadata to be stored with a contract instance. */
     label: string;
     /** Msg json encoded message to be passed to the contract on instantiation */
     msg: Uint8Array;
@@ -992,7 +992,7 @@ export interface StoreAndInstantiateContractProposalAmino {
      */
     admin?: string;
     /**
-     * Label is optional metadata to be stored with a constract instance.
+     * Label is optional metadata to be stored with a contract instance.
      */
     label?: string;
     /**

@@ -1,6 +1,6 @@
 import { Counterparty, CounterpartyAmino, CounterpartySDKType, Version, VersionAmino, VersionSDKType } from "./connection";
 import { Any, AnyAmino, AnySDKType } from "../../../../google/protobuf/any";
-import { Height, HeightAmino, HeightSDKType } from "../../client/v1/client";
+import { Height, HeightAmino, HeightSDKType, Params, ParamsAmino, ParamsSDKType } from "../../client/v1/client";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 /**
  * MsgConnectionOpenInit defines the msg sent by an account on Chain A to
@@ -219,6 +219,7 @@ export interface MsgConnectionOpenAck {
     connectionId: string;
     counterpartyConnectionId: string;
     version?: Version;
+    /** @deprecated */
     clientState?: Any;
     proofHeight: Height;
     /**
@@ -227,12 +228,16 @@ export interface MsgConnectionOpenAck {
      */
     proofTry: Uint8Array;
     /** proof of client state included in message */
+    /** @deprecated */
     proofClient: Uint8Array;
     /** proof of client consensus state */
+    /** @deprecated */
     proofConsensus: Uint8Array;
+    /** @deprecated */
     consensusHeight: Height;
     signer: string;
     /** optional proof data for host state machines that are unable to introspect their own consensus state */
+    /** @deprecated */
     hostConsensusStateProof: Uint8Array;
 }
 export interface MsgConnectionOpenAckProtoMsg {
@@ -250,6 +255,9 @@ export interface MsgConnectionOpenAckAmino {
     connection_id?: string;
     counterparty_connection_id?: string;
     version?: VersionAmino;
+    /**
+     * @deprecated
+     */
     client_state?: AnyAmino;
     proof_height?: HeightAmino;
     /**
@@ -259,16 +267,22 @@ export interface MsgConnectionOpenAckAmino {
     proof_try?: string;
     /**
      * proof of client state included in message
+     * @deprecated
      */
     proof_client?: string;
     /**
      * proof of client consensus state
+     * @deprecated
      */
     proof_consensus?: string;
+    /**
+     * @deprecated
+     */
     consensus_height?: HeightAmino;
     signer?: string;
     /**
      * optional proof data for host state machines that are unable to introspect their own consensus state
+     * @deprecated
      */
     host_consensus_state_proof?: string;
 }
@@ -284,13 +298,18 @@ export interface MsgConnectionOpenAckSDKType {
     connection_id: string;
     counterparty_connection_id: string;
     version?: VersionSDKType;
+    /** @deprecated */
     client_state?: AnySDKType;
     proof_height: HeightSDKType;
     proof_try: Uint8Array;
+    /** @deprecated */
     proof_client: Uint8Array;
+    /** @deprecated */
     proof_consensus: Uint8Array;
+    /** @deprecated */
     consensus_height: HeightSDKType;
     signer: string;
+    /** @deprecated */
     host_consensus_state_proof: Uint8Array;
 }
 /** MsgConnectionOpenAckResponse defines the Msg/ConnectionOpenAck response type. */
@@ -388,6 +407,70 @@ export interface MsgConnectionOpenConfirmResponseAminoMsg {
  * response type.
  */
 export interface MsgConnectionOpenConfirmResponseSDKType {
+}
+/** MsgUpdateParams defines the sdk.Msg type to update the connection parameters. */
+export interface MsgUpdateParams {
+    /** signer address */
+    signer: string;
+    /**
+     * params defines the connection parameters to update.
+     *
+     * NOTE: All parameters must be supplied.
+     */
+    params: Params;
+}
+export interface MsgUpdateParamsProtoMsg {
+    typeUrl: "/ibc.core.connection.v1.MsgUpdateParams";
+    value: Uint8Array;
+}
+/**
+ * MsgUpdateParams defines the sdk.Msg type to update the connection parameters.
+ * @name MsgUpdateParamsAmino
+ * @package ibc.core.connection.v1
+ * @see proto type: ibc.core.connection.v1.MsgUpdateParams
+ */
+export interface MsgUpdateParamsAmino {
+    /**
+     * signer address
+     */
+    signer?: string;
+    /**
+     * params defines the connection parameters to update.
+     *
+     * NOTE: All parameters must be supplied.
+     */
+    params?: ParamsAmino;
+}
+export interface MsgUpdateParamsAminoMsg {
+    type: "cosmos-sdk/MsgUpdateParams";
+    value: MsgUpdateParamsAmino;
+}
+/** MsgUpdateParams defines the sdk.Msg type to update the connection parameters. */
+export interface MsgUpdateParamsSDKType {
+    signer: string;
+    params: ParamsSDKType;
+}
+/** MsgUpdateParamsResponse defines the MsgUpdateParams response type. */
+export interface MsgUpdateParamsResponse {
+}
+export interface MsgUpdateParamsResponseProtoMsg {
+    typeUrl: "/ibc.core.connection.v1.MsgUpdateParamsResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgUpdateParamsResponse defines the MsgUpdateParams response type.
+ * @name MsgUpdateParamsResponseAmino
+ * @package ibc.core.connection.v1
+ * @see proto type: ibc.core.connection.v1.MsgUpdateParamsResponse
+ */
+export interface MsgUpdateParamsResponseAmino {
+}
+export interface MsgUpdateParamsResponseAminoMsg {
+    type: "cosmos-sdk/MsgUpdateParamsResponse";
+    value: MsgUpdateParamsResponseAmino;
+}
+/** MsgUpdateParamsResponse defines the MsgUpdateParams response type. */
+export interface MsgUpdateParamsResponseSDKType {
 }
 export declare const MsgConnectionOpenInit: {
     typeUrl: string;
@@ -492,4 +575,30 @@ export declare const MsgConnectionOpenConfirmResponse: {
     fromProtoMsg(message: MsgConnectionOpenConfirmResponseProtoMsg): MsgConnectionOpenConfirmResponse;
     toProto(message: MsgConnectionOpenConfirmResponse): Uint8Array;
     toProtoMsg(message: MsgConnectionOpenConfirmResponse): MsgConnectionOpenConfirmResponseProtoMsg;
+};
+export declare const MsgUpdateParams: {
+    typeUrl: string;
+    encode(message: MsgUpdateParams, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParams;
+    fromPartial(object: Partial<MsgUpdateParams>): MsgUpdateParams;
+    fromAmino(object: MsgUpdateParamsAmino): MsgUpdateParams;
+    toAmino(message: MsgUpdateParams): MsgUpdateParamsAmino;
+    fromAminoMsg(object: MsgUpdateParamsAminoMsg): MsgUpdateParams;
+    toAminoMsg(message: MsgUpdateParams): MsgUpdateParamsAminoMsg;
+    fromProtoMsg(message: MsgUpdateParamsProtoMsg): MsgUpdateParams;
+    toProto(message: MsgUpdateParams): Uint8Array;
+    toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg;
+};
+export declare const MsgUpdateParamsResponse: {
+    typeUrl: string;
+    encode(_: MsgUpdateParamsResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParamsResponse;
+    fromPartial(_: Partial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse;
+    fromAmino(_: MsgUpdateParamsResponseAmino): MsgUpdateParamsResponse;
+    toAmino(_: MsgUpdateParamsResponse): MsgUpdateParamsResponseAmino;
+    fromAminoMsg(object: MsgUpdateParamsResponseAminoMsg): MsgUpdateParamsResponse;
+    toAminoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseAminoMsg;
+    fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse;
+    toProto(message: MsgUpdateParamsResponse): Uint8Array;
+    toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg;
 };

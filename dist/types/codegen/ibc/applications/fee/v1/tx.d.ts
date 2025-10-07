@@ -178,7 +178,7 @@ export interface MsgPayPacketFeeAmino {
     /**
      * fee encapsulates the recv, ack and timeout fees associated with an IBC packet
      */
-    fee?: FeeAmino;
+    fee: FeeAmino;
     /**
      * the source port unique identifier
      */
@@ -259,11 +259,11 @@ export interface MsgPayPacketFeeAsyncAmino {
     /**
      * unique packet identifier comprised of the channel ID, port ID and sequence
      */
-    packet_id?: PacketIdAmino;
+    packet_id: PacketIdAmino;
     /**
      * the packet fee associated with a particular IBC packet
      */
-    packet_fee?: PacketFeeAmino;
+    packet_fee: PacketFeeAmino;
 }
 export interface MsgPayPacketFeeAsyncAminoMsg {
     type: "cosmos-sdk/MsgPayPacketFeeAsync";

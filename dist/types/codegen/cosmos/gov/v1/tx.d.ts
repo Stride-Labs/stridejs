@@ -33,6 +33,12 @@ export interface MsgSubmitProposal {
      * Since: cosmos-sdk 0.47
      */
     summary: string;
+    /**
+     * expedited defines if the proposal is expedited or not
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    expedited: boolean;
 }
 export interface MsgSubmitProposalProtoMsg {
     typeUrl: "/cosmos.gov.v1.MsgSubmitProposal";
@@ -74,6 +80,12 @@ export interface MsgSubmitProposalAmino {
      * Since: cosmos-sdk 0.47
      */
     summary?: string;
+    /**
+     * expedited defines if the proposal is expedited or not
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    expedited?: boolean;
 }
 export interface MsgSubmitProposalAminoMsg {
     type: "cosmos-sdk/v1/MsgSubmitProposal";
@@ -90,6 +102,7 @@ export interface MsgSubmitProposalSDKType {
     metadata: string;
     title: string;
     summary: string;
+    expedited: boolean;
 }
 /** MsgSubmitProposalResponse defines the Msg/SubmitProposal response type. */
 export interface MsgSubmitProposalResponse {
@@ -484,6 +497,108 @@ export interface MsgUpdateParamsResponseAminoMsg {
  */
 export interface MsgUpdateParamsResponseSDKType {
 }
+/**
+ * MsgCancelProposal is the Msg/CancelProposal request type.
+ *
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgCancelProposal {
+    /** proposal_id defines the unique id of the proposal. */
+    proposalId: bigint;
+    /** proposer is the account address of the proposer. */
+    proposer: string;
+}
+export interface MsgCancelProposalProtoMsg {
+    typeUrl: "/cosmos.gov.v1.MsgCancelProposal";
+    value: Uint8Array;
+}
+/**
+ * MsgCancelProposal is the Msg/CancelProposal request type.
+ *
+ * Since: cosmos-sdk 0.50
+ * @name MsgCancelProposalAmino
+ * @package cosmos.gov.v1
+ * @see proto type: cosmos.gov.v1.MsgCancelProposal
+ */
+export interface MsgCancelProposalAmino {
+    /**
+     * proposal_id defines the unique id of the proposal.
+     */
+    proposal_id: string;
+    /**
+     * proposer is the account address of the proposer.
+     */
+    proposer?: string;
+}
+export interface MsgCancelProposalAminoMsg {
+    type: "cosmos-sdk/v1/MsgCancelProposal";
+    value: MsgCancelProposalAmino;
+}
+/**
+ * MsgCancelProposal is the Msg/CancelProposal request type.
+ *
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgCancelProposalSDKType {
+    proposal_id: bigint;
+    proposer: string;
+}
+/**
+ * MsgCancelProposalResponse defines the response structure for executing a
+ * MsgCancelProposal message.
+ *
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgCancelProposalResponse {
+    /** proposal_id defines the unique id of the proposal. */
+    proposalId: bigint;
+    /** canceled_time is the time when proposal is canceled. */
+    canceledTime: Date;
+    /** canceled_height defines the block height at which the proposal is canceled. */
+    canceledHeight: bigint;
+}
+export interface MsgCancelProposalResponseProtoMsg {
+    typeUrl: "/cosmos.gov.v1.MsgCancelProposalResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgCancelProposalResponse defines the response structure for executing a
+ * MsgCancelProposal message.
+ *
+ * Since: cosmos-sdk 0.50
+ * @name MsgCancelProposalResponseAmino
+ * @package cosmos.gov.v1
+ * @see proto type: cosmos.gov.v1.MsgCancelProposalResponse
+ */
+export interface MsgCancelProposalResponseAmino {
+    /**
+     * proposal_id defines the unique id of the proposal.
+     */
+    proposal_id: string;
+    /**
+     * canceled_time is the time when proposal is canceled.
+     */
+    canceled_time?: string;
+    /**
+     * canceled_height defines the block height at which the proposal is canceled.
+     */
+    canceled_height?: string;
+}
+export interface MsgCancelProposalResponseAminoMsg {
+    type: "cosmos-sdk/v1/MsgCancelProposalResponse";
+    value: MsgCancelProposalResponseAmino;
+}
+/**
+ * MsgCancelProposalResponse defines the response structure for executing a
+ * MsgCancelProposal message.
+ *
+ * Since: cosmos-sdk 0.50
+ */
+export interface MsgCancelProposalResponseSDKType {
+    proposal_id: bigint;
+    canceled_time: Date;
+    canceled_height: bigint;
+}
 export declare const MsgSubmitProposal: {
     typeUrl: string;
     encode(message: MsgSubmitProposal, writer?: BinaryWriter): BinaryWriter;
@@ -639,6 +754,32 @@ export declare const MsgUpdateParamsResponse: {
     fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse;
     toProto(message: MsgUpdateParamsResponse): Uint8Array;
     toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg;
+};
+export declare const MsgCancelProposal: {
+    typeUrl: string;
+    encode(message: MsgCancelProposal, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgCancelProposal;
+    fromPartial(object: Partial<MsgCancelProposal>): MsgCancelProposal;
+    fromAmino(object: MsgCancelProposalAmino): MsgCancelProposal;
+    toAmino(message: MsgCancelProposal): MsgCancelProposalAmino;
+    fromAminoMsg(object: MsgCancelProposalAminoMsg): MsgCancelProposal;
+    toAminoMsg(message: MsgCancelProposal): MsgCancelProposalAminoMsg;
+    fromProtoMsg(message: MsgCancelProposalProtoMsg): MsgCancelProposal;
+    toProto(message: MsgCancelProposal): Uint8Array;
+    toProtoMsg(message: MsgCancelProposal): MsgCancelProposalProtoMsg;
+};
+export declare const MsgCancelProposalResponse: {
+    typeUrl: string;
+    encode(message: MsgCancelProposalResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgCancelProposalResponse;
+    fromPartial(object: Partial<MsgCancelProposalResponse>): MsgCancelProposalResponse;
+    fromAmino(object: MsgCancelProposalResponseAmino): MsgCancelProposalResponse;
+    toAmino(message: MsgCancelProposalResponse): MsgCancelProposalResponseAmino;
+    fromAminoMsg(object: MsgCancelProposalResponseAminoMsg): MsgCancelProposalResponse;
+    toAminoMsg(message: MsgCancelProposalResponse): MsgCancelProposalResponseAminoMsg;
+    fromProtoMsg(message: MsgCancelProposalResponseProtoMsg): MsgCancelProposalResponse;
+    toProto(message: MsgCancelProposalResponse): Uint8Array;
+    toProtoMsg(message: MsgCancelProposalResponse): MsgCancelProposalResponseProtoMsg;
 };
 export declare const Cosmos_govv1beta1Content_InterfaceDecoder: (input: BinaryReader | Uint8Array) => CommunityPoolSpendProposal | CommunityPoolSpendProposalWithDeposit | TextProposal | ParameterChangeProposal | SoftwareUpgradeProposal | CancelSoftwareUpgradeProposal | StoreCodeProposal | InstantiateContractProposal | InstantiateContract2Proposal | MigrateContractProposal | SudoContractProposal | ExecuteContractProposal | UpdateAdminProposal | ClearAdminProposal | PinCodesProposal | UnpinCodesProposal | UpdateInstantiateConfigProposal | StoreAndInstantiateContractProposal | ClientUpdateProposal | UpgradeProposal | Any;
 export declare const Cosmos_govv1beta1Content_FromAmino: (content: AnyAmino) => Any;

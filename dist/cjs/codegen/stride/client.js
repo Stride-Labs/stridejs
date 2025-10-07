@@ -40,31 +40,34 @@ var strideAuctionTxRegistry = __toESM(require("./auction/tx.registry"));
 var strideClaimTxRegistry = __toESM(require("./claim/tx.registry"));
 var strideIcaoracleTxRegistry = __toESM(require("./icaoracle/tx.registry"));
 var strideIcqoracleTxRegistry = __toESM(require("./icqoracle/tx.registry"));
-var strideInterchainqueryV1MessagesRegistry = __toESM(require("./interchainquery/v1/messages.registry"));
+var strideInterchainqueryV1TxRegistry = __toESM(require("./interchainquery/v1/tx.registry"));
 var strideStakedymTxRegistry = __toESM(require("./stakedym/tx.registry"));
 var strideStakeibcTxRegistry = __toESM(require("./stakeibc/tx.registry"));
 var strideStaketiaTxRegistry = __toESM(require("./staketia/tx.registry"));
+var strideStrdburnerTxRegistry = __toESM(require("./strdburner/tx.registry"));
 var strideAirdropTxAmino = __toESM(require("./airdrop/tx.amino"));
 var strideAuctionTxAmino = __toESM(require("./auction/tx.amino"));
 var strideClaimTxAmino = __toESM(require("./claim/tx.amino"));
 var strideIcaoracleTxAmino = __toESM(require("./icaoracle/tx.amino"));
 var strideIcqoracleTxAmino = __toESM(require("./icqoracle/tx.amino"));
-var strideInterchainqueryV1MessagesAmino = __toESM(require("./interchainquery/v1/messages.amino"));
+var strideInterchainqueryV1TxAmino = __toESM(require("./interchainquery/v1/tx.amino"));
 var strideStakedymTxAmino = __toESM(require("./stakedym/tx.amino"));
 var strideStakeibcTxAmino = __toESM(require("./stakeibc/tx.amino"));
 var strideStaketiaTxAmino = __toESM(require("./staketia/tx.amino"));
+var strideStrdburnerTxAmino = __toESM(require("./strdburner/tx.amino"));
 const strideAminoConverters = {
   ...strideAirdropTxAmino.AminoConverter,
   ...strideAuctionTxAmino.AminoConverter,
   ...strideClaimTxAmino.AminoConverter,
   ...strideIcaoracleTxAmino.AminoConverter,
   ...strideIcqoracleTxAmino.AminoConverter,
-  ...strideInterchainqueryV1MessagesAmino.AminoConverter,
+  ...strideInterchainqueryV1TxAmino.AminoConverter,
   ...strideStakedymTxAmino.AminoConverter,
   ...strideStakeibcTxAmino.AminoConverter,
-  ...strideStaketiaTxAmino.AminoConverter
+  ...strideStaketiaTxAmino.AminoConverter,
+  ...strideStrdburnerTxAmino.AminoConverter
 };
-const strideProtoRegistry = [...strideAirdropTxRegistry.registry, ...strideAuctionTxRegistry.registry, ...strideClaimTxRegistry.registry, ...strideIcaoracleTxRegistry.registry, ...strideIcqoracleTxRegistry.registry, ...strideInterchainqueryV1MessagesRegistry.registry, ...strideStakedymTxRegistry.registry, ...strideStakeibcTxRegistry.registry, ...strideStaketiaTxRegistry.registry];
+const strideProtoRegistry = [...strideAirdropTxRegistry.registry, ...strideAuctionTxRegistry.registry, ...strideClaimTxRegistry.registry, ...strideIcaoracleTxRegistry.registry, ...strideIcqoracleTxRegistry.registry, ...strideInterchainqueryV1TxRegistry.registry, ...strideStakedymTxRegistry.registry, ...strideStakeibcTxRegistry.registry, ...strideStaketiaTxRegistry.registry, ...strideStrdburnerTxRegistry.registry];
 const getSigningStrideClientOptions = ({
   defaultTypes = import_stargate.defaultRegistryTypes
 } = {}) => {

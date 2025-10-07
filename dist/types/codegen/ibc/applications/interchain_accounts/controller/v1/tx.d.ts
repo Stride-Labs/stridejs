@@ -1,5 +1,6 @@
 import { Order } from "../../../../core/channel/v1/channel";
 import { InterchainAccountPacketData, InterchainAccountPacketDataAmino, InterchainAccountPacketDataSDKType } from "../../v1/packet";
+import { Params, ParamsAmino, ParamsSDKType } from "./controller";
 import { BinaryReader, BinaryWriter } from "../../../../../binary";
 /** MsgRegisterInterchainAccount defines the payload for Msg/RegisterAccount */
 export interface MsgRegisterInterchainAccount {
@@ -130,6 +131,70 @@ export interface MsgSendTxResponseAminoMsg {
 export interface MsgSendTxResponseSDKType {
     sequence: bigint;
 }
+/** MsgUpdateParams defines the payload for Msg/UpdateParams */
+export interface MsgUpdateParams {
+    /** signer address */
+    signer: string;
+    /**
+     * params defines the 27-interchain-accounts/controller parameters to update.
+     *
+     * NOTE: All parameters must be supplied.
+     */
+    params: Params;
+}
+export interface MsgUpdateParamsProtoMsg {
+    typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgUpdateParams";
+    value: Uint8Array;
+}
+/**
+ * MsgUpdateParams defines the payload for Msg/UpdateParams
+ * @name MsgUpdateParamsAmino
+ * @package ibc.applications.interchain_accounts.controller.v1
+ * @see proto type: ibc.applications.interchain_accounts.controller.v1.MsgUpdateParams
+ */
+export interface MsgUpdateParamsAmino {
+    /**
+     * signer address
+     */
+    signer?: string;
+    /**
+     * params defines the 27-interchain-accounts/controller parameters to update.
+     *
+     * NOTE: All parameters must be supplied.
+     */
+    params?: ParamsAmino;
+}
+export interface MsgUpdateParamsAminoMsg {
+    type: "cosmos-sdk/MsgUpdateParams";
+    value: MsgUpdateParamsAmino;
+}
+/** MsgUpdateParams defines the payload for Msg/UpdateParams */
+export interface MsgUpdateParamsSDKType {
+    signer: string;
+    params: ParamsSDKType;
+}
+/** MsgUpdateParamsResponse defines the response for Msg/UpdateParams */
+export interface MsgUpdateParamsResponse {
+}
+export interface MsgUpdateParamsResponseProtoMsg {
+    typeUrl: "/ibc.applications.interchain_accounts.controller.v1.MsgUpdateParamsResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgUpdateParamsResponse defines the response for Msg/UpdateParams
+ * @name MsgUpdateParamsResponseAmino
+ * @package ibc.applications.interchain_accounts.controller.v1
+ * @see proto type: ibc.applications.interchain_accounts.controller.v1.MsgUpdateParamsResponse
+ */
+export interface MsgUpdateParamsResponseAmino {
+}
+export interface MsgUpdateParamsResponseAminoMsg {
+    type: "cosmos-sdk/MsgUpdateParamsResponse";
+    value: MsgUpdateParamsResponseAmino;
+}
+/** MsgUpdateParamsResponse defines the response for Msg/UpdateParams */
+export interface MsgUpdateParamsResponseSDKType {
+}
 export declare const MsgRegisterInterchainAccount: {
     typeUrl: string;
     encode(message: MsgRegisterInterchainAccount, writer?: BinaryWriter): BinaryWriter;
@@ -181,4 +246,30 @@ export declare const MsgSendTxResponse: {
     fromProtoMsg(message: MsgSendTxResponseProtoMsg): MsgSendTxResponse;
     toProto(message: MsgSendTxResponse): Uint8Array;
     toProtoMsg(message: MsgSendTxResponse): MsgSendTxResponseProtoMsg;
+};
+export declare const MsgUpdateParams: {
+    typeUrl: string;
+    encode(message: MsgUpdateParams, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParams;
+    fromPartial(object: Partial<MsgUpdateParams>): MsgUpdateParams;
+    fromAmino(object: MsgUpdateParamsAmino): MsgUpdateParams;
+    toAmino(message: MsgUpdateParams): MsgUpdateParamsAmino;
+    fromAminoMsg(object: MsgUpdateParamsAminoMsg): MsgUpdateParams;
+    toAminoMsg(message: MsgUpdateParams): MsgUpdateParamsAminoMsg;
+    fromProtoMsg(message: MsgUpdateParamsProtoMsg): MsgUpdateParams;
+    toProto(message: MsgUpdateParams): Uint8Array;
+    toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg;
+};
+export declare const MsgUpdateParamsResponse: {
+    typeUrl: string;
+    encode(_: MsgUpdateParamsResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParamsResponse;
+    fromPartial(_: Partial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse;
+    fromAmino(_: MsgUpdateParamsResponseAmino): MsgUpdateParamsResponse;
+    toAmino(_: MsgUpdateParamsResponse): MsgUpdateParamsResponseAmino;
+    fromAminoMsg(object: MsgUpdateParamsResponseAminoMsg): MsgUpdateParamsResponse;
+    toAminoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseAminoMsg;
+    fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse;
+    toProto(message: MsgUpdateParamsResponse): Uint8Array;
+    toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg;
 };

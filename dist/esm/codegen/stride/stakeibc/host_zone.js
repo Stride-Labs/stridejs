@@ -107,7 +107,8 @@ function createBaseHostZone() {
     redemptionsEnabled: false,
     communityPoolRebate: void 0,
     lsmLiquidStakeEnabled: false,
-    halted: false
+    halted: false,
+    deprecated: false
   };
 }
 const HostZone = {
@@ -202,6 +203,9 @@ const HostZone = {
     }
     if (message.halted === true) {
       writer.uint32(152).bool(message.halted);
+    }
+    if (message.deprecated === true) {
+      writer.uint32(304).bool(message.deprecated);
     }
     return writer;
   },
@@ -302,6 +306,9 @@ const HostZone = {
         case 19:
           message.halted = reader.bool();
           break;
+        case 38:
+          message.deprecated = reader.bool();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -341,6 +348,7 @@ const HostZone = {
     message.communityPoolRebate = object.communityPoolRebate !== void 0 && object.communityPoolRebate !== null ? CommunityPoolRebate.fromPartial(object.communityPoolRebate) : void 0;
     message.lsmLiquidStakeEnabled = object.lsmLiquidStakeEnabled ?? false;
     message.halted = object.halted ?? false;
+    message.deprecated = object.deprecated ?? false;
     return message;
   },
   fromAmino(object) {
@@ -433,6 +441,9 @@ const HostZone = {
     if (object.halted !== void 0 && object.halted !== null) {
       message.halted = object.halted;
     }
+    if (object.deprecated !== void 0 && object.deprecated !== null) {
+      message.deprecated = object.deprecated;
+    }
     return message;
   },
   toAmino(message) {
@@ -471,6 +482,7 @@ const HostZone = {
     obj.community_pool_rebate = message.communityPoolRebate ? CommunityPoolRebate.toAmino(message.communityPoolRebate) : void 0;
     obj.lsm_liquid_stake_enabled = message.lsmLiquidStakeEnabled === false ? void 0 : message.lsmLiquidStakeEnabled;
     obj.halted = message.halted === false ? void 0 : message.halted;
+    obj.deprecated = message.deprecated === false ? void 0 : message.deprecated;
     return obj;
   },
   fromAminoMsg(object) {

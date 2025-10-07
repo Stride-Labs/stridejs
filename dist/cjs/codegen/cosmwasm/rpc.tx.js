@@ -43,6 +43,9 @@ const createRPCMsgClient = async ({
     bank: {
       v1beta1: new (await import("../cosmos/bank/v1beta1/tx.rpc.msg")).MsgClientImpl(rpc)
     },
+    circuit: {
+      v1: new (await import("../cosmos/circuit/v1/tx.rpc.msg")).MsgClientImpl(rpc)
+    },
     consensus: {
       v1: new (await import("../cosmos/consensus/v1/tx.rpc.msg")).MsgClientImpl(rpc)
     },

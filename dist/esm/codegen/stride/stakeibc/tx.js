@@ -2572,6 +2572,137 @@ const MsgResumeHostZoneResponse = {
     };
   }
 };
+function createBaseMsgDeprecateHostZone() {
+  return {
+    authority: "",
+    chainId: ""
+  };
+}
+const MsgDeprecateHostZone = {
+  typeUrl: "/stride.stakeibc.MsgDeprecateHostZone",
+  encode(message, writer = BinaryWriter.create()) {
+    if (message.authority !== "") {
+      writer.uint32(10).string(message.authority);
+    }
+    if (message.chainId !== "") {
+      writer.uint32(18).string(message.chainId);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseMsgDeprecateHostZone();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.authority = reader.string();
+          break;
+        case 2:
+          message.chainId = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseMsgDeprecateHostZone();
+    message.authority = object.authority ?? "";
+    message.chainId = object.chainId ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseMsgDeprecateHostZone();
+    if (object.authority !== void 0 && object.authority !== null) {
+      message.authority = object.authority;
+    }
+    if (object.chain_id !== void 0 && object.chain_id !== null) {
+      message.chainId = object.chain_id;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.authority = message.authority === "" ? void 0 : message.authority;
+    obj.chain_id = message.chainId === "" ? void 0 : message.chainId;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return MsgDeprecateHostZone.fromAmino(object.value);
+  },
+  toAminoMsg(message) {
+    return {
+      type: "stakeibc/MsgDeprecateHostZone",
+      value: MsgDeprecateHostZone.toAmino(message)
+    };
+  },
+  fromProtoMsg(message) {
+    return MsgDeprecateHostZone.decode(message.value);
+  },
+  toProto(message) {
+    return MsgDeprecateHostZone.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/stride.stakeibc.MsgDeprecateHostZone",
+      value: MsgDeprecateHostZone.encode(message).finish()
+    };
+  }
+};
+function createBaseMsgDeprecateHostZoneResponse() {
+  return {};
+}
+const MsgDeprecateHostZoneResponse = {
+  typeUrl: "/stride.stakeibc.MsgDeprecateHostZoneResponse",
+  encode(_, writer = BinaryWriter.create()) {
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseMsgDeprecateHostZoneResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(_) {
+    const message = createBaseMsgDeprecateHostZoneResponse();
+    return message;
+  },
+  fromAmino(_) {
+    const message = createBaseMsgDeprecateHostZoneResponse();
+    return message;
+  },
+  toAmino(_) {
+    const obj = {};
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return MsgDeprecateHostZoneResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return MsgDeprecateHostZoneResponse.decode(message.value);
+  },
+  toProto(message) {
+    return MsgDeprecateHostZoneResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/stride.stakeibc.MsgDeprecateHostZoneResponse",
+      value: MsgDeprecateHostZoneResponse.encode(message).finish()
+    };
+  }
+};
 function createBaseMsgCreateTradeRoute() {
   return {
     authority: "",
@@ -3716,6 +3847,8 @@ export {
   MsgDeleteTradeRouteResponse,
   MsgDeleteValidator,
   MsgDeleteValidatorResponse,
+  MsgDeprecateHostZone,
+  MsgDeprecateHostZoneResponse,
   MsgLSMLiquidStake,
   MsgLSMLiquidStakeResponse,
   MsgLiquidStake,

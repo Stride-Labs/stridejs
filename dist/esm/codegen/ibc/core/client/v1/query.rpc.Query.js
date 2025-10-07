@@ -1,6 +1,6 @@
 import { BinaryReader } from "../../../../binary";
 import { createProtobufRpcClient } from "@cosmjs/stargate";
-import { QueryClientStateRequest, QueryClientStateResponse, QueryClientStatesRequest, QueryClientStatesResponse, QueryConsensusStateRequest, QueryConsensusStateResponse, QueryConsensusStatesRequest, QueryConsensusStatesResponse, QueryConsensusStateHeightsRequest, QueryConsensusStateHeightsResponse, QueryClientStatusRequest, QueryClientStatusResponse, QueryClientParamsRequest, QueryClientParamsResponse, QueryUpgradedClientStateRequest, QueryUpgradedClientStateResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse } from "./query";
+import { QueryClientStateRequest, QueryClientStateResponse, QueryClientStatesRequest, QueryClientStatesResponse, QueryConsensusStateRequest, QueryConsensusStateResponse, QueryConsensusStatesRequest, QueryConsensusStatesResponse, QueryConsensusStateHeightsRequest, QueryConsensusStateHeightsResponse, QueryClientStatusRequest, QueryClientStatusResponse, QueryClientParamsRequest, QueryClientParamsResponse, QueryUpgradedClientStateRequest, QueryUpgradedClientStateResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse, QueryVerifyMembershipRequest, QueryVerifyMembershipResponse } from "./query";
 class QueryClientImpl {
   rpc;
   constructor(rpc) {
@@ -14,6 +14,7 @@ class QueryClientImpl {
     this.clientParams = this.clientParams.bind(this);
     this.upgradedClientState = this.upgradedClientState.bind(this);
     this.upgradedConsensusState = this.upgradedConsensusState.bind(this);
+    this.verifyMembership = this.verifyMembership.bind(this);
   }
   clientState(request) {
     const data = QueryClientStateRequest.encode(request).finish();
@@ -62,6 +63,11 @@ class QueryClientImpl {
     const promise = this.rpc.request("ibc.core.client.v1.Query", "UpgradedConsensusState", data);
     return promise.then((data2) => QueryUpgradedConsensusStateResponse.decode(new BinaryReader(data2)));
   }
+  verifyMembership(request) {
+    const data = QueryVerifyMembershipRequest.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.client.v1.Query", "VerifyMembership", data);
+    return promise.then((data2) => QueryVerifyMembershipResponse.decode(new BinaryReader(data2)));
+  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = createProtobufRpcClient(base);
@@ -93,6 +99,9 @@ const createRpcQueryExtension = (base) => {
     },
     upgradedConsensusState(request) {
       return queryService.upgradedConsensusState(request);
+    },
+    verifyMembership(request) {
+      return queryService.verifyMembership(request);
     }
   };
 };

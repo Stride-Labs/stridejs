@@ -4,6 +4,7 @@
     * and run the transpile command or npm scripts command that is used to regenerate this bundle.
   */
 export * from "./amino/bundle";
+export * from "./capability/bundle";
 export * from "./cosmos_proto/bundle";
 export * from "./cosmos/bundle";
 export * from "./cosmos/client";

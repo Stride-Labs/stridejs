@@ -23,7 +23,7 @@ __export(tx_registry_exports, {
 });
 module.exports = __toCommonJS(tx_registry_exports);
 var import_tx = require("./tx");
-const registry = [["/ibc.core.channel.v1.MsgChannelOpenInit", import_tx.MsgChannelOpenInit], ["/ibc.core.channel.v1.MsgChannelOpenTry", import_tx.MsgChannelOpenTry], ["/ibc.core.channel.v1.MsgChannelOpenAck", import_tx.MsgChannelOpenAck], ["/ibc.core.channel.v1.MsgChannelOpenConfirm", import_tx.MsgChannelOpenConfirm], ["/ibc.core.channel.v1.MsgChannelCloseInit", import_tx.MsgChannelCloseInit], ["/ibc.core.channel.v1.MsgChannelCloseConfirm", import_tx.MsgChannelCloseConfirm], ["/ibc.core.channel.v1.MsgRecvPacket", import_tx.MsgRecvPacket], ["/ibc.core.channel.v1.MsgTimeout", import_tx.MsgTimeout], ["/ibc.core.channel.v1.MsgTimeoutOnClose", import_tx.MsgTimeoutOnClose], ["/ibc.core.channel.v1.MsgAcknowledgement", import_tx.MsgAcknowledgement]];
+const registry = [["/ibc.core.channel.v1.MsgChannelOpenInit", import_tx.MsgChannelOpenInit], ["/ibc.core.channel.v1.MsgChannelOpenTry", import_tx.MsgChannelOpenTry], ["/ibc.core.channel.v1.MsgChannelOpenAck", import_tx.MsgChannelOpenAck], ["/ibc.core.channel.v1.MsgChannelOpenConfirm", import_tx.MsgChannelOpenConfirm], ["/ibc.core.channel.v1.MsgChannelCloseInit", import_tx.MsgChannelCloseInit], ["/ibc.core.channel.v1.MsgChannelCloseConfirm", import_tx.MsgChannelCloseConfirm], ["/ibc.core.channel.v1.MsgRecvPacket", import_tx.MsgRecvPacket], ["/ibc.core.channel.v1.MsgTimeout", import_tx.MsgTimeout], ["/ibc.core.channel.v1.MsgTimeoutOnClose", import_tx.MsgTimeoutOnClose], ["/ibc.core.channel.v1.MsgAcknowledgement", import_tx.MsgAcknowledgement], ["/ibc.core.channel.v1.MsgChannelUpgradeInit", import_tx.MsgChannelUpgradeInit], ["/ibc.core.channel.v1.MsgChannelUpgradeTry", import_tx.MsgChannelUpgradeTry], ["/ibc.core.channel.v1.MsgChannelUpgradeAck", import_tx.MsgChannelUpgradeAck], ["/ibc.core.channel.v1.MsgChannelUpgradeConfirm", import_tx.MsgChannelUpgradeConfirm], ["/ibc.core.channel.v1.MsgChannelUpgradeOpen", import_tx.MsgChannelUpgradeOpen], ["/ibc.core.channel.v1.MsgChannelUpgradeTimeout", import_tx.MsgChannelUpgradeTimeout], ["/ibc.core.channel.v1.MsgChannelUpgradeCancel", import_tx.MsgChannelUpgradeCancel], ["/ibc.core.channel.v1.MsgUpdateParams", import_tx.MsgUpdateParams], ["/ibc.core.channel.v1.MsgPruneAcknowledgements", import_tx.MsgPruneAcknowledgements]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -90,6 +90,60 @@ const MessageComposer = {
         typeUrl: "/ibc.core.channel.v1.MsgAcknowledgement",
         value: import_tx.MsgAcknowledgement.encode(value).finish()
       };
+    },
+    channelUpgradeInit(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeInit",
+        value: import_tx.MsgChannelUpgradeInit.encode(value).finish()
+      };
+    },
+    channelUpgradeTry(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeTry",
+        value: import_tx.MsgChannelUpgradeTry.encode(value).finish()
+      };
+    },
+    channelUpgradeAck(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeAck",
+        value: import_tx.MsgChannelUpgradeAck.encode(value).finish()
+      };
+    },
+    channelUpgradeConfirm(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeConfirm",
+        value: import_tx.MsgChannelUpgradeConfirm.encode(value).finish()
+      };
+    },
+    channelUpgradeOpen(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeOpen",
+        value: import_tx.MsgChannelUpgradeOpen.encode(value).finish()
+      };
+    },
+    channelUpgradeTimeout(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeTimeout",
+        value: import_tx.MsgChannelUpgradeTimeout.encode(value).finish()
+      };
+    },
+    channelUpgradeCancel(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeCancel",
+        value: import_tx.MsgChannelUpgradeCancel.encode(value).finish()
+      };
+    },
+    updateChannelParams(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.encode(value).finish()
+      };
+    },
+    pruneAcknowledgements(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgPruneAcknowledgements",
+        value: import_tx.MsgPruneAcknowledgements.encode(value).finish()
+      };
     }
   },
   withTypeUrl: {
@@ -150,6 +204,60 @@ const MessageComposer = {
     acknowledgement(value) {
       return {
         typeUrl: "/ibc.core.channel.v1.MsgAcknowledgement",
+        value
+      };
+    },
+    channelUpgradeInit(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeInit",
+        value
+      };
+    },
+    channelUpgradeTry(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeTry",
+        value
+      };
+    },
+    channelUpgradeAck(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeAck",
+        value
+      };
+    },
+    channelUpgradeConfirm(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeConfirm",
+        value
+      };
+    },
+    channelUpgradeOpen(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeOpen",
+        value
+      };
+    },
+    channelUpgradeTimeout(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeTimeout",
+        value
+      };
+    },
+    channelUpgradeCancel(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeCancel",
+        value
+      };
+    },
+    updateChannelParams(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgUpdateParams",
+        value
+      };
+    },
+    pruneAcknowledgements(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgPruneAcknowledgements",
         value
       };
     }
@@ -213,6 +321,60 @@ const MessageComposer = {
       return {
         typeUrl: "/ibc.core.channel.v1.MsgAcknowledgement",
         value: import_tx.MsgAcknowledgement.fromPartial(value)
+      };
+    },
+    channelUpgradeInit(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeInit",
+        value: import_tx.MsgChannelUpgradeInit.fromPartial(value)
+      };
+    },
+    channelUpgradeTry(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeTry",
+        value: import_tx.MsgChannelUpgradeTry.fromPartial(value)
+      };
+    },
+    channelUpgradeAck(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeAck",
+        value: import_tx.MsgChannelUpgradeAck.fromPartial(value)
+      };
+    },
+    channelUpgradeConfirm(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeConfirm",
+        value: import_tx.MsgChannelUpgradeConfirm.fromPartial(value)
+      };
+    },
+    channelUpgradeOpen(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeOpen",
+        value: import_tx.MsgChannelUpgradeOpen.fromPartial(value)
+      };
+    },
+    channelUpgradeTimeout(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeTimeout",
+        value: import_tx.MsgChannelUpgradeTimeout.fromPartial(value)
+      };
+    },
+    channelUpgradeCancel(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeCancel",
+        value: import_tx.MsgChannelUpgradeCancel.fromPartial(value)
+      };
+    },
+    updateChannelParams(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgUpdateParams",
+        value: import_tx.MsgUpdateParams.fromPartial(value)
+      };
+    },
+    pruneAcknowledgements(value) {
+      return {
+        typeUrl: "/ibc.core.channel.v1.MsgPruneAcknowledgements",
+        value: import_tx.MsgPruneAcknowledgements.fromPartial(value)
       };
     }
   }

@@ -30,6 +30,8 @@ class QueryClientImpl {
     this.rpc = rpc;
     this.strdBurnerAddress = this.strdBurnerAddress.bind(this);
     this.totalStrdBurned = this.totalStrdBurned.bind(this);
+    this.strdBurnedByAddress = this.strdBurnedByAddress.bind(this);
+    this.linkedAddress = this.linkedAddress.bind(this);
   }
   strdBurnerAddress(request = {}) {
     const data = import_query.QueryStrdBurnerAddressRequest.encode(request).finish();
@@ -41,6 +43,16 @@ class QueryClientImpl {
     const promise = this.rpc.request("stride.strdburner.Query", "TotalStrdBurned", data);
     return promise.then((data2) => import_query.QueryTotalStrdBurnedResponse.decode(new import_binary.BinaryReader(data2)));
   }
+  strdBurnedByAddress(request) {
+    const data = import_query.QueryStrdBurnedByAddressRequest.encode(request).finish();
+    const promise = this.rpc.request("stride.strdburner.Query", "StrdBurnedByAddress", data);
+    return promise.then((data2) => import_query.QueryStrdBurnedByAddressResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  linkedAddress(request) {
+    const data = import_query.QueryLinkedAddressRequest.encode(request).finish();
+    const promise = this.rpc.request("stride.strdburner.Query", "LinkedAddress", data);
+    return promise.then((data2) => import_query.QueryLinkedAddressResponse.decode(new import_binary.BinaryReader(data2)));
+  }
 }
 const createRpcQueryExtension = (base) => {
   const rpc = (0, import_stargate.createProtobufRpcClient)(base);
@@ -51,6 +63,12 @@ const createRpcQueryExtension = (base) => {
     },
     totalStrdBurned(request) {
       return queryService.totalStrdBurned(request);
+    },
+    strdBurnedByAddress(request) {
+      return queryService.strdBurnedByAddress(request);
+    },
+    linkedAddress(request) {
+      return queryService.linkedAddress(request);
     }
   };
 };

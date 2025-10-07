@@ -1,5 +1,5 @@
 import { BinaryReader } from "../../../../binary";
-import { MsgConnectionOpenInit, MsgConnectionOpenInitResponse, MsgConnectionOpenTry, MsgConnectionOpenTryResponse, MsgConnectionOpenAck, MsgConnectionOpenAckResponse, MsgConnectionOpenConfirm, MsgConnectionOpenConfirmResponse } from "./tx";
+import { MsgConnectionOpenInit, MsgConnectionOpenInitResponse, MsgConnectionOpenTry, MsgConnectionOpenTryResponse, MsgConnectionOpenAck, MsgConnectionOpenAckResponse, MsgConnectionOpenConfirm, MsgConnectionOpenConfirmResponse, MsgUpdateParams, MsgUpdateParamsResponse } from "./tx";
 class MsgClientImpl {
   rpc;
   constructor(rpc) {
@@ -8,6 +8,7 @@ class MsgClientImpl {
     this.connectionOpenTry = this.connectionOpenTry.bind(this);
     this.connectionOpenAck = this.connectionOpenAck.bind(this);
     this.connectionOpenConfirm = this.connectionOpenConfirm.bind(this);
+    this.updateConnectionParams = this.updateConnectionParams.bind(this);
   }
   connectionOpenInit(request) {
     const data = MsgConnectionOpenInit.encode(request).finish();
@@ -28,6 +29,11 @@ class MsgClientImpl {
     const data = MsgConnectionOpenConfirm.encode(request).finish();
     const promise = this.rpc.request("ibc.core.connection.v1.Msg", "ConnectionOpenConfirm", data);
     return promise.then((data2) => MsgConnectionOpenConfirmResponse.decode(new BinaryReader(data2)));
+  }
+  updateConnectionParams(request) {
+    const data = MsgUpdateParams.encode(request).finish();
+    const promise = this.rpc.request("ibc.core.connection.v1.Msg", "UpdateConnectionParams", data);
+    return promise.then((data2) => MsgUpdateParamsResponse.decode(new BinaryReader(data2)));
   }
 }
 export {

@@ -9,6 +9,7 @@ export interface ConsensusParams {
     evidence?: EvidenceParams;
     validator?: ValidatorParams;
     version?: VersionParams;
+    abci?: ABCIParams;
 }
 export interface ConsensusParamsProtoMsg {
     typeUrl: "/tendermint.types.ConsensusParams";
@@ -26,6 +27,7 @@ export interface ConsensusParamsAmino {
     evidence?: EvidenceParamsAmino;
     validator?: ValidatorParamsAmino;
     version?: VersionParamsAmino;
+    abci?: ABCIParamsAmino;
 }
 export interface ConsensusParamsAminoMsg {
     type: "/tendermint.types.ConsensusParams";
@@ -40,6 +42,7 @@ export interface ConsensusParamsSDKType {
     evidence?: EvidenceParamsSDKType;
     validator?: ValidatorParamsSDKType;
     version?: VersionParamsSDKType;
+    abci?: ABCIParamsSDKType;
 }
 /** BlockParams contains limits on the block size. */
 export interface BlockParams {
@@ -247,6 +250,53 @@ export interface HashedParamsSDKType {
     block_max_bytes: bigint;
     block_max_gas: bigint;
 }
+/** ABCIParams configure functionality specific to the Application Blockchain Interface. */
+export interface ABCIParams {
+    /**
+     * vote_extensions_enable_height configures the first height during which
+     * vote extensions will be enabled. During this specified height, and for all
+     * subsequent heights, precommit messages that do not contain valid extension data
+     * will be considered invalid. Prior to this height, vote extensions will not
+     * be used or accepted by validators on the network.
+     *
+     * Once enabled, vote extensions will be created by the application in ExtendVote,
+     * passed to the application for validation in VerifyVoteExtension and given
+     * to the application to use when proposing a block during PrepareProposal.
+     */
+    voteExtensionsEnableHeight: bigint;
+}
+export interface ABCIParamsProtoMsg {
+    typeUrl: "/tendermint.types.ABCIParams";
+    value: Uint8Array;
+}
+/**
+ * ABCIParams configure functionality specific to the Application Blockchain Interface.
+ * @name ABCIParamsAmino
+ * @package tendermint.types
+ * @see proto type: tendermint.types.ABCIParams
+ */
+export interface ABCIParamsAmino {
+    /**
+     * vote_extensions_enable_height configures the first height during which
+     * vote extensions will be enabled. During this specified height, and for all
+     * subsequent heights, precommit messages that do not contain valid extension data
+     * will be considered invalid. Prior to this height, vote extensions will not
+     * be used or accepted by validators on the network.
+     *
+     * Once enabled, vote extensions will be created by the application in ExtendVote,
+     * passed to the application for validation in VerifyVoteExtension and given
+     * to the application to use when proposing a block during PrepareProposal.
+     */
+    vote_extensions_enable_height?: string;
+}
+export interface ABCIParamsAminoMsg {
+    type: "/tendermint.types.ABCIParams";
+    value: ABCIParamsAmino;
+}
+/** ABCIParams configure functionality specific to the Application Blockchain Interface. */
+export interface ABCIParamsSDKType {
+    vote_extensions_enable_height: bigint;
+}
 export declare const ConsensusParams: {
     typeUrl: string;
     encode(message: ConsensusParams, writer?: BinaryWriter): BinaryWriter;
@@ -318,4 +368,16 @@ export declare const HashedParams: {
     fromProtoMsg(message: HashedParamsProtoMsg): HashedParams;
     toProto(message: HashedParams): Uint8Array;
     toProtoMsg(message: HashedParams): HashedParamsProtoMsg;
+};
+export declare const ABCIParams: {
+    typeUrl: string;
+    encode(message: ABCIParams, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): ABCIParams;
+    fromPartial(object: Partial<ABCIParams>): ABCIParams;
+    fromAmino(object: ABCIParamsAmino): ABCIParams;
+    toAmino(message: ABCIParams): ABCIParamsAmino;
+    fromAminoMsg(object: ABCIParamsAminoMsg): ABCIParams;
+    fromProtoMsg(message: ABCIParamsProtoMsg): ABCIParams;
+    toProto(message: ABCIParams): Uint8Array;
+    toProtoMsg(message: ABCIParams): ABCIParamsProtoMsg;
 };

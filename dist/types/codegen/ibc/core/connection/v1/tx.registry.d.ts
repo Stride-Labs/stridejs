@@ -1,6 +1,6 @@
 import { TelescopeGeneratedType } from "../../../../types";
 import { Registry } from "@cosmjs/proto-signing";
-import { MsgConnectionOpenInit, MsgConnectionOpenTry, MsgConnectionOpenAck, MsgConnectionOpenConfirm } from "./tx";
+import { MsgConnectionOpenInit, MsgConnectionOpenTry, MsgConnectionOpenAck, MsgConnectionOpenConfirm, MsgUpdateParams } from "./tx";
 export declare const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]>;
 export declare const load: (protoRegistry: Registry) => void;
 export declare const MessageComposer: {
@@ -18,6 +18,10 @@ export declare const MessageComposer: {
             value: Uint8Array;
         };
         connectionOpenConfirm(value: MsgConnectionOpenConfirm): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        updateConnectionParams(value: MsgUpdateParams): {
             typeUrl: string;
             value: Uint8Array;
         };
@@ -39,6 +43,10 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgConnectionOpenConfirm;
         };
+        updateConnectionParams(value: MsgUpdateParams): {
+            typeUrl: string;
+            value: MsgUpdateParams;
+        };
     };
     fromPartial: {
         connectionOpenInit(value: MsgConnectionOpenInit): {
@@ -56,6 +64,10 @@ export declare const MessageComposer: {
         connectionOpenConfirm(value: MsgConnectionOpenConfirm): {
             typeUrl: string;
             value: MsgConnectionOpenConfirm;
+        };
+        updateConnectionParams(value: MsgUpdateParams): {
+            typeUrl: string;
+            value: MsgUpdateParams;
         };
     };
 };

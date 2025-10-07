@@ -29,11 +29,17 @@ class ServiceClientImpl {
   constructor(rpc) {
     this.rpc = rpc;
     this.config = this.config.bind(this);
+    this.status = this.status.bind(this);
   }
   config(request = {}) {
     const data = import_query.ConfigRequest.encode(request).finish();
     const promise = this.rpc.request("cosmos.base.node.v1beta1.Service", "Config", data);
     return promise.then((data2) => import_query.ConfigResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  status(request = {}) {
+    const data = import_query.StatusRequest.encode(request).finish();
+    const promise = this.rpc.request("cosmos.base.node.v1beta1.Service", "Status", data);
+    return promise.then((data2) => import_query.StatusResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 const createRpcQueryExtension = (base) => {
@@ -42,6 +48,9 @@ const createRpcQueryExtension = (base) => {
   return {
     config(request) {
       return queryService.config(request);
+    },
+    status(request) {
+      return queryService.status(request);
     }
   };
 };

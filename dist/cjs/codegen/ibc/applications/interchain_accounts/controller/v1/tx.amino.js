@@ -31,6 +31,11 @@ const AminoConverter = {
     aminoType: "cosmos-sdk/MsgSendTx",
     toAmino: import_tx.MsgSendTx.toAmino,
     fromAmino: import_tx.MsgSendTx.fromAmino
+  },
+  "/ibc.applications.interchain_accounts.controller.v1.MsgUpdateParams": {
+    aminoType: "cosmos-sdk/MsgUpdateParams",
+    toAmino: import_tx.MsgUpdateParams.toAmino,
+    fromAmino: import_tx.MsgUpdateParams.fromAmino
   }
 };
 // Annotate the CommonJS export names for ESM import in node:

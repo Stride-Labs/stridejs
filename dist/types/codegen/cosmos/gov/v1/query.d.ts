@@ -1,6 +1,53 @@
 import { ProposalStatus, Proposal, ProposalAmino, ProposalSDKType, Vote, VoteAmino, VoteSDKType, VotingParams, VotingParamsAmino, VotingParamsSDKType, DepositParams, DepositParamsAmino, DepositParamsSDKType, TallyParams, TallyParamsAmino, TallyParamsSDKType, Params, ParamsAmino, ParamsSDKType, Deposit, DepositAmino, DepositSDKType, TallyResult, TallyResultAmino, TallyResultSDKType } from "./gov";
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../base/query/v1beta1/pagination";
 import { BinaryReader, BinaryWriter } from "../../../binary";
+/** QueryConstitutionRequest is the request type for the Query/Constitution RPC method */
+export interface QueryConstitutionRequest {
+}
+export interface QueryConstitutionRequestProtoMsg {
+    typeUrl: "/cosmos.gov.v1.QueryConstitutionRequest";
+    value: Uint8Array;
+}
+/**
+ * QueryConstitutionRequest is the request type for the Query/Constitution RPC method
+ * @name QueryConstitutionRequestAmino
+ * @package cosmos.gov.v1
+ * @see proto type: cosmos.gov.v1.QueryConstitutionRequest
+ */
+export interface QueryConstitutionRequestAmino {
+}
+export interface QueryConstitutionRequestAminoMsg {
+    type: "cosmos-sdk/v1/QueryConstitutionRequest";
+    value: QueryConstitutionRequestAmino;
+}
+/** QueryConstitutionRequest is the request type for the Query/Constitution RPC method */
+export interface QueryConstitutionRequestSDKType {
+}
+/** QueryConstitutionResponse is the response type for the Query/Constitution RPC method */
+export interface QueryConstitutionResponse {
+    constitution: string;
+}
+export interface QueryConstitutionResponseProtoMsg {
+    typeUrl: "/cosmos.gov.v1.QueryConstitutionResponse";
+    value: Uint8Array;
+}
+/**
+ * QueryConstitutionResponse is the response type for the Query/Constitution RPC method
+ * @name QueryConstitutionResponseAmino
+ * @package cosmos.gov.v1
+ * @see proto type: cosmos.gov.v1.QueryConstitutionResponse
+ */
+export interface QueryConstitutionResponseAmino {
+    constitution?: string;
+}
+export interface QueryConstitutionResponseAminoMsg {
+    type: "cosmos-sdk/v1/QueryConstitutionResponse";
+    value: QueryConstitutionResponseAmino;
+}
+/** QueryConstitutionResponse is the response type for the Query/Constitution RPC method */
+export interface QueryConstitutionResponseSDKType {
+    constitution: string;
+}
 /** QueryProposalRequest is the request type for the Query/Proposal RPC method. */
 export interface QueryProposalRequest {
     /** proposal_id defines the unique id of the proposal. */
@@ -594,6 +641,32 @@ export interface QueryTallyResultResponseAminoMsg {
 export interface QueryTallyResultResponseSDKType {
     tally?: TallyResultSDKType;
 }
+export declare const QueryConstitutionRequest: {
+    typeUrl: string;
+    encode(_: QueryConstitutionRequest, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryConstitutionRequest;
+    fromPartial(_: Partial<QueryConstitutionRequest>): QueryConstitutionRequest;
+    fromAmino(_: QueryConstitutionRequestAmino): QueryConstitutionRequest;
+    toAmino(_: QueryConstitutionRequest): QueryConstitutionRequestAmino;
+    fromAminoMsg(object: QueryConstitutionRequestAminoMsg): QueryConstitutionRequest;
+    toAminoMsg(message: QueryConstitutionRequest): QueryConstitutionRequestAminoMsg;
+    fromProtoMsg(message: QueryConstitutionRequestProtoMsg): QueryConstitutionRequest;
+    toProto(message: QueryConstitutionRequest): Uint8Array;
+    toProtoMsg(message: QueryConstitutionRequest): QueryConstitutionRequestProtoMsg;
+};
+export declare const QueryConstitutionResponse: {
+    typeUrl: string;
+    encode(message: QueryConstitutionResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryConstitutionResponse;
+    fromPartial(object: Partial<QueryConstitutionResponse>): QueryConstitutionResponse;
+    fromAmino(object: QueryConstitutionResponseAmino): QueryConstitutionResponse;
+    toAmino(message: QueryConstitutionResponse): QueryConstitutionResponseAmino;
+    fromAminoMsg(object: QueryConstitutionResponseAminoMsg): QueryConstitutionResponse;
+    toAminoMsg(message: QueryConstitutionResponse): QueryConstitutionResponseAminoMsg;
+    fromProtoMsg(message: QueryConstitutionResponseProtoMsg): QueryConstitutionResponse;
+    toProto(message: QueryConstitutionResponse): Uint8Array;
+    toProtoMsg(message: QueryConstitutionResponse): QueryConstitutionResponseProtoMsg;
+};
 export declare const QueryProposalRequest: {
     typeUrl: string;
     encode(message: QueryProposalRequest, writer?: BinaryWriter): BinaryWriter;
