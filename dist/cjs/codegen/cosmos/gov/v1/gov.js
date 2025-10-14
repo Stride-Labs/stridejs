@@ -342,7 +342,9 @@ function createBaseProposal() {
     metadata: "",
     title: "",
     summary: "",
-    proposer: ""
+    proposer: "",
+    expedited: false,
+    failedReason: ""
   };
 }
 const Proposal = {
@@ -386,6 +388,12 @@ const Proposal = {
     }
     if (message.proposer !== "") {
       writer.uint32(106).string(message.proposer);
+    }
+    if (message.expedited === true) {
+      writer.uint32(112).bool(message.expedited);
+    }
+    if (message.failedReason !== "") {
+      writer.uint32(122).string(message.failedReason);
     }
     return writer;
   },
@@ -435,6 +443,12 @@ const Proposal = {
         case 13:
           message.proposer = reader.string();
           break;
+        case 14:
+          message.expedited = reader.bool();
+          break;
+        case 15:
+          message.failedReason = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -457,6 +471,8 @@ const Proposal = {
     message.title = object.title ?? "";
     message.summary = object.summary ?? "";
     message.proposer = object.proposer ?? "";
+    message.expedited = object.expedited ?? false;
+    message.failedReason = object.failedReason ?? "";
     return message;
   },
   fromAmino(object) {
@@ -496,6 +512,12 @@ const Proposal = {
     if (object.proposer !== void 0 && object.proposer !== null) {
       message.proposer = object.proposer;
     }
+    if (object.expedited !== void 0 && object.expedited !== null) {
+      message.expedited = object.expedited;
+    }
+    if (object.failed_reason !== void 0 && object.failed_reason !== null) {
+      message.failedReason = object.failed_reason;
+    }
     return message;
   },
   toAmino(message) {
@@ -521,6 +543,8 @@ const Proposal = {
     obj.title = message.title === "" ? void 0 : message.title;
     obj.summary = message.summary === "" ? void 0 : message.summary;
     obj.proposer = message.proposer === "" ? void 0 : message.proposer;
+    obj.expedited = message.expedited === false ? void 0 : message.expedited;
+    obj.failed_reason = message.failedReason === "" ? void 0 : message.failedReason;
     return obj;
   },
   fromAminoMsg(object) {
@@ -1011,9 +1035,15 @@ function createBaseParams() {
     threshold: "",
     vetoThreshold: "",
     minInitialDepositRatio: "",
+    proposalCancelRatio: "",
+    proposalCancelDest: "",
+    expeditedVotingPeriod: void 0,
+    expeditedThreshold: "",
+    expeditedMinDeposit: [],
     burnVoteQuorum: false,
     burnProposalDepositPrevote: false,
-    burnVoteVeto: false
+    burnVoteVeto: false,
+    minDepositRatio: ""
   };
 }
 const Params = {
@@ -1040,6 +1070,21 @@ const Params = {
     if (message.minInitialDepositRatio !== "") {
       writer.uint32(58).string(message.minInitialDepositRatio);
     }
+    if (message.proposalCancelRatio !== "") {
+      writer.uint32(66).string(message.proposalCancelRatio);
+    }
+    if (message.proposalCancelDest !== "") {
+      writer.uint32(74).string(message.proposalCancelDest);
+    }
+    if (message.expeditedVotingPeriod !== void 0) {
+      import_duration.Duration.encode(message.expeditedVotingPeriod, writer.uint32(82).fork()).ldelim();
+    }
+    if (message.expeditedThreshold !== "") {
+      writer.uint32(90).string(message.expeditedThreshold);
+    }
+    for (const v of message.expeditedMinDeposit) {
+      import_coin.Coin.encode(v, writer.uint32(98).fork()).ldelim();
+    }
     if (message.burnVoteQuorum === true) {
       writer.uint32(104).bool(message.burnVoteQuorum);
     }
@@ -1048,6 +1093,9 @@ const Params = {
     }
     if (message.burnVoteVeto === true) {
       writer.uint32(120).bool(message.burnVoteVeto);
+    }
+    if (message.minDepositRatio !== "") {
+      writer.uint32(130).string(message.minDepositRatio);
     }
     return writer;
   },
@@ -1079,6 +1127,21 @@ const Params = {
         case 7:
           message.minInitialDepositRatio = reader.string();
           break;
+        case 8:
+          message.proposalCancelRatio = reader.string();
+          break;
+        case 9:
+          message.proposalCancelDest = reader.string();
+          break;
+        case 10:
+          message.expeditedVotingPeriod = import_duration.Duration.decode(reader, reader.uint32());
+          break;
+        case 11:
+          message.expeditedThreshold = reader.string();
+          break;
+        case 12:
+          message.expeditedMinDeposit.push(import_coin.Coin.decode(reader, reader.uint32()));
+          break;
         case 13:
           message.burnVoteQuorum = reader.bool();
           break;
@@ -1087,6 +1150,9 @@ const Params = {
           break;
         case 15:
           message.burnVoteVeto = reader.bool();
+          break;
+        case 16:
+          message.minDepositRatio = reader.string();
           break;
         default:
           reader.skipType(tag & 7);
@@ -1104,9 +1170,15 @@ const Params = {
     message.threshold = object.threshold ?? "";
     message.vetoThreshold = object.vetoThreshold ?? "";
     message.minInitialDepositRatio = object.minInitialDepositRatio ?? "";
+    message.proposalCancelRatio = object.proposalCancelRatio ?? "";
+    message.proposalCancelDest = object.proposalCancelDest ?? "";
+    message.expeditedVotingPeriod = object.expeditedVotingPeriod !== void 0 && object.expeditedVotingPeriod !== null ? import_duration.Duration.fromPartial(object.expeditedVotingPeriod) : void 0;
+    message.expeditedThreshold = object.expeditedThreshold ?? "";
+    message.expeditedMinDeposit = object.expeditedMinDeposit?.map((e) => import_coin.Coin.fromPartial(e)) || [];
     message.burnVoteQuorum = object.burnVoteQuorum ?? false;
     message.burnProposalDepositPrevote = object.burnProposalDepositPrevote ?? false;
     message.burnVoteVeto = object.burnVoteVeto ?? false;
+    message.minDepositRatio = object.minDepositRatio ?? "";
     return message;
   },
   fromAmino(object) {
@@ -1130,6 +1202,19 @@ const Params = {
     if (object.min_initial_deposit_ratio !== void 0 && object.min_initial_deposit_ratio !== null) {
       message.minInitialDepositRatio = object.min_initial_deposit_ratio;
     }
+    if (object.proposal_cancel_ratio !== void 0 && object.proposal_cancel_ratio !== null) {
+      message.proposalCancelRatio = object.proposal_cancel_ratio;
+    }
+    if (object.proposal_cancel_dest !== void 0 && object.proposal_cancel_dest !== null) {
+      message.proposalCancelDest = object.proposal_cancel_dest;
+    }
+    if (object.expedited_voting_period !== void 0 && object.expedited_voting_period !== null) {
+      message.expeditedVotingPeriod = import_duration.Duration.fromAmino(object.expedited_voting_period);
+    }
+    if (object.expedited_threshold !== void 0 && object.expedited_threshold !== null) {
+      message.expeditedThreshold = object.expedited_threshold;
+    }
+    message.expeditedMinDeposit = object.expedited_min_deposit?.map((e) => import_coin.Coin.fromAmino(e)) || [];
     if (object.burn_vote_quorum !== void 0 && object.burn_vote_quorum !== null) {
       message.burnVoteQuorum = object.burn_vote_quorum;
     }
@@ -1138,6 +1223,9 @@ const Params = {
     }
     if (object.burn_vote_veto !== void 0 && object.burn_vote_veto !== null) {
       message.burnVoteVeto = object.burn_vote_veto;
+    }
+    if (object.min_deposit_ratio !== void 0 && object.min_deposit_ratio !== null) {
+      message.minDepositRatio = object.min_deposit_ratio;
     }
     return message;
   },
@@ -1154,9 +1242,19 @@ const Params = {
     obj.threshold = message.threshold === "" ? void 0 : message.threshold;
     obj.veto_threshold = message.vetoThreshold === "" ? void 0 : message.vetoThreshold;
     obj.min_initial_deposit_ratio = message.minInitialDepositRatio === "" ? void 0 : message.minInitialDepositRatio;
+    obj.proposal_cancel_ratio = message.proposalCancelRatio === "" ? void 0 : message.proposalCancelRatio;
+    obj.proposal_cancel_dest = message.proposalCancelDest === "" ? void 0 : message.proposalCancelDest;
+    obj.expedited_voting_period = message.expeditedVotingPeriod ? import_duration.Duration.toAmino(message.expeditedVotingPeriod) : void 0;
+    obj.expedited_threshold = message.expeditedThreshold === "" ? void 0 : message.expeditedThreshold;
+    if (message.expeditedMinDeposit) {
+      obj.expedited_min_deposit = message.expeditedMinDeposit.map((e) => e ? import_coin.Coin.toAmino(e) : void 0);
+    } else {
+      obj.expedited_min_deposit = message.expeditedMinDeposit;
+    }
     obj.burn_vote_quorum = message.burnVoteQuorum === false ? void 0 : message.burnVoteQuorum;
     obj.burn_proposal_deposit_prevote = message.burnProposalDepositPrevote === false ? void 0 : message.burnProposalDepositPrevote;
     obj.burn_vote_veto = message.burnVoteVeto === false ? void 0 : message.burnVoteVeto;
+    obj.min_deposit_ratio = message.minDepositRatio === "" ? void 0 : message.minDepositRatio;
     return obj;
   },
   fromAminoMsg(object) {

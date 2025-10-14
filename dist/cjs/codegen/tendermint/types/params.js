@@ -17,6 +17,7 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var params_exports = {};
 __export(params_exports, {
+  ABCIParams: () => ABCIParams,
   BlockParams: () => BlockParams,
   ConsensusParams: () => ConsensusParams,
   EvidenceParams: () => EvidenceParams,
@@ -32,7 +33,8 @@ function createBaseConsensusParams() {
     block: void 0,
     evidence: void 0,
     validator: void 0,
-    version: void 0
+    version: void 0,
+    abci: void 0
   };
 }
 const ConsensusParams = {
@@ -49,6 +51,9 @@ const ConsensusParams = {
     }
     if (message.version !== void 0) {
       VersionParams.encode(message.version, writer.uint32(34).fork()).ldelim();
+    }
+    if (message.abci !== void 0) {
+      ABCIParams.encode(message.abci, writer.uint32(42).fork()).ldelim();
     }
     return writer;
   },
@@ -71,6 +76,9 @@ const ConsensusParams = {
         case 4:
           message.version = VersionParams.decode(reader, reader.uint32());
           break;
+        case 5:
+          message.abci = ABCIParams.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -84,6 +92,7 @@ const ConsensusParams = {
     message.evidence = object.evidence !== void 0 && object.evidence !== null ? EvidenceParams.fromPartial(object.evidence) : void 0;
     message.validator = object.validator !== void 0 && object.validator !== null ? ValidatorParams.fromPartial(object.validator) : void 0;
     message.version = object.version !== void 0 && object.version !== null ? VersionParams.fromPartial(object.version) : void 0;
+    message.abci = object.abci !== void 0 && object.abci !== null ? ABCIParams.fromPartial(object.abci) : void 0;
     return message;
   },
   fromAmino(object) {
@@ -100,6 +109,9 @@ const ConsensusParams = {
     if (object.version !== void 0 && object.version !== null) {
       message.version = VersionParams.fromAmino(object.version);
     }
+    if (object.abci !== void 0 && object.abci !== null) {
+      message.abci = ABCIParams.fromAmino(object.abci);
+    }
     return message;
   },
   toAmino(message) {
@@ -108,6 +120,7 @@ const ConsensusParams = {
     obj.evidence = message.evidence ? EvidenceParams.toAmino(message.evidence) : void 0;
     obj.validator = message.validator ? ValidatorParams.toAmino(message.validator) : void 0;
     obj.version = message.version ? VersionParams.toAmino(message.version) : void 0;
+    obj.abci = message.abci ? ABCIParams.toAmino(message.abci) : void 0;
     return obj;
   },
   fromAminoMsg(object) {
@@ -491,8 +504,72 @@ const HashedParams = {
     };
   }
 };
+function createBaseABCIParams() {
+  return {
+    voteExtensionsEnableHeight: BigInt(0)
+  };
+}
+const ABCIParams = {
+  typeUrl: "/tendermint.types.ABCIParams",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.voteExtensionsEnableHeight !== BigInt(0)) {
+      writer.uint32(8).int64(message.voteExtensionsEnableHeight);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseABCIParams();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.voteExtensionsEnableHeight = reader.int64();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseABCIParams();
+    message.voteExtensionsEnableHeight = object.voteExtensionsEnableHeight !== void 0 && object.voteExtensionsEnableHeight !== null ? BigInt(object.voteExtensionsEnableHeight.toString()) : BigInt(0);
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseABCIParams();
+    if (object.vote_extensions_enable_height !== void 0 && object.vote_extensions_enable_height !== null) {
+      message.voteExtensionsEnableHeight = BigInt(object.vote_extensions_enable_height);
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.vote_extensions_enable_height = message.voteExtensionsEnableHeight !== BigInt(0) ? message.voteExtensionsEnableHeight?.toString() : void 0;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return ABCIParams.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return ABCIParams.decode(message.value);
+  },
+  toProto(message) {
+    return ABCIParams.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/tendermint.types.ABCIParams",
+      value: ABCIParams.encode(message).finish()
+    };
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  ABCIParams,
   BlockParams,
   ConsensusParams,
   EvidenceParams,

@@ -43,40 +43,40 @@ import * as _195 from "./lightclients/wasm/v1/genesis";
 import * as _196 from "./lightclients/wasm/v1/query";
 import * as _197 from "./lightclients/wasm/v1/tx";
 import * as _198 from "./lightclients/wasm/v1/wasm";
-import * as _364 from "./applications/fee/v1/tx.amino";
-import * as _365 from "./applications/interchain_accounts/controller/v1/tx.amino";
-import * as _366 from "./applications/interchain_accounts/host/v1/tx.amino";
-import * as _367 from "./applications/transfer/v1/tx.amino";
-import * as _368 from "./core/channel/v1/tx.amino";
-import * as _369 from "./core/client/v1/tx.amino";
-import * as _370 from "./core/connection/v1/tx.amino";
-import * as _371 from "./lightclients/wasm/v1/tx.amino";
-import * as _372 from "./applications/fee/v1/tx.registry";
-import * as _373 from "./applications/interchain_accounts/controller/v1/tx.registry";
-import * as _374 from "./applications/interchain_accounts/host/v1/tx.registry";
-import * as _375 from "./applications/transfer/v1/tx.registry";
-import * as _376 from "./core/channel/v1/tx.registry";
-import * as _377 from "./core/client/v1/tx.registry";
-import * as _378 from "./core/connection/v1/tx.registry";
-import * as _379 from "./lightclients/wasm/v1/tx.registry";
-import * as _380 from "./applications/fee/v1/query.rpc.Query";
-import * as _381 from "./applications/interchain_accounts/controller/v1/query.rpc.Query";
-import * as _382 from "./applications/interchain_accounts/host/v1/query.rpc.Query";
-import * as _383 from "./applications/transfer/v1/query.rpc.Query";
-import * as _384 from "./core/channel/v1/query.rpc.Query";
-import * as _385 from "./core/client/v1/query.rpc.Query";
-import * as _386 from "./core/connection/v1/query.rpc.Query";
-import * as _387 from "./lightclients/wasm/v1/query.rpc.Query";
-import * as _388 from "./applications/fee/v1/tx.rpc.msg";
-import * as _389 from "./applications/interchain_accounts/controller/v1/tx.rpc.msg";
-import * as _390 from "./applications/interchain_accounts/host/v1/tx.rpc.msg";
-import * as _391 from "./applications/transfer/v1/tx.rpc.msg";
-import * as _392 from "./core/channel/v1/tx.rpc.msg";
-import * as _393 from "./core/client/v1/tx.rpc.msg";
-import * as _394 from "./core/connection/v1/tx.rpc.msg";
-import * as _395 from "./lightclients/wasm/v1/tx.rpc.msg";
-import * as _443 from "./rpc.query";
-import * as _444 from "./rpc.tx";
+import * as _365 from "./applications/fee/v1/tx.amino";
+import * as _366 from "./applications/interchain_accounts/controller/v1/tx.amino";
+import * as _367 from "./applications/interchain_accounts/host/v1/tx.amino";
+import * as _368 from "./applications/transfer/v1/tx.amino";
+import * as _369 from "./core/channel/v1/tx.amino";
+import * as _370 from "./core/client/v1/tx.amino";
+import * as _371 from "./core/connection/v1/tx.amino";
+import * as _372 from "./lightclients/wasm/v1/tx.amino";
+import * as _373 from "./applications/fee/v1/tx.registry";
+import * as _374 from "./applications/interchain_accounts/controller/v1/tx.registry";
+import * as _375 from "./applications/interchain_accounts/host/v1/tx.registry";
+import * as _376 from "./applications/transfer/v1/tx.registry";
+import * as _377 from "./core/channel/v1/tx.registry";
+import * as _378 from "./core/client/v1/tx.registry";
+import * as _379 from "./core/connection/v1/tx.registry";
+import * as _380 from "./lightclients/wasm/v1/tx.registry";
+import * as _381 from "./applications/fee/v1/query.rpc.Query";
+import * as _382 from "./applications/interchain_accounts/controller/v1/query.rpc.Query";
+import * as _383 from "./applications/interchain_accounts/host/v1/query.rpc.Query";
+import * as _384 from "./applications/transfer/v1/query.rpc.Query";
+import * as _385 from "./core/channel/v1/query.rpc.Query";
+import * as _386 from "./core/client/v1/query.rpc.Query";
+import * as _387 from "./core/connection/v1/query.rpc.Query";
+import * as _388 from "./lightclients/wasm/v1/query.rpc.Query";
+import * as _389 from "./applications/fee/v1/tx.rpc.msg";
+import * as _390 from "./applications/interchain_accounts/controller/v1/tx.rpc.msg";
+import * as _391 from "./applications/interchain_accounts/host/v1/tx.rpc.msg";
+import * as _392 from "./applications/transfer/v1/tx.rpc.msg";
+import * as _393 from "./core/channel/v1/tx.rpc.msg";
+import * as _394 from "./core/client/v1/tx.rpc.msg";
+import * as _395 from "./core/connection/v1/tx.rpc.msg";
+import * as _396 from "./lightclients/wasm/v1/tx.rpc.msg";
+import * as _447 from "./rpc.query";
+import * as _448 from "./rpc.tx";
 export namespace ibc {
   export namespace applications {
     export namespace fee {
@@ -87,10 +87,10 @@ export namespace ibc {
         ..._157,
         ..._158,
         ..._159,
-        ..._364,
-        ..._372,
-        ..._380,
-        ..._388
+        ..._365,
+        ..._373,
+        ..._381,
+        ..._389
       };
     }
     export namespace interchain_accounts {
@@ -99,10 +99,10 @@ export namespace ibc {
           ..._160,
           ..._161,
           ..._162,
-          ..._365,
-          ..._373,
-          ..._381,
-          ..._389
+          ..._366,
+          ..._374,
+          ..._382,
+          ..._390
         };
       }
       export namespace genesis {
@@ -115,10 +115,10 @@ export namespace ibc {
           ..._164,
           ..._165,
           ..._166,
-          ..._366,
-          ..._374,
-          ..._382,
-          ..._390
+          ..._367,
+          ..._375,
+          ..._383,
+          ..._391
         };
       }
       export const v1 = {
@@ -134,10 +134,10 @@ export namespace ibc {
         ..._172,
         ..._173,
         ..._174,
-        ..._367,
-        ..._375,
-        ..._383,
-        ..._391
+        ..._368,
+        ..._376,
+        ..._384,
+        ..._392
       };
       export const v2 = {
         ..._175
@@ -152,10 +152,10 @@ export namespace ibc {
         ..._178,
         ..._179,
         ..._180,
-        ..._368,
-        ..._376,
-        ..._384,
-        ..._392
+        ..._369,
+        ..._377,
+        ..._385,
+        ..._393
       };
     }
     export namespace client {
@@ -164,10 +164,10 @@ export namespace ibc {
         ..._182,
         ..._183,
         ..._184,
-        ..._369,
-        ..._377,
-        ..._385,
-        ..._393
+        ..._370,
+        ..._378,
+        ..._386,
+        ..._394
       };
     }
     export namespace commitment {
@@ -181,10 +181,10 @@ export namespace ibc {
         ..._187,
         ..._188,
         ..._189,
-        ..._370,
-        ..._378,
-        ..._386,
-        ..._394
+        ..._371,
+        ..._379,
+        ..._387,
+        ..._395
       };
     }
     export namespace types {
@@ -218,15 +218,15 @@ export namespace ibc {
         ..._196,
         ..._197,
         ..._198,
-        ..._371,
-        ..._379,
-        ..._387,
-        ..._395
+        ..._372,
+        ..._380,
+        ..._388,
+        ..._396
       };
     }
   }
   export const ClientFactory = {
-    ..._443,
-    ..._444
+    ..._447,
+    ..._448
   };
 }

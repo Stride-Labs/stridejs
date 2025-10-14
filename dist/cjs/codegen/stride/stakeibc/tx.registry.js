@@ -23,7 +23,7 @@ __export(tx_registry_exports, {
 });
 module.exports = __toCommonJS(tx_registry_exports);
 var import_tx = require("./tx");
-const registry = [["/stride.stakeibc.MsgLiquidStake", import_tx.MsgLiquidStake], ["/stride.stakeibc.MsgLSMLiquidStake", import_tx.MsgLSMLiquidStake], ["/stride.stakeibc.MsgRedeemStake", import_tx.MsgRedeemStake], ["/stride.stakeibc.MsgRegisterHostZone", import_tx.MsgRegisterHostZone], ["/stride.stakeibc.MsgClaimUndelegatedTokens", import_tx.MsgClaimUndelegatedTokens], ["/stride.stakeibc.MsgRebalanceValidators", import_tx.MsgRebalanceValidators], ["/stride.stakeibc.MsgAddValidators", import_tx.MsgAddValidators], ["/stride.stakeibc.MsgChangeValidatorWeights", import_tx.MsgChangeValidatorWeights], ["/stride.stakeibc.MsgDeleteValidator", import_tx.MsgDeleteValidator], ["/stride.stakeibc.MsgRestoreInterchainAccount", import_tx.MsgRestoreInterchainAccount], ["/stride.stakeibc.MsgCloseDelegationChannel", import_tx.MsgCloseDelegationChannel], ["/stride.stakeibc.MsgUpdateValidatorSharesExchRate", import_tx.MsgUpdateValidatorSharesExchRate], ["/stride.stakeibc.MsgCalibrateDelegation", import_tx.MsgCalibrateDelegation], ["/stride.stakeibc.MsgClearBalance", import_tx.MsgClearBalance], ["/stride.stakeibc.MsgUpdateInnerRedemptionRateBounds", import_tx.MsgUpdateInnerRedemptionRateBounds], ["/stride.stakeibc.MsgResumeHostZone", import_tx.MsgResumeHostZone], ["/stride.stakeibc.MsgCreateTradeRoute", import_tx.MsgCreateTradeRoute], ["/stride.stakeibc.MsgDeleteTradeRoute", import_tx.MsgDeleteTradeRoute], ["/stride.stakeibc.MsgUpdateTradeRoute", import_tx.MsgUpdateTradeRoute], ["/stride.stakeibc.MsgSetCommunityPoolRebate", import_tx.MsgSetCommunityPoolRebate], ["/stride.stakeibc.MsgToggleTradeController", import_tx.MsgToggleTradeController], ["/stride.stakeibc.MsgUpdateHostZoneParams", import_tx.MsgUpdateHostZoneParams]];
+const registry = [["/stride.stakeibc.MsgLiquidStake", import_tx.MsgLiquidStake], ["/stride.stakeibc.MsgLSMLiquidStake", import_tx.MsgLSMLiquidStake], ["/stride.stakeibc.MsgRedeemStake", import_tx.MsgRedeemStake], ["/stride.stakeibc.MsgRegisterHostZone", import_tx.MsgRegisterHostZone], ["/stride.stakeibc.MsgClaimUndelegatedTokens", import_tx.MsgClaimUndelegatedTokens], ["/stride.stakeibc.MsgRebalanceValidators", import_tx.MsgRebalanceValidators], ["/stride.stakeibc.MsgAddValidators", import_tx.MsgAddValidators], ["/stride.stakeibc.MsgChangeValidatorWeights", import_tx.MsgChangeValidatorWeights], ["/stride.stakeibc.MsgDeleteValidator", import_tx.MsgDeleteValidator], ["/stride.stakeibc.MsgRestoreInterchainAccount", import_tx.MsgRestoreInterchainAccount], ["/stride.stakeibc.MsgCloseDelegationChannel", import_tx.MsgCloseDelegationChannel], ["/stride.stakeibc.MsgUpdateValidatorSharesExchRate", import_tx.MsgUpdateValidatorSharesExchRate], ["/stride.stakeibc.MsgCalibrateDelegation", import_tx.MsgCalibrateDelegation], ["/stride.stakeibc.MsgClearBalance", import_tx.MsgClearBalance], ["/stride.stakeibc.MsgUpdateInnerRedemptionRateBounds", import_tx.MsgUpdateInnerRedemptionRateBounds], ["/stride.stakeibc.MsgResumeHostZone", import_tx.MsgResumeHostZone], ["/stride.stakeibc.MsgCreateTradeRoute", import_tx.MsgCreateTradeRoute], ["/stride.stakeibc.MsgDeleteTradeRoute", import_tx.MsgDeleteTradeRoute], ["/stride.stakeibc.MsgUpdateTradeRoute", import_tx.MsgUpdateTradeRoute], ["/stride.stakeibc.MsgSetCommunityPoolRebate", import_tx.MsgSetCommunityPoolRebate], ["/stride.stakeibc.MsgToggleTradeController", import_tx.MsgToggleTradeController], ["/stride.stakeibc.MsgUpdateHostZoneParams", import_tx.MsgUpdateHostZoneParams], ["/stride.stakeibc.MsgDeprecateHostZone", import_tx.MsgDeprecateHostZone]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -162,6 +162,12 @@ const MessageComposer = {
         typeUrl: "/stride.stakeibc.MsgUpdateHostZoneParams",
         value: import_tx.MsgUpdateHostZoneParams.encode(value).finish()
       };
+    },
+    deprecateHostZone(value) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgDeprecateHostZone",
+        value: import_tx.MsgDeprecateHostZone.encode(value).finish()
+      };
     }
   },
   withTypeUrl: {
@@ -294,6 +300,12 @@ const MessageComposer = {
     updateHostZoneParams(value) {
       return {
         typeUrl: "/stride.stakeibc.MsgUpdateHostZoneParams",
+        value
+      };
+    },
+    deprecateHostZone(value) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgDeprecateHostZone",
         value
       };
     }
@@ -429,6 +441,12 @@ const MessageComposer = {
       return {
         typeUrl: "/stride.stakeibc.MsgUpdateHostZoneParams",
         value: import_tx.MsgUpdateHostZoneParams.fromPartial(value)
+      };
+    },
+    deprecateHostZone(value) {
+      return {
+        typeUrl: "/stride.stakeibc.MsgDeprecateHostZone",
+        value: import_tx.MsgDeprecateHostZone.fromPartial(value)
       };
     }
   }

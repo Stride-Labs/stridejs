@@ -1,5 +1,6 @@
-import { Channel, ChannelAmino, ChannelSDKType, Packet, PacketAmino, PacketSDKType } from "./channel";
-import { Height, HeightAmino, HeightSDKType } from "../../client/v1/client";
+import { Channel, ChannelAmino, ChannelSDKType, Packet, PacketAmino, PacketSDKType, State } from "./channel";
+import { Height, HeightAmino, HeightSDKType, Params, ParamsAmino, ParamsSDKType } from "../../client/v1/client";
+import { UpgradeFields, UpgradeFieldsAmino, UpgradeFieldsSDKType, Upgrade, UpgradeAmino, UpgradeSDKType, ErrorReceipt, ErrorReceiptAmino, ErrorReceiptSDKType } from "./upgrade";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 /** ResponseResultType defines the possible outcomes of the execution of a message */
 export declare enum ResponseResultType {
@@ -9,6 +10,8 @@ export declare enum ResponseResultType {
     RESPONSE_RESULT_TYPE_NOOP = 1,
     /** RESPONSE_RESULT_TYPE_SUCCESS - The message was executed successfully */
     RESPONSE_RESULT_TYPE_SUCCESS = 2,
+    /** RESPONSE_RESULT_TYPE_FAILURE - The message was executed unsuccessfully */
+    RESPONSE_RESULT_TYPE_FAILURE = 3,
     UNRECOGNIZED = -1
 }
 export declare const ResponseResultTypeSDKType: typeof ResponseResultType;
@@ -176,6 +179,9 @@ export interface MsgChannelOpenTryResponseSDKType {
 /**
  * MsgChannelOpenAck defines a msg sent by a Relayer to Chain A to acknowledge
  * the change of channel state to TRYOPEN on Chain B.
+ * WARNING: a channel upgrade MUST NOT initialize an upgrade for this channel
+ * in the same block as executing this message otherwise the counterparty will
+ * be incapable of opening.
  */
 export interface MsgChannelOpenAck {
     portId: string;
@@ -193,6 +199,9 @@ export interface MsgChannelOpenAckProtoMsg {
 /**
  * MsgChannelOpenAck defines a msg sent by a Relayer to Chain A to acknowledge
  * the change of channel state to TRYOPEN on Chain B.
+ * WARNING: a channel upgrade MUST NOT initialize an upgrade for this channel
+ * in the same block as executing this message otherwise the counterparty will
+ * be incapable of opening.
  * @name MsgChannelOpenAckAmino
  * @package ibc.core.channel.v1
  * @see proto type: ibc.core.channel.v1.MsgChannelOpenAck
@@ -213,6 +222,9 @@ export interface MsgChannelOpenAckAminoMsg {
 /**
  * MsgChannelOpenAck defines a msg sent by a Relayer to Chain A to acknowledge
  * the change of channel state to TRYOPEN on Chain B.
+ * WARNING: a channel upgrade MUST NOT initialize an upgrade for this channel
+ * in the same block as executing this message otherwise the counterparty will
+ * be incapable of opening.
  */
 export interface MsgChannelOpenAckSDKType {
     port_id: string;
@@ -388,6 +400,7 @@ export interface MsgChannelCloseConfirm {
     proofInit: Uint8Array;
     proofHeight: Height;
     signer: string;
+    counterpartyUpgradeSequence: bigint;
 }
 export interface MsgChannelCloseConfirmProtoMsg {
     typeUrl: "/ibc.core.channel.v1.MsgChannelCloseConfirm";
@@ -406,6 +419,7 @@ export interface MsgChannelCloseConfirmAmino {
     proof_init?: string;
     proof_height?: HeightAmino;
     signer?: string;
+    counterparty_upgrade_sequence?: string;
 }
 export interface MsgChannelCloseConfirmAminoMsg {
     type: "cosmos-sdk/MsgChannelCloseConfirm";
@@ -421,6 +435,7 @@ export interface MsgChannelCloseConfirmSDKType {
     proof_init: Uint8Array;
     proof_height: HeightSDKType;
     signer: string;
+    counterparty_upgrade_sequence: bigint;
 }
 /**
  * MsgChannelCloseConfirmResponse defines the Msg/ChannelCloseConfirm response
@@ -580,6 +595,7 @@ export interface MsgTimeoutOnClose {
     proofHeight: Height;
     nextSequenceRecv: bigint;
     signer: string;
+    counterpartyUpgradeSequence: bigint;
 }
 export interface MsgTimeoutOnCloseProtoMsg {
     typeUrl: "/ibc.core.channel.v1.MsgTimeoutOnClose";
@@ -598,6 +614,7 @@ export interface MsgTimeoutOnCloseAmino {
     proof_height?: HeightAmino;
     next_sequence_recv?: string;
     signer?: string;
+    counterparty_upgrade_sequence?: string;
 }
 export interface MsgTimeoutOnCloseAminoMsg {
     type: "cosmos-sdk/MsgTimeoutOnClose";
@@ -611,6 +628,7 @@ export interface MsgTimeoutOnCloseSDKType {
     proof_height: HeightSDKType;
     next_sequence_recv: bigint;
     signer: string;
+    counterparty_upgrade_sequence: bigint;
 }
 /** MsgTimeoutOnCloseResponse defines the Msg/TimeoutOnClose response type. */
 export interface MsgTimeoutOnCloseResponse {
@@ -698,6 +716,620 @@ export interface MsgAcknowledgementResponseAminoMsg {
 /** MsgAcknowledgementResponse defines the Msg/Acknowledgement response type. */
 export interface MsgAcknowledgementResponseSDKType {
     result: ResponseResultType;
+}
+/**
+ * MsgChannelUpgradeInit defines the request type for the ChannelUpgradeInit rpc
+ * WARNING: Initializing a channel upgrade in the same block as opening the channel
+ * may result in the counterparty being incapable of opening.
+ */
+export interface MsgChannelUpgradeInit {
+    portId: string;
+    channelId: string;
+    fields: UpgradeFields;
+    signer: string;
+}
+export interface MsgChannelUpgradeInitProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeInit";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeInit defines the request type for the ChannelUpgradeInit rpc
+ * WARNING: Initializing a channel upgrade in the same block as opening the channel
+ * may result in the counterparty being incapable of opening.
+ * @name MsgChannelUpgradeInitAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeInit
+ */
+export interface MsgChannelUpgradeInitAmino {
+    port_id?: string;
+    channel_id?: string;
+    fields?: UpgradeFieldsAmino;
+    signer?: string;
+}
+export interface MsgChannelUpgradeInitAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeInit";
+    value: MsgChannelUpgradeInitAmino;
+}
+/**
+ * MsgChannelUpgradeInit defines the request type for the ChannelUpgradeInit rpc
+ * WARNING: Initializing a channel upgrade in the same block as opening the channel
+ * may result in the counterparty being incapable of opening.
+ */
+export interface MsgChannelUpgradeInitSDKType {
+    port_id: string;
+    channel_id: string;
+    fields: UpgradeFieldsSDKType;
+    signer: string;
+}
+/** MsgChannelUpgradeInitResponse defines the MsgChannelUpgradeInit response type */
+export interface MsgChannelUpgradeInitResponse {
+    upgrade: Upgrade;
+    upgradeSequence: bigint;
+}
+export interface MsgChannelUpgradeInitResponseProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeInitResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeInitResponse defines the MsgChannelUpgradeInit response type
+ * @name MsgChannelUpgradeInitResponseAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeInitResponse
+ */
+export interface MsgChannelUpgradeInitResponseAmino {
+    upgrade?: UpgradeAmino;
+    upgrade_sequence?: string;
+}
+export interface MsgChannelUpgradeInitResponseAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeInitResponse";
+    value: MsgChannelUpgradeInitResponseAmino;
+}
+/** MsgChannelUpgradeInitResponse defines the MsgChannelUpgradeInit response type */
+export interface MsgChannelUpgradeInitResponseSDKType {
+    upgrade: UpgradeSDKType;
+    upgrade_sequence: bigint;
+}
+/** MsgChannelUpgradeTry defines the request type for the ChannelUpgradeTry rpc */
+export interface MsgChannelUpgradeTry {
+    portId: string;
+    channelId: string;
+    proposedUpgradeConnectionHops: string[];
+    counterpartyUpgradeFields: UpgradeFields;
+    counterpartyUpgradeSequence: bigint;
+    proofChannel: Uint8Array;
+    proofUpgrade: Uint8Array;
+    proofHeight: Height;
+    signer: string;
+}
+export interface MsgChannelUpgradeTryProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeTry";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeTry defines the request type for the ChannelUpgradeTry rpc
+ * @name MsgChannelUpgradeTryAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeTry
+ */
+export interface MsgChannelUpgradeTryAmino {
+    port_id?: string;
+    channel_id?: string;
+    proposed_upgrade_connection_hops?: string[];
+    counterparty_upgrade_fields?: UpgradeFieldsAmino;
+    counterparty_upgrade_sequence?: string;
+    proof_channel?: string;
+    proof_upgrade?: string;
+    proof_height?: HeightAmino;
+    signer?: string;
+}
+export interface MsgChannelUpgradeTryAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeTry";
+    value: MsgChannelUpgradeTryAmino;
+}
+/** MsgChannelUpgradeTry defines the request type for the ChannelUpgradeTry rpc */
+export interface MsgChannelUpgradeTrySDKType {
+    port_id: string;
+    channel_id: string;
+    proposed_upgrade_connection_hops: string[];
+    counterparty_upgrade_fields: UpgradeFieldsSDKType;
+    counterparty_upgrade_sequence: bigint;
+    proof_channel: Uint8Array;
+    proof_upgrade: Uint8Array;
+    proof_height: HeightSDKType;
+    signer: string;
+}
+/** MsgChannelUpgradeTryResponse defines the MsgChannelUpgradeTry response type */
+export interface MsgChannelUpgradeTryResponse {
+    upgrade: Upgrade;
+    upgradeSequence: bigint;
+    result: ResponseResultType;
+}
+export interface MsgChannelUpgradeTryResponseProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeTryResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeTryResponse defines the MsgChannelUpgradeTry response type
+ * @name MsgChannelUpgradeTryResponseAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeTryResponse
+ */
+export interface MsgChannelUpgradeTryResponseAmino {
+    upgrade?: UpgradeAmino;
+    upgrade_sequence?: string;
+    result?: ResponseResultType;
+}
+export interface MsgChannelUpgradeTryResponseAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeTryResponse";
+    value: MsgChannelUpgradeTryResponseAmino;
+}
+/** MsgChannelUpgradeTryResponse defines the MsgChannelUpgradeTry response type */
+export interface MsgChannelUpgradeTryResponseSDKType {
+    upgrade: UpgradeSDKType;
+    upgrade_sequence: bigint;
+    result: ResponseResultType;
+}
+/** MsgChannelUpgradeAck defines the request type for the ChannelUpgradeAck rpc */
+export interface MsgChannelUpgradeAck {
+    portId: string;
+    channelId: string;
+    counterpartyUpgrade: Upgrade;
+    proofChannel: Uint8Array;
+    proofUpgrade: Uint8Array;
+    proofHeight: Height;
+    signer: string;
+}
+export interface MsgChannelUpgradeAckProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeAck";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeAck defines the request type for the ChannelUpgradeAck rpc
+ * @name MsgChannelUpgradeAckAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeAck
+ */
+export interface MsgChannelUpgradeAckAmino {
+    port_id?: string;
+    channel_id?: string;
+    counterparty_upgrade?: UpgradeAmino;
+    proof_channel?: string;
+    proof_upgrade?: string;
+    proof_height?: HeightAmino;
+    signer?: string;
+}
+export interface MsgChannelUpgradeAckAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeAck";
+    value: MsgChannelUpgradeAckAmino;
+}
+/** MsgChannelUpgradeAck defines the request type for the ChannelUpgradeAck rpc */
+export interface MsgChannelUpgradeAckSDKType {
+    port_id: string;
+    channel_id: string;
+    counterparty_upgrade: UpgradeSDKType;
+    proof_channel: Uint8Array;
+    proof_upgrade: Uint8Array;
+    proof_height: HeightSDKType;
+    signer: string;
+}
+/** MsgChannelUpgradeAckResponse defines MsgChannelUpgradeAck response type */
+export interface MsgChannelUpgradeAckResponse {
+    result: ResponseResultType;
+}
+export interface MsgChannelUpgradeAckResponseProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeAckResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeAckResponse defines MsgChannelUpgradeAck response type
+ * @name MsgChannelUpgradeAckResponseAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeAckResponse
+ */
+export interface MsgChannelUpgradeAckResponseAmino {
+    result?: ResponseResultType;
+}
+export interface MsgChannelUpgradeAckResponseAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeAckResponse";
+    value: MsgChannelUpgradeAckResponseAmino;
+}
+/** MsgChannelUpgradeAckResponse defines MsgChannelUpgradeAck response type */
+export interface MsgChannelUpgradeAckResponseSDKType {
+    result: ResponseResultType;
+}
+/** MsgChannelUpgradeConfirm defines the request type for the ChannelUpgradeConfirm rpc */
+export interface MsgChannelUpgradeConfirm {
+    portId: string;
+    channelId: string;
+    counterpartyChannelState: State;
+    counterpartyUpgrade: Upgrade;
+    proofChannel: Uint8Array;
+    proofUpgrade: Uint8Array;
+    proofHeight: Height;
+    signer: string;
+}
+export interface MsgChannelUpgradeConfirmProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeConfirm";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeConfirm defines the request type for the ChannelUpgradeConfirm rpc
+ * @name MsgChannelUpgradeConfirmAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeConfirm
+ */
+export interface MsgChannelUpgradeConfirmAmino {
+    port_id?: string;
+    channel_id?: string;
+    counterparty_channel_state?: State;
+    counterparty_upgrade?: UpgradeAmino;
+    proof_channel?: string;
+    proof_upgrade?: string;
+    proof_height?: HeightAmino;
+    signer?: string;
+}
+export interface MsgChannelUpgradeConfirmAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeConfirm";
+    value: MsgChannelUpgradeConfirmAmino;
+}
+/** MsgChannelUpgradeConfirm defines the request type for the ChannelUpgradeConfirm rpc */
+export interface MsgChannelUpgradeConfirmSDKType {
+    port_id: string;
+    channel_id: string;
+    counterparty_channel_state: State;
+    counterparty_upgrade: UpgradeSDKType;
+    proof_channel: Uint8Array;
+    proof_upgrade: Uint8Array;
+    proof_height: HeightSDKType;
+    signer: string;
+}
+/** MsgChannelUpgradeConfirmResponse defines MsgChannelUpgradeConfirm response type */
+export interface MsgChannelUpgradeConfirmResponse {
+    result: ResponseResultType;
+}
+export interface MsgChannelUpgradeConfirmResponseProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeConfirmResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeConfirmResponse defines MsgChannelUpgradeConfirm response type
+ * @name MsgChannelUpgradeConfirmResponseAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeConfirmResponse
+ */
+export interface MsgChannelUpgradeConfirmResponseAmino {
+    result?: ResponseResultType;
+}
+export interface MsgChannelUpgradeConfirmResponseAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeConfirmResponse";
+    value: MsgChannelUpgradeConfirmResponseAmino;
+}
+/** MsgChannelUpgradeConfirmResponse defines MsgChannelUpgradeConfirm response type */
+export interface MsgChannelUpgradeConfirmResponseSDKType {
+    result: ResponseResultType;
+}
+/** MsgChannelUpgradeOpen defines the request type for the ChannelUpgradeOpen rpc */
+export interface MsgChannelUpgradeOpen {
+    portId: string;
+    channelId: string;
+    counterpartyChannelState: State;
+    counterpartyUpgradeSequence: bigint;
+    proofChannel: Uint8Array;
+    proofHeight: Height;
+    signer: string;
+}
+export interface MsgChannelUpgradeOpenProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeOpen";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeOpen defines the request type for the ChannelUpgradeOpen rpc
+ * @name MsgChannelUpgradeOpenAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeOpen
+ */
+export interface MsgChannelUpgradeOpenAmino {
+    port_id?: string;
+    channel_id?: string;
+    counterparty_channel_state?: State;
+    counterparty_upgrade_sequence?: string;
+    proof_channel?: string;
+    proof_height?: HeightAmino;
+    signer?: string;
+}
+export interface MsgChannelUpgradeOpenAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeOpen";
+    value: MsgChannelUpgradeOpenAmino;
+}
+/** MsgChannelUpgradeOpen defines the request type for the ChannelUpgradeOpen rpc */
+export interface MsgChannelUpgradeOpenSDKType {
+    port_id: string;
+    channel_id: string;
+    counterparty_channel_state: State;
+    counterparty_upgrade_sequence: bigint;
+    proof_channel: Uint8Array;
+    proof_height: HeightSDKType;
+    signer: string;
+}
+/** MsgChannelUpgradeOpenResponse defines the MsgChannelUpgradeOpen response type */
+export interface MsgChannelUpgradeOpenResponse {
+}
+export interface MsgChannelUpgradeOpenResponseProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeOpenResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeOpenResponse defines the MsgChannelUpgradeOpen response type
+ * @name MsgChannelUpgradeOpenResponseAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeOpenResponse
+ */
+export interface MsgChannelUpgradeOpenResponseAmino {
+}
+export interface MsgChannelUpgradeOpenResponseAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeOpenResponse";
+    value: MsgChannelUpgradeOpenResponseAmino;
+}
+/** MsgChannelUpgradeOpenResponse defines the MsgChannelUpgradeOpen response type */
+export interface MsgChannelUpgradeOpenResponseSDKType {
+}
+/** MsgChannelUpgradeTimeout defines the request type for the ChannelUpgradeTimeout rpc */
+export interface MsgChannelUpgradeTimeout {
+    portId: string;
+    channelId: string;
+    counterpartyChannel: Channel;
+    proofChannel: Uint8Array;
+    proofHeight: Height;
+    signer: string;
+}
+export interface MsgChannelUpgradeTimeoutProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeTimeout";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeTimeout defines the request type for the ChannelUpgradeTimeout rpc
+ * @name MsgChannelUpgradeTimeoutAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeTimeout
+ */
+export interface MsgChannelUpgradeTimeoutAmino {
+    port_id?: string;
+    channel_id?: string;
+    counterparty_channel?: ChannelAmino;
+    proof_channel?: string;
+    proof_height?: HeightAmino;
+    signer?: string;
+}
+export interface MsgChannelUpgradeTimeoutAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeTimeout";
+    value: MsgChannelUpgradeTimeoutAmino;
+}
+/** MsgChannelUpgradeTimeout defines the request type for the ChannelUpgradeTimeout rpc */
+export interface MsgChannelUpgradeTimeoutSDKType {
+    port_id: string;
+    channel_id: string;
+    counterparty_channel: ChannelSDKType;
+    proof_channel: Uint8Array;
+    proof_height: HeightSDKType;
+    signer: string;
+}
+/** MsgChannelUpgradeTimeoutRepsonse defines the MsgChannelUpgradeTimeout response type */
+export interface MsgChannelUpgradeTimeoutResponse {
+}
+export interface MsgChannelUpgradeTimeoutResponseProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeTimeoutResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeTimeoutRepsonse defines the MsgChannelUpgradeTimeout response type
+ * @name MsgChannelUpgradeTimeoutResponseAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeTimeoutResponse
+ */
+export interface MsgChannelUpgradeTimeoutResponseAmino {
+}
+export interface MsgChannelUpgradeTimeoutResponseAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeTimeoutResponse";
+    value: MsgChannelUpgradeTimeoutResponseAmino;
+}
+/** MsgChannelUpgradeTimeoutRepsonse defines the MsgChannelUpgradeTimeout response type */
+export interface MsgChannelUpgradeTimeoutResponseSDKType {
+}
+/** MsgChannelUpgradeCancel defines the request type for the ChannelUpgradeCancel rpc */
+export interface MsgChannelUpgradeCancel {
+    portId: string;
+    channelId: string;
+    errorReceipt: ErrorReceipt;
+    proofErrorReceipt: Uint8Array;
+    proofHeight: Height;
+    signer: string;
+}
+export interface MsgChannelUpgradeCancelProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeCancel";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeCancel defines the request type for the ChannelUpgradeCancel rpc
+ * @name MsgChannelUpgradeCancelAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeCancel
+ */
+export interface MsgChannelUpgradeCancelAmino {
+    port_id?: string;
+    channel_id?: string;
+    error_receipt?: ErrorReceiptAmino;
+    proof_error_receipt?: string;
+    proof_height?: HeightAmino;
+    signer?: string;
+}
+export interface MsgChannelUpgradeCancelAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeCancel";
+    value: MsgChannelUpgradeCancelAmino;
+}
+/** MsgChannelUpgradeCancel defines the request type for the ChannelUpgradeCancel rpc */
+export interface MsgChannelUpgradeCancelSDKType {
+    port_id: string;
+    channel_id: string;
+    error_receipt: ErrorReceiptSDKType;
+    proof_error_receipt: Uint8Array;
+    proof_height: HeightSDKType;
+    signer: string;
+}
+/** MsgChannelUpgradeCancelResponse defines the MsgChannelUpgradeCancel response type */
+export interface MsgChannelUpgradeCancelResponse {
+}
+export interface MsgChannelUpgradeCancelResponseProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgChannelUpgradeCancelResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgChannelUpgradeCancelResponse defines the MsgChannelUpgradeCancel response type
+ * @name MsgChannelUpgradeCancelResponseAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgChannelUpgradeCancelResponse
+ */
+export interface MsgChannelUpgradeCancelResponseAmino {
+}
+export interface MsgChannelUpgradeCancelResponseAminoMsg {
+    type: "cosmos-sdk/MsgChannelUpgradeCancelResponse";
+    value: MsgChannelUpgradeCancelResponseAmino;
+}
+/** MsgChannelUpgradeCancelResponse defines the MsgChannelUpgradeCancel response type */
+export interface MsgChannelUpgradeCancelResponseSDKType {
+}
+/** MsgUpdateParams is the MsgUpdateParams request type. */
+export interface MsgUpdateParams {
+    /** authority is the address that controls the module (defaults to x/gov unless overwritten). */
+    authority: string;
+    /**
+     * params defines the channel parameters to update.
+     *
+     * NOTE: All parameters must be supplied.
+     */
+    params: Params;
+}
+export interface MsgUpdateParamsProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgUpdateParams";
+    value: Uint8Array;
+}
+/**
+ * MsgUpdateParams is the MsgUpdateParams request type.
+ * @name MsgUpdateParamsAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgUpdateParams
+ */
+export interface MsgUpdateParamsAmino {
+    /**
+     * authority is the address that controls the module (defaults to x/gov unless overwritten).
+     */
+    authority?: string;
+    /**
+     * params defines the channel parameters to update.
+     *
+     * NOTE: All parameters must be supplied.
+     */
+    params?: ParamsAmino;
+}
+export interface MsgUpdateParamsAminoMsg {
+    type: "cosmos-sdk/MsgUpdateParams";
+    value: MsgUpdateParamsAmino;
+}
+/** MsgUpdateParams is the MsgUpdateParams request type. */
+export interface MsgUpdateParamsSDKType {
+    authority: string;
+    params: ParamsSDKType;
+}
+/** MsgUpdateParamsResponse defines the MsgUpdateParams response type. */
+export interface MsgUpdateParamsResponse {
+}
+export interface MsgUpdateParamsResponseProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgUpdateParamsResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgUpdateParamsResponse defines the MsgUpdateParams response type.
+ * @name MsgUpdateParamsResponseAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgUpdateParamsResponse
+ */
+export interface MsgUpdateParamsResponseAmino {
+}
+export interface MsgUpdateParamsResponseAminoMsg {
+    type: "cosmos-sdk/MsgUpdateParamsResponse";
+    value: MsgUpdateParamsResponseAmino;
+}
+/** MsgUpdateParamsResponse defines the MsgUpdateParams response type. */
+export interface MsgUpdateParamsResponseSDKType {
+}
+/** MsgPruneAcknowledgements defines the request type for the PruneAcknowledgements rpc. */
+export interface MsgPruneAcknowledgements {
+    portId: string;
+    channelId: string;
+    limit: bigint;
+    signer: string;
+}
+export interface MsgPruneAcknowledgementsProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgPruneAcknowledgements";
+    value: Uint8Array;
+}
+/**
+ * MsgPruneAcknowledgements defines the request type for the PruneAcknowledgements rpc.
+ * @name MsgPruneAcknowledgementsAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgPruneAcknowledgements
+ */
+export interface MsgPruneAcknowledgementsAmino {
+    port_id?: string;
+    channel_id?: string;
+    limit?: string;
+    signer?: string;
+}
+export interface MsgPruneAcknowledgementsAminoMsg {
+    type: "cosmos-sdk/MsgPruneAcknowledgements";
+    value: MsgPruneAcknowledgementsAmino;
+}
+/** MsgPruneAcknowledgements defines the request type for the PruneAcknowledgements rpc. */
+export interface MsgPruneAcknowledgementsSDKType {
+    port_id: string;
+    channel_id: string;
+    limit: bigint;
+    signer: string;
+}
+/** MsgPruneAcknowledgementsResponse defines the response type for the PruneAcknowledgements rpc. */
+export interface MsgPruneAcknowledgementsResponse {
+    /** Number of sequences pruned (includes both packet acknowledgements and packet receipts where appropriate). */
+    totalPrunedSequences: bigint;
+    /** Number of sequences left after pruning. */
+    totalRemainingSequences: bigint;
+}
+export interface MsgPruneAcknowledgementsResponseProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.MsgPruneAcknowledgementsResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgPruneAcknowledgementsResponse defines the response type for the PruneAcknowledgements rpc.
+ * @name MsgPruneAcknowledgementsResponseAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.MsgPruneAcknowledgementsResponse
+ */
+export interface MsgPruneAcknowledgementsResponseAmino {
+    /**
+     * Number of sequences pruned (includes both packet acknowledgements and packet receipts where appropriate).
+     */
+    total_pruned_sequences?: string;
+    /**
+     * Number of sequences left after pruning.
+     */
+    total_remaining_sequences?: string;
+}
+export interface MsgPruneAcknowledgementsResponseAminoMsg {
+    type: "cosmos-sdk/MsgPruneAcknowledgementsResponse";
+    value: MsgPruneAcknowledgementsResponseAmino;
+}
+/** MsgPruneAcknowledgementsResponse defines the response type for the PruneAcknowledgements rpc. */
+export interface MsgPruneAcknowledgementsResponseSDKType {
+    total_pruned_sequences: bigint;
+    total_remaining_sequences: bigint;
 }
 export declare const MsgChannelOpenInit: {
     typeUrl: string;
@@ -958,4 +1590,238 @@ export declare const MsgAcknowledgementResponse: {
     fromProtoMsg(message: MsgAcknowledgementResponseProtoMsg): MsgAcknowledgementResponse;
     toProto(message: MsgAcknowledgementResponse): Uint8Array;
     toProtoMsg(message: MsgAcknowledgementResponse): MsgAcknowledgementResponseProtoMsg;
+};
+export declare const MsgChannelUpgradeInit: {
+    typeUrl: string;
+    encode(message: MsgChannelUpgradeInit, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeInit;
+    fromPartial(object: Partial<MsgChannelUpgradeInit>): MsgChannelUpgradeInit;
+    fromAmino(object: MsgChannelUpgradeInitAmino): MsgChannelUpgradeInit;
+    toAmino(message: MsgChannelUpgradeInit): MsgChannelUpgradeInitAmino;
+    fromAminoMsg(object: MsgChannelUpgradeInitAminoMsg): MsgChannelUpgradeInit;
+    toAminoMsg(message: MsgChannelUpgradeInit): MsgChannelUpgradeInitAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeInitProtoMsg): MsgChannelUpgradeInit;
+    toProto(message: MsgChannelUpgradeInit): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeInit): MsgChannelUpgradeInitProtoMsg;
+};
+export declare const MsgChannelUpgradeInitResponse: {
+    typeUrl: string;
+    encode(message: MsgChannelUpgradeInitResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeInitResponse;
+    fromPartial(object: Partial<MsgChannelUpgradeInitResponse>): MsgChannelUpgradeInitResponse;
+    fromAmino(object: MsgChannelUpgradeInitResponseAmino): MsgChannelUpgradeInitResponse;
+    toAmino(message: MsgChannelUpgradeInitResponse): MsgChannelUpgradeInitResponseAmino;
+    fromAminoMsg(object: MsgChannelUpgradeInitResponseAminoMsg): MsgChannelUpgradeInitResponse;
+    toAminoMsg(message: MsgChannelUpgradeInitResponse): MsgChannelUpgradeInitResponseAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeInitResponseProtoMsg): MsgChannelUpgradeInitResponse;
+    toProto(message: MsgChannelUpgradeInitResponse): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeInitResponse): MsgChannelUpgradeInitResponseProtoMsg;
+};
+export declare const MsgChannelUpgradeTry: {
+    typeUrl: string;
+    encode(message: MsgChannelUpgradeTry, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeTry;
+    fromPartial(object: Partial<MsgChannelUpgradeTry>): MsgChannelUpgradeTry;
+    fromAmino(object: MsgChannelUpgradeTryAmino): MsgChannelUpgradeTry;
+    toAmino(message: MsgChannelUpgradeTry): MsgChannelUpgradeTryAmino;
+    fromAminoMsg(object: MsgChannelUpgradeTryAminoMsg): MsgChannelUpgradeTry;
+    toAminoMsg(message: MsgChannelUpgradeTry): MsgChannelUpgradeTryAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeTryProtoMsg): MsgChannelUpgradeTry;
+    toProto(message: MsgChannelUpgradeTry): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeTry): MsgChannelUpgradeTryProtoMsg;
+};
+export declare const MsgChannelUpgradeTryResponse: {
+    typeUrl: string;
+    encode(message: MsgChannelUpgradeTryResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeTryResponse;
+    fromPartial(object: Partial<MsgChannelUpgradeTryResponse>): MsgChannelUpgradeTryResponse;
+    fromAmino(object: MsgChannelUpgradeTryResponseAmino): MsgChannelUpgradeTryResponse;
+    toAmino(message: MsgChannelUpgradeTryResponse): MsgChannelUpgradeTryResponseAmino;
+    fromAminoMsg(object: MsgChannelUpgradeTryResponseAminoMsg): MsgChannelUpgradeTryResponse;
+    toAminoMsg(message: MsgChannelUpgradeTryResponse): MsgChannelUpgradeTryResponseAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeTryResponseProtoMsg): MsgChannelUpgradeTryResponse;
+    toProto(message: MsgChannelUpgradeTryResponse): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeTryResponse): MsgChannelUpgradeTryResponseProtoMsg;
+};
+export declare const MsgChannelUpgradeAck: {
+    typeUrl: string;
+    encode(message: MsgChannelUpgradeAck, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeAck;
+    fromPartial(object: Partial<MsgChannelUpgradeAck>): MsgChannelUpgradeAck;
+    fromAmino(object: MsgChannelUpgradeAckAmino): MsgChannelUpgradeAck;
+    toAmino(message: MsgChannelUpgradeAck): MsgChannelUpgradeAckAmino;
+    fromAminoMsg(object: MsgChannelUpgradeAckAminoMsg): MsgChannelUpgradeAck;
+    toAminoMsg(message: MsgChannelUpgradeAck): MsgChannelUpgradeAckAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeAckProtoMsg): MsgChannelUpgradeAck;
+    toProto(message: MsgChannelUpgradeAck): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeAck): MsgChannelUpgradeAckProtoMsg;
+};
+export declare const MsgChannelUpgradeAckResponse: {
+    typeUrl: string;
+    encode(message: MsgChannelUpgradeAckResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeAckResponse;
+    fromPartial(object: Partial<MsgChannelUpgradeAckResponse>): MsgChannelUpgradeAckResponse;
+    fromAmino(object: MsgChannelUpgradeAckResponseAmino): MsgChannelUpgradeAckResponse;
+    toAmino(message: MsgChannelUpgradeAckResponse): MsgChannelUpgradeAckResponseAmino;
+    fromAminoMsg(object: MsgChannelUpgradeAckResponseAminoMsg): MsgChannelUpgradeAckResponse;
+    toAminoMsg(message: MsgChannelUpgradeAckResponse): MsgChannelUpgradeAckResponseAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeAckResponseProtoMsg): MsgChannelUpgradeAckResponse;
+    toProto(message: MsgChannelUpgradeAckResponse): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeAckResponse): MsgChannelUpgradeAckResponseProtoMsg;
+};
+export declare const MsgChannelUpgradeConfirm: {
+    typeUrl: string;
+    encode(message: MsgChannelUpgradeConfirm, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeConfirm;
+    fromPartial(object: Partial<MsgChannelUpgradeConfirm>): MsgChannelUpgradeConfirm;
+    fromAmino(object: MsgChannelUpgradeConfirmAmino): MsgChannelUpgradeConfirm;
+    toAmino(message: MsgChannelUpgradeConfirm): MsgChannelUpgradeConfirmAmino;
+    fromAminoMsg(object: MsgChannelUpgradeConfirmAminoMsg): MsgChannelUpgradeConfirm;
+    toAminoMsg(message: MsgChannelUpgradeConfirm): MsgChannelUpgradeConfirmAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeConfirmProtoMsg): MsgChannelUpgradeConfirm;
+    toProto(message: MsgChannelUpgradeConfirm): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeConfirm): MsgChannelUpgradeConfirmProtoMsg;
+};
+export declare const MsgChannelUpgradeConfirmResponse: {
+    typeUrl: string;
+    encode(message: MsgChannelUpgradeConfirmResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeConfirmResponse;
+    fromPartial(object: Partial<MsgChannelUpgradeConfirmResponse>): MsgChannelUpgradeConfirmResponse;
+    fromAmino(object: MsgChannelUpgradeConfirmResponseAmino): MsgChannelUpgradeConfirmResponse;
+    toAmino(message: MsgChannelUpgradeConfirmResponse): MsgChannelUpgradeConfirmResponseAmino;
+    fromAminoMsg(object: MsgChannelUpgradeConfirmResponseAminoMsg): MsgChannelUpgradeConfirmResponse;
+    toAminoMsg(message: MsgChannelUpgradeConfirmResponse): MsgChannelUpgradeConfirmResponseAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeConfirmResponseProtoMsg): MsgChannelUpgradeConfirmResponse;
+    toProto(message: MsgChannelUpgradeConfirmResponse): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeConfirmResponse): MsgChannelUpgradeConfirmResponseProtoMsg;
+};
+export declare const MsgChannelUpgradeOpen: {
+    typeUrl: string;
+    encode(message: MsgChannelUpgradeOpen, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeOpen;
+    fromPartial(object: Partial<MsgChannelUpgradeOpen>): MsgChannelUpgradeOpen;
+    fromAmino(object: MsgChannelUpgradeOpenAmino): MsgChannelUpgradeOpen;
+    toAmino(message: MsgChannelUpgradeOpen): MsgChannelUpgradeOpenAmino;
+    fromAminoMsg(object: MsgChannelUpgradeOpenAminoMsg): MsgChannelUpgradeOpen;
+    toAminoMsg(message: MsgChannelUpgradeOpen): MsgChannelUpgradeOpenAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeOpenProtoMsg): MsgChannelUpgradeOpen;
+    toProto(message: MsgChannelUpgradeOpen): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeOpen): MsgChannelUpgradeOpenProtoMsg;
+};
+export declare const MsgChannelUpgradeOpenResponse: {
+    typeUrl: string;
+    encode(_: MsgChannelUpgradeOpenResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeOpenResponse;
+    fromPartial(_: Partial<MsgChannelUpgradeOpenResponse>): MsgChannelUpgradeOpenResponse;
+    fromAmino(_: MsgChannelUpgradeOpenResponseAmino): MsgChannelUpgradeOpenResponse;
+    toAmino(_: MsgChannelUpgradeOpenResponse): MsgChannelUpgradeOpenResponseAmino;
+    fromAminoMsg(object: MsgChannelUpgradeOpenResponseAminoMsg): MsgChannelUpgradeOpenResponse;
+    toAminoMsg(message: MsgChannelUpgradeOpenResponse): MsgChannelUpgradeOpenResponseAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeOpenResponseProtoMsg): MsgChannelUpgradeOpenResponse;
+    toProto(message: MsgChannelUpgradeOpenResponse): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeOpenResponse): MsgChannelUpgradeOpenResponseProtoMsg;
+};
+export declare const MsgChannelUpgradeTimeout: {
+    typeUrl: string;
+    encode(message: MsgChannelUpgradeTimeout, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeTimeout;
+    fromPartial(object: Partial<MsgChannelUpgradeTimeout>): MsgChannelUpgradeTimeout;
+    fromAmino(object: MsgChannelUpgradeTimeoutAmino): MsgChannelUpgradeTimeout;
+    toAmino(message: MsgChannelUpgradeTimeout): MsgChannelUpgradeTimeoutAmino;
+    fromAminoMsg(object: MsgChannelUpgradeTimeoutAminoMsg): MsgChannelUpgradeTimeout;
+    toAminoMsg(message: MsgChannelUpgradeTimeout): MsgChannelUpgradeTimeoutAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeTimeoutProtoMsg): MsgChannelUpgradeTimeout;
+    toProto(message: MsgChannelUpgradeTimeout): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeTimeout): MsgChannelUpgradeTimeoutProtoMsg;
+};
+export declare const MsgChannelUpgradeTimeoutResponse: {
+    typeUrl: string;
+    encode(_: MsgChannelUpgradeTimeoutResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeTimeoutResponse;
+    fromPartial(_: Partial<MsgChannelUpgradeTimeoutResponse>): MsgChannelUpgradeTimeoutResponse;
+    fromAmino(_: MsgChannelUpgradeTimeoutResponseAmino): MsgChannelUpgradeTimeoutResponse;
+    toAmino(_: MsgChannelUpgradeTimeoutResponse): MsgChannelUpgradeTimeoutResponseAmino;
+    fromAminoMsg(object: MsgChannelUpgradeTimeoutResponseAminoMsg): MsgChannelUpgradeTimeoutResponse;
+    toAminoMsg(message: MsgChannelUpgradeTimeoutResponse): MsgChannelUpgradeTimeoutResponseAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeTimeoutResponseProtoMsg): MsgChannelUpgradeTimeoutResponse;
+    toProto(message: MsgChannelUpgradeTimeoutResponse): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeTimeoutResponse): MsgChannelUpgradeTimeoutResponseProtoMsg;
+};
+export declare const MsgChannelUpgradeCancel: {
+    typeUrl: string;
+    encode(message: MsgChannelUpgradeCancel, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeCancel;
+    fromPartial(object: Partial<MsgChannelUpgradeCancel>): MsgChannelUpgradeCancel;
+    fromAmino(object: MsgChannelUpgradeCancelAmino): MsgChannelUpgradeCancel;
+    toAmino(message: MsgChannelUpgradeCancel): MsgChannelUpgradeCancelAmino;
+    fromAminoMsg(object: MsgChannelUpgradeCancelAminoMsg): MsgChannelUpgradeCancel;
+    toAminoMsg(message: MsgChannelUpgradeCancel): MsgChannelUpgradeCancelAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeCancelProtoMsg): MsgChannelUpgradeCancel;
+    toProto(message: MsgChannelUpgradeCancel): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeCancel): MsgChannelUpgradeCancelProtoMsg;
+};
+export declare const MsgChannelUpgradeCancelResponse: {
+    typeUrl: string;
+    encode(_: MsgChannelUpgradeCancelResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgChannelUpgradeCancelResponse;
+    fromPartial(_: Partial<MsgChannelUpgradeCancelResponse>): MsgChannelUpgradeCancelResponse;
+    fromAmino(_: MsgChannelUpgradeCancelResponseAmino): MsgChannelUpgradeCancelResponse;
+    toAmino(_: MsgChannelUpgradeCancelResponse): MsgChannelUpgradeCancelResponseAmino;
+    fromAminoMsg(object: MsgChannelUpgradeCancelResponseAminoMsg): MsgChannelUpgradeCancelResponse;
+    toAminoMsg(message: MsgChannelUpgradeCancelResponse): MsgChannelUpgradeCancelResponseAminoMsg;
+    fromProtoMsg(message: MsgChannelUpgradeCancelResponseProtoMsg): MsgChannelUpgradeCancelResponse;
+    toProto(message: MsgChannelUpgradeCancelResponse): Uint8Array;
+    toProtoMsg(message: MsgChannelUpgradeCancelResponse): MsgChannelUpgradeCancelResponseProtoMsg;
+};
+export declare const MsgUpdateParams: {
+    typeUrl: string;
+    encode(message: MsgUpdateParams, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParams;
+    fromPartial(object: Partial<MsgUpdateParams>): MsgUpdateParams;
+    fromAmino(object: MsgUpdateParamsAmino): MsgUpdateParams;
+    toAmino(message: MsgUpdateParams): MsgUpdateParamsAmino;
+    fromAminoMsg(object: MsgUpdateParamsAminoMsg): MsgUpdateParams;
+    toAminoMsg(message: MsgUpdateParams): MsgUpdateParamsAminoMsg;
+    fromProtoMsg(message: MsgUpdateParamsProtoMsg): MsgUpdateParams;
+    toProto(message: MsgUpdateParams): Uint8Array;
+    toProtoMsg(message: MsgUpdateParams): MsgUpdateParamsProtoMsg;
+};
+export declare const MsgUpdateParamsResponse: {
+    typeUrl: string;
+    encode(_: MsgUpdateParamsResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgUpdateParamsResponse;
+    fromPartial(_: Partial<MsgUpdateParamsResponse>): MsgUpdateParamsResponse;
+    fromAmino(_: MsgUpdateParamsResponseAmino): MsgUpdateParamsResponse;
+    toAmino(_: MsgUpdateParamsResponse): MsgUpdateParamsResponseAmino;
+    fromAminoMsg(object: MsgUpdateParamsResponseAminoMsg): MsgUpdateParamsResponse;
+    toAminoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseAminoMsg;
+    fromProtoMsg(message: MsgUpdateParamsResponseProtoMsg): MsgUpdateParamsResponse;
+    toProto(message: MsgUpdateParamsResponse): Uint8Array;
+    toProtoMsg(message: MsgUpdateParamsResponse): MsgUpdateParamsResponseProtoMsg;
+};
+export declare const MsgPruneAcknowledgements: {
+    typeUrl: string;
+    encode(message: MsgPruneAcknowledgements, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgPruneAcknowledgements;
+    fromPartial(object: Partial<MsgPruneAcknowledgements>): MsgPruneAcknowledgements;
+    fromAmino(object: MsgPruneAcknowledgementsAmino): MsgPruneAcknowledgements;
+    toAmino(message: MsgPruneAcknowledgements): MsgPruneAcknowledgementsAmino;
+    fromAminoMsg(object: MsgPruneAcknowledgementsAminoMsg): MsgPruneAcknowledgements;
+    toAminoMsg(message: MsgPruneAcknowledgements): MsgPruneAcknowledgementsAminoMsg;
+    fromProtoMsg(message: MsgPruneAcknowledgementsProtoMsg): MsgPruneAcknowledgements;
+    toProto(message: MsgPruneAcknowledgements): Uint8Array;
+    toProtoMsg(message: MsgPruneAcknowledgements): MsgPruneAcknowledgementsProtoMsg;
+};
+export declare const MsgPruneAcknowledgementsResponse: {
+    typeUrl: string;
+    encode(message: MsgPruneAcknowledgementsResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgPruneAcknowledgementsResponse;
+    fromPartial(object: Partial<MsgPruneAcknowledgementsResponse>): MsgPruneAcknowledgementsResponse;
+    fromAmino(object: MsgPruneAcknowledgementsResponseAmino): MsgPruneAcknowledgementsResponse;
+    toAmino(message: MsgPruneAcknowledgementsResponse): MsgPruneAcknowledgementsResponseAmino;
+    fromAminoMsg(object: MsgPruneAcknowledgementsResponseAminoMsg): MsgPruneAcknowledgementsResponse;
+    toAminoMsg(message: MsgPruneAcknowledgementsResponse): MsgPruneAcknowledgementsResponseAminoMsg;
+    fromProtoMsg(message: MsgPruneAcknowledgementsResponseProtoMsg): MsgPruneAcknowledgementsResponse;
+    toProto(message: MsgPruneAcknowledgementsResponse): Uint8Array;
+    toProtoMsg(message: MsgPruneAcknowledgementsResponse): MsgPruneAcknowledgementsResponseProtoMsg;
 };

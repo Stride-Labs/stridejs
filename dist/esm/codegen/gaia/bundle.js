@@ -1,16 +1,16 @@
-import * as _135 from "./liquid/module/v1/module";
-import * as _136 from "./liquid/v1beta1/genesis";
-import * as _137 from "./liquid/v1beta1/liquid";
-import * as _138 from "./liquid/v1beta1/lsm_tx";
-import * as _139 from "./liquid/v1beta1/query";
-import * as _140 from "./liquid/v1beta1/tx";
-import * as _141 from "./metaprotocols/extensions";
-import * as _348 from "./liquid/v1beta1/tx.amino";
-import * as _349 from "./liquid/v1beta1/tx.registry";
-import * as _350 from "./liquid/v1beta1/query.rpc.Query";
-import * as _351 from "./liquid/v1beta1/tx.rpc.msg";
-import * as _425 from "./rpc.query";
-import * as _426 from "./rpc.tx";
+import * as _140 from "./liquid/module/v1/module";
+import * as _141 from "./liquid/v1beta1/genesis";
+import * as _142 from "./liquid/v1beta1/liquid";
+import * as _143 from "./liquid/v1beta1/lsm_tx";
+import * as _144 from "./liquid/v1beta1/query";
+import * as _145 from "./liquid/v1beta1/tx";
+import * as _146 from "./metaprotocols/extensions";
+import * as _361 from "./liquid/v1beta1/tx.amino";
+import * as _362 from "./liquid/v1beta1/tx.registry";
+import * as _363 from "./liquid/v1beta1/query.rpc.Query";
+import * as _364 from "./liquid/v1beta1/tx.rpc.msg";
+import * as _445 from "./rpc.query";
+import * as _446 from "./rpc.tx";
 var gaia;
 ((gaia2) => {
   let liquid;
@@ -18,27 +18,27 @@ var gaia;
     let module;
     ((module2) => {
       module2.v1 = {
-        ..._135
+        ..._140
       };
     })(module = liquid2.module || (liquid2.module = {}));
     liquid2.v1beta1 = {
-      ..._136,
-      ..._137,
-      ..._138,
-      ..._139,
-      ..._140,
-      ..._348,
-      ..._349,
-      ..._350,
-      ..._351
+      ..._141,
+      ..._142,
+      ..._143,
+      ..._144,
+      ..._145,
+      ..._361,
+      ..._362,
+      ..._363,
+      ..._364
     };
   })(liquid = gaia2.liquid || (gaia2.liquid = {}));
   gaia2.metaprotocols = {
-    ..._141
+    ..._146
   };
   gaia2.ClientFactory = {
-    ..._425,
-    ..._426
+    ..._445,
+    ..._446
   };
 })(gaia || (gaia = {}));
 export {

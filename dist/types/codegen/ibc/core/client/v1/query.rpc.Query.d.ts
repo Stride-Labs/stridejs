@@ -1,6 +1,6 @@
 import { TxRpc } from "../../../../types";
 import { QueryClient } from "@cosmjs/stargate";
-import { QueryClientStateRequest, QueryClientStateResponse, QueryClientStatesRequest, QueryClientStatesResponse, QueryConsensusStateRequest, QueryConsensusStateResponse, QueryConsensusStatesRequest, QueryConsensusStatesResponse, QueryConsensusStateHeightsRequest, QueryConsensusStateHeightsResponse, QueryClientStatusRequest, QueryClientStatusResponse, QueryClientParamsRequest, QueryClientParamsResponse, QueryUpgradedClientStateRequest, QueryUpgradedClientStateResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse } from "./query";
+import { QueryClientStateRequest, QueryClientStateResponse, QueryClientStatesRequest, QueryClientStatesResponse, QueryConsensusStateRequest, QueryConsensusStateResponse, QueryConsensusStatesRequest, QueryConsensusStatesResponse, QueryConsensusStateHeightsRequest, QueryConsensusStateHeightsResponse, QueryClientStatusRequest, QueryClientStatusResponse, QueryClientParamsRequest, QueryClientParamsResponse, QueryUpgradedClientStateRequest, QueryUpgradedClientStateResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse, QueryVerifyMembershipRequest, QueryVerifyMembershipResponse } from "./query";
 /** Query provides defines the gRPC querier service */
 export interface Query {
     /** ClientState queries an IBC light client. */
@@ -27,6 +27,8 @@ export interface Query {
     upgradedClientState(request?: QueryUpgradedClientStateRequest): Promise<QueryUpgradedClientStateResponse>;
     /** UpgradedConsensusState queries an Upgraded IBC consensus state. */
     upgradedConsensusState(request?: QueryUpgradedConsensusStateRequest): Promise<QueryUpgradedConsensusStateResponse>;
+    /** VerifyMembership queries an IBC light client for proof verification of a value at a given key path. */
+    verifyMembership(request: QueryVerifyMembershipRequest): Promise<QueryVerifyMembershipResponse>;
 }
 export declare class QueryClientImpl implements Query {
     private readonly rpc;
@@ -40,6 +42,7 @@ export declare class QueryClientImpl implements Query {
     clientParams(request?: QueryClientParamsRequest): Promise<QueryClientParamsResponse>;
     upgradedClientState(request?: QueryUpgradedClientStateRequest): Promise<QueryUpgradedClientStateResponse>;
     upgradedConsensusState(request?: QueryUpgradedConsensusStateRequest): Promise<QueryUpgradedConsensusStateResponse>;
+    verifyMembership(request: QueryVerifyMembershipRequest): Promise<QueryVerifyMembershipResponse>;
 }
 export declare const createRpcQueryExtension: (base: QueryClient) => {
     clientState(request: QueryClientStateRequest): Promise<QueryClientStateResponse>;
@@ -51,4 +54,5 @@ export declare const createRpcQueryExtension: (base: QueryClient) => {
     clientParams(request?: QueryClientParamsRequest): Promise<QueryClientParamsResponse>;
     upgradedClientState(request?: QueryUpgradedClientStateRequest): Promise<QueryUpgradedClientStateResponse>;
     upgradedConsensusState(request?: QueryUpgradedConsensusStateRequest): Promise<QueryUpgradedConsensusStateResponse>;
+    verifyMembership(request: QueryVerifyMembershipRequest): Promise<QueryVerifyMembershipResponse>;
 };

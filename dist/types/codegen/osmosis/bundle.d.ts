@@ -1,16 +1,16 @@
-import * as _189 from "./osmosis";
+import * as _199 from "./osmosis";
 export declare const osmosis: {
     OsmosisTwapRecord: {
         typeUrl: string;
-        encode(message: _189.OsmosisTwapRecord, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
-        decode(input: Uint8Array | import("..").BinaryReader, length?: number): _189.OsmosisTwapRecord;
-        fromPartial(object: Partial<_189.OsmosisTwapRecord>): _189.OsmosisTwapRecord;
-        fromAmino(object: _189.OsmosisTwapRecordAmino): _189.OsmosisTwapRecord;
-        toAmino(message: _189.OsmosisTwapRecord): _189.OsmosisTwapRecordAmino;
-        fromAminoMsg(object: _189.OsmosisTwapRecordAminoMsg): _189.OsmosisTwapRecord;
-        toAminoMsg(message: _189.OsmosisTwapRecord): _189.OsmosisTwapRecordAminoMsg;
-        fromProtoMsg(message: _189.OsmosisTwapRecordProtoMsg): _189.OsmosisTwapRecord;
-        toProto(message: _189.OsmosisTwapRecord): Uint8Array;
-        toProtoMsg(message: _189.OsmosisTwapRecord): _189.OsmosisTwapRecordProtoMsg;
+        encode(message: _199.OsmosisTwapRecord, writer?: import("..").BinaryWriter): import("..").BinaryWriter;
+        decode(input: Uint8Array | import("..").BinaryReader, length?: number): _199.OsmosisTwapRecord;
+        fromPartial(object: Partial<_199.OsmosisTwapRecord>): _199.OsmosisTwapRecord;
+        fromAmino(object: _199.OsmosisTwapRecordAmino): _199.OsmosisTwapRecord;
+        toAmino(message: _199.OsmosisTwapRecord): _199.OsmosisTwapRecordAmino;
+        fromAminoMsg(object: _199.OsmosisTwapRecordAminoMsg): _199.OsmosisTwapRecord;
+        toAminoMsg(message: _199.OsmosisTwapRecord): _199.OsmosisTwapRecordAminoMsg;
+        fromProtoMsg(message: _199.OsmosisTwapRecordProtoMsg): _199.OsmosisTwapRecord;
+        toProto(message: _199.OsmosisTwapRecord): Uint8Array;
+        toProtoMsg(message: _199.OsmosisTwapRecord): _199.OsmosisTwapRecordProtoMsg;
     };
 };

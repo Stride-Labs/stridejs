@@ -163,7 +163,7 @@ export interface QueryContractHistoryResponseSDKType {
  * RPC method
  */
 export interface QueryContractsByCodeRequest {
-    /** grpc-gateway_out does not support Go style CodID */
+    /** grpc-gateway_out does not support Go style CodeID */
     codeId: bigint;
     /** pagination defines an optional pagination for the request. */
     pagination?: PageRequest;
@@ -181,7 +181,7 @@ export interface QueryContractsByCodeRequestProtoMsg {
  */
 export interface QueryContractsByCodeRequestAmino {
     /**
-     * grpc-gateway_out does not support Go style CodID
+     * grpc-gateway_out does not support Go style CodeID
      */
     code_id?: string;
     /**
@@ -482,7 +482,7 @@ export interface QuerySmartContractStateResponseSDKType {
 }
 /** QueryCodeRequest is the request type for the Query/Code RPC method */
 export interface QueryCodeRequest {
-    /** grpc-gateway_out does not support Go style CodID */
+    /** grpc-gateway_out does not support Go style CodeID */
     codeId: bigint;
 }
 export interface QueryCodeRequestProtoMsg {
@@ -497,7 +497,7 @@ export interface QueryCodeRequestProtoMsg {
  */
 export interface QueryCodeRequestAmino {
     /**
-     * grpc-gateway_out does not support Go style CodID
+     * grpc-gateway_out does not support Go style CodeID
      */
     code_id?: string;
 }
@@ -508,6 +508,69 @@ export interface QueryCodeRequestAminoMsg {
 /** QueryCodeRequest is the request type for the Query/Code RPC method */
 export interface QueryCodeRequestSDKType {
     code_id: bigint;
+}
+/** QueryCodeInfoRequest is the request type for the Query/CodeInfo RPC method */
+export interface QueryCodeInfoRequest {
+    /** grpc-gateway_out does not support Go style CodeID */
+    codeId: bigint;
+}
+export interface QueryCodeInfoRequestProtoMsg {
+    typeUrl: "/cosmwasm.wasm.v1.QueryCodeInfoRequest";
+    value: Uint8Array;
+}
+/**
+ * QueryCodeInfoRequest is the request type for the Query/CodeInfo RPC method
+ * @name QueryCodeInfoRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryCodeInfoRequest
+ */
+export interface QueryCodeInfoRequestAmino {
+    /**
+     * grpc-gateway_out does not support Go style CodeID
+     */
+    code_id?: string;
+}
+export interface QueryCodeInfoRequestAminoMsg {
+    type: "wasm/QueryCodeInfoRequest";
+    value: QueryCodeInfoRequestAmino;
+}
+/** QueryCodeInfoRequest is the request type for the Query/CodeInfo RPC method */
+export interface QueryCodeInfoRequestSDKType {
+    code_id: bigint;
+}
+/** QueryCodeInfoResponse is the response type for the Query/CodeInfo RPC method */
+export interface QueryCodeInfoResponse {
+    codeId: bigint;
+    creator: string;
+    checksum: Uint8Array;
+    instantiatePermission: AccessConfig;
+}
+export interface QueryCodeInfoResponseProtoMsg {
+    typeUrl: "/cosmwasm.wasm.v1.QueryCodeInfoResponse";
+    value: Uint8Array;
+}
+/**
+ * QueryCodeInfoResponse is the response type for the Query/CodeInfo RPC method
+ * @name QueryCodeInfoResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryCodeInfoResponse
+ */
+export interface QueryCodeInfoResponseAmino {
+    code_id?: string;
+    creator?: string;
+    checksum?: string;
+    instantiate_permission: AccessConfigAmino;
+}
+export interface QueryCodeInfoResponseAminoMsg {
+    type: "wasm/QueryCodeInfoResponse";
+    value: QueryCodeInfoResponseAmino;
+}
+/** QueryCodeInfoResponse is the response type for the Query/CodeInfo RPC method */
+export interface QueryCodeInfoResponseSDKType {
+    code_id: bigint;
+    creator: string;
+    checksum: Uint8Array;
+    instantiate_permission: AccessConfigSDKType;
 }
 /** CodeInfoResponse contains code meta data from CodeInfo */
 export interface CodeInfoResponse {
@@ -844,6 +907,167 @@ export interface QueryContractsByCreatorResponseSDKType {
     contract_addresses: string[];
     pagination?: PageResponseSDKType;
 }
+/**
+ * QueryWasmLimitsConfigRequest is the request type for the
+ * Query/WasmLimitsConfig RPC method.
+ */
+export interface QueryWasmLimitsConfigRequest {
+}
+export interface QueryWasmLimitsConfigRequestProtoMsg {
+    typeUrl: "/cosmwasm.wasm.v1.QueryWasmLimitsConfigRequest";
+    value: Uint8Array;
+}
+/**
+ * QueryWasmLimitsConfigRequest is the request type for the
+ * Query/WasmLimitsConfig RPC method.
+ * @name QueryWasmLimitsConfigRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryWasmLimitsConfigRequest
+ */
+export interface QueryWasmLimitsConfigRequestAmino {
+}
+export interface QueryWasmLimitsConfigRequestAminoMsg {
+    type: "wasm/QueryWasmLimitsConfigRequest";
+    value: QueryWasmLimitsConfigRequestAmino;
+}
+/**
+ * QueryWasmLimitsConfigRequest is the request type for the
+ * Query/WasmLimitsConfig RPC method.
+ */
+export interface QueryWasmLimitsConfigRequestSDKType {
+}
+/**
+ * QueryWasmLimitsConfigResponse is the response type for the
+ * Query/WasmLimitsConfig RPC method. It contains the JSON encoded limits for
+ * static validation of Wasm files.
+ */
+export interface QueryWasmLimitsConfigResponse {
+    config: string;
+}
+export interface QueryWasmLimitsConfigResponseProtoMsg {
+    typeUrl: "/cosmwasm.wasm.v1.QueryWasmLimitsConfigResponse";
+    value: Uint8Array;
+}
+/**
+ * QueryWasmLimitsConfigResponse is the response type for the
+ * Query/WasmLimitsConfig RPC method. It contains the JSON encoded limits for
+ * static validation of Wasm files.
+ * @name QueryWasmLimitsConfigResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryWasmLimitsConfigResponse
+ */
+export interface QueryWasmLimitsConfigResponseAmino {
+    config?: string;
+}
+export interface QueryWasmLimitsConfigResponseAminoMsg {
+    type: "wasm/QueryWasmLimitsConfigResponse";
+    value: QueryWasmLimitsConfigResponseAmino;
+}
+/**
+ * QueryWasmLimitsConfigResponse is the response type for the
+ * Query/WasmLimitsConfig RPC method. It contains the JSON encoded limits for
+ * static validation of Wasm files.
+ */
+export interface QueryWasmLimitsConfigResponseSDKType {
+    config: string;
+}
+/**
+ * QueryBuildAddressRequest is the request type for the Query/BuildAddress RPC
+ * method.
+ */
+export interface QueryBuildAddressRequest {
+    /** CodeHash is the hash of the code */
+    codeHash: string;
+    /** CreatorAddress is the address of the contract instantiator */
+    creatorAddress: string;
+    /** Salt is a hex encoded salt */
+    salt: string;
+    /**
+     * InitArgs are optional json encoded init args to be used in contract address
+     * building if provided
+     */
+    initArgs: Uint8Array;
+}
+export interface QueryBuildAddressRequestProtoMsg {
+    typeUrl: "/cosmwasm.wasm.v1.QueryBuildAddressRequest";
+    value: Uint8Array;
+}
+/**
+ * QueryBuildAddressRequest is the request type for the Query/BuildAddress RPC
+ * method.
+ * @name QueryBuildAddressRequestAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryBuildAddressRequest
+ */
+export interface QueryBuildAddressRequestAmino {
+    /**
+     * CodeHash is the hash of the code
+     */
+    code_hash?: string;
+    /**
+     * CreatorAddress is the address of the contract instantiator
+     */
+    creator_address?: string;
+    /**
+     * Salt is a hex encoded salt
+     */
+    salt?: string;
+    /**
+     * InitArgs are optional json encoded init args to be used in contract address
+     * building if provided
+     */
+    init_args?: string;
+}
+export interface QueryBuildAddressRequestAminoMsg {
+    type: "wasm/QueryBuildAddressRequest";
+    value: QueryBuildAddressRequestAmino;
+}
+/**
+ * QueryBuildAddressRequest is the request type for the Query/BuildAddress RPC
+ * method.
+ */
+export interface QueryBuildAddressRequestSDKType {
+    code_hash: string;
+    creator_address: string;
+    salt: string;
+    init_args: Uint8Array;
+}
+/**
+ * QueryBuildAddressResponse is the response type for the Query/BuildAddress RPC
+ * method.
+ */
+export interface QueryBuildAddressResponse {
+    /** Address is the contract address */
+    address: string;
+}
+export interface QueryBuildAddressResponseProtoMsg {
+    typeUrl: "/cosmwasm.wasm.v1.QueryBuildAddressResponse";
+    value: Uint8Array;
+}
+/**
+ * QueryBuildAddressResponse is the response type for the Query/BuildAddress RPC
+ * method.
+ * @name QueryBuildAddressResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.QueryBuildAddressResponse
+ */
+export interface QueryBuildAddressResponseAmino {
+    /**
+     * Address is the contract address
+     */
+    address?: string;
+}
+export interface QueryBuildAddressResponseAminoMsg {
+    type: "wasm/QueryBuildAddressResponse";
+    value: QueryBuildAddressResponseAmino;
+}
+/**
+ * QueryBuildAddressResponse is the response type for the Query/BuildAddress RPC
+ * method.
+ */
+export interface QueryBuildAddressResponseSDKType {
+    address: string;
+}
 export declare const QueryContractInfoRequest: {
     typeUrl: string;
     encode(message: QueryContractInfoRequest, writer?: BinaryWriter): BinaryWriter;
@@ -1013,6 +1237,32 @@ export declare const QueryCodeRequest: {
     toProto(message: QueryCodeRequest): Uint8Array;
     toProtoMsg(message: QueryCodeRequest): QueryCodeRequestProtoMsg;
 };
+export declare const QueryCodeInfoRequest: {
+    typeUrl: string;
+    encode(message: QueryCodeInfoRequest, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryCodeInfoRequest;
+    fromPartial(object: Partial<QueryCodeInfoRequest>): QueryCodeInfoRequest;
+    fromAmino(object: QueryCodeInfoRequestAmino): QueryCodeInfoRequest;
+    toAmino(message: QueryCodeInfoRequest): QueryCodeInfoRequestAmino;
+    fromAminoMsg(object: QueryCodeInfoRequestAminoMsg): QueryCodeInfoRequest;
+    toAminoMsg(message: QueryCodeInfoRequest): QueryCodeInfoRequestAminoMsg;
+    fromProtoMsg(message: QueryCodeInfoRequestProtoMsg): QueryCodeInfoRequest;
+    toProto(message: QueryCodeInfoRequest): Uint8Array;
+    toProtoMsg(message: QueryCodeInfoRequest): QueryCodeInfoRequestProtoMsg;
+};
+export declare const QueryCodeInfoResponse: {
+    typeUrl: string;
+    encode(message: QueryCodeInfoResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryCodeInfoResponse;
+    fromPartial(object: Partial<QueryCodeInfoResponse>): QueryCodeInfoResponse;
+    fromAmino(object: QueryCodeInfoResponseAmino): QueryCodeInfoResponse;
+    toAmino(message: QueryCodeInfoResponse): QueryCodeInfoResponseAmino;
+    fromAminoMsg(object: QueryCodeInfoResponseAminoMsg): QueryCodeInfoResponse;
+    toAminoMsg(message: QueryCodeInfoResponse): QueryCodeInfoResponseAminoMsg;
+    fromProtoMsg(message: QueryCodeInfoResponseProtoMsg): QueryCodeInfoResponse;
+    toProto(message: QueryCodeInfoResponse): Uint8Array;
+    toProtoMsg(message: QueryCodeInfoResponse): QueryCodeInfoResponseProtoMsg;
+};
 export declare const CodeInfoResponse: {
     typeUrl: string;
     encode(message: CodeInfoResponse, writer?: BinaryWriter): BinaryWriter;
@@ -1142,4 +1392,56 @@ export declare const QueryContractsByCreatorResponse: {
     fromProtoMsg(message: QueryContractsByCreatorResponseProtoMsg): QueryContractsByCreatorResponse;
     toProto(message: QueryContractsByCreatorResponse): Uint8Array;
     toProtoMsg(message: QueryContractsByCreatorResponse): QueryContractsByCreatorResponseProtoMsg;
+};
+export declare const QueryWasmLimitsConfigRequest: {
+    typeUrl: string;
+    encode(_: QueryWasmLimitsConfigRequest, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryWasmLimitsConfigRequest;
+    fromPartial(_: Partial<QueryWasmLimitsConfigRequest>): QueryWasmLimitsConfigRequest;
+    fromAmino(_: QueryWasmLimitsConfigRequestAmino): QueryWasmLimitsConfigRequest;
+    toAmino(_: QueryWasmLimitsConfigRequest): QueryWasmLimitsConfigRequestAmino;
+    fromAminoMsg(object: QueryWasmLimitsConfigRequestAminoMsg): QueryWasmLimitsConfigRequest;
+    toAminoMsg(message: QueryWasmLimitsConfigRequest): QueryWasmLimitsConfigRequestAminoMsg;
+    fromProtoMsg(message: QueryWasmLimitsConfigRequestProtoMsg): QueryWasmLimitsConfigRequest;
+    toProto(message: QueryWasmLimitsConfigRequest): Uint8Array;
+    toProtoMsg(message: QueryWasmLimitsConfigRequest): QueryWasmLimitsConfigRequestProtoMsg;
+};
+export declare const QueryWasmLimitsConfigResponse: {
+    typeUrl: string;
+    encode(message: QueryWasmLimitsConfigResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryWasmLimitsConfigResponse;
+    fromPartial(object: Partial<QueryWasmLimitsConfigResponse>): QueryWasmLimitsConfigResponse;
+    fromAmino(object: QueryWasmLimitsConfigResponseAmino): QueryWasmLimitsConfigResponse;
+    toAmino(message: QueryWasmLimitsConfigResponse): QueryWasmLimitsConfigResponseAmino;
+    fromAminoMsg(object: QueryWasmLimitsConfigResponseAminoMsg): QueryWasmLimitsConfigResponse;
+    toAminoMsg(message: QueryWasmLimitsConfigResponse): QueryWasmLimitsConfigResponseAminoMsg;
+    fromProtoMsg(message: QueryWasmLimitsConfigResponseProtoMsg): QueryWasmLimitsConfigResponse;
+    toProto(message: QueryWasmLimitsConfigResponse): Uint8Array;
+    toProtoMsg(message: QueryWasmLimitsConfigResponse): QueryWasmLimitsConfigResponseProtoMsg;
+};
+export declare const QueryBuildAddressRequest: {
+    typeUrl: string;
+    encode(message: QueryBuildAddressRequest, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryBuildAddressRequest;
+    fromPartial(object: Partial<QueryBuildAddressRequest>): QueryBuildAddressRequest;
+    fromAmino(object: QueryBuildAddressRequestAmino): QueryBuildAddressRequest;
+    toAmino(message: QueryBuildAddressRequest): QueryBuildAddressRequestAmino;
+    fromAminoMsg(object: QueryBuildAddressRequestAminoMsg): QueryBuildAddressRequest;
+    toAminoMsg(message: QueryBuildAddressRequest): QueryBuildAddressRequestAminoMsg;
+    fromProtoMsg(message: QueryBuildAddressRequestProtoMsg): QueryBuildAddressRequest;
+    toProto(message: QueryBuildAddressRequest): Uint8Array;
+    toProtoMsg(message: QueryBuildAddressRequest): QueryBuildAddressRequestProtoMsg;
+};
+export declare const QueryBuildAddressResponse: {
+    typeUrl: string;
+    encode(message: QueryBuildAddressResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryBuildAddressResponse;
+    fromPartial(object: Partial<QueryBuildAddressResponse>): QueryBuildAddressResponse;
+    fromAmino(object: QueryBuildAddressResponseAmino): QueryBuildAddressResponse;
+    toAmino(message: QueryBuildAddressResponse): QueryBuildAddressResponseAmino;
+    fromAminoMsg(object: QueryBuildAddressResponseAminoMsg): QueryBuildAddressResponse;
+    toAminoMsg(message: QueryBuildAddressResponse): QueryBuildAddressResponseAminoMsg;
+    fromProtoMsg(message: QueryBuildAddressResponseProtoMsg): QueryBuildAddressResponse;
+    toProto(message: QueryBuildAddressResponse): Uint8Array;
+    toProtoMsg(message: QueryBuildAddressResponse): QueryBuildAddressResponseProtoMsg;
 };

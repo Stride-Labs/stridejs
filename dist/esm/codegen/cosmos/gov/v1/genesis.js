@@ -9,7 +9,8 @@ function createBaseGenesisState() {
     depositParams: void 0,
     votingParams: void 0,
     tallyParams: void 0,
-    params: void 0
+    params: void 0,
+    constitution: ""
   };
 }
 const GenesisState = {
@@ -38,6 +39,9 @@ const GenesisState = {
     }
     if (message.params !== void 0) {
       Params.encode(message.params, writer.uint32(66).fork()).ldelim();
+    }
+    if (message.constitution !== "") {
+      writer.uint32(74).string(message.constitution);
     }
     return writer;
   },
@@ -72,6 +76,9 @@ const GenesisState = {
         case 8:
           message.params = Params.decode(reader, reader.uint32());
           break;
+        case 9:
+          message.constitution = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -89,6 +96,7 @@ const GenesisState = {
     message.votingParams = object.votingParams !== void 0 && object.votingParams !== null ? VotingParams.fromPartial(object.votingParams) : void 0;
     message.tallyParams = object.tallyParams !== void 0 && object.tallyParams !== null ? TallyParams.fromPartial(object.tallyParams) : void 0;
     message.params = object.params !== void 0 && object.params !== null ? Params.fromPartial(object.params) : void 0;
+    message.constitution = object.constitution ?? "";
     return message;
   },
   fromAmino(object) {
@@ -110,6 +118,9 @@ const GenesisState = {
     }
     if (object.params !== void 0 && object.params !== null) {
       message.params = Params.fromAmino(object.params);
+    }
+    if (object.constitution !== void 0 && object.constitution !== null) {
+      message.constitution = object.constitution;
     }
     return message;
   },
@@ -135,6 +146,7 @@ const GenesisState = {
     obj.voting_params = message.votingParams ? VotingParams.toAmino(message.votingParams) : void 0;
     obj.tally_params = message.tallyParams ? TallyParams.toAmino(message.tallyParams) : void 0;
     obj.params = message.params ? Params.toAmino(message.params) : void 0;
+    obj.constitution = message.constitution === "" ? void 0 : message.constitution;
     return obj;
   },
   fromAminoMsg(object) {

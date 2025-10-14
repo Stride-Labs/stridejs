@@ -1,7 +1,7 @@
 import { ConsensusParams, ConsensusParamsAmino, ConsensusParamsSDKType } from "../types/params";
-import { Header, HeaderAmino, HeaderSDKType } from "../types/types";
 import { ProofOps, ProofOpsAmino, ProofOpsSDKType } from "../crypto/proof";
 import { PublicKey, PublicKeyAmino, PublicKeySDKType } from "../crypto/keys";
+import { BlockIDFlag } from "../types/validator";
 import { BinaryReader, BinaryWriter } from "../../binary";
 export declare enum CheckTxType {
     NEW = 0,
@@ -60,6 +60,22 @@ export declare const ResponseProcessProposal_ProposalStatusSDKType: typeof Respo
 export declare const ResponseProcessProposal_ProposalStatusAmino: typeof ResponseProcessProposal_ProposalStatus;
 export declare function responseProcessProposal_ProposalStatusFromJSON(object: any): ResponseProcessProposal_ProposalStatus;
 export declare function responseProcessProposal_ProposalStatusToJSON(object: ResponseProcessProposal_ProposalStatus): string;
+export declare enum ResponseVerifyVoteExtension_VerifyStatus {
+    UNKNOWN = 0,
+    ACCEPT = 1,
+    /**
+     * REJECT - Rejecting the vote extension will reject the entire precommit by the sender.
+     * Incorrectly implementing this thus has liveness implications as it may affect
+     * CometBFT's ability to receive 2/3+ valid votes to finalize the block.
+     * Honest nodes should never be rejected.
+     */
+    REJECT = 2,
+    UNRECOGNIZED = -1
+}
+export declare const ResponseVerifyVoteExtension_VerifyStatusSDKType: typeof ResponseVerifyVoteExtension_VerifyStatus;
+export declare const ResponseVerifyVoteExtension_VerifyStatusAmino: typeof ResponseVerifyVoteExtension_VerifyStatus;
+export declare function responseVerifyVoteExtension_VerifyStatusFromJSON(object: any): ResponseVerifyVoteExtension_VerifyStatus;
+export declare function responseVerifyVoteExtension_VerifyStatusToJSON(object: ResponseVerifyVoteExtension_VerifyStatus): string;
 export declare enum MisbehaviorType {
     UNKNOWN = 0,
     DUPLICATE_VOTE = 1,
@@ -76,10 +92,7 @@ export interface Request {
     info?: RequestInfo;
     initChain?: RequestInitChain;
     query?: RequestQuery;
-    beginBlock?: RequestBeginBlock;
     checkTx?: RequestCheckTx;
-    deliverTx?: RequestDeliverTx;
-    endBlock?: RequestEndBlock;
     commit?: RequestCommit;
     listSnapshots?: RequestListSnapshots;
     offerSnapshot?: RequestOfferSnapshot;
@@ -87,6 +100,9 @@ export interface Request {
     applySnapshotChunk?: RequestApplySnapshotChunk;
     prepareProposal?: RequestPrepareProposal;
     processProposal?: RequestProcessProposal;
+    extendVote?: RequestExtendVote;
+    verifyVoteExtension?: RequestVerifyVoteExtension;
+    finalizeBlock?: RequestFinalizeBlock;
 }
 export interface RequestProtoMsg {
     typeUrl: "/tendermint.abci.Request";
@@ -103,10 +119,7 @@ export interface RequestAmino {
     info?: RequestInfoAmino;
     init_chain?: RequestInitChainAmino;
     query?: RequestQueryAmino;
-    begin_block?: RequestBeginBlockAmino;
     check_tx?: RequestCheckTxAmino;
-    deliver_tx?: RequestDeliverTxAmino;
-    end_block?: RequestEndBlockAmino;
     commit?: RequestCommitAmino;
     list_snapshots?: RequestListSnapshotsAmino;
     offer_snapshot?: RequestOfferSnapshotAmino;
@@ -114,6 +127,9 @@ export interface RequestAmino {
     apply_snapshot_chunk?: RequestApplySnapshotChunkAmino;
     prepare_proposal?: RequestPrepareProposalAmino;
     process_proposal?: RequestProcessProposalAmino;
+    extend_vote?: RequestExtendVoteAmino;
+    verify_vote_extension?: RequestVerifyVoteExtensionAmino;
+    finalize_block?: RequestFinalizeBlockAmino;
 }
 export interface RequestAminoMsg {
     type: "/tendermint.abci.Request";
@@ -125,10 +141,7 @@ export interface RequestSDKType {
     info?: RequestInfoSDKType;
     init_chain?: RequestInitChainSDKType;
     query?: RequestQuerySDKType;
-    begin_block?: RequestBeginBlockSDKType;
     check_tx?: RequestCheckTxSDKType;
-    deliver_tx?: RequestDeliverTxSDKType;
-    end_block?: RequestEndBlockSDKType;
     commit?: RequestCommitSDKType;
     list_snapshots?: RequestListSnapshotsSDKType;
     offer_snapshot?: RequestOfferSnapshotSDKType;
@@ -136,6 +149,9 @@ export interface RequestSDKType {
     apply_snapshot_chunk?: RequestApplySnapshotChunkSDKType;
     prepare_proposal?: RequestPrepareProposalSDKType;
     process_proposal?: RequestProcessProposalSDKType;
+    extend_vote?: RequestExtendVoteSDKType;
+    verify_vote_extension?: RequestVerifyVoteExtensionSDKType;
+    finalize_block?: RequestFinalizeBlockSDKType;
 }
 export interface RequestEcho {
     message: string;
@@ -277,37 +293,6 @@ export interface RequestQuerySDKType {
     height: bigint;
     prove: boolean;
 }
-export interface RequestBeginBlock {
-    hash: Uint8Array;
-    header: Header;
-    lastCommitInfo: CommitInfo;
-    byzantineValidators: Misbehavior[];
-}
-export interface RequestBeginBlockProtoMsg {
-    typeUrl: "/tendermint.abci.RequestBeginBlock";
-    value: Uint8Array;
-}
-/**
- * @name RequestBeginBlockAmino
- * @package tendermint.abci
- * @see proto type: tendermint.abci.RequestBeginBlock
- */
-export interface RequestBeginBlockAmino {
-    hash?: string;
-    header?: HeaderAmino;
-    last_commit_info?: CommitInfoAmino;
-    byzantine_validators?: MisbehaviorAmino[];
-}
-export interface RequestBeginBlockAminoMsg {
-    type: "/tendermint.abci.RequestBeginBlock";
-    value: RequestBeginBlockAmino;
-}
-export interface RequestBeginBlockSDKType {
-    hash: Uint8Array;
-    header: HeaderSDKType;
-    last_commit_info: CommitInfoSDKType;
-    byzantine_validators: MisbehaviorSDKType[];
-}
 export interface RequestCheckTx {
     tx: Uint8Array;
     type: CheckTxType;
@@ -332,50 +317,6 @@ export interface RequestCheckTxAminoMsg {
 export interface RequestCheckTxSDKType {
     tx: Uint8Array;
     type: CheckTxType;
-}
-export interface RequestDeliverTx {
-    tx: Uint8Array;
-}
-export interface RequestDeliverTxProtoMsg {
-    typeUrl: "/tendermint.abci.RequestDeliverTx";
-    value: Uint8Array;
-}
-/**
- * @name RequestDeliverTxAmino
- * @package tendermint.abci
- * @see proto type: tendermint.abci.RequestDeliverTx
- */
-export interface RequestDeliverTxAmino {
-    tx?: string;
-}
-export interface RequestDeliverTxAminoMsg {
-    type: "/tendermint.abci.RequestDeliverTx";
-    value: RequestDeliverTxAmino;
-}
-export interface RequestDeliverTxSDKType {
-    tx: Uint8Array;
-}
-export interface RequestEndBlock {
-    height: bigint;
-}
-export interface RequestEndBlockProtoMsg {
-    typeUrl: "/tendermint.abci.RequestEndBlock";
-    value: Uint8Array;
-}
-/**
- * @name RequestEndBlockAmino
- * @package tendermint.abci
- * @see proto type: tendermint.abci.RequestEndBlock
- */
-export interface RequestEndBlockAmino {
-    height?: string;
-}
-export interface RequestEndBlockAminoMsg {
-    type: "/tendermint.abci.RequestEndBlock";
-    value: RequestEndBlockAmino;
-}
-export interface RequestEndBlockSDKType {
-    height: bigint;
 }
 export interface RequestCommit {
 }
@@ -626,6 +567,161 @@ export interface RequestProcessProposalSDKType {
     next_validators_hash: Uint8Array;
     proposer_address: Uint8Array;
 }
+/** Extends a vote with application-injected data */
+export interface RequestExtendVote {
+    /** the hash of the block that this vote may be referring to */
+    hash: Uint8Array;
+    /** the height of the extended vote */
+    height: bigint;
+    /** info of the block that this vote may be referring to */
+    time: Date;
+    txs: Uint8Array[];
+    proposedLastCommit: CommitInfo;
+    misbehavior: Misbehavior[];
+    nextValidatorsHash: Uint8Array;
+    /** address of the public key of the original proposer of the block. */
+    proposerAddress: Uint8Array;
+}
+export interface RequestExtendVoteProtoMsg {
+    typeUrl: "/tendermint.abci.RequestExtendVote";
+    value: Uint8Array;
+}
+/**
+ * Extends a vote with application-injected data
+ * @name RequestExtendVoteAmino
+ * @package tendermint.abci
+ * @see proto type: tendermint.abci.RequestExtendVote
+ */
+export interface RequestExtendVoteAmino {
+    /**
+     * the hash of the block that this vote may be referring to
+     */
+    hash?: string;
+    /**
+     * the height of the extended vote
+     */
+    height?: string;
+    /**
+     * info of the block that this vote may be referring to
+     */
+    time?: string;
+    txs?: string[];
+    proposed_last_commit?: CommitInfoAmino;
+    misbehavior?: MisbehaviorAmino[];
+    next_validators_hash?: string;
+    /**
+     * address of the public key of the original proposer of the block.
+     */
+    proposer_address?: string;
+}
+export interface RequestExtendVoteAminoMsg {
+    type: "/tendermint.abci.RequestExtendVote";
+    value: RequestExtendVoteAmino;
+}
+/** Extends a vote with application-injected data */
+export interface RequestExtendVoteSDKType {
+    hash: Uint8Array;
+    height: bigint;
+    time: Date;
+    txs: Uint8Array[];
+    proposed_last_commit: CommitInfoSDKType;
+    misbehavior: MisbehaviorSDKType[];
+    next_validators_hash: Uint8Array;
+    proposer_address: Uint8Array;
+}
+/** Verify the vote extension */
+export interface RequestVerifyVoteExtension {
+    /** the hash of the block that this received vote corresponds to */
+    hash: Uint8Array;
+    /** the validator that signed the vote extension */
+    validatorAddress: Uint8Array;
+    height: bigint;
+    voteExtension: Uint8Array;
+}
+export interface RequestVerifyVoteExtensionProtoMsg {
+    typeUrl: "/tendermint.abci.RequestVerifyVoteExtension";
+    value: Uint8Array;
+}
+/**
+ * Verify the vote extension
+ * @name RequestVerifyVoteExtensionAmino
+ * @package tendermint.abci
+ * @see proto type: tendermint.abci.RequestVerifyVoteExtension
+ */
+export interface RequestVerifyVoteExtensionAmino {
+    /**
+     * the hash of the block that this received vote corresponds to
+     */
+    hash?: string;
+    /**
+     * the validator that signed the vote extension
+     */
+    validator_address?: string;
+    height?: string;
+    vote_extension?: string;
+}
+export interface RequestVerifyVoteExtensionAminoMsg {
+    type: "/tendermint.abci.RequestVerifyVoteExtension";
+    value: RequestVerifyVoteExtensionAmino;
+}
+/** Verify the vote extension */
+export interface RequestVerifyVoteExtensionSDKType {
+    hash: Uint8Array;
+    validator_address: Uint8Array;
+    height: bigint;
+    vote_extension: Uint8Array;
+}
+export interface RequestFinalizeBlock {
+    txs: Uint8Array[];
+    decidedLastCommit: CommitInfo;
+    misbehavior: Misbehavior[];
+    /** hash is the merkle root hash of the fields of the decided block. */
+    hash: Uint8Array;
+    height: bigint;
+    time: Date;
+    nextValidatorsHash: Uint8Array;
+    /** proposer_address is the address of the public key of the original proposer of the block. */
+    proposerAddress: Uint8Array;
+}
+export interface RequestFinalizeBlockProtoMsg {
+    typeUrl: "/tendermint.abci.RequestFinalizeBlock";
+    value: Uint8Array;
+}
+/**
+ * @name RequestFinalizeBlockAmino
+ * @package tendermint.abci
+ * @see proto type: tendermint.abci.RequestFinalizeBlock
+ */
+export interface RequestFinalizeBlockAmino {
+    txs?: string[];
+    decided_last_commit?: CommitInfoAmino;
+    misbehavior?: MisbehaviorAmino[];
+    /**
+     * hash is the merkle root hash of the fields of the decided block.
+     */
+    hash?: string;
+    height?: string;
+    time?: string;
+    next_validators_hash?: string;
+    /**
+     * proposer_address is the address of the public key of the original proposer of the block.
+     */
+    proposer_address?: string;
+}
+export interface RequestFinalizeBlockAminoMsg {
+    type: "/tendermint.abci.RequestFinalizeBlock";
+    value: RequestFinalizeBlockAmino;
+}
+export interface RequestFinalizeBlockSDKType {
+    txs: Uint8Array[];
+    decided_last_commit: CommitInfoSDKType;
+    misbehavior: MisbehaviorSDKType[];
+    hash: Uint8Array;
+    height: bigint;
+    time: Date;
+    next_validators_hash: Uint8Array;
+    proposer_address: Uint8Array;
+}
 export interface Response {
     exception?: ResponseException;
     echo?: ResponseEcho;
@@ -633,10 +729,7 @@ export interface Response {
     info?: ResponseInfo;
     initChain?: ResponseInitChain;
     query?: ResponseQuery;
-    beginBlock?: ResponseBeginBlock;
     checkTx?: ResponseCheckTx;
-    deliverTx?: ResponseDeliverTx;
-    endBlock?: ResponseEndBlock;
     commit?: ResponseCommit;
     listSnapshots?: ResponseListSnapshots;
     offerSnapshot?: ResponseOfferSnapshot;
@@ -644,6 +737,9 @@ export interface Response {
     applySnapshotChunk?: ResponseApplySnapshotChunk;
     prepareProposal?: ResponsePrepareProposal;
     processProposal?: ResponseProcessProposal;
+    extendVote?: ResponseExtendVote;
+    verifyVoteExtension?: ResponseVerifyVoteExtension;
+    finalizeBlock?: ResponseFinalizeBlock;
 }
 export interface ResponseProtoMsg {
     typeUrl: "/tendermint.abci.Response";
@@ -661,10 +757,7 @@ export interface ResponseAmino {
     info?: ResponseInfoAmino;
     init_chain?: ResponseInitChainAmino;
     query?: ResponseQueryAmino;
-    begin_block?: ResponseBeginBlockAmino;
     check_tx?: ResponseCheckTxAmino;
-    deliver_tx?: ResponseDeliverTxAmino;
-    end_block?: ResponseEndBlockAmino;
     commit?: ResponseCommitAmino;
     list_snapshots?: ResponseListSnapshotsAmino;
     offer_snapshot?: ResponseOfferSnapshotAmino;
@@ -672,6 +765,9 @@ export interface ResponseAmino {
     apply_snapshot_chunk?: ResponseApplySnapshotChunkAmino;
     prepare_proposal?: ResponsePrepareProposalAmino;
     process_proposal?: ResponseProcessProposalAmino;
+    extend_vote?: ResponseExtendVoteAmino;
+    verify_vote_extension?: ResponseVerifyVoteExtensionAmino;
+    finalize_block?: ResponseFinalizeBlockAmino;
 }
 export interface ResponseAminoMsg {
     type: "/tendermint.abci.Response";
@@ -684,10 +780,7 @@ export interface ResponseSDKType {
     info?: ResponseInfoSDKType;
     init_chain?: ResponseInitChainSDKType;
     query?: ResponseQuerySDKType;
-    begin_block?: ResponseBeginBlockSDKType;
     check_tx?: ResponseCheckTxSDKType;
-    deliver_tx?: ResponseDeliverTxSDKType;
-    end_block?: ResponseEndBlockSDKType;
     commit?: ResponseCommitSDKType;
     list_snapshots?: ResponseListSnapshotsSDKType;
     offer_snapshot?: ResponseOfferSnapshotSDKType;
@@ -695,6 +788,9 @@ export interface ResponseSDKType {
     apply_snapshot_chunk?: ResponseApplySnapshotChunkSDKType;
     prepare_proposal?: ResponsePrepareProposalSDKType;
     process_proposal?: ResponseProcessProposalSDKType;
+    extend_vote?: ResponseExtendVoteSDKType;
+    verify_vote_extension?: ResponseVerifyVoteExtensionSDKType;
+    finalize_block?: ResponseFinalizeBlockSDKType;
 }
 /** nondeterministic */
 export interface ResponseException {
@@ -878,28 +974,6 @@ export interface ResponseQuerySDKType {
     height: bigint;
     codespace: string;
 }
-export interface ResponseBeginBlock {
-    events: Event[];
-}
-export interface ResponseBeginBlockProtoMsg {
-    typeUrl: "/tendermint.abci.ResponseBeginBlock";
-    value: Uint8Array;
-}
-/**
- * @name ResponseBeginBlockAmino
- * @package tendermint.abci
- * @see proto type: tendermint.abci.ResponseBeginBlock
- */
-export interface ResponseBeginBlockAmino {
-    events?: EventAmino[];
-}
-export interface ResponseBeginBlockAminoMsg {
-    type: "/tendermint.abci.ResponseBeginBlock";
-    value: ResponseBeginBlockAmino;
-}
-export interface ResponseBeginBlockSDKType {
-    events: EventSDKType[];
-}
 export interface ResponseCheckTx {
     code: number;
     data: Uint8Array;
@@ -911,13 +985,6 @@ export interface ResponseCheckTx {
     gasUsed: bigint;
     events: Event[];
     codespace: string;
-    sender: string;
-    priority: bigint;
-    /**
-     * mempool_error is set by CometBFT.
-     * ABCI applictions creating a ResponseCheckTX should not set mempool_error.
-     */
-    mempoolError: string;
 }
 export interface ResponseCheckTxProtoMsg {
     typeUrl: "/tendermint.abci.ResponseCheckTx";
@@ -943,13 +1010,6 @@ export interface ResponseCheckTxAmino {
     gas_used?: string;
     events?: EventAmino[];
     codespace?: string;
-    sender?: string;
-    priority?: string;
-    /**
-     * mempool_error is set by CometBFT.
-     * ABCI applictions creating a ResponseCheckTX should not set mempool_error.
-     */
-    mempool_error?: string;
 }
 export interface ResponseCheckTxAminoMsg {
     type: "/tendermint.abci.ResponseCheckTx";
@@ -964,92 +1024,8 @@ export interface ResponseCheckTxSDKType {
     gas_used: bigint;
     events: EventSDKType[];
     codespace: string;
-    sender: string;
-    priority: bigint;
-    mempool_error: string;
-}
-export interface ResponseDeliverTx {
-    code: number;
-    data: Uint8Array;
-    /** nondeterministic */
-    log: string;
-    /** nondeterministic */
-    info: string;
-    gasWanted: bigint;
-    gasUsed: bigint;
-    events: Event[];
-    codespace: string;
-}
-export interface ResponseDeliverTxProtoMsg {
-    typeUrl: "/tendermint.abci.ResponseDeliverTx";
-    value: Uint8Array;
-}
-/**
- * @name ResponseDeliverTxAmino
- * @package tendermint.abci
- * @see proto type: tendermint.abci.ResponseDeliverTx
- */
-export interface ResponseDeliverTxAmino {
-    code?: number;
-    data?: string;
-    /**
-     * nondeterministic
-     */
-    log?: string;
-    /**
-     * nondeterministic
-     */
-    info?: string;
-    gas_wanted?: string;
-    gas_used?: string;
-    events?: EventAmino[];
-    codespace?: string;
-}
-export interface ResponseDeliverTxAminoMsg {
-    type: "/tendermint.abci.ResponseDeliverTx";
-    value: ResponseDeliverTxAmino;
-}
-export interface ResponseDeliverTxSDKType {
-    code: number;
-    data: Uint8Array;
-    log: string;
-    info: string;
-    gas_wanted: bigint;
-    gas_used: bigint;
-    events: EventSDKType[];
-    codespace: string;
-}
-export interface ResponseEndBlock {
-    validatorUpdates: ValidatorUpdate[];
-    consensusParamUpdates?: ConsensusParams;
-    events: Event[];
-}
-export interface ResponseEndBlockProtoMsg {
-    typeUrl: "/tendermint.abci.ResponseEndBlock";
-    value: Uint8Array;
-}
-/**
- * @name ResponseEndBlockAmino
- * @package tendermint.abci
- * @see proto type: tendermint.abci.ResponseEndBlock
- */
-export interface ResponseEndBlockAmino {
-    validator_updates?: ValidatorUpdateAmino[];
-    consensus_param_updates?: ConsensusParamsAmino;
-    events?: EventAmino[];
-}
-export interface ResponseEndBlockAminoMsg {
-    type: "/tendermint.abci.ResponseEndBlock";
-    value: ResponseEndBlockAmino;
-}
-export interface ResponseEndBlockSDKType {
-    validator_updates: ValidatorUpdateSDKType[];
-    consensus_param_updates?: ConsensusParamsSDKType;
-    events: EventSDKType[];
 }
 export interface ResponseCommit {
-    /** reserve 1 */
-    data: Uint8Array;
     retainHeight: bigint;
 }
 export interface ResponseCommitProtoMsg {
@@ -1062,10 +1038,6 @@ export interface ResponseCommitProtoMsg {
  * @see proto type: tendermint.abci.ResponseCommit
  */
 export interface ResponseCommitAmino {
-    /**
-     * reserve 1
-     */
-    data?: string;
     retain_height?: string;
 }
 export interface ResponseCommitAminoMsg {
@@ -1073,7 +1045,6 @@ export interface ResponseCommitAminoMsg {
     value: ResponseCommitAmino;
 }
 export interface ResponseCommitSDKType {
-    data: Uint8Array;
     retain_height: bigint;
 }
 export interface ResponseListSnapshots {
@@ -1222,6 +1193,114 @@ export interface ResponseProcessProposalAminoMsg {
 export interface ResponseProcessProposalSDKType {
     status: ResponseProcessProposal_ProposalStatus;
 }
+export interface ResponseExtendVote {
+    voteExtension: Uint8Array;
+}
+export interface ResponseExtendVoteProtoMsg {
+    typeUrl: "/tendermint.abci.ResponseExtendVote";
+    value: Uint8Array;
+}
+/**
+ * @name ResponseExtendVoteAmino
+ * @package tendermint.abci
+ * @see proto type: tendermint.abci.ResponseExtendVote
+ */
+export interface ResponseExtendVoteAmino {
+    vote_extension?: string;
+}
+export interface ResponseExtendVoteAminoMsg {
+    type: "/tendermint.abci.ResponseExtendVote";
+    value: ResponseExtendVoteAmino;
+}
+export interface ResponseExtendVoteSDKType {
+    vote_extension: Uint8Array;
+}
+export interface ResponseVerifyVoteExtension {
+    status: ResponseVerifyVoteExtension_VerifyStatus;
+}
+export interface ResponseVerifyVoteExtensionProtoMsg {
+    typeUrl: "/tendermint.abci.ResponseVerifyVoteExtension";
+    value: Uint8Array;
+}
+/**
+ * @name ResponseVerifyVoteExtensionAmino
+ * @package tendermint.abci
+ * @see proto type: tendermint.abci.ResponseVerifyVoteExtension
+ */
+export interface ResponseVerifyVoteExtensionAmino {
+    status?: ResponseVerifyVoteExtension_VerifyStatus;
+}
+export interface ResponseVerifyVoteExtensionAminoMsg {
+    type: "/tendermint.abci.ResponseVerifyVoteExtension";
+    value: ResponseVerifyVoteExtensionAmino;
+}
+export interface ResponseVerifyVoteExtensionSDKType {
+    status: ResponseVerifyVoteExtension_VerifyStatus;
+}
+export interface ResponseFinalizeBlock {
+    /** set of block events emmitted as part of executing the block */
+    events: Event[];
+    /**
+     * the result of executing each transaction including the events
+     * the particular transction emitted. This should match the order
+     * of the transactions delivered in the block itself
+     */
+    txResults: ExecTxResult[];
+    /** a list of updates to the validator set. These will reflect the validator set at current height + 2. */
+    validatorUpdates: ValidatorUpdate[];
+    /** updates to the consensus params, if any. */
+    consensusParamUpdates?: ConsensusParams;
+    /**
+     * app_hash is the hash of the applications' state which is used to confirm that execution of the transactions was
+     * deterministic. It is up to the application to decide which algorithm to use.
+     */
+    appHash: Uint8Array;
+}
+export interface ResponseFinalizeBlockProtoMsg {
+    typeUrl: "/tendermint.abci.ResponseFinalizeBlock";
+    value: Uint8Array;
+}
+/**
+ * @name ResponseFinalizeBlockAmino
+ * @package tendermint.abci
+ * @see proto type: tendermint.abci.ResponseFinalizeBlock
+ */
+export interface ResponseFinalizeBlockAmino {
+    /**
+     * set of block events emmitted as part of executing the block
+     */
+    events?: EventAmino[];
+    /**
+     * the result of executing each transaction including the events
+     * the particular transction emitted. This should match the order
+     * of the transactions delivered in the block itself
+     */
+    tx_results?: ExecTxResultAmino[];
+    /**
+     * a list of updates to the validator set. These will reflect the validator set at current height + 2.
+     */
+    validator_updates?: ValidatorUpdateAmino[];
+    /**
+     * updates to the consensus params, if any.
+     */
+    consensus_param_updates?: ConsensusParamsAmino;
+    /**
+     * app_hash is the hash of the applications' state which is used to confirm that execution of the transactions was
+     * deterministic. It is up to the application to decide which algorithm to use.
+     */
+    app_hash?: string;
+}
+export interface ResponseFinalizeBlockAminoMsg {
+    type: "/tendermint.abci.ResponseFinalizeBlock";
+    value: ResponseFinalizeBlockAmino;
+}
+export interface ResponseFinalizeBlockSDKType {
+    events: EventSDKType[];
+    tx_results: ExecTxResultSDKType[];
+    validator_updates: ValidatorUpdateSDKType[];
+    consensus_param_updates?: ConsensusParamsSDKType;
+    app_hash: Uint8Array;
+}
 export interface CommitInfo {
     round: number;
     votes: VoteInfo[];
@@ -1247,6 +1326,11 @@ export interface CommitInfoSDKType {
     round: number;
     votes: VoteInfoSDKType[];
 }
+/**
+ * ExtendedCommitInfo is similar to CommitInfo except that it is only used in
+ * the PrepareProposal request such that CometBFT can provide vote extensions
+ * to the application.
+ */
 export interface ExtendedCommitInfo {
     /** The round at which the block proposer decided in the previous height. */
     round: number;
@@ -1261,6 +1345,9 @@ export interface ExtendedCommitInfoProtoMsg {
     value: Uint8Array;
 }
 /**
+ * ExtendedCommitInfo is similar to CommitInfo except that it is only used in
+ * the PrepareProposal request such that CometBFT can provide vote extensions
+ * to the application.
  * @name ExtendedCommitInfoAmino
  * @package tendermint.abci
  * @see proto type: tendermint.abci.ExtendedCommitInfo
@@ -1280,13 +1367,18 @@ export interface ExtendedCommitInfoAminoMsg {
     type: "/tendermint.abci.ExtendedCommitInfo";
     value: ExtendedCommitInfoAmino;
 }
+/**
+ * ExtendedCommitInfo is similar to CommitInfo except that it is only used in
+ * the PrepareProposal request such that CometBFT can provide vote extensions
+ * to the application.
+ */
 export interface ExtendedCommitInfoSDKType {
     round: number;
     votes: ExtendedVoteInfoSDKType[];
 }
 /**
  * Event allows application developers to attach additional information to
- * ResponseBeginBlock, ResponseEndBlock, ResponseCheckTx and ResponseDeliverTx.
+ * ResponseFinalizeBlock and ResponseCheckTx.
  * Later, transactions may be queried using these events.
  */
 export interface Event {
@@ -1299,7 +1391,7 @@ export interface EventProtoMsg {
 }
 /**
  * Event allows application developers to attach additional information to
- * ResponseBeginBlock, ResponseEndBlock, ResponseCheckTx and ResponseDeliverTx.
+ * ResponseFinalizeBlock and ResponseCheckTx.
  * Later, transactions may be queried using these events.
  * @name EventAmino
  * @package tendermint.abci
@@ -1315,7 +1407,7 @@ export interface EventAminoMsg {
 }
 /**
  * Event allows application developers to attach additional information to
- * ResponseBeginBlock, ResponseEndBlock, ResponseCheckTx and ResponseDeliverTx.
+ * ResponseFinalizeBlock and ResponseCheckTx.
  * Later, transactions may be queried using these events.
  */
 export interface EventSDKType {
@@ -1358,6 +1450,70 @@ export interface EventAttributeSDKType {
     index: boolean;
 }
 /**
+ * ExecTxResult contains results of executing one individual transaction.
+ *
+ * * Its structure is equivalent to #ResponseDeliverTx which will be deprecated/deleted
+ */
+export interface ExecTxResult {
+    code: number;
+    data: Uint8Array;
+    /** nondeterministic */
+    log: string;
+    /** nondeterministic */
+    info: string;
+    gasWanted: bigint;
+    gasUsed: bigint;
+    events: Event[];
+    codespace: string;
+}
+export interface ExecTxResultProtoMsg {
+    typeUrl: "/tendermint.abci.ExecTxResult";
+    value: Uint8Array;
+}
+/**
+ * ExecTxResult contains results of executing one individual transaction.
+ *
+ * * Its structure is equivalent to #ResponseDeliverTx which will be deprecated/deleted
+ * @name ExecTxResultAmino
+ * @package tendermint.abci
+ * @see proto type: tendermint.abci.ExecTxResult
+ */
+export interface ExecTxResultAmino {
+    code?: number;
+    data?: string;
+    /**
+     * nondeterministic
+     */
+    log?: string;
+    /**
+     * nondeterministic
+     */
+    info?: string;
+    gas_wanted?: string;
+    gas_used?: string;
+    events?: EventAmino[];
+    codespace?: string;
+}
+export interface ExecTxResultAminoMsg {
+    type: "/tendermint.abci.ExecTxResult";
+    value: ExecTxResultAmino;
+}
+/**
+ * ExecTxResult contains results of executing one individual transaction.
+ *
+ * * Its structure is equivalent to #ResponseDeliverTx which will be deprecated/deleted
+ */
+export interface ExecTxResultSDKType {
+    code: number;
+    data: Uint8Array;
+    log: string;
+    info: string;
+    gas_wanted: bigint;
+    gas_used: bigint;
+    events: EventSDKType[];
+    codespace: string;
+}
+/**
  * TxResult contains results of executing the transaction.
  *
  * One usage is indexing transaction results.
@@ -1366,7 +1522,7 @@ export interface TxResult {
     height: bigint;
     index: number;
     tx: Uint8Array;
-    result: ResponseDeliverTx;
+    result: ExecTxResult;
 }
 export interface TxResultProtoMsg {
     typeUrl: "/tendermint.abci.TxResult";
@@ -1384,7 +1540,7 @@ export interface TxResultAmino {
     height?: string;
     index?: number;
     tx?: string;
-    result?: ResponseDeliverTxAmino;
+    result?: ExecTxResultAmino;
 }
 export interface TxResultAminoMsg {
     type: "/tendermint.abci.TxResult";
@@ -1399,9 +1555,8 @@ export interface TxResultSDKType {
     height: bigint;
     index: number;
     tx: Uint8Array;
-    result: ResponseDeliverTxSDKType;
+    result: ExecTxResultSDKType;
 }
-/** Validator */
 export interface Validator {
     /** The first 20 bytes of SHA256(public key) */
     address: Uint8Array;
@@ -1413,7 +1568,6 @@ export interface ValidatorProtoMsg {
     value: Uint8Array;
 }
 /**
- * Validator
  * @name ValidatorAmino
  * @package tendermint.abci
  * @see proto type: tendermint.abci.Validator
@@ -1432,12 +1586,10 @@ export interface ValidatorAminoMsg {
     type: "/tendermint.abci.Validator";
     value: ValidatorAmino;
 }
-/** Validator */
 export interface ValidatorSDKType {
     address: Uint8Array;
     power: bigint;
 }
-/** ValidatorUpdate */
 export interface ValidatorUpdate {
     pubKey: PublicKey;
     power: bigint;
@@ -1447,7 +1599,6 @@ export interface ValidatorUpdateProtoMsg {
     value: Uint8Array;
 }
 /**
- * ValidatorUpdate
  * @name ValidatorUpdateAmino
  * @package tendermint.abci
  * @see proto type: tendermint.abci.ValidatorUpdate
@@ -1460,44 +1611,44 @@ export interface ValidatorUpdateAminoMsg {
     type: "/tendermint.abci.ValidatorUpdate";
     value: ValidatorUpdateAmino;
 }
-/** ValidatorUpdate */
 export interface ValidatorUpdateSDKType {
     pub_key: PublicKeySDKType;
     power: bigint;
 }
-/** VoteInfo */
 export interface VoteInfo {
     validator: Validator;
-    signedLastBlock: boolean;
+    blockIdFlag: BlockIDFlag;
 }
 export interface VoteInfoProtoMsg {
     typeUrl: "/tendermint.abci.VoteInfo";
     value: Uint8Array;
 }
 /**
- * VoteInfo
  * @name VoteInfoAmino
  * @package tendermint.abci
  * @see proto type: tendermint.abci.VoteInfo
  */
 export interface VoteInfoAmino {
     validator?: ValidatorAmino;
-    signed_last_block?: boolean;
+    block_id_flag?: BlockIDFlag;
 }
 export interface VoteInfoAminoMsg {
     type: "/tendermint.abci.VoteInfo";
     value: VoteInfoAmino;
 }
-/** VoteInfo */
 export interface VoteInfoSDKType {
     validator: ValidatorSDKType;
-    signed_last_block: boolean;
+    block_id_flag: BlockIDFlag;
 }
 export interface ExtendedVoteInfo {
+    /** The validator that sent the vote. */
     validator: Validator;
-    signedLastBlock: boolean;
-    /** Reserved for future use */
+    /** Non-deterministic extension provided by the sending validator's application. */
     voteExtension: Uint8Array;
+    /** Vote extension signature created by CometBFT */
+    extensionSignature: Uint8Array;
+    /** block_id_flag indicates whether the validator voted for a block, nil, or did not vote at all */
+    blockIdFlag: BlockIDFlag;
 }
 export interface ExtendedVoteInfoProtoMsg {
     typeUrl: "/tendermint.abci.ExtendedVoteInfo";
@@ -1509,12 +1660,22 @@ export interface ExtendedVoteInfoProtoMsg {
  * @see proto type: tendermint.abci.ExtendedVoteInfo
  */
 export interface ExtendedVoteInfoAmino {
-    validator?: ValidatorAmino;
-    signed_last_block?: boolean;
     /**
-     * Reserved for future use
+     * The validator that sent the vote.
+     */
+    validator?: ValidatorAmino;
+    /**
+     * Non-deterministic extension provided by the sending validator's application.
      */
     vote_extension?: string;
+    /**
+     * Vote extension signature created by CometBFT
+     */
+    extension_signature?: string;
+    /**
+     * block_id_flag indicates whether the validator voted for a block, nil, or did not vote at all
+     */
+    block_id_flag?: BlockIDFlag;
 }
 export interface ExtendedVoteInfoAminoMsg {
     type: "/tendermint.abci.ExtendedVoteInfo";
@@ -1522,8 +1683,9 @@ export interface ExtendedVoteInfoAminoMsg {
 }
 export interface ExtendedVoteInfoSDKType {
     validator: ValidatorSDKType;
-    signed_last_block: boolean;
     vote_extension: Uint8Array;
+    extension_signature: Uint8Array;
+    block_id_flag: BlockIDFlag;
 }
 export interface Misbehavior {
     type: MisbehaviorType;
@@ -1707,18 +1869,6 @@ export declare const RequestQuery: {
     toProto(message: RequestQuery): Uint8Array;
     toProtoMsg(message: RequestQuery): RequestQueryProtoMsg;
 };
-export declare const RequestBeginBlock: {
-    typeUrl: string;
-    encode(message: RequestBeginBlock, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): RequestBeginBlock;
-    fromPartial(object: Partial<RequestBeginBlock>): RequestBeginBlock;
-    fromAmino(object: RequestBeginBlockAmino): RequestBeginBlock;
-    toAmino(message: RequestBeginBlock): RequestBeginBlockAmino;
-    fromAminoMsg(object: RequestBeginBlockAminoMsg): RequestBeginBlock;
-    fromProtoMsg(message: RequestBeginBlockProtoMsg): RequestBeginBlock;
-    toProto(message: RequestBeginBlock): Uint8Array;
-    toProtoMsg(message: RequestBeginBlock): RequestBeginBlockProtoMsg;
-};
 export declare const RequestCheckTx: {
     typeUrl: string;
     encode(message: RequestCheckTx, writer?: BinaryWriter): BinaryWriter;
@@ -1730,30 +1880,6 @@ export declare const RequestCheckTx: {
     fromProtoMsg(message: RequestCheckTxProtoMsg): RequestCheckTx;
     toProto(message: RequestCheckTx): Uint8Array;
     toProtoMsg(message: RequestCheckTx): RequestCheckTxProtoMsg;
-};
-export declare const RequestDeliverTx: {
-    typeUrl: string;
-    encode(message: RequestDeliverTx, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): RequestDeliverTx;
-    fromPartial(object: Partial<RequestDeliverTx>): RequestDeliverTx;
-    fromAmino(object: RequestDeliverTxAmino): RequestDeliverTx;
-    toAmino(message: RequestDeliverTx): RequestDeliverTxAmino;
-    fromAminoMsg(object: RequestDeliverTxAminoMsg): RequestDeliverTx;
-    fromProtoMsg(message: RequestDeliverTxProtoMsg): RequestDeliverTx;
-    toProto(message: RequestDeliverTx): Uint8Array;
-    toProtoMsg(message: RequestDeliverTx): RequestDeliverTxProtoMsg;
-};
-export declare const RequestEndBlock: {
-    typeUrl: string;
-    encode(message: RequestEndBlock, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): RequestEndBlock;
-    fromPartial(object: Partial<RequestEndBlock>): RequestEndBlock;
-    fromAmino(object: RequestEndBlockAmino): RequestEndBlock;
-    toAmino(message: RequestEndBlock): RequestEndBlockAmino;
-    fromAminoMsg(object: RequestEndBlockAminoMsg): RequestEndBlock;
-    fromProtoMsg(message: RequestEndBlockProtoMsg): RequestEndBlock;
-    toProto(message: RequestEndBlock): Uint8Array;
-    toProtoMsg(message: RequestEndBlock): RequestEndBlockProtoMsg;
 };
 export declare const RequestCommit: {
     typeUrl: string;
@@ -1839,6 +1965,42 @@ export declare const RequestProcessProposal: {
     toProto(message: RequestProcessProposal): Uint8Array;
     toProtoMsg(message: RequestProcessProposal): RequestProcessProposalProtoMsg;
 };
+export declare const RequestExtendVote: {
+    typeUrl: string;
+    encode(message: RequestExtendVote, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): RequestExtendVote;
+    fromPartial(object: Partial<RequestExtendVote>): RequestExtendVote;
+    fromAmino(object: RequestExtendVoteAmino): RequestExtendVote;
+    toAmino(message: RequestExtendVote): RequestExtendVoteAmino;
+    fromAminoMsg(object: RequestExtendVoteAminoMsg): RequestExtendVote;
+    fromProtoMsg(message: RequestExtendVoteProtoMsg): RequestExtendVote;
+    toProto(message: RequestExtendVote): Uint8Array;
+    toProtoMsg(message: RequestExtendVote): RequestExtendVoteProtoMsg;
+};
+export declare const RequestVerifyVoteExtension: {
+    typeUrl: string;
+    encode(message: RequestVerifyVoteExtension, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): RequestVerifyVoteExtension;
+    fromPartial(object: Partial<RequestVerifyVoteExtension>): RequestVerifyVoteExtension;
+    fromAmino(object: RequestVerifyVoteExtensionAmino): RequestVerifyVoteExtension;
+    toAmino(message: RequestVerifyVoteExtension): RequestVerifyVoteExtensionAmino;
+    fromAminoMsg(object: RequestVerifyVoteExtensionAminoMsg): RequestVerifyVoteExtension;
+    fromProtoMsg(message: RequestVerifyVoteExtensionProtoMsg): RequestVerifyVoteExtension;
+    toProto(message: RequestVerifyVoteExtension): Uint8Array;
+    toProtoMsg(message: RequestVerifyVoteExtension): RequestVerifyVoteExtensionProtoMsg;
+};
+export declare const RequestFinalizeBlock: {
+    typeUrl: string;
+    encode(message: RequestFinalizeBlock, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): RequestFinalizeBlock;
+    fromPartial(object: Partial<RequestFinalizeBlock>): RequestFinalizeBlock;
+    fromAmino(object: RequestFinalizeBlockAmino): RequestFinalizeBlock;
+    toAmino(message: RequestFinalizeBlock): RequestFinalizeBlockAmino;
+    fromAminoMsg(object: RequestFinalizeBlockAminoMsg): RequestFinalizeBlock;
+    fromProtoMsg(message: RequestFinalizeBlockProtoMsg): RequestFinalizeBlock;
+    toProto(message: RequestFinalizeBlock): Uint8Array;
+    toProtoMsg(message: RequestFinalizeBlock): RequestFinalizeBlockProtoMsg;
+};
 export declare const Response: {
     typeUrl: string;
     encode(message: Response, writer?: BinaryWriter): BinaryWriter;
@@ -1923,18 +2085,6 @@ export declare const ResponseQuery: {
     toProto(message: ResponseQuery): Uint8Array;
     toProtoMsg(message: ResponseQuery): ResponseQueryProtoMsg;
 };
-export declare const ResponseBeginBlock: {
-    typeUrl: string;
-    encode(message: ResponseBeginBlock, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): ResponseBeginBlock;
-    fromPartial(object: Partial<ResponseBeginBlock>): ResponseBeginBlock;
-    fromAmino(object: ResponseBeginBlockAmino): ResponseBeginBlock;
-    toAmino(message: ResponseBeginBlock): ResponseBeginBlockAmino;
-    fromAminoMsg(object: ResponseBeginBlockAminoMsg): ResponseBeginBlock;
-    fromProtoMsg(message: ResponseBeginBlockProtoMsg): ResponseBeginBlock;
-    toProto(message: ResponseBeginBlock): Uint8Array;
-    toProtoMsg(message: ResponseBeginBlock): ResponseBeginBlockProtoMsg;
-};
 export declare const ResponseCheckTx: {
     typeUrl: string;
     encode(message: ResponseCheckTx, writer?: BinaryWriter): BinaryWriter;
@@ -1946,30 +2096,6 @@ export declare const ResponseCheckTx: {
     fromProtoMsg(message: ResponseCheckTxProtoMsg): ResponseCheckTx;
     toProto(message: ResponseCheckTx): Uint8Array;
     toProtoMsg(message: ResponseCheckTx): ResponseCheckTxProtoMsg;
-};
-export declare const ResponseDeliverTx: {
-    typeUrl: string;
-    encode(message: ResponseDeliverTx, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): ResponseDeliverTx;
-    fromPartial(object: Partial<ResponseDeliverTx>): ResponseDeliverTx;
-    fromAmino(object: ResponseDeliverTxAmino): ResponseDeliverTx;
-    toAmino(message: ResponseDeliverTx): ResponseDeliverTxAmino;
-    fromAminoMsg(object: ResponseDeliverTxAminoMsg): ResponseDeliverTx;
-    fromProtoMsg(message: ResponseDeliverTxProtoMsg): ResponseDeliverTx;
-    toProto(message: ResponseDeliverTx): Uint8Array;
-    toProtoMsg(message: ResponseDeliverTx): ResponseDeliverTxProtoMsg;
-};
-export declare const ResponseEndBlock: {
-    typeUrl: string;
-    encode(message: ResponseEndBlock, writer?: BinaryWriter): BinaryWriter;
-    decode(input: BinaryReader | Uint8Array, length?: number): ResponseEndBlock;
-    fromPartial(object: Partial<ResponseEndBlock>): ResponseEndBlock;
-    fromAmino(object: ResponseEndBlockAmino): ResponseEndBlock;
-    toAmino(message: ResponseEndBlock): ResponseEndBlockAmino;
-    fromAminoMsg(object: ResponseEndBlockAminoMsg): ResponseEndBlock;
-    fromProtoMsg(message: ResponseEndBlockProtoMsg): ResponseEndBlock;
-    toProto(message: ResponseEndBlock): Uint8Array;
-    toProtoMsg(message: ResponseEndBlock): ResponseEndBlockProtoMsg;
 };
 export declare const ResponseCommit: {
     typeUrl: string;
@@ -2055,6 +2181,42 @@ export declare const ResponseProcessProposal: {
     toProto(message: ResponseProcessProposal): Uint8Array;
     toProtoMsg(message: ResponseProcessProposal): ResponseProcessProposalProtoMsg;
 };
+export declare const ResponseExtendVote: {
+    typeUrl: string;
+    encode(message: ResponseExtendVote, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): ResponseExtendVote;
+    fromPartial(object: Partial<ResponseExtendVote>): ResponseExtendVote;
+    fromAmino(object: ResponseExtendVoteAmino): ResponseExtendVote;
+    toAmino(message: ResponseExtendVote): ResponseExtendVoteAmino;
+    fromAminoMsg(object: ResponseExtendVoteAminoMsg): ResponseExtendVote;
+    fromProtoMsg(message: ResponseExtendVoteProtoMsg): ResponseExtendVote;
+    toProto(message: ResponseExtendVote): Uint8Array;
+    toProtoMsg(message: ResponseExtendVote): ResponseExtendVoteProtoMsg;
+};
+export declare const ResponseVerifyVoteExtension: {
+    typeUrl: string;
+    encode(message: ResponseVerifyVoteExtension, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): ResponseVerifyVoteExtension;
+    fromPartial(object: Partial<ResponseVerifyVoteExtension>): ResponseVerifyVoteExtension;
+    fromAmino(object: ResponseVerifyVoteExtensionAmino): ResponseVerifyVoteExtension;
+    toAmino(message: ResponseVerifyVoteExtension): ResponseVerifyVoteExtensionAmino;
+    fromAminoMsg(object: ResponseVerifyVoteExtensionAminoMsg): ResponseVerifyVoteExtension;
+    fromProtoMsg(message: ResponseVerifyVoteExtensionProtoMsg): ResponseVerifyVoteExtension;
+    toProto(message: ResponseVerifyVoteExtension): Uint8Array;
+    toProtoMsg(message: ResponseVerifyVoteExtension): ResponseVerifyVoteExtensionProtoMsg;
+};
+export declare const ResponseFinalizeBlock: {
+    typeUrl: string;
+    encode(message: ResponseFinalizeBlock, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): ResponseFinalizeBlock;
+    fromPartial(object: Partial<ResponseFinalizeBlock>): ResponseFinalizeBlock;
+    fromAmino(object: ResponseFinalizeBlockAmino): ResponseFinalizeBlock;
+    toAmino(message: ResponseFinalizeBlock): ResponseFinalizeBlockAmino;
+    fromAminoMsg(object: ResponseFinalizeBlockAminoMsg): ResponseFinalizeBlock;
+    fromProtoMsg(message: ResponseFinalizeBlockProtoMsg): ResponseFinalizeBlock;
+    toProto(message: ResponseFinalizeBlock): Uint8Array;
+    toProtoMsg(message: ResponseFinalizeBlock): ResponseFinalizeBlockProtoMsg;
+};
 export declare const CommitInfo: {
     typeUrl: string;
     encode(message: CommitInfo, writer?: BinaryWriter): BinaryWriter;
@@ -2102,6 +2264,18 @@ export declare const EventAttribute: {
     fromProtoMsg(message: EventAttributeProtoMsg): EventAttribute;
     toProto(message: EventAttribute): Uint8Array;
     toProtoMsg(message: EventAttribute): EventAttributeProtoMsg;
+};
+export declare const ExecTxResult: {
+    typeUrl: string;
+    encode(message: ExecTxResult, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): ExecTxResult;
+    fromPartial(object: Partial<ExecTxResult>): ExecTxResult;
+    fromAmino(object: ExecTxResultAmino): ExecTxResult;
+    toAmino(message: ExecTxResult): ExecTxResultAmino;
+    fromAminoMsg(object: ExecTxResultAminoMsg): ExecTxResult;
+    fromProtoMsg(message: ExecTxResultProtoMsg): ExecTxResult;
+    toProto(message: ExecTxResult): Uint8Array;
+    toProtoMsg(message: ExecTxResult): ExecTxResultProtoMsg;
 };
 export declare const TxResult: {
     typeUrl: string;

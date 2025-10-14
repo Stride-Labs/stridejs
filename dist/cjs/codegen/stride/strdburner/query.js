@@ -17,6 +17,10 @@ var __copyProps = (to, from, except, desc) => {
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var query_exports = {};
 __export(query_exports, {
+  QueryLinkedAddressRequest: () => QueryLinkedAddressRequest,
+  QueryLinkedAddressResponse: () => QueryLinkedAddressResponse,
+  QueryStrdBurnedByAddressRequest: () => QueryStrdBurnedByAddressRequest,
+  QueryStrdBurnedByAddressResponse: () => QueryStrdBurnedByAddressResponse,
   QueryStrdBurnerAddressRequest: () => QueryStrdBurnerAddressRequest,
   QueryStrdBurnerAddressResponse: () => QueryStrdBurnerAddressResponse,
   QueryTotalStrdBurnedRequest: () => QueryTotalStrdBurnedRequest,
@@ -189,7 +193,9 @@ const QueryTotalStrdBurnedRequest = {
 };
 function createBaseQueryTotalStrdBurnedResponse() {
   return {
-    totalBurned: ""
+    totalBurned: "",
+    protocolBurned: "",
+    totalUserBurned: ""
   };
 }
 const QueryTotalStrdBurnedResponse = {
@@ -197,6 +203,12 @@ const QueryTotalStrdBurnedResponse = {
   encode(message, writer = import_binary.BinaryWriter.create()) {
     if (message.totalBurned !== "") {
       writer.uint32(10).string(message.totalBurned);
+    }
+    if (message.protocolBurned !== "") {
+      writer.uint32(18).string(message.protocolBurned);
+    }
+    if (message.totalUserBurned !== "") {
+      writer.uint32(26).string(message.totalUserBurned);
     }
     return writer;
   },
@@ -210,6 +222,12 @@ const QueryTotalStrdBurnedResponse = {
         case 1:
           message.totalBurned = reader.string();
           break;
+        case 2:
+          message.protocolBurned = reader.string();
+          break;
+        case 3:
+          message.totalUserBurned = reader.string();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -220,6 +238,8 @@ const QueryTotalStrdBurnedResponse = {
   fromPartial(object) {
     const message = createBaseQueryTotalStrdBurnedResponse();
     message.totalBurned = object.totalBurned ?? "";
+    message.protocolBurned = object.protocolBurned ?? "";
+    message.totalUserBurned = object.totalUserBurned ?? "";
     return message;
   },
   fromAmino(object) {
@@ -227,11 +247,19 @@ const QueryTotalStrdBurnedResponse = {
     if (object.total_burned !== void 0 && object.total_burned !== null) {
       message.totalBurned = object.total_burned;
     }
+    if (object.protocol_burned !== void 0 && object.protocol_burned !== null) {
+      message.protocolBurned = object.protocol_burned;
+    }
+    if (object.total_user_burned !== void 0 && object.total_user_burned !== null) {
+      message.totalUserBurned = object.total_user_burned;
+    }
     return message;
   },
   toAmino(message) {
     const obj = {};
     obj.total_burned = message.totalBurned === "" ? void 0 : message.totalBurned;
+    obj.protocol_burned = message.protocolBurned === "" ? void 0 : message.protocolBurned;
+    obj.total_user_burned = message.totalUserBurned === "" ? void 0 : message.totalUserBurned;
     return obj;
   },
   fromAminoMsg(object) {
@@ -250,8 +278,264 @@ const QueryTotalStrdBurnedResponse = {
     };
   }
 };
+function createBaseQueryStrdBurnedByAddressRequest() {
+  return {
+    address: ""
+  };
+}
+const QueryStrdBurnedByAddressRequest = {
+  typeUrl: "/stride.strdburner.QueryStrdBurnedByAddressRequest",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.address !== "") {
+      writer.uint32(10).string(message.address);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryStrdBurnedByAddressRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.address = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryStrdBurnedByAddressRequest();
+    message.address = object.address ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryStrdBurnedByAddressRequest();
+    if (object.address !== void 0 && object.address !== null) {
+      message.address = object.address;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.address = message.address === "" ? void 0 : message.address;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryStrdBurnedByAddressRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return QueryStrdBurnedByAddressRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryStrdBurnedByAddressRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/stride.strdburner.QueryStrdBurnedByAddressRequest",
+      value: QueryStrdBurnedByAddressRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryStrdBurnedByAddressResponse() {
+  return {
+    burnedAmount: ""
+  };
+}
+const QueryStrdBurnedByAddressResponse = {
+  typeUrl: "/stride.strdburner.QueryStrdBurnedByAddressResponse",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.burnedAmount !== "") {
+      writer.uint32(10).string(message.burnedAmount);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryStrdBurnedByAddressResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.burnedAmount = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryStrdBurnedByAddressResponse();
+    message.burnedAmount = object.burnedAmount ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryStrdBurnedByAddressResponse();
+    if (object.burned_amount !== void 0 && object.burned_amount !== null) {
+      message.burnedAmount = object.burned_amount;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.burned_amount = message.burnedAmount === "" ? void 0 : message.burnedAmount;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryStrdBurnedByAddressResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return QueryStrdBurnedByAddressResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryStrdBurnedByAddressResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/stride.strdburner.QueryStrdBurnedByAddressResponse",
+      value: QueryStrdBurnedByAddressResponse.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryLinkedAddressRequest() {
+  return {
+    strideAddress: ""
+  };
+}
+const QueryLinkedAddressRequest = {
+  typeUrl: "/stride.strdburner.QueryLinkedAddressRequest",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.strideAddress !== "") {
+      writer.uint32(10).string(message.strideAddress);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryLinkedAddressRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.strideAddress = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryLinkedAddressRequest();
+    message.strideAddress = object.strideAddress ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryLinkedAddressRequest();
+    if (object.stride_address !== void 0 && object.stride_address !== null) {
+      message.strideAddress = object.stride_address;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.stride_address = message.strideAddress === "" ? void 0 : message.strideAddress;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryLinkedAddressRequest.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return QueryLinkedAddressRequest.decode(message.value);
+  },
+  toProto(message) {
+    return QueryLinkedAddressRequest.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/stride.strdburner.QueryLinkedAddressRequest",
+      value: QueryLinkedAddressRequest.encode(message).finish()
+    };
+  }
+};
+function createBaseQueryLinkedAddressResponse() {
+  return {
+    linkedAddress: ""
+  };
+}
+const QueryLinkedAddressResponse = {
+  typeUrl: "/stride.strdburner.QueryLinkedAddressResponse",
+  encode(message, writer = import_binary.BinaryWriter.create()) {
+    if (message.linkedAddress !== "") {
+      writer.uint32(10).string(message.linkedAddress);
+    }
+    return writer;
+  },
+  decode(input, length) {
+    const reader = input instanceof import_binary.BinaryReader ? input : new import_binary.BinaryReader(input);
+    let end = length === void 0 ? reader.len : reader.pos + length;
+    const message = createBaseQueryLinkedAddressResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.linkedAddress = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+  fromPartial(object) {
+    const message = createBaseQueryLinkedAddressResponse();
+    message.linkedAddress = object.linkedAddress ?? "";
+    return message;
+  },
+  fromAmino(object) {
+    const message = createBaseQueryLinkedAddressResponse();
+    if (object.linked_address !== void 0 && object.linked_address !== null) {
+      message.linkedAddress = object.linked_address;
+    }
+    return message;
+  },
+  toAmino(message) {
+    const obj = {};
+    obj.linked_address = message.linkedAddress === "" ? void 0 : message.linkedAddress;
+    return obj;
+  },
+  fromAminoMsg(object) {
+    return QueryLinkedAddressResponse.fromAmino(object.value);
+  },
+  fromProtoMsg(message) {
+    return QueryLinkedAddressResponse.decode(message.value);
+  },
+  toProto(message) {
+    return QueryLinkedAddressResponse.encode(message).finish();
+  },
+  toProtoMsg(message) {
+    return {
+      typeUrl: "/stride.strdburner.QueryLinkedAddressResponse",
+      value: QueryLinkedAddressResponse.encode(message).finish()
+    };
+  }
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  QueryLinkedAddressRequest,
+  QueryLinkedAddressResponse,
+  QueryStrdBurnedByAddressRequest,
+  QueryStrdBurnedByAddressResponse,
   QueryStrdBurnerAddressRequest,
   QueryStrdBurnerAddressResponse,
   QueryTotalStrdBurnedRequest,

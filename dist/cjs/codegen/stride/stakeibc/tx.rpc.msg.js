@@ -48,6 +48,7 @@ class MsgClientImpl {
     this.setCommunityPoolRebate = this.setCommunityPoolRebate.bind(this);
     this.toggleTradeController = this.toggleTradeController.bind(this);
     this.updateHostZoneParams = this.updateHostZoneParams.bind(this);
+    this.deprecateHostZone = this.deprecateHostZone.bind(this);
   }
   liquidStake(request) {
     const data = import_tx.MsgLiquidStake.encode(request).finish();
@@ -158,6 +159,11 @@ class MsgClientImpl {
     const data = import_tx.MsgUpdateHostZoneParams.encode(request).finish();
     const promise = this.rpc.request("stride.stakeibc.Msg", "UpdateHostZoneParams", data);
     return promise.then((data2) => import_tx.MsgUpdateHostZoneParamsResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  deprecateHostZone(request) {
+    const data = import_tx.MsgDeprecateHostZone.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "DeprecateHostZone", data);
+    return promise.then((data2) => import_tx.MsgDeprecateHostZoneResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

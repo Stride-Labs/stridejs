@@ -32,7 +32,8 @@ function createBaseGenesisState() {
     sendSequences: [],
     recvSequences: [],
     ackSequences: [],
-    nextChannelSequence: BigInt(0)
+    nextChannelSequence: BigInt(0),
+    params: import_channel.Params.fromPartial({})
   };
 }
 const GenesisState = {
@@ -61,6 +62,9 @@ const GenesisState = {
     }
     if (message.nextChannelSequence !== BigInt(0)) {
       writer.uint32(64).uint64(message.nextChannelSequence);
+    }
+    if (message.params !== void 0) {
+      import_channel.Params.encode(message.params, writer.uint32(74).fork()).ldelim();
     }
     return writer;
   },
@@ -95,6 +99,9 @@ const GenesisState = {
         case 8:
           message.nextChannelSequence = reader.uint64();
           break;
+        case 9:
+          message.params = import_channel.Params.decode(reader, reader.uint32());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -112,6 +119,7 @@ const GenesisState = {
     message.recvSequences = object.recvSequences?.map((e) => PacketSequence.fromPartial(e)) || [];
     message.ackSequences = object.ackSequences?.map((e) => PacketSequence.fromPartial(e)) || [];
     message.nextChannelSequence = object.nextChannelSequence !== void 0 && object.nextChannelSequence !== null ? BigInt(object.nextChannelSequence.toString()) : BigInt(0);
+    message.params = object.params !== void 0 && object.params !== null ? import_channel.Params.fromPartial(object.params) : void 0;
     return message;
   },
   fromAmino(object) {
@@ -125,6 +133,9 @@ const GenesisState = {
     message.ackSequences = object.ack_sequences?.map((e) => PacketSequence.fromAmino(e)) || [];
     if (object.next_channel_sequence !== void 0 && object.next_channel_sequence !== null) {
       message.nextChannelSequence = BigInt(object.next_channel_sequence);
+    }
+    if (object.params !== void 0 && object.params !== null) {
+      message.params = import_channel.Params.fromAmino(object.params);
     }
     return message;
   },
@@ -166,6 +177,7 @@ const GenesisState = {
       obj.ack_sequences = message.ackSequences;
     }
     obj.next_channel_sequence = message.nextChannelSequence !== BigInt(0) ? message.nextChannelSequence?.toString() : void 0;
+    obj.params = message.params ? import_channel.Params.toAmino(message.params) : void 0;
     return obj;
   },
   fromAminoMsg(object) {

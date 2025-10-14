@@ -44,8 +44,10 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
                 supplyOf(request: import("../cosmos/bank/v1beta1/query").QuerySupplyOfRequest): Promise<import("../cosmos/bank/v1beta1/query").QuerySupplyOfResponse>;
                 params(request?: import("../cosmos/bank/v1beta1/query").QueryParamsRequest): Promise<import("../cosmos/bank/v1beta1/query").QueryParamsResponse>;
                 denomMetadata(request: import("../cosmos/bank/v1beta1/query").QueryDenomMetadataRequest): Promise<import("../cosmos/bank/v1beta1/query").QueryDenomMetadataResponse>;
+                denomMetadataByQueryString(request: import("../cosmos/bank/v1beta1/query").QueryDenomMetadataByQueryStringRequest): Promise<import("../cosmos/bank/v1beta1/query").QueryDenomMetadataByQueryStringResponse>;
                 denomsMetadata(request?: import("../cosmos/bank/v1beta1/query").QueryDenomsMetadataRequest): Promise<import("../cosmos/bank/v1beta1/query").QueryDenomsMetadataResponse>;
                 denomOwners(request: import("../cosmos/bank/v1beta1/query").QueryDenomOwnersRequest): Promise<import("../cosmos/bank/v1beta1/query").QueryDenomOwnersResponse>;
+                denomOwnersByQuery(request: import("../cosmos/bank/v1beta1/query").QueryDenomOwnersByQueryRequest): Promise<import("../cosmos/bank/v1beta1/query").QueryDenomOwnersByQueryResponse>;
                 sendEnabled(request: import("../cosmos/bank/v1beta1/query").QuerySendEnabledRequest): Promise<import("../cosmos/bank/v1beta1/query").QuerySendEnabledResponse>;
             };
         };
@@ -53,6 +55,7 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
             node: {
                 v1beta1: {
                     config(request?: import("../cosmos/base/node/v1beta1/query").ConfigRequest): Promise<import("../cosmos/base/node/v1beta1/query").ConfigResponse>;
+                    status(request?: import("../cosmos/base/node/v1beta1/query").StatusRequest): Promise<import("../cosmos/base/node/v1beta1/query").StatusResponse>;
                 };
             };
             tendermint: {
@@ -65,6 +68,13 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
                     getValidatorSetByHeight(request: import("../cosmos/base/tendermint/v1beta1/query").GetValidatorSetByHeightRequest): Promise<import("../cosmos/base/tendermint/v1beta1/query").GetValidatorSetByHeightResponse>;
                     aBCIQuery(request: import("../cosmos/base/tendermint/v1beta1/query").ABCIQueryRequest): Promise<import("../cosmos/base/tendermint/v1beta1/query").ABCIQueryResponse>;
                 };
+            };
+        };
+        circuit: {
+            v1: {
+                account(request: import("../cosmos/circuit/v1/query").QueryAccountRequest): Promise<import("../cosmos/circuit/v1/query").AccountResponse>;
+                accounts(request?: import("../cosmos/circuit/v1/query").QueryAccountsRequest): Promise<import("../cosmos/circuit/v1/query").AccountsResponse>;
+                disabledList(request?: import("../cosmos/circuit/v1/query").QueryDisabledListRequest): Promise<import("../cosmos/circuit/v1/query").DisabledListResponse>;
             };
         };
         consensus: {
@@ -101,6 +111,7 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
         };
         gov: {
             v1: {
+                constitution(request?: import("../cosmos/gov/v1/query").QueryConstitutionRequest): Promise<import("../cosmos/gov/v1/query").QueryConstitutionResponse>;
                 proposal(request: import("../cosmos/gov/v1/query").QueryProposalRequest): Promise<import("../cosmos/gov/v1/query").QueryProposalResponse>;
                 proposals(request: import("../cosmos/gov/v1/query").QueryProposalsRequest): Promise<import("../cosmos/gov/v1/query").QueryProposalsResponse>;
                 vote(request: import("../cosmos/gov/v1/query").QueryVoteRequest): Promise<import("../cosmos/gov/v1/query").QueryVoteResponse>;
@@ -318,6 +329,8 @@ export declare const createRPCQueryClient: ({ rpcEndpoint }: {
         strdburner: {
             strdBurnerAddress(request?: import("./strdburner/query").QueryStrdBurnerAddressRequest): Promise<import("./strdburner/query").QueryStrdBurnerAddressResponse>;
             totalStrdBurned(request?: import("./strdburner/query").QueryTotalStrdBurnedRequest): Promise<import("./strdburner/query").QueryTotalStrdBurnedResponse>;
+            strdBurnedByAddress(request: import("./strdburner/query").QueryStrdBurnedByAddressRequest): Promise<import("./strdburner/query").QueryStrdBurnedByAddressResponse>;
+            linkedAddress(request: import("./strdburner/query").QueryLinkedAddressRequest): Promise<import("./strdburner/query").QueryLinkedAddressResponse>;
         };
     };
 }>;

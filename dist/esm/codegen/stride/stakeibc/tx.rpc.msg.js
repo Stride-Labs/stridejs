@@ -1,5 +1,5 @@
 import { BinaryReader } from "../../binary";
-import { MsgLiquidStake, MsgLiquidStakeResponse, MsgLSMLiquidStake, MsgLSMLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidators, MsgAddValidatorsResponse, MsgChangeValidatorWeights, MsgChangeValidatorWeightsResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgCloseDelegationChannel, MsgCloseDelegationChannelResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgCalibrateDelegation, MsgCalibrateDelegationResponse, MsgClearBalance, MsgClearBalanceResponse, MsgUpdateInnerRedemptionRateBounds, MsgUpdateInnerRedemptionRateBoundsResponse, MsgResumeHostZone, MsgResumeHostZoneResponse, MsgCreateTradeRoute, MsgCreateTradeRouteResponse, MsgDeleteTradeRoute, MsgDeleteTradeRouteResponse, MsgUpdateTradeRoute, MsgUpdateTradeRouteResponse, MsgSetCommunityPoolRebate, MsgSetCommunityPoolRebateResponse, MsgToggleTradeController, MsgToggleTradeControllerResponse, MsgUpdateHostZoneParams, MsgUpdateHostZoneParamsResponse } from "./tx";
+import { MsgLiquidStake, MsgLiquidStakeResponse, MsgLSMLiquidStake, MsgLSMLiquidStakeResponse, MsgRedeemStake, MsgRedeemStakeResponse, MsgRegisterHostZone, MsgRegisterHostZoneResponse, MsgClaimUndelegatedTokens, MsgClaimUndelegatedTokensResponse, MsgRebalanceValidators, MsgRebalanceValidatorsResponse, MsgAddValidators, MsgAddValidatorsResponse, MsgChangeValidatorWeights, MsgChangeValidatorWeightsResponse, MsgDeleteValidator, MsgDeleteValidatorResponse, MsgRestoreInterchainAccount, MsgRestoreInterchainAccountResponse, MsgCloseDelegationChannel, MsgCloseDelegationChannelResponse, MsgUpdateValidatorSharesExchRate, MsgUpdateValidatorSharesExchRateResponse, MsgCalibrateDelegation, MsgCalibrateDelegationResponse, MsgClearBalance, MsgClearBalanceResponse, MsgUpdateInnerRedemptionRateBounds, MsgUpdateInnerRedemptionRateBoundsResponse, MsgResumeHostZone, MsgResumeHostZoneResponse, MsgCreateTradeRoute, MsgCreateTradeRouteResponse, MsgDeleteTradeRoute, MsgDeleteTradeRouteResponse, MsgUpdateTradeRoute, MsgUpdateTradeRouteResponse, MsgSetCommunityPoolRebate, MsgSetCommunityPoolRebateResponse, MsgToggleTradeController, MsgToggleTradeControllerResponse, MsgUpdateHostZoneParams, MsgUpdateHostZoneParamsResponse, MsgDeprecateHostZone, MsgDeprecateHostZoneResponse } from "./tx";
 class MsgClientImpl {
   rpc;
   constructor(rpc) {
@@ -26,6 +26,7 @@ class MsgClientImpl {
     this.setCommunityPoolRebate = this.setCommunityPoolRebate.bind(this);
     this.toggleTradeController = this.toggleTradeController.bind(this);
     this.updateHostZoneParams = this.updateHostZoneParams.bind(this);
+    this.deprecateHostZone = this.deprecateHostZone.bind(this);
   }
   liquidStake(request) {
     const data = MsgLiquidStake.encode(request).finish();
@@ -136,6 +137,11 @@ class MsgClientImpl {
     const data = MsgUpdateHostZoneParams.encode(request).finish();
     const promise = this.rpc.request("stride.stakeibc.Msg", "UpdateHostZoneParams", data);
     return promise.then((data2) => MsgUpdateHostZoneParamsResponse.decode(new BinaryReader(data2)));
+  }
+  deprecateHostZone(request) {
+    const data = MsgDeprecateHostZone.encode(request).finish();
+    const promise = this.rpc.request("stride.stakeibc.Msg", "DeprecateHostZone", data);
+    return promise.then((data2) => MsgDeprecateHostZoneResponse.decode(new BinaryReader(data2)));
   }
 }
 export {

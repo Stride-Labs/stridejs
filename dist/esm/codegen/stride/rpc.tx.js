@@ -11,6 +11,9 @@ const createRPCMsgClient = async ({
     bank: {
       v1beta1: new (await import("../cosmos/bank/v1beta1/tx.rpc.msg")).MsgClientImpl(rpc)
     },
+    circuit: {
+      v1: new (await import("../cosmos/circuit/v1/tx.rpc.msg")).MsgClientImpl(rpc)
+    },
     consensus: {
       v1: new (await import("../cosmos/consensus/v1/tx.rpc.msg")).MsgClientImpl(rpc)
     },
@@ -59,11 +62,12 @@ const createRPCMsgClient = async ({
     icaoracle: new (await import("./icaoracle/tx.rpc.msg")).MsgClientImpl(rpc),
     icqoracle: new (await import("./icqoracle/tx.rpc.msg")).MsgClientImpl(rpc),
     interchainquery: {
-      v1: new (await import("./interchainquery/v1/messages.rpc.msg")).MsgClientImpl(rpc)
+      v1: new (await import("./interchainquery/v1/tx.rpc.msg")).MsgClientImpl(rpc)
     },
     stakedym: new (await import("./stakedym/tx.rpc.msg")).MsgClientImpl(rpc),
     stakeibc: new (await import("./stakeibc/tx.rpc.msg")).MsgClientImpl(rpc),
-    staketia: new (await import("./staketia/tx.rpc.msg")).MsgClientImpl(rpc)
+    staketia: new (await import("./staketia/tx.rpc.msg")).MsgClientImpl(rpc),
+    strdburner: new (await import("./strdburner/tx.rpc.msg")).MsgClientImpl(rpc)
   }
 });
 export {

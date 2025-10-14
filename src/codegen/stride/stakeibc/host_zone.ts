@@ -141,8 +141,18 @@ export interface HostZone {
   communityPoolRebate?: CommunityPoolRebate;
   /** A boolean indicating whether the chain has LSM enabled */
   lsmLiquidStakeEnabled: boolean;
-  /** A boolean indicating whether the chain is currently halted */
+  /**
+   * A boolean indicating whether the chain is currently halted
+   * A host zone is halted if redemption rate bounds are exceeded or it is
+   * deprecated
+   */
   halted: boolean;
+  /**
+   * Indicates if the host zone is deprecated and should no longer handle liquid
+   * stakes. This is only used as documentation - it doesn't affect any
+   * functionality `Halted` is used to stop business logic
+   */
+  deprecated: boolean;
 }
 export interface HostZoneProtoMsg {
   typeUrl: "/stride.stakeibc.HostZone";
@@ -288,8 +298,16 @@ export interface HostZoneAmino {
   lsm_liquid_stake_enabled?: boolean;
   /**
    * A boolean indicating whether the chain is currently halted
+   * A host zone is halted if redemption rate bounds are exceeded or it is
+   * deprecated
    */
   halted?: boolean;
+  /**
+   * Indicates if the host zone is deprecated and should no longer handle liquid
+   * stakes. This is only used as documentation - it doesn't affect any
+   * functionality `Halted` is used to stop business logic
+   */
+  deprecated?: boolean;
 }
 export interface HostZoneAminoMsg {
   type: "/stride.stakeibc.HostZone";
@@ -327,6 +345,7 @@ export interface HostZoneSDKType {
   community_pool_rebate?: CommunityPoolRebateSDKType;
   lsm_liquid_stake_enabled: boolean;
   halted: boolean;
+  deprecated: boolean;
 }
 function createBaseCommunityPoolRebate(): CommunityPoolRebate {
   return {
@@ -434,7 +453,8 @@ function createBaseHostZone(): HostZone {
     redemptionsEnabled: false,
     communityPoolRebate: undefined,
     lsmLiquidStakeEnabled: false,
-    halted: false
+    halted: false,
+    deprecated: false
   };
 }
 export const HostZone = {
@@ -529,6 +549,9 @@ export const HostZone = {
     }
     if (message.halted === true) {
       writer.uint32(152).bool(message.halted);
+    }
+    if (message.deprecated === true) {
+      writer.uint32(304).bool(message.deprecated);
     }
     return writer;
   },
@@ -629,6 +652,9 @@ export const HostZone = {
         case 19:
           message.halted = reader.bool();
           break;
+        case 38:
+          message.deprecated = reader.bool();
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -668,6 +694,7 @@ export const HostZone = {
     message.communityPoolRebate = object.communityPoolRebate !== undefined && object.communityPoolRebate !== null ? CommunityPoolRebate.fromPartial(object.communityPoolRebate) : undefined;
     message.lsmLiquidStakeEnabled = object.lsmLiquidStakeEnabled ?? false;
     message.halted = object.halted ?? false;
+    message.deprecated = object.deprecated ?? false;
     return message;
   },
   fromAmino(object: HostZoneAmino): HostZone {
@@ -760,6 +787,9 @@ export const HostZone = {
     if (object.halted !== undefined && object.halted !== null) {
       message.halted = object.halted;
     }
+    if (object.deprecated !== undefined && object.deprecated !== null) {
+      message.deprecated = object.deprecated;
+    }
     return message;
   },
   toAmino(message: HostZone): HostZoneAmino {
@@ -798,6 +828,7 @@ export const HostZone = {
     obj.community_pool_rebate = message.communityPoolRebate ? CommunityPoolRebate.toAmino(message.communityPoolRebate) : undefined;
     obj.lsm_liquid_stake_enabled = message.lsmLiquidStakeEnabled === false ? undefined : message.lsmLiquidStakeEnabled;
     obj.halted = message.halted === false ? undefined : message.halted;
+    obj.deprecated = message.deprecated === false ? undefined : message.deprecated;
     return obj;
   },
   fromAminoMsg(object: HostZoneAminoMsg): HostZone {

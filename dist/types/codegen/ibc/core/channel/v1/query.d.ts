@@ -1,7 +1,8 @@
 import { PageRequest, PageRequestAmino, PageRequestSDKType, PageResponse, PageResponseAmino, PageResponseSDKType } from "../../../../cosmos/base/query/v1beta1/pagination";
 import { Channel, ChannelAmino, ChannelSDKType, IdentifiedChannel, IdentifiedChannelAmino, IdentifiedChannelSDKType, PacketState, PacketStateAmino, PacketStateSDKType } from "./channel";
-import { Height, HeightAmino, HeightSDKType, IdentifiedClientState, IdentifiedClientStateAmino, IdentifiedClientStateSDKType } from "../../client/v1/client";
+import { Height, HeightAmino, HeightSDKType, IdentifiedClientState, IdentifiedClientStateAmino, IdentifiedClientStateSDKType, Params, ParamsAmino, ParamsSDKType } from "../../client/v1/client";
 import { Any, AnyAmino, AnySDKType } from "../../../../google/protobuf/any";
+import { ErrorReceipt, ErrorReceiptAmino, ErrorReceiptSDKType, Upgrade, UpgradeAmino, UpgradeSDKType } from "./upgrade";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 /** QueryChannelRequest is the request type for the Query/Channel RPC method */
 export interface QueryChannelRequest {
@@ -1202,7 +1203,7 @@ export interface QueryNextSequenceReceiveRequestSDKType {
     channel_id: string;
 }
 /**
- * QuerySequenceResponse is the request type for the
+ * QuerySequenceResponse is the response type for the
  * Query/QueryNextSequenceReceiveResponse RPC method
  */
 export interface QueryNextSequenceReceiveResponse {
@@ -1218,7 +1219,7 @@ export interface QueryNextSequenceReceiveResponseProtoMsg {
     value: Uint8Array;
 }
 /**
- * QuerySequenceResponse is the request type for the
+ * QuerySequenceResponse is the response type for the
  * Query/QueryNextSequenceReceiveResponse RPC method
  * @name QueryNextSequenceReceiveResponseAmino
  * @package ibc.core.channel.v1
@@ -1243,13 +1244,291 @@ export interface QueryNextSequenceReceiveResponseAminoMsg {
     value: QueryNextSequenceReceiveResponseAmino;
 }
 /**
- * QuerySequenceResponse is the request type for the
+ * QuerySequenceResponse is the response type for the
  * Query/QueryNextSequenceReceiveResponse RPC method
  */
 export interface QueryNextSequenceReceiveResponseSDKType {
     next_sequence_receive: bigint;
     proof: Uint8Array;
     proof_height: HeightSDKType;
+}
+/**
+ * QueryNextSequenceSendRequest is the request type for the
+ * Query/QueryNextSequenceSend RPC method
+ */
+export interface QueryNextSequenceSendRequest {
+    /** port unique identifier */
+    portId: string;
+    /** channel unique identifier */
+    channelId: string;
+}
+export interface QueryNextSequenceSendRequestProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.QueryNextSequenceSendRequest";
+    value: Uint8Array;
+}
+/**
+ * QueryNextSequenceSendRequest is the request type for the
+ * Query/QueryNextSequenceSend RPC method
+ * @name QueryNextSequenceSendRequestAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.QueryNextSequenceSendRequest
+ */
+export interface QueryNextSequenceSendRequestAmino {
+    /**
+     * port unique identifier
+     */
+    port_id?: string;
+    /**
+     * channel unique identifier
+     */
+    channel_id?: string;
+}
+export interface QueryNextSequenceSendRequestAminoMsg {
+    type: "cosmos-sdk/QueryNextSequenceSendRequest";
+    value: QueryNextSequenceSendRequestAmino;
+}
+/**
+ * QueryNextSequenceSendRequest is the request type for the
+ * Query/QueryNextSequenceSend RPC method
+ */
+export interface QueryNextSequenceSendRequestSDKType {
+    port_id: string;
+    channel_id: string;
+}
+/**
+ * QueryNextSequenceSendResponse is the request type for the
+ * Query/QueryNextSequenceSend RPC method
+ */
+export interface QueryNextSequenceSendResponse {
+    /** next sequence send number */
+    nextSequenceSend: bigint;
+    /** merkle proof of existence */
+    proof: Uint8Array;
+    /** height at which the proof was retrieved */
+    proofHeight: Height;
+}
+export interface QueryNextSequenceSendResponseProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.QueryNextSequenceSendResponse";
+    value: Uint8Array;
+}
+/**
+ * QueryNextSequenceSendResponse is the request type for the
+ * Query/QueryNextSequenceSend RPC method
+ * @name QueryNextSequenceSendResponseAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.QueryNextSequenceSendResponse
+ */
+export interface QueryNextSequenceSendResponseAmino {
+    /**
+     * next sequence send number
+     */
+    next_sequence_send?: string;
+    /**
+     * merkle proof of existence
+     */
+    proof?: string;
+    /**
+     * height at which the proof was retrieved
+     */
+    proof_height?: HeightAmino;
+}
+export interface QueryNextSequenceSendResponseAminoMsg {
+    type: "cosmos-sdk/QueryNextSequenceSendResponse";
+    value: QueryNextSequenceSendResponseAmino;
+}
+/**
+ * QueryNextSequenceSendResponse is the request type for the
+ * Query/QueryNextSequenceSend RPC method
+ */
+export interface QueryNextSequenceSendResponseSDKType {
+    next_sequence_send: bigint;
+    proof: Uint8Array;
+    proof_height: HeightSDKType;
+}
+/** QueryUpgradeErrorRequest is the request type for the Query/QueryUpgradeError RPC method */
+export interface QueryUpgradeErrorRequest {
+    portId: string;
+    channelId: string;
+}
+export interface QueryUpgradeErrorRequestProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.QueryUpgradeErrorRequest";
+    value: Uint8Array;
+}
+/**
+ * QueryUpgradeErrorRequest is the request type for the Query/QueryUpgradeError RPC method
+ * @name QueryUpgradeErrorRequestAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.QueryUpgradeErrorRequest
+ */
+export interface QueryUpgradeErrorRequestAmino {
+    port_id?: string;
+    channel_id?: string;
+}
+export interface QueryUpgradeErrorRequestAminoMsg {
+    type: "cosmos-sdk/QueryUpgradeErrorRequest";
+    value: QueryUpgradeErrorRequestAmino;
+}
+/** QueryUpgradeErrorRequest is the request type for the Query/QueryUpgradeError RPC method */
+export interface QueryUpgradeErrorRequestSDKType {
+    port_id: string;
+    channel_id: string;
+}
+/** QueryUpgradeErrorResponse is the response type for the Query/QueryUpgradeError RPC method */
+export interface QueryUpgradeErrorResponse {
+    errorReceipt: ErrorReceipt;
+    /** merkle proof of existence */
+    proof: Uint8Array;
+    /** height at which the proof was retrieved */
+    proofHeight: Height;
+}
+export interface QueryUpgradeErrorResponseProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.QueryUpgradeErrorResponse";
+    value: Uint8Array;
+}
+/**
+ * QueryUpgradeErrorResponse is the response type for the Query/QueryUpgradeError RPC method
+ * @name QueryUpgradeErrorResponseAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.QueryUpgradeErrorResponse
+ */
+export interface QueryUpgradeErrorResponseAmino {
+    error_receipt?: ErrorReceiptAmino;
+    /**
+     * merkle proof of existence
+     */
+    proof?: string;
+    /**
+     * height at which the proof was retrieved
+     */
+    proof_height?: HeightAmino;
+}
+export interface QueryUpgradeErrorResponseAminoMsg {
+    type: "cosmos-sdk/QueryUpgradeErrorResponse";
+    value: QueryUpgradeErrorResponseAmino;
+}
+/** QueryUpgradeErrorResponse is the response type for the Query/QueryUpgradeError RPC method */
+export interface QueryUpgradeErrorResponseSDKType {
+    error_receipt: ErrorReceiptSDKType;
+    proof: Uint8Array;
+    proof_height: HeightSDKType;
+}
+/** QueryUpgradeRequest is the request type for the QueryUpgradeRequest RPC method */
+export interface QueryUpgradeRequest {
+    portId: string;
+    channelId: string;
+}
+export interface QueryUpgradeRequestProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.QueryUpgradeRequest";
+    value: Uint8Array;
+}
+/**
+ * QueryUpgradeRequest is the request type for the QueryUpgradeRequest RPC method
+ * @name QueryUpgradeRequestAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.QueryUpgradeRequest
+ */
+export interface QueryUpgradeRequestAmino {
+    port_id?: string;
+    channel_id?: string;
+}
+export interface QueryUpgradeRequestAminoMsg {
+    type: "cosmos-sdk/QueryUpgradeRequest";
+    value: QueryUpgradeRequestAmino;
+}
+/** QueryUpgradeRequest is the request type for the QueryUpgradeRequest RPC method */
+export interface QueryUpgradeRequestSDKType {
+    port_id: string;
+    channel_id: string;
+}
+/** QueryUpgradeResponse is the response type for the QueryUpgradeResponse RPC method */
+export interface QueryUpgradeResponse {
+    upgrade: Upgrade;
+    /** merkle proof of existence */
+    proof: Uint8Array;
+    /** height at which the proof was retrieved */
+    proofHeight: Height;
+}
+export interface QueryUpgradeResponseProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.QueryUpgradeResponse";
+    value: Uint8Array;
+}
+/**
+ * QueryUpgradeResponse is the response type for the QueryUpgradeResponse RPC method
+ * @name QueryUpgradeResponseAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.QueryUpgradeResponse
+ */
+export interface QueryUpgradeResponseAmino {
+    upgrade?: UpgradeAmino;
+    /**
+     * merkle proof of existence
+     */
+    proof?: string;
+    /**
+     * height at which the proof was retrieved
+     */
+    proof_height?: HeightAmino;
+}
+export interface QueryUpgradeResponseAminoMsg {
+    type: "cosmos-sdk/QueryUpgradeResponse";
+    value: QueryUpgradeResponseAmino;
+}
+/** QueryUpgradeResponse is the response type for the QueryUpgradeResponse RPC method */
+export interface QueryUpgradeResponseSDKType {
+    upgrade: UpgradeSDKType;
+    proof: Uint8Array;
+    proof_height: HeightSDKType;
+}
+/** QueryChannelParamsRequest is the request type for the Query/ChannelParams RPC method. */
+export interface QueryChannelParamsRequest {
+}
+export interface QueryChannelParamsRequestProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.QueryChannelParamsRequest";
+    value: Uint8Array;
+}
+/**
+ * QueryChannelParamsRequest is the request type for the Query/ChannelParams RPC method.
+ * @name QueryChannelParamsRequestAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.QueryChannelParamsRequest
+ */
+export interface QueryChannelParamsRequestAmino {
+}
+export interface QueryChannelParamsRequestAminoMsg {
+    type: "cosmos-sdk/QueryChannelParamsRequest";
+    value: QueryChannelParamsRequestAmino;
+}
+/** QueryChannelParamsRequest is the request type for the Query/ChannelParams RPC method. */
+export interface QueryChannelParamsRequestSDKType {
+}
+/** QueryChannelParamsResponse is the response type for the Query/ChannelParams RPC method. */
+export interface QueryChannelParamsResponse {
+    /** params defines the parameters of the module. */
+    params?: Params;
+}
+export interface QueryChannelParamsResponseProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.QueryChannelParamsResponse";
+    value: Uint8Array;
+}
+/**
+ * QueryChannelParamsResponse is the response type for the Query/ChannelParams RPC method.
+ * @name QueryChannelParamsResponseAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.QueryChannelParamsResponse
+ */
+export interface QueryChannelParamsResponseAmino {
+    /**
+     * params defines the parameters of the module.
+     */
+    params?: ParamsAmino;
+}
+export interface QueryChannelParamsResponseAminoMsg {
+    type: "cosmos-sdk/QueryChannelParamsResponse";
+    value: QueryChannelParamsResponseAmino;
+}
+/** QueryChannelParamsResponse is the response type for the Query/ChannelParams RPC method. */
+export interface QueryChannelParamsResponseSDKType {
+    params?: ParamsSDKType;
 }
 export declare const QueryChannelRequest: {
     typeUrl: string;
@@ -1588,4 +1867,108 @@ export declare const QueryNextSequenceReceiveResponse: {
     fromProtoMsg(message: QueryNextSequenceReceiveResponseProtoMsg): QueryNextSequenceReceiveResponse;
     toProto(message: QueryNextSequenceReceiveResponse): Uint8Array;
     toProtoMsg(message: QueryNextSequenceReceiveResponse): QueryNextSequenceReceiveResponseProtoMsg;
+};
+export declare const QueryNextSequenceSendRequest: {
+    typeUrl: string;
+    encode(message: QueryNextSequenceSendRequest, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryNextSequenceSendRequest;
+    fromPartial(object: Partial<QueryNextSequenceSendRequest>): QueryNextSequenceSendRequest;
+    fromAmino(object: QueryNextSequenceSendRequestAmino): QueryNextSequenceSendRequest;
+    toAmino(message: QueryNextSequenceSendRequest): QueryNextSequenceSendRequestAmino;
+    fromAminoMsg(object: QueryNextSequenceSendRequestAminoMsg): QueryNextSequenceSendRequest;
+    toAminoMsg(message: QueryNextSequenceSendRequest): QueryNextSequenceSendRequestAminoMsg;
+    fromProtoMsg(message: QueryNextSequenceSendRequestProtoMsg): QueryNextSequenceSendRequest;
+    toProto(message: QueryNextSequenceSendRequest): Uint8Array;
+    toProtoMsg(message: QueryNextSequenceSendRequest): QueryNextSequenceSendRequestProtoMsg;
+};
+export declare const QueryNextSequenceSendResponse: {
+    typeUrl: string;
+    encode(message: QueryNextSequenceSendResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryNextSequenceSendResponse;
+    fromPartial(object: Partial<QueryNextSequenceSendResponse>): QueryNextSequenceSendResponse;
+    fromAmino(object: QueryNextSequenceSendResponseAmino): QueryNextSequenceSendResponse;
+    toAmino(message: QueryNextSequenceSendResponse): QueryNextSequenceSendResponseAmino;
+    fromAminoMsg(object: QueryNextSequenceSendResponseAminoMsg): QueryNextSequenceSendResponse;
+    toAminoMsg(message: QueryNextSequenceSendResponse): QueryNextSequenceSendResponseAminoMsg;
+    fromProtoMsg(message: QueryNextSequenceSendResponseProtoMsg): QueryNextSequenceSendResponse;
+    toProto(message: QueryNextSequenceSendResponse): Uint8Array;
+    toProtoMsg(message: QueryNextSequenceSendResponse): QueryNextSequenceSendResponseProtoMsg;
+};
+export declare const QueryUpgradeErrorRequest: {
+    typeUrl: string;
+    encode(message: QueryUpgradeErrorRequest, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryUpgradeErrorRequest;
+    fromPartial(object: Partial<QueryUpgradeErrorRequest>): QueryUpgradeErrorRequest;
+    fromAmino(object: QueryUpgradeErrorRequestAmino): QueryUpgradeErrorRequest;
+    toAmino(message: QueryUpgradeErrorRequest): QueryUpgradeErrorRequestAmino;
+    fromAminoMsg(object: QueryUpgradeErrorRequestAminoMsg): QueryUpgradeErrorRequest;
+    toAminoMsg(message: QueryUpgradeErrorRequest): QueryUpgradeErrorRequestAminoMsg;
+    fromProtoMsg(message: QueryUpgradeErrorRequestProtoMsg): QueryUpgradeErrorRequest;
+    toProto(message: QueryUpgradeErrorRequest): Uint8Array;
+    toProtoMsg(message: QueryUpgradeErrorRequest): QueryUpgradeErrorRequestProtoMsg;
+};
+export declare const QueryUpgradeErrorResponse: {
+    typeUrl: string;
+    encode(message: QueryUpgradeErrorResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryUpgradeErrorResponse;
+    fromPartial(object: Partial<QueryUpgradeErrorResponse>): QueryUpgradeErrorResponse;
+    fromAmino(object: QueryUpgradeErrorResponseAmino): QueryUpgradeErrorResponse;
+    toAmino(message: QueryUpgradeErrorResponse): QueryUpgradeErrorResponseAmino;
+    fromAminoMsg(object: QueryUpgradeErrorResponseAminoMsg): QueryUpgradeErrorResponse;
+    toAminoMsg(message: QueryUpgradeErrorResponse): QueryUpgradeErrorResponseAminoMsg;
+    fromProtoMsg(message: QueryUpgradeErrorResponseProtoMsg): QueryUpgradeErrorResponse;
+    toProto(message: QueryUpgradeErrorResponse): Uint8Array;
+    toProtoMsg(message: QueryUpgradeErrorResponse): QueryUpgradeErrorResponseProtoMsg;
+};
+export declare const QueryUpgradeRequest: {
+    typeUrl: string;
+    encode(message: QueryUpgradeRequest, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryUpgradeRequest;
+    fromPartial(object: Partial<QueryUpgradeRequest>): QueryUpgradeRequest;
+    fromAmino(object: QueryUpgradeRequestAmino): QueryUpgradeRequest;
+    toAmino(message: QueryUpgradeRequest): QueryUpgradeRequestAmino;
+    fromAminoMsg(object: QueryUpgradeRequestAminoMsg): QueryUpgradeRequest;
+    toAminoMsg(message: QueryUpgradeRequest): QueryUpgradeRequestAminoMsg;
+    fromProtoMsg(message: QueryUpgradeRequestProtoMsg): QueryUpgradeRequest;
+    toProto(message: QueryUpgradeRequest): Uint8Array;
+    toProtoMsg(message: QueryUpgradeRequest): QueryUpgradeRequestProtoMsg;
+};
+export declare const QueryUpgradeResponse: {
+    typeUrl: string;
+    encode(message: QueryUpgradeResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryUpgradeResponse;
+    fromPartial(object: Partial<QueryUpgradeResponse>): QueryUpgradeResponse;
+    fromAmino(object: QueryUpgradeResponseAmino): QueryUpgradeResponse;
+    toAmino(message: QueryUpgradeResponse): QueryUpgradeResponseAmino;
+    fromAminoMsg(object: QueryUpgradeResponseAminoMsg): QueryUpgradeResponse;
+    toAminoMsg(message: QueryUpgradeResponse): QueryUpgradeResponseAminoMsg;
+    fromProtoMsg(message: QueryUpgradeResponseProtoMsg): QueryUpgradeResponse;
+    toProto(message: QueryUpgradeResponse): Uint8Array;
+    toProtoMsg(message: QueryUpgradeResponse): QueryUpgradeResponseProtoMsg;
+};
+export declare const QueryChannelParamsRequest: {
+    typeUrl: string;
+    encode(_: QueryChannelParamsRequest, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryChannelParamsRequest;
+    fromPartial(_: Partial<QueryChannelParamsRequest>): QueryChannelParamsRequest;
+    fromAmino(_: QueryChannelParamsRequestAmino): QueryChannelParamsRequest;
+    toAmino(_: QueryChannelParamsRequest): QueryChannelParamsRequestAmino;
+    fromAminoMsg(object: QueryChannelParamsRequestAminoMsg): QueryChannelParamsRequest;
+    toAminoMsg(message: QueryChannelParamsRequest): QueryChannelParamsRequestAminoMsg;
+    fromProtoMsg(message: QueryChannelParamsRequestProtoMsg): QueryChannelParamsRequest;
+    toProto(message: QueryChannelParamsRequest): Uint8Array;
+    toProtoMsg(message: QueryChannelParamsRequest): QueryChannelParamsRequestProtoMsg;
+};
+export declare const QueryChannelParamsResponse: {
+    typeUrl: string;
+    encode(message: QueryChannelParamsResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryChannelParamsResponse;
+    fromPartial(object: Partial<QueryChannelParamsResponse>): QueryChannelParamsResponse;
+    fromAmino(object: QueryChannelParamsResponseAmino): QueryChannelParamsResponse;
+    toAmino(message: QueryChannelParamsResponse): QueryChannelParamsResponseAmino;
+    fromAminoMsg(object: QueryChannelParamsResponseAminoMsg): QueryChannelParamsResponse;
+    toAminoMsg(message: QueryChannelParamsResponse): QueryChannelParamsResponseAminoMsg;
+    fromProtoMsg(message: QueryChannelParamsResponseProtoMsg): QueryChannelParamsResponse;
+    toProto(message: QueryChannelParamsResponse): Uint8Array;
+    toProtoMsg(message: QueryChannelParamsResponse): QueryChannelParamsResponseProtoMsg;
 };

@@ -838,6 +838,50 @@ export interface MsgResumeHostZoneResponseAminoMsg {
 }
 export interface MsgResumeHostZoneResponseSDKType {
 }
+export interface MsgDeprecateHostZone {
+    authority: string;
+    chainId: string;
+}
+export interface MsgDeprecateHostZoneProtoMsg {
+    typeUrl: "/stride.stakeibc.MsgDeprecateHostZone";
+    value: Uint8Array;
+}
+/**
+ * @name MsgDeprecateHostZoneAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgDeprecateHostZone
+ */
+export interface MsgDeprecateHostZoneAmino {
+    authority?: string;
+    chain_id?: string;
+}
+export interface MsgDeprecateHostZoneAminoMsg {
+    type: "stakeibc/MsgDeprecateHostZone";
+    value: MsgDeprecateHostZoneAmino;
+}
+export interface MsgDeprecateHostZoneSDKType {
+    authority: string;
+    chain_id: string;
+}
+export interface MsgDeprecateHostZoneResponse {
+}
+export interface MsgDeprecateHostZoneResponseProtoMsg {
+    typeUrl: "/stride.stakeibc.MsgDeprecateHostZoneResponse";
+    value: Uint8Array;
+}
+/**
+ * @name MsgDeprecateHostZoneResponseAmino
+ * @package stride.stakeibc
+ * @see proto type: stride.stakeibc.MsgDeprecateHostZoneResponse
+ */
+export interface MsgDeprecateHostZoneResponseAmino {
+}
+export interface MsgDeprecateHostZoneResponseAminoMsg {
+    type: "/stride.stakeibc.MsgDeprecateHostZoneResponse";
+    value: MsgDeprecateHostZoneResponseAmino;
+}
+export interface MsgDeprecateHostZoneResponseSDKType {
+}
 /** Creates a new trade route */
 export interface MsgCreateTradeRoute {
     /**
@@ -1884,6 +1928,31 @@ export declare const MsgResumeHostZoneResponse: {
     fromProtoMsg(message: MsgResumeHostZoneResponseProtoMsg): MsgResumeHostZoneResponse;
     toProto(message: MsgResumeHostZoneResponse): Uint8Array;
     toProtoMsg(message: MsgResumeHostZoneResponse): MsgResumeHostZoneResponseProtoMsg;
+};
+export declare const MsgDeprecateHostZone: {
+    typeUrl: string;
+    encode(message: MsgDeprecateHostZone, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgDeprecateHostZone;
+    fromPartial(object: Partial<MsgDeprecateHostZone>): MsgDeprecateHostZone;
+    fromAmino(object: MsgDeprecateHostZoneAmino): MsgDeprecateHostZone;
+    toAmino(message: MsgDeprecateHostZone): MsgDeprecateHostZoneAmino;
+    fromAminoMsg(object: MsgDeprecateHostZoneAminoMsg): MsgDeprecateHostZone;
+    toAminoMsg(message: MsgDeprecateHostZone): MsgDeprecateHostZoneAminoMsg;
+    fromProtoMsg(message: MsgDeprecateHostZoneProtoMsg): MsgDeprecateHostZone;
+    toProto(message: MsgDeprecateHostZone): Uint8Array;
+    toProtoMsg(message: MsgDeprecateHostZone): MsgDeprecateHostZoneProtoMsg;
+};
+export declare const MsgDeprecateHostZoneResponse: {
+    typeUrl: string;
+    encode(_: MsgDeprecateHostZoneResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgDeprecateHostZoneResponse;
+    fromPartial(_: Partial<MsgDeprecateHostZoneResponse>): MsgDeprecateHostZoneResponse;
+    fromAmino(_: MsgDeprecateHostZoneResponseAmino): MsgDeprecateHostZoneResponse;
+    toAmino(_: MsgDeprecateHostZoneResponse): MsgDeprecateHostZoneResponseAmino;
+    fromAminoMsg(object: MsgDeprecateHostZoneResponseAminoMsg): MsgDeprecateHostZoneResponse;
+    fromProtoMsg(message: MsgDeprecateHostZoneResponseProtoMsg): MsgDeprecateHostZoneResponse;
+    toProto(message: MsgDeprecateHostZoneResponse): Uint8Array;
+    toProtoMsg(message: MsgDeprecateHostZoneResponse): MsgDeprecateHostZoneResponseProtoMsg;
 };
 export declare const MsgCreateTradeRoute: {
     typeUrl: string;

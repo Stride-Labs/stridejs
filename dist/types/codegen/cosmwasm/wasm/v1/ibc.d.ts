@@ -90,6 +90,28 @@ export interface MsgIBCSendResponseAminoMsg {
 export interface MsgIBCSendResponseSDKType {
     sequence: bigint;
 }
+/** MsgIBCWriteAcknowledgementResponse */
+export interface MsgIBCWriteAcknowledgementResponse {
+}
+export interface MsgIBCWriteAcknowledgementResponseProtoMsg {
+    typeUrl: "/cosmwasm.wasm.v1.MsgIBCWriteAcknowledgementResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgIBCWriteAcknowledgementResponse
+ * @name MsgIBCWriteAcknowledgementResponseAmino
+ * @package cosmwasm.wasm.v1
+ * @see proto type: cosmwasm.wasm.v1.MsgIBCWriteAcknowledgementResponse
+ */
+export interface MsgIBCWriteAcknowledgementResponseAmino {
+}
+export interface MsgIBCWriteAcknowledgementResponseAminoMsg {
+    type: "wasm/MsgIBCWriteAcknowledgementResponse";
+    value: MsgIBCWriteAcknowledgementResponseAmino;
+}
+/** MsgIBCWriteAcknowledgementResponse */
+export interface MsgIBCWriteAcknowledgementResponseSDKType {
+}
 /** MsgIBCCloseChannel port and channel need to be owned by the contract */
 export interface MsgIBCCloseChannel {
     channel: string;
@@ -140,6 +162,19 @@ export declare const MsgIBCSendResponse: {
     fromProtoMsg(message: MsgIBCSendResponseProtoMsg): MsgIBCSendResponse;
     toProto(message: MsgIBCSendResponse): Uint8Array;
     toProtoMsg(message: MsgIBCSendResponse): MsgIBCSendResponseProtoMsg;
+};
+export declare const MsgIBCWriteAcknowledgementResponse: {
+    typeUrl: string;
+    encode(_: MsgIBCWriteAcknowledgementResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgIBCWriteAcknowledgementResponse;
+    fromPartial(_: Partial<MsgIBCWriteAcknowledgementResponse>): MsgIBCWriteAcknowledgementResponse;
+    fromAmino(_: MsgIBCWriteAcknowledgementResponseAmino): MsgIBCWriteAcknowledgementResponse;
+    toAmino(_: MsgIBCWriteAcknowledgementResponse): MsgIBCWriteAcknowledgementResponseAmino;
+    fromAminoMsg(object: MsgIBCWriteAcknowledgementResponseAminoMsg): MsgIBCWriteAcknowledgementResponse;
+    toAminoMsg(message: MsgIBCWriteAcknowledgementResponse): MsgIBCWriteAcknowledgementResponseAminoMsg;
+    fromProtoMsg(message: MsgIBCWriteAcknowledgementResponseProtoMsg): MsgIBCWriteAcknowledgementResponse;
+    toProto(message: MsgIBCWriteAcknowledgementResponse): Uint8Array;
+    toProtoMsg(message: MsgIBCWriteAcknowledgementResponse): MsgIBCWriteAcknowledgementResponseProtoMsg;
 };
 export declare const MsgIBCCloseChannel: {
     typeUrl: string;

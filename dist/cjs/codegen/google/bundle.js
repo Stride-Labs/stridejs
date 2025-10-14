@@ -30,23 +30,23 @@ __export(bundle_exports, {
   google: () => google
 });
 module.exports = __toCommonJS(bundle_exports);
-var _143 = __toESM(require("./api/annotations"));
-var _144 = __toESM(require("./api/http"));
-var _145 = __toESM(require("./protobuf/descriptor"));
-var _146 = __toESM(require("./protobuf/any"));
-var _147 = __toESM(require("./protobuf/timestamp"));
-var _148 = __toESM(require("./protobuf/duration"));
+var _148 = __toESM(require("./api/annotations"));
+var _149 = __toESM(require("./api/http"));
+var _150 = __toESM(require("./protobuf/descriptor"));
+var _151 = __toESM(require("./protobuf/any"));
+var _152 = __toESM(require("./protobuf/timestamp"));
+var _153 = __toESM(require("./protobuf/duration"));
 var google;
 ((google2) => {
   google2.api = {
-    ..._143,
-    ..._144
+    ..._148,
+    ..._149
   };
   google2.protobuf = {
-    ..._145,
-    ..._146,
-    ..._147,
-    ..._148
+    ..._150,
+    ..._151,
+    ..._152,
+    ..._153
   };
 })(google || (google = {}));
 // Annotate the CommonJS export names for ESM import in node:

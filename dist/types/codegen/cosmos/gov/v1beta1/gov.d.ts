@@ -91,7 +91,7 @@ export interface WeightedVoteOptionAmino {
     /**
      * weight is the vote weight associated with the vote option.
      */
-    weight?: string;
+    weight: string;
 }
 export interface WeightedVoteOptionAminoMsg {
     type: "cosmos-sdk/WeightedVoteOption";

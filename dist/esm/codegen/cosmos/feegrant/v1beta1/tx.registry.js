@@ -1,5 +1,5 @@
-import { MsgGrantAllowance, MsgRevokeAllowance } from "./tx";
-const registry = [["/cosmos.feegrant.v1beta1.MsgGrantAllowance", MsgGrantAllowance], ["/cosmos.feegrant.v1beta1.MsgRevokeAllowance", MsgRevokeAllowance]];
+import { MsgGrantAllowance, MsgRevokeAllowance, MsgPruneAllowances } from "./tx";
+const registry = [["/cosmos.feegrant.v1beta1.MsgGrantAllowance", MsgGrantAllowance], ["/cosmos.feegrant.v1beta1.MsgRevokeAllowance", MsgRevokeAllowance], ["/cosmos.feegrant.v1beta1.MsgPruneAllowances", MsgPruneAllowances]];
 const load = (protoRegistry) => {
   registry.forEach(([typeUrl, mod]) => {
     protoRegistry.register(typeUrl, mod);
@@ -18,6 +18,12 @@ const MessageComposer = {
         typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance",
         value: MsgRevokeAllowance.encode(value).finish()
       };
+    },
+    pruneAllowances(value) {
+      return {
+        typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowances",
+        value: MsgPruneAllowances.encode(value).finish()
+      };
     }
   },
   withTypeUrl: {
@@ -30,6 +36,12 @@ const MessageComposer = {
     revokeAllowance(value) {
       return {
         typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance",
+        value
+      };
+    },
+    pruneAllowances(value) {
+      return {
+        typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowances",
         value
       };
     }
@@ -45,6 +57,12 @@ const MessageComposer = {
       return {
         typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance",
         value: MsgRevokeAllowance.fromPartial(value)
+      };
+    },
+    pruneAllowances(value) {
+      return {
+        typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowances",
+        value: MsgPruneAllowances.fromPartial(value)
       };
     }
   }

@@ -1,6 +1,6 @@
 import { TelescopeGeneratedType } from "../../types";
 import { Registry } from "@cosmjs/proto-signing";
-import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeights, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgCloseDelegationChannel, MsgUpdateValidatorSharesExchRate, MsgCalibrateDelegation, MsgClearBalance, MsgUpdateInnerRedemptionRateBounds, MsgResumeHostZone, MsgCreateTradeRoute, MsgDeleteTradeRoute, MsgUpdateTradeRoute, MsgSetCommunityPoolRebate, MsgToggleTradeController, MsgUpdateHostZoneParams } from "./tx";
+import { MsgLiquidStake, MsgLSMLiquidStake, MsgRedeemStake, MsgRegisterHostZone, MsgClaimUndelegatedTokens, MsgRebalanceValidators, MsgAddValidators, MsgChangeValidatorWeights, MsgDeleteValidator, MsgRestoreInterchainAccount, MsgCloseDelegationChannel, MsgUpdateValidatorSharesExchRate, MsgCalibrateDelegation, MsgClearBalance, MsgUpdateInnerRedemptionRateBounds, MsgResumeHostZone, MsgCreateTradeRoute, MsgDeleteTradeRoute, MsgUpdateTradeRoute, MsgSetCommunityPoolRebate, MsgToggleTradeController, MsgUpdateHostZoneParams, MsgDeprecateHostZone } from "./tx";
 export declare const registry: ReadonlyArray<[string, TelescopeGeneratedType<any, any, any>]>;
 export declare const load: (protoRegistry: Registry) => void;
 export declare const MessageComposer: {
@@ -90,6 +90,10 @@ export declare const MessageComposer: {
             value: Uint8Array;
         };
         updateHostZoneParams(value: MsgUpdateHostZoneParams): {
+            typeUrl: string;
+            value: Uint8Array;
+        };
+        deprecateHostZone(value: MsgDeprecateHostZone): {
             typeUrl: string;
             value: Uint8Array;
         };
@@ -183,6 +187,10 @@ export declare const MessageComposer: {
             typeUrl: string;
             value: MsgUpdateHostZoneParams;
         };
+        deprecateHostZone(value: MsgDeprecateHostZone): {
+            typeUrl: string;
+            value: MsgDeprecateHostZone;
+        };
     };
     fromPartial: {
         liquidStake(value: MsgLiquidStake): {
@@ -272,6 +280,10 @@ export declare const MessageComposer: {
         updateHostZoneParams(value: MsgUpdateHostZoneParams): {
             typeUrl: string;
             value: MsgUpdateHostZoneParams;
+        };
+        deprecateHostZone(value: MsgDeprecateHostZone): {
+            typeUrl: string;
+            value: MsgDeprecateHostZone;
         };
     };
 };

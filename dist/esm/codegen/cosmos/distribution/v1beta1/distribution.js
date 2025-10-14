@@ -78,9 +78,9 @@ const Params = {
   },
   toAmino(message) {
     const obj = {};
-    obj.community_tax = message.communityTax === "" ? void 0 : message.communityTax;
-    obj.base_proposer_reward = message.baseProposerReward === "" ? void 0 : message.baseProposerReward;
-    obj.bonus_proposer_reward = message.bonusProposerReward === "" ? void 0 : message.bonusProposerReward;
+    obj.community_tax = message.communityTax ?? "";
+    obj.base_proposer_reward = message.baseProposerReward ?? "";
+    obj.bonus_proposer_reward = message.bonusProposerReward ?? "";
     obj.withdraw_addr_enabled = message.withdrawAddrEnabled === false ? void 0 : message.withdrawAddrEnabled;
     return obj;
   },
@@ -812,7 +812,7 @@ const DelegatorStartingInfo = {
   toAmino(message) {
     const obj = {};
     obj.previous_period = message.previousPeriod !== BigInt(0) ? message.previousPeriod?.toString() : void 0;
-    obj.stake = message.stake === "" ? void 0 : message.stake;
+    obj.stake = message.stake ?? "";
     obj.height = message.height ? message.height?.toString() : "0";
     return obj;
   },

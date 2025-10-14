@@ -32,6 +32,24 @@ export interface Module {
      * to be used in keeper construction.
      */
     overrideStoreKeys: StoreKeyConfig[];
+    /**
+     * order_migrations defines the order in which module migrations are performed.
+     * If this is left empty, it uses the default migration order.
+     * https://pkg.go.dev/github.com/cosmos/cosmos-sdk@v0.47.0-alpha2/types/module#DefaultMigrationsOrder
+     */
+    orderMigrations: string[];
+    /**
+     * precommiters specifies the module names of the precommiters
+     * to call in the order in which they should be called. If this is left empty
+     * no precommit function will be registered.
+     */
+    precommiters: string[];
+    /**
+     * prepare_check_staters specifies the module names of the prepare_check_staters
+     * to call in the order in which they should be called. If this is left empty
+     * no preparecheckstate function will be registered.
+     */
+    prepareCheckStaters: string[];
 }
 export interface ModuleProtoMsg {
     typeUrl: "/cosmos.app.runtime.v1alpha1.Module";
@@ -77,6 +95,24 @@ export interface ModuleAmino {
      * to be used in keeper construction.
      */
     override_store_keys?: StoreKeyConfigAmino[];
+    /**
+     * order_migrations defines the order in which module migrations are performed.
+     * If this is left empty, it uses the default migration order.
+     * https://pkg.go.dev/github.com/cosmos/cosmos-sdk@v0.47.0-alpha2/types/module#DefaultMigrationsOrder
+     */
+    order_migrations?: string[];
+    /**
+     * precommiters specifies the module names of the precommiters
+     * to call in the order in which they should be called. If this is left empty
+     * no precommit function will be registered.
+     */
+    precommiters?: string[];
+    /**
+     * prepare_check_staters specifies the module names of the prepare_check_staters
+     * to call in the order in which they should be called. If this is left empty
+     * no preparecheckstate function will be registered.
+     */
+    prepare_check_staters?: string[];
 }
 export interface ModuleAminoMsg {
     type: "cosmos-sdk/Module";
@@ -90,6 +126,9 @@ export interface ModuleSDKType {
     init_genesis: string[];
     export_genesis: string[];
     override_store_keys: StoreKeyConfigSDKType[];
+    order_migrations: string[];
+    precommiters: string[];
+    prepare_check_staters: string[];
 }
 /**
  * StoreKeyConfig may be supplied to override the default module store key, which

@@ -2,7 +2,7 @@ import { Height, HeightAmino, HeightSDKType } from "../../client/v1/client";
 import { BinaryReader, BinaryWriter } from "../../../../binary";
 /**
  * State defines if a channel is in one of the following states:
- * CLOSED, INIT, TRYOPEN, OPEN or UNINITIALIZED.
+ * CLOSED, INIT, TRYOPEN, OPEN, FLUSHING, FLUSHCOMPLETE or UNINITIALIZED.
  */
 export declare enum State {
     /** STATE_UNINITIALIZED_UNSPECIFIED - Default State */
@@ -21,6 +21,10 @@ export declare enum State {
      * packets.
      */
     STATE_CLOSED = 4,
+    /** STATE_FLUSHING - A channel has just accepted the upgrade handshake attempt and is flushing in-flight packets. */
+    STATE_FLUSHING = 5,
+    /** STATE_FLUSHCOMPLETE - A channel has just completed flushing any in-flight packets. */
+    STATE_FLUSHCOMPLETE = 6,
     UNRECOGNIZED = -1
 }
 export declare const StateSDKType: typeof State;
@@ -63,6 +67,11 @@ export interface Channel {
     connectionHops: string[];
     /** opaque channel version, which is agreed upon during the handshake */
     version: string;
+    /**
+     * upgrade sequence indicates the latest upgrade attempt performed by this channel
+     * the value of 0 indicates the channel has never been upgraded
+     */
+    upgradeSequence: bigint;
 }
 export interface ChannelProtoMsg {
     typeUrl: "/ibc.core.channel.v1.Channel";
@@ -98,6 +107,11 @@ export interface ChannelAmino {
      * opaque channel version, which is agreed upon during the handshake
      */
     version?: string;
+    /**
+     * upgrade sequence indicates the latest upgrade attempt performed by this channel
+     * the value of 0 indicates the channel has never been upgraded
+     */
+    upgrade_sequence?: string;
 }
 export interface ChannelAminoMsg {
     type: "cosmos-sdk/Channel";
@@ -114,6 +128,7 @@ export interface ChannelSDKType {
     counterparty: CounterpartySDKType;
     connection_hops: string[];
     version: string;
+    upgrade_sequence: bigint;
 }
 /**
  * IdentifiedChannel defines a channel with additional port and channel
@@ -137,6 +152,11 @@ export interface IdentifiedChannel {
     portId: string;
     /** channel identifier */
     channelId: string;
+    /**
+     * upgrade sequence indicates the latest upgrade attempt performed by this channel
+     * the value of 0 indicates the channel has never been upgraded
+     */
+    upgradeSequence: bigint;
 }
 export interface IdentifiedChannelProtoMsg {
     typeUrl: "/ibc.core.channel.v1.IdentifiedChannel";
@@ -179,6 +199,11 @@ export interface IdentifiedChannelAmino {
      * channel identifier
      */
     channel_id?: string;
+    /**
+     * upgrade sequence indicates the latest upgrade attempt performed by this channel
+     * the value of 0 indicates the channel has never been upgraded
+     */
+    upgrade_sequence?: string;
 }
 export interface IdentifiedChannelAminoMsg {
     type: "cosmos-sdk/IdentifiedChannel";
@@ -196,6 +221,7 @@ export interface IdentifiedChannelSDKType {
     version: string;
     port_id: string;
     channel_id: string;
+    upgrade_sequence: bigint;
 }
 /** Counterparty defines a channel end counterparty */
 export interface Counterparty {
@@ -483,6 +509,81 @@ export interface AcknowledgementSDKType {
     result?: Uint8Array;
     error?: string;
 }
+/**
+ * Timeout defines an execution deadline structure for 04-channel handlers.
+ * This includes packet lifecycle handlers as well as the upgrade handshake handlers.
+ * A valid Timeout contains either one or both of a timestamp and block height (sequence).
+ */
+export interface Timeout {
+    /** block height after which the packet or upgrade times out */
+    height: Height;
+    /** block timestamp (in nanoseconds) after which the packet or upgrade times out */
+    timestamp: bigint;
+}
+export interface TimeoutProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.Timeout";
+    value: Uint8Array;
+}
+/**
+ * Timeout defines an execution deadline structure for 04-channel handlers.
+ * This includes packet lifecycle handlers as well as the upgrade handshake handlers.
+ * A valid Timeout contains either one or both of a timestamp and block height (sequence).
+ * @name TimeoutAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.Timeout
+ */
+export interface TimeoutAmino {
+    /**
+     * block height after which the packet or upgrade times out
+     */
+    height?: HeightAmino;
+    /**
+     * block timestamp (in nanoseconds) after which the packet or upgrade times out
+     */
+    timestamp?: string;
+}
+export interface TimeoutAminoMsg {
+    type: "cosmos-sdk/Timeout";
+    value: TimeoutAmino;
+}
+/**
+ * Timeout defines an execution deadline structure for 04-channel handlers.
+ * This includes packet lifecycle handlers as well as the upgrade handshake handlers.
+ * A valid Timeout contains either one or both of a timestamp and block height (sequence).
+ */
+export interface TimeoutSDKType {
+    height: HeightSDKType;
+    timestamp: bigint;
+}
+/** Params defines the set of IBC channel parameters. */
+export interface Params {
+    /** the relative timeout after which channel upgrades will time out. */
+    upgradeTimeout: Timeout;
+}
+export interface ParamsProtoMsg {
+    typeUrl: "/ibc.core.channel.v1.Params";
+    value: Uint8Array;
+}
+/**
+ * Params defines the set of IBC channel parameters.
+ * @name ParamsAmino
+ * @package ibc.core.channel.v1
+ * @see proto type: ibc.core.channel.v1.Params
+ */
+export interface ParamsAmino {
+    /**
+     * the relative timeout after which channel upgrades will time out.
+     */
+    upgrade_timeout?: TimeoutAmino;
+}
+export interface ParamsAminoMsg {
+    type: "cosmos-sdk/Params";
+    value: ParamsAmino;
+}
+/** Params defines the set of IBC channel parameters. */
+export interface ParamsSDKType {
+    upgrade_timeout: TimeoutSDKType;
+}
 export declare const Channel: {
     typeUrl: string;
     encode(message: Channel, writer?: BinaryWriter): BinaryWriter;
@@ -573,4 +674,30 @@ export declare const Acknowledgement: {
     fromProtoMsg(message: AcknowledgementProtoMsg): Acknowledgement;
     toProto(message: Acknowledgement): Uint8Array;
     toProtoMsg(message: Acknowledgement): AcknowledgementProtoMsg;
+};
+export declare const Timeout: {
+    typeUrl: string;
+    encode(message: Timeout, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): Timeout;
+    fromPartial(object: Partial<Timeout>): Timeout;
+    fromAmino(object: TimeoutAmino): Timeout;
+    toAmino(message: Timeout): TimeoutAmino;
+    fromAminoMsg(object: TimeoutAminoMsg): Timeout;
+    toAminoMsg(message: Timeout): TimeoutAminoMsg;
+    fromProtoMsg(message: TimeoutProtoMsg): Timeout;
+    toProto(message: Timeout): Uint8Array;
+    toProtoMsg(message: Timeout): TimeoutProtoMsg;
+};
+export declare const Params: {
+    typeUrl: string;
+    encode(message: Params, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): Params;
+    fromPartial(object: Partial<Params>): Params;
+    fromAmino(object: ParamsAmino): Params;
+    toAmino(message: Params): ParamsAmino;
+    fromAminoMsg(object: ParamsAminoMsg): Params;
+    toAminoMsg(message: Params): ParamsAminoMsg;
+    fromProtoMsg(message: ParamsProtoMsg): Params;
+    toProto(message: Params): Uint8Array;
+    toProtoMsg(message: Params): ParamsProtoMsg;
 };

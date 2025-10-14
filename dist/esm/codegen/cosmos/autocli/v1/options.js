@@ -562,7 +562,6 @@ function createBaseFlagOptions() {
     shorthand: "",
     usage: "",
     defaultValue: "",
-    noOptDefaultValue: "",
     deprecated: "",
     shorthandDeprecated: "",
     hidden: false
@@ -582,9 +581,6 @@ const FlagOptions = {
     }
     if (message.defaultValue !== "") {
       writer.uint32(34).string(message.defaultValue);
-    }
-    if (message.noOptDefaultValue !== "") {
-      writer.uint32(42).string(message.noOptDefaultValue);
     }
     if (message.deprecated !== "") {
       writer.uint32(50).string(message.deprecated);
@@ -616,9 +612,6 @@ const FlagOptions = {
         case 4:
           message.defaultValue = reader.string();
           break;
-        case 5:
-          message.noOptDefaultValue = reader.string();
-          break;
         case 6:
           message.deprecated = reader.string();
           break;
@@ -641,7 +634,6 @@ const FlagOptions = {
     message.shorthand = object.shorthand ?? "";
     message.usage = object.usage ?? "";
     message.defaultValue = object.defaultValue ?? "";
-    message.noOptDefaultValue = object.noOptDefaultValue ?? "";
     message.deprecated = object.deprecated ?? "";
     message.shorthandDeprecated = object.shorthandDeprecated ?? "";
     message.hidden = object.hidden ?? false;
@@ -661,9 +653,6 @@ const FlagOptions = {
     if (object.default_value !== void 0 && object.default_value !== null) {
       message.defaultValue = object.default_value;
     }
-    if (object.no_opt_default_value !== void 0 && object.no_opt_default_value !== null) {
-      message.noOptDefaultValue = object.no_opt_default_value;
-    }
     if (object.deprecated !== void 0 && object.deprecated !== null) {
       message.deprecated = object.deprecated;
     }
@@ -681,7 +670,6 @@ const FlagOptions = {
     obj.shorthand = message.shorthand === "" ? void 0 : message.shorthand;
     obj.usage = message.usage === "" ? void 0 : message.usage;
     obj.default_value = message.defaultValue === "" ? void 0 : message.defaultValue;
-    obj.no_opt_default_value = message.noOptDefaultValue === "" ? void 0 : message.noOptDefaultValue;
     obj.deprecated = message.deprecated === "" ? void 0 : message.deprecated;
     obj.shorthand_deprecated = message.shorthandDeprecated === "" ? void 0 : message.shorthandDeprecated;
     obj.hidden = message.hidden === false ? void 0 : message.hidden;

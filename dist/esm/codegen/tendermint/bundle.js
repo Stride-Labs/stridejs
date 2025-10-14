@@ -1,41 +1,41 @@
-import * as _260 from "./abci/types";
-import * as _261 from "./crypto/keys";
-import * as _262 from "./crypto/proof";
-import * as _263 from "./libs/bits/types";
-import * as _264 from "./p2p/types";
-import * as _265 from "./types/block";
-import * as _266 from "./types/evidence";
-import * as _267 from "./types/params";
-import * as _268 from "./types/types";
-import * as _269 from "./types/validator";
-import * as _270 from "./version/types";
+import * as _269 from "./abci/types";
+import * as _270 from "./crypto/keys";
+import * as _271 from "./crypto/proof";
+import * as _272 from "./libs/bits/types";
+import * as _273 from "./p2p/types";
+import * as _274 from "./types/block";
+import * as _275 from "./types/evidence";
+import * as _276 from "./types/params";
+import * as _277 from "./types/types";
+import * as _278 from "./types/validator";
+import * as _279 from "./version/types";
 var tendermint;
 ((tendermint2) => {
   tendermint2.abci = {
-    ..._260
+    ..._269
   };
   tendermint2.crypto = {
-    ..._261,
-    ..._262
+    ..._270,
+    ..._271
   };
   let libs;
   ((libs2) => {
     libs2.bits = {
-      ..._263
+      ..._272
     };
   })(libs = tendermint2.libs || (tendermint2.libs = {}));
   tendermint2.p2p = {
-    ..._264
+    ..._273
   };
   tendermint2.types = {
-    ..._265,
-    ..._266,
-    ..._267,
-    ..._268,
-    ..._269
+    ..._274,
+    ..._275,
+    ..._276,
+    ..._277,
+    ..._278
   };
   tendermint2.version = {
-    ..._270
+    ..._279
   };
 })(tendermint || (tendermint = {}));
 export {

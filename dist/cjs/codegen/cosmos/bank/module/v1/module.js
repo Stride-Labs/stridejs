@@ -24,7 +24,8 @@ var import_binary = require("../../../../binary");
 function createBaseModule() {
   return {
     blockedModuleAccountsOverride: [],
-    authority: ""
+    authority: "",
+    restrictionsOrder: []
   };
 }
 const Module = {
@@ -35,6 +36,9 @@ const Module = {
     }
     if (message.authority !== "") {
       writer.uint32(18).string(message.authority);
+    }
+    for (const v of message.restrictionsOrder) {
+      writer.uint32(26).string(v);
     }
     return writer;
   },
@@ -51,6 +55,9 @@ const Module = {
         case 2:
           message.authority = reader.string();
           break;
+        case 3:
+          message.restrictionsOrder.push(reader.string());
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -62,6 +69,7 @@ const Module = {
     const message = createBaseModule();
     message.blockedModuleAccountsOverride = object.blockedModuleAccountsOverride?.map((e) => e) || [];
     message.authority = object.authority ?? "";
+    message.restrictionsOrder = object.restrictionsOrder?.map((e) => e) || [];
     return message;
   },
   fromAmino(object) {
@@ -70,6 +78,7 @@ const Module = {
     if (object.authority !== void 0 && object.authority !== null) {
       message.authority = object.authority;
     }
+    message.restrictionsOrder = object.restrictions_order?.map((e) => e) || [];
     return message;
   },
   toAmino(message) {
@@ -80,6 +89,11 @@ const Module = {
       obj.blocked_module_accounts_override = message.blockedModuleAccountsOverride;
     }
     obj.authority = message.authority === "" ? void 0 : message.authority;
+    if (message.restrictionsOrder) {
+      obj.restrictions_order = message.restrictionsOrder.map((e) => e);
+    } else {
+      obj.restrictions_order = message.restrictionsOrder;
+    }
     return obj;
   },
   fromAminoMsg(object) {

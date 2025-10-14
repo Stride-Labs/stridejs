@@ -1,19 +1,7 @@
 import { Proof, ProofAmino, ProofSDKType } from "../crypto/proof";
 import { Consensus, ConsensusAmino, ConsensusSDKType } from "../version/types";
-import { ValidatorSet, ValidatorSetAmino, ValidatorSetSDKType } from "./validator";
+import { BlockIDFlag, ValidatorSet, ValidatorSetAmino, ValidatorSetSDKType } from "./validator";
 import { BinaryReader, BinaryWriter } from "../../binary";
-/** BlockIdFlag indicates which BlcokID the signature is for */
-export declare enum BlockIDFlag {
-    BLOCK_ID_FLAG_UNKNOWN = 0,
-    BLOCK_ID_FLAG_ABSENT = 1,
-    BLOCK_ID_FLAG_COMMIT = 2,
-    BLOCK_ID_FLAG_NIL = 3,
-    UNRECOGNIZED = -1
-}
-export declare const BlockIDFlagSDKType: typeof BlockIDFlag;
-export declare const BlockIDFlagAmino: typeof BlockIDFlag;
-export declare function blockIDFlagFromJSON(object: any): BlockIDFlag;
-export declare function blockIDFlagToJSON(object: BlockIDFlag): string;
 /** SignedMsgType is a type of signed message in the consensus. */
 export declare enum SignedMsgType {
     SIGNED_MSG_TYPE_UNKNOWN = 0,
@@ -256,7 +244,7 @@ export interface DataSDKType {
     txs: Uint8Array[];
 }
 /**
- * Vote represents a prevote, precommit, or commit vote from validators for
+ * Vote represents a prevote or precommit vote from validators for
  * consensus.
  */
 export interface Vote {
@@ -267,14 +255,29 @@ export interface Vote {
     timestamp: Date;
     validatorAddress: Uint8Array;
     validatorIndex: number;
+    /**
+     * Vote signature by the validator if they participated in consensus for the
+     * associated block.
+     */
     signature: Uint8Array;
+    /**
+     * Vote extension provided by the application. Only valid for precommit
+     * messages.
+     */
+    extension: Uint8Array;
+    /**
+     * Vote extension signature by the validator if they participated in
+     * consensus for the associated block.
+     * Only valid for precommit messages.
+     */
+    extensionSignature: Uint8Array;
 }
 export interface VoteProtoMsg {
     typeUrl: "/tendermint.types.Vote";
     value: Uint8Array;
 }
 /**
- * Vote represents a prevote, precommit, or commit vote from validators for
+ * Vote represents a prevote or precommit vote from validators for
  * consensus.
  * @name VoteAmino
  * @package tendermint.types
@@ -288,14 +291,29 @@ export interface VoteAmino {
     timestamp?: string;
     validator_address?: string;
     validator_index?: number;
+    /**
+     * Vote signature by the validator if they participated in consensus for the
+     * associated block.
+     */
     signature?: string;
+    /**
+     * Vote extension provided by the application. Only valid for precommit
+     * messages.
+     */
+    extension?: string;
+    /**
+     * Vote extension signature by the validator if they participated in
+     * consensus for the associated block.
+     * Only valid for precommit messages.
+     */
+    extension_signature?: string;
 }
 export interface VoteAminoMsg {
     type: "/tendermint.types.Vote";
     value: VoteAmino;
 }
 /**
- * Vote represents a prevote, precommit, or commit vote from validators for
+ * Vote represents a prevote or precommit vote from validators for
  * consensus.
  */
 export interface VoteSDKType {
@@ -307,6 +325,8 @@ export interface VoteSDKType {
     validator_address: Uint8Array;
     validator_index: number;
     signature: Uint8Array;
+    extension: Uint8Array;
+    extension_signature: Uint8Array;
 }
 /** Commit contains the evidence that a block was committed by a set of validators. */
 export interface Commit {
@@ -375,6 +395,95 @@ export interface CommitSigSDKType {
     validator_address: Uint8Array;
     timestamp: Date;
     signature: Uint8Array;
+}
+export interface ExtendedCommit {
+    height: bigint;
+    round: number;
+    blockId: BlockID;
+    extendedSignatures: ExtendedCommitSig[];
+}
+export interface ExtendedCommitProtoMsg {
+    typeUrl: "/tendermint.types.ExtendedCommit";
+    value: Uint8Array;
+}
+/**
+ * @name ExtendedCommitAmino
+ * @package tendermint.types
+ * @see proto type: tendermint.types.ExtendedCommit
+ */
+export interface ExtendedCommitAmino {
+    height?: string;
+    round?: number;
+    block_id?: BlockIDAmino;
+    extended_signatures?: ExtendedCommitSigAmino[];
+}
+export interface ExtendedCommitAminoMsg {
+    type: "/tendermint.types.ExtendedCommit";
+    value: ExtendedCommitAmino;
+}
+export interface ExtendedCommitSDKType {
+    height: bigint;
+    round: number;
+    block_id: BlockIDSDKType;
+    extended_signatures: ExtendedCommitSigSDKType[];
+}
+/**
+ * ExtendedCommitSig retains all the same fields as CommitSig but adds vote
+ * extension-related fields. We use two signatures to ensure backwards compatibility.
+ * That is the digest of the original signature is still the same in prior versions
+ */
+export interface ExtendedCommitSig {
+    blockIdFlag: BlockIDFlag;
+    validatorAddress: Uint8Array;
+    timestamp: Date;
+    signature: Uint8Array;
+    /** Vote extension data */
+    extension: Uint8Array;
+    /** Vote extension signature */
+    extensionSignature: Uint8Array;
+}
+export interface ExtendedCommitSigProtoMsg {
+    typeUrl: "/tendermint.types.ExtendedCommitSig";
+    value: Uint8Array;
+}
+/**
+ * ExtendedCommitSig retains all the same fields as CommitSig but adds vote
+ * extension-related fields. We use two signatures to ensure backwards compatibility.
+ * That is the digest of the original signature is still the same in prior versions
+ * @name ExtendedCommitSigAmino
+ * @package tendermint.types
+ * @see proto type: tendermint.types.ExtendedCommitSig
+ */
+export interface ExtendedCommitSigAmino {
+    block_id_flag?: BlockIDFlag;
+    validator_address?: string;
+    timestamp?: string;
+    signature?: string;
+    /**
+     * Vote extension data
+     */
+    extension?: string;
+    /**
+     * Vote extension signature
+     */
+    extension_signature?: string;
+}
+export interface ExtendedCommitSigAminoMsg {
+    type: "/tendermint.types.ExtendedCommitSig";
+    value: ExtendedCommitSigAmino;
+}
+/**
+ * ExtendedCommitSig retains all the same fields as CommitSig but adds vote
+ * extension-related fields. We use two signatures to ensure backwards compatibility.
+ * That is the digest of the original signature is still the same in prior versions
+ */
+export interface ExtendedCommitSigSDKType {
+    block_id_flag: BlockIDFlag;
+    validator_address: Uint8Array;
+    timestamp: Date;
+    signature: Uint8Array;
+    extension: Uint8Array;
+    extension_signature: Uint8Array;
 }
 export interface Proposal {
     type: SignedMsgType;
@@ -623,6 +732,30 @@ export declare const CommitSig: {
     fromProtoMsg(message: CommitSigProtoMsg): CommitSig;
     toProto(message: CommitSig): Uint8Array;
     toProtoMsg(message: CommitSig): CommitSigProtoMsg;
+};
+export declare const ExtendedCommit: {
+    typeUrl: string;
+    encode(message: ExtendedCommit, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): ExtendedCommit;
+    fromPartial(object: Partial<ExtendedCommit>): ExtendedCommit;
+    fromAmino(object: ExtendedCommitAmino): ExtendedCommit;
+    toAmino(message: ExtendedCommit): ExtendedCommitAmino;
+    fromAminoMsg(object: ExtendedCommitAminoMsg): ExtendedCommit;
+    fromProtoMsg(message: ExtendedCommitProtoMsg): ExtendedCommit;
+    toProto(message: ExtendedCommit): Uint8Array;
+    toProtoMsg(message: ExtendedCommit): ExtendedCommitProtoMsg;
+};
+export declare const ExtendedCommitSig: {
+    typeUrl: string;
+    encode(message: ExtendedCommitSig, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): ExtendedCommitSig;
+    fromPartial(object: Partial<ExtendedCommitSig>): ExtendedCommitSig;
+    fromAmino(object: ExtendedCommitSigAmino): ExtendedCommitSig;
+    toAmino(message: ExtendedCommitSig): ExtendedCommitSigAmino;
+    fromAminoMsg(object: ExtendedCommitSigAminoMsg): ExtendedCommitSig;
+    fromProtoMsg(message: ExtendedCommitSigProtoMsg): ExtendedCommitSig;
+    toProto(message: ExtendedCommitSig): Uint8Array;
+    toProtoMsg(message: ExtendedCommitSig): ExtendedCommitSigProtoMsg;
 };
 export declare const Proposal: {
     typeUrl: string;

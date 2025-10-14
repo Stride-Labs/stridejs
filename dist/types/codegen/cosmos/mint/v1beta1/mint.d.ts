@@ -68,19 +68,19 @@ export interface ParamsAmino {
     /**
      * maximum annual change in inflation rate
      */
-    inflation_rate_change?: string;
+    inflation_rate_change: string;
     /**
      * maximum inflation rate
      */
-    inflation_max?: string;
+    inflation_max: string;
     /**
      * minimum inflation rate
      */
-    inflation_min?: string;
+    inflation_min: string;
     /**
      * goal of percent bonded atoms
      */
-    goal_bonded?: string;
+    goal_bonded: string;
     /**
      * expected blocks per year
      */

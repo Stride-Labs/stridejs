@@ -95,6 +95,8 @@ export interface QueryTotalStrdBurnedRequestSDKType {
  */
 export interface QueryTotalStrdBurnedResponse {
     totalBurned: string;
+    protocolBurned: string;
+    totalUserBurned: string;
 }
 export interface QueryTotalStrdBurnedResponseProtoMsg {
     typeUrl: "/stride.strdburner.QueryTotalStrdBurnedResponse";
@@ -109,6 +111,8 @@ export interface QueryTotalStrdBurnedResponseProtoMsg {
  */
 export interface QueryTotalStrdBurnedResponseAmino {
     total_burned?: string;
+    protocol_burned?: string;
+    total_user_burned?: string;
 }
 export interface QueryTotalStrdBurnedResponseAminoMsg {
     type: "/stride.strdburner.QueryTotalStrdBurnedResponse";
@@ -120,6 +124,136 @@ export interface QueryTotalStrdBurnedResponseAminoMsg {
  */
 export interface QueryTotalStrdBurnedResponseSDKType {
     total_burned: string;
+    protocol_burned: string;
+    total_user_burned: string;
+}
+/**
+ * QueryStrdBurnedByAddressRequest is the request type for the Query/strdburner
+ * RPC method
+ */
+export interface QueryStrdBurnedByAddressRequest {
+    address: string;
+}
+export interface QueryStrdBurnedByAddressRequestProtoMsg {
+    typeUrl: "/stride.strdburner.QueryStrdBurnedByAddressRequest";
+    value: Uint8Array;
+}
+/**
+ * QueryStrdBurnedByAddressRequest is the request type for the Query/strdburner
+ * RPC method
+ * @name QueryStrdBurnedByAddressRequestAmino
+ * @package stride.strdburner
+ * @see proto type: stride.strdburner.QueryStrdBurnedByAddressRequest
+ */
+export interface QueryStrdBurnedByAddressRequestAmino {
+    address?: string;
+}
+export interface QueryStrdBurnedByAddressRequestAminoMsg {
+    type: "/stride.strdburner.QueryStrdBurnedByAddressRequest";
+    value: QueryStrdBurnedByAddressRequestAmino;
+}
+/**
+ * QueryStrdBurnedByAddressRequest is the request type for the Query/strdburner
+ * RPC method
+ */
+export interface QueryStrdBurnedByAddressRequestSDKType {
+    address: string;
+}
+/**
+ * QueryStrdBurnedByAddressResponse is the response type for the
+ * Query/strdburner RPC method
+ */
+export interface QueryStrdBurnedByAddressResponse {
+    burnedAmount: string;
+}
+export interface QueryStrdBurnedByAddressResponseProtoMsg {
+    typeUrl: "/stride.strdburner.QueryStrdBurnedByAddressResponse";
+    value: Uint8Array;
+}
+/**
+ * QueryStrdBurnedByAddressResponse is the response type for the
+ * Query/strdburner RPC method
+ * @name QueryStrdBurnedByAddressResponseAmino
+ * @package stride.strdburner
+ * @see proto type: stride.strdburner.QueryStrdBurnedByAddressResponse
+ */
+export interface QueryStrdBurnedByAddressResponseAmino {
+    burned_amount?: string;
+}
+export interface QueryStrdBurnedByAddressResponseAminoMsg {
+    type: "/stride.strdburner.QueryStrdBurnedByAddressResponse";
+    value: QueryStrdBurnedByAddressResponseAmino;
+}
+/**
+ * QueryStrdBurnedByAddressResponse is the response type for the
+ * Query/strdburner RPC method
+ */
+export interface QueryStrdBurnedByAddressResponseSDKType {
+    burned_amount: string;
+}
+/**
+ * QueryLinkedAddressRequest is the request type for the Query/strdburner
+ * RPC method
+ */
+export interface QueryLinkedAddressRequest {
+    strideAddress: string;
+}
+export interface QueryLinkedAddressRequestProtoMsg {
+    typeUrl: "/stride.strdburner.QueryLinkedAddressRequest";
+    value: Uint8Array;
+}
+/**
+ * QueryLinkedAddressRequest is the request type for the Query/strdburner
+ * RPC method
+ * @name QueryLinkedAddressRequestAmino
+ * @package stride.strdburner
+ * @see proto type: stride.strdburner.QueryLinkedAddressRequest
+ */
+export interface QueryLinkedAddressRequestAmino {
+    stride_address?: string;
+}
+export interface QueryLinkedAddressRequestAminoMsg {
+    type: "/stride.strdburner.QueryLinkedAddressRequest";
+    value: QueryLinkedAddressRequestAmino;
+}
+/**
+ * QueryLinkedAddressRequest is the request type for the Query/strdburner
+ * RPC method
+ */
+export interface QueryLinkedAddressRequestSDKType {
+    stride_address: string;
+}
+/**
+ * QueryLinkedAddressResponse is the response type for the
+ * Query/strdburner RPC method
+ */
+export interface QueryLinkedAddressResponse {
+    linkedAddress: string;
+}
+export interface QueryLinkedAddressResponseProtoMsg {
+    typeUrl: "/stride.strdburner.QueryLinkedAddressResponse";
+    value: Uint8Array;
+}
+/**
+ * QueryLinkedAddressResponse is the response type for the
+ * Query/strdburner RPC method
+ * @name QueryLinkedAddressResponseAmino
+ * @package stride.strdburner
+ * @see proto type: stride.strdburner.QueryLinkedAddressResponse
+ */
+export interface QueryLinkedAddressResponseAmino {
+    linked_address?: string;
+}
+export interface QueryLinkedAddressResponseAminoMsg {
+    type: "/stride.strdburner.QueryLinkedAddressResponse";
+    value: QueryLinkedAddressResponseAmino;
+}
+/**
+ * QueryLinkedAddressResponse is the response type for the
+ * Query/strdburner RPC method
+ */
+export interface QueryLinkedAddressResponseSDKType {
+    linked_address: string;
 }
 export declare const QueryStrdBurnerAddressRequest: {
     typeUrl: string;
@@ -168,4 +302,52 @@ export declare const QueryTotalStrdBurnedResponse: {
     fromProtoMsg(message: QueryTotalStrdBurnedResponseProtoMsg): QueryTotalStrdBurnedResponse;
     toProto(message: QueryTotalStrdBurnedResponse): Uint8Array;
     toProtoMsg(message: QueryTotalStrdBurnedResponse): QueryTotalStrdBurnedResponseProtoMsg;
+};
+export declare const QueryStrdBurnedByAddressRequest: {
+    typeUrl: string;
+    encode(message: QueryStrdBurnedByAddressRequest, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryStrdBurnedByAddressRequest;
+    fromPartial(object: Partial<QueryStrdBurnedByAddressRequest>): QueryStrdBurnedByAddressRequest;
+    fromAmino(object: QueryStrdBurnedByAddressRequestAmino): QueryStrdBurnedByAddressRequest;
+    toAmino(message: QueryStrdBurnedByAddressRequest): QueryStrdBurnedByAddressRequestAmino;
+    fromAminoMsg(object: QueryStrdBurnedByAddressRequestAminoMsg): QueryStrdBurnedByAddressRequest;
+    fromProtoMsg(message: QueryStrdBurnedByAddressRequestProtoMsg): QueryStrdBurnedByAddressRequest;
+    toProto(message: QueryStrdBurnedByAddressRequest): Uint8Array;
+    toProtoMsg(message: QueryStrdBurnedByAddressRequest): QueryStrdBurnedByAddressRequestProtoMsg;
+};
+export declare const QueryStrdBurnedByAddressResponse: {
+    typeUrl: string;
+    encode(message: QueryStrdBurnedByAddressResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryStrdBurnedByAddressResponse;
+    fromPartial(object: Partial<QueryStrdBurnedByAddressResponse>): QueryStrdBurnedByAddressResponse;
+    fromAmino(object: QueryStrdBurnedByAddressResponseAmino): QueryStrdBurnedByAddressResponse;
+    toAmino(message: QueryStrdBurnedByAddressResponse): QueryStrdBurnedByAddressResponseAmino;
+    fromAminoMsg(object: QueryStrdBurnedByAddressResponseAminoMsg): QueryStrdBurnedByAddressResponse;
+    fromProtoMsg(message: QueryStrdBurnedByAddressResponseProtoMsg): QueryStrdBurnedByAddressResponse;
+    toProto(message: QueryStrdBurnedByAddressResponse): Uint8Array;
+    toProtoMsg(message: QueryStrdBurnedByAddressResponse): QueryStrdBurnedByAddressResponseProtoMsg;
+};
+export declare const QueryLinkedAddressRequest: {
+    typeUrl: string;
+    encode(message: QueryLinkedAddressRequest, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryLinkedAddressRequest;
+    fromPartial(object: Partial<QueryLinkedAddressRequest>): QueryLinkedAddressRequest;
+    fromAmino(object: QueryLinkedAddressRequestAmino): QueryLinkedAddressRequest;
+    toAmino(message: QueryLinkedAddressRequest): QueryLinkedAddressRequestAmino;
+    fromAminoMsg(object: QueryLinkedAddressRequestAminoMsg): QueryLinkedAddressRequest;
+    fromProtoMsg(message: QueryLinkedAddressRequestProtoMsg): QueryLinkedAddressRequest;
+    toProto(message: QueryLinkedAddressRequest): Uint8Array;
+    toProtoMsg(message: QueryLinkedAddressRequest): QueryLinkedAddressRequestProtoMsg;
+};
+export declare const QueryLinkedAddressResponse: {
+    typeUrl: string;
+    encode(message: QueryLinkedAddressResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): QueryLinkedAddressResponse;
+    fromPartial(object: Partial<QueryLinkedAddressResponse>): QueryLinkedAddressResponse;
+    fromAmino(object: QueryLinkedAddressResponseAmino): QueryLinkedAddressResponse;
+    toAmino(message: QueryLinkedAddressResponse): QueryLinkedAddressResponseAmino;
+    fromAminoMsg(object: QueryLinkedAddressResponseAminoMsg): QueryLinkedAddressResponse;
+    fromProtoMsg(message: QueryLinkedAddressResponseProtoMsg): QueryLinkedAddressResponse;
+    toProto(message: QueryLinkedAddressResponse): Uint8Array;
+    toProtoMsg(message: QueryLinkedAddressResponse): QueryLinkedAddressResponseProtoMsg;
 };

@@ -30,19 +30,19 @@ __export(bundle_exports, {
   gaia: () => gaia
 });
 module.exports = __toCommonJS(bundle_exports);
-var _135 = __toESM(require("./liquid/module/v1/module"));
-var _136 = __toESM(require("./liquid/v1beta1/genesis"));
-var _137 = __toESM(require("./liquid/v1beta1/liquid"));
-var _138 = __toESM(require("./liquid/v1beta1/lsm_tx"));
-var _139 = __toESM(require("./liquid/v1beta1/query"));
-var _140 = __toESM(require("./liquid/v1beta1/tx"));
-var _141 = __toESM(require("./metaprotocols/extensions"));
-var _348 = __toESM(require("./liquid/v1beta1/tx.amino"));
-var _349 = __toESM(require("./liquid/v1beta1/tx.registry"));
-var _350 = __toESM(require("./liquid/v1beta1/query.rpc.Query"));
-var _351 = __toESM(require("./liquid/v1beta1/tx.rpc.msg"));
-var _425 = __toESM(require("./rpc.query"));
-var _426 = __toESM(require("./rpc.tx"));
+var _140 = __toESM(require("./liquid/module/v1/module"));
+var _141 = __toESM(require("./liquid/v1beta1/genesis"));
+var _142 = __toESM(require("./liquid/v1beta1/liquid"));
+var _143 = __toESM(require("./liquid/v1beta1/lsm_tx"));
+var _144 = __toESM(require("./liquid/v1beta1/query"));
+var _145 = __toESM(require("./liquid/v1beta1/tx"));
+var _146 = __toESM(require("./metaprotocols/extensions"));
+var _361 = __toESM(require("./liquid/v1beta1/tx.amino"));
+var _362 = __toESM(require("./liquid/v1beta1/tx.registry"));
+var _363 = __toESM(require("./liquid/v1beta1/query.rpc.Query"));
+var _364 = __toESM(require("./liquid/v1beta1/tx.rpc.msg"));
+var _445 = __toESM(require("./rpc.query"));
+var _446 = __toESM(require("./rpc.tx"));
 var gaia;
 ((gaia2) => {
   let liquid;
@@ -50,27 +50,27 @@ var gaia;
     let module2;
     ((module3) => {
       module3.v1 = {
-        ..._135
+        ..._140
       };
     })(module2 = liquid2.module || (liquid2.module = {}));
     liquid2.v1beta1 = {
-      ..._136,
-      ..._137,
-      ..._138,
-      ..._139,
-      ..._140,
-      ..._348,
-      ..._349,
-      ..._350,
-      ..._351
+      ..._141,
+      ..._142,
+      ..._143,
+      ..._144,
+      ..._145,
+      ..._361,
+      ..._362,
+      ..._363,
+      ..._364
     };
   })(liquid = gaia2.liquid || (gaia2.liquid = {}));
   gaia2.metaprotocols = {
-    ..._141
+    ..._146
   };
   gaia2.ClientFactory = {
-    ..._425,
-    ..._426
+    ..._445,
+    ..._446
   };
 })(gaia || (gaia = {}));
 // Annotate the CommonJS export names for ESM import in node:

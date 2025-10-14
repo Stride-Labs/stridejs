@@ -134,6 +134,77 @@ export interface MsgRevokeAllowanceResponseAminoMsg {
 /** MsgRevokeAllowanceResponse defines the Msg/RevokeAllowanceResponse response type. */
 export interface MsgRevokeAllowanceResponseSDKType {
 }
+/**
+ * MsgPruneAllowances prunes expired fee allowances.
+ *
+ * Since cosmos-sdk 0.50
+ */
+export interface MsgPruneAllowances {
+    /** pruner is the address of the user pruning expired allowances. */
+    pruner: string;
+}
+export interface MsgPruneAllowancesProtoMsg {
+    typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowances";
+    value: Uint8Array;
+}
+/**
+ * MsgPruneAllowances prunes expired fee allowances.
+ *
+ * Since cosmos-sdk 0.50
+ * @name MsgPruneAllowancesAmino
+ * @package cosmos.feegrant.v1beta1
+ * @see proto type: cosmos.feegrant.v1beta1.MsgPruneAllowances
+ */
+export interface MsgPruneAllowancesAmino {
+    /**
+     * pruner is the address of the user pruning expired allowances.
+     */
+    pruner?: string;
+}
+export interface MsgPruneAllowancesAminoMsg {
+    type: "cosmos-sdk/MsgPruneAllowances";
+    value: MsgPruneAllowancesAmino;
+}
+/**
+ * MsgPruneAllowances prunes expired fee allowances.
+ *
+ * Since cosmos-sdk 0.50
+ */
+export interface MsgPruneAllowancesSDKType {
+    pruner: string;
+}
+/**
+ * MsgPruneAllowancesResponse defines the Msg/PruneAllowancesResponse response type.
+ *
+ * Since cosmos-sdk 0.50
+ */
+export interface MsgPruneAllowancesResponse {
+}
+export interface MsgPruneAllowancesResponseProtoMsg {
+    typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowancesResponse";
+    value: Uint8Array;
+}
+/**
+ * MsgPruneAllowancesResponse defines the Msg/PruneAllowancesResponse response type.
+ *
+ * Since cosmos-sdk 0.50
+ * @name MsgPruneAllowancesResponseAmino
+ * @package cosmos.feegrant.v1beta1
+ * @see proto type: cosmos.feegrant.v1beta1.MsgPruneAllowancesResponse
+ */
+export interface MsgPruneAllowancesResponseAmino {
+}
+export interface MsgPruneAllowancesResponseAminoMsg {
+    type: "cosmos-sdk/MsgPruneAllowancesResponse";
+    value: MsgPruneAllowancesResponseAmino;
+}
+/**
+ * MsgPruneAllowancesResponse defines the Msg/PruneAllowancesResponse response type.
+ *
+ * Since cosmos-sdk 0.50
+ */
+export interface MsgPruneAllowancesResponseSDKType {
+}
 export declare const MsgGrantAllowance: {
     typeUrl: string;
     encode(message: MsgGrantAllowance, writer?: BinaryWriter): BinaryWriter;
@@ -185,6 +256,32 @@ export declare const MsgRevokeAllowanceResponse: {
     fromProtoMsg(message: MsgRevokeAllowanceResponseProtoMsg): MsgRevokeAllowanceResponse;
     toProto(message: MsgRevokeAllowanceResponse): Uint8Array;
     toProtoMsg(message: MsgRevokeAllowanceResponse): MsgRevokeAllowanceResponseProtoMsg;
+};
+export declare const MsgPruneAllowances: {
+    typeUrl: string;
+    encode(message: MsgPruneAllowances, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgPruneAllowances;
+    fromPartial(object: Partial<MsgPruneAllowances>): MsgPruneAllowances;
+    fromAmino(object: MsgPruneAllowancesAmino): MsgPruneAllowances;
+    toAmino(message: MsgPruneAllowances): MsgPruneAllowancesAmino;
+    fromAminoMsg(object: MsgPruneAllowancesAminoMsg): MsgPruneAllowances;
+    toAminoMsg(message: MsgPruneAllowances): MsgPruneAllowancesAminoMsg;
+    fromProtoMsg(message: MsgPruneAllowancesProtoMsg): MsgPruneAllowances;
+    toProto(message: MsgPruneAllowances): Uint8Array;
+    toProtoMsg(message: MsgPruneAllowances): MsgPruneAllowancesProtoMsg;
+};
+export declare const MsgPruneAllowancesResponse: {
+    typeUrl: string;
+    encode(_: MsgPruneAllowancesResponse, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): MsgPruneAllowancesResponse;
+    fromPartial(_: Partial<MsgPruneAllowancesResponse>): MsgPruneAllowancesResponse;
+    fromAmino(_: MsgPruneAllowancesResponseAmino): MsgPruneAllowancesResponse;
+    toAmino(_: MsgPruneAllowancesResponse): MsgPruneAllowancesResponseAmino;
+    fromAminoMsg(object: MsgPruneAllowancesResponseAminoMsg): MsgPruneAllowancesResponse;
+    toAminoMsg(message: MsgPruneAllowancesResponse): MsgPruneAllowancesResponseAminoMsg;
+    fromProtoMsg(message: MsgPruneAllowancesResponseProtoMsg): MsgPruneAllowancesResponse;
+    toProto(message: MsgPruneAllowancesResponse): Uint8Array;
+    toProtoMsg(message: MsgPruneAllowancesResponse): MsgPruneAllowancesResponseProtoMsg;
 };
 export declare const Cosmos_feegrantv1beta1FeeAllowanceI_InterfaceDecoder: (input: BinaryReader | Uint8Array) => BasicAllowance | PeriodicAllowance | AllowedMsgAllowance | Any;
 export declare const Cosmos_feegrantv1beta1FeeAllowanceI_FromAmino: (content: AnyAmino) => Any;

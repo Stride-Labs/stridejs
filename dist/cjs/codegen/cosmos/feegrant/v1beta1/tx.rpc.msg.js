@@ -28,6 +28,7 @@ class MsgClientImpl {
     this.rpc = rpc;
     this.grantAllowance = this.grantAllowance.bind(this);
     this.revokeAllowance = this.revokeAllowance.bind(this);
+    this.pruneAllowances = this.pruneAllowances.bind(this);
   }
   grantAllowance(request) {
     const data = import_tx.MsgGrantAllowance.encode(request).finish();
@@ -38,6 +39,11 @@ class MsgClientImpl {
     const data = import_tx.MsgRevokeAllowance.encode(request).finish();
     const promise = this.rpc.request("cosmos.feegrant.v1beta1.Msg", "RevokeAllowance", data);
     return promise.then((data2) => import_tx.MsgRevokeAllowanceResponse.decode(new import_binary.BinaryReader(data2)));
+  }
+  pruneAllowances(request) {
+    const data = import_tx.MsgPruneAllowances.encode(request).finish();
+    const promise = this.rpc.request("cosmos.feegrant.v1beta1.Msg", "PruneAllowances", data);
+    return promise.then((data2) => import_tx.MsgPruneAllowancesResponse.decode(new import_binary.BinaryReader(data2)));
   }
 }
 // Annotate the CommonJS export names for ESM import in node:

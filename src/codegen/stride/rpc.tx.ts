@@ -69,6 +69,7 @@ export const createRPCMsgClient = async ({
     },
     stakedym: new (await import("./stakedym/tx.rpc.msg")).MsgClientImpl(rpc),
     stakeibc: new (await import("./stakeibc/tx.rpc.msg")).MsgClientImpl(rpc),
-    staketia: new (await import("./staketia/tx.rpc.msg")).MsgClientImpl(rpc)
+    staketia: new (await import("./staketia/tx.rpc.msg")).MsgClientImpl(rpc),
+    strdburner: new (await import("./strdburner/tx.rpc.msg")).MsgClientImpl(rpc)
   }
 });

@@ -30,40 +30,40 @@ __export(bundle_exports, {
   cosmwasm: () => cosmwasm
 });
 module.exports = __toCommonJS(bundle_exports);
-var _128 = __toESM(require("./wasm/v1/authz"));
-var _129 = __toESM(require("./wasm/v1/genesis"));
-var _130 = __toESM(require("./wasm/v1/ibc"));
-var _131 = __toESM(require("./wasm/v1/proposal_legacy"));
-var _132 = __toESM(require("./wasm/v1/query"));
-var _133 = __toESM(require("./wasm/v1/tx"));
-var _134 = __toESM(require("./wasm/v1/types"));
-var _344 = __toESM(require("./wasm/v1/tx.amino"));
-var _345 = __toESM(require("./wasm/v1/tx.registry"));
-var _346 = __toESM(require("./wasm/v1/query.rpc.Query"));
-var _347 = __toESM(require("./wasm/v1/tx.rpc.msg"));
-var _423 = __toESM(require("./rpc.query"));
-var _424 = __toESM(require("./rpc.tx"));
+var _133 = __toESM(require("./wasm/v1/authz"));
+var _134 = __toESM(require("./wasm/v1/genesis"));
+var _135 = __toESM(require("./wasm/v1/ibc"));
+var _136 = __toESM(require("./wasm/v1/proposal_legacy"));
+var _137 = __toESM(require("./wasm/v1/query"));
+var _138 = __toESM(require("./wasm/v1/tx"));
+var _139 = __toESM(require("./wasm/v1/types"));
+var _357 = __toESM(require("./wasm/v1/tx.amino"));
+var _358 = __toESM(require("./wasm/v1/tx.registry"));
+var _359 = __toESM(require("./wasm/v1/query.rpc.Query"));
+var _360 = __toESM(require("./wasm/v1/tx.rpc.msg"));
+var _443 = __toESM(require("./rpc.query"));
+var _444 = __toESM(require("./rpc.tx"));
 var cosmwasm;
 ((cosmwasm2) => {
   let wasm;
   ((wasm2) => {
     wasm2.v1 = {
-      ..._128,
-      ..._129,
-      ..._130,
-      ..._131,
-      ..._132,
       ..._133,
       ..._134,
-      ..._344,
-      ..._345,
-      ..._346,
-      ..._347
+      ..._135,
+      ..._136,
+      ..._137,
+      ..._138,
+      ..._139,
+      ..._357,
+      ..._358,
+      ..._359,
+      ..._360
     };
   })(wasm = cosmwasm2.wasm || (cosmwasm2.wasm = {}));
   cosmwasm2.ClientFactory = {
-    ..._423,
-    ..._424
+    ..._443,
+    ..._444
   };
 })(cosmwasm || (cosmwasm = {}));
 // Annotate the CommonJS export names for ESM import in node:

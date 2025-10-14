@@ -10,6 +10,7 @@ import * as strideInterchainqueryV1TxRegistry from "./interchainquery/v1/tx.regi
 import * as strideStakedymTxRegistry from "./stakedym/tx.registry";
 import * as strideStakeibcTxRegistry from "./stakeibc/tx.registry";
 import * as strideStaketiaTxRegistry from "./staketia/tx.registry";
+import * as strideStrdburnerTxRegistry from "./strdburner/tx.registry";
 import * as strideAirdropTxAmino from "./airdrop/tx.amino";
 import * as strideAuctionTxAmino from "./auction/tx.amino";
 import * as strideClaimTxAmino from "./claim/tx.amino";
@@ -19,6 +20,7 @@ import * as strideInterchainqueryV1TxAmino from "./interchainquery/v1/tx.amino";
 import * as strideStakedymTxAmino from "./stakedym/tx.amino";
 import * as strideStakeibcTxAmino from "./stakeibc/tx.amino";
 import * as strideStaketiaTxAmino from "./staketia/tx.amino";
+import * as strideStrdburnerTxAmino from "./strdburner/tx.amino";
 export const strideAminoConverters = {
   ...strideAirdropTxAmino.AminoConverter,
   ...strideAuctionTxAmino.AminoConverter,
@@ -28,9 +30,10 @@ export const strideAminoConverters = {
   ...strideInterchainqueryV1TxAmino.AminoConverter,
   ...strideStakedymTxAmino.AminoConverter,
   ...strideStakeibcTxAmino.AminoConverter,
-  ...strideStaketiaTxAmino.AminoConverter
+  ...strideStaketiaTxAmino.AminoConverter,
+  ...strideStrdburnerTxAmino.AminoConverter
 };
-export const strideProtoRegistry: ReadonlyArray<[string, GeneratedType]> = [...strideAirdropTxRegistry.registry, ...strideAuctionTxRegistry.registry, ...strideClaimTxRegistry.registry, ...strideIcaoracleTxRegistry.registry, ...strideIcqoracleTxRegistry.registry, ...strideInterchainqueryV1TxRegistry.registry, ...strideStakedymTxRegistry.registry, ...strideStakeibcTxRegistry.registry, ...strideStaketiaTxRegistry.registry];
+export const strideProtoRegistry: ReadonlyArray<[string, GeneratedType]> = [...strideAirdropTxRegistry.registry, ...strideAuctionTxRegistry.registry, ...strideClaimTxRegistry.registry, ...strideIcaoracleTxRegistry.registry, ...strideIcqoracleTxRegistry.registry, ...strideInterchainqueryV1TxRegistry.registry, ...strideStakedymTxRegistry.registry, ...strideStakeibcTxRegistry.registry, ...strideStaketiaTxRegistry.registry, ...strideStrdburnerTxRegistry.registry];
 export const getSigningStrideClientOptions = ({
   defaultTypes = defaultRegistryTypes
 }: {

@@ -34,6 +34,15 @@ export interface GenesisState {
      * Since: cosmos-sdk 0.47
      */
     params?: Params;
+    /**
+     * The constitution allows builders to lay a foundation and define purpose.
+     * This is an immutable string set in genesis.
+     * There are no amendments, to go outside of scope, just fork.
+     * constitution is an immutable string in genesis for a chain builder to lay out their vision, ideas and ideals.
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    constitution: string;
 }
 export interface GenesisStateProtoMsg {
     typeUrl: "/cosmos.gov.v1.GenesisState";
@@ -86,6 +95,15 @@ export interface GenesisStateAmino {
      * Since: cosmos-sdk 0.47
      */
     params?: ParamsAmino;
+    /**
+     * The constitution allows builders to lay a foundation and define purpose.
+     * This is an immutable string set in genesis.
+     * There are no amendments, to go outside of scope, just fork.
+     * constitution is an immutable string in genesis for a chain builder to lay out their vision, ideas and ideals.
+     *
+     * Since: cosmos-sdk 0.50
+     */
+    constitution?: string;
 }
 export interface GenesisStateAminoMsg {
     type: "cosmos-sdk/v1/GenesisState";
@@ -104,6 +122,7 @@ export interface GenesisStateSDKType {
     /** @deprecated */
     tally_params?: TallyParamsSDKType;
     params?: ParamsSDKType;
+    constitution: string;
 }
 export declare const GenesisState: {
     typeUrl: string;

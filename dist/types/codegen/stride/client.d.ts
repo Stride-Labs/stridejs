@@ -2,6 +2,16 @@ import { GeneratedType, Registry, OfflineSigner } from "@cosmjs/proto-signing";
 import { AminoTypes, SigningStargateClient } from "@cosmjs/stargate";
 import { HttpEndpoint } from "@cosmjs/tendermint-rpc";
 export declare const strideAminoConverters: {
+    "/stride.strdburner.MsgBurn": {
+        aminoType: string;
+        toAmino: (message: import("./strdburner/tx").MsgBurn) => import("./strdburner/tx").MsgBurnAmino;
+        fromAmino: (object: import("./strdburner/tx").MsgBurnAmino) => import("./strdburner/tx").MsgBurn;
+    };
+    "/stride.strdburner.MsgLink": {
+        aminoType: string;
+        toAmino: (message: import("./strdburner/tx").MsgLink) => import("./strdburner/tx").MsgLinkAmino;
+        fromAmino: (object: import("./strdburner/tx").MsgLinkAmino) => import("./strdburner/tx").MsgLink;
+    };
     "/stride.staketia.MsgLiquidStake": {
         aminoType: string;
         toAmino: (message: import("./staketia/tx").MsgLiquidStake) => import("./staketia/tx").MsgLiquidStakeAmino;
@@ -177,6 +187,11 @@ export declare const strideAminoConverters: {
         toAmino: (message: import("./stakeibc/tx").MsgUpdateHostZoneParams) => import("./stakeibc/tx").MsgUpdateHostZoneParamsAmino;
         fromAmino: (object: import("./stakeibc/tx").MsgUpdateHostZoneParamsAmino) => import("./stakeibc/tx").MsgUpdateHostZoneParams;
     };
+    "/stride.stakeibc.MsgDeprecateHostZone": {
+        aminoType: string;
+        toAmino: (message: import("./stakeibc/tx").MsgDeprecateHostZone) => import("./stakeibc/tx").MsgDeprecateHostZoneAmino;
+        fromAmino: (object: import("./stakeibc/tx").MsgDeprecateHostZoneAmino) => import("./stakeibc/tx").MsgDeprecateHostZone;
+    };
     "/stride.stakedym.MsgLiquidStake": {
         aminoType: string;
         toAmino: (message: import("./stakedym/tx").MsgLiquidStake) => import("./stakedym/tx").MsgLiquidStakeAmino;
@@ -244,8 +259,8 @@ export declare const strideAminoConverters: {
     };
     "/stride.interchainquery.v1.MsgSubmitQueryResponse": {
         aminoType: string;
-        toAmino: (message: import("./interchainquery/v1/messages").MsgSubmitQueryResponse) => import("./interchainquery/v1/messages").MsgSubmitQueryResponseAmino;
-        fromAmino: (object: import("./interchainquery/v1/messages").MsgSubmitQueryResponseAmino) => import("./interchainquery/v1/messages").MsgSubmitQueryResponse;
+        toAmino: (message: import("./interchainquery/v1/tx").MsgSubmitQueryResponse) => import("./interchainquery/v1/tx").MsgSubmitQueryResponseAmino;
+        fromAmino: (object: import("./interchainquery/v1/tx").MsgSubmitQueryResponseAmino) => import("./interchainquery/v1/tx").MsgSubmitQueryResponse;
     };
     "/stride.icqoracle.MsgRegisterTokenPriceQuery": {
         aminoType: string;
