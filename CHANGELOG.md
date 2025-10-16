@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.0
+
+- Add types for user burn (x/strdburner)
+
 ## 0.14.1
 
 - Add Gaia v24.0.0 types
